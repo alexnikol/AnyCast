@@ -13,5 +13,5 @@ struct Genre {
 }
 
 protocol GenresLoader {
-    func load(completion: Result<[Genre], Error>)
+    func load(completion: @escaping (Result<[Genre], Error>) -> Void)
 }

@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8D745DCC28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */; };
+		8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */; };
+		8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DD028BFA728005DC3F8 /* Genre.swift */; };
 		8DA0931E28BF5A0200C4C68D /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
-		8DA0932928BF5AEF00C4C68D /* PodcastsGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0932828BF5AEF00C4C68D /* PodcastsGenresLoader.swift */; };
+		8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */; };
 		8DA0932B28BF5E3700C4C68D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8DA0932A28BF5E3700C4C68D /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -25,9 +27,11 @@
 
 /* Begin PBXFileReference section */
 		8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenresLoaderTests.swift; sourceTree = "<group>"; };
+		8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenresLoader.swift; sourceTree = "<group>"; };
+		8D745DD028BFA728005DC3F8 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsGenresList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA0931A28BF5A0200C4C68D /* PodcastsGenresListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DA0932828BF5AEF00C4C68D /* PodcastsGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsGenresLoader.swift; sourceTree = "<group>"; };
+		8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLoader.swift; sourceTree = "<group>"; };
 		8DA0932A28BF5E3700C4C68D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D745DCD28BFA6F6005DC3F8 /* Genres API */ = {
+			isa = PBXGroup;
+			children = (
+				8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */,
+			);
+			path = "Genres API";
+			sourceTree = "<group>";
+		};
 		8DA0930228BF59C900C4C68D = {
 			isa = PBXGroup;
 			children = (
@@ -72,7 +84,9 @@
 		8DA0930E28BF59C900C4C68D /* PodcastsGenresList */ = {
 			isa = PBXGroup;
 			children = (
-				8DA0932828BF5AEF00C4C68D /* PodcastsGenresLoader.swift */,
+				8D745DCD28BFA6F6005DC3F8 /* Genres API */,
+				8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */,
+				8D745DD028BFA728005DC3F8 /* Genre.swift */,
 			);
 			path = PodcastsGenresList;
 			sourceTree = "<group>";
@@ -195,7 +209,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DA0932928BF5AEF00C4C68D /* PodcastsGenresLoader.swift in Sources */,
+				8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */,
+				8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */,
+				8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

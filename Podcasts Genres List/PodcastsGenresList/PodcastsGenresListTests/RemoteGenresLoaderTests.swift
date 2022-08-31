@@ -6,24 +6,7 @@
 //
 
 import XCTest
-
-class RemoteGenresLoader {
-    let client: HTTPClient
-    let url: URL
-    
-    init(url: URL, client: HTTPClient) {
-        self.url = url
-        self.client = client
-    }
-    
-    func load() {
-        client.get(from: url)
-    }
-}
-
-protocol HTTPClient {
-    func get(from url: URL)
-}
+import PodcastsGenresList
 
 class RemoteGenresLoaderTests: XCTestCase {
     
@@ -50,7 +33,7 @@ class RemoteGenresLoaderTests: XCTestCase {
         return (sut, client)
     }
     
-    private class HTTPClientSpy: HTTPClient {
+    private final class HTTPClientSpy: HTTPClient {
         var requestedURL: URL?
         
         func get(from url: URL) {

@@ -34,7 +34,7 @@ public final class RemoteGenresLoader {
             switch result {
             case let .success((data, response)):
                 if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completion(.success(root.genres))
+                    completion(.success(root.genres.map { $0.item }))
                 } else {
                     completion(.failure(.invalidData))
                 }
@@ -46,5 +46,14 @@ public final class RemoteGenresLoader {
 }
 
 private struct Root: Decodable {
-    let genres: [Genre]
+    let genres: [Item]
+}
+
+private struct Item: Decodable {
+    let id: Int
+    let name: String
+    
+    var item: Genre {
+        return .init(id: id, name: name)
+    }
 }

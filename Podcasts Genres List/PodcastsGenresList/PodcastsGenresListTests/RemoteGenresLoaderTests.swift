@@ -72,6 +72,33 @@ class RemoteGenresLoaderTests: XCTestCase {
         })
     }
     
+    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
+        let (sut, client) = makeSUT()
+        
+        let item1 = Genre(id: 1, name: "a genre name")
+        
+        let item1JSON = [
+            "id": 1,
+            "name": "a genre name"
+        ] as [String: Any]
+        
+        let item2 = Genre(id: 2, name: "another genre name")
+        
+        let item2JSON = [
+            "id": 2,
+            "name": "another genre name"
+        ] as [String: Any]
+        
+        let itemsJSON = [
+            "genres": [item1JSON, item2JSON]
+        ] as [String: Any]
+        
+        expect(sut, toCompleteWith: .success([item1, item2]), when: {
+            let json = try! JSONSerialization.data(withJSONObject: itemsJSON)
+            client.complete(withStatusCode: 200, data: json)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(url: URL = URL(string: "http://a-url.com")!) -> (loader: RemoteGenresLoader, client: HTTPClientSpy) {

@@ -33,8 +33,8 @@ public final class RemoteGenresLoader {
         client.get(from: url, completion: { result in
             switch result {
             case let .success((data, _)):
-                if let _ = try? JSONSerialization.jsonObject(with: data) {
-                    completion(.success([]))
+                if let root = try? JSONDecoder().decode(Root.self, from: data) {
+                    completion(.success(root.genres))
                 } else {
                     completion(.failure(.invalidData))
                 }
@@ -43,4 +43,8 @@ public final class RemoteGenresLoader {
             }
         })
     }
+}
+
+private struct Root: Decodable {
+    let genres: [Genre]
 }

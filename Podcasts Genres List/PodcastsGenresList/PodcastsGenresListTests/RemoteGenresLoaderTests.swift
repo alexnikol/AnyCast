@@ -75,26 +75,11 @@ class RemoteGenresLoaderTests: XCTestCase {
     func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
         
-        let item1 = Genre(id: 1, name: "a genre name")
+        let item1 = makeItem(id: 1, name: "a genre name")
+        let item2 = makeItem(id: 2, name: "another genre name")
         
-        let item1JSON = [
-            "id": 1,
-            "name": "a genre name"
-        ] as [String: Any]
-        
-        let item2 = Genre(id: 2, name: "another genre name")
-        
-        let item2JSON = [
-            "id": 2,
-            "name": "another genre name"
-        ] as [String: Any]
-        
-        let itemsJSON = [
-            "genres": [item1JSON, item2JSON]
-        ] as [String: Any]
-        
-        expect(sut, toCompleteWith: .success([item1, item2]), when: {
-            let json = try! JSONSerialization.data(withJSONObject: itemsJSON)
+        expect(sut, toCompleteWith: .success([item1.model, item2.model]), when: {
+            let json = makeItemsJSON([item1.json, item2.json])
             client.complete(withStatusCode: 200, data: json)
         })
     }
@@ -105,6 +90,21 @@ class RemoteGenresLoaderTests: XCTestCase {
         let client = HTTPClientSpy()
         let sut = RemoteGenresLoader(url: url, client: client)
         return (sut, client)
+    }
+    
+    private func makeItem(id: Int, name: String) -> (model: Genre, json: [String: Any]) {
+        let genre = Genre(id: id, name: name)
+        let json = [
+            "id": id,
+            "name": name
+        ] as [String: Any]
+        
+        return (genre, json)
+    }
+    
+    private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
+        let json = ["genres": items]
+        return try! JSONSerialization.data(withJSONObject: json)
     }
     
     private func expect(_ sut: RemoteGenresLoader,

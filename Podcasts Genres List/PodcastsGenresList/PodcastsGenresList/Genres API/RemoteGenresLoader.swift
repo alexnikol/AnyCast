@@ -7,8 +7,10 @@
 
 import Foundation
 
+public typealias HTTPClientResult = Result<HTTPURLResponse, Error>
+
 public protocol HTTPClient {
-    func get(from url: URL, completion: @escaping (Error?, HTTPURLResponse?) -> Void)
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void)
 }
 
 public final class RemoteGenresLoader {
@@ -26,10 +28,11 @@ public final class RemoteGenresLoader {
     }
     
     public func load(completion: @escaping (Error) -> Void) {
-        client.get(from: url, completion: { error, response in
-            if response != nil {
+        client.get(from: url, completion: { result in
+            switch result {
+            case .success:
                 completion(.invalidData)
-            } else {
+            case .failure:
                 completion(.connectivity)
             }
         })

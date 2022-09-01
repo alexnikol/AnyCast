@@ -14,26 +14,28 @@ public protocol HTTPClient {
 }
 
 public final class RemoteGenresLoader {
-    private let url: URL
-    private let client: HTTPClient
+    public typealias Result = Swift.Result<[Genre], Error>
     
     public enum Error: Swift.Error {
         case connectivity
         case invalidData
     }
     
+    private let url: URL
+    private let client: HTTPClient
+    
     public init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
     }
     
-    public func load(completion: @escaping (Error) -> Void) {
+    public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url, completion: { result in
             switch result {
             case .success:
-                completion(.invalidData)
+                completion(.failure(.invalidData))
             case .failure:
-                completion(.connectivity)
+                completion(.failure(.connectivity))
             }
         })
     }

@@ -76,12 +76,12 @@ class RemoteGenresLoaderTests: XCTestCase {
                         when action: () -> Void,
                         file: StaticString = #file,
                         line: UInt = #line) {
-        var capturedErrors: [RemoteGenresLoader.Error] = []
-        sut.load { capturedErrors.append($0) }
+        var capturedResults: [RemoteGenresLoader.Result] = []
+        sut.load { capturedResults.append($0) }
         
         action()
         
-        XCTAssertEqual(capturedErrors, [error], file: file, line: line)
+        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
     }
     
     private final class HTTPClientSpy: HTTPClient {

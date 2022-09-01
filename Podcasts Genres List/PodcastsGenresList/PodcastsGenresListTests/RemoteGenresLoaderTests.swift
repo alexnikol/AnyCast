@@ -38,7 +38,7 @@ class RemoteGenresLoaderTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWithError: .connectivity, when: {
+        expect(sut, toCompleteWith: .failure(.connectivity), when: {
             let clientError = NSError(domain: "Test", code: 0)
             client.complete(with: clientError)
         })
@@ -48,7 +48,7 @@ class RemoteGenresLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
                 
         [199, 201, 400, 500].enumerated().forEach { (index, code) in
-            expect(sut, toCompleteWithError: .invalidData, when: {
+            expect(sut, toCompleteWith: .failure(.invalidData), when: {
                 client.complete(withStatusCode: code, at: index)
             })
         }
@@ -57,7 +57,7 @@ class RemoteGenresLoaderTests: XCTestCase {
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
-        expect(sut, toCompleteWithError: .invalidData, when: {
+        expect(sut, toCompleteWith: .failure(.invalidData), when: {
             let invalidJSON = Data("invalid json".utf8)
             client.complete(withStatusCode: 200, data: invalidJSON)
         })
@@ -66,13 +66,10 @@ class RemoteGenresLoaderTests: XCTestCase {
     func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
         let (sut, client) = makeSUT()
 
-        var capturedResults: [RemoteGenresLoader.Result] = []
-        sut.load { capturedResults.append($0) }
-        
-        let emptyListJSON = Data("{\"genres\": []}".utf8)
-        client.complete(withStatusCode: 200, data: emptyListJSON)
-        
-        XCTAssertEqual(capturedResults, [.success([])])
+        expect(sut, toCompleteWith: .success([]), when: {
+            let emptyListJSON = Data("{\"genres\": []}".utf8)
+            client.complete(withStatusCode: 200, data: emptyListJSON)
+        })
     }
     
     // MARK: - Helpers
@@ -84,7 +81,7 @@ class RemoteGenresLoaderTests: XCTestCase {
     }
     
     private func expect(_ sut: RemoteGenresLoader,
-                        toCompleteWithError error: RemoteGenresLoader.Error,
+                        toCompleteWith result: RemoteGenresLoader.Result,
                         when action: () -> Void,
                         file: StaticString = #file,
                         line: UInt = #line) {
@@ -93,7 +90,7 @@ class RemoteGenresLoaderTests: XCTestCase {
         
         action()
         
-        XCTAssertEqual(capturedResults, [.failure(error)], file: file, line: line)
+        XCTAssertEqual(capturedResults, [result], file: file, line: line)
     }
     
     private final class HTTPClientSpy: HTTPClient {

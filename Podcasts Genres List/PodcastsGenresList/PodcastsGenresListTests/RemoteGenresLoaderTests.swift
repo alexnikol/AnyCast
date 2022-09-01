@@ -68,7 +68,7 @@ class RemoteGenresLoaderTests: XCTestCase {
         let (sut, client) = makeSUT()
 
         expect(sut, toCompleteWith: .success([]), when: {
-            let emptyListJSON = Data("{\"genres\": []}".utf8)
+            let emptyListJSON = makeItemsJSON([])
             client.complete(withStatusCode: 200, data: emptyListJSON)
         })
     }

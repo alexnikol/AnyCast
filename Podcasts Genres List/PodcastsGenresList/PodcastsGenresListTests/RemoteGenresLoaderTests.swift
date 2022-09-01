@@ -49,13 +49,14 @@ class RemoteGenresLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
-        
-        var capturedError: [RemoteGenresLoader.Error] = []
-        sut.load { capturedError.append($0) }
-        
-        client.complete(withStatusCode: 400)
-        
-        XCTAssertEqual(capturedError, [.invalidData])
+                
+        [199, 201, 400, 500].enumerated().forEach { (index, code) in
+            var capturedErrors: [RemoteGenresLoader.Error] = []
+            sut.load { capturedErrors.append($0) }
+            
+            client.complete(withStatusCode: code, at: index)
+            XCTAssertEqual(capturedErrors, [.invalidData])
+        }
     }
     
     // MARK: - Helpers

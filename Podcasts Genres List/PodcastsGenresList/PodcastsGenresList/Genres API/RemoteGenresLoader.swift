@@ -33,9 +33,10 @@ public final class RemoteGenresLoader {
         client.get(from: url, completion: { result in
             switch result {
             case let .success((data, response)):
-                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completion(.success(root.genres.map { $0.item }))
-                } else {
+                do {
+                    let items = try GenresItemsMapper.map(data, response)
+                    completion(.success(items))
+                } catch {
                     completion(.failure(.invalidData))
                 }
             case .failure:
@@ -45,15 +46,26 @@ public final class RemoteGenresLoader {
     }
 }
 
-private struct Root: Decodable {
-    let genres: [Item]
-}
-
-private struct Item: Decodable {
-    let id: Int
-    let name: String
+private class GenresItemsMapper {
     
-    var item: Genre {
-        return .init(id: id, name: name)
+    private struct Root: Decodable {
+        let genres: [Item]
+    }
+
+    private struct Item: Decodable {
+        let id: Int
+        let name: String
+        
+        var item: Genre {
+            return .init(id: id, name: name)
+        }
+    }
+    
+    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [Genre] {
+        guard response.statusCode == 200 else {
+            throw RemoteGenresLoader.Error.invalidData
+        }
+        let root = try JSONDecoder().decode(Root.self, from: data)
+        return root.genres.map { $0.item }
     }
 }

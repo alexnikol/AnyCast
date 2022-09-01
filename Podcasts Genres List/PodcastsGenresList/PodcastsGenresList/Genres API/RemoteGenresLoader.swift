@@ -32,8 +32,8 @@ public final class RemoteGenresLoader {
     public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url, completion: { result in
             switch result {
-            case let .success((data, _)):
-                if let root = try? JSONDecoder().decode(Root.self, from: data) {
+            case let .success((data, response)):
+                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
                     completion(.success(root.genres))
                 } else {
                     completion(.failure(.invalidData))

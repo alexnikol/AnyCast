@@ -2,8 +2,9 @@
 
 import Foundation
 
-public final class RemoteGenresLoader {
-    public typealias Result = Swift.Result<[Genre], Error>
+public final class RemoteGenresLoader: GenresLoader {
+    
+    public typealias Result = LoadGenresResult
     
     public enum Error: Swift.Error {
         case connectivity
@@ -18,7 +19,7 @@ public final class RemoteGenresLoader {
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (LoadGenresResult) -> Void) {
         client.get(from: url, completion: { [weak self] result in
             guard self != nil else { return }
             
@@ -26,7 +27,7 @@ public final class RemoteGenresLoader {
             case let .success((data, response)):
                 completion(GenresItemsMapper.map(data, from: response))
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             }
         })
     }

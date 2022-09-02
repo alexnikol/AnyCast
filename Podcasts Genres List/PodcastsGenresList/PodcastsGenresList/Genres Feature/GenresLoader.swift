@@ -2,6 +2,8 @@
 
 import Foundation
 
+public typealias LoadGenresResult = Result<[Genre], Error>
+
 protocol GenresLoader {
-    func load(completion: @escaping (Result<[Genre], Error>) -> Void)
+    func load(completion: @escaping (LoadGenresResult) -> Void)
 }

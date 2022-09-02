@@ -82,10 +82,23 @@ class RemoteGenresLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(url: URL = URL(string: "http://a-url.com")!) -> (loader: RemoteGenresLoader, client: HTTPClientSpy) {
+    private func makeSUT(
+        url: URL = URL(string: "http://a-url.com")!,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (loader: RemoteGenresLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteGenresLoader(url: url, client: client)
+        
+        trackForMemoryLeaks(sut)
+        trackForMemoryLeaks(client)
         return (sut, client)
+    }
+    
+    private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
+        }
     }
     
     private func makeItem(id: Int, name: String) -> (model: Genre, json: [String: Any]) {

@@ -22,12 +22,7 @@ public final class RemoteGenresLoader {
         client.get(from: url, completion: { result in
             switch result {
             case let .success((data, response)):
-                do {
-                    let items = try GenresItemsMapper.map(data, response)
-                    completion(.success(items))
-                } catch {
-                    completion(.failure(.invalidData))
-                }
+                completion(GenresItemsMapper.map(data, from: response))
             case .failure:
                 completion(.failure(.connectivity))
             }

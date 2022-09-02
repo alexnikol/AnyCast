@@ -6,6 +6,10 @@ final class GenresItemsMapper {
     
     private struct Root: Decodable {
         let genres: [Item]
+        
+        var list: [Genre] {
+            return genres.map { $0.item }
+        }
     }
 
     private struct Item: Decodable {
@@ -18,12 +22,12 @@ final class GenresItemsMapper {
     }
     
     private static var OK_200: Int { return 200 }
-    
-    static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [Genre] {
-        guard response.statusCode == OK_200 else {
-            throw RemoteGenresLoader.Error.invalidData
+        
+    static func map(_ data: Data, from response: HTTPURLResponse) -> RemoteGenresLoader.Result {
+        guard response.statusCode == OK_200, let root = try? JSONDecoder().decode(Root.self, from: data) else {
+            return .failure(.invalidData)
         }
-        let root = try JSONDecoder().decode(Root.self, from: data)
-        return root.genres.map { $0.item }
+        
+        return .success(root.list)
     }
 }

@@ -77,6 +77,14 @@
 			path = "Genres Feature";
 			sourceTree = "<group>";
 		};
+		8D745E2728C1F134005DC3F8 /* Genres API */ = {
+			isa = PBXGroup;
+			children = (
+				8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */,
+			);
+			path = "Genres API";
+			sourceTree = "<group>";
+		};
 		8DA0930228BF59C900C4C68D = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +116,7 @@
 		8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */ = {
 			isa = PBXGroup;
 			children = (
-				8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */,
+				8D745E2728C1F134005DC3F8 /* Genres API */,
 			);
 			path = PodcastsGenresListTests;
 			sourceTree = "<group>";

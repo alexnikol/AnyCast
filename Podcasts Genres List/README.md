@@ -4,6 +4,10 @@
 
 ![Architecture diagram](Genres%20List%20UI/main.drawio.svg)
 
+## Feature dependency diagram
+
+![Architecture diagram](Genres%20List%20UI/dependency.drawio.svg)
+
 ## **(BDD) Show genres list Spec**
 ### Story: Client requests to see Podcasts Genres list
 

@@ -1,9 +1,4 @@
-//
-//  GenresLoader.swift
-//  GenresLoader
-//
-//  Created by Alexander Nikolaychuk on 31.08.2022.
-//
+// Copyright © 2022 Almost Engineer. All rights reserved. 
 
 import Foundation
 

@@ -157,6 +157,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
+				ORGANIZATIONNAME = "Almost Engineer";
 				TargetAttributes = {
 					8DA0930B28BF59C900C4C68D = {
 						CreatedOnToolsVersion = 13.4.1;

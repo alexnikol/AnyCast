@@ -2,7 +2,7 @@
 
 import Foundation
 
-private class GenresItemsMapper {
+final class GenresItemsMapper {
     
     private struct Root: Decodable {
         let genres: [Item]
@@ -17,7 +17,7 @@ private class GenresItemsMapper {
         }
     }
     
-    static var OK_200: Int { return 200 }
+    private static var OK_200: Int { return 200 }
     
     static func map(_ data: Data, _ response: HTTPURLResponse) throws -> [Genre] {
         guard response.statusCode == OK_200 else {

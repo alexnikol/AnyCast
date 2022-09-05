@@ -6,20 +6,7 @@ import PodcastsGenresList
 class PodcastsGenresListAPIEndToEndTests: XCTestCase {
     
     func test_endToEndTestServerGETGenresResult_matchesFixedTestGenresData() {
-        let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Genres%2FGET-genres-list.json?alt=media&token=dc1af9d5-fa47-4396-92d8-180f74c9a061")!
-        let client = URLSessionHTTPClient()
-        let loader = RemoteGenresLoader(url: testServerURL, client: client)
-        
-        var receivedResult: LoadGenresResult?
-        let exp = expectation(description: "Wait for load completion")
-        loader.load { result in
-            receivedResult = result
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 3.0)
-        
-        switch receivedResult {
+        switch getFeedResult() {
         case let .success(items):
             XCTAssertEqual(items.count, 3, "Expected 3 items in the test genres list")
             XCTAssertEqual(items[0], expectedItem(at: 0))
@@ -34,6 +21,22 @@ class PodcastsGenresListAPIEndToEndTests: XCTestCase {
     }
     
     // MARK: - Heplers
+    
+    private func getFeedResult() -> LoadGenresResult? {
+        let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Genres%2FGET-genres-list.json?alt=media&token=dc1af9d5-fa47-4396-92d8-180f74c9a061")!
+        let client = URLSessionHTTPClient()
+        let loader = RemoteGenresLoader(url: testServerURL, client: client)
+        
+        var receivedResult: LoadGenresResult?
+        let exp = expectation(description: "Wait for load completion")
+        loader.load { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 3.0)
+        return receivedResult
+    }
     
     private func expectedItem(at index: Int) -> Genre {
         return Genre(

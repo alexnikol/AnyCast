@@ -8,7 +8,7 @@ class PodcastsGenresListAPIEndToEndTests: XCTestCase {
     func test_endToEndTestServerGETGenresResult_matchesFixedTestGenresData() {
         switch getFeedResult() {
         case let .success(items):
-            XCTAssertEqual(items.count, 3, "Expected 3 items in the test genres list")
+            XCTAssertEqual(items.count, 4, "Expected 4 items in the test genres list")
             XCTAssertEqual(items[0], expectedItem(at: 0))
             XCTAssertEqual(items[1], expectedItem(at: 1))
             XCTAssertEqual(items[2], expectedItem(at: 2))

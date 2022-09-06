@@ -1,7 +1,5 @@
 # **Shows genres list feature**
 
-[![CI](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml)
-
 ## Genres list loader dependency diagram
 
 ![Architecture diagram](Genres%20List%20UI/dependency.drawio.svg)

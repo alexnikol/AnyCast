@@ -3,6 +3,8 @@ Only for non-commercial use
 
 > **Multiplatform podcast application**
 
+[![CI](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml)
+
 ## **User Roles**
 **User Role** | **Description**
 ------------- | -------------

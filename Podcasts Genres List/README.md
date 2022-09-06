@@ -1,12 +1,14 @@
 # **Shows genres list feature**
 
-## High level architecture diagram
+[![CI](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml)
 
-![Architecture diagram](Genres%20List%20UI/main.drawio.svg)
-
-## Feature dependency diagram
+## Genres list loader dependency diagram
 
 ![Architecture diagram](Genres%20List%20UI/dependency.drawio.svg)
+
+## High level feature architecture diagram
+
+![Architecture diagram](Genres%20List%20UI/main.drawio.svg)
 
 ## **(BDD) Show genres list Spec**
 ### Story: Client requests to see Podcasts Genres list

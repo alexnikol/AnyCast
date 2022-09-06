@@ -1,4 +1,4 @@
-# **AnyCast**
+# **Podcats**
 Only for non-commercial use
 
 > **Multiplatform podcast application**

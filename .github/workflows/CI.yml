@@ -25,4 +25,4 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_13.4.app
             
     - name: Build and Test
-      run: xcodebuild test -project PodcastsGenresList.xcodeproj -scheme "CI" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+      run: xcodebuild test -project Podcasts\ Genres\ List/PodcastsGenresList/PodcastsGenresList.xcodeproj -scheme "CI" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES SWIFT_TREAT_WARNINGS_AS_ERRORS=YES

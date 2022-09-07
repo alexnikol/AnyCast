@@ -12,20 +12,38 @@ class LocalGenresLoader {
     }
         
     func save(_ items: [Genre]) {
-        store.deleteCacheGenres()
+        store.deleteCacheGenres { [unowned self] error in
+            if error == nil {
+                self.store.insert(items)
+            }
+        }
     }
 }
 
 class GenresStore {
-    var deleteCachedGenresCallCount = 0
+    typealias DeletionCompletion = (Error?) -> Void
     
-    func deleteCacheGenres() {
+    var deleteCachedGenresCallCount = 0
+    private var deletionCompletion = [DeletionCompletion]()
+    
+    func deleteCacheGenres(completion: @escaping DeletionCompletion) {
         deleteCachedGenresCallCount += 1
+        deletionCompletion.append(completion)
     }
     
     var insertCallCount = 0
     
-    func completeDeletion(with: NSError) {}
+    func completeDeletion(with error: NSError, at index: Int = 0) {
+        deletionCompletion[index](error)
+    }
+    
+    func completeDeletionSuccessfully(at index: Int = 0) {
+        deletionCompletion[index](nil)
+    }
+    
+    func insert(_ items: [Genre]) {
+        insertCallCount += 1
+    }
 }
 
 class CacheGenresUseCaseTests: XCTestCase {
@@ -55,6 +73,17 @@ class CacheGenresUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.insertCallCount, 0)
     }
+    
+    func test_save_requestsNewCacheInsertionOnSuccessfulDeletion() {
+        let (sut, store) = makeSUT()
+        let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        
+        sut.save(items)
+        store.completeDeletionSuccessfully()
+        
+        XCTAssertEqual(store.insertCallCount, 1)
+    }
+    
     
     // MARK: - Helpers
     

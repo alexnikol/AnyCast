@@ -26,7 +26,6 @@ class GenresStore {
     typealias DeletionCompletion = (Error?) -> Void
     
     var deleteCachedGenresCallCount = 0
-    var insertCallCount = 0
     var insertions: [(items: [Genre], timestamp: Date)] = []
     
     private var deletionCompletion: [DeletionCompletion] = []
@@ -45,7 +44,6 @@ class GenresStore {
     }
     
     func insert(_ items: [Genre], timestamp: Date) {
-        insertCallCount += 1
         insertions.append((items: items, timestamp: timestamp))
     }
 }
@@ -75,19 +73,9 @@ class CacheGenresUseCaseTests: XCTestCase {
         sut.save(items)
         store.completeDeletion(with: deletionError)
         
-        XCTAssertEqual(store.insertCallCount, 0)
+        XCTAssertEqual(store.insertions.count, 0)
     }
-    
-    func test_save_requestsNewCacheInsertionOnSuccessfulDeletion() {
-        let (sut, store) = makeSUT()
-        let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
         
-        sut.save(items)
-        store.completeDeletionSuccessfully()
-        
-        XCTAssertEqual(store.insertCallCount, 1)
-    }
-    
     func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
         let timestamp = Date()
         let (sut, store) = makeSUT(currentDate: { timestamp })

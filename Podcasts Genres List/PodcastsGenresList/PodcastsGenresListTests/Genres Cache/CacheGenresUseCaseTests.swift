@@ -55,6 +55,10 @@ class GenresStore {
         insertionCompletions[index](error)
     }
     
+    func completeInsertionSuccessfully(at index: Int = 0) {
+        insertionCompletions[index](nil)
+    }
+    
     func insert(_ items: [Genre], timestamp: Date, completion: @escaping InsertionCompletion) {
         insertionCompletions.append(completion)
         receivedMessages.append(.insert(items, timestamp))
@@ -114,7 +118,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         }
         
         store.completeDeletion(with: deletionError)
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 1.0)
         
         XCTAssertEqual(receivedError as? NSError, deletionError)
     }
@@ -134,9 +138,28 @@ class CacheGenresUseCaseTests: XCTestCase {
         
         store.completeDeletionSuccessfully()
         store.completeInsertion(with: insertionError)
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 1.0)
         
         XCTAssertEqual(receivedError as? NSError, insertionError)
+    }
+    
+    func test_save_succeedsOnSuccessfulCacheInsertion() {
+        let (sut, store) = makeSUT()
+        let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        let exp = expectation(description: "Wait for save completion")
+        
+        var receivedError: Error?
+        sut.save(items) { error in
+            receivedError = error
+            
+            exp.fulfill()
+        }
+        
+        store.completeDeletionSuccessfully()
+        store.completeInsertionSuccessfully()
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertNil(receivedError)
     }
     
     // MARK: - Helpers

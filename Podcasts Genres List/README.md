@@ -143,7 +143,7 @@ Given the client doesn't have connectivity
 
 #### Saving error course (sad path):
 1. System delivers error.
-
+ 
 ---
 
 ## Model Specs

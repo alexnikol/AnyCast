@@ -44,9 +44,11 @@ class CacheGenresUseCaseTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LocalGenresLoader, store: GenresStore) {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalGenresLoader, store: GenresStore) {
         let store = GenresStore()
         let sut = LocalGenresLoader(store: store)
+        trackForMemoryLeaks(store, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, store)
     }
     

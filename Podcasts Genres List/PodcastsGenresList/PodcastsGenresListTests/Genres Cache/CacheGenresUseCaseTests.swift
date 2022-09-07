@@ -10,7 +10,7 @@ class LocalGenresLoader {
     init(store: GenresStore) {
         self.store = store
     }
-    
+        
     func save(_ items: [Genre]) {
         store.deleteCacheGenres()
     }
@@ -22,6 +22,10 @@ class GenresStore {
     func deleteCacheGenres() {
         deleteCachedGenresCallCount += 1
     }
+    
+    var insertCallCount = 0
+    
+    func completeDeletion(with: NSError) {}
 }
 
 class CacheGenresUseCaseTests: XCTestCase {
@@ -33,13 +37,23 @@ class CacheGenresUseCaseTests: XCTestCase {
     }
     
     func test_save_requestsCacheDeletion() {
-        
         let (sut, store) = makeSUT()
         let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
         
         sut.save(items)
         
         XCTAssertEqual(store.deleteCachedGenresCallCount, 1)
+    }
+    
+    func test_save_doesNotRequestCacheInsertionOnDeletionError() {
+        let (sut, store) = makeSUT()
+        let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        let deletionError = anyNSError()
+        
+        sut.save(items)
+        store.completeDeletion(with: deletionError)
+        
+        XCTAssertEqual(store.insertCallCount, 0)
     }
     
     // MARK: - Helpers
@@ -54,5 +68,9 @@ class CacheGenresUseCaseTests: XCTestCase {
     
     private func uniqueItem(id: Int) -> Genre {
         .init(id: id, name: "any genre")
+    }
+    
+    private func anyNSError() -> NSError {
+        NSError(domain: "any error", code: 0)
     }
 }

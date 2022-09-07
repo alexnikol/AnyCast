@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D745DCC28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */; };
+		8D745DCC28BF98F7005DC3F8 /* LoadFeedFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* LoadFeedFromRemoteUseCaseTests.swift */; };
 		8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */; };
 		8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DD028BFA728005DC3F8 /* Genre.swift */; };
 		8D745E1B28C1E7F5005DC3F8 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E1A28C1E7F5005DC3F8 /* HTTPClient.swift */; };
@@ -41,7 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenresLoaderTests.swift; sourceTree = "<group>"; };
+		8D745DCB28BF98F7005DC3F8 /* LoadFeedFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenresLoader.swift; sourceTree = "<group>"; };
 		8D745DD028BFA728005DC3F8 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		8D745E1A28C1E7F5005DC3F8 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		8D745E2728C1F134005DC3F8 /* Genres API */ = {
 			isa = PBXGroup;
 			children = (
-				8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */,
+				8D745DCB28BF98F7005DC3F8 /* LoadFeedFromRemoteUseCaseTests.swift */,
 				8D745E2828C216E2005DC3F8 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = "Genres API";
@@ -330,7 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D745DCC28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift in Sources */,
+				8D745DCC28BF98F7005DC3F8 /* LoadFeedFromRemoteUseCaseTests.swift in Sources */,
 				8D745E2928C216E2005DC3F8 /* URLSessionHTTPClientTests.swift in Sources */,
 				8D745E2C28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);

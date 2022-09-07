@@ -76,8 +76,7 @@ Given the client doesn't have connectivity
 5. System delivers Genres list.
 
 #### Invalid data – error course (sad path):
-1. System will retry 2 times.
-2. System delivers invalid data error.
+1. System delivers invalid data error.
 
 #### No connectivity – error course (sad path):
 1. System delivers connectivity error.

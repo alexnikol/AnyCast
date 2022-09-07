@@ -6,15 +6,17 @@ import PodcastsGenresList
 class LocalGenresLoader {
     
     private let store: GenresStore
+    private let currentDate: () -> Date
     
-    init(store: GenresStore) {
+    init(store: GenresStore, currentDate: @escaping () -> Date) {
         self.store = store
+        self.currentDate = currentDate
     }
         
     func save(_ items: [Genre]) {
         store.deleteCacheGenres { [unowned self] error in
             if error == nil {
-                self.store.insert(items)
+                self.store.insert(items, timestamp: self.currentDate())
             }
         }
     }
@@ -24,14 +26,15 @@ class GenresStore {
     typealias DeletionCompletion = (Error?) -> Void
     
     var deleteCachedGenresCallCount = 0
-    private var deletionCompletion = [DeletionCompletion]()
+    var insertCallCount = 0
+    var insertions: [(items: [Genre], timestamp: Date)] = []
+    
+    private var deletionCompletion: [DeletionCompletion] = []
     
     func deleteCacheGenres(completion: @escaping DeletionCompletion) {
         deleteCachedGenresCallCount += 1
         deletionCompletion.append(completion)
     }
-    
-    var insertCallCount = 0
     
     func completeDeletion(with error: NSError, at index: Int = 0) {
         deletionCompletion[index](error)
@@ -41,8 +44,9 @@ class GenresStore {
         deletionCompletion[index](nil)
     }
     
-    func insert(_ items: [Genre]) {
+    func insert(_ items: [Genre], timestamp: Date) {
         insertCallCount += 1
+        insertions.append((items: items, timestamp: timestamp))
     }
 }
 
@@ -84,12 +88,28 @@ class CacheGenresUseCaseTests: XCTestCase {
         XCTAssertEqual(store.insertCallCount, 1)
     }
     
+    func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
+        let timestamp = Date()
+        let (sut, store) = makeSUT(currentDate: { timestamp })
+        let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        
+        sut.save(items)
+        store.completeDeletionSuccessfully()
+        
+        XCTAssertEqual(store.insertions.count, 1)
+        XCTAssertEqual(store.insertions.first?.items, items)
+        XCTAssertEqual(store.insertions.first?.timestamp, timestamp)
+    }
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalGenresLoader, store: GenresStore) {
+    private func makeSUT(
+        currentDate: @escaping () -> Date = Date.init,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (sut: LocalGenresLoader, store: GenresStore) {
         let store = GenresStore()
-        let sut = LocalGenresLoader(store: store)
+        let sut = LocalGenresLoader(store: store, currentDate: currentDate)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, store)

@@ -24,45 +24,12 @@ class LocalGenresLoader {
     }
 }
 
-class GenresStore {
+protocol GenresStore {
     typealias DeletionCompletion = (Error?) -> Void
     typealias InsertionCompletion = (Error?) -> Void
     
-    enum ReceivedMessage: Equatable {
-        case deleteCache
-        case insert([Genre], Date)
-        case insertFailure(NSError)
-    }
-    
-    private(set) var receivedMessages: [ReceivedMessage] = []
-    private var deletionCompletions: [DeletionCompletion] = []
-    private var insertionCompletions: [InsertionCompletion] = []
-    
-    func deleteCacheGenres(completion: @escaping DeletionCompletion) {
-        deletionCompletions.append(completion)
-        receivedMessages.append(.deleteCache)
-    }
-    
-    func completeDeletion(with error: NSError, at index: Int = 0) {
-        deletionCompletions[index](error)
-    }
-    
-    func completeDeletionSuccessfully(at index: Int = 0) {
-        deletionCompletions[index](nil)
-    }
-    
-    func completeInsertion(with error: Error, at index: Int = 0) {
-        insertionCompletions[index](error)
-    }
-    
-    func completeInsertionSuccessfully(at index: Int = 0) {
-        insertionCompletions[index](nil)
-    }
-    
-    func insert(_ items: [Genre], timestamp: Date, completion: @escaping InsertionCompletion) {
-        insertionCompletions.append(completion)
-        receivedMessages.append(.insert(items, timestamp))
-    }
+    func deleteCacheGenres(completion: @escaping DeletionCompletion)
+    func insert(_ items: [Genre], timestamp: Date, completion: @escaping InsertionCompletion)
 }
 
 class CacheGenresUseCaseTests: XCTestCase {
@@ -138,8 +105,8 @@ class CacheGenresUseCaseTests: XCTestCase {
         currentDate: @escaping () -> Date = Date.init,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: LocalGenresLoader, store: GenresStore) {
-        let store = GenresStore()
+    ) -> (sut: LocalGenresLoader, store: GenresStoreSpy) {
+        let store = GenresStoreSpy()
         let sut = LocalGenresLoader(store: store, currentDate: currentDate)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -174,5 +141,44 @@ class CacheGenresUseCaseTests: XCTestCase {
     
     private func anyNSError() -> NSError {
         NSError(domain: "any error", code: 0)
+    }
+    
+    private class GenresStoreSpy: GenresStore {
+        
+        enum ReceivedMessage: Equatable {
+            case deleteCache
+            case insert([Genre], Date)
+            case insertFailure(NSError)
+        }
+        
+        private(set) var receivedMessages: [ReceivedMessage] = []
+        private var deletionCompletions: [DeletionCompletion] = []
+        private var insertionCompletions: [InsertionCompletion] = []
+        
+        func deleteCacheGenres(completion: @escaping DeletionCompletion) {
+            deletionCompletions.append(completion)
+            receivedMessages.append(.deleteCache)
+        }
+        
+        func completeDeletion(with error: NSError, at index: Int = 0) {
+            deletionCompletions[index](error)
+        }
+        
+        func completeDeletionSuccessfully(at index: Int = 0) {
+            deletionCompletions[index](nil)
+        }
+        
+        func completeInsertion(with error: Error, at index: Int = 0) {
+            insertionCompletions[index](error)
+        }
+        
+        func completeInsertionSuccessfully(at index: Int = 0) {
+            insertionCompletions[index](nil)
+        }
+        
+        func insert(_ items: [Genre], timestamp: Date, completion: @escaping InsertionCompletion) {
+            insertionCompletions.append(completion)
+            receivedMessages.append(.insert(items, timestamp))
+        }
     }
 }

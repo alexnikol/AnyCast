@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresList
 
-class LoadFeedFromRemoteUseCaseTests: XCTestCase {
+class LoadGenresFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()

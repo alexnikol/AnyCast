@@ -6,7 +6,7 @@ import PodcastsGenresList
 class PodcastsGenresListAPIEndToEndTests: XCTestCase {
     
     func test_endToEndTestServerGETGenresResult_matchesFixedTestGenresData() {
-        switch getFeedResult() {
+        switch getGenresListResult() {
         case let .success(items):
             XCTAssertEqual(items.count, 3, "Expected 3 items in the test genres list")
             XCTAssertEqual(items[0], expectedItem(at: 0))
@@ -22,7 +22,7 @@ class PodcastsGenresListAPIEndToEndTests: XCTestCase {
     
     // MARK: - Heplers
     
-    private func getFeedResult(file: StaticString = #file, line: UInt = #line) -> LoadGenresResult? {
+    private func getGenresListResult(file: StaticString = #file, line: UInt = #line) -> LoadGenresResult? {
         let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Genres%2FGET-genres-list.json?alt=media&token=dc1af9d5-fa47-4396-92d8-180f74c9a061")!
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         let loader = RemoteGenresLoader(url: testServerURL, client: client)

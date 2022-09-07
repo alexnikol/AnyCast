@@ -27,16 +27,14 @@ class GenresStore {
 class CacheGenresUseCaseTests: XCTestCase {
     
     func test_init_doesNotDeleteCacheUponCreation() {
-        let store = GenresStore()
-        _ = LocalGenresLoader(store: store)
+        let (_, store) = makeSUT()
         
         XCTAssertEqual(store.deleteCachedGenresCallCount, 0)
     }
     
     func test_save_requestsCacheDeletion() {
         
-        let store = GenresStore()
-        let sut = LocalGenresLoader(store: store)
+        let (sut, store) = makeSUT()
         let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
         
         sut.save(items)
@@ -45,6 +43,12 @@ class CacheGenresUseCaseTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT() -> (sut: LocalGenresLoader, store: GenresStore) {
+        let store = GenresStore()
+        let sut = LocalGenresLoader(store: store)
+        return (sut, store)
+    }
     
     private func uniqueItem(id: Int) -> Genre {
         .init(id: id, name: "any genre")

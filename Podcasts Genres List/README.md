@@ -1,12 +1,12 @@
 # **Shows genres list feature**
 
-## Genres list loader dependency diagram
+## Genres list loader architecture diagram
 
 ![Architecture diagram](Genres%20List%20UI/dependency.drawio.svg)
 
-## High level feature architecture diagram
+## Flowchart diagram
 
-![Architecture diagram](Genres%20List%20UI/main.drawio.svg)
+![Flowchart diagram](Genres%20List%20UI/main.drawio.svg)
 
 ## **(BDD) Show genres list Spec**
 ### Story: Client requests to see Podcasts Genres list

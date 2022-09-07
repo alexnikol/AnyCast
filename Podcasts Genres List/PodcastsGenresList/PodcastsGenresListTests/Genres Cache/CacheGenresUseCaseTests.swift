@@ -25,14 +25,17 @@ class LocalGenresLoader {
 class GenresStore {
     typealias DeletionCompletion = (Error?) -> Void
     
-    var deleteCachedGenresCallCount = 0
-    var insertions: [(items: [Genre], timestamp: Date)] = []
+    enum ReceivedMessage: Equatable {
+        case deleteCache
+        case insert([Genre], Date)
+    }
     
+    private(set) var receivedMessages: [ReceivedMessage] = []
     private var deletionCompletion: [DeletionCompletion] = []
     
     func deleteCacheGenres(completion: @escaping DeletionCompletion) {
-        deleteCachedGenresCallCount += 1
         deletionCompletion.append(completion)
+        receivedMessages.append(.deleteCache)
     }
     
     func completeDeletion(with error: NSError, at index: Int = 0) {
@@ -44,16 +47,16 @@ class GenresStore {
     }
     
     func insert(_ items: [Genre], timestamp: Date) {
-        insertions.append((items: items, timestamp: timestamp))
+        receivedMessages.append(.insert(items, timestamp))
     }
 }
 
 class CacheGenresUseCaseTests: XCTestCase {
     
-    func test_init_doesNotDeleteCacheUponCreation() {
+    func test_init_doesNotMessageStoreCreation() {
         let (_, store) = makeSUT()
         
-        XCTAssertEqual(store.deleteCachedGenresCallCount, 0)
+        XCTAssertEqual(store.receivedMessages, [])
     }
     
     func test_save_requestsCacheDeletion() {
@@ -62,7 +65,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         
         sut.save(items)
         
-        XCTAssertEqual(store.deleteCachedGenresCallCount, 1)
+        XCTAssertEqual(store.receivedMessages, [.deleteCache])
     }
     
     func test_save_doesNotRequestCacheInsertionOnDeletionError() {
@@ -73,7 +76,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         sut.save(items)
         store.completeDeletion(with: deletionError)
         
-        XCTAssertEqual(store.insertions.count, 0)
+        XCTAssertEqual(store.receivedMessages, [.deleteCache])
     }
         
     func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
@@ -84,9 +87,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         sut.save(items)
         store.completeDeletionSuccessfully()
         
-        XCTAssertEqual(store.insertions.count, 1)
-        XCTAssertEqual(store.insertions.first?.items, items)
-        XCTAssertEqual(store.insertions.first?.timestamp, timestamp)
+        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(items, timestamp)])
     }
     
     // MARK: - Helpers

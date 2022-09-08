@@ -5,6 +5,8 @@ Only for non-commercial use
 
 [![CI](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml)
 
+![Large logo](Resources/large_icon.svg)
+
 ## **User Roles**
 **User Role** | **Description**
 ------------- | -------------

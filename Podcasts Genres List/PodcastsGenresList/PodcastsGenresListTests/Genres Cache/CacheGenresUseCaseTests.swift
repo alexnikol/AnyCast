@@ -13,19 +13,19 @@ class CacheGenresUseCaseTests: XCTestCase {
     
     func test_save_requestsCacheDeletion() {
         let (sut, store) = makeSUT()
-        let items = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        let items = uniqueItems()
         
-        sut.save(items) { _ in }
+        sut.save(items.models) { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.deleteCache])
     }
     
     func test_save_doesNotRequestCacheInsertionOnDeletionError() {
         let (sut, store) = makeSUT()
-        let items = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        let items = uniqueItems()
         let deletionError = anyNSError()
         
-        sut.save(items) { _ in }
+        sut.save(items.models) { _ in }
         store.completeDeletion(with: deletionError)
         
         XCTAssertEqual(store.receivedMessages, [.deleteCache])
@@ -34,13 +34,12 @@ class CacheGenresUseCaseTests: XCTestCase {
     func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
         let timestamp = Date()
         let (sut, store) = makeSUT(currentDate: { timestamp })
-        let items = [uniqueItem(id: 1), uniqueItem(id: 2)]
-        let localItems = items.map { LocalGenre(id: $0.id, name: $0.name) }
+        let items = uniqueItems()
         
-        sut.save(items) { _ in }
+        sut.save(items.models) { _ in }
         store.completeDeletionSuccessfully()
         
-        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(localItems, timestamp)])
+        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(items.local, timestamp)])
     }
     
     func test_save_failsOnDeletionError() {
@@ -77,7 +76,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         let deletionError = anyNSError()
         
         var receivedResults = [LocalGenresLoader.SaveResult]()
-        sut?.save([uniqueItem(id: 1)]) { receivedResults.append($0) }
+        sut?.save(uniqueItems().models) { receivedResults.append($0) }
         
         sut = nil
         store.completeDeletion(with: deletionError)
@@ -91,7 +90,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         let insertionError = anyNSError()
         
         var receivedResults = [LocalGenresLoader.SaveResult]()
-        sut?.save([uniqueItem(id: 1)]) { receivedResults.append($0) }
+        sut?.save(uniqueItems().models) { receivedResults.append($0) }
         
         store.completeDeletionSuccessfully()
         sut = nil
@@ -124,7 +123,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         let exp = expectation(description: "Wait for save completion")
         
         var receivedError: Error?
-        sut.save([uniqueItem(id: 1)]) { error in
+        sut.save(uniqueItems().models) { error in
             receivedError = error
             
             exp.fulfill()
@@ -138,6 +137,17 @@ class CacheGenresUseCaseTests: XCTestCase {
     
     private func uniqueItem(id: Int) -> Genre {
         .init(id: id, name: "any genre")
+    }
+    
+    private func uniqueItems() -> (models: [Genre], local: [LocalGenre]) {
+        let models: [Genre] = [
+            .init(id: 1, name: "any genre"),
+            .init(id: 2, name: "another genre"),
+        ]
+        
+        let local = models.map { LocalGenre(id: $0.id, name: $0.name) }
+        
+        return (models: models, local: local)
     }
     
     private func anyNSError() -> NSError {

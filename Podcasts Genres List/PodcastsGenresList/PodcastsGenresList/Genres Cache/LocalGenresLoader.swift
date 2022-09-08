@@ -4,6 +4,8 @@ import Foundation
 
 public class LocalGenresLoader {
     
+    public typealias SaveResult = Error?
+    
     private let store: GenresStore
     private let currentDate: () -> Date
     
@@ -12,7 +14,7 @@ public class LocalGenresLoader {
         self.currentDate = currentDate
     }
         
-    public func save(_ items: [Genre], completion: @escaping (Error?) -> Void) {
+    public func save(_ items: [Genre], completion: @escaping (SaveResult) -> Void) {
         store.deleteCacheGenres { [weak self] error in
             guard let self = self else { return }
             
@@ -24,7 +26,7 @@ public class LocalGenresLoader {
         }
     }
     
-    private func cache(_ items: [Genre], completion: @escaping (Error?) -> Void) {
+    private func cache(_ items: [Genre], completion: @escaping (SaveResult) -> Void) {
         store.insert(items, timestamp: currentDate(), completion: { [weak self] error in
             guard self != nil else {
                 return

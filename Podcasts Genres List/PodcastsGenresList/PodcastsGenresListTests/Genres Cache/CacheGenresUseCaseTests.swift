@@ -75,7 +75,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         var sut: LocalGenresLoader? = LocalGenresLoader(store: store, currentDate: Date.init)
         let deletionError = anyNSError()
         
-        var receivedResults = [Error?]()
+        var receivedResults = [LocalGenresLoader.SaveResult]()
         sut?.save([uniqueItem(id: 1)]) { receivedResults.append($0) }
         
         sut = nil
@@ -89,7 +89,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         var sut: LocalGenresLoader? = LocalGenresLoader(store: store, currentDate: Date.init)
         let insertionError = anyNSError()
         
-        var receivedResults = [Error?]()
+        var receivedResults = [LocalGenresLoader.SaveResult]()
         sut?.save([uniqueItem(id: 1)]) { receivedResults.append($0) }
         
         store.completeDeletionSuccessfully()

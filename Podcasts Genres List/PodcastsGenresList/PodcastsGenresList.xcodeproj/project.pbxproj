@@ -21,6 +21,8 @@
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
+		8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544028CA105400418F3E /* LocalGenre.swift */; };
+		8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544228CA106F00418F3E /* RemoteGenre.swift */; };
 		8DA0931E28BF5A0200C4C68D /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
 		8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */; };
 		8DA0932B28BF5E3700C4C68D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8DA0932A28BF5E3700C4C68D /* README.md */; };
@@ -57,6 +59,8 @@
 		8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheGenresUseCaseTests.swift; sourceTree = "<group>"; };
 		8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenresLoader.swift; sourceTree = "<group>"; };
 		8DA0543E28C9F00700418F3E /* GenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStore.swift; sourceTree = "<group>"; };
+		8DA0544028CA105400418F3E /* LocalGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenre.swift; sourceTree = "<group>"; };
+		8DA0544228CA106F00418F3E /* RemoteGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenre.swift; sourceTree = "<group>"; };
 		8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsGenresList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA0931A28BF5A0200C4C68D /* PodcastsGenresListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLoader.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 				8D745E1A28C1E7F5005DC3F8 /* HTTPClient.swift */,
 				8D745E1E28C1E8A6005DC3F8 /* GenresItemsMapper.swift */,
 				8D745E2D28C62173005DC3F8 /* URLSessionHTTPClient.swift */,
+				8DA0544228CA106F00418F3E /* RemoteGenre.swift */,
 			);
 			path = "Genres API";
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 			children = (
 				8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */,
 				8DA0543E28C9F00700418F3E /* GenresStore.swift */,
+				8DA0544028CA105400418F3E /* LocalGenre.swift */,
 			);
 			path = "Genres Cache";
 			sourceTree = "<group>";
@@ -347,6 +353,8 @@
 				8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */,
 				8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */,
 				8D745E1B28C1E7F5005DC3F8 /* HTTPClient.swift in Sources */,
+				8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */,
+				8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */,
 				8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */,
 				8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */,
 				8D745E2E28C62173005DC3F8 /* URLSessionHTTPClient.swift in Sources */,

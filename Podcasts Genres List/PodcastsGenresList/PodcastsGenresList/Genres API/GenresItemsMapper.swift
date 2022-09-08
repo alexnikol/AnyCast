@@ -2,11 +2,6 @@
 
 import Foundation
 
-struct RemoteGenre: Decodable {
-    let id: Int
-    let name: String
-}
-
 final class GenresItemsMapper {
     
     private struct Root: Decodable {

@@ -27,11 +27,17 @@ public class LocalGenresLoader {
     }
     
     private func cache(_ items: [Genre], completion: @escaping (SaveResult) -> Void) {
-        store.insert(items, timestamp: currentDate(), completion: { [weak self] error in
+        store.insert(items.toLocal(), timestamp: currentDate(), completion: { [weak self] error in
             guard self != nil else {
                 return
             }
             completion(error)
         })
+    }
+}
+
+private extension Array where Element == Genre {
+    func toLocal() -> [LocalGenre] {
+        return map { .init(id: $0.id, name: $0.name) }
     }
 }

@@ -7,5 +7,15 @@ public protocol GenresStore {
     typealias InsertionCompletion = (Error?) -> Void
     
     func deleteCacheGenres(completion: @escaping DeletionCompletion)
-    func insert(_ items: [Genre], timestamp: Date, completion: @escaping InsertionCompletion)
+    func insert(_ items: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion)
+}
+
+public struct LocalGenre: Equatable {
+    let id: Int
+    let name: String
+    
+    public init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+    }
 }

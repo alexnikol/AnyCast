@@ -13,7 +13,7 @@ class CacheGenresUseCaseTests: XCTestCase {
     
     func test_save_requestsCacheDeletion() {
         let (sut, store) = makeSUT()
-        let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        let items = [uniqueItem(id: 1), uniqueItem(id: 2)]
         
         sut.save(items) { _ in }
         
@@ -22,7 +22,7 @@ class CacheGenresUseCaseTests: XCTestCase {
     
     func test_save_doesNotRequestCacheInsertionOnDeletionError() {
         let (sut, store) = makeSUT()
-        let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        let items = [uniqueItem(id: 1), uniqueItem(id: 2)]
         let deletionError = anyNSError()
         
         sut.save(items) { _ in }
@@ -34,12 +34,13 @@ class CacheGenresUseCaseTests: XCTestCase {
     func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
         let timestamp = Date()
         let (sut, store) = makeSUT(currentDate: { timestamp })
-        let items: [Genre] = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        let items = [uniqueItem(id: 1), uniqueItem(id: 2)]
+        let localItems = items.map { LocalGenre(id: $0.id, name: $0.name) }
         
         sut.save(items) { _ in }
         store.completeDeletionSuccessfully()
         
-        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(items, timestamp)])
+        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(localItems, timestamp)])
     }
     
     func test_save_failsOnDeletionError() {
@@ -147,7 +148,7 @@ class CacheGenresUseCaseTests: XCTestCase {
         
         enum ReceivedMessage: Equatable {
             case deleteCache
-            case insert([Genre], Date)
+            case insert([LocalGenre], Date)
             case insertFailure(NSError)
         }
         
@@ -176,7 +177,7 @@ class CacheGenresUseCaseTests: XCTestCase {
             insertionCompletions[index](nil)
         }
         
-        func insert(_ items: [Genre], timestamp: Date, completion: @escaping InsertionCompletion) {
+        func insert(_ items: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
             insertionCompletions.append(completion)
             receivedMessages.append(.insert(items, timestamp))
         }

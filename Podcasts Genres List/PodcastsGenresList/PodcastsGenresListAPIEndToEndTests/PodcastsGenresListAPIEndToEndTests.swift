@@ -7,11 +7,11 @@ class PodcastsGenresListAPIEndToEndTests: XCTestCase {
     
     func test_endToEndTestServerGETGenresResult_matchesFixedTestGenresData() {
         switch getGenresListResult() {
-        case let .success(items):
-            XCTAssertEqual(items.count, 3, "Expected 3 items in the test genres list")
-            XCTAssertEqual(items[0], expectedItem(at: 0))
-            XCTAssertEqual(items[1], expectedItem(at: 1))
-            XCTAssertEqual(items[2], expectedItem(at: 2))
+        case let .success(genres):
+            XCTAssertEqual(genres.count, 3, "Expected 3 items in the test genres list")
+            XCTAssertEqual(genres[0], expectedGenre(at: 0))
+            XCTAssertEqual(genres[1], expectedGenre(at: 1))
+            XCTAssertEqual(genres[2], expectedGenre(at: 2))
     
         case let .failure(error):
             XCTFail("Expected successful genres list, but got \(error) instead")
@@ -39,7 +39,7 @@ class PodcastsGenresListAPIEndToEndTests: XCTestCase {
         return receivedResult
     }
     
-    private func expectedItem(at index: Int) -> Genre {
+    private func expectedGenre(at index: Int) -> Genre {
         return Genre(
             id: id(at: index),
             name: name(at: index)

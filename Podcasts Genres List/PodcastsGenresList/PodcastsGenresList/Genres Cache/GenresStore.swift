@@ -7,5 +7,5 @@ public protocol GenresStore {
     typealias InsertionCompletion = (Error?) -> Void
     
     func deleteCacheGenres(completion: @escaping DeletionCompletion)
-    func insert(_ items: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion)
+    func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion)
 }

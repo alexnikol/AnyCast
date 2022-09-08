@@ -14,20 +14,20 @@ public class LocalGenresLoader {
         self.currentDate = currentDate
     }
         
-    public func save(_ items: [Genre], completion: @escaping (SaveResult) -> Void) {
+    public func save(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {
         store.deleteCacheGenres { [weak self] error in
             guard let self = self else { return }
             
             if let cacheDeletionError = error {
                 completion(cacheDeletionError)
             } else {
-                self.cache(items, completion: completion)
+                self.cache(genres, completion: completion)
             }
         }
     }
     
-    private func cache(_ items: [Genre], completion: @escaping (SaveResult) -> Void) {
-        store.insert(items.toLocal(), timestamp: currentDate(), completion: { [weak self] error in
+    private func cache(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {
+        store.insert(genres.toLocal(), timestamp: currentDate(), completion: { [weak self] error in
             guard self != nil else {
                 return
             }

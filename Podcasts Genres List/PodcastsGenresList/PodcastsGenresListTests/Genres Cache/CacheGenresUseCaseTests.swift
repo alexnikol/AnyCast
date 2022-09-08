@@ -14,7 +14,8 @@ class LocalGenresLoader {
     }
         
     func save(_ items: [Genre], completion: @escaping (Error?) -> Void) {
-        store.deleteCacheGenres { [unowned self] error in
+        store.deleteCacheGenres { [weak self] error in
+            guard let self = self else { return }
             if error == nil {
                 self.store.insert(items, timestamp: self.currentDate(), completion: completion)
             } else {
@@ -97,6 +98,20 @@ class CacheGenresUseCaseTests: XCTestCase {
             store.completeDeletionSuccessfully()
             store.completeInsertionSuccessfully()
         })
+    }
+    
+    func test_save_doesNotDeliverDeletionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = GenresStoreSpy()
+        var sut: LocalGenresLoader? = LocalGenresLoader(store: store, currentDate: Date.init)
+        let deletionError = anyNSError()
+        
+        var receivedResults = [Error?]()
+        sut?.save([uniqueItem(id: 1)]) { receivedResults.append($0) }
+        
+        sut = nil
+        store.completeDeletion(with: deletionError)
+        
+        XCTAssertTrue(receivedResults.isEmpty)
     }
     
     // MARK: - Helpers

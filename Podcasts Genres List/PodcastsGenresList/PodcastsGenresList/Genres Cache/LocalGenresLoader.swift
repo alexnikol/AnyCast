@@ -5,6 +5,7 @@ import Foundation
 public class LocalGenresLoader {
     
     public typealias SaveResult = Error?
+    public typealias LoadResult = LoadGenresResult
     
     private let store: GenresStore
     private let currentDate: () -> Date
@@ -26,8 +27,12 @@ public class LocalGenresLoader {
         }
     }
     
-    public func load(completion: @escaping (Error?) -> Void) {
-        store.retrieve(completion: completion)
+    public func load(completion: @escaping (LoadResult) -> Void) {
+        store.retrieve { error in
+            if let error = error {
+                completion(.failure(error))
+            }
+        }
     }
     
     private func cache(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {

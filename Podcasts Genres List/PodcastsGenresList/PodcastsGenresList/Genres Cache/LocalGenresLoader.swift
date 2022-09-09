@@ -29,7 +29,6 @@ public class LocalGenresLoader {
     
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [unowned self] result in
-            
             switch result {
             case let .found(localGenres, timestamp) where self.validate(timestamp):
                 completion(.success(localGenres.toModels()))

@@ -3,34 +3,28 @@
 import Foundation
 
 private final class GenresCachePolicy {
-    private let currentDate: () -> Date
-    
-    public init(currentDate: @escaping () -> Date) {
-        self.currentDate = currentDate
-    }
-    
+    private let calendar = Calendar(identifier: .gregorian)
+        
     private var maxCacheAgeInDays: Int {
         return 7
     }
     
-    func validate(_ timestamp: Date) -> Bool {
-        let calendar = Calendar(identifier: .gregorian)
+    func validate(_ timestamp: Date, against date: Date) -> Bool {
         guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
             return false
         }
-        return currentDate() < maxCacheAge
+        return date < maxCacheAge
     }
 }
 
 public class LocalGenresLoader {
     private let store: GenresStore
     private let currentDate: () -> Date
-    private let cachePolicy: GenresCachePolicy
+    private let cachePolicy = GenresCachePolicy()
     
     public init(store: GenresStore, currentDate: @escaping () -> Date) {
         self.store = store
         self.currentDate = currentDate
-        self.cachePolicy = GenresCachePolicy(currentDate: currentDate)
     }
 }
 
@@ -69,7 +63,7 @@ extension LocalGenresLoader: GenresLoader {
             guard let self = self else { return }
             
             switch result {
-            case let .found(localGenres, timestamp) where self.cachePolicy.validate(timestamp):
+            case let .found(localGenres, timestamp) where self.cachePolicy.validate(timestamp, against: self.currentDate()):
                 completion(.success(localGenres.toModels()))
                 
             case .found, .empty:
@@ -92,7 +86,7 @@ extension LocalGenresLoader {
             case .failure:
                 self.store.deleteCacheGenres { _ in }
                 
-            case let .found(_, timestamp) where !self.cachePolicy.validate(timestamp):
+            case let .found(_, timestamp) where !self.cachePolicy.validate(timestamp, against: self.currentDate()):
                 self.store.deleteCacheGenres { _ in }
                 
             case .empty, .found: break

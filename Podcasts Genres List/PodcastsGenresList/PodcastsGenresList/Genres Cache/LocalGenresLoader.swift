@@ -28,11 +28,16 @@ public class LocalGenresLoader {
     }
     
     public func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve { error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
+        store.retrieve { result in
+            switch result {
+            case let .found(localGenres, timestamp):
+                completion(.success(localGenres.toModels()))
+                
+            case .empty:
                 completion(.success([]))
+                
+            case let .failure(error):
+                completion(.failure(error))
             }
         }
     }
@@ -49,6 +54,12 @@ public class LocalGenresLoader {
 
 private extension Array where Element == Genre {
     func toLocal() -> [LocalGenre] {
+        return map { .init(id: $0.id, name: $0.name) }
+    }
+}
+
+private extension Array where Element == LocalGenre {
+    func toModels() -> [Genre] {
         return map { .init(id: $0.id, name: $0.name) }
     }
 }

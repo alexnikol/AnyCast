@@ -49,10 +49,14 @@ class GenresStoreSpy: GenresStore {
     }
     
     func completeRetrieval(with error: Error, at index: Int = 0) {
-        retrievalCompletions[index](error)
+        retrievalCompletions[index](.failure(error))
     }
     
     func completeRetrievalWithEmptyCache(at index: Int = 0) {
-        retrievalCompletions[index](nil)
+        retrievalCompletions[index](.empty)
+    }
+    
+    func completeRetrieval(with genres: [LocalGenre], timestamp: Date, at index: Int = 0) {
+        retrievalCompletions[index](.found(genres: genres, timestamp: timestamp))
     }
 }

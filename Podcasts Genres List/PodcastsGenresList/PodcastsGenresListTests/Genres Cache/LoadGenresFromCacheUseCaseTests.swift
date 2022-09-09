@@ -36,6 +36,17 @@ class LoadGenresFromCacheUseCaseTests: XCTestCase {
         })
     }
     
+    func test_load_deliversCachedGenresOnLessThan7DaysOldCache() {
+        let genres = uniqueGenres()
+        let fixedCurrentDate = Date()
+        let lessThan7DaysOldTimestamp = fixedCurrentDate.adding(days: 7).adding(seconds: 1)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+        
+        expect(sut, toCompleteWith: .success(genres.models), when: {
+            store.completeRetrieval(with: genres.local, timestamp: lessThan7DaysOldTimestamp)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -80,5 +91,26 @@ class LoadGenresFromCacheUseCaseTests: XCTestCase {
     
     private func anyNSError() -> NSError {
         NSError(domain: "any error", code: 0)
+    }
+    
+    private func uniqueGenres() -> (models: [Genre], local: [LocalGenre]) {
+        let models: [Genre] = [
+            .init(id: 1, name: "any genre"),
+            .init(id: 2, name: "another genre"),
+        ]
+        
+        let local = models.map { LocalGenre(id: $0.id, name: $0.name) }
+        
+        return (models: models, local: local)
+    }
+}
+
+private extension Date {
+    func adding(days: Int) -> Date {
+        return Calendar(identifier: .gregorian).date(byAdding: .day, value: days, to: self)!
+    }
+    
+    func adding(seconds: TimeInterval) -> Date {
+        return self + seconds
     }
 }

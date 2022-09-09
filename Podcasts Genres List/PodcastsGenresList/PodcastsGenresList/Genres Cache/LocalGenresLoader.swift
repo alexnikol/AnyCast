@@ -36,7 +36,6 @@ public class LocalGenresLoader {
                 completion(.success(localGenres.toModels()))
                 
             case .found:
-                self.store.deleteCacheGenres { _ in }
                 completion(.success([]))
                 
             case .empty:
@@ -54,7 +53,10 @@ public class LocalGenresLoader {
             case .failure:
                 self.store.deleteCacheGenres { _ in }
                 
-            default: break
+            case let .found(_, timestamp) where !self.validate(timestamp):
+                self.store.deleteCacheGenres { _ in }
+                
+            case .empty, .found: break
             }
         }
     }

@@ -35,10 +35,7 @@ public class LocalGenresLoader {
             case let .found(localGenres, timestamp) where self.validate(timestamp):
                 completion(.success(localGenres.toModels()))
                 
-            case .found:
-                completion(.success([]))
-                
-            case .empty:
+            case .found, .empty:
                 completion(.success([]))
                                 
             case let .failure(error):

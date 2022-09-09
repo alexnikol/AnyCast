@@ -88,7 +88,7 @@ class LoadGenresFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_load_doesNotDeleteCacheOnLessThan7DaysOldCache() {
+    func test_load_hasNoSideEffectsOnLessThan7DaysOldCache() {
         let genres = uniqueGenres()
         let fixedCurrentDate = Date()
         let lessThan7DaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: 1)

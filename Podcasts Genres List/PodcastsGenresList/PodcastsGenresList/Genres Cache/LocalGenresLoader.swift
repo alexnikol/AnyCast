@@ -14,7 +14,22 @@ public class LocalGenresLoader {
         self.store = store
         self.currentDate = currentDate
     }
-        
+    
+    private var maxCacheAgeInDays: Int {
+        return 7
+    }
+    
+    private func validate(_ timestamp: Date) -> Bool {
+        let calendar = Calendar(identifier: .gregorian)
+        guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
+            return false
+        }
+        return currentDate() < maxCacheAge
+    }
+}
+
+extension LocalGenresLoader {
+    
     public func save(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {
         store.deleteCacheGenres { [weak self] error in
             guard let self = self else { return }
@@ -26,6 +41,18 @@ public class LocalGenresLoader {
             }
         }
     }
+    
+    private func cache(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {
+        store.insert(genres.toLocal(), timestamp: currentDate(), completion: { [weak self] error in
+            guard self != nil else {
+                return
+            }
+            completion(error)
+        })
+    }
+}
+
+extension LocalGenresLoader {
     
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
@@ -43,6 +70,9 @@ public class LocalGenresLoader {
             }
         }
     }
+}
+
+extension LocalGenresLoader {
     
     public func validateCache() {
         store.retrieve { [weak self] result in
@@ -58,27 +88,6 @@ public class LocalGenresLoader {
             case .empty, .found: break
             }
         }
-    }
-    
-    private var maxCacheAgeInDays: Int {
-        return 7
-    }
-    
-    private func validate(_ timestamp: Date) -> Bool {
-        let calendar = Calendar(identifier: .gregorian)
-        guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
-            return false
-        }
-        return currentDate() < maxCacheAge
-    }
-    
-    private func cache(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {
-        store.insert(genres.toLocal(), timestamp: currentDate(), completion: { [weak self] error in
-            guard self != nil else {
-                return
-            }
-            completion(error)
-        })
     }
 }
 

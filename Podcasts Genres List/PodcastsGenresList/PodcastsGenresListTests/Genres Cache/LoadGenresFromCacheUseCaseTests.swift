@@ -39,11 +39,33 @@ class LoadGenresFromCacheUseCaseTests: XCTestCase {
     func test_load_deliversCachedGenresOnLessThan7DaysOldCache() {
         let genres = uniqueGenres()
         let fixedCurrentDate = Date()
-        let lessThan7DaysOldTimestamp = fixedCurrentDate.adding(days: 7).adding(seconds: 1)
+        let lessThan7DaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: 1)
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
         expect(sut, toCompleteWith: .success(genres.models), when: {
             store.completeRetrieval(with: genres.local, timestamp: lessThan7DaysOldTimestamp)
+        })
+    }
+    
+    func test_load_deliversNoGenresOn7DaysOldCache() {
+        let genres = uniqueGenres()
+        let fixedCurrentDate = Date()
+        let sevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+        
+        expect(sut, toCompleteWith: .success([]), when: {
+            store.completeRetrieval(with: genres.local, timestamp: sevenDaysOldTimestamp)
+        })
+    }
+    
+    func test_load_deliversNoGenresOnMoreThan7DaysOldCache() {
+        let genres = uniqueGenres()
+        let fixedCurrentDate = Date()
+        let moreThanSevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: -1)
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+        
+        expect(sut, toCompleteWith: .success([]), when: {
+            store.completeRetrieval(with: genres.local, timestamp: moreThanSevenDaysOldTimestamp)
         })
     }
     

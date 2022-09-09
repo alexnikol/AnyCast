@@ -49,8 +49,14 @@ public class LocalGenresLoader {
     }
     
     public func validateCache() {
-        store.retrieve { _ in }
-        store.deleteCacheGenres { _ in }
+        store.retrieve { [unowned self] result in
+            switch result {
+            case .failure:
+                self.store.deleteCacheGenres { _ in }
+                
+            default: break
+            }
+        }
     }
     
     private var maxCacheAgeInDays: Int {

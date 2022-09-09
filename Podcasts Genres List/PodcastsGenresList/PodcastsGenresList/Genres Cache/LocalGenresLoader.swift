@@ -4,9 +4,6 @@ import Foundation
 
 public class LocalGenresLoader {
     
-    public typealias SaveResult = Error?
-    public typealias LoadResult = LoadGenresResult
-    
     private let store: GenresStore
     private let currentDate: () -> Date
     
@@ -29,6 +26,8 @@ public class LocalGenresLoader {
 }
 
 extension LocalGenresLoader {
+    
+    public typealias SaveResult = Error?
     
     public func save(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {
         store.deleteCacheGenres { [weak self] error in
@@ -53,6 +52,8 @@ extension LocalGenresLoader {
 }
 
 extension LocalGenresLoader: GenresLoader {
+    
+    public typealias LoadResult = LoadGenresResult
     
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in

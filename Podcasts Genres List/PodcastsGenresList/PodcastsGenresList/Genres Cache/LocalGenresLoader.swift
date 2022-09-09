@@ -2,13 +2,10 @@
 
 import Foundation
 
-public class LocalGenresLoader {
-    
-    private let store: GenresStore
+private final class GenresCachePolicy {
     private let currentDate: () -> Date
     
-    public init(store: GenresStore, currentDate: @escaping () -> Date) {
-        self.store = store
+    public init(currentDate: @escaping () -> Date) {
         self.currentDate = currentDate
     }
     
@@ -16,12 +13,24 @@ public class LocalGenresLoader {
         return 7
     }
     
-    private func validate(_ timestamp: Date) -> Bool {
+    func validate(_ timestamp: Date) -> Bool {
         let calendar = Calendar(identifier: .gregorian)
         guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
             return false
         }
         return currentDate() < maxCacheAge
+    }
+}
+
+public class LocalGenresLoader {
+    private let store: GenresStore
+    private let currentDate: () -> Date
+    private let cachePolicy: GenresCachePolicy
+    
+    public init(store: GenresStore, currentDate: @escaping () -> Date) {
+        self.store = store
+        self.currentDate = currentDate
+        self.cachePolicy = GenresCachePolicy(currentDate: currentDate)
     }
 }
 
@@ -60,7 +69,7 @@ extension LocalGenresLoader: GenresLoader {
             guard let self = self else { return }
             
             switch result {
-            case let .found(localGenres, timestamp) where self.validate(timestamp):
+            case let .found(localGenres, timestamp) where self.cachePolicy.validate(timestamp):
                 completion(.success(localGenres.toModels()))
                 
             case .found, .empty:
@@ -83,7 +92,7 @@ extension LocalGenresLoader {
             case .failure:
                 self.store.deleteCacheGenres { _ in }
                 
-            case let .found(_, timestamp) where !self.validate(timestamp):
+            case let .found(_, timestamp) where !self.cachePolicy.validate(timestamp):
                 self.store.deleteCacheGenres { _ in }
                 
             case .empty, .found: break

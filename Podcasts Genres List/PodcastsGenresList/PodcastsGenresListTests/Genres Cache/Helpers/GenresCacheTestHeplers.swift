@@ -21,7 +21,11 @@ func uniqueGenre(id: Int) -> Genre {
 extension Date {
     
     func minusGenreCacheMaxAge() -> Date {
-        return adding(days: -7)
+        return adding(days: -genresFeedCacheMaxAgeInDays)
+    }
+    
+    private var genresFeedCacheMaxAgeInDays: Int {
+        return 7
     }
     
     private func adding(days: Int) -> Date {

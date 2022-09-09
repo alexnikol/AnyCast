@@ -25,6 +25,7 @@
 		8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544228CA106F00418F3E /* RemoteGenre.swift */; };
 		8DA0544528CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544428CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift */; };
 		8DA0544828CB328800418F3E /* GenresStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544728CB328800418F3E /* GenresStoreSpy.swift */; };
+		8DA0544A28CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544928CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift */; };
 		8DA0931E28BF5A0200C4C68D /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
 		8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */; };
 		8DA0932B28BF5E3700C4C68D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8DA0932A28BF5E3700C4C68D /* README.md */; };
@@ -65,6 +66,7 @@
 		8DA0544228CA106F00418F3E /* RemoteGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenre.swift; sourceTree = "<group>"; };
 		8DA0544428CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGenresFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		8DA0544728CB328800418F3E /* GenresStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStoreSpy.swift; sourceTree = "<group>"; };
+		8DA0544928CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateGenresCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsGenresList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA0931A28BF5A0200C4C68D /* PodcastsGenresListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLoader.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				8DA0544628CB327100418F3E /* Helpers */,
 				8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */,
 				8DA0544428CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift */,
+				8DA0544928CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift */,
 			);
 			path = "Genres Cache";
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				8DA0544828CB328800418F3E /* GenresStoreSpy.swift in Sources */,
 				8D745E2928C216E2005DC3F8 /* URLSessionHTTPClientTests.swift in Sources */,
 				8DA0544528CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift in Sources */,
+				8DA0544A28CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift in Sources */,
 				8D745E2C28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

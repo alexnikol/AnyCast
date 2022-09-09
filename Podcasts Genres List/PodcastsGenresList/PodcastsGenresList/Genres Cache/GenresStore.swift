@@ -8,4 +8,5 @@ public protocol GenresStore {
     
     func deleteCacheGenres(completion: @escaping DeletionCompletion)
     func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion)
+    func retrieve()
 }

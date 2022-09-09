@@ -9,6 +9,7 @@ class GenresStoreSpy: GenresStore {
         case deleteCache
         case insert([LocalGenre], Date)
         case insertFailure(NSError)
+        case retrieve
     }
     
     private(set) var receivedMessages: [ReceivedMessage] = []
@@ -39,5 +40,9 @@ class GenresStoreSpy: GenresStore {
     func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
         insertionCompletions.append(completion)
         receivedMessages.append(.insert(genres, timestamp))
+    }
+    
+    func retrieve() {
+        receivedMessages.append(.retrieve)
     }
 }

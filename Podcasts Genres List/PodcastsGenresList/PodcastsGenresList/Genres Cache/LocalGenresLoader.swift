@@ -26,6 +26,10 @@ public class LocalGenresLoader {
         }
     }
     
+    public func load() {
+        store.retrieve()
+    }
+    
     private func cache(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {
         store.insert(genres.toLocal(), timestamp: currentDate(), completion: { [weak self] error in
             guard self != nil else {

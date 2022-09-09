@@ -134,23 +134,4 @@ class CacheGenresUseCaseTests: XCTestCase {
         
         XCTAssertEqual(receivedError as? NSError, expectedError, file: file, line: line)
     }
-    
-    private func uniqueGenre(id: Int) -> Genre {
-        .init(id: id, name: "any genre")
-    }
-    
-    private func uniqueGenres() -> (models: [Genre], local: [LocalGenre]) {
-        let models: [Genre] = [
-            .init(id: 1, name: "any genre"),
-            .init(id: 2, name: "another genre"),
-        ]
-        
-        let local = models.map { LocalGenre(id: $0.id, name: $0.name) }
-        
-        return (models: models, local: local)
-    }
-    
-    private func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 0)
-    }
 }

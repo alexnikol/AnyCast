@@ -36,36 +36,36 @@ class LoadGenresFromCacheUseCaseTests: XCTestCase {
         })
     }
     
-    func test_load_deliversCachedGenresOnLessThan7DaysOldCache() {
+    func test_load_deliversCachedGenresOnNonExpiredCache() {
         let genres = uniqueGenres()
         let fixedCurrentDate = Date()
-        let lessThan7DaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: 1)
+        let nonExpiredTimestamp = fixedCurrentDate.minusGenreCacheMaxAge().adding(seconds: 1)
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
         expect(sut, toCompleteWith: .success(genres.models), when: {
-            store.completeRetrieval(with: genres.local, timestamp: lessThan7DaysOldTimestamp)
+            store.completeRetrieval(with: genres.local, timestamp: nonExpiredTimestamp)
         })
     }
     
-    func test_load_deliversNoGenresOn7DaysOldCache() {
+    func test_load_deliversNoGenresOnCacheExpiration() {
         let genres = uniqueGenres()
         let fixedCurrentDate = Date()
-        let sevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7)
+        let expirationTimestamp = fixedCurrentDate.minusGenreCacheMaxAge()
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
         expect(sut, toCompleteWith: .success([]), when: {
-            store.completeRetrieval(with: genres.local, timestamp: sevenDaysOldTimestamp)
+            store.completeRetrieval(with: genres.local, timestamp: expirationTimestamp)
         })
     }
     
-    func test_load_deliversNoGenresOnMoreThan7DaysOldCache() {
+    func test_load_deliversNoGenresOnExpiredCache() {
         let genres = uniqueGenres()
         let fixedCurrentDate = Date()
-        let moreThanSevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: -1)
+        let expiredTimestamp = fixedCurrentDate.minusGenreCacheMaxAge().adding(seconds: -1)
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
         expect(sut, toCompleteWith: .success([]), when: {
-            store.completeRetrieval(with: genres.local, timestamp: moreThanSevenDaysOldTimestamp)
+            store.completeRetrieval(with: genres.local, timestamp: expiredTimestamp)
         })
     }
     
@@ -88,38 +88,38 @@ class LoadGenresFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_load_hasNoSideEffectsOnLessThan7DaysOldCache() {
+    func test_load_hasNoSideEffectsOnNonExpiredCache() {
         let genres = uniqueGenres()
         let fixedCurrentDate = Date()
-        let lessThan7DaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: 1)
+        let nonExpiredTimestamp = fixedCurrentDate.minusGenreCacheMaxAge().adding(seconds: 1)
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
         sut.load { _ in }
-        store.completeRetrieval(with: genres.local, timestamp: lessThan7DaysOldTimestamp)
+        store.completeRetrieval(with: genres.local, timestamp: nonExpiredTimestamp)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_load_hasNoSideEffectsOn7DaysOldCache() {
+    func test_load_hasNoSideEffectsOnCacheExpiration() {
         let genres = uniqueGenres()
         let fixedCurrentDate = Date()
-        let sevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7)
+        let expirationTimestamp = fixedCurrentDate.minusGenreCacheMaxAge()
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
         sut.load { _ in }
-        store.completeRetrieval(with: genres.local, timestamp: sevenDaysOldTimestamp)
+        store.completeRetrieval(with: genres.local, timestamp: expirationTimestamp)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
-    func test_load_hasNoSideOnMoreThan7DaysOldCache() {
+    func test_load_hasNoSideOnExpired() {
         let genres = uniqueGenres()
         let fixedCurrentDate = Date()
-        let moreThanSevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: -1)
+        let expiredTimestamp = fixedCurrentDate.minusGenreCacheMaxAge().adding(seconds: -1)
         let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
         
         sut.load { _ in }
-        store.completeRetrieval(with: genres.local, timestamp: moreThanSevenDaysOldTimestamp)
+        store.completeRetrieval(with: genres.local, timestamp: expiredTimestamp)
         
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }

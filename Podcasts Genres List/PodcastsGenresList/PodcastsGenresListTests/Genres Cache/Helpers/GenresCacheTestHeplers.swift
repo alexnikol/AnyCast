@@ -19,7 +19,12 @@ func uniqueGenre(id: Int) -> Genre {
 }
 
 extension Date {
-    func adding(days: Int) -> Date {
+    
+    func minusGenreCacheMaxAge() -> Date {
+        return adding(days: -7)
+    }
+    
+    private func adding(days: Int) -> Date {
         return Calendar(identifier: .gregorian).date(byAdding: .day, value: days, to: self)!
     }
 

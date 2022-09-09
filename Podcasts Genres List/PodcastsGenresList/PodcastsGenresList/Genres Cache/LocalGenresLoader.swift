@@ -52,7 +52,7 @@ extension LocalGenresLoader {
     }
 }
 
-extension LocalGenresLoader {
+extension LocalGenresLoader: GenresLoader {
     
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in

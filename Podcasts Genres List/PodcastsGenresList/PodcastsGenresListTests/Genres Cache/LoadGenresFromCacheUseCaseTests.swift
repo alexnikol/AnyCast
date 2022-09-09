@@ -124,6 +124,20 @@ class LoadGenresFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve, .deleteCache])
     }
     
+    func test_load_doesnNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let store = GenresStoreSpy()
+        var sut: LocalGenresLoader? = LocalGenresLoader(store: store, currentDate: Date.init)
+        
+        var receivedResults: [LocalGenresLoader.LoadResult] = []
+        sut?.load { receivedResults.append($0) }
+        
+        sut = nil
+        
+        store.completeRetrievalWithEmptyCache()
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

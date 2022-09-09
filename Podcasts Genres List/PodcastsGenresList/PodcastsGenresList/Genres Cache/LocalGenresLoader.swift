@@ -3,13 +3,16 @@
 import Foundation
 
 private final class GenresCachePolicy {
-    private let calendar = Calendar(identifier: .gregorian)
+    
+    private init() {}
+    
+    private static let calendar = Calendar(identifier: .gregorian)
         
-    private var maxCacheAgeInDays: Int {
+    private static var maxCacheAgeInDays: Int {
         return 7
     }
     
-    func validate(_ timestamp: Date, against date: Date) -> Bool {
+    static func validate(_ timestamp: Date, against date: Date) -> Bool {
         guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else {
             return false
         }
@@ -20,7 +23,6 @@ private final class GenresCachePolicy {
 public class LocalGenresLoader {
     private let store: GenresStore
     private let currentDate: () -> Date
-    private let cachePolicy = GenresCachePolicy()
     
     public init(store: GenresStore, currentDate: @escaping () -> Date) {
         self.store = store
@@ -63,7 +65,7 @@ extension LocalGenresLoader: GenresLoader {
             guard let self = self else { return }
             
             switch result {
-            case let .found(localGenres, timestamp) where self.cachePolicy.validate(timestamp, against: self.currentDate()):
+            case let .found(localGenres, timestamp) where GenresCachePolicy.validate(timestamp, against: self.currentDate()):
                 completion(.success(localGenres.toModels()))
                 
             case .found, .empty:
@@ -86,7 +88,7 @@ extension LocalGenresLoader {
             case .failure:
                 self.store.deleteCacheGenres { _ in }
                 
-            case let .found(_, timestamp) where !self.cachePolicy.validate(timestamp, against: self.currentDate()):
+            case let .found(_, timestamp) where !GenresCachePolicy.validate(timestamp, against: self.currentDate()):
                 self.store.deleteCacheGenres { _ in }
                 
             case .empty, .found: break

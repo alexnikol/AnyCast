@@ -6,8 +6,26 @@ import PodcastsGenresList
 class CodableGenresStore {
     
     private struct Cache: Codable {
-        let genres: [LocalGenre]
+        let genres: [CodableGenre]
         let timestamp: Date
+        
+        var localGenres: [LocalGenre] {
+            genres.map { $0.local }
+        }
+    }
+    
+    private struct CodableGenre: Codable {
+        let id: Int
+        let name: String
+        
+        init(_ genre: LocalGenre) {
+            id = genre.id
+            name = genre.name
+        }
+        
+        var local: LocalGenre {
+            return .init(id: id, name: name)
+        }
     }
     
     private let storeURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("genres-list.store")
@@ -18,12 +36,14 @@ class CodableGenresStore {
         }
         let decoder = JSONDecoder()
         let cache = try! decoder.decode(Cache.self, from: data)
-        completion(.found(genres: cache.genres, timestamp: cache.timestamp))
+        completion(.found(genres: cache.localGenres, timestamp: cache.timestamp))
     }
     
     func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping GenresStore.InsertionCompletion) {
         let encoder = JSONEncoder()
-        let encoded = try! encoder.encode(Cache(genres: genres, timestamp: timestamp))
+        let codableGenres = genres.map(CodableGenre.init)
+        let cache = Cache(genres: codableGenres, timestamp: timestamp)
+        let encoded = try! encoder.encode(cache)
         try! encoded.write(to: storeURL)
         completion(nil)
     }

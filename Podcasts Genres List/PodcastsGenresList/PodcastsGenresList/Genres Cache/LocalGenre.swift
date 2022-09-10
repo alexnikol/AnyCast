@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct LocalGenre: Equatable {
+public struct LocalGenre: Equatable, Codable {
     let id: Int
     let name: String
     

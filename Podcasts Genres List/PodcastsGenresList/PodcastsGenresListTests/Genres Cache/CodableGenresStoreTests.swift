@@ -136,6 +136,37 @@ class CodableGenresStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+    func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
+        let sut = makeSUT()
+        let exp = expectation(description: "Wait for cache retrieval")
+        let genres = uniqueGenres().local
+        let timestamp = Date()
+        
+        sut.insert(genres, timestamp: timestamp) { insertionError in
+            XCTAssertNil(insertionError, "Expected no insertion error")
+            
+            sut.retrieve { firstResult in
+                sut.retrieve { secondResult in
+                    switch (firstResult, secondResult) {
+                    case let (.found(firstGenres, firstTimestamp), .found(secondGenres, secondTimestamp)):
+                        XCTAssertEqual(firstGenres, genres)
+                        XCTAssertEqual(firstTimestamp, timestamp)
+                        
+                        XCTAssertEqual(secondGenres, genres)
+                        XCTAssertEqual(secondTimestamp, timestamp)
+                        
+                    default:
+                        XCTFail("Expected  retrieving twice from non empty cache to deliver same found result with gernes \(genres) and timestamp \(timestamp), got \(firstResult) and \(secondResult) instead")
+                    }
+                
+                    exp.fulfill()
+                }
+            }
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {

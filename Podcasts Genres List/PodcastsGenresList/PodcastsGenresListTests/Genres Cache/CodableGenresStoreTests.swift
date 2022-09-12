@@ -28,7 +28,11 @@ class CodableGenresStore {
         }
     }
     
-    private let storeURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("genres-list.store")
+    private let storeURL: URL
+
+    init(storeURL: URL) {
+        self.storeURL = storeURL
+    }
     
     func retrieve(completion: @escaping GenresStore.RetrievalCompletion) {
         guard let data = try? Data(contentsOf: storeURL) else {
@@ -137,7 +141,8 @@ class CodableGenresStoreTests: XCTestCase {
     // MARK: - Helpers
     
     func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
-        let sut = CodableGenresStore()
+        let storeURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("genres-list.store")
+        let sut = CodableGenresStore(storeURL: storeURL)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }

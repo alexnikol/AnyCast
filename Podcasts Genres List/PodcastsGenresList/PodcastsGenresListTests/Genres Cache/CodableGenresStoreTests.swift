@@ -66,7 +66,7 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     func test_retrieve_deliversEmptyOnEmptyCache() {
-        let sut = CodableGenresStore()
+        let sut = makeSUT()
         let exp = expectation(description: "Wait for cache retrieval")
         
         var receivedResult: RetrieveCacheFeedResult?
@@ -88,7 +88,7 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     func test_retrieve_hasNoSideEffectsOnEmptyCache() {
-        let sut = CodableGenresStore()
+        let sut = makeSUT()
         let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { firstResult in
@@ -109,7 +109,7 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     func test_retrieveAfterInsertingToEmptyCache_deliversInsrtedValues() {
-        let sut = CodableGenresStore()
+        let sut = makeSUT()
         let exp = expectation(description: "Wait for cache retrieval")
         let genres = uniqueGenres().local
         let timestamp = Date()
@@ -132,5 +132,12 @@ class CodableGenresStoreTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    // MARK: - Helpers
+    
+    func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
+        let sut = CodableGenresStore()
+        return sut
     }
 }

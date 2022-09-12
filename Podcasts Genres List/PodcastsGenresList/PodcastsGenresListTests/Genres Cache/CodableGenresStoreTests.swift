@@ -49,12 +49,16 @@ class CodableGenresStore {
     }
     
     func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping GenresStore.InsertionCompletion) {
-        let encoder = JSONEncoder()
-        let codableGenres = genres.map(CodableGenre.init)
-        let cache = Cache(genres: codableGenres, timestamp: timestamp)
-        let encoded = try! encoder.encode(cache)
-        try! encoded.write(to: storeURL)
-        completion(nil)
+        do {
+            let encoder = JSONEncoder()
+            let codableGenres = genres.map(CodableGenre.init)
+            let cache = Cache(genres: codableGenres, timestamp: timestamp)
+            let encoded = try! encoder.encode(cache)
+            try encoded.write(to: storeURL)
+            completion(nil)
+        } catch {
+            completion(error)
+        }
     }
 }
 
@@ -135,6 +139,17 @@ class CodableGenresStoreTests: XCTestCase {
         XCTAssertNil(latestInsertionError, "Expected to override cache successfully")
         
         expect(sut, toRetrieve: .found(genres: latestGenres, timestamp: latestTimestamp))
+    }
+    
+    func test_insert_deliversErrorOnInsertionError() {
+        let invalidStoreURL = URL(string: "invalid://store-url")!
+        let sut = makeSUT(storeURL: invalidStoreURL)
+        let genres = uniqueGenres().local
+        let timestamp = Date()
+        
+        let insertionError = insert((genres, timestamp), to: sut)
+
+        XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
     }
     
     // MARK: - Helpers

@@ -27,6 +27,7 @@ public class CodableGenresStore: GenresStore {
         }
     }
     
+    private let queue = DispatchQueue(label: "\(CodableGenresStore.self)Queue", qos: .userInitiated)
     private let storeURL: URL
 
     public init(storeURL: URL) {
@@ -34,43 +35,52 @@ public class CodableGenresStore: GenresStore {
     }
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
-        guard let data = try? Data(contentsOf: storeURL) else {
-            return completion(.empty)
-        }
-        
-        do {
-            let decoder = JSONDecoder()
-            let cache = try decoder.decode(Cache.self, from: data)
-            completion(.found(genres: cache.localGenres, timestamp: cache.timestamp))
-        } catch {
-            completion(.failure(error))
+        let storeURL = self.storeURL
+        queue.async {
+            guard let data = try? Data(contentsOf: storeURL) else {
+                return completion(.empty)
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let cache = try decoder.decode(Cache.self, from: data)
+                completion(.found(genres: cache.localGenres, timestamp: cache.timestamp))
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
     
     public func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
-        do {
-            let encoder = JSONEncoder()
-            let codableGenres = genres.map(CodableGenre.init)
-            let cache = Cache(genres: codableGenres, timestamp: timestamp)
-            let encoded = try! encoder.encode(cache)
-            try encoded.write(to: storeURL)
-            completion(nil)
-        } catch {
-            completion(error)
+        let storeURL = self.storeURL
+        queue.async {
+            do {
+                let encoder = JSONEncoder()
+                let codableGenres = genres.map(CodableGenre.init)
+                let cache = Cache(genres: codableGenres, timestamp: timestamp)
+                let encoded = try! encoder.encode(cache)
+                try encoded.write(to: storeURL)
+                completion(nil)
+            } catch {
+                completion(error)
+            }
         }
     }
     
     public func deleteCacheGenres(completion: @escaping DeletionCompletion) {
-        guard FileManager.default.fileExists(atPath: storeURL.path) else {
-            completion(nil)
-            return
-        }
-        
-        do {
-            try FileManager.default.removeItem(at: storeURL)
-            completion(nil)
-        } catch {
-            completion(error)
+        let storeURL = self.storeURL
+        queue.async {
+            guard FileManager.default.fileExists(atPath: storeURL.path) else {
+                completion(nil)
+                return
+            }
+            
+            do {
+                try FileManager.default.removeItem(at: storeURL)
+                completion(nil)
+            } catch {
+                completion(error)
+            }
         }
     }
 }

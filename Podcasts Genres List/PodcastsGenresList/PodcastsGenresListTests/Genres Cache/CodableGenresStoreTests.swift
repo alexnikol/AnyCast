@@ -112,7 +112,7 @@ class CodableGenresStoreTests: XCTestCase {
         
         expect(sut, toRetrieve: .failure(anyNSError()))
     }
-    
+        
     func test_retrieve_hasNoSideEffectsOnFailure() {
         let storeURL = testSpecificStoreURL()
         let sut = makeSUT(storeURL: storeURL)
@@ -120,6 +120,21 @@ class CodableGenresStoreTests: XCTestCase {
         try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
         
         expect(sut, toRetrieveTwice: .failure(anyNSError()))
+    }
+    
+    func test_insert_overridesPreviouslyInsertedCacheValues() {
+        let sut = makeSUT()
+
+        let firstInsertionError = insert((uniqueGenres().local, Date()), to: sut)
+        XCTAssertNil(firstInsertionError, "Expected to insert cache successfully")
+        
+        let latestGenres = uniqueGenres().local
+        let latestTimestamp = Date()
+        
+        let latestInsertionError = insert((latestGenres, latestTimestamp), to: sut)
+        XCTAssertNil(latestInsertionError, "Expected to override cache successfully")
+        
+        expect(sut, toRetrieve: .found(genres: latestGenres, timestamp: latestTimestamp))
     }
     
     // MARK: - Helpers
@@ -130,16 +145,17 @@ class CodableGenresStoreTests: XCTestCase {
         return sut
     }
     
+    @discardableResult
     private func insert(_ cache: (genres: [LocalGenre], timestamp: Date),
-                        to sut: CodableGenresStore,
-                        file: StaticString = #file,
-                        line: UInt = #line) {
+                        to sut: CodableGenresStore) -> Error? {
+        var insertionError: Error?
         let exp = expectation(description: "Wait for cache insertion")
-        sut.insert(cache.genres, timestamp: cache.timestamp) { insertionError in
-            XCTAssertNil(insertionError, "Expected no insertion error", file: file, line: line)
+        sut.insert(cache.genres, timestamp: cache.timestamp) { receivedInsertionError in
+            insertionError = receivedInsertionError
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
+        return insertionError
     }
     
     private func expect(_ sut: CodableGenresStore,

@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresList
 
-class CodableGenresStore {
+class CodableGenresStore: GenresStore {
     
     private struct Cache: Codable {
         let genres: [CodableGenre]
@@ -34,7 +34,7 @@ class CodableGenresStore {
         self.storeURL = storeURL
     }
     
-    func retrieve(completion: @escaping GenresStore.RetrievalCompletion) {
+    func retrieve(completion: @escaping RetrievalCompletion) {
         guard let data = try? Data(contentsOf: storeURL) else {
             return completion(.empty)
         }
@@ -48,7 +48,7 @@ class CodableGenresStore {
         }
     }
     
-    func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping GenresStore.InsertionCompletion) {
+    func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
         do {
             let encoder = JSONEncoder()
             let codableGenres = genres.map(CodableGenre.init)
@@ -61,7 +61,7 @@ class CodableGenresStore {
         }
     }
     
-    func deleteCacheGenres(completion: @escaping GenresStore.DeletionCompletion) {
+    func deleteCacheGenres(completion: @escaping DeletionCompletion) {
         guard FileManager.default.fileExists(atPath: storeURL.path) else {
             completion(nil)
             return

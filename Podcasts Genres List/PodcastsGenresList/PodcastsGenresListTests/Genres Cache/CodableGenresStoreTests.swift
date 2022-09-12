@@ -62,6 +62,7 @@ class CodableGenresStore {
     }
     
     func deleteCacheGenres(completion: @escaping GenresStore.DeletionCompletion) {
+        try? FileManager.default.removeItem(at: storeURL)
         completion(nil)
     }
 }
@@ -173,6 +174,27 @@ class CodableGenresStoreTests: XCTestCase {
         expect(sut, toRetrieve: .empty)
     }
     
+    func test_delete_emptiesPreviouslyInsertedCache() {
+        let sut = makeSUT()
+        let genres = uniqueGenres().local
+        let timestamp = Date()
+        
+        insert((genres, timestamp), to: sut)
+        
+        let exp = expectation(description: "Wait on deletion comletion")
+        var deletionError: Error?
+        sut.deleteCacheGenres { error in
+            deletionError = error
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+        expect(sut, toRetrieve: .empty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil, file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
@@ -233,14 +255,14 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     private func setupEmptyStoreState() {
-        deleteStireArtifacts()
+        deleteStoreArtifacts()
     }
     
     private func undoStoreSideEffects() {
-        deleteStireArtifacts()
+        deleteStoreArtifacts()
     }
     
-    private func deleteStireArtifacts() {
+    private func deleteStoreArtifacts() {
         try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
 }

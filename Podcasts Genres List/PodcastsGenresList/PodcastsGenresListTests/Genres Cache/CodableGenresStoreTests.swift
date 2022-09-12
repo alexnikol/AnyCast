@@ -3,40 +3,7 @@
 import XCTest
 import PodcastsGenresList
 
-protocol GenresStoreSpecs {
-    func test_retrieve_deliversEmptyOnEmptyCache()
-    func test_retrieve_hasNoSideEffectsOnEmptyCache()
-    func test_retrieve_deliversFoundValuesOnNonEmptyCache()
-    func test_retrieve_hasNoSideEffectsOnNonEmptyCache()
-    
-    func test_insert_deliversNoErrorOnEmptyCache()
-    func test_insert_deliversNoErrorOnNonEmptyCache()
-    func test_insert_overridesPreviouslyInsertedCacheValues()
-    
-    func test_deliversNoErrorOnEmptyCache()
-    func test_delete_hasNoSideEffectsOnEmptyCache()
-    func test_delete_deliversNoErrorOnNonEmptyCache()
-    func test_delete_hasNoSideEffectsOnNonEmptyCache()
-    
-    func test_storeSideEffects_runSerially()
-}
-
-protocol FailableRetrieveGenresStoreSpecs {
-    func test_retrieve_deliverFailureOnRetrievalError()
-    func test_retrieve_hasNoSideEffectsOnFailure()
-}
-
-protocol FailableInsertGenresStoreSpecs {
-    func test_insert_deliversErrorOnInsertionError()
-    func test_insert_hasNoSideEffectsOnInsertionError()
-}
-
-protocol FailableDeleteGenresStoreSpecs {
-    func test_delete_deliversErrorOnDeletionError()
-    func test_delete_hasNoSideEffectsOnDeletionError()
-}
-
-class CodableGenresStoreTests: XCTestCase {
+class CodableGenresStoreTests: XCTestCase, FailableGenresStore {
     
     override func setUp() {
         super.setUp()

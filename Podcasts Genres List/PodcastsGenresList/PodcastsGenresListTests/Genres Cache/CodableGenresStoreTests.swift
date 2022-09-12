@@ -58,13 +58,13 @@ class CodableGenresStoreTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        try? FileManager.default.removeItem(at: storeURL())
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
     
     override func tearDown() {
         super.tearDown()
         
-        try? FileManager.default.removeItem(at: storeURL())
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
     
     func test_retrieve_deliversEmptyOnEmptyCache() {
@@ -139,12 +139,12 @@ class CodableGenresStoreTests: XCTestCase {
     // MARK: - Helpers
     
     func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
-        let sut = CodableGenresStore(storeURL: storeURL())
+        let sut = CodableGenresStore(storeURL: testSpecificStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
     
-    private func storeURL() -> URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("genres-list.store")
+    private func testSpecificStoreURL() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(type(of: self)).store")
     }
 }

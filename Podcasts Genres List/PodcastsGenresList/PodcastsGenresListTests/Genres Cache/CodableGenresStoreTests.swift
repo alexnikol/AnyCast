@@ -138,6 +138,7 @@ class CodableGenresStoreTests: XCTestCase {
     
     func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
         let sut = CodableGenresStore()
+        trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
 }

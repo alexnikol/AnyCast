@@ -196,7 +196,7 @@ class CodableGenresStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(storeURL: URL? = nil, file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
+    private func makeSUT(storeURL: URL? = nil, file: StaticString = #file, line: UInt = #line) -> GenresStore {
         let sut = CodableGenresStore(storeURL: storeURL ?? specificTestStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
@@ -204,7 +204,7 @@ class CodableGenresStoreTests: XCTestCase {
     
     @discardableResult
     private func insert(_ cache: (genres: [LocalGenre], timestamp: Date),
-                        to sut: CodableGenresStore) -> Error? {
+                        to sut: GenresStore) -> Error? {
         var insertionError: Error?
         let exp = expectation(description: "Wait for cache insertion")
         sut.insert(cache.genres, timestamp: cache.timestamp) { receivedInsertionError in
@@ -216,7 +216,7 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     @discardableResult
-    private func deleteCache(from sut: CodableGenresStore) -> Error? {
+    private func deleteCache(from sut: GenresStore) -> Error? {
         var deletionError: Error?
         let exp = expectation(description: "Wait on deletion comletion")
         
@@ -229,7 +229,7 @@ class CodableGenresStoreTests: XCTestCase {
         return deletionError
     }
     
-    private func expect(_ sut: CodableGenresStore,
+    private func expect(_ sut: GenresStore,
                         toRetrieveTwice expectedResult: RetrieveCacheGenresResult,
                         file: StaticString = #file,
                         line: UInt = #line) {
@@ -237,7 +237,7 @@ class CodableGenresStoreTests: XCTestCase {
         expect(sut, toRetrieve: expectedResult, file: file, line: line)
     }
     
-    private func expect(_ sut: CodableGenresStore,
+    private func expect(_ sut: GenresStore,
                         toRetrieve expectedResult: RetrieveCacheGenresResult,
                         file: StaticString = #file,
                         line: UInt = #line) {

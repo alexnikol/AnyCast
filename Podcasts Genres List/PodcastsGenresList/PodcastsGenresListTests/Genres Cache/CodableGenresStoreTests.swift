@@ -113,39 +113,39 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     func test_delete_deliversErrorOnDeletionError() {
-        let noDeletePermissionURL = cachesDirectory()
-        let sut = makeSUT(storeURL: noDeletePermissionURL)
+        let sut = makeSUT(storeURL: noDeletePermissionURL())
         
         let deletionError = deleteCache(from: sut)
         
         XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
+        expect(sut, toRetrieve: .empty)
     }
     
     func test_storeSideEffects_runSerially() {
         let sut = makeSUT()
-
-        var completionsOperationsOrded: [XCTestExpectation] = []
+        var completedOperationsInOrder = [XCTestExpectation]()
+        
         let op1 = expectation(description: "Operation 1")
         sut.insert(uniqueGenres().local, timestamp: Date()) { _ in
-            completionsOperationsOrded.append(op1)
+            completedOperationsInOrder.append(op1)
             op1.fulfill()
         }
-
-        let op2 = expectation(description: "Operation 1")
+        
+        let op2 = expectation(description: "Operation 2")
         sut.deleteCacheGenres { _ in
-            completionsOperationsOrded.append(op2)
+            completedOperationsInOrder.append(op2)
             op2.fulfill()
         }
-
+        
         let op3 = expectation(description: "Operation 3")
-        sut.deleteCacheGenres { _ in
-            completionsOperationsOrded.append(op3)
+        sut.insert(uniqueGenres().local, timestamp: Date()) { _ in
+            completedOperationsInOrder.append(op3)
             op3.fulfill()
         }
-
-        waitForExpectations(timeout: 5.0)
-
-        XCTAssertEqual(completionsOperationsOrded, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
+        
+        waitForExpectations(timeout: 4.0)
+        
+        XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
     }
     
     // MARK: - Helpers
@@ -179,7 +179,7 @@ class CodableGenresStoreTests: XCTestCase {
             
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 8.0)
+        wait(for: [exp], timeout: 1.0)
         return deletionError
     }
     
@@ -218,11 +218,15 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     private func specificTestStoreURL() -> URL {
+        func cachesDirectory() -> URL {
+            return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        }
+        
         return cachesDirectory().appendingPathComponent("\(type(of: self)).store")
     }
-    
-    private func cachesDirectory() -> URL {
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        
+    private func noDeletePermissionURL() -> URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: .systemDomainMask).first!
     }
     
     private func setupEmptyStoreState() {

@@ -123,7 +123,7 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     func test_retrieve_deliverFailureOnRetrievalError() {
-        let storeURL = testSpecificStoreURL()
+        let storeURL = specificTestStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
         try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
@@ -132,7 +132,7 @@ class CodableGenresStoreTests: XCTestCase {
     }
         
     func test_retrieve_hasNoSideEffectsOnFailure() {
-        let storeURL = testSpecificStoreURL()
+        let storeURL = specificTestStoreURL()
         let sut = makeSUT(storeURL: storeURL)
         
         try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
@@ -197,7 +197,7 @@ class CodableGenresStoreTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(storeURL: URL? = nil, file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
-        let sut = CodableGenresStore(storeURL: storeURL ?? testSpecificStoreURL())
+        let sut = CodableGenresStore(storeURL: storeURL ?? specificTestStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
@@ -263,7 +263,7 @@ class CodableGenresStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func testSpecificStoreURL() -> URL {
+    private func specificTestStoreURL() -> URL {
         return cachesDirectory().appendingPathComponent("\(type(of: self)).store")
     }
     
@@ -280,6 +280,6 @@ class CodableGenresStoreTests: XCTestCase {
     }
     
     private func deleteStoreArtifacts() {
-        try? FileManager.default.removeItem(at: testSpecificStoreURL())
+        try? FileManager.default.removeItem(at: specificTestStoreURL())
     }
 }

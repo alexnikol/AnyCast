@@ -168,13 +168,11 @@ class CodableGenresStoreTests: XCTestCase {
     
     func test_delete_emptiesPreviouslyInsertedCache() {
         let sut = makeSUT()
-        let genres = uniqueGenres().local
-        let timestamp = Date()
         
-        insert((genres, timestamp), to: sut)
+        insert((uniqueGenres().local, Date()), to: sut)
         let deletionError = deleteCache(from: sut)
         
-        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+        XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed")
         expect(sut, toRetrieve: .empty)
     }
     

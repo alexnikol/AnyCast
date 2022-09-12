@@ -75,23 +75,8 @@ class CodableGenresStoreTests: XCTestCase {
     
     func test_retrieve_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait for cache retrieval")
         
-        sut.retrieve { firstResult in
-            sut.retrieve { secondResult in
-                switch (firstResult, secondResult) {
-                case (.empty, .empty):
-                    break
-                    
-                default:
-                    XCTFail("Expected retrieving twice from empty cache to deliver same result, got \(firstResult) and \(secondResult) instead")
-                }
-            
-                exp.fulfill()
-            }
-        }
-        
-        wait(for: [exp], timeout: 1.0)
+        expect(sut, toRetrieveTwice: .empty)
     }
     
     func test_retrieveAfterInsertingToEmptyCache_deliversInsrtedValues() {
@@ -111,33 +96,17 @@ class CodableGenresStoreTests: XCTestCase {
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait for cache retrieval")
+        let exp = expectation(description: "Wait for cache insertion")
         let genres = uniqueGenres().local
         let timestamp = Date()
         
         sut.insert(genres, timestamp: timestamp) { insertionError in
             XCTAssertNil(insertionError, "Expected no insertion error")
-            
-            sut.retrieve { firstResult in
-                sut.retrieve { secondResult in
-                    switch (firstResult, secondResult) {
-                    case let (.found(firstGenres, firstTimestamp), .found(secondGenres, secondTimestamp)):
-                        XCTAssertEqual(firstGenres, genres)
-                        XCTAssertEqual(firstTimestamp, timestamp)
-                        
-                        XCTAssertEqual(secondGenres, genres)
-                        XCTAssertEqual(secondTimestamp, timestamp)
-                        
-                    default:
-                        XCTFail("Expected  retrieving twice from non empty cache to deliver same found result with gernes \(genres) and timestamp \(timestamp), got \(firstResult) and \(secondResult) instead")
-                    }
-                
-                    exp.fulfill()
-                }
-            }
+            exp.fulfill()
         }
-        
         wait(for: [exp], timeout: 1.0)
+        
+        expect(sut, toRetrieveTwice: .found(genres: genres, timestamp: timestamp))
     }
     
     // MARK: - Helpers
@@ -146,6 +115,14 @@ class CodableGenresStoreTests: XCTestCase {
         let sut = CodableGenresStore(storeURL: testSpecificStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func expect(_ sut: CodableGenresStore,
+                        toRetrieveTwice expectedResult: RetrieveCacheGenresResult,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
+        expect(sut, toRetrieve: expectedResult, file: file, line: line)
+        expect(sut, toRetrieve: expectedResult, file: file, line: line)
     }
     
     private func expect(_ sut: CodableGenresStore,

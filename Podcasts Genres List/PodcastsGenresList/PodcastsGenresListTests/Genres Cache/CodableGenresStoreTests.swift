@@ -58,15 +58,15 @@ class CodableGenresStoreTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        try? FileManager.default.removeItem(at: testSpecificStoreURL())
+        setupEmptyStoreState()
     }
     
     override func tearDown() {
         super.tearDown()
         
-        try? FileManager.default.removeItem(at: testSpecificStoreURL())
+        undoStoreSideEffects()
     }
-    
+        
     func test_retrieve_deliversEmptyOnEmptyCache() {
         let sut = makeSUT()
         let exp = expectation(description: "Wait for cache retrieval")
@@ -146,5 +146,17 @@ class CodableGenresStoreTests: XCTestCase {
     
     private func testSpecificStoreURL() -> URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(type(of: self)).store")
+    }
+    
+    private func setupEmptyStoreState() {
+        deleteStireArtifacts()
+    }
+    
+    private func undoStoreSideEffects() {
+        deleteStireArtifacts()
+    }
+    
+    private func deleteStireArtifacts() {
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
 }

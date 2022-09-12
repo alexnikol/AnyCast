@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum RetrieveCacheFeedResult {
+public enum RetrieveCacheGenresResult {
     case empty
     case found(genres: [LocalGenre], timestamp: Date)
     case failure(Error)
@@ -11,7 +11,7 @@ public enum RetrieveCacheFeedResult {
 public protocol GenresStore {
     typealias DeletionCompletion = (Error?) -> Void
     typealias InsertionCompletion = (Error?) -> Void
-    typealias RetrievalCompletion = (RetrieveCacheFeedResult) -> Void
+    typealias RetrievalCompletion = (RetrieveCacheGenresResult) -> Void
     
     func deleteCacheGenres(completion: @escaping DeletionCompletion)
     func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion)

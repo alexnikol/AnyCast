@@ -69,24 +69,8 @@ class CodableGenresStoreTests: XCTestCase {
         
     func test_retrieve_deliversEmptyOnEmptyCache() {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait for cache retrieval")
         
-        var receivedResult: RetrieveCacheFeedResult?
-        sut.retrieve { result in
-            switch result {
-            case .empty:
-                receivedResult = result
-                
-            default:
-                XCTFail("Expected empty result, got \(result) instead")
-            }
-        
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertNotNil(receivedResult)
+        expect(sut, toRetrieve: .empty)
     }
     
     func test_retrieve_hasNoSideEffectsOnEmptyCache() {
@@ -112,28 +96,17 @@ class CodableGenresStoreTests: XCTestCase {
     
     func test_retrieveAfterInsertingToEmptyCache_deliversInsrtedValues() {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait for cache retrieval")
         let genres = uniqueGenres().local
         let timestamp = Date()
         
+        let exp = expectation(description: "Wait for cache retrieval")
         sut.insert(genres, timestamp: timestamp) { insertionError in
             XCTAssertNil(insertionError, "Expected no insertion error")
-            
-            sut.retrieve { retrievedResult in
-                switch retrievedResult {
-                case let .found(retrievedGenres, retrievedTimestamp):
-                    XCTAssertEqual(retrievedGenres, genres)
-                    XCTAssertEqual(retrievedTimestamp, timestamp)
-                    
-                default:
-                    XCTFail("Expected found result with \(genres) and timestamp \(timestamp), got \(retrievedResult) instead")
-                }
-            
-                exp.fulfill()
-            }
+            exp.fulfill()
         }
-        
         wait(for: [exp], timeout: 1.0)
+        
+        expect(sut, toRetrieve: .found(genres: genres, timestamp: timestamp))
     }
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
@@ -169,10 +142,35 @@ class CodableGenresStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableGenresStore {
         let sut = CodableGenresStore(storeURL: testSpecificStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func expect(_ sut: CodableGenresStore,
+                        toRetrieve expectedResult: RetrieveCacheGenresResult,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
+        let exp = expectation(description: "Wait for cache retrieval")
+        
+        sut.retrieve { retrievedResult in
+            switch (expectedResult, retrievedResult) {
+            case (.empty, .empty):
+                break
+                
+            case let (.found(expectedGenres, expectedTimestamp), .found(retrievedGenres, retrievedTimestamp)):
+                XCTAssertEqual(expectedGenres, retrievedGenres, file: file, line: line)
+                XCTAssertEqual(expectedTimestamp, retrievedTimestamp, file: file, line: line)
+                
+            default:
+                XCTFail("Expected to retrieve \(expectedResult), got \(retrievedResult) instead", file: file, line: line)
+            }
+        
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func testSpecificStoreURL() -> URL {

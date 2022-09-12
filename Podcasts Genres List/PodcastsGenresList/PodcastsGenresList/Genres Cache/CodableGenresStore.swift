@@ -27,7 +27,7 @@ public class CodableGenresStore: GenresStore {
         }
     }
     
-    private let queue = DispatchQueue(label: "\(CodableGenresStore.self)Queue", qos: .userInitiated)
+    private let queue = DispatchQueue(label: "\(CodableGenresStore.self)Queue", qos: .userInitiated, attributes: .concurrent)
     private let storeURL: URL
 
     public init(storeURL: URL) {
@@ -53,7 +53,7 @@ public class CodableGenresStore: GenresStore {
     
     public func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
         let storeURL = self.storeURL
-        queue.async {
+        queue.async(flags: .barrier) {
             do {
                 let encoder = JSONEncoder()
                 let codableGenres = genres.map(CodableGenre.init)
@@ -69,7 +69,7 @@ public class CodableGenresStore: GenresStore {
     
     public func deleteCacheGenres(completion: @escaping DeletionCompletion) {
         let storeURL = self.storeURL
-        queue.async {
+        queue.async(flags: .barrier) {
             guard FileManager.default.fileExists(atPath: storeURL.path) else {
                 completion(nil)
                 return

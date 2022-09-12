@@ -159,16 +159,8 @@ class CodableGenresStoreTests: XCTestCase {
     
     func test_delete_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait on deletion comletion")
         
-        var deletionError: Error?
-        sut.deleteCacheGenres { error in
-            deletionError = error
-            
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
+        let deletionError = deleteCache(from: sut)
         
         XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
         expect(sut, toRetrieve: .empty)
@@ -180,16 +172,7 @@ class CodableGenresStoreTests: XCTestCase {
         let timestamp = Date()
         
         insert((genres, timestamp), to: sut)
-        
-        let exp = expectation(description: "Wait on deletion comletion")
-        var deletionError: Error?
-        sut.deleteCacheGenres { error in
-            deletionError = error
-            
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 1.0)
+        let deletionError = deleteCache(from: sut)
         
         XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
         expect(sut, toRetrieve: .empty)
@@ -214,6 +197,20 @@ class CodableGenresStoreTests: XCTestCase {
         }
         wait(for: [exp], timeout: 1.0)
         return insertionError
+    }
+    
+    @discardableResult
+    private func deleteCache(from sut: CodableGenresStore) -> Error? {
+        var deletionError: Error?
+        let exp = expectation(description: "Wait on deletion comletion")
+        
+        sut.deleteCacheGenres { error in
+            deletionError = error
+            
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        return deletionError
     }
     
     private func expect(_ sut: CodableGenresStore,

@@ -84,27 +84,17 @@ class CodableGenresStoreTests: XCTestCase {
         let genres = uniqueGenres().local
         let timestamp = Date()
         
-        let exp = expectation(description: "Wait for cache retrieval")
-        sut.insert(genres, timestamp: timestamp) { insertionError in
-            XCTAssertNil(insertionError, "Expected no insertion error")
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        insert((genres, timestamp), to: sut)
         
         expect(sut, toRetrieve: .found(genres: genres, timestamp: timestamp))
     }
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
         let sut = makeSUT()
-        let exp = expectation(description: "Wait for cache insertion")
         let genres = uniqueGenres().local
         let timestamp = Date()
         
-        sut.insert(genres, timestamp: timestamp) { insertionError in
-            XCTAssertNil(insertionError, "Expected no insertion error")
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        insert((genres, timestamp), to: sut)
         
         expect(sut, toRetrieveTwice: .found(genres: genres, timestamp: timestamp))
     }
@@ -115,6 +105,18 @@ class CodableGenresStoreTests: XCTestCase {
         let sut = CodableGenresStore(storeURL: testSpecificStoreURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func insert(_ cache: (genres: [LocalGenre], timestamp: Date),
+                        to sut: CodableGenresStore,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
+        let exp = expectation(description: "Wait for cache insertion")
+        sut.insert(cache.genres, timestamp: cache.timestamp) { insertionError in
+            XCTAssertNil(insertionError, "Expected no insertion error", file: file, line: line)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func expect(_ sut: CodableGenresStore,

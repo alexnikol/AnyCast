@@ -60,6 +60,10 @@ class CodableGenresStore {
             completion(error)
         }
     }
+    
+    func deleteCacheGenres(completion: @escaping GenresStore.DeletionCompletion) {
+        completion(nil)
+    }
 }
 
 class CodableGenresStoreTests: XCTestCase {
@@ -150,6 +154,23 @@ class CodableGenresStoreTests: XCTestCase {
         let insertionError = insert((genres, timestamp), to: sut)
 
         XCTAssertNotNil(insertionError, "Expected cache insertion to fail with an error")
+    }
+    
+    func test_delete_hasNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        let exp = expectation(description: "Wait on deletion comletion")
+        
+        var deletionError: Error?
+        sut.deleteCacheGenres { error in
+            deletionError = error
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+        expect(sut, toRetrieve: .empty)
     }
     
     // MARK: - Helpers

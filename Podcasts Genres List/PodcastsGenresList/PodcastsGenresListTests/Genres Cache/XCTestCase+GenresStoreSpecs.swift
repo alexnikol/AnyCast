@@ -37,51 +37,51 @@ extension GenresStoreSpecs where Self: XCTestCase {
         XCTAssertNil(insertionError, "Expected to insert cache successfully")
     }
     
-    func assertThaInsertDeliversNoErrorOnNonEmptyCache(on sut: GenresStore) {
+    func assertThaInsertDeliversNoErrorOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         insert((uniqueGenres().local, Date()), to: sut)
 
         let insertionError = insert((uniqueGenres().local, Date()), to: sut)
 
-        XCTAssertNil(insertionError, "Expected to override cache successfully")
+        XCTAssertNil(insertionError, "Expected to override cache successfully", file: file, line: line)
     }
     
-    func assertThaInsertOverridesPreviouslyInsertedCacheValues(on sut: GenresStore) {
+    func assertThaInsertOverridesPreviouslyInsertedCacheValues(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         insert((uniqueGenres().local, Date()), to: sut)
         
         let latestGenres = uniqueGenres().local
         let latestTimestamp = Date()
         insert((latestGenres, latestTimestamp), to: sut)
         
-        expect(sut, toRetrieve: .found(genres: latestGenres, timestamp: latestTimestamp))
+        expect(sut, toRetrieve: .found(genres: latestGenres, timestamp: latestTimestamp), file: file, line: line)
     }
     
-    func assertThatDeleteDeliversNoErrorOnEmptyCache(on sut: GenresStore) {
+    func assertThatDeleteDeliversNoErrorOnEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         let deletionError = deleteCache(from: sut)
         
-        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed", file: file, line: line)
     }
     
-    func assertThatDeleteHasNoSideEffectsOnEmptyCache(on sut: GenresStore) {
+    func assertThatDeleteHasNoSideEffectsOnEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         deleteCache(from: sut)
         
-        expect(sut, toRetrieve: .empty)
+        expect(sut, toRetrieve: .empty, file: file, line: line)
     }
     
-    func assertThatDeliversNoErrorOnNonEmptyCache(on sut: GenresStore) {
+    func assertThatDeliversNoErrorOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         insert((uniqueGenres().local, Date()), to: sut)
         let deletionError = deleteCache(from: sut)
         
-        XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed")
+        XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed", file: file, line: line)
     }
         
-    func assertThatDeleteHhasNoSideEffectsOnNonEmptyCache(on sut: GenresStore) {
+    func assertThatDeleteHhasNoSideEffectsOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         insert((uniqueGenres().local, Date()), to: sut)
         deleteCache(from: sut)
         
-        expect(sut, toRetrieve: .empty)
+        expect(sut, toRetrieve: .empty, file: file, line: line)
     }
     
-    func assertThatStoreSideEffectsRunSerially(on sut: GenresStore) {
+    func assertThatStoreSideEffectsRunSerially(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         var completedOperationsInOrder = [XCTestExpectation]()
         
         let op1 = expectation(description: "Operation 1")
@@ -104,7 +104,7 @@ extension GenresStoreSpecs where Self: XCTestCase {
         
         waitForExpectations(timeout: 4.0)
         
-        XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
+        XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order", file: file, line: line)
     }
 
     @discardableResult

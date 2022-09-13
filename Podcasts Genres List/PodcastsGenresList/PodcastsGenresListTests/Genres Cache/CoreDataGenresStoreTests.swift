@@ -29,7 +29,11 @@ class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
         assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on: sut)
     }
     
-    func test_insert_deliversNoErrorOnEmptyCache() {}
+    func test_insert_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+        
+        assertThatInsertDeliversNoErrorOnEmptyCache(on: sut)
+    }
     
     func test_insert_deliversNoErrorOnNonEmptyCache() {}
     

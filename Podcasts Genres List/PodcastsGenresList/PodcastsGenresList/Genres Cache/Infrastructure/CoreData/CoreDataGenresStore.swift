@@ -13,7 +13,7 @@ public class CoreDataGenresStore: GenresStore {
         let context = context
         context.perform {
             do {
-                let managedCache = ManagedGenresStoreCache(context: context)
+                let managedCache = try ManagedGenresStoreCache.newUniqueInstance(in: context)
                 managedCache.timestamp = timestamp
                 managedCache.genres = NSOrderedSet(array: genres.map { local in
                     let managed = ManagedGenre(context: context)
@@ -89,6 +89,17 @@ private extension NSPersistentContainer {
 private class ManagedGenresStoreCache: NSManagedObject {
     @NSManaged var timestamp: Date
     @NSManaged var genres: NSOrderedSet
+    
+    static func find(in context: NSManagedObjectContext) throws -> ManagedGenresStoreCache? {
+        let request = NSFetchRequest<ManagedGenresStoreCache>(entityName: entity().name!)
+        request.returnsObjectsAsFaults = false
+        return try context.fetch(request).first
+    }
+    
+    static func newUniqueInstance(in context: NSManagedObjectContext) throws -> ManagedGenresStoreCache {
+         try find(in: context).map(context.delete)
+         return ManagedGenresStoreCache(context: context)
+     }
 }
 
 @objc(ManagedGenre)

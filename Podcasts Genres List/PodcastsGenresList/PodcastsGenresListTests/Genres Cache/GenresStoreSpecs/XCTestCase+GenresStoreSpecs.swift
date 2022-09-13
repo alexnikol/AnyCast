@@ -156,7 +156,7 @@ extension GenresStoreSpecs where Self: XCTestCase {
                 
             case let (.found(expectedGenres, expectedTimestamp), .found(retrievedGenres, retrievedTimestamp)):
                 XCTAssertEqual(expectedGenres, retrievedGenres, file: file, line: line)
-                XCTAssertEqual(expectedTimestamp, retrievedTimestamp, file: file, line: line)
+                XCTAssertEqual(expectedTimestamp, retrievedTimestamp, "\(expectedTimestamp.timeIntervalSince1970) - \(retrievedTimestamp.timeIntervalSince1970)", file: file, line: line)
                 
             default:
                 XCTFail("Expected to retrieve \(expectedResult), got \(retrievedResult) instead", file: file, line: line)

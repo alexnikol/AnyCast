@@ -20,33 +20,73 @@ class CodableGenresStoreTests: XCTestCase, FailableGenresStore {
     func test_retrieve_deliversEmptyOnEmptyCache() {
         let sut = makeSUT()
         
-        expect(sut, toRetrieve: .empty)
+        assertThatRetrieveDeliversEmptyOnEmptyCache(on: sut)
     }
     
     func test_retrieve_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
-        expect(sut, toRetrieveTwice: .empty)
+        assertThatRetrieveHasNoSideEffectsOnEmptyCache(on: sut)
     }
     
     func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
         let sut = makeSUT()
-        let genres = uniqueGenres().local
-        let timestamp = Date()
         
-        insert((genres, timestamp), to: sut)
-        
-        expect(sut, toRetrieve: .found(genres: genres, timestamp: timestamp))
+        assertThatretrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
     }
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
         let sut = makeSUT()
-        let genres = uniqueGenres().local
-        let timestamp = Date()
         
-        insert((genres, timestamp), to: sut)
+        assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on: sut)
+    }
         
-        expect(sut, toRetrieveTwice: .found(genres: genres, timestamp: timestamp))
+    func test_insert_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+
+        assertThatInsertDeliversNoErrorOnEmptyCache(on: sut)
+    }
+    
+    func test_insert_deliversNoErrorOnNonEmptyCache() {
+        let sut = makeSUT()
+        
+        assertThaInsertDeliversNoErrorOnNonEmptyCache(on: sut)
+    }
+    
+    func test_insert_overridesPreviouslyInsertedCacheValues() {
+        let sut = makeSUT()
+        
+        assertThaInsertOverridesPreviouslyInsertedCacheValues(on: sut)
+    }
+        
+    func test_delete_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+        
+        assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
+    }
+        
+    func test_delete_hasNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        
+        assertThatDeleteHasNoSideEffectsOnEmptyCache(on: sut)
+    }
+    
+    func test_delete_deliversNoErrorOnNonEmptyCache() {
+        let sut = makeSUT()
+        
+        assertThatDeliversNoErrorOnNonEmptyCache(on: sut)
+    }
+    
+    func test_delete_hasNoSideEffectsOnNonEmptyCache() {
+        let sut = makeSUT()
+        
+        assertThatDeleteHhasNoSideEffectsOnNonEmptyCache(on: sut)
+    }
+        
+    func test_storeSideEffects_runSerially() {
+        let sut = makeSUT()
+ 
+        assertThatStoreSideEffectsRunSerially(on: sut)
     }
     
     func test_retrieve_deliverFailureOnRetrievalError() {
@@ -65,34 +105,6 @@ class CodableGenresStoreTests: XCTestCase, FailableGenresStore {
         try! "invalid data".write(to: storeURL, atomically: false, encoding: .utf8)
         
         expect(sut, toRetrieveTwice: .failure(anyNSError()))
-    }
-    
-    func test_insert_deliversNoErrorOnEmptyCache() {
-        let sut = makeSUT()
-
-        let insertionError = insert((uniqueGenres().local, Date()), to: sut)
-
-        XCTAssertNil(insertionError, "Expected to insert cache successfully")
-    }
-    
-    func test_insert_deliversNoErrorOnNonEmptyCache() {
-        let sut = makeSUT()
-        insert((uniqueGenres().local, Date()), to: sut)
-
-        let insertionError = insert((uniqueGenres().local, Date()), to: sut)
-
-        XCTAssertNil(insertionError, "Expected to override cache successfully")
-    }
-    
-    func test_insert_overridesPreviouslyInsertedCacheValues() {
-        let sut = makeSUT()
-        insert((uniqueGenres().local, Date()), to: sut)
-        
-        let latestGenres = uniqueGenres().local
-        let latestTimestamp = Date()
-        insert((latestGenres, latestTimestamp), to: sut)
-        
-        expect(sut, toRetrieve: .found(genres: latestGenres, timestamp: latestTimestamp))
     }
     
     func test_insert_deliversErrorOnInsertionError() {
@@ -117,40 +129,6 @@ class CodableGenresStoreTests: XCTestCase, FailableGenresStore {
         expect(sut, toRetrieve: .empty)
     }
     
-    func test_deliversNoErrorOnEmptyCache() {
-        let sut = makeSUT()
-        
-        let deletionError = deleteCache(from: sut)
-        
-        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
-    }
-        
-    func test_delete_hasNoSideEffectsOnEmptyCache() {
-        let sut = makeSUT()
-        
-        deleteCache(from: sut)
-        
-        expect(sut, toRetrieve: .empty)
-    }
-    
-    func test_delete_deliversNoErrorOnNonEmptyCache() {
-        let sut = makeSUT()
-        
-        insert((uniqueGenres().local, Date()), to: sut)
-        let deletionError = deleteCache(from: sut)
-        
-        XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed")
-    }
-    
-    func test_delete_hasNoSideEffectsOnNonEmptyCache() {
-        let sut = makeSUT()
-        
-        insert((uniqueGenres().local, Date()), to: sut)
-        deleteCache(from: sut)
-        
-        expect(sut, toRetrieve: .empty)
-    }
-    
     func test_delete_deliversErrorOnDeletionError() {
         let sut = makeSUT(storeURL: noDeletePermissionURL())
         
@@ -165,33 +143,6 @@ class CodableGenresStoreTests: XCTestCase, FailableGenresStore {
         deleteCache(from: sut)
         
         expect(sut, toRetrieve: .empty)
-    }
-    
-    func test_storeSideEffects_runSerially() {
-        let sut = makeSUT()
-        var completedOperationsInOrder = [XCTestExpectation]()
-        
-        let op1 = expectation(description: "Operation 1")
-        sut.insert(uniqueGenres().local, timestamp: Date()) { _ in
-            completedOperationsInOrder.append(op1)
-            op1.fulfill()
-        }
-        
-        let op2 = expectation(description: "Operation 2")
-        sut.deleteCacheGenres { _ in
-            completedOperationsInOrder.append(op2)
-            op2.fulfill()
-        }
-        
-        let op3 = expectation(description: "Operation 3")
-        sut.insert(uniqueGenres().local, timestamp: Date()) { _ in
-            completedOperationsInOrder.append(op3)
-            op3.fulfill()
-        }
-        
-        waitForExpectations(timeout: 4.0)
-        
-        XCTAssertEqual(completedOperationsInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
     }
     
     // MARK: - Helpers

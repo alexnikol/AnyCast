@@ -28,12 +28,7 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
         let sutToPerformLoad = makeSUT()
         let genres = uniqueGenres().models
         
-        let saveExp = expectation(description: "Wait for save completion")
-        sutToPerformSave.save(genres) { saveResult in
-            XCTAssertNil(saveResult, "Expected to save genres successfully")
-            saveExp.fulfill()
-        }
-        wait(for: [saveExp], timeout: 1.0)
+        save(genres, with: sutToPerformSave)
         
         expect(sutToPerformLoad, toLoad: genres)
     }
@@ -45,19 +40,8 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
         let firstGenres = uniqueGenres().models
         let latestGenres = uniqueGenres().models
         
-        let saveExp1 = expectation(description: "Wait for save completion")
-        sutToPerformFirstSave.save(firstGenres) { saveResult in
-            XCTAssertNil(saveResult, "Expected to save genres successfully")
-            saveExp1.fulfill()
-        }
-        wait(for: [saveExp1], timeout: 1.0)
-        
-        let saveExp2 = expectation(description: "Wait for save completion")
-        sutToPerformSecondSave.save(latestGenres) { saveResult in
-            XCTAssertNil(saveResult, "Expected to save genres successfully")
-            saveExp2.fulfill()
-        }
-        wait(for: [saveExp2], timeout: 1.0)
+        save(firstGenres, with: sutToPerformFirstSave)
+        save(latestGenres, with: sutToPerformSecondSave)
         
         expect(sutToPerformLoad, toLoad: latestGenres)
     }
@@ -94,6 +78,18 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
             exp.fulfill()
         }
         
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func save(_ genres: [Genre],
+                      with sut: LocalGenresLoader,
+                      file: StaticString = #file,
+                      line: UInt = #line) {
+        let exp = expectation(description: "Wait for save completion")
+        sut.save(genres) { saveResult in
+            XCTAssertNil(saveResult, "Expected to save genres successfully", file: file, line: line)
+            exp.fulfill()
+        }
         wait(for: [exp], timeout: 1.0)
     }
 

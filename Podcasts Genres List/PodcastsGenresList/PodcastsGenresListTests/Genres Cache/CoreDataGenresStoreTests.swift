@@ -1,10 +1,26 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import PodcastsGenresList
 
-class CoreDataGenresStoreTests: XCTest, GenresStoreSpecs {
+class CoreDataGenresStore: GenresStore {
     
-    func test_retrieve_deliversEmptyOnEmptyCache() {}
+    func deleteCacheGenres(completion: @escaping DeletionCompletion) {}
+    
+    func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {}
+    
+    func retrieve(completion: @escaping RetrievalCompletion) {
+        completion(.empty)
+    }
+}
+
+class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
+    
+    func test_retrieve_deliversEmptyOnEmptyCache() {
+        let sut = CoreDataGenresStore()
+        
+        assertThatRetrieveDeliversEmptyOnEmptyCache(on: sut)
+    }
     
     func test_retrieve_hasNoSideEffectsOnEmptyCache() {}
     

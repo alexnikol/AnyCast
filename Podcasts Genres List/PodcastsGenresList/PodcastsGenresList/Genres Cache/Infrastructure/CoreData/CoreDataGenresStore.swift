@@ -7,7 +7,9 @@ public class CoreDataGenresStore: GenresStore {
     private let container: NSPersistentContainer
     private let context: NSManagedObjectContext
     
-    public func deleteCacheGenres(completion: @escaping DeletionCompletion) {}
+    public func deleteCacheGenres(completion: @escaping DeletionCompletion) {
+        completion(nil)
+    }
     
     public func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
         let context = context

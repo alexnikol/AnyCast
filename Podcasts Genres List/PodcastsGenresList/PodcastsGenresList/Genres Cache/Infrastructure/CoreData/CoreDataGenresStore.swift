@@ -23,8 +23,8 @@ public final class CoreDataGenresStore: GenresStore {
             do {
                 let managedCache = try ManagedGenresStoreCache.newUniqueInstance(in: context)
                 managedCache.timestamp = timestamp
-                managedCache.genres = NSOrderedSet(array: genres.toCoreDataModels(in: context))
-                
+                managedCache.genres = ManagedGenresStoreCache.toCoreDataGenres(from: genres, in: context)
+
                 try context.save()
                 completion(nil)
             } catch {
@@ -40,8 +40,7 @@ public final class CoreDataGenresStore: GenresStore {
                 request.returnsObjectsAsFaults = false
                 
                 if let cache = try context.fetch(request).first {
-                    let localGenres = cache.genres.compactMap { $0 as? ManagedGenre }.map { $0.local() }
-                    completion(.found(genres: localGenres, timestamp: cache.timestamp))
+                    completion(.found(genres: cache.localGenres(), timestamp: cache.timestamp))
                 } else {
                     completion(.empty)
                 }
@@ -59,16 +58,5 @@ public final class CoreDataGenresStore: GenresStore {
     private func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
         let context = self.context
         context.perform { action(context) }
-    }
-}
-
-private extension Array where Element == LocalGenre {
-    func toCoreDataModels(in context: NSManagedObjectContext) -> [ManagedGenre] {
-        return map { local in
-            let managed = ManagedGenre(context: context)
-            managed.id = local.id
-            managed.name = local.name
-            return managed
-        }
     }
 }

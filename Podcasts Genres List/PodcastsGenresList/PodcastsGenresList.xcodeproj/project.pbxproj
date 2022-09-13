@@ -284,8 +284,8 @@
 				8D75814928D09E6500751261 /* Helpers */,
 				8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */,
 				8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */,
-				8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */,
 				8D75814E28D09FFD00751261 /* ManagedGenre.swift */,
+				8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";

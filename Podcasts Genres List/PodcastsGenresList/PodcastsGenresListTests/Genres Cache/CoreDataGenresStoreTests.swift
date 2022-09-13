@@ -35,7 +35,11 @@ class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
         assertThatInsertDeliversNoErrorOnEmptyCache(on: sut)
     }
     
-    func test_insert_deliversNoErrorOnNonEmptyCache() {}
+    func test_insert_deliversNoErrorOnNonEmptyCache() {
+        let sut = makeSUT()
+        
+        assertThaInsertDeliversNoErrorOnNonEmptyCache(on: sut)
+    }
     
     func test_insert_overridesPreviouslyInsertedCacheValues() {}
     

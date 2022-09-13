@@ -41,7 +41,7 @@
 		8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */; };
 		8DBA843F28D074A90021781B /* CoreDataGenresStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
-		8DF5A46C28D078B400E5E2A9 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* ManagedGenresStoreCache.swift */; };
+		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +96,7 @@
 		8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteGenresStoreSpecs.swift"; sourceTree = "<group>"; };
 		8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStoreTests.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
-		8DF5A46B28D078B400E5E2A9 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
+		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,8 +273,8 @@
 		8DF5A47028D0836D00E5E2A9 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */,
 				8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */,
-				8DF5A46B28D078B400E5E2A9 /* ManagedGenresStoreCache.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -440,7 +440,7 @@
 				8DA0545028CB6B2200418F3E /* GenresCachePolicy.swift in Sources */,
 				8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */,
 				8D745E2E28C62173005DC3F8 /* URLSessionHTTPClient.swift in Sources */,
-				8DF5A46C28D078B400E5E2A9 /* ManagedGenresStoreCache.swift in Sources */,
+				8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */,
 				8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

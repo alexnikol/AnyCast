@@ -3,19 +3,6 @@
 import XCTest
 import PodcastsGenresList
 
-class CoreDataGenresStore: GenresStore {
-    
-    func deleteCacheGenres(completion: @escaping DeletionCompletion) {}
-    
-    func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
-        
-    }
-    
-    func retrieve(completion: @escaping RetrievalCompletion) {
-        completion(.empty)
-    }
-}
-
 class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
     
     func test_retrieve_deliversEmptyOnEmptyCache() {

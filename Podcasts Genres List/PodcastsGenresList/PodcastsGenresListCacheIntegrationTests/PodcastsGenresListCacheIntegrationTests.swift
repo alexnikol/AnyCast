@@ -20,20 +20,7 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
     func test_load_deliversNoItemsOnEmptyCache() {
         let sut = makeSUT()
 
-        let exp = expectation(description: "Wait for load completion")
-        sut.load { result in
-            switch result {
-            case .success(let genres):
-                XCTAssertEqual(genres, [], "Expected empty genres")
-
-            case .failure(let error):
-                XCTFail("Expected successful genres result, got \(error) instead")
-            }
-
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 1.0)
+        expect(sut, toLoad: [])
     }
     
     func test_load_deliversItemsSavedOnASeparateInstance() {
@@ -48,19 +35,7 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
         }
         wait(for: [saveExp], timeout: 1.0)
         
-        let loadExp = expectation(description: "Wait for load completion")
-        sutToPerformLoad.load { loadResult in
-            switch loadResult {
-            case let .success(receivedGenres):
-                XCTAssertEqual(genres, receivedGenres)
-            
-            case let .failure(error):
-                XCTFail("Expected successfull genre result, got \(error) instead")
-            }
-            
-            loadExp.fulfill()
-        }
-        wait(for: [loadExp], timeout: 1.0)
+        expect(sutToPerformLoad, toLoad: genres)
     }
     
     // MARK: - Helpers
@@ -76,6 +51,26 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func expect(_ sut: LocalGenresLoader,
+                        toLoad expectedGenres: [Genre],
+                        file: StaticString = #file,
+                        line: UInt = #line) {
+        let exp = expectation(description: "Wait for load completion")
+        sut.load { result in
+            switch result {
+            case let .success(loadedFeed):
+                XCTAssertEqual(loadedFeed, expectedGenres, file: file, line: line)
+                
+            case let .failure(error):
+                XCTFail("Expected successful genre result, got \(error) instead", file: file, line: line)
+            }
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
 
     private func specificTestStoreURL() -> URL {

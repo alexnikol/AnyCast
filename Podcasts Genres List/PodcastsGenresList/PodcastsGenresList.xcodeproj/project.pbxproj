@@ -23,6 +23,8 @@
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
+		8D75815728D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75815628D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift */; };
+		8D75815828D0AFA800751261 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
@@ -47,6 +49,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		8D745E3828C6259C005DC3F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DA0930B28BF59C900C4C68D;
+			remoteInfo = PodcastsGenresList;
+		};
+		8D75815928D0AFA800751261 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
 			proxyType = 1;
@@ -78,6 +87,8 @@
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
+		8D75815428D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D75815628D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsGenresListCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheGenresUseCaseTests.swift; sourceTree = "<group>"; };
 		8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenresLoader.swift; sourceTree = "<group>"; };
 		8DA0543E28C9F00700418F3E /* GenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStore.swift; sourceTree = "<group>"; };
@@ -107,6 +118,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D745E3728C6259C005DC3F8 /* PodcastsGenresList.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D75815128D0AFA800751261 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D75815828D0AFA800751261 /* PodcastsGenresList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +202,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8D75815528D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				8D75815628D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift */,
+			);
+			path = PodcastsGenresListCacheIntegrationTests;
+			sourceTree = "<group>";
+		};
 		8DA0543828C8D53F00418F3E /* Genres Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +251,7 @@
 				8DA0930E28BF59C900C4C68D /* PodcastsGenresList */,
 				8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */,
 				8D745E3428C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
+				8D75815528D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */,
 				8DA0930D28BF59C900C4C68D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -234,6 +262,7 @@
 				8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */,
 				8DA0931A28BF5A0200C4C68D /* PodcastsGenresListTests.xctest */,
 				8D745E3328C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.xctest */,
+				8D75815428D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -321,6 +350,24 @@
 			productReference = 8D745E3328C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8D75815328D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D75815B28D0AFA800751261 /* Build configuration list for PBXNativeTarget "PodcastsGenresListCacheIntegrationTests" */;
+			buildPhases = (
+				8D75815028D0AFA800751261 /* Sources */,
+				8D75815128D0AFA800751261 /* Frameworks */,
+				8D75815228D0AFA800751261 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D75815A28D0AFA800751261 /* PBXTargetDependency */,
+			);
+			name = PodcastsGenresListCacheIntegrationTests;
+			productName = PodcastsGenresListCacheIntegrationTests;
+			productReference = 8D75815428D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8DA0930B28BF59C900C4C68D /* PodcastsGenresList */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DA0931328BF59C900C4C68D /* Build configuration list for PBXNativeTarget "PodcastsGenresList" */;
@@ -371,6 +418,9 @@
 					8D745E3228C6259C005DC3F8 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
+					8D75815328D0AFA800751261 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 					8DA0930B28BF59C900C4C68D = {
 						CreatedOnToolsVersion = 13.4.1;
 						LastSwiftMigration = 1340;
@@ -396,12 +446,20 @@
 				8DA0930B28BF59C900C4C68D /* PodcastsGenresList */,
 				8DA0931928BF5A0200C4C68D /* PodcastsGenresListTests */,
 				8D745E3228C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
+				8D75815328D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D745E3128C6259C005DC3F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D75815228D0AFA800751261 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -432,6 +490,14 @@
 			files = (
 				8D745E3628C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift in Sources */,
 				8D745E3D28C635F3005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D75815028D0AFA800751261 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D75815728D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +555,12 @@
 			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
 			targetProxy = 8D745E3828C6259C005DC3F8 /* PBXContainerItemProxy */;
 		};
+		8D75815A28D0AFA800751261 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
+			targetProxy = 8D75815928D0AFA800751261 /* PBXContainerItemProxy */;
+		};
 		8DA0932028BF5A0200C4C68D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
@@ -523,6 +595,40 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcastsGenresListAPIEndToEndTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8D75815C28D0AFA800751261 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcastsGenresListCacheIntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8D75815D28D0AFA800751261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcastsGenresListCacheIntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -753,6 +859,15 @@
 			buildConfigurations = (
 				8D745E3B28C6259C005DC3F8 /* Debug */,
 				8D745E3C28C6259C005DC3F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D75815B28D0AFA800751261 /* Build configuration list for PBXNativeTarget "PodcastsGenresListCacheIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D75815C28D0AFA800751261 /* Debug */,
+				8D75815D28D0AFA800751261 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

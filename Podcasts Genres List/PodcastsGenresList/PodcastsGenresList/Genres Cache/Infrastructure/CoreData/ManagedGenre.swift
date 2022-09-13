@@ -3,7 +3,7 @@
 import CoreData
 
 @objc(ManagedGenre)
-class ManagedGenre: NSManagedObject {
+final class ManagedGenre: NSManagedObject {
     @NSManaged var id: Int
     @NSManaged var name: String
     @NSManaged var cached: ManagedGenresStoreCache

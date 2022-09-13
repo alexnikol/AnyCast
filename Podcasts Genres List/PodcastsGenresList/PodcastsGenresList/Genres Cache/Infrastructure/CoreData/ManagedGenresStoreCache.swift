@@ -3,7 +3,7 @@
 import CoreData
 
 @objc(ManagedGenresStoreCache)
-class ManagedGenresStoreCache: NSManagedObject {
+final class ManagedGenresStoreCache: NSManagedObject {
     @NSManaged var timestamp: Date
     @NSManaged var genres: NSOrderedSet
 }

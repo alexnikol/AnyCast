@@ -5,33 +5,33 @@ import PodcastsGenresList
 
 extension GenresStoreSpecs where Self: XCTestCase {
     
-    func assertThatRetrieveDeliversEmptyOnEmptyCache(on sut: GenresStore) {
-        expect(sut, toRetrieve: .empty)
+    func assertThatRetrieveDeliversEmptyOnEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
+        expect(sut, toRetrieve: .empty, file: file, line: line)
     }
     
-    func assertThatRetrieveHasNoSideEffectsOnEmptyCache(on sut: GenresStore) {
-        expect(sut, toRetrieve: .empty)
+    func assertThatRetrieveHasNoSideEffectsOnEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
+        expect(sut, toRetrieve: .empty, file: file, line: line)
     }
     
-    func assertThatretrieveDeliversFoundValuesOnNonEmptyCache(on sut: GenresStore) {
+    func assertThatretrieveDeliversFoundValuesOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         let genres = uniqueGenres().local
         let timestamp = Date()
         
         insert((genres, timestamp), to: sut)
         
-        expect(sut, toRetrieve: .found(genres: genres, timestamp: timestamp))
+        expect(sut, toRetrieve: .found(genres: genres, timestamp: timestamp), file: file, line: line)
     }
     
-    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on sut: GenresStore) {
+    func assertThatRetrieveHasNoSideEffectsOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         let genres = uniqueGenres().local
         let timestamp = Date()
         
         insert((genres, timestamp), to: sut)
         
-        expect(sut, toRetrieveTwice: .found(genres: genres, timestamp: timestamp))
+        expect(sut, toRetrieveTwice: .found(genres: genres, timestamp: timestamp), file: file, line: line)
     }
     
-    func assertThatInsertDeliversNoErrorOnEmptyCache(on sut: GenresStore) {
+    func assertThatInsertDeliversNoErrorOnEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         let insertionError = insert((uniqueGenres().local, Date()), to: sut)
 
         XCTAssertNil(insertionError, "Expected to insert cache successfully")

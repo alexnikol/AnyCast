@@ -171,15 +171,11 @@
 			isa = PBXGroup;
 			children = (
 				8DA0544628CB327100418F3E /* Helpers */,
+				8DBA843D28D0709E0021781B /* GenresStoreSpecs */,
 				8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */,
 				8DA0544428CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift */,
 				8DA0544928CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift */,
 				8DA0545128CC607A00418F3E /* CodableGenresStoreTests.swift */,
-				8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */,
-				8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */,
-				8DBA843728D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift */,
-				8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */,
-				8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */,
 			);
 			path = "Genres Cache";
 			sourceTree = "<group>";
@@ -244,6 +240,18 @@
 				8DA0543828C8D53F00418F3E /* Genres Cache */,
 			);
 			path = PodcastsGenresListTests;
+			sourceTree = "<group>";
+		};
+		8DBA843D28D0709E0021781B /* GenresStoreSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */,
+				8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */,
+				8DBA843728D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift */,
+				8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */,
+				8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */,
+			);
+			path = GenresStoreSpecs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

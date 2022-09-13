@@ -74,7 +74,7 @@ extension GenresStoreSpecs where Self: XCTestCase {
         XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed", file: file, line: line)
     }
         
-    func assertThatDeleteHhasNoSideEffectsOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
+    func assertThatDeleteHasNoSideEffectsOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         insert((uniqueGenres().local, Date()), to: sut)
         deleteCache(from: sut)
         

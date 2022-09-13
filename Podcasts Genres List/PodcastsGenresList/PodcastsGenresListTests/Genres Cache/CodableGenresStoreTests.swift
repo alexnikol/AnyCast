@@ -80,7 +80,7 @@ class CodableGenresStoreTests: XCTestCase, FailableGenresStore {
     func test_delete_hasNoSideEffectsOnNonEmptyCache() {
         let sut = makeSUT()
         
-        assertThatDeleteHhasNoSideEffectsOnNonEmptyCache(on: sut)
+        assertThatDeleteHasNoSideEffectsOnNonEmptyCache(on: sut)
     }
         
     func test_storeSideEffects_runSerially() {

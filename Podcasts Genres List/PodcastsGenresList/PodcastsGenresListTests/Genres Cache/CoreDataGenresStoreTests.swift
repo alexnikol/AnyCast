@@ -53,7 +53,11 @@ class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
         assertThatDeleteDeliversNoErrorOnEmptyCache(on: sut)
     }
     
-    func test_delete_hasNoSideEffectsOnEmptyCache() {}
+    func test_delete_hasNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        
+        assertThatDeleteHasNoSideEffectsOnEmptyCache(on: sut)
+    }
     
     func test_delete_deliversNoErrorOnNonEmptyCache() {}
     

@@ -21,6 +21,8 @@
 		8D745E3728C6259C005DC3F8 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8D745E3D28C635F3005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
+		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
+		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
@@ -74,6 +76,8 @@
 		8D745E3328C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D745E3528C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsGenresListAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
+		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
+		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
 		8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheGenresUseCaseTests.swift; sourceTree = "<group>"; };
 		8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenresLoader.swift; sourceTree = "<group>"; };
 		8DA0543E28C9F00700418F3E /* GenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStore.swift; sourceTree = "<group>"; };
@@ -279,7 +283,9 @@
 			children = (
 				8D75814928D09E6500751261 /* Helpers */,
 				8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */,
+				8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */,
 				8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */,
+				8D75814E28D09FFD00751261 /* ManagedGenre.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -443,6 +449,8 @@
 				8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */,
 				8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */,
 				8DA0545028CB6B2200418F3E /* GenresCachePolicy.swift in Sources */,
+				8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */,
+				8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */,
 				8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */,
 				8D745E2E28C62173005DC3F8 /* URLSessionHTTPClient.swift in Sources */,
 				8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */,

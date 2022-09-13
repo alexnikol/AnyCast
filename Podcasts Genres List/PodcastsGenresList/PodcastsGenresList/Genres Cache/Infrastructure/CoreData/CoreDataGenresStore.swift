@@ -72,31 +72,3 @@ private extension Array where Element == LocalGenre {
         }
     }
 }
-
-@objc(ManagedGenresStoreCache)
-private class ManagedGenresStoreCache: NSManagedObject {
-    @NSManaged var timestamp: Date
-    @NSManaged var genres: NSOrderedSet
-    
-    static func find(in context: NSManagedObjectContext) throws -> ManagedGenresStoreCache? {
-        let request = NSFetchRequest<ManagedGenresStoreCache>(entityName: entity().name!)
-        request.returnsObjectsAsFaults = false
-        return try context.fetch(request).first
-    }
-    
-    static func newUniqueInstance(in context: NSManagedObjectContext) throws -> ManagedGenresStoreCache {
-         try find(in: context).map(context.delete)
-         return ManagedGenresStoreCache(context: context)
-     }
-}
-
-@objc(ManagedGenre)
-private class ManagedGenre: NSManagedObject {
-    @NSManaged var id: Int
-    @NSManaged var name: String
-    @NSManaged var cached: ManagedGenresStoreCache
-    
-    func local() -> LocalGenre {
-        return LocalGenre(id: id, name: name)
-    }
-}

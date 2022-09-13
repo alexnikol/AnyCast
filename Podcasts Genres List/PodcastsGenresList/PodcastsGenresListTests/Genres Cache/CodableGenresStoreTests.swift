@@ -74,7 +74,7 @@ class CodableGenresStoreTests: XCTestCase, FailableGenresStore {
     func test_delete_deliversNoErrorOnNonEmptyCache() {
         let sut = makeSUT()
         
-        assertThatDeliversNoErrorOnNonEmptyCache(on: sut)
+        assertThatDeleteDeliversNoErrorOnNonEmptyCache(on: sut)
     }
     
     func test_delete_hasNoSideEffectsOnNonEmptyCache() {

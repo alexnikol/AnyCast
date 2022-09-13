@@ -67,7 +67,7 @@ extension GenresStoreSpecs where Self: XCTestCase {
         expect(sut, toRetrieve: .empty, file: file, line: line)
     }
     
-    func assertThatDeliversNoErrorOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
+    func assertThatDeleteDeliversNoErrorOnNonEmptyCache(on sut: GenresStore, file: StaticString = #file, line: UInt = #line) {
         insert((uniqueGenres().local, Date()), to: sut)
         let deletionError = deleteCache(from: sut)
         

@@ -5,6 +5,7 @@ import CoreData
 public class CoreDataGenresStore: GenresStore {
     
     private let container: NSPersistentContainer
+    private let context: NSManagedObjectContext
     
     public func deleteCacheGenres(completion: @escaping DeletionCompletion) {}
     
@@ -18,6 +19,7 @@ public class CoreDataGenresStore: GenresStore {
     
     public init(bundle: Bundle = .main) throws {
         container = try NSPersistentContainer.load(modelName: "GenresStore", in: bundle)
+        context = container.newBackgroundContext()
     }
 }
 

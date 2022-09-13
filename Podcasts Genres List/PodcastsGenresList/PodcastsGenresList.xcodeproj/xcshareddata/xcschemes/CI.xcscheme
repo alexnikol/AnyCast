@@ -61,6 +61,17 @@
                ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D75815328D0AFA800751261"
+               BuildableName = "PodcastsGenresListCacheIntegrationTests.xctest"
+               BlueprintName = "PodcastsGenresListCacheIntegrationTests"
+               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -40,6 +40,8 @@
 		8DBA843A28D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */; };
 		8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */; };
 		8DBA843F28D074A90021781B /* CoreDataGenresStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */; };
+		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
+		8DF5A46C28D078B400E5E2A9 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* ManagedGenresStoreCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableInsertGenresStoreSpecs.swift"; sourceTree = "<group>"; };
 		8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteGenresStoreSpecs.swift"; sourceTree = "<group>"; };
 		8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStoreTests.swift; sourceTree = "<group>"; };
+		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
+		8DF5A46B28D078B400E5E2A9 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,13 +156,13 @@
 			path = "Genres API";
 			sourceTree = "<group>";
 		};
-		8D745E2A28C60D97005DC3F8 /* Heplers */ = {
+		8D745E2A28C60D97005DC3F8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */,
 				8DA0544D28CB61D400418F3E /* SharedTestHelpers.swift */,
 			);
-			path = Heplers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8D745E3428C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */ = {
@@ -186,6 +190,7 @@
 		8DA0543B28C9EFCE00418F3E /* Genres Cache */ = {
 			isa = PBXGroup;
 			children = (
+				8DF5A46F28D0835F00E5E2A9 /* Infrastructure */,
 				8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */,
 				8DA0543E28C9F00700418F3E /* GenresStore.swift */,
 				8DA0544028CA105400418F3E /* LocalGenre.swift */,
@@ -238,7 +243,7 @@
 		8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */ = {
 			isa = PBXGroup;
 			children = (
-				8D745E2A28C60D97005DC3F8 /* Heplers */,
+				8D745E2A28C60D97005DC3F8 /* Helpers */,
 				8D745E2728C1F134005DC3F8 /* Genres API */,
 				8DA0543828C8D53F00418F3E /* Genres Cache */,
 			);
@@ -255,6 +260,23 @@
 				8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */,
 			);
 			path = GenresStoreSpecs;
+			sourceTree = "<group>";
+		};
+		8DF5A46F28D0835F00E5E2A9 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				8DF5A47028D0836D00E5E2A9 /* CoreData */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		8DF5A47028D0836D00E5E2A9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */,
+				8DF5A46B28D078B400E5E2A9 /* ManagedGenresStoreCache.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +440,8 @@
 				8DA0545028CB6B2200418F3E /* GenresCachePolicy.swift in Sources */,
 				8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */,
 				8D745E2E28C62173005DC3F8 /* URLSessionHTTPClient.swift in Sources */,
+				8DF5A46C28D078B400E5E2A9 /* ManagedGenresStoreCache.swift in Sources */,
+				8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +773,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */,
+			);
+			currentVersion = 8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */;
+			path = GenresStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8DA0930328BF59C900C4C68D /* Project object */;
 }

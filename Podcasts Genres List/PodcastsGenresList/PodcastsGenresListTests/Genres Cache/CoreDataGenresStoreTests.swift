@@ -7,7 +7,9 @@ class CoreDataGenresStore: GenresStore {
     
     func deleteCacheGenres(completion: @escaping DeletionCompletion) {}
     
-    func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {}
+    func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
+        
+    }
     
     func retrieve(completion: @escaping RetrievalCompletion) {
         completion(.empty)
@@ -28,7 +30,11 @@ class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
         assertThatRetrieveHasNoSideEffectsOnEmptyCache(on: sut)
     }
     
-    func test_retrieve_deliversFoundValuesOnNonEmptyCache() {}
+    func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
+//        let sut = makeSUT()
+//
+//        assertThatretrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
+    }
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {}
     

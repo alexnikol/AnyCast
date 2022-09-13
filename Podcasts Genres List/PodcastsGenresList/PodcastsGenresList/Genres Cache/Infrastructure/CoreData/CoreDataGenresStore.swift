@@ -18,13 +18,13 @@ public class CoreDataGenresStore: GenresStore {
 }
 
 @objc(ManagedGenresStoreCache)
-class ManagedGenresStoreCache: NSManagedObject {
+private class ManagedGenresStoreCache: NSManagedObject {
     @NSManaged var timestamp: Date
     @NSManaged var genres: NSOrderedSet
 }
 
 @objc(ManagedGenre)
-class ManagedGenre: NSManagedObject {
+private class ManagedGenre: NSManagedObject {
     @NSManaged var id: Int
     @NSManaged var name: String
     @NSManaged var cached: ManagedGenresStoreCache

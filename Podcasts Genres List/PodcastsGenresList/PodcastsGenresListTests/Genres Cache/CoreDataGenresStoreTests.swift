@@ -18,9 +18,9 @@ class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
     }
     
     func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
-//        let sut = makeSUT()
-//
-//        assertThatretrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
+        let sut = makeSUT()
+        
+        assertThatretrieveDeliversFoundValuesOnNonEmptyCache(on: sut)
     }
     
     func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {}

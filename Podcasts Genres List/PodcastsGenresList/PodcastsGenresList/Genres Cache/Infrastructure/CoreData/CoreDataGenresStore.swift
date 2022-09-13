@@ -10,11 +10,43 @@ public class CoreDataGenresStore: GenresStore {
     public func deleteCacheGenres(completion: @escaping DeletionCompletion) {}
     
     public func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
-        
+        let context = context
+        context.perform {
+            do {
+                let managedCache = ManagedGenresStoreCache(context: context)
+                managedCache.timestamp = timestamp
+                managedCache.genres = NSOrderedSet(array: genres.map { local in
+                    let managed = ManagedGenre(context: context)
+                    managed.id = local.id
+                    managed.name = local.name
+                    return managed
+                })
+                
+                try context.save()
+                completion(nil)
+            } catch {
+                completion(error)
+            }
+        }
     }
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
-        completion(.empty)
+        let context = context
+        context.perform {
+            do {
+                let request = NSFetchRequest<ManagedGenresStoreCache>(entityName: ManagedGenresStoreCache.entity().name!)
+                request.returnsObjectsAsFaults = false
+                
+                if let cache = try context.fetch(request).first {
+                    let localGenres = cache.genres.compactMap { $0 as? ManagedGenre }.map { LocalGenre(id: $0.id, name: $0.name) }
+                    completion(.found(genres: localGenres, timestamp: cache.timestamp))
+                } else {
+                    completion(.empty)
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
     
     public init(storeURL: URL, bundle: Bundle = .main) throws {
@@ -36,9 +68,9 @@ private extension NSPersistentContainer {
 
          let description = NSPersistentStoreDescription(url: url)
          let container = NSPersistentContainer(name: name, managedObjectModel: model)
+         container.persistentStoreDescriptions = [description]
          var loadError: Swift.Error?
          container.loadPersistentStores { loadError = $1 }
-         container.persistentStoreDescriptions = [description]
          try loadError.map { throw LoadingError.failedToLoadPersistentStores($0) }
 
          return container

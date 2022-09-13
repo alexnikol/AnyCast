@@ -44,7 +44,7 @@ class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> GenresStore {
-        let sut = CoreDataGenresStore()
+        let sut = try! CoreDataGenresStore(bundle: Bundle(for: CoreDataGenresStore.self))
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }

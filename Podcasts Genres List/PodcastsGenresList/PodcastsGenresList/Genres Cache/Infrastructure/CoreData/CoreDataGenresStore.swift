@@ -8,8 +8,7 @@ public class CoreDataGenresStore: GenresStore {
     private let context: NSManagedObjectContext
     
     public func deleteCacheGenres(completion: @escaping DeletionCompletion) {
-        let context = self.context
-        context.perform {
+        perform { context in
             do {
                 try ManagedGenresStoreCache.find(in: context).map(context.delete).map(context.save)
                 completion(nil)
@@ -20,8 +19,7 @@ public class CoreDataGenresStore: GenresStore {
     }
     
     public func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
-        let context = context
-        context.perform {
+        perform { context in
             do {
                 let managedCache = try ManagedGenresStoreCache.newUniqueInstance(in: context)
                 managedCache.timestamp = timestamp
@@ -41,8 +39,7 @@ public class CoreDataGenresStore: GenresStore {
     }
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
-        let context = context
-        context.perform {
+        perform { context in
             do {
                 let request = NSFetchRequest<ManagedGenresStoreCache>(entityName: ManagedGenresStoreCache.entity().name!)
                 request.returnsObjectsAsFaults = false
@@ -62,6 +59,11 @@ public class CoreDataGenresStore: GenresStore {
     public init(storeURL: URL, bundle: Bundle = .main) throws {
         container = try NSPersistentContainer.load(modelName: "GenresStore", url: storeURL, in: bundle)
         context = container.newBackgroundContext()
+    }
+    
+    private func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
+        let context = self.context
+        context.perform { action(context) }
     }
 }
 

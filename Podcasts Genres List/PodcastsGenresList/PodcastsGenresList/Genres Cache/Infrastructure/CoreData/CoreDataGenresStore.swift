@@ -23,12 +23,7 @@ public final class CoreDataGenresStore: GenresStore {
             do {
                 let managedCache = try ManagedGenresStoreCache.newUniqueInstance(in: context)
                 managedCache.timestamp = timestamp
-                managedCache.genres = NSOrderedSet(array: genres.map { local in
-                    let managed = ManagedGenre(context: context)
-                    managed.id = local.id
-                    managed.name = local.name
-                    return managed
-                })
+                managedCache.genres = NSOrderedSet(array: genres.toCoreDataModels(in: context))
                 
                 try context.save()
                 completion(nil)
@@ -64,6 +59,17 @@ public final class CoreDataGenresStore: GenresStore {
     private func perform(_ action: @escaping (NSManagedObjectContext) -> Void) {
         let context = self.context
         context.perform { action(context) }
+    }
+}
+
+private extension Array where Element == LocalGenre {
+    func toCoreDataModels(in context: NSManagedObjectContext) -> [ManagedGenre] {
+        return map { local in
+            let managed = ManagedGenre(context: context)
+            managed.id = local.id
+            managed.name = local.name
+            return managed
+        }
     }
 }
 

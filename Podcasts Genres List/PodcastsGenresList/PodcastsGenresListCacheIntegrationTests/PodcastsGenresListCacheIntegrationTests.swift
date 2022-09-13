@@ -38,6 +38,30 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
         expect(sutToPerformLoad, toLoad: genres)
     }
     
+    func test_load_overridesItemsSavedOnASeparateInstance() {
+        let sutToPerformFirstSave = makeSUT()
+        let sutToPerformSecondSave = makeSUT()
+        let sutToPerformLoad = makeSUT()
+        let firstGenres = uniqueGenres().models
+        let latestGenres = uniqueGenres().models
+        
+        let saveExp1 = expectation(description: "Wait for save completion")
+        sutToPerformFirstSave.save(firstGenres) { saveResult in
+            XCTAssertNil(saveResult, "Expected to save genres successfully")
+            saveExp1.fulfill()
+        }
+        wait(for: [saveExp1], timeout: 1.0)
+        
+        let saveExp2 = expectation(description: "Wait for save completion")
+        sutToPerformSecondSave.save(latestGenres) { saveResult in
+            XCTAssertNil(saveResult, "Expected to save genres successfully")
+            saveExp2.fulfill()
+        }
+        wait(for: [saveExp2], timeout: 1.0)
+        
+        expect(sutToPerformLoad, toLoad: latestGenres)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -60,8 +84,8 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
         let exp = expectation(description: "Wait for load completion")
         sut.load { result in
             switch result {
-            case let .success(loadedFeed):
-                XCTAssertEqual(loadedFeed, expectedGenres, file: file, line: line)
+            case let .success(loadedGenres):
+                XCTAssertEqual(loadedGenres, expectedGenres, file: file, line: line)
                 
             case let .failure(error):
                 XCTFail("Expected successful genre result, got \(error) instead", file: file, line: line)

@@ -17,7 +17,7 @@ class CoreDataGenresStore: GenresStore {
 class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
     
     func test_retrieve_deliversEmptyOnEmptyCache() {
-        let sut = CoreDataGenresStore()
+        let sut = makeSUT()
         
         assertThatRetrieveDeliversEmptyOnEmptyCache(on: sut)
     }
@@ -43,4 +43,11 @@ class CoreDataGenresStoreTests: XCTestCase, GenresStoreSpecs {
     func test_delete_hasNoSideEffectsOnNonEmptyCache() {}
     
     func test_storeSideEffects_runSerially() {}
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> GenresStore {
+        let sut = CoreDataGenresStore()
+        return sut
+    }
 }

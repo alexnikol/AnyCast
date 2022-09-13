@@ -45,7 +45,7 @@ public final class CoreDataGenresStore: GenresStore {
                 request.returnsObjectsAsFaults = false
                 
                 if let cache = try context.fetch(request).first {
-                    let localGenres = cache.genres.compactMap { $0 as? ManagedGenre }.map { LocalGenre(id: $0.id, name: $0.name) }
+                    let localGenres = cache.genres.compactMap { $0 as? ManagedGenre }.map { $0.local() }
                     completion(.found(genres: localGenres, timestamp: cache.timestamp))
                 } else {
                     completion(.empty)
@@ -89,4 +89,8 @@ private class ManagedGenre: NSManagedObject {
     @NSManaged var id: Int
     @NSManaged var name: String
     @NSManaged var cached: ManagedGenresStoreCache
+    
+    func local() -> LocalGenre {
+        return LocalGenre(id: id, name: name)
+    }
 }

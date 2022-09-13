@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedGenre" representedClassName="ManagedGenre" syncable="YES">
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="cache" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedGenresStoreCache" inverseName="genres" inverseEntity="ManagedGenresStoreCache"/>
+    </entity>
+    <entity name="ManagedGenresStoreCache" representedClassName="ManagedGenresStoreCache" syncable="YES">
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="genres" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ManagedGenre" inverseName="cache" inverseEntity="ManagedGenre"/>
+    </entity>
+    <elements>
+        <element name="ManagedGenresStoreCache" positionX="-426.5054931640625" positionY="-300.290771484375" width="128" height="59"/>
+        <element name="ManagedGenre" positionX="-429.20068359375" positionY="-29.2540283203125" width="128" height="74"/>
+    </elements>
+</model>

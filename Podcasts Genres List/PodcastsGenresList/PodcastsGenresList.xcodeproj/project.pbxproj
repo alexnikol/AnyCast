@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D745DCC28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */; };
+		8D4D494028CF802A00D8EBEB /* GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */; };
+		8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */; };
+		8D745DCC28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift */; };
 		8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */; };
 		8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DD028BFA728005DC3F8 /* Genre.swift */; };
 		8D745E1B28C1E7F5005DC3F8 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E1A28C1E7F5005DC3F8 /* HTTPClient.swift */; };
@@ -18,13 +20,44 @@
 		8D745E3628C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E3528C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift */; };
 		8D745E3728C6259C005DC3F8 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8D745E3D28C635F3005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
+		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
+		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
+		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
+		8D75815728D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75815628D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift */; };
+		8D75815828D0AFA800751261 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
+		8D75815E28D0B27000751261 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
+		8D75815F28D0BA5400751261 /* GenresCacheTestHeplers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544B28CB611300418F3E /* GenresCacheTestHeplers.swift */; };
+		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
+		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
+		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
+		8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544028CA105400418F3E /* LocalGenre.swift */; };
+		8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544228CA106F00418F3E /* RemoteGenre.swift */; };
+		8DA0544528CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544428CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift */; };
+		8DA0544828CB328800418F3E /* GenresStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544728CB328800418F3E /* GenresStoreSpy.swift */; };
+		8DA0544A28CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544928CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift */; };
+		8DA0544C28CB611300418F3E /* GenresCacheTestHeplers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544B28CB611300418F3E /* GenresCacheTestHeplers.swift */; };
+		8DA0544E28CB61D400418F3E /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544D28CB61D400418F3E /* SharedTestHelpers.swift */; };
+		8DA0545028CB6B2200418F3E /* GenresCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544F28CB6B2200418F3E /* GenresCachePolicy.swift */; };
 		8DA0931E28BF5A0200C4C68D /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
 		8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */; };
 		8DA0932B28BF5E3700C4C68D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8DA0932A28BF5E3700C4C68D /* README.md */; };
+		8DBA843828D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843728D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift */; };
+		8DBA843A28D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */; };
+		8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */; };
+		8DBA843F28D074A90021781B /* CoreDataGenresStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */; };
+		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
+		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		8D745E3828C6259C005DC3F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DA0930B28BF59C900C4C68D;
+			remoteInfo = PodcastsGenresList;
+		};
+		8D75815928D0AFA800751261 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
 			proxyType = 1;
@@ -41,7 +74,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenresLoaderTests.swift; sourceTree = "<group>"; };
+		8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStoreSpecs.swift; sourceTree = "<group>"; };
+		8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+GenresStoreSpecs.swift"; sourceTree = "<group>"; };
+		8D745DCB28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGenresFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenresLoader.swift; sourceTree = "<group>"; };
 		8D745DD028BFA728005DC3F8 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		8D745E1A28C1E7F5005DC3F8 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -51,10 +86,32 @@
 		8D745E2D28C62173005DC3F8 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		8D745E3328C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D745E3528C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsGenresListAPIEndToEndTests.swift; sourceTree = "<group>"; };
+		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
+		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
+		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
+		8D75815428D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D75815628D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsGenresListCacheIntegrationTests.swift; sourceTree = "<group>"; };
+		8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheGenresUseCaseTests.swift; sourceTree = "<group>"; };
+		8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenresLoader.swift; sourceTree = "<group>"; };
+		8DA0543E28C9F00700418F3E /* GenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStore.swift; sourceTree = "<group>"; };
+		8DA0544028CA105400418F3E /* LocalGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenre.swift; sourceTree = "<group>"; };
+		8DA0544228CA106F00418F3E /* RemoteGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenre.swift; sourceTree = "<group>"; };
+		8DA0544428CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGenresFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
+		8DA0544728CB328800418F3E /* GenresStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStoreSpy.swift; sourceTree = "<group>"; };
+		8DA0544928CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateGenresCacheUseCaseTests.swift; sourceTree = "<group>"; };
+		8DA0544B28CB611300418F3E /* GenresCacheTestHeplers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCacheTestHeplers.swift; sourceTree = "<group>"; };
+		8DA0544D28CB61D400418F3E /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		8DA0544F28CB6B2200418F3E /* GenresCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCachePolicy.swift; sourceTree = "<group>"; };
 		8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsGenresList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA0931A28BF5A0200C4C68D /* PodcastsGenresListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLoader.swift; sourceTree = "<group>"; };
 		8DA0932A28BF5E3700C4C68D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		8DBA843728D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableRetrieveGenresStoreSpecs.swift"; sourceTree = "<group>"; };
+		8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableInsertGenresStoreSpecs.swift"; sourceTree = "<group>"; };
+		8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteGenresStoreSpecs.swift"; sourceTree = "<group>"; };
+		8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStoreTests.swift; sourceTree = "<group>"; };
+		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
+		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +120,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D745E3728C6259C005DC3F8 /* PodcastsGenresList.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D75815128D0AFA800751261 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D75815828D0AFA800751261 /* PodcastsGenresList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +156,7 @@
 				8D745E1A28C1E7F5005DC3F8 /* HTTPClient.swift */,
 				8D745E1E28C1E8A6005DC3F8 /* GenresItemsMapper.swift */,
 				8D745E2D28C62173005DC3F8 /* URLSessionHTTPClient.swift */,
+				8DA0544228CA106F00418F3E /* RemoteGenre.swift */,
 			);
 			path = "Genres API";
 			sourceTree = "<group>";
@@ -107,18 +173,19 @@
 		8D745E2728C1F134005DC3F8 /* Genres API */ = {
 			isa = PBXGroup;
 			children = (
-				8D745DCB28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift */,
+				8D745DCB28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift */,
 				8D745E2828C216E2005DC3F8 /* URLSessionHTTPClientTests.swift */,
 			);
 			path = "Genres API";
 			sourceTree = "<group>";
 		};
-		8D745E2A28C60D97005DC3F8 /* Heplers */ = {
+		8D745E2A28C60D97005DC3F8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */,
+				8DA0544D28CB61D400418F3E /* SharedTestHelpers.swift */,
 			);
-			path = Heplers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8D745E3428C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */ = {
@@ -129,6 +196,56 @@
 			path = PodcastsGenresListAPIEndToEndTests;
 			sourceTree = "<group>";
 		};
+		8D75814928D09E6500751261 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D75814A28D09E7100751261 /* CoreDataHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8D75815528D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				8D75815628D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift */,
+			);
+			path = PodcastsGenresListCacheIntegrationTests;
+			sourceTree = "<group>";
+		};
+		8DA0543828C8D53F00418F3E /* Genres Cache */ = {
+			isa = PBXGroup;
+			children = (
+				8DA0544628CB327100418F3E /* Helpers */,
+				8DBA843D28D0709E0021781B /* GenresStoreSpecs */,
+				8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */,
+				8DA0544428CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift */,
+				8DA0544928CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift */,
+				8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */,
+			);
+			path = "Genres Cache";
+			sourceTree = "<group>";
+		};
+		8DA0543B28C9EFCE00418F3E /* Genres Cache */ = {
+			isa = PBXGroup;
+			children = (
+				8DF5A46F28D0835F00E5E2A9 /* Infrastructure */,
+				8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */,
+				8DA0543E28C9F00700418F3E /* GenresStore.swift */,
+				8DA0544028CA105400418F3E /* LocalGenre.swift */,
+				8DA0544F28CB6B2200418F3E /* GenresCachePolicy.swift */,
+			);
+			path = "Genres Cache";
+			sourceTree = "<group>";
+		};
+		8DA0544628CB327100418F3E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8DA0544728CB328800418F3E /* GenresStoreSpy.swift */,
+				8DA0544B28CB611300418F3E /* GenresCacheTestHeplers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8DA0930228BF59C900C4C68D = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +253,7 @@
 				8DA0930E28BF59C900C4C68D /* PodcastsGenresList */,
 				8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */,
 				8D745E3428C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
+				8D75815528D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */,
 				8DA0930D28BF59C900C4C68D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -146,6 +264,7 @@
 				8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */,
 				8DA0931A28BF5A0200C4C68D /* PodcastsGenresListTests.xctest */,
 				8D745E3328C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.xctest */,
+				8D75815428D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,6 +274,7 @@
 			children = (
 				8D745E2628C1EA06005DC3F8 /* Genres Feature */,
 				8D745DCD28BFA6F6005DC3F8 /* Genres API */,
+				8DA0543B28C9EFCE00418F3E /* Genres Cache */,
 			);
 			path = PodcastsGenresList;
 			sourceTree = "<group>";
@@ -162,10 +282,43 @@
 		8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */ = {
 			isa = PBXGroup;
 			children = (
-				8D745E2A28C60D97005DC3F8 /* Heplers */,
+				8D745E2A28C60D97005DC3F8 /* Helpers */,
 				8D745E2728C1F134005DC3F8 /* Genres API */,
+				8DA0543828C8D53F00418F3E /* Genres Cache */,
 			);
 			path = PodcastsGenresListTests;
+			sourceTree = "<group>";
+		};
+		8DBA843D28D0709E0021781B /* GenresStoreSpecs */ = {
+			isa = PBXGroup;
+			children = (
+				8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */,
+				8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */,
+				8DBA843728D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift */,
+				8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */,
+				8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */,
+			);
+			path = GenresStoreSpecs;
+			sourceTree = "<group>";
+		};
+		8DF5A46F28D0835F00E5E2A9 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				8DF5A47028D0836D00E5E2A9 /* CoreData */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		8DF5A47028D0836D00E5E2A9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				8D75814928D09E6500751261 /* Helpers */,
+				8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */,
+				8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */,
+				8D75814E28D09FFD00751261 /* ManagedGenre.swift */,
+				8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +350,24 @@
 			name = PodcastsGenresListAPIEndToEndTests;
 			productName = PodcastsGenresListAPIEndToEndTests;
 			productReference = 8D745E3328C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8D75815328D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D75815B28D0AFA800751261 /* Build configuration list for PBXNativeTarget "PodcastsGenresListCacheIntegrationTests" */;
+			buildPhases = (
+				8D75815028D0AFA800751261 /* Sources */,
+				8D75815128D0AFA800751261 /* Frameworks */,
+				8D75815228D0AFA800751261 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D75815A28D0AFA800751261 /* PBXTargetDependency */,
+			);
+			name = PodcastsGenresListCacheIntegrationTests;
+			productName = PodcastsGenresListCacheIntegrationTests;
+			productReference = 8D75815428D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		8DA0930B28BF59C900C4C68D /* PodcastsGenresList */ = {
@@ -249,6 +420,9 @@
 					8D745E3228C6259C005DC3F8 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
+					8D75815328D0AFA800751261 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
 					8DA0930B28BF59C900C4C68D = {
 						CreatedOnToolsVersion = 13.4.1;
 						LastSwiftMigration = 1340;
@@ -274,12 +448,20 @@
 				8DA0930B28BF59C900C4C68D /* PodcastsGenresList */,
 				8DA0931928BF5A0200C4C68D /* PodcastsGenresListTests */,
 				8D745E3228C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
+				8D75815328D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D745E3128C6259C005DC3F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D75815228D0AFA800751261 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -313,16 +495,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8D75815028D0AFA800751261 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D75815728D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift in Sources */,
+				8D75815F28D0BA5400751261 /* GenresCacheTestHeplers.swift in Sources */,
+				8D75815E28D0B27000751261 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8DA0930828BF59C900C4C68D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */,
 				8D745E1F28C1E8A6005DC3F8 /* GenresItemsMapper.swift in Sources */,
+				8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */,
 				8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */,
+				8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */,
 				8D745E1B28C1E7F5005DC3F8 /* HTTPClient.swift in Sources */,
+				8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */,
+				8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */,
+				8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */,
+				8DA0545028CB6B2200418F3E /* GenresCachePolicy.swift in Sources */,
+				8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */,
+				8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */,
 				8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */,
 				8D745E2E28C62173005DC3F8 /* URLSessionHTTPClient.swift in Sources */,
+				8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */,
+				8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,8 +532,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D745DCC28BF98F7005DC3F8 /* RemoteGenresLoaderTests.swift in Sources */,
+				8DBA843F28D074A90021781B /* CoreDataGenresStoreTests.swift in Sources */,
+				8D4D494028CF802A00D8EBEB /* GenresStoreSpecs.swift in Sources */,
+				8DBA843828D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift in Sources */,
+				8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */,
+				8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */,
+				8D745DCC28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift in Sources */,
+				8DA0544C28CB611300418F3E /* GenresCacheTestHeplers.swift in Sources */,
+				8DA0544828CB328800418F3E /* GenresStoreSpy.swift in Sources */,
 				8D745E2928C216E2005DC3F8 /* URLSessionHTTPClientTests.swift in Sources */,
+				8DBA843A28D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift in Sources */,
+				8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */,
+				8DA0544E28CB61D400418F3E /* SharedTestHelpers.swift in Sources */,
+				8DA0544528CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift in Sources */,
+				8DA0544A28CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift in Sources */,
 				8D745E2C28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +558,12 @@
 			platformFilter = ios;
 			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
 			targetProxy = 8D745E3828C6259C005DC3F8 /* PBXContainerItemProxy */;
+		};
+		8D75815A28D0AFA800751261 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
+			targetProxy = 8D75815928D0AFA800751261 /* PBXContainerItemProxy */;
 		};
 		8DA0932028BF5A0200C4C68D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -379,6 +599,40 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcastsGenresListAPIEndToEndTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8D75815C28D0AFA800751261 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcastsGenresListCacheIntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8D75815D28D0AFA800751261 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcastsGenresListCacheIntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -613,6 +867,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8D75815B28D0AFA800751261 /* Build configuration list for PBXNativeTarget "PodcastsGenresListCacheIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D75815C28D0AFA800751261 /* Debug */,
+				8D75815D28D0AFA800751261 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8DA0930628BF59C900C4C68D /* Build configuration list for PBXProject "PodcastsGenresList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -641,6 +904,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */,
+			);
+			currentVersion = 8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */;
+			path = GenresStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8DA0930328BF59C900C4C68D /* Project object */;
 }

@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresList
 
-class RemoteGenresLoaderTests: XCTestCase {
+class LoadGenresFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
@@ -44,7 +44,7 @@ class RemoteGenresLoaderTests: XCTestCase {
                 
         [199, 201, 400, 500].enumerated().forEach { (index, code) in
             expect(sut, toCompleteWith: failure(.invalidData), when: {
-                let json = makeItemsJSON([])
+                let json = makeGenresJSON([])
                 client.complete(withStatusCode: code, data: json, at: index)
             })
         }
@@ -59,23 +59,23 @@ class RemoteGenresLoaderTests: XCTestCase {
         })
     }
     
-    func test_load_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() {
+    func test_load_deliversNoGenresItemsOn200HTTPResponseWithEmptyJSONList() {
         let (sut, client) = makeSUT()
 
         expect(sut, toCompleteWith: .success([]), when: {
-            let emptyListJSON = makeItemsJSON([])
+            let emptyListJSON = makeGenresJSON([])
             client.complete(withStatusCode: 200, data: emptyListJSON)
         })
     }
     
-    func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
+    func test_load_deliversGenresItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
         
-        let item1 = makeItem(id: 1, name: "a genre name")
-        let item2 = makeItem(id: 2, name: "another genre name")
+        let genre1 = makeGenres(id: 1, name: "a genre name")
+        let genre2 = makeGenres(id: 2, name: "another genre name")
         
-        expect(sut, toCompleteWith: .success([item1.model, item2.model]), when: {
-            let json = makeItemsJSON([item1.json, item2.json])
+        expect(sut, toCompleteWith: .success([genre1.model, genre2.model]), when: {
+            let json = makeGenresJSON([genre1.json, genre2.json])
             client.complete(withStatusCode: 200, data: json)
         })
     }
@@ -89,7 +89,7 @@ class RemoteGenresLoaderTests: XCTestCase {
         sut?.load { capturedResults.append($0) }
         
         sut = nil
-        client.complete(withStatusCode: 200, data: makeItemsJSON([]))
+        client.complete(withStatusCode: 200, data: makeGenresJSON([]))
         
         XCTAssertTrue(capturedResults.isEmpty)
     }
@@ -113,7 +113,7 @@ class RemoteGenresLoaderTests: XCTestCase {
         return .failure(error)
     }
     
-    private func makeItem(id: Int, name: String) -> (model: Genre, json: [String: Any]) {
+    private func makeGenres(id: Int, name: String) -> (model: Genre, json: [String: Any]) {
         let genre = Genre(id: id, name: name)
         let json = [
             "id": id,
@@ -123,8 +123,8 @@ class RemoteGenresLoaderTests: XCTestCase {
         return (genre, json)
     }
     
-    private func makeItemsJSON(_ items: [[String: Any]]) -> Data {
-        let json = ["genres": items]
+    private func makeGenresJSON(_ genres: [[String: Any]]) -> Data {
+        let json = ["genres": genres]
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
@@ -138,8 +138,8 @@ class RemoteGenresLoaderTests: XCTestCase {
         
         sut.load { receivedResult in
             switch (receivedResult, expectedResult) {
-            case let (.success(receivedItems), .success(expectedItems)):
-                XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
+            case let (.success(receivedGenres), .success(expectedGenres)):
+                XCTAssertEqual(receivedGenres, expectedGenres, file: file, line: line)
                 
             case let (.failure(receivedError as RemoteGenresLoader.Error), .failure(expectedError as RemoteGenresLoader.Error)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)

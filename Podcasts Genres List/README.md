@@ -1,12 +1,12 @@
 # **Shows genres list feature**
 
-## Genres list loader dependency diagram
+## Genres list loader architecture diagram
 
 ![Architecture diagram](Genres%20List%20UI/dependency.drawio.svg)
 
-## High level feature architecture diagram
+## Flowchart diagram
 
-![Architecture diagram](Genres%20List%20UI/main.drawio.svg)
+![Flowchart diagram](Genres%20List%20UI/main.drawio.svg)
 
 ## **(BDD) Show genres list Spec**
 ### Story: Client requests to see Podcasts Genres list
@@ -76,8 +76,7 @@ Given the client doesn't have connectivity
 5. System delivers Genres list.
 
 #### Invalid data – error course (sad path):
-1. System will retry 2 times.
-2. System delivers invalid data error.
+1. System delivers invalid data error.
 
 #### No connectivity – error course (sad path):
 1. System delivers connectivity error.
@@ -86,15 +85,18 @@ Given the client doesn't have connectivity
 
 ### Load Genres list From Cache Use Case
 
+#### Data:
+- Max age (7 days)
+
 #### Primary course:
 1. Execute "Load Genres list" command with above data.
-2. System retrieves featured question data from cache.
+2. System retrieves genres list data from cache.
 3. System validates cache is less than 7 days old.
 4. System creates Genres list from cached data.
 5. System delivers Genres list.
 
 #### Retrieval error course (sad path):
-1. System delivers error.
+1 . System delivers error.
 
 #### Expired cache course (sad path): 
 1. System delivers no Genres list.
@@ -104,7 +106,7 @@ Given the client doesn't have connectivity
 
 ---
 
-### Validate featured Genres list Cache Use Case
+### Validate Genres list Cache Use Case
 
 #### Primary course:
 1. Execute "Validate Cache" command with above data.
@@ -122,16 +124,22 @@ Given the client doesn't have connectivity
 ### Cache Genres list Data Use Case
 
 #### Data:
-- featured Genres list Data
+- Genres list
 
 #### Primary course (happy path):
-1. Execute "Genres list Data" command with above data.
-2. System caches news data.
-3. System delivers success message.
+1. Execute "Save Genres list" command with above data.
+2. System deletes old data.
+3. System encodes Genres list.
+4. System timestamps the new cache.
+5. System saves new cache data.
+6. System delivers success message.
+
+#### Deleting error course (sad path):
+1. System delivers error.
 
 #### Saving error course (sad path):
 1. System delivers error.
-
+ 
 ---
 
 ## Model Specs

@@ -52,6 +52,7 @@
 		8DC3522328D1F4B800F12FD9 /* GenresListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */; };
 		8DC3522528D1F99900F12FD9 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522428D1F99900F12FD9 /* GenreCell.swift */; };
 		8DC3522B28D212A300F12FD9 /* GenresRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522A28D212A300F12FD9 /* GenresRefreshViewController.swift */; };
+		8DC3522D28D215A900F12FD9 /* GenreCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522C28D215A900F12FD9 /* GenreCellController.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -137,6 +138,7 @@
 		8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresListViewController.swift; sourceTree = "<group>"; };
 		8DC3522428D1F99900F12FD9 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		8DC3522A28D212A300F12FD9 /* GenresRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresRefreshViewController.swift; sourceTree = "<group>"; };
+		8DC3522C28D215A900F12FD9 /* GenreCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCellController.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -386,6 +388,7 @@
 			children = (
 				8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */,
 				8DC3522A28D212A300F12FD9 /* GenresRefreshViewController.swift */,
+				8DC3522C28D215A900F12FD9 /* GenreCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC3522328D1F4B800F12FD9 /* GenresListViewController.swift in Sources */,
+				8DC3522D28D215A900F12FD9 /* GenreCellController.swift in Sources */,
 				8DC3522B28D212A300F12FD9 /* GenresRefreshViewController.swift in Sources */,
 				8DC3522528D1F99900F12FD9 /* GenreCell.swift in Sources */,
 			);

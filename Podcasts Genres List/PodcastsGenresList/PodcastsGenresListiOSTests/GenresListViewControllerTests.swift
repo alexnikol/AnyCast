@@ -63,7 +63,7 @@ final class GenresListViewControllerTests: XCTestCase {
         let (sut, _) = makeSUT()
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(sut.isShowinLoadingIndicator, true)
     }
     
     func test_viewDidLoad_hidesLoadingOnLoaderCompletion() {
@@ -72,7 +72,7 @@ final class GenresListViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
         loader.completeGenresLoading()
         
-        XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(sut.isShowinLoadingIndicator, false)
     }
     
     func test_userInitiatedGenresReload_showsLoadingIndicator() {
@@ -80,7 +80,7 @@ final class GenresListViewControllerTests: XCTestCase {
         
         sut.simulateUserInitiatedGenresReload()
         
-        XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(sut.isShowinLoadingIndicator, true)
     }
     
     func test_userInitiatedGenresReload_hidesLoadingIndicatorOnLoaderCompletion() {
@@ -89,7 +89,7 @@ final class GenresListViewControllerTests: XCTestCase {
         sut.simulateUserInitiatedGenresReload()
         loader.completeGenresLoading()
         
-        XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(sut.isShowinLoadingIndicator, false)
     }
     
     // MARK: - Helpers
@@ -126,6 +126,10 @@ final class GenresListViewControllerTests: XCTestCase {
 private extension GenresListViewController {
     func simulateUserInitiatedGenresReload() {
         collectionView.refreshControl?.simulatePullToRefresh()
+    }
+    
+    var isShowinLoadingIndicator: Bool {
+        return collectionView.refreshControl?.isRefreshing == true
     }
 }
 

@@ -46,15 +46,15 @@ final class GenresListViewControllerTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 1)
     }
     
-    func test_pullToRefresh_loadsGenres() {
+    func test_userInitiatedGenresReload_loadsGenres() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
-        sut.collectionView.refreshControl?.simulatePullToRefresh()
+        sut.simulateUserInitiatedGenresReload()
         
         XCTAssertEqual(loader.loadCallCount, 2)
         
-        sut.collectionView.refreshControl?.simulatePullToRefresh()
+        sut.simulateUserInitiatedGenresReload()
         
         XCTAssertEqual(loader.loadCallCount, 3)
     }
@@ -75,18 +75,18 @@ final class GenresListViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, false)
     }
     
-    func test_pullToRefresh_showsLoadingIndicator() {
+    func test_userInitiatedGenresReload_showsLoadingIndicator() {
         let (sut, _) = makeSUT()
         
-        sut.collectionView.refreshControl?.simulatePullToRefresh()
+        sut.simulateUserInitiatedGenresReload()
         
         XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, true)
     }
     
-    func test_pullToRefresh_hidesLoadingIndicatorOnLoaderCompletion() {
+    func test_userInitiatedGenresReload_hidesLoadingIndicatorOnLoaderCompletion() {
         let (sut, loader) = makeSUT()
         
-        sut.collectionView.refreshControl?.simulatePullToRefresh()
+        sut.simulateUserInitiatedGenresReload()
         loader.completeGenresLoading()
         
         XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, false)
@@ -120,6 +120,12 @@ final class GenresListViewControllerTests: XCTestCase {
         func completeGenresLoading() {
             completions[0](.success([]))
         }
+    }
+}
+
+private extension GenresListViewController {
+    func simulateUserInitiatedGenresReload() {
+        collectionView.refreshControl?.simulatePullToRefresh()
     }
 }
 

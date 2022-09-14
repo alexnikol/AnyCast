@@ -28,13 +28,13 @@ final class GenresListViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once view is loaded")
         
         loader.completeGenresLoading(at: 0)
-        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is complete")
+        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is complete succesfully")
         
         sut.simulateUserInitiatedGenresReload()
         XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once user initiates a reload")
-        
-        loader.completeGenresLoading(at: 1)
-        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
+                
+        loader.completeGenresLoadingWithError(at: 1)
+        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is completes with error")
     }
     
     func test_loadGenresCompletion_rendersSuccessfullyLoadedGenres() {

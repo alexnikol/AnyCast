@@ -27,14 +27,11 @@ public final class GenresListViewController: UICollectionViewController {
     private func load() {
         collectionView.refreshControl?.beginRefreshing()
         loader?.load { [weak self] result in
-            switch result {
-            case let .success(genres):
+            if let genres = try? result.get() {
                 self?.collectionModel = genres
                 self?.collectionView.reloadData()
-                self?.collectionView.refreshControl?.endRefreshing()
-                
-            case .failure: break
             }
+            self?.collectionView.refreshControl?.endRefreshing()
         }
     }
     

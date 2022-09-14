@@ -55,6 +55,19 @@ final class GenresListViewControllerTests: XCTestCase {
         assertThat(sut, isRendering: [genre0, genre1, genre2, genre3])
     }
     
+    func test_loadGenresCompletion_doesNotAlterCurrentRenderingStateOnError() {
+        let genre0 = makeGenre(id: 1, name: "any name")
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeGenresLoading(with: [genre0], at: 0)
+        assertThat(sut, isRendering: [genre0])
+        
+        sut.simulateUserInitiatedGenresReload()
+        loader.completeGenresLoadingWithError(at: 1)
+        assertThat(sut, isRendering: [genre0])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -108,6 +121,11 @@ final class GenresListViewControllerTests: XCTestCase {
         
         func completeGenresLoading(with genres: [Genre] = [], at index: Int) {
             completions[index](.success(genres))
+        }
+        
+        func completeGenresLoadingWithError(at index: Int) {
+            let error = NSError(domain: "any error", code: 0)
+            completions[index](.failure(error))
         }
     }
 }

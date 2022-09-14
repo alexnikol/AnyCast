@@ -27,9 +27,14 @@ public final class GenresListViewController: UICollectionViewController {
     private func load() {
         collectionView.refreshControl?.beginRefreshing()
         loader?.load { [weak self] result in
-            self?.collectionModel = (try? result.get()) ?? []
-            self?.collectionView.reloadData()
-            self?.collectionView.refreshControl?.endRefreshing()
+            switch result {
+            case let .success(genres):
+                self?.collectionModel = genres
+                self?.collectionView.reloadData()
+                self?.collectionView.refreshControl?.endRefreshing()
+                
+            case .failure: break
+            }
         }
     }
     

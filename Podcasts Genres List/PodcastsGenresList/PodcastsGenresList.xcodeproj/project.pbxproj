@@ -49,6 +49,7 @@
 		8DC3521028D1DF8F00F12FD9 /* GenresListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */; };
 		8DC3521C28D1E5C600F12FD9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DC3521D28D1EB4100F12FD9 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
+		8DC3522328D1F4B800F12FD9 /* GenresListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -131,6 +132,7 @@
 		8DC351FA28D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsGenresListiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC3520128D1DB1E00F12FD9 /* PodcastsGenresListiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresListViewControllerTests.swift; sourceTree = "<group>"; };
+		8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresListViewController.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -346,6 +348,7 @@
 		8DC351FB28D1DB1E00F12FD9 /* PodcastsGenresListiOS */ = {
 			isa = PBXGroup;
 			children = (
+				8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */,
 			);
 			path = PodcastsGenresListiOS;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 					};
 					8DC351F928D1DB1E00F12FD9 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 					8DC3520028D1DB1E00F12FD9 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -685,6 +689,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DC3522328D1F4B800F12FD9 /* GenresListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1021,7 @@
 		8DC3520928D1DB1E00F12FD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1038,6 +1044,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1046,6 +1053,7 @@
 		8DC3520A28D1DB1E00F12FD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1077,6 +1085,7 @@
 		8DC3520B28D1DB1E00F12FD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1102,6 +1111,7 @@
 		8DC3520C28D1DB1E00F12FD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

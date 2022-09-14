@@ -3,32 +3,7 @@
 import XCTest
 import UIKit
 import PodcastsGenresList
-
-final class GenresListViewController: UICollectionViewController {
-    private var loader: GenresLoader?
-    
-    convenience init(collectionViewLayout layout: UICollectionViewLayout, loader: GenresLoader) {
-        self.init(collectionViewLayout: layout)
-        self.loader = loader
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let refreshControl = UIRefreshControl()
-        collectionView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(load), for: .valueChanged)
-        load()
-    }
-    
-    @objc
-    private func load() {
-        collectionView.refreshControl?.beginRefreshing()
-        loader?.load { [weak self] _ in
-            self?.collectionView.refreshControl?.endRefreshing()
-        }
-    }
-}
+import PodcastsGenresListiOS
 
 final class GenresListViewControllerTests: XCTestCase {
         

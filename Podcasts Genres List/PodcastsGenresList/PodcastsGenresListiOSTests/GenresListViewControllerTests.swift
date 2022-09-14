@@ -18,6 +18,7 @@ final class GenresListViewController: UICollectionViewController {
         let refreshControl = UIRefreshControl()
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(load), for: .valueChanged)
+        refreshControl.beginRefreshing()
         
         load()
     }
@@ -55,6 +56,13 @@ final class GenresListViewControllerTests: XCTestCase {
         sut.collectionView.refreshControl?.simulatePullToRefresh()
         
         XCTAssertEqual(loader.loadCallCount, 3)
+    }
+    
+    func test_viewDidLoad_showsLoadingIndicator() {
+        let (sut, ) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, true)
     }
     
     // MARK: - Helpers

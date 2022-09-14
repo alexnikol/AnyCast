@@ -46,6 +46,7 @@
 		8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */; };
 		8DBA843F28D074A90021781B /* CoreDataGenresStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */; };
 		8DC3520228D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC351FA28D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework */; };
+		8DC3521028D1DF8F00F12FD9 /* GenresListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -120,6 +121,7 @@
 		8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStoreTests.swift; sourceTree = "<group>"; };
 		8DC351FA28D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsGenresListiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC3520128D1DB1E00F12FD9 /* PodcastsGenresListiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresListViewControllerTests.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -340,6 +342,7 @@
 		8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */,
 			);
 			path = PodcastsGenresListiOSTests;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 					};
 					8DC3520028D1DB1E00F12FD9 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -669,6 +673,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DC3521028D1DF8F00F12FD9 /* GenresListViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1046,16 +1051,23 @@
 		8DC3520B28D1DB1E00F12FD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WUJDW64U79;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcastsGenresListiOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1064,11 +1076,17 @@
 		8DC3520C28D1DB1E00F12FD9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WUJDW64U79;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcastsGenresListiOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

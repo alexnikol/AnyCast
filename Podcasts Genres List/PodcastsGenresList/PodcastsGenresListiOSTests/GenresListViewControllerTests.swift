@@ -59,7 +59,7 @@ final class GenresListViewControllerTests: XCTestCase {
     }
     
     func test_viewDidLoad_showsLoadingIndicator() {
-        let (sut, ) = makeSUT()
+        let (sut, _) = makeSUT()
         sut.loadViewIfNeeded()
         
         XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, true)

@@ -19,13 +19,14 @@ final class GenresListViewController: UICollectionViewController {
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(load), for: .valueChanged)
         refreshControl.beginRefreshing()
-        
         load()
     }
     
     @objc
     private func load() {
-        loader?.load { _ in }
+        loader?.load { [weak self] _ in
+            self?.collectionView.refreshControl?.endRefreshing()
+        }
     }
 }
 
@@ -65,6 +66,15 @@ final class GenresListViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, true)
     }
     
+    func test_viewDidLoad_hidesLoadingOnLoaderCompletion() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeGenresLoading()
+        
+        XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, false)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -80,10 +90,18 @@ final class GenresListViewControllerTests: XCTestCase {
     }
     
     class LoaderSpy: GenresLoader {
-        private(set) var loadCallCount = 0
+        private var completions = [(LoadGenresResult) -> Void]()
+        
+        var loadCallCount: Int {
+            return completions.count
+        }
         
         func load(completion: @escaping (LoadGenresResult) -> Void) {
-            loadCallCount += 1
+            completions.append(completion)
+        }
+        
+        func completeGenresLoading() {
+            completions[0](.success([]))
         }
     }
 }
@@ -92,9 +110,7 @@ private extension UIRefreshControl {
     func simulatePullToRefresh() {
         self.allTargets.forEach { target in
                 actions(forTarget: target, forControlEvent: .valueChanged)?
-                .forEach {
-                    (target as NSObject).perform(Selector($0))
-            }
+                .forEach { (target as NSObject).perform(Selector($0)) }
         }
     }
 }

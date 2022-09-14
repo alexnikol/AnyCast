@@ -22,8 +22,7 @@ final class GenresListViewController: UIViewController {
 final class GenresListViewControllerTests: XCTestCase {
     
     func test_init_doesNotLoadGenres() {
-        let loader = LoaderSpy()
-        _ = GenresListViewController(loader: loader)
+        let (_, loader) = makeSUT()
         
         XCTAssertEqual(loader.loadCallCount, 0)
     }

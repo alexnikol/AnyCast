@@ -4,35 +4,26 @@ import UIKit
 import PodcastsGenresList
 
 public final class GenresListViewController: UICollectionViewController {
-    private var loader: GenresLoader?
+    private var refreshController: GenresRefreshViewController?
     private var collectionModel: [Genre] = []
     
     public convenience init(collectionViewLayout layout: UICollectionViewLayout, loader: GenresLoader) {
         self.init(collectionViewLayout: layout)
-        self.loader = loader
+        self.refreshController = GenresRefreshViewController(genresLoader: loader)
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        let refreshControl = UIRefreshControl()
-        collectionView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(load), for: .valueChanged)
+        collectionView.refreshControl = refreshController?.view
         collectionView.register(GenreCell.self, forCellWithReuseIdentifier: String(describing: GenreCell.self))
         
-        load()
-    }
-    
-    @objc
-    private func load() {
-        collectionView.refreshControl?.beginRefreshing()
-        loader?.load { [weak self] result in
-            if let genres = try? result.get() {
-                self?.collectionModel = genres
-                self?.collectionView.reloadData()
-            }
-            self?.collectionView.refreshControl?.endRefreshing()
+        refreshController?.onRefresh = { [weak self] genres in
+            self?.collectionModel = genres
+            self?.collectionView.reloadData()
         }
+        
+        refreshController?.refresh()
     }
     
     public override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

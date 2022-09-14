@@ -5,9 +5,9 @@ import UIKit
 import PodcastsGenresList
 
 final class GenresListViewController: UIViewController {
-    private var loader: GenresListViewControllerTests.LoaderSpy?
+    private var loader: GenresLoader?
     
-    convenience init(loader: GenresListViewControllerTests.LoaderSpy) {
+    convenience init(loader: GenresLoader) {
         self.init()
         self.loader = loader
     }
@@ -15,7 +15,7 @@ final class GenresListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loader?.load()
+        loader?.load { _ in }
     }
 }
 
@@ -38,11 +38,10 @@ final class GenresListViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    
-    class LoaderSpy {
+    class LoaderSpy: GenresLoader {
         private(set) var loadCallCount = 0
         
-        func load() {
+        func load(completion: @escaping (LoadGenresResult) -> Void) {
             loadCallCount += 1
         }
     }

@@ -18,12 +18,12 @@ final class GenresListViewController: UICollectionViewController {
         let refreshControl = UIRefreshControl()
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(load), for: .valueChanged)
-        refreshControl.beginRefreshing()
         load()
     }
     
     @objc
     private func load() {
+        collectionView.refreshControl?.beginRefreshing()
         loader?.load { [weak self] _ in
             self?.collectionView.refreshControl?.endRefreshing()
         }
@@ -31,65 +31,35 @@ final class GenresListViewController: UICollectionViewController {
 }
 
 final class GenresListViewControllerTests: XCTestCase {
-    
-    func test_init_doesNotLoadGenres() {
-        let (_, loader) = makeSUT()
         
-        XCTAssertEqual(loader.loadCallCount, 0)
+    func test_loadGenresActions_requestGenresFromLoader() {
+        let (sut, loader) = makeSUT()
+        XCTAssertEqual(loader.loadCallCount, 0, "Expected no loading requests before view is loaded")
+        
+        sut.loadViewIfNeeded()
+        XCTAssertEqual(loader.loadCallCount, 1, "Expected a loading request once view is loaded")
+        
+        sut.simulateUserInitiatedGenresReload()
+        XCTAssertEqual(loader.loadCallCount, 2, "Expected another loading request once user initiates a load")
+        
+        sut.simulateUserInitiatedGenresReload()
+        XCTAssertEqual(loader.loadCallCount, 3, "Expected a third loading request once user initiates a load")
     }
-    
-    func test_viewDidLoad_loadsGenres() {
+        
+    func test_loadGenresIndicator_isVisibleWhileLoadingGenres() {
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once view is loaded")
         
-        XCTAssertEqual(loader.loadCallCount, 1)
-    }
-    
-    func test_userInitiatedGenresReload_loadsGenres() {
-        let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
+        loader.completeGenresLoading(at: 0)
+        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is complete")
         
         sut.simulateUserInitiatedGenresReload()
+        XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once user initiates a reload")
         
-        XCTAssertEqual(loader.loadCallCount, 2)
-        
-        sut.simulateUserInitiatedGenresReload()
-        
-        XCTAssertEqual(loader.loadCallCount, 3)
-    }
-    
-    func test_viewDidLoad_showsLoadingIndicator() {
-        let (sut, _) = makeSUT()
-        sut.loadViewIfNeeded()
-        
-        XCTAssertEqual(sut.isShowinLoadingIndicator, true)
-    }
-    
-    func test_viewDidLoad_hidesLoadingOnLoaderCompletion() {
-        let (sut, loader) = makeSUT()
-        
-        sut.loadViewIfNeeded()
-        loader.completeGenresLoading()
-        
-        XCTAssertEqual(sut.isShowinLoadingIndicator, false)
-    }
-    
-    func test_userInitiatedGenresReload_showsLoadingIndicator() {
-        let (sut, _) = makeSUT()
-        
-        sut.simulateUserInitiatedGenresReload()
-        
-        XCTAssertEqual(sut.isShowinLoadingIndicator, true)
-    }
-    
-    func test_userInitiatedGenresReload_hidesLoadingIndicatorOnLoaderCompletion() {
-        let (sut, loader) = makeSUT()
-        
-        sut.simulateUserInitiatedGenresReload()
-        loader.completeGenresLoading()
-        
-        XCTAssertEqual(sut.isShowinLoadingIndicator, false)
+        loader.completeGenresLoading(at: 1)
+        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
     }
     
     // MARK: - Helpers
@@ -117,8 +87,8 @@ final class GenresListViewControllerTests: XCTestCase {
             completions.append(completion)
         }
         
-        func completeGenresLoading() {
-            completions[0](.success([]))
+        func completeGenresLoading(at index: Int) {
+            completions[index](.success([]))
         }
     }
 }

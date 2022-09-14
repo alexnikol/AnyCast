@@ -29,8 +29,7 @@ final class GenresListViewControllerTests: XCTestCase {
     }
     
     func test_viewDidLoad_loadsGenres() {
-        let loader = LoaderSpy()
-        let sut = GenresListViewController(loader: loader)
+        let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
         
@@ -38,6 +37,18 @@ final class GenresListViewControllerTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> (sut: GenresListViewController, loader: LoaderSpy) {
+        let loader = LoaderSpy()
+        let sut = GenresListViewController(loader: loader)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        return (sut, loader)
+    }
+    
     class LoaderSpy: GenresLoader {
         private(set) var loadCallCount = 0
         

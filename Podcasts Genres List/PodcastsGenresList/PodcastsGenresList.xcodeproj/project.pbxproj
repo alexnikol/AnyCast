@@ -48,6 +48,7 @@
 		8DC3520228D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC351FA28D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework */; };
 		8DC3521028D1DF8F00F12FD9 /* GenresListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */; };
 		8DC3521728D1E53900F12FD9 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
+		8DC3521C28D1E5C600F12FD9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -692,6 +693,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC3521028D1DF8F00F12FD9 /* GenresListViewControllerTests.swift in Sources */,
+				8DC3521C28D1E5C600F12FD9 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

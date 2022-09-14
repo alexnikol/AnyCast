@@ -37,6 +37,24 @@ final class GenresListViewControllerTests: XCTestCase {
         XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once user initiated loading is completed")
     }
     
+    func test_loadGenresCompletion_rendersSuccessfullyLoadedGenres() {
+        let genre0 = makeGenre(id: 1, name: "any name")
+        let genre1 = makeGenre(id: 2, name: "another name")
+        let genre2 = makeGenre(id: 3, name: "long name")
+        let genre3 = makeGenre(id: 4, name: "some name")
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        assertThat(sut, isRendering: [])
+        
+        loader.completeGenresLoading(with: [genre0], at: 0)
+        assertThat(sut, isRendering: [genre0])
+        
+        sut.simulateUserInitiatedGenresReload()
+        loader.completeGenresLoading(with: [genre0, genre1, genre2, genre3], at: 1)
+        assertThat(sut, isRendering: [genre0, genre1, genre2, genre3])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -51,6 +69,32 @@ final class GenresListViewControllerTests: XCTestCase {
         return (sut, loader)
     }
     
+    private func assertThat(_ sut: GenresListViewController, isRendering genres: [Genre], file: StaticString = #file, line: UInt = #line) {
+        guard sut.numberOfRenderedGenresViews() == genres.count else {
+            return XCTFail("Expected \(genres.count) rendered genres, got \(sut.numberOfRenderedGenresViews()) rendered views instead")
+        }
+        
+        genres.enumerated().forEach { index, genre in
+            assertThat(sut, hasViewConfiguredFor: genre, at: index, file: file, line: line)
+        }
+    }
+    
+    private func assertThat(
+        _ sut: GenresListViewController,
+        hasViewConfiguredFor genre: Genre,
+        at index: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let view = sut.genreView(at: index) as? GenreCell
+        XCTAssertNotNil(view, file: file, line: line)
+        XCTAssertEqual(view?.nameText, genre.name, "Wrong name at index \(index)", file: file, line: line)
+    }
+    
+    private func makeGenre(id: Int, name: String) -> Genre {
+        return Genre(id: id, name: name)
+    }
+    
     class LoaderSpy: GenresLoader {
         private var completions = [(LoadGenresResult) -> Void]()
         
@@ -62,8 +106,8 @@ final class GenresListViewControllerTests: XCTestCase {
             completions.append(completion)
         }
         
-        func completeGenresLoading(at index: Int) {
-            completions[index](.success([]))
+        func completeGenresLoading(with genres: [Genre] = [], at index: Int) {
+            completions[index](.success(genres))
         }
     }
 }
@@ -75,6 +119,26 @@ private extension GenresListViewController {
     
     var isShowinLoadingIndicator: Bool {
         return collectionView.refreshControl?.isRefreshing == true
+    }
+    
+    private var genresSection: Int {
+        return 0
+    }
+    
+    func numberOfRenderedGenresViews() -> Int {
+        return collectionView.numberOfItems(inSection: genresSection)
+    }
+    
+    func genreView(at row: Int) -> UICollectionViewCell? {
+        let ds = collectionView.dataSource
+        let index = IndexPath(row: row, section: genresSection)
+        return ds?.collectionView(collectionView, cellForItemAt: index)
+    }
+}
+
+private extension GenreCell {
+    var nameText: String? {
+        return nameLabel.text
     }
 }
 

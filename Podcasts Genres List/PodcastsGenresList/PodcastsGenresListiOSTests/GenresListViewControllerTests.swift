@@ -75,6 +75,14 @@ final class GenresListViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, false)
     }
     
+    func test_pullToRefresh_showsLoadingIndicator() {
+        let (sut, _) = makeSUT()
+        
+        sut.collectionView.refreshControl?.simulatePullToRefresh()
+        
+        XCTAssertEqual(sut.collectionView.refreshControl?.isRefreshing, true)
+    }
+        
     // MARK: - Helpers
     
     private func makeSUT(

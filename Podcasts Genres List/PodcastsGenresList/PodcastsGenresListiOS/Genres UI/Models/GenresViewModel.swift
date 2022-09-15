@@ -4,26 +4,28 @@ import Foundation
 import PodcastsGenresList
 
 final class GenresViewModel {
+    typealias Observer<T> = (T) -> Void
+    
     private let genresLoader: GenresLoader
     
     init(genresLoader: GenresLoader) {
         self.genresLoader = genresLoader
     }
     
-    var onChange: ((GenresViewModel) -> Void)?
-    var onGenresLoad: (([Genre]) -> Void)?
+    var onLoadingStateChange: Observer<Bool>?
+    var onGenresLoad: Observer<[Genre]>?
     
     private(set) var isLoading: Bool = false {
-        didSet { onChange?(self) }
+        didSet { onLoadingStateChange?(isLoading) }
     }
     
     func loadGenres() {
-        isLoading = true
+        onLoadingStateChange?(true)
         genresLoader.load { [weak self] result in
             if let genres = try? result.get() {
                 self?.onGenresLoad?(genres)
             }
-            self?.isLoading = false
+            self?.onLoadingStateChange?(false)
         }
     }
 }

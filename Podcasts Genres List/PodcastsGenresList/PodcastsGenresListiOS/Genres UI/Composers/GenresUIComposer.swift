@@ -9,7 +9,7 @@ public final class GenresUIComposer {
     public static func genresComposedWith(loader: GenresLoader) -> GenresListViewController {
         let genresPresenter = GenresPresenter()
         let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader, presenter: genresPresenter)
-        let refreshController = GenresRefreshViewController(load: presentationAdapter.loadGenres)
+        let refreshController = GenresRefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)
         genresPresenter.loadingView = WeakRefVirtualProxy(refreshController)
         genresPresenter.genresView = GenresViewAdapter(controller: genresController)
@@ -46,7 +46,7 @@ private final class GenresViewAdapter: GenresView {
 }
 
 
-private final class GenresLoaderPresentationAdapter {
+private final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate {
     private let genresLoader: GenresLoader
     private let presenter: GenresPresenter
     
@@ -55,7 +55,7 @@ private final class GenresLoaderPresentationAdapter {
         self.presenter = presenter
     }
     
-    func loadGenres() {
+    func didRequestLoadingGenres() {
         presenter.didStartLoadingGenres()
         genresLoader.load { [weak self] result in
             switch result {

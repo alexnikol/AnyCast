@@ -2,17 +2,21 @@
 
 import UIKit
 
+protocol GenresRefreshViewControllerDelegate {
+    func didRequestLoadingGenres()
+}
+
 final class GenresRefreshViewController: NSObject {
     private(set) lazy var view = loadView()
-    private let load: () -> Void
+    private let delegate: GenresRefreshViewControllerDelegate
     
-    init(load: @escaping () -> Void) {
-        self.load = load
+    init(delegate: GenresRefreshViewControllerDelegate) {
+        self.delegate = delegate
     }
     
     @objc
     func refresh() {
-        load()
+        delegate.didRequestLoadingGenres()
     }
     
     private func loadView() -> UIRefreshControl {

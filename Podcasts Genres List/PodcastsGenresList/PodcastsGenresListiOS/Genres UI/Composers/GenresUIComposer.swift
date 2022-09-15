@@ -10,9 +10,23 @@ public final class GenresUIComposer {
         let genresPresenter = GenresPresenter(genresLoader: loader)
         let refreshController = GenresRefreshViewController(presenter: genresPresenter)
         let genresController = GenresListViewController(refreshController: refreshController)
-        genresPresenter.loadingView = refreshController
+        genresPresenter.loadingView = WeakRefVirtualProxy(refreshController)
         genresPresenter.genresView = GenresViewAdapter(controller: genresController)
         return genresController
+    }
+}
+
+private final class WeakRefVirtualProxy<T: AnyObject> {
+    private weak var object: T?
+    
+    init(_ object: T) {
+        self.object = object
+    }
+}
+
+extension WeakRefVirtualProxy: GenresLoadingView where T: GenresLoadingView {
+    func display(isLoading: Bool) {
+        object?.display(isLoading: isLoading)
     }
 }
 

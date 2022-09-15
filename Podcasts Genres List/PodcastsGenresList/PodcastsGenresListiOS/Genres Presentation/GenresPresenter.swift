@@ -3,7 +3,7 @@
 import Foundation
 import PodcastsGenresList
 
-protocol GenresLoadingView: AnyObject {
+protocol GenresLoadingView {
     func display(isLoading: Bool)
 }
 
@@ -19,7 +19,7 @@ final class GenresPresenter {
     }
     
     var genresView: GenresView?
-    weak var loadingView: GenresLoadingView?
+    var loadingView: GenresLoadingView?
         
     func loadGenres() {
         loadingView?.display(isLoading: true)

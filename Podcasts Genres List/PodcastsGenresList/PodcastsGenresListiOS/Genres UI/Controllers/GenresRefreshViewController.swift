@@ -3,28 +3,31 @@
 import UIKit
 
 final class GenresRefreshViewController: NSObject {
-    private(set) lazy var view = binded(UIRefreshControl())
+    private let presenter: GenresPresenter
+    private(set) lazy var view = loadView()
     
-    private let viewModel: GenresViewModel
-    
-    init(viewModel: GenresViewModel) {
-        self.viewModel = viewModel
+    init(presenter: GenresPresenter) {
+        self.presenter = presenter
     }
     
     @objc
     func refresh() {
-        viewModel.loadGenres()
+        presenter.loadGenres()
     }
     
-    private func binded(_ view: UIRefreshControl) -> UIRefreshControl {
-        viewModel.onLoadingStateChange = { [weak view] isLoading in
-            if isLoading {
-                view?.beginRefreshing()
-            } else {
-                view?.endRefreshing()
-            }
-        }
+    private func loadView() -> UIRefreshControl {
+        let view = UIRefreshControl()
         view.addTarget(self, action: #selector(refresh), for: .valueChanged)
         return view
+    }
+}
+
+extension GenresRefreshViewController: GenresLoadingView {
+    func display(isLoading: Bool) {
+        if isLoading {
+            view.beginRefreshing()
+        } else {
+            view.endRefreshing()
+        }
     }
 }

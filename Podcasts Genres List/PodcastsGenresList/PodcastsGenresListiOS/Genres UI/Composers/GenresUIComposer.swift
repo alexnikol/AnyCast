@@ -7,18 +7,25 @@ public final class GenresUIComposer {
     private init() {}
     
     public static func genresComposedWith(loader: GenresLoader) -> GenresListViewController {
-        let genresViewModel = GenresViewModel(genresLoader: loader)
-        let refreshController = GenresRefreshViewController(viewModel: genresViewModel)
+        let genresPresenter = GenresPresenter(genresLoader: loader)
+        let refreshController = GenresRefreshViewController(presenter: genresPresenter)
         let genresController = GenresListViewController(refreshController: refreshController)
-        genresViewModel.onGenresLoad = adaptGenresToCellControllers(forwardingTo: genresController)
+        genresPresenter.loadingView = refreshController
+        genresPresenter.genresView = GenresViewAdapter(controller: genresController)
         return genresController
     }
+}
+
+private final class GenresViewAdapter: GenresView {
+    private weak var controller: GenresListViewController?
     
-    private static func adaptGenresToCellControllers(forwardingTo controller: GenresListViewController) -> ([Genre]) -> Void {
-        return { [weak controller] genres in
-            controller?.collectionModel = genres.map { model in
-                GenreCellController(model: model)
-            }
+    init(controller: GenresListViewController) {
+        self.controller = controller
+    }
+    
+    func display(genres: [Genre]) {
+        controller?.collectionModel = genres.map { model in
+            GenreCellController(model: model)
         }
     }
 }

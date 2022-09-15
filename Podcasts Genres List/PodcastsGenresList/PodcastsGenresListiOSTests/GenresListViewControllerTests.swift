@@ -75,8 +75,7 @@ final class GenresListViewControllerTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: GenresListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let flowLayout = UICollectionViewFlowLayout()
-        let sut = GenresListViewController(collectionViewLayout: flowLayout, loader: loader)
+        let sut = GenresUIComposer.genresComposedWith(loader: loader)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)

@@ -5,12 +5,13 @@ import PodcastsGenresList
 
 public final class GenresListViewController: UICollectionViewController {
     private var refreshController: GenresRefreshViewController?
-    private var collectionModel: [Genre] = []
-    private var cellControllers: [IndexPath: GenreCellController] = [:]
+    var collectionModel: [GenreCellController] = [] {
+        didSet { collectionView.reloadData() }
+    }
     
-    public convenience init(collectionViewLayout layout: UICollectionViewLayout, loader: GenresLoader) {
+    convenience init(collectionViewLayout layout: UICollectionViewLayout, refreshController: GenresRefreshViewController) {
         self.init(collectionViewLayout: layout)
-        self.refreshController = GenresRefreshViewController(genresLoader: loader)
+        self.refreshController = refreshController
     }
     
     public override func viewDidLoad() {
@@ -18,12 +19,7 @@ public final class GenresListViewController: UICollectionViewController {
         
         collectionView.refreshControl = refreshController?.view
         collectionView.register(GenreCell.self, forCellWithReuseIdentifier: String(describing: GenreCell.self))
-        
-        refreshController?.onRefresh = { [weak self] genres in
-            self?.collectionModel = genres
-            self?.collectionView.reloadData()
-        }
-        
+            
         refreshController?.refresh()
     }
     
@@ -36,9 +32,6 @@ public final class GenresListViewController: UICollectionViewController {
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> GenreCellController {
-        let model = collectionModel[indexPath.row]
-        let cellController = GenreCellController(model: model)
-        cellControllers[indexPath] = cellController
-        return cellController
+        return collectionModel[indexPath.row]
     }
 }

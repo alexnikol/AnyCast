@@ -1,6 +1,5 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import UIKit
 import PodcastsGenresList
 
 public final class GenresUIComposer {
@@ -10,7 +9,7 @@ public final class GenresUIComposer {
     public static func genresComposedWith(loader: GenresLoader) -> GenresListViewController {
         let genresViewModel = GenresViewModel(genresLoader: loader)
         let refreshController = GenresRefreshViewController(viewModel: genresViewModel)
-        let genresController = GenresListViewController(collectionViewLayout: UICollectionViewFlowLayout(), refreshController: refreshController)
+        let genresController = GenresListViewController(refreshController: refreshController)
         genresViewModel.onGenresLoad = adaptGenresToCellControllers(forwardingTo: genresController)
         return genresController
     }

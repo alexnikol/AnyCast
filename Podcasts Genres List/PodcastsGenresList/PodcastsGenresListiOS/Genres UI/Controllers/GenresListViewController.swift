@@ -8,8 +8,8 @@ public final class GenresListViewController: UICollectionViewController {
         didSet { collectionView.reloadData() }
     }
     
-    convenience init(collectionViewLayout layout: UICollectionViewLayout, refreshController: GenresRefreshViewController) {
-        self.init(collectionViewLayout: layout)
+    convenience init(refreshController: GenresRefreshViewController) {
+        self.init(collectionViewLayout: UICollectionViewFlowLayout())
         self.refreshController = refreshController
     }
     

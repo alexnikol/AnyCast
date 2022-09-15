@@ -3,16 +3,16 @@
 import UIKit
 
 final class GenresRefreshViewController: NSObject {
-    private let presenter: GenresPresenter
     private(set) lazy var view = loadView()
+    private let load: () -> Void
     
-    init(presenter: GenresPresenter) {
-        self.presenter = presenter
+    init(load: @escaping () -> Void) {
+        self.load = load
     }
     
     @objc
     func refresh() {
-        presenter.loadGenres()
+        load()
     }
     
     private func loadView() -> UIRefreshControl {

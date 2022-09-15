@@ -25,8 +25,8 @@ private final class WeakRefVirtualProxy<T: AnyObject> {
 }
 
 extension WeakRefVirtualProxy: GenresLoadingView where T: GenresLoadingView {
-    func display(isLoading: Bool) {
-        object?.display(isLoading: isLoading)
+    func display(_ viewModel: GenresLoadingViewModel) {
+        object?.display(viewModel)
     }
 }
 
@@ -36,9 +36,9 @@ private final class GenresViewAdapter: GenresView {
     init(controller: GenresListViewController) {
         self.controller = controller
     }
-    
-    func display(genres: [Genre]) {
-        controller?.collectionModel = genres.map { model in
+
+    func display(_ viewModel: GenresViewModel) {
+        controller?.collectionModel = viewModel.genres.map { model in
             GenreCellController(model: model)
         }
     }

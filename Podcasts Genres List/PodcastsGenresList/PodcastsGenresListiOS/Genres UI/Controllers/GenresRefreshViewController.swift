@@ -23,8 +23,8 @@ final class GenresRefreshViewController: NSObject {
 }
 
 extension GenresRefreshViewController: GenresLoadingView {
-    func display(isLoading: Bool) {
-        if isLoading {
+    func display(_ viewModel: GenresLoadingViewModel) {
+        if viewModel.isLoading {
             view.beginRefreshing()
         } else {
             view.endRefreshing()

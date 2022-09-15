@@ -3,12 +3,20 @@
 import Foundation
 import PodcastsGenresList
 
+struct GenresLoadingViewModel {
+    let isLoading: Bool
+}
+
 protocol GenresLoadingView {
-    func display(isLoading: Bool)
+    func display(_ viewModel: GenresLoadingViewModel)
+}
+
+struct GenresViewModel {
+    let genres: [Genre]
 }
 
 protocol GenresView {
-    func display(genres: [Genre])
+    func display(_ viewModel: GenresViewModel)
 }
 
 final class GenresPresenter {
@@ -22,12 +30,12 @@ final class GenresPresenter {
     var loadingView: GenresLoadingView?
         
     func loadGenres() {
-        loadingView?.display(isLoading: true)
+        loadingView?.display(.init(isLoading: true))
         genresLoader.load { [weak self] result in
             if let genres = try? result.get() {
-                self?.genresView?.display(genres: genres)
+                self?.genresView?.display(.init(genres: genres))
             }
-            self?.loadingView?.display(isLoading: false)
+            self?.loadingView?.display(.init(isLoading: false))
         }
     }
 }

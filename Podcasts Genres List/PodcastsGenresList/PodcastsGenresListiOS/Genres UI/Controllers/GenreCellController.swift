@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
-import PodcastsGenresList
 
 final class GenreCellController {
     

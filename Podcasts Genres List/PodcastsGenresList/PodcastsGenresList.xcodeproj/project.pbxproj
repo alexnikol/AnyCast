@@ -55,6 +55,8 @@
 		8DC3522D28D215A900F12FD9 /* GenreCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522C28D215A900F12FD9 /* GenreCellController.swift */; };
 		8DC3523028D2F5FC00F12FD9 /* GenresUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522F28D2F5FC00F12FD9 /* GenresUIComposer.swift */; };
 		8DC3523328D310F700F12FD9 /* GenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3523228D310F700F12FD9 /* GenresViewModel.swift */; };
+		8DC3548E28D326F400F12FD9 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */; };
+		8DC3549028D3272400F12FD9 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3548F28D3272400F12FD9 /* Reusable.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -143,6 +145,8 @@
 		8DC3522C28D215A900F12FD9 /* GenreCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCellController.swift; sourceTree = "<group>"; };
 		8DC3522F28D2F5FC00F12FD9 /* GenresUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresUIComposer.swift; sourceTree = "<group>"; };
 		8DC3523228D310F700F12FD9 /* GenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewModel.swift; sourceTree = "<group>"; };
+		8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		8DC3548F28D3272400F12FD9 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -385,6 +389,7 @@
 				8DC3522E28D2F5ED00F12FD9 /* Composers */,
 				8DC3522828D20FCE00F12FD9 /* Controllers */,
 				8DC3522928D20FD500F12FD9 /* Views */,
+				8DC3548C28D326E300F12FD9 /* Extensions */,
 			);
 			path = "Genres UI";
 			sourceTree = "<group>";
@@ -421,6 +426,15 @@
 				8DC3523228D310F700F12FD9 /* GenresViewModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8DC3548C28D326E300F12FD9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */,
+				8DC3548F28D3272400F12FD9 /* Reusable.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8DF5A46F28D0835F00E5E2A9 /* Infrastructure */ = {
@@ -746,7 +760,9 @@
 			files = (
 				8DC3522328D1F4B800F12FD9 /* GenresListViewController.swift in Sources */,
 				8DC3523028D2F5FC00F12FD9 /* GenresUIComposer.swift in Sources */,
+				8DC3548E28D326F400F12FD9 /* UICollectionView+Extensions.swift in Sources */,
 				8DC3522D28D215A900F12FD9 /* GenreCellController.swift in Sources */,
+				8DC3549028D3272400F12FD9 /* Reusable.swift in Sources */,
 				8DC3522B28D212A300F12FD9 /* GenresRefreshViewController.swift in Sources */,
 				8DC3523328D310F700F12FD9 /* GenresViewModel.swift in Sources */,
 				8DC3522528D1F99900F12FD9 /* GenreCell.swift in Sources */,

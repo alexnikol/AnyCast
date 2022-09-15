@@ -12,7 +12,7 @@ final class GenreCellController {
     }
     
     func view(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GenreCell.self), for: indexPath) as! GenreCell
+        let cell: GenreCell = collectionView.dequeueAndRegisterCell(indexPath: indexPath)
         cell.nameLabel.text = model.name
         return cell
     }

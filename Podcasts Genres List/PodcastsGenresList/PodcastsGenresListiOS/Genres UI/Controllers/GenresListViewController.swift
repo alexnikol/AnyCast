@@ -34,6 +34,5 @@ public final class GenresListViewController: UICollectionViewController {
     
     private func configureListView() {
         collectionView.refreshControl = refreshController?.view
-        collectionView.register(GenreCell.self, forCellWithReuseIdentifier: String(describing: GenreCell.self))
     }
 }

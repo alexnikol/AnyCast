@@ -5,9 +5,9 @@ import PodcastsGenresList
 
 final class GenreCellController {
     
-    private let model: Genre
+    private let model: GenreViewModel
     
-    init(model: Genre) {
+    init(model: GenreViewModel) {
         self.model = model
     }
     

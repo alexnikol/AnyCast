@@ -11,8 +11,12 @@ protocol GenresLoadingView {
     func display(_ viewModel: GenresLoadingViewModel)
 }
 
+struct GenreViewModel {
+    let name: String
+}
+
 struct GenresViewModel {
-    let genres: [Genre]
+    let genres: [GenreViewModel]
 }
 
 protocol GenresView {
@@ -33,7 +37,7 @@ final class GenresPresenter {
     }
     
     func didFinishLoadingGenres(with genres: [Genre]) {
-        genresView.display(.init(genres: genres))
+        genresView.display(.init(genres: genres.map { GenreViewModel(name: $0.name) }))
         loadingView.display(.init(isLoading: false))
     }
     

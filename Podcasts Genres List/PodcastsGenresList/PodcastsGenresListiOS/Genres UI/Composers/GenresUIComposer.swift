@@ -8,9 +8,10 @@ public final class GenresUIComposer {
     private init() {}
     
     public static func genresComposedWith(loader: GenresLoader) -> GenresListViewController {
-        let refreshController = GenresRefreshViewController(genresLoader: loader)
+        let genresViewModel = GenresViewModel(genresLoader: loader)
+        let refreshController = GenresRefreshViewController(viewModel: genresViewModel)
         let genresController = GenresListViewController(collectionViewLayout: UICollectionViewFlowLayout(), refreshController: refreshController)
-        refreshController.onRefresh = adaptGenresToCellControllers(forwardingTo: genresController)
+        genresViewModel.onGenresLoad = adaptGenresToCellControllers(forwardingTo: genresController)
         return genresController
     }
     

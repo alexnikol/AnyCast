@@ -16,10 +16,8 @@ public final class GenresListViewController: UICollectionViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        configureListView()
         
-        collectionView.refreshControl = refreshController?.view
-        collectionView.register(GenreCell.self, forCellWithReuseIdentifier: String(describing: GenreCell.self))
-            
         refreshController?.refresh()
     }
     
@@ -33,5 +31,10 @@ public final class GenresListViewController: UICollectionViewController {
     
     private func cellController(forRowAt indexPath: IndexPath) -> GenreCellController {
         return collectionModel[indexPath.row]
+    }
+    
+    private func configureListView() {
+        collectionView.refreshControl = refreshController?.view
+        collectionView.register(GenreCell.self, forCellWithReuseIdentifier: String(describing: GenreCell.self))
     }
 }

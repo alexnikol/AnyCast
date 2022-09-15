@@ -54,7 +54,6 @@
 		8DC3522B28D212A300F12FD9 /* GenresRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522A28D212A300F12FD9 /* GenresRefreshViewController.swift */; };
 		8DC3522D28D215A900F12FD9 /* GenreCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522C28D215A900F12FD9 /* GenreCellController.swift */; };
 		8DC3523028D2F5FC00F12FD9 /* GenresUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522F28D2F5FC00F12FD9 /* GenresUIComposer.swift */; };
-		8DC3523328D310F700F12FD9 /* GenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3523228D310F700F12FD9 /* GenresViewModel.swift */; };
 		8DC3548E28D326F400F12FD9 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */; };
 		8DC3549028D3272400F12FD9 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3548F28D3272400F12FD9 /* Reusable.swift */; };
 		8DC3549328D3325500F12FD9 /* GenresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549228D3325500F12FD9 /* GenresPresenter.swift */; };
@@ -145,7 +144,6 @@
 		8DC3522A28D212A300F12FD9 /* GenresRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresRefreshViewController.swift; sourceTree = "<group>"; };
 		8DC3522C28D215A900F12FD9 /* GenreCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCellController.swift; sourceTree = "<group>"; };
 		8DC3522F28D2F5FC00F12FD9 /* GenresUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresUIComposer.swift; sourceTree = "<group>"; };
-		8DC3523228D310F700F12FD9 /* GenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewModel.swift; sourceTree = "<group>"; };
 		8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		8DC3548F28D3272400F12FD9 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		8DC3549228D3325500F12FD9 /* GenresPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresPresenter.swift; sourceTree = "<group>"; };
@@ -434,7 +432,6 @@
 		8DC3549128D331FA00F12FD9 /* Genres Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				8DC3523228D310F700F12FD9 /* GenresViewModel.swift */,
 				8DC3549228D3325500F12FD9 /* GenresPresenter.swift */,
 			);
 			path = "Genres Presentation";
@@ -768,7 +765,6 @@
 				8DC3549028D3272400F12FD9 /* Reusable.swift in Sources */,
 				8DC3549328D3325500F12FD9 /* GenresPresenter.swift in Sources */,
 				8DC3522B28D212A300F12FD9 /* GenresRefreshViewController.swift in Sources */,
-				8DC3523328D310F700F12FD9 /* GenresViewModel.swift in Sources */,
 				8DC3522528D1F99900F12FD9 /* GenreCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

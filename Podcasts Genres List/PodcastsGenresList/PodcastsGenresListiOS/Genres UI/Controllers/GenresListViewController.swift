@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
-import PodcastsGenresList
 
 public final class GenresListViewController: UICollectionViewController {
     private var refreshController: GenresRefreshViewController?

@@ -407,6 +407,7 @@
 		8DC3522928D20FD500F12FD9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8DC3548F28D3272400F12FD9 /* Reusable.swift */,
 				8DC3522428D1F99900F12FD9 /* GenreCell.swift */,
 			);
 			path = Views;
@@ -432,7 +433,6 @@
 			isa = PBXGroup;
 			children = (
 				8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */,
-				8DC3548F28D3272400F12FD9 /* Reusable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

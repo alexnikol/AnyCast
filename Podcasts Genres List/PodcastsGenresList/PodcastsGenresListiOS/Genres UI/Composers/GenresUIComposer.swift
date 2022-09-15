@@ -10,11 +10,15 @@ public final class GenresUIComposer {
     public static func genresComposedWith(loader: GenresLoader) -> GenresListViewController {
         let refreshController = GenresRefreshViewController(genresLoader: loader)
         let genresController = GenresListViewController(collectionViewLayout: UICollectionViewFlowLayout(), refreshController: refreshController)
-        refreshController.onRefresh = { [weak genresController] genres in
-            genresController?.collectionModel = genres.map { model in
+        refreshController.onRefresh = adaptGenresToCellControllers(forwardingTo: genresController)
+        return genresController
+    }
+    
+    private static func adaptGenresToCellControllers(forwardingTo controller: GenresListViewController) -> ([Genre]) -> Void {
+        return { [weak controller] genres in
+            controller?.collectionModel = genres.map { model in
                 GenreCellController(model: model)
             }
         }
-        return genresController
     }
 }

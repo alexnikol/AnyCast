@@ -20,19 +20,24 @@ protocol GenresView {
 }
 
 final class GenresPresenter {
-    var genresView: GenresView?
-    var loadingView: GenresLoadingView?
+    let genresView: GenresView
+    let loadingView: GenresLoadingView
         
+    init(genresView: GenresView, loadingView: GenresLoadingView) {
+        self.genresView = genresView
+        self.loadingView = loadingView
+    }
+    
     func didStartLoadingGenres() {
-        loadingView?.display(.init(isLoading: true))
+        loadingView.display(.init(isLoading: true))
     }
     
     func didFinishLoadingGenres(with genres: [Genre]) {
-        genresView?.display(.init(genres: genres))
-        loadingView?.display(.init(isLoading: false))
+        genresView.display(.init(genres: genres))
+        loadingView.display(.init(isLoading: false))
     }
     
     func didFinishLoading(with error: Error) {
-        loadingView?.display(.init(isLoading: false))
+        loadingView.display(.init(isLoading: false))
     }
 }

@@ -7,12 +7,15 @@ public final class GenresUIComposer {
     private init() {}
     
     public static func genresComposedWith(loader: GenresLoader) -> GenresListViewController {
-        let genresPresenter = GenresPresenter()
-        let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader, presenter: genresPresenter)
+        let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader)
         let refreshController = GenresRefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)
-        genresPresenter.loadingView = WeakRefVirtualProxy(refreshController)
-        genresPresenter.genresView = GenresViewAdapter(controller: genresController)
+        
+        let genresPresenter = GenresPresenter(
+            genresView: GenresViewAdapter(controller: genresController),
+            loadingView: WeakRefVirtualProxy(refreshController)
+        )
+        presentationAdapter.presenter = genresPresenter
         return genresController
     }
 }
@@ -48,22 +51,21 @@ private final class GenresViewAdapter: GenresView {
 
 private final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate {
     private let genresLoader: GenresLoader
-    private let presenter: GenresPresenter
+    var presenter: GenresPresenter?
     
-    init(genresLoader: GenresLoader, presenter: GenresPresenter) {
+    init(genresLoader: GenresLoader) {
         self.genresLoader = genresLoader
-        self.presenter = presenter
     }
     
     func didRequestLoadingGenres() {
-        presenter.didStartLoadingGenres()
+        presenter?.didStartLoadingGenres()
         genresLoader.load { [weak self] result in
             switch result {
             case let .success(genres):
-                self?.presenter.didFinishLoadingGenres(with: genres)
+                self?.presenter?.didFinishLoadingGenres(with: genres)
                 
             case let .failure(error):
-                self?.presenter.didFinishLoading(with: error)
+                self?.presenter?.didFinishLoading(with: error)
             }
         }
     }

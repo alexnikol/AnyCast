@@ -69,7 +69,10 @@
 		8DC354B228D4780D00F12FD9 /* GenresViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354B128D4780D00F12FD9 /* GenresViewAdapter.swift */; };
 		8DC354B428D4784500F12FD9 /* GenresLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354B328D4784500F12FD9 /* GenresLoaderPresentationAdapter.swift */; };
 		8DC354B728D47F3B00F12FD9 /* GenresPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */; };
-		8DD2FA4F28D497090031AAEA /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5128D497090031AAEA /* Genres.strings */; };
+		8DD2FA5528D4987E0031AAEA /* GenresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5428D4987E0031AAEA /* GenresView.swift */; };
+		8DD2FA5728D498A00031AAEA /* GenresLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5628D498A00031AAEA /* GenresLoadingView.swift */; };
+		8DD2FA5928D4990B0031AAEA /* GenresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */; };
+		8DD2FA5A28D499800031AAEA /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5128D497090031AAEA /* Genres.strings */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -175,6 +178,9 @@
 		8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresPresenterTests.swift; sourceTree = "<group>"; };
 		8DD2FA5028D497090031AAEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Genres.strings; sourceTree = "<group>"; };
 		8DD2FA5228D4970C0031AAEA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Genres.strings; sourceTree = "<group>"; };
+		8DD2FA5428D4987E0031AAEA /* GenresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresView.swift; sourceTree = "<group>"; };
+		8DD2FA5628D498A00031AAEA /* GenresLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLoadingView.swift; sourceTree = "<group>"; };
+		8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresPresenter.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -361,6 +367,7 @@
 				8D745E2628C1EA06005DC3F8 /* Genres Feature */,
 				8D745DCD28BFA6F6005DC3F8 /* Genres API */,
 				8DA0543B28C9EFCE00418F3E /* Genres Cache */,
+				8DD2FA5328D4986A0031AAEA /* Genres Presentation */,
 			);
 			path = PodcastsGenresList;
 			sourceTree = "<group>";
@@ -505,6 +512,16 @@
 			isa = PBXGroup;
 			children = (
 				8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */,
+			);
+			path = "Genres Presentation";
+			sourceTree = "<group>";
+		};
+		8DD2FA5328D4986A0031AAEA /* Genres Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8DD2FA5428D4987E0031AAEA /* GenresView.swift */,
+				8DD2FA5628D498A00031AAEA /* GenresLoadingView.swift */,
+				8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */,
 				8DD2FA5128D497090031AAEA /* Genres.strings */,
 			);
 			path = "Genres Presentation";
@@ -736,6 +753,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DD2FA5A28D499800031AAEA /* Genres.strings in Resources */,
 				8DA0932B28BF5E3700C4C68D /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,7 +762,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DD2FA4F28D497090031AAEA /* Genres.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,13 +815,16 @@
 				8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */,
 				8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */,
 				8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */,
+				8DD2FA5528D4987E0031AAEA /* GenresView.swift in Sources */,
 				8DA0545028CB6B2200418F3E /* GenresCachePolicy.swift in Sources */,
+				8DD2FA5928D4990B0031AAEA /* GenresPresenter.swift in Sources */,
 				8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */,
 				8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */,
 				8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */,
 				8D745E2E28C62173005DC3F8 /* URLSessionHTTPClient.swift in Sources */,
 				8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */,
 				8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */,
+				8DD2FA5728D498A00031AAEA /* GenresLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

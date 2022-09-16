@@ -3,54 +3,6 @@
 import XCTest
 import PodcastsGenresList
 
-struct GenresLoadingViewModel {
-    let isLoading: Bool
-}
-
-protocol GenresLoadingView {
-    func display(_ viewModel: GenresLoadingViewModel)
-}
-
-struct GenresViewModel: Hashable {
-    let genres: [Genre]
-}
-
-protocol GenresView {
-    func display(_ viewModel: GenresViewModel)
-}
-
-class GenresPresenter {
-    let genresView: GenresView
-    let loadingView: GenresLoadingView
-    
-    static var title: String {
-        return NSLocalizedString(
-            "GENRES_VIEW_TITLE",
-             tableName: "Genres",
-             bundle: .init(for: Self.self),
-             comment: "Title for the genres view"
-        )
-    }
-    
-    init(loadingView: GenresLoadingView, genresView: GenresView) {
-        self.loadingView = loadingView
-        self.genresView = genresView
-    }
-    
-    func didStartLoadingGenres() {
-        loadingView.display(.init(isLoading: true))
-    }
-    
-    func didFinishLoading(with error: Error) {
-        loadingView.display(.init(isLoading: false))
-    }
-    
-    func didFinishLoadingGenres(with genres: [Genre]) {
-        genresView.display(.init(genres: genres))
-        loadingView.display(.init(isLoading: false))
-    }
-}
-
 class GenresPresenterTests: XCTestCase {
     
     func test_title_isLocalized() {

@@ -28,6 +28,8 @@
 		8D75815E28D0B27000751261 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8D75815F28D0BA5400751261 /* GenresCacheTestHeplers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544B28CB611300418F3E /* GenresCacheTestHeplers.swift */; };
 		8D76B81628D49BC80014A211 /* GenresLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */; };
+		8D76B8AC28D4B3EF0014A211 /* GenreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B8AB28D4B3EF0014A211 /* GenreCellViewModel.swift */; };
+		8D9CC42928D4B6CE00EF7D4D /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
@@ -49,7 +51,6 @@
 		8DC3520228D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC351FA28D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework */; };
 		8DC3521028D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3520F28D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift */; };
 		8DC3521C28D1E5C600F12FD9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
-		8DC3521D28D1EB4100F12FD9 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8DC3522328D1F4B800F12FD9 /* GenresListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */; };
 		8DC3522528D1F99900F12FD9 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522428D1F99900F12FD9 /* GenreCell.swift */; };
 		8DC3522B28D212A300F12FD9 /* GenresRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522A28D212A300F12FD9 /* GenresRefreshViewController.swift */; };
@@ -90,6 +91,13 @@
 			remoteGlobalIDString = 8DA0930B28BF59C900C4C68D;
 			remoteInfo = PodcastsGenresList;
 		};
+		8D9CC42B28D4B6CE00EF7D4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DA0930B28BF59C900C4C68D;
+			remoteInfo = PodcastsGenresList;
+		};
 		8DA0931F28BF5A0200C4C68D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -103,13 +111,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC351F928D1DB1E00F12FD9;
 			remoteInfo = PodcastsGenresListiOS;
-		};
-		8DC3521F28D1EB4100F12FD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DA0930B28BF59C900C4C68D;
-			remoteInfo = PodcastsGenresList;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -131,6 +132,7 @@
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
 		8D75815428D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D75815628D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsGenresListCacheIntegrationTests.swift; sourceTree = "<group>"; };
+		8D76B8AB28D4B3EF0014A211 /* GenreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCellViewModel.swift; sourceTree = "<group>"; };
 		8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheGenresUseCaseTests.swift; sourceTree = "<group>"; };
 		8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenresLoader.swift; sourceTree = "<group>"; };
 		8DA0543E28C9F00700418F3E /* GenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStore.swift; sourceTree = "<group>"; };
@@ -216,7 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DC3521D28D1EB4100F12FD9 /* PodcastsGenresList.framework in Frameworks */,
+				8D9CC42928D4B6CE00EF7D4D /* PodcastsGenresList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +432,7 @@
 				8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */,
 				8DC3522A28D212A300F12FD9 /* GenresRefreshViewController.swift */,
 				8DC3522C28D215A900F12FD9 /* GenreCellController.swift */,
+				8D76B8AB28D4B3EF0014A211 /* GenreCellViewModel.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -628,7 +631,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				8DC3522028D1EB4100F12FD9 /* PBXTargetDependency */,
+				8D9CC42C28D4B6CE00EF7D4D /* PBXTargetDependency */,
 			);
 			name = PodcastsGenresListiOS;
 			productName = PodcastsGenresListiOS;
@@ -836,6 +839,7 @@
 				8DC3523028D2F5FC00F12FD9 /* GenresUIComposer.swift in Sources */,
 				8DC3548E28D326F400F12FD9 /* UICollectionView+Extensions.swift in Sources */,
 				8DC3522D28D215A900F12FD9 /* GenreCellController.swift in Sources */,
+				8D76B8AC28D4B3EF0014A211 /* GenreCellViewModel.swift in Sources */,
 				8DC354B428D4784500F12FD9 /* GenresLoaderPresentationAdapter.swift in Sources */,
 				8DC3549028D3272400F12FD9 /* Reusable.swift in Sources */,
 				8DC3522B28D212A300F12FD9 /* GenresRefreshViewController.swift in Sources */,
@@ -875,6 +879,12 @@
 			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
 			targetProxy = 8D75815928D0AFA800751261 /* PBXContainerItemProxy */;
 		};
+		8D9CC42C28D4B6CE00EF7D4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
+			targetProxy = 8D9CC42B28D4B6CE00EF7D4D /* PBXContainerItemProxy */;
+		};
 		8DA0932028BF5A0200C4C68D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
@@ -884,12 +894,6 @@
 			isa = PBXTargetDependency;
 			target = 8DC351F928D1DB1E00F12FD9 /* PodcastsGenresListiOS */;
 			targetProxy = 8DC3520328D1DB1E00F12FD9 /* PBXContainerItemProxy */;
-		};
-		8DC3522028D1EB4100F12FD9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
-			targetProxy = 8DC3521F28D1EB4100F12FD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1215,10 +1219,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1247,9 +1252,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

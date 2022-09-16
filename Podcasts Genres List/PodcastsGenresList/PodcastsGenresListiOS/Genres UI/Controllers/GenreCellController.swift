@@ -5,15 +5,16 @@ import PodcastsGenresList
 
 final class GenreCellController {
     
-    private let model: Genre
+    private let model: GenreCellViewModel
     
-    init(model: Genre) {
+    init(model: GenreCellViewModel) {
         self.model = model
     }
     
     func view(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: GenreCell = collectionView.dequeueAndRegisterCell(indexPath: indexPath)
         cell.nameLabel.text = model.name
+        cell.tagView.backgroundColor = model.color
         return cell
     }
 }

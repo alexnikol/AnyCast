@@ -1,5 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
+import UIKit
 import PodcastsGenresList
 
 final class GenresViewAdapter: GenresView {
@@ -10,8 +11,9 @@ final class GenresViewAdapter: GenresView {
     }
 
     func display(_ viewModel: GenresViewModel) {
-        controller?.collectionModel = viewModel.genres.map { model in
-            GenreCellController(model: model)
+        controller?.collectionModel = viewModel.genres.enumerated().map { (index, model) in
+            let cellModel = GenreCellViewModel(name: model.name, color: .green)
+            return GenreCellController(model: cellModel)
         }
     }
 }

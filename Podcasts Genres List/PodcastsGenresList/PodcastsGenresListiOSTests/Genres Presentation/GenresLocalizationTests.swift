@@ -1,7 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-@testable import PodcastsGenresListiOS
+import PodcastsGenresList
 
 final class GenresLocalizationTests: XCTestCase {
     

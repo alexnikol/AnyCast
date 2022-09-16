@@ -1,5 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
+import PodcastsGenresList
+
 final class GenresViewAdapter: GenresView {
     private weak var controller: GenresListViewController?
     

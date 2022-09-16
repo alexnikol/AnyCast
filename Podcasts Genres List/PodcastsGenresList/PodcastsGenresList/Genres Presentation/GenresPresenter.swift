@@ -15,9 +15,9 @@ public class GenresPresenter {
         )
     }
     
-    public init(loadingView: GenresLoadingView, genresView: GenresView) {
-        self.loadingView = loadingView
+    public init(genresView: GenresView, loadingView: GenresLoadingView) {
         self.genresView = genresView
+        self.loadingView = loadingView
     }
     
     public func didStartLoadingGenres() {

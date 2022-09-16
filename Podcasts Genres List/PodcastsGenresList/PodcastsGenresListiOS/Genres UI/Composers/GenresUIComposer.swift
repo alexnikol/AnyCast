@@ -1,7 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import PodcastsGenresList
 import Foundation
+import PodcastsGenresList
 
 public final class GenresUIComposer {
     

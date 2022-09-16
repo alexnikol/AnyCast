@@ -1,12 +1,13 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import PodcastsGenresList
 
 final class GenreCellController {
     
-    private let model: GenreViewModel
+    private let model: Genre
     
-    init(model: GenreViewModel) {
+    init(model: Genre) {
         self.model = model
     }
     

@@ -47,7 +47,7 @@ class GenresPresenterTests: XCTestCase {
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: GenresPresenter, view: ViewSpy) {
         let view = ViewSpy()
-        let sut = GenresPresenter(loadingView: view, genresView: view)
+        let sut = GenresPresenter(genresView: view, loadingView: view)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, view)
     }

@@ -22,7 +22,8 @@ class GenresActiveColorProvider {
     }
     
     private func validate(_ color: String) throws -> Void {
-        let isColorsStringValid = color.filter(\.isHexDigit).count == color.count
+        let preparedColorString = color.replacingOccurrences(of: "#", with: "")
+        let isColorsStringValid = preparedColorString.filter(\.isHexDigit).count == preparedColorString.count
         if isColorsStringValid {
             return
         }
@@ -53,12 +54,19 @@ final class GenresActiveColorProviderTests: XCTestCase {
         }
     }
     
-    func test_validateColors_deliversErrorIfAnyOfProvidedColorsAreNotValidHexString() {
+    func test_onSetColorsList_deliversErrorIfAnyOfProvidedColorsAreNotValidHexString() {
         let sut = makeSUT()
         let invalidColor = "mmmmmm"
         let colors = [invalidColor] + validColors()
         
         XCTAssertThrowsError(try sut.setColors(colors), "Expected failed operation since provided list of colors has an invalid color")
+    }
+    
+    func test_onSetColorsList_deliverNoErrorOnColorsWithNoCareAboutHashtagSymbol() {
+        let sut = makeSUT()
+        let validColors = ["000000", "#ffffff"]
+        
+        XCTAssertNoThrow(try sut.setColors(validColors), "Expected successful operation since provided colors validation do not depend on # symbol")
     }
     
     // MARK: - Helpers

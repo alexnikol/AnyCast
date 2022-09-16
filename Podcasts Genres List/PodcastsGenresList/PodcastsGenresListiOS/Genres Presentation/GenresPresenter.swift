@@ -37,15 +37,30 @@ final class GenresPresenter {
     }
     
     func didStartLoadingGenres() {
+        guard Thread.isMainThread else {
+            return DispatchQueue.main.async { [weak self] in
+                self?.didStartLoadingGenres()
+            }
+        }
         loadingView.display(.init(isLoading: true))
     }
     
     func didFinishLoadingGenres(with genres: [Genre]) {
+        guard Thread.isMainThread else {
+            return DispatchQueue.main.async { [weak self] in
+                self?.didFinishLoadingGenres(with: genres)
+            }
+        }
         genresView.display(.init(genres: genres.map { GenreViewModel(name: $0.name) }))
         loadingView.display(.init(isLoading: false))
     }
     
     func didFinishLoading(with error: Error) {
+        guard Thread.isMainThread else {
+            return DispatchQueue.main.async { [weak self] in
+                self?.didFinishLoading(with: error)
+            }
+        }
         loadingView.display(.init(isLoading: false))
     }
 }

@@ -46,7 +46,7 @@
 		8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */; };
 		8DBA843F28D074A90021781B /* CoreDataGenresStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */; };
 		8DC3520228D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC351FA28D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework */; };
-		8DC3521028D1DF8F00F12FD9 /* GenresListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */; };
+		8DC3521028D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3520F28D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift */; };
 		8DC3521C28D1E5C600F12FD9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DC3521D28D1EB4100F12FD9 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8DC3522328D1F4B800F12FD9 /* GenresListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */; };
@@ -144,7 +144,7 @@
 		8DBA843E28D074A90021781B /* CoreDataGenresStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStoreTests.swift; sourceTree = "<group>"; };
 		8DC351FA28D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsGenresListiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DC3520128D1DB1E00F12FD9 /* PodcastsGenresListiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresListViewControllerTests.swift; sourceTree = "<group>"; };
+		8DC3520F28D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresUIIntegrationTests.swift; sourceTree = "<group>"; };
 		8DC3522228D1F4B800F12FD9 /* GenresListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresListViewController.swift; sourceTree = "<group>"; };
 		8DC3522428D1F99900F12FD9 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
 		8DC3522A28D212A300F12FD9 /* GenresRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresRefreshViewController.swift; sourceTree = "<group>"; };
@@ -453,18 +453,10 @@
 		8DC3549428D4660F00F12FD9 /* Genres UI */ = {
 			isa = PBXGroup;
 			children = (
-				8DC3549528D4662100F12FD9 /* Controllers */,
+				8DC3549828D46B0A00F12FD9 /* Helpers */,
+				8DC3520F28D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift */,
 			);
 			path = "Genres UI";
-			sourceTree = "<group>";
-		};
-		8DC3549528D4662100F12FD9 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				8DC3549828D46B0A00F12FD9 /* Helpers */,
-				8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		8DC3549828D46B0A00F12FD9 /* Helpers */ = {
@@ -820,7 +812,7 @@
 				8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8DC3549A28D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift in Sources */,
 				8DC354A028D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift in Sources */,
-				8DC3521028D1DF8F00F12FD9 /* GenresListViewControllerTests.swift in Sources */,
+				8DC3521028D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift in Sources */,
 				8DC354A228D46C7800F12FD9 /* GenreCell+DSLHelpers.swift in Sources */,
 				8DC3521C28D1E5C600F12FD9 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);

@@ -3,7 +3,7 @@
 import Foundation
 import PodcastsGenresList
 
-extension GenresListViewControllerTests {
+extension GenresUIIntegrationTests {
     class LoaderSpy: GenresLoader {
         private var completions = [(LoadGenresResult) -> Void]()
         

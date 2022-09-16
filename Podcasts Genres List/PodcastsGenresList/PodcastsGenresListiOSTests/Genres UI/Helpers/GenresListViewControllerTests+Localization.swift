@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresListiOS
 
-extension GenresListViewControllerTests {
+extension GenresUIIntegrationTests {
     func localized(_ key: String, file: StaticString = #file, line: UInt = #line) -> String {
         let table = "Genres"
         let bundle = Bundle(for: GenresListViewController.self)

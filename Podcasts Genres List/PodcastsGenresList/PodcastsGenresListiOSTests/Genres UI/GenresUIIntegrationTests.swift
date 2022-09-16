@@ -5,7 +5,7 @@ import UIKit
 import PodcastsGenresList
 import PodcastsGenresListiOS
 
-final class GenresListViewControllerTests: XCTestCase {
+final class GenresUIIntegrationTests: XCTestCase {
         
     func test_genresView_hasTitle() {
         let (sut, _) = makeSUT()

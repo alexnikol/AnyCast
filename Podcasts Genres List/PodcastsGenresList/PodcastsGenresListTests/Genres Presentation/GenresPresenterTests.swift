@@ -8,6 +8,7 @@ struct GenresLoadingViewModel {
 
 protocol GenresLoadingView {
     func display(_ viewModel: GenresLoadingViewModel)
+    func didFinishLoading(with error: Error)
 }
 
 class GenresPresenter {
@@ -21,7 +22,7 @@ class GenresPresenter {
         loadingView.display(.init(isLoading: true))
     }
     
-    func didFinishLoading() {
+    func didFinishLoading(with error: Error) {
         loadingView.display(.init(isLoading: false))
     }
 }
@@ -45,7 +46,7 @@ class GenresPresenterTests: XCTestCase {
     func test_didFinishLoadingGenresWithError_hideLoadingMessage() {
         let (sut, view) = makeSUT()
         
-        sut.didFinishLoading()
+        sut.didFinishLoading(with: anyNSError())
         
         XCTAssertEqual(view.messages, [.display(isLoading: false)])
     }
@@ -68,6 +69,10 @@ class GenresPresenterTests: XCTestCase {
         
         func display(_ viewModel: GenresLoadingViewModel) {
             messages.insert(.display(isLoading: viewModel.isLoading))
+        }
+        
+        func didFinishLoading(with error: Error) {
+            messages.insert(.display(isLoading: false))
         }
     }
 }

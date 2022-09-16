@@ -27,6 +27,7 @@
 		8D75815828D0AFA800751261 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8D75815E28D0B27000751261 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8D75815F28D0BA5400751261 /* GenresCacheTestHeplers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544B28CB611300418F3E /* GenresCacheTestHeplers.swift */; };
+		8D76B81628D49BC80014A211 /* GenresLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */; };
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
@@ -61,7 +62,6 @@
 		8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549D28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift */; };
 		8DC354A028D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549F28D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift */; };
 		8DC354A228D46C7800F12FD9 /* GenreCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */; };
-		8DC354A928D46F7200F12FD9 /* GenresLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */; };
 		8DC354AE28D4775200F12FD9 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354AD28D4775200F12FD9 /* WeakRefVirtualProxy.swift */; };
 		8DC354B028D4779000F12FD9 /* MainQueueDisaptchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354AF28D4779000F12FD9 /* MainQueueDisaptchDecorator.swift */; };
 		8DC354B228D4780D00F12FD9 /* GenresViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354B128D4780D00F12FD9 /* GenresViewAdapter.swift */; };
@@ -401,7 +401,6 @@
 		8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DC354A728D46F5E00F12FD9 /* Genres Presentation */,
 				8DC3549428D4660F00F12FD9 /* Genres UI */,
 			);
 			path = PodcastsGenresListiOSTests;
@@ -485,17 +484,10 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		8DC354A728D46F5E00F12FD9 /* Genres Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */,
-			);
-			path = "Genres Presentation";
-			sourceTree = "<group>";
-		};
 		8DC354B528D47F2100F12FD9 /* Genres Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */,
 				8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */,
 			);
 			path = "Genres Presentation";
@@ -831,6 +823,7 @@
 				8DA0544E28CB61D400418F3E /* SharedTestHelpers.swift in Sources */,
 				8DA0544528CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift in Sources */,
 				8DA0544A28CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift in Sources */,
+				8D76B81628D49BC80014A211 /* GenresLocalizationTests.swift in Sources */,
 				8D745E2C28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -857,7 +850,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DC354A928D46F7200F12FD9 /* GenresLocalizationTests.swift in Sources */,
 				8DC3549C28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
 				8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8DC3549A28D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift in Sources */,

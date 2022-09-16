@@ -44,6 +44,7 @@
 		8DA0931E28BF5A0200C4C68D /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
 		8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */; };
 		8DA0932B28BF5E3700C4C68D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8DA0932A28BF5E3700C4C68D /* README.md */; };
+		8DB7F1E728D4BE5400D131F0 /* GenresTagColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7F1E628D4BE5400D131F0 /* GenresTagColorProvider.swift */; };
 		8DBA843828D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843728D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift */; };
 		8DBA843A28D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */; };
 		8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */; };
@@ -148,6 +149,7 @@
 		8DA0931A28BF5A0200C4C68D /* PodcastsGenresListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLoader.swift; sourceTree = "<group>"; };
 		8DA0932A28BF5E3700C4C68D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		8DB7F1E628D4BE5400D131F0 /* GenresTagColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresTagColorProvider.swift; sourceTree = "<group>"; };
 		8DBA843728D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableRetrieveGenresStoreSpecs.swift"; sourceTree = "<group>"; };
 		8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableInsertGenresStoreSpecs.swift"; sourceTree = "<group>"; };
 		8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FailableDeleteGenresStoreSpecs.swift"; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 			children = (
 				8DC3549828D46B0A00F12FD9 /* Helpers */,
 				8DC3520F28D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift */,
+				8DB7F1E628D4BE5400D131F0 /* GenresTagColorProvider.swift */,
 			);
 			path = "Genres UI";
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC3549C28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
+				8DB7F1E728D4BE5400D131F0 /* GenresTagColorProvider.swift in Sources */,
 				8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8DC3549A28D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift in Sources */,
 				8DC354A028D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift in Sources */,

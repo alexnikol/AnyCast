@@ -21,7 +21,7 @@ class GenresActiveColorProvider {
         guard !colors.isEmpty else {
             throw Error.emptyColorsList
         }
-        return .green
+        return UIColor(hexString: colors[index])
     }
     
     func setColors(_ colors: [String]) throws {
@@ -45,7 +45,7 @@ class GenresActiveColorProvider {
 
 final class GenresActiveColorProviderTests: XCTestCase {
         
-    func test_onSetColors_shouldSaveProvidedColorsList() {
+    func test_onSetColors_saveProvidedColorsList() {
         let sut = makeSUT()
         let colors = validColors()
         
@@ -65,7 +65,7 @@ final class GenresActiveColorProviderTests: XCTestCase {
         XCTAssertThrowsError(try sut.setColors(colors), "Expected failed operation since provided list of colors has an invalid color")
     }
     
-    func test_onSetColors_deliverNoErrorOnColorsWithNoCareAboutHashtagSymbol() {
+    func test_onSetColors_deliversNoErrorOnColorsWithNoCareAboutHashtagSymbol() {
         let sut = makeSUT()
         let validColors = ["000000", "#ffffff"]
         
@@ -86,13 +86,28 @@ final class GenresActiveColorProviderTests: XCTestCase {
         XCTAssertThrowsError(try sut.getColor(by: index), "Expected error on empty colors list")
     }
     
-    func test_onGetColorByIndex_deliverColorsByIndexWithNonEmptyColorsList() {
+    func test_onGetColorByIndex_deliversColorsByIndexWithNonEmptyColorsList() {
         let sut = makeSUT()
         let index = 0
         
         do {
             try sut.setColors(validColors())
             XCTAssertNoThrow(try sut.getColor(by: index), "Expected no error on non empty colors list")
+        } catch {
+            XCTFail("Expected successful set colors operation")
+        }
+    }
+    
+    func test_onGetColorByIndex_deliversColorByIndexOfPassedColorsList() {
+        let sut = makeSUT()
+        let color1 = "e6194b"
+        let color2 = "3cb44b"
+        let colors = [color1, color2]
+        
+        do {
+            try sut.setColors(colors)
+            XCTAssertEqual(try sut.getColor(by: 0), UIColor(hexString: color1))
+            XCTAssertEqual(try sut.getColor(by: 1), UIColor(hexString: color2))
         } catch {
             XCTFail("Expected successful set colors operation")
         }
@@ -111,5 +126,25 @@ final class GenresActiveColorProviderTests: XCTestCase {
     
     private func validColors() -> [String] {
         return ["e6194b", "3cb44b"]
+    }
+}
+
+private extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt64()
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3:
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6:
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8:
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
 }

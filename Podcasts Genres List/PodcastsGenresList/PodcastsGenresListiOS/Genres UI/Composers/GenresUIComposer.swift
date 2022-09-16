@@ -1,23 +1,43 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import PodcastsGenresList
+import Foundation
 
 public final class GenresUIComposer {
     
     private init() {}
     
     public static func genresComposedWith(loader: GenresLoader) -> GenresListViewController {
-        let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader)
+        let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: MainQueueDisaptchDecorator(loader))
         let refreshController = GenresRefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)
         genresController.title = GenresPresenter.title
         
-        let genresPresenter = GenresPresenter(
+        presentationAdapter.presenter = GenresPresenter(
             genresView: GenresViewAdapter(controller: genresController),
             loadingView: WeakRefVirtualProxy(refreshController)
         )
-        presentationAdapter.presenter = genresPresenter
         return genresController
+    }
+}
+
+private final class MainQueueDisaptchDecorator: GenresLoader {
+    private let decoratee: GenresLoader
+    
+    init(_ decoratee: GenresLoader) {
+        self.decoratee = decoratee
+    }
+    
+    func load(completion: @escaping (LoadGenresResult) -> Void) {
+        self.decoratee.load { result in
+            if Thread.isMainThread {
+                completion(result)
+            } else {
+                DispatchQueue.main.async {
+                    completion(result)
+                }
+            }
+        }
     }
 }
 

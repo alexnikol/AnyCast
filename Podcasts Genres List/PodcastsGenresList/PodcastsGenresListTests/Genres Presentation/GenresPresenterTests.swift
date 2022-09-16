@@ -35,7 +35,7 @@ class GenresPresenterTests: XCTestCase {
         
         sut.didStartLoadingGenres()
         
-        XCTAssertEqual(view.messages, [.showLoadingView])
+        XCTAssertEqual(view.messages, [.display(isLoading: true)])
     }
     
     // MARK: - Helpers
@@ -49,13 +49,13 @@ class GenresPresenterTests: XCTestCase {
     
     private class ViewSpy: GenresLoadingView {
         enum Message: Equatable {
-            case showLoadingView
+            case display(isLoading: Bool)
         }
         
         private(set) var messages: [Message] = []
         
         func display(_ viewModel: GenresLoadingViewModel) {
-            messages.append(.showLoadingView)
+            messages.append(.display(isLoading: viewModel.isLoading))
         }
     }
 }

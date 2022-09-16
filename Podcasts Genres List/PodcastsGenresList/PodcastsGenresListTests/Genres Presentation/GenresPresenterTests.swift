@@ -60,14 +60,14 @@ class GenresPresenterTests: XCTestCase {
     }
     
     private class ViewSpy: GenresLoadingView {
-        enum Message: Equatable {
+        enum Message: Hashable {
             case display(isLoading: Bool)
         }
         
-        private(set) var messages: [Message] = []
+        private(set) var messages: Set<Message> = []
         
         func display(_ viewModel: GenresLoadingViewModel) {
-            messages.append(.display(isLoading: viewModel.isLoading))
+            messages.insert(.display(isLoading: viewModel.isLoading))
         }
     }
 }

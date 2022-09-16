@@ -10,6 +10,10 @@ import XCTest
 
 class GenresActiveColorProvider {
     
+    private enum Error: Swift.Error {
+        case invalidColorsList
+    }
+    
     var colors: [String] = []
     
     func getColor(by index: Int) -> UIColor? {
@@ -27,7 +31,7 @@ class GenresActiveColorProvider {
         if isColorsStringValid {
             return
         }
-        throw NSError(domain: "", code: 0)
+        throw Error.invalidColorsList
     }
 }
 

@@ -12,6 +12,7 @@ class GenresActiveColorProvider {
     
     private enum Error: Swift.Error {
         case invalidColorsList
+        case emptyColorsList
     }
     
     var colors: [String] = []
@@ -21,6 +22,10 @@ class GenresActiveColorProvider {
     }
     
     func setColors(_ colors: [String]) throws {
+        guard !colors.isEmpty else {
+            throw Error.emptyColorsList
+        }
+        
         try colors.forEach { try validate($0) }
         self.colors = colors
     }
@@ -46,7 +51,7 @@ final class GenresActiveColorProviderTests: XCTestCase {
         XCTAssertNotNil(color)
     }
     
-    func test_onSetColorsList_shouldSaveProvidedColorsList() {
+    func test_onSetColors_shouldSaveProvidedColorsList() {
         let sut = makeSUT()
         let colors = validColors()
         
@@ -58,7 +63,7 @@ final class GenresActiveColorProviderTests: XCTestCase {
         }
     }
     
-    func test_onSetColorsList_deliversErrorIfAnyOfProvidedColorsAreNotValidHexString() {
+    func test_onSetColors_deliversErrorIfAnyOfProvidedColorsAreNotValidHexString() {
         let sut = makeSUT()
         let invalidColor = "mmmmmm"
         let colors = [invalidColor] + validColors()
@@ -66,11 +71,18 @@ final class GenresActiveColorProviderTests: XCTestCase {
         XCTAssertThrowsError(try sut.setColors(colors), "Expected failed operation since provided list of colors has an invalid color")
     }
     
-    func test_onSetColorsList_deliverNoErrorOnColorsWithNoCareAboutHashtagSymbol() {
+    func test_onSetColors_deliverNoErrorOnColorsWithNoCareAboutHashtagSymbol() {
         let sut = makeSUT()
         let validColors = ["000000", "#ffffff"]
         
         XCTAssertNoThrow(try sut.setColors(validColors), "Expected successful operation since provided colors validation do not depend on # symbol")
+    }
+    
+    func test_onSetColors_deliversErrorOnEmptyList() {
+        let sut = makeSUT()
+        let colors: [String] = []
+        
+        XCTAssertThrowsError(try sut.setColors(colors), "Expected failed operation on provided list: \(colors)")
     }
     
     // MARK: - Helpers

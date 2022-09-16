@@ -20,6 +20,10 @@ class GenresPresenter {
     func didStartLoadingGenres() {
         loadingView.display(.init(isLoading: true))
     }
+    
+    func didFinishLoading() {
+        loadingView.display(.init(isLoading: false))
+    }
 }
 
 class GenresPresenterTests: XCTestCase {
@@ -36,6 +40,14 @@ class GenresPresenterTests: XCTestCase {
         sut.didStartLoadingGenres()
         
         XCTAssertEqual(view.messages, [.display(isLoading: true)])
+    }
+    
+    func test_didFinishLoadingGenresWithError_hideLoadingMessage() {
+        let (sut, view) = makeSUT()
+        
+        sut.didFinishLoading()
+        
+        XCTAssertEqual(view.messages, [.display(isLoading: false)])
     }
     
     // MARK: - Helpers

@@ -10,20 +10,35 @@ import XCTest
 
 class GenresActiveColorProvider {
     
+    var colors: [String] = []
+    
     func getColor(by index: Int) -> UIColor? {
         return .green
+    }
+    
+    func setColors(_ colors: [String]) {
+        self.colors = colors
     }
 }
 
 final class GenresActiveColorProviderTests: XCTestCase {
     
     func test_onGetColorByIndex_shouldReturnColorByIndex() {
-        let provider = makeSUT()
+        let sut = makeSUT()
         let index = 0
         
-        let color = provider.getColor(by: index)
+        let color = sut.getColor(by: index)
         
         XCTAssertNotNil(color)
+    }
+    
+    func test_onSetColorsList_shouldSaveProvidedColorsList() {
+        let sut = makeSUT()
+        let colors = ["#e6194b", "#3cb44b"]
+        
+        sut.setColors(colors)
+        
+        XCTAssertEqual(sut.colors, colors)
     }
     
     // MARK: - Helpers

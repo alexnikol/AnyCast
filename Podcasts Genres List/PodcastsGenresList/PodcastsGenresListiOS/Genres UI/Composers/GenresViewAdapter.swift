@@ -1,7 +1,5 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import Foundation
-
 final class GenresViewAdapter: GenresView {
     private weak var controller: GenresListViewController?
     

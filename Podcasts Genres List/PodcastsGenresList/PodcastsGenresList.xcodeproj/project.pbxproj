@@ -63,6 +63,7 @@
 		8DC354A028D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549F28D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift */; };
 		8DC354A228D46C7800F12FD9 /* GenreCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */; };
 		8DC354A328D46D8900F12FD9 /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DC354A528D46D8900F12FD9 /* Genres.strings */; };
+		8DC354A928D46F7200F12FD9 /* GenresLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -160,6 +161,7 @@
 		8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenreCell+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DC354A428D46D8900F12FD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Genres.strings; sourceTree = "<group>"; };
 		8DC354A628D46DE900F12FD9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Genres.strings; sourceTree = "<group>"; };
+		8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLocalizationTests.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -384,6 +386,7 @@
 		8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				8DC354A728D46F5E00F12FD9 /* Genres Presentation */,
 				8DC3549428D4660F00F12FD9 /* Genres UI */,
 			);
 			path = PodcastsGenresListiOSTests;
@@ -470,6 +473,14 @@
 				8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8DC354A728D46F5E00F12FD9 /* Genres Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */,
+			);
+			path = "Genres Presentation";
 			sourceTree = "<group>";
 		};
 		8DF5A46F28D0835F00E5E2A9 /* Infrastructure */ = {
@@ -810,6 +821,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DC354A928D46F7200F12FD9 /* GenresLocalizationTests.swift in Sources */,
 				8DC3549C28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
 				8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8DC3549A28D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift in Sources */,

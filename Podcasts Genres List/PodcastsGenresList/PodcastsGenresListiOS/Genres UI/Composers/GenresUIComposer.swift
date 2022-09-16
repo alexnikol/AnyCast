@@ -46,20 +46,6 @@ extension MainQueueDisaptchDecorator: GenresLoader where T == GenresLoader {
     }
 }
 
-private final class WeakRefVirtualProxy<T: AnyObject> {
-    private weak var object: T?
-    
-    init(_ object: T) {
-        self.object = object
-    }
-}
-
-extension WeakRefVirtualProxy: GenresLoadingView where T: GenresLoadingView {
-    func display(_ viewModel: GenresLoadingViewModel) {
-        object?.display(viewModel)
-    }
-}
-
 private final class GenresViewAdapter: GenresView {
     private weak var controller: GenresListViewController?
     
@@ -73,7 +59,6 @@ private final class GenresViewAdapter: GenresView {
         }
     }
 }
-
 
 private final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate {
     private let genresLoader: GenresLoader

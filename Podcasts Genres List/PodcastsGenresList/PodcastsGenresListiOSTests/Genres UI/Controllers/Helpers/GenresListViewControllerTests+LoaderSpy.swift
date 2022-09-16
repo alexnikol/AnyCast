@@ -1,8 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import XCTest
+import Foundation
 import PodcastsGenresList
-import PodcastsGenresListiOS
 
 extension GenresListViewControllerTests {
     class LoaderSpy: GenresLoader {

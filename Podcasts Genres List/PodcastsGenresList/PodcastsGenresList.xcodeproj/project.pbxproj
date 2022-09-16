@@ -60,6 +60,9 @@
 		8DC3549728D467B900F12FD9 /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DC3549628D467B900F12FD9 /* Genres.strings */; };
 		8DC3549A28D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549928D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift */; };
 		8DC3549C28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549B28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift */; };
+		8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549D28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift */; };
+		8DC354A028D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549F28D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift */; };
+		8DC354A228D46C7800F12FD9 /* GenreCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -153,6 +156,9 @@
 		8DC3549628D467B900F12FD9 /* Genres.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Genres.strings; sourceTree = "<group>"; };
 		8DC3549928D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenresListViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
 		8DC3549B28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenresListViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
+		8DC3549D28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenresListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8DC3549F28D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenreCell+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -466,6 +472,9 @@
 			children = (
 				8DC3549928D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift */,
 				8DC3549B28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift */,
+				8DC3549D28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift */,
+				8DC3549F28D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift */,
+				8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -808,8 +817,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC3549C28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
+				8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8DC3549A28D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift in Sources */,
+				8DC354A028D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift in Sources */,
 				8DC3521028D1DF8F00F12FD9 /* GenresListViewControllerTests.swift in Sources */,
+				8DC354A228D46C7800F12FD9 /* GenreCell+DSLHelpers.swift in Sources */,
 				8DC3521C28D1E5C600F12FD9 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

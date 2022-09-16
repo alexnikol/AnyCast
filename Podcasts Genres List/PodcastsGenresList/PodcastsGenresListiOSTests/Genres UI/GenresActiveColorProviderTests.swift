@@ -41,16 +41,7 @@ class GenresActiveColorProvider {
 }
 
 final class GenresActiveColorProviderTests: XCTestCase {
-    
-    func test_onGetColorByIndex_shouldReturnColorByIndex() {
-        let sut = makeSUT()
-        let index = 0
         
-        let color = sut.getColor(by: index)
-        
-        XCTAssertNotNil(color)
-    }
-    
     func test_onSetColors_shouldSaveProvidedColorsList() {
         let sut = makeSUT()
         let colors = validColors()
@@ -83,6 +74,15 @@ final class GenresActiveColorProviderTests: XCTestCase {
         let colors: [String] = []
         
         XCTAssertThrowsError(try sut.setColors(colors), "Expected failed operation on provided list: \(colors)")
+    }
+    
+    func test_onGetColorByIndex_shouldReturnColorByIndex() {
+        let sut = makeSUT()
+        let index = 0
+        
+        let color = sut.getColor(by: index)
+        
+        XCTAssertNotNil(color)
     }
     
     // MARK: - Helpers

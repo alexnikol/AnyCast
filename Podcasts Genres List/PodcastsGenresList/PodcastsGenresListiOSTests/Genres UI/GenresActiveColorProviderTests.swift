@@ -79,6 +79,13 @@ final class GenresActiveColorProviderTests: XCTestCase {
         XCTAssertThrowsError(try sut.setColors(colors), "Expected failed operation on provided list: \(colors)")
     }
     
+    func test_onGetColorByIndex_deliversErrorOnEmptyColorsList() {
+        let sut = makeSUT()
+        let index = 0
+
+        XCTAssertThrowsError(try sut.getColor(by: index), "Expected error on empty colors list")
+    }
+    
     func test_onGetColorByIndex_deliverColorsByIndexWithNonEmptyColorsList() {
         let sut = makeSUT()
         let index = 0

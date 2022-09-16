@@ -17,7 +17,16 @@ class GenresActiveColorProvider {
     }
     
     func setColors(_ colors: [String]) throws {
+        try colors.forEach { try validate($0) }
         self.colors = colors
+    }
+    
+    private func validate(_ color: String) throws -> Void {
+        let isColorsStringValid = color.filter(\.isHexDigit).count == color.count
+        if isColorsStringValid {
+            return
+        }
+        throw NSError(domain: "", code: 0)
     }
 }
 
@@ -34,7 +43,7 @@ final class GenresActiveColorProviderTests: XCTestCase {
     
     func test_onSetColorsList_shouldSaveProvidedColorsList() {
         let sut = makeSUT()
-        let colors = uniqueColors()
+        let colors = validColors()
         
         do {
             try sut.setColors(colors)
@@ -42,6 +51,14 @@ final class GenresActiveColorProviderTests: XCTestCase {
         } catch {
             XCTFail("Expected successful set colors operation")
         }
+    }
+    
+    func test_validateColors_deliversErrorIfAnyOfProvidedColorsAreNotValidHexString() {
+        let sut = makeSUT()
+        let invalidColor = "mmmmmm"
+        let colors = [invalidColor] + validColors()
+        
+        XCTAssertThrowsError(try sut.setColors(colors), "Expected failed operation since provided list of colors has an invalid color")
     }
     
     // MARK: - Helpers
@@ -55,7 +72,7 @@ final class GenresActiveColorProviderTests: XCTestCase {
         return sut
     }
     
-    private func uniqueColors() -> [String] {
-        return ["#e6194b", "#3cb44b"]
+    private func validColors() -> [String] {
+        return ["e6194b", "3cb44b"]
     }
 }

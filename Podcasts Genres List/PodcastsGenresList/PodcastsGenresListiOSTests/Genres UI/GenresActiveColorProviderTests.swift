@@ -17,7 +17,10 @@ class GenresActiveColorProvider {
     
     var colors: [String] = []
     
-    func getColor(by index: Int) -> UIColor? {
+    func getColor(by index: Int) throws -> UIColor {
+        guard !colors.isEmpty else {
+            throw Error.emptyColorsList
+        }
         return .green
     }
     
@@ -76,13 +79,16 @@ final class GenresActiveColorProviderTests: XCTestCase {
         XCTAssertThrowsError(try sut.setColors(colors), "Expected failed operation on provided list: \(colors)")
     }
     
-    func test_onGetColorByIndex_shouldReturnColorByIndex() {
+    func test_onGetColorByIndex_deliverColorsByIndexWithNonEmptyColorsList() {
         let sut = makeSUT()
         let index = 0
         
-        let color = sut.getColor(by: index)
-        
-        XCTAssertNotNil(color)
+        do {
+            try sut.setColors(validColors())
+            XCTAssertNoThrow(try sut.getColor(by: index), "Expected no error on non empty colors list")
+        } catch {
+            XCTFail("Expected successful set colors operation")
+        }
     }
     
     // MARK: - Helpers

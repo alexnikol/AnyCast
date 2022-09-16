@@ -28,7 +28,7 @@ final class GenresPresenter {
     let loadingView: GenresLoadingView
         
     static var title: String {
-        return "Search"
+        return NSLocalizedString("GENRES_VIEW_TITLE", tableName: "Genres", bundle: .init(for: Self.self), comment: "Title for the genres view")
     }
     
     init(genresView: GenresView, loadingView: GenresLoadingView) {

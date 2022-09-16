@@ -12,7 +12,11 @@ final class GenresListViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.title, "Search")
+        let bundle = Bundle(for: GenresListViewController.self)
+        let localizedKey = "GENRES_VIEW_TITLE"
+        let localizedTitle = bundle.localizedString(forKey: localizedKey, value: nil, table: "Genres")
+        XCTAssertNotEqual(localizedKey, localizedTitle, "Missing localized string for key: \(localizedKey)")
+        XCTAssertEqual(sut.title, localizedTitle)
     }
     
     func test_loadGenresActions_requestGenresFromLoader() {

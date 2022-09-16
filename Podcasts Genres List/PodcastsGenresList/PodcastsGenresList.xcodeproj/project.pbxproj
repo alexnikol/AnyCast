@@ -57,6 +57,7 @@
 		8DC3548E28D326F400F12FD9 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */; };
 		8DC3549028D3272400F12FD9 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3548F28D3272400F12FD9 /* Reusable.swift */; };
 		8DC3549328D3325500F12FD9 /* GenresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549228D3325500F12FD9 /* GenresPresenter.swift */; };
+		8DC3549728D467B900F12FD9 /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DC3549628D467B900F12FD9 /* Genres.strings */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -147,6 +148,7 @@
 		8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		8DC3548F28D3272400F12FD9 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		8DC3549228D3325500F12FD9 /* GenresPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresPresenter.swift; sourceTree = "<group>"; };
+		8DC3549628D467B900F12FD9 /* Genres.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Genres.strings; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -371,7 +373,7 @@
 		8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */,
+				8DC3549428D4660F00F12FD9 /* Genres UI */,
 			);
 			path = PodcastsGenresListiOSTests;
 			sourceTree = "<group>";
@@ -433,8 +435,25 @@
 			isa = PBXGroup;
 			children = (
 				8DC3549228D3325500F12FD9 /* GenresPresenter.swift */,
+				8DC3549628D467B900F12FD9 /* Genres.strings */,
 			);
 			path = "Genres Presentation";
+			sourceTree = "<group>";
+		};
+		8DC3549428D4660F00F12FD9 /* Genres UI */ = {
+			isa = PBXGroup;
+			children = (
+				8DC3549528D4662100F12FD9 /* Controllers */,
+			);
+			path = "Genres UI";
+			sourceTree = "<group>";
+		};
+		8DC3549528D4662100F12FD9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DC3520F28D1DF8F00F12FD9 /* GenresListViewControllerTests.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		8DF5A46F28D0835F00E5E2A9 /* Infrastructure */ = {
@@ -677,6 +696,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DC3549728D467B900F12FD9 /* Genres.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

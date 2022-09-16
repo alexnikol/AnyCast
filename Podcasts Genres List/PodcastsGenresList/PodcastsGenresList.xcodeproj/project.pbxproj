@@ -69,6 +69,7 @@
 		8DC354B228D4780D00F12FD9 /* GenresViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354B128D4780D00F12FD9 /* GenresViewAdapter.swift */; };
 		8DC354B428D4784500F12FD9 /* GenresLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354B328D4784500F12FD9 /* GenresLoaderPresentationAdapter.swift */; };
 		8DC354B728D47F3B00F12FD9 /* GenresPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */; };
+		8DD2FA4F28D497090031AAEA /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5128D497090031AAEA /* Genres.strings */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -172,6 +173,8 @@
 		8DC354B128D4780D00F12FD9 /* GenresViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewAdapter.swift; sourceTree = "<group>"; };
 		8DC354B328D4784500F12FD9 /* GenresLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresPresenterTests.swift; sourceTree = "<group>"; };
+		8DD2FA5028D497090031AAEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Genres.strings; sourceTree = "<group>"; };
+		8DD2FA5228D4970C0031AAEA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Genres.strings; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -502,6 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */,
+				8DD2FA5128D497090031AAEA /* Genres.strings */,
 			);
 			path = "Genres Presentation";
 			sourceTree = "<group>";
@@ -740,6 +744,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DD2FA4F28D497090031AAEA /* Genres.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,6 +904,15 @@
 			children = (
 				8DC354A428D46D8900F12FD9 /* en */,
 				8DC354A628D46DE900F12FD9 /* uk */,
+			);
+			name = Genres.strings;
+			sourceTree = "<group>";
+		};
+		8DD2FA5128D497090031AAEA /* Genres.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8DD2FA5028D497090031AAEA /* en */,
+				8DD2FA5228D4970C0031AAEA /* uk */,
 			);
 			name = Genres.strings;
 			sourceTree = "<group>";

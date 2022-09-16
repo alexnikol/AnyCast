@@ -21,20 +21,6 @@ public final class GenresUIComposer {
     }
 }
 
-private final class GenresViewAdapter: GenresView {
-    private weak var controller: GenresListViewController?
-    
-    init(controller: GenresListViewController) {
-        self.controller = controller
-    }
-
-    func display(_ viewModel: GenresViewModel) {
-        controller?.collectionModel = viewModel.genres.map { model in
-            GenreCellController(model: model)
-        }
-    }
-}
-
 private final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate {
     private let genresLoader: GenresLoader
     var presenter: GenresPresenter?

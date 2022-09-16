@@ -3,13 +3,27 @@
 import UIKit
 
 public final class GenresListViewController: UICollectionViewController {
+    
+    private enum Defaults {
+        enum Collection {
+            static let sideSpacing: CGFloat = 16.0
+            static let lineSpacing: CGFloat = 8.0
+            static let perItemsSpacing: CGFloat = 8.0
+            static let cellHeight: CGFloat = 40.0
+        }
+    }
+    
     private var refreshController: GenresRefreshViewController?
     var collectionModel: [GenreCellController] = [] {
         didSet { collectionView.reloadData() }
     }
     
     convenience init(refreshController: GenresRefreshViewController) {
-        self.init(collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = Defaults.Collection.lineSpacing
+        layout.minimumInteritemSpacing = Defaults.Collection.perItemsSpacing
+        layout.sectionInset = .init(top: 0, left: Defaults.Collection.sideSpacing, bottom: 0, right: Defaults.Collection.sideSpacing)
+        self.init(collectionViewLayout: layout)
         self.refreshController = refreshController
     }
     
@@ -33,8 +47,17 @@ public final class GenresListViewController: UICollectionViewController {
     }
 }
 
+extension GenresListViewController: UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView,
+                               layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (collectionView.bounds.width - Defaults.Collection.perItemsSpacing - Defaults.Collection.sideSpacing * 2) / 2
+        let height: CGFloat = Defaults.Collection.cellHeight
+        return .init(width: width, height: height)
+    }
+}
+
 private extension GenresListViewController {
-    
     func configureCollection(collectionView: UICollectionView) {
         collectionView.refreshControl = refreshController?.view
     }

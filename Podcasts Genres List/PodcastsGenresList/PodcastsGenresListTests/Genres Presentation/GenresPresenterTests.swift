@@ -23,6 +23,15 @@ class GenresPresenter {
     let genresView: GenresView
     let loadingView: GenresLoadingView
     
+    static var title: String {
+        return NSLocalizedString(
+            "GENRES_VIEW_TITLE",
+             tableName: "Genres",
+             bundle: .init(for: Self.self),
+             comment: "Title for the genres view"
+        )
+    }
+    
     init(loadingView: GenresLoadingView, genresView: GenresView) {
         self.loadingView = loadingView
         self.genresView = genresView
@@ -43,6 +52,10 @@ class GenresPresenter {
 }
 
 class GenresPresenterTests: XCTestCase {
+    
+    func test_title_isLocalized() {
+        XCTAssertEqual(GenresPresenter.title, localized("GENRES_VIEW_TITLE"))
+    }
     
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()
@@ -85,6 +98,17 @@ class GenresPresenterTests: XCTestCase {
         let sut = GenresPresenter(loadingView: view, genresView: view)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, view)
+    }
+    
+    func localized(_ key: String, file: StaticString = #file, line: UInt = #line) -> String {
+        let table = "Genres"
+        let bundle = Bundle(for: GenresPresenter.self)
+        let value = bundle.localizedString(forKey: key, value: nil, table: "Genres")
+        
+        if value == key {
+            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
+        }
+        return value
     }
     
     private class ViewSpy: GenresLoadingView, GenresView {

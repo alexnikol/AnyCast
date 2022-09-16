@@ -52,7 +52,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8D76B87028D4A2540014A211 /* PodcatsAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcatsAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D76B87F28D4A2550014A211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		8D76B87128D4A2540014A211 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D76B87028D4A2540014A211 /* PodcatsAppiOS.app */,
+				8D76B87028D4A2540014A211 /* Podcats.app */,
 				8D76B88628D4A2560014A211 /* PodcatsAppiOSTests.xctest */,
 				8D76B89028D4A2560014A211 /* PodcatsAppiOSUITests.xctest */,
 			);
@@ -154,9 +154,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D76B86F28D4A2540014A211 /* PodcatsAppiOS */ = {
+		8D76B86F28D4A2540014A211 /* Podcats */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D76B89A28D4A2560014A211 /* Build configuration list for PBXNativeTarget "PodcatsAppiOS" */;
+			buildConfigurationList = 8D76B89A28D4A2560014A211 /* Build configuration list for PBXNativeTarget "Podcats" */;
 			buildPhases = (
 				8D76B86C28D4A2540014A211 /* Sources */,
 				8D76B86D28D4A2540014A211 /* Frameworks */,
@@ -167,9 +167,9 @@
 			);
 			dependencies = (
 			);
-			name = PodcatsAppiOS;
+			name = Podcats;
 			productName = PodcatsAppiOS;
-			productReference = 8D76B87028D4A2540014A211 /* PodcatsAppiOS.app */;
+			productReference = 8D76B87028D4A2540014A211 /* Podcats.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8D76B88528D4A2560014A211 /* PodcatsAppiOSTests */ = {
@@ -244,7 +244,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D76B86F28D4A2540014A211 /* PodcatsAppiOS */,
+				8D76B86F28D4A2540014A211 /* Podcats */,
 				8D76B88528D4A2560014A211 /* PodcatsAppiOSTests */,
 				8D76B88F28D4A2560014A211 /* PodcatsAppiOSUITests */,
 			);
@@ -308,12 +308,12 @@
 /* Begin PBXTargetDependency section */
 		8D76B88828D4A2560014A211 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D76B86F28D4A2540014A211 /* PodcatsAppiOS */;
+			target = 8D76B86F28D4A2540014A211 /* Podcats */;
 			targetProxy = 8D76B88728D4A2560014A211 /* PBXContainerItemProxy */;
 		};
 		8D76B89228D4A2560014A211 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D76B86F28D4A2540014A211 /* PodcatsAppiOS */;
+			target = 8D76B86F28D4A2540014A211 /* Podcats */;
 			targetProxy = 8D76B89128D4A2560014A211 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -590,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8D76B89A28D4A2560014A211 /* Build configuration list for PBXNativeTarget "PodcatsAppiOS" */ = {
+		8D76B89A28D4A2560014A211 /* Build configuration list for PBXNativeTarget "Podcats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8D76B89B28D4A2560014A211 /* Debug */,

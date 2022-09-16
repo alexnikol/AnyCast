@@ -57,12 +57,12 @@
 		8DC3548E28D326F400F12FD9 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */; };
 		8DC3549028D3272400F12FD9 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3548F28D3272400F12FD9 /* Reusable.swift */; };
 		8DC3549328D3325500F12FD9 /* GenresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549228D3325500F12FD9 /* GenresPresenter.swift */; };
-		8DC3549728D467B900F12FD9 /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DC3549628D467B900F12FD9 /* Genres.strings */; };
 		8DC3549A28D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549928D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift */; };
 		8DC3549C28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549B28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift */; };
 		8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549D28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift */; };
 		8DC354A028D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3549F28D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift */; };
 		8DC354A228D46C7800F12FD9 /* GenreCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */; };
+		8DC354A328D46D8900F12FD9 /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DC354A528D46D8900F12FD9 /* Genres.strings */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 /* End PBXBuildFile section */
@@ -153,12 +153,12 @@
 		8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		8DC3548F28D3272400F12FD9 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		8DC3549228D3325500F12FD9 /* GenresPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresPresenter.swift; sourceTree = "<group>"; };
-		8DC3549628D467B900F12FD9 /* Genres.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Genres.strings; sourceTree = "<group>"; };
 		8DC3549928D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenresListViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
 		8DC3549B28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenresListViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		8DC3549D28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenresListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DC3549F28D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DC354A128D46C7800F12FD9 /* GenreCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenreCell+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8DC354A428D46D8900F12FD9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Genres.strings; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -445,7 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				8DC3549228D3325500F12FD9 /* GenresPresenter.swift */,
-				8DC3549628D467B900F12FD9 /* Genres.strings */,
+				8DC354A528D46D8900F12FD9 /* Genres.strings */,
 			);
 			path = "Genres Presentation";
 			sourceTree = "<group>";
@@ -711,7 +711,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DC3549728D467B900F12FD9 /* Genres.strings in Resources */,
+				8DC354A328D46D8900F12FD9 /* Genres.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,6 +850,17 @@
 			targetProxy = 8DC3521F28D1EB4100F12FD9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8DC354A528D46D8900F12FD9 /* Genres.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8DC354A428D46D8900F12FD9 /* en */,
+			);
+			name = Genres.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8D745E3B28C6259C005DC3F8 /* Debug */ = {

@@ -16,7 +16,7 @@ public final class GenresListViewController: UICollectionViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         configureCollection(collectionView: collectionView)
-        title = "Search"
+        title = GenresPresenter.title
         
         refreshController?.refresh()
     }

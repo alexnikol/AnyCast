@@ -27,6 +27,10 @@ final class GenresPresenter {
     let genresView: GenresView
     let loadingView: GenresLoadingView
         
+    static var title: String {
+        return "Search"
+    }
+    
     init(genresView: GenresView, loadingView: GenresLoadingView) {
         self.genresView = genresView
         self.loadingView = loadingView

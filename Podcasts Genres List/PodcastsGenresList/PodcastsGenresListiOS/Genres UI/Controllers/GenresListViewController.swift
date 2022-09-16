@@ -5,7 +5,14 @@ import UIKit
 public final class GenresListViewController: UICollectionViewController {
     private var refreshController: GenresRefreshViewController?
     var collectionModel: [GenreCellController] = [] {
-        didSet { collectionView.reloadData() }
+        didSet {
+            if Thread.isMainThread {
+                collectionView.reloadData()
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
     }
     
     convenience init(refreshController: GenresRefreshViewController) {

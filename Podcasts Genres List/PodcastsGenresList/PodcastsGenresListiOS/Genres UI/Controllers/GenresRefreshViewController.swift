@@ -28,6 +28,12 @@ final class GenresRefreshViewController: NSObject {
 
 extension GenresRefreshViewController: GenresLoadingView {
     func display(_ viewModel: GenresLoadingViewModel) {
+        guard Thread.isMainThread else {
+            return DispatchQueue.main.async { [weak self] in
+                self?.display(viewModel)
+            }
+        }
+        
         if viewModel.isLoading {
             view.beginRefreshing()
         } else {

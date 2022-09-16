@@ -10,6 +10,7 @@ public final class GenresUIComposer {
         let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader)
         let refreshController = GenresRefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)
+        genresController.title = GenresPresenter.title
         
         let genresPresenter = GenresPresenter(
             genresView: GenresViewAdapter(controller: genresController),

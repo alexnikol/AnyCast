@@ -16,7 +16,7 @@ class GenresActiveColorProvider {
         return .green
     }
     
-    func setColors(_ colors: [String]) {
+    func setColors(_ colors: [String]) throws {
         self.colors = colors
     }
 }
@@ -34,11 +34,14 @@ final class GenresActiveColorProviderTests: XCTestCase {
     
     func test_onSetColorsList_shouldSaveProvidedColorsList() {
         let sut = makeSUT()
-        let colors = ["#e6194b", "#3cb44b"]
+        let colors = uniqueColors()
         
-        sut.setColors(colors)
-        
-        XCTAssertEqual(sut.colors, colors)
+        do {
+            try sut.setColors(colors)
+            XCTAssertEqual(sut.colors, colors)
+        } catch {
+            XCTFail("Expected successful set colors operation")
+        }
     }
     
     // MARK: - Helpers
@@ -50,5 +53,9 @@ final class GenresActiveColorProviderTests: XCTestCase {
         let sut = GenresActiveColorProvider()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func uniqueColors() -> [String] {
+        return ["#e6194b", "#3cb44b"]
     }
 }

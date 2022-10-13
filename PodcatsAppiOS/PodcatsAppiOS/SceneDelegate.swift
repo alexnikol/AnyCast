@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         configureWindow()
     }
     
-    private func configureWindow() {
+    func configureWindow() {
         let session = URLSession(configuration: .ephemeral)
         let httpClient = URLSessionHTTPClient(session: session)
         let baseURL = URL(string: "https://listen-api-test.listennotes.com")!

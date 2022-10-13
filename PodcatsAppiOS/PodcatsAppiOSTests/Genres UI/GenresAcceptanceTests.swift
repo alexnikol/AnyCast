@@ -9,19 +9,27 @@ import PodcastsGenresListiOS
 class GenresAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
-        let httpClient = HTTPClientStub.online(response)
-        let store = InMemoryGenresStore()
+        let genres = makeSUT(store: InMemoryGenresStore(), httpClient: HTTPClientStub.online(response))
+        
+        XCTAssertEqual(genres.numberOfRenderedGenresViews(), 2)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(
+        store: GenresStore,
+        httpClient: HTTPClient,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> GenresListViewController {
         let sut = SceneDelegate(httpClient: httpClient, genresStore: store)
         sut.window = UIWindow()
         sut.configureWindow()
         
         let nav = sut.window?.rootViewController as? UINavigationController
-        let genresView = nav?.topViewController as! GenresListViewController
-        
-        XCTAssertEqual(genresView.numberOfRenderedGenresViews(), 2)
+        let genres = nav?.topViewController as! GenresListViewController
+        return genres
     }
-    
-    // MARK: - Helpers
     
     private class HTTPClientStub: HTTPClient {
         private let stub: (URL) -> HTTPClientResult

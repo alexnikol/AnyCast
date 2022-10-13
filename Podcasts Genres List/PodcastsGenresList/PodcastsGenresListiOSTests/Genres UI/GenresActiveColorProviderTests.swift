@@ -51,7 +51,7 @@ class GenresActiveColorProvider {
 }
 
 final class GenresActiveColorProviderTests: XCTestCase {
-        
+    
     func test_onSetColors_saveProvidedColorsList() {
         let sut = makeSUT()
         let colors = validColors()
@@ -85,7 +85,7 @@ final class GenresActiveColorProviderTests: XCTestCase {
     func test_onGetColorByIndex_deliversErrorOnEmptyColorsList() {
         let sut = makeSUT()
         let index = 0
-
+        
         XCTAssertThrowsError(try sut.getColor(by: index), "Expected error on empty colors list")
     }
     
@@ -99,13 +99,10 @@ final class GenresActiveColorProviderTests: XCTestCase {
     
     func test_onGetColorByIndex_deliversColorByIndexOfPassedColorsList() {
         let sut = makeSUT()
-        let validColor1 = "e6194b"
-        let validColor2 = "3cb44b"
-        let validColors = [validColor1, validColor2]
+        let validColors = validColors()
         
         XCTAssertNoThrow(try sut.setColors(validColors), "Expected successful set colors operation")
-        XCTAssertEqual(try sut.getColor(by: 0), UIColor(hexString: validColor1))
-        XCTAssertEqual(try sut.getColor(by: 1), UIColor(hexString: validColor2))
+        expect(sut, requestedIndexes: [0, 1], expectedColors: validColors)
     }
     
     func test_onGetColorByIndex_deliversColorsByAnyIndexFromProviderWithNonEmptyListByGetFromStartPattern() {
@@ -116,10 +113,7 @@ final class GenresActiveColorProviderTests: XCTestCase {
         let validColors = [validColor1, validColor2, validColor3]
         
         XCTAssertNoThrow(try sut.setColors(validColors), "Expected successful set colors operation")
-        XCTAssertEqual(try sut.getColor(by: 4), UIColor(hexString: validColor2))
-        XCTAssertEqual(try sut.getColor(by: 5), UIColor(hexString: validColor3))
-        XCTAssertEqual(try sut.getColor(by: 6), UIColor(hexString: validColor1))
-        XCTAssertEqual(try sut.getColor(by: 7), UIColor(hexString: validColor2))
+        expect(sut, requestedIndexes: [0, 1, 2, 3, 4, 5], expectedColors: validColors + validColors)
     }
     
     // MARK: - Helpers
@@ -131,6 +125,39 @@ final class GenresActiveColorProviderTests: XCTestCase {
         let sut = GenresActiveColorProvider()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func expect(
+        _ sut: GenresActiveColorProvider,
+        requestedIndexes: [Int],
+        expectedColors: [String],
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        guard requestedIndexes.count == expectedColors.count, !requestedIndexes.isEmpty else {
+            XCTFail("Requested indexes and expected colors lists should be equal by size and non empty", file: file, line: line)
+            return
+        }
+        
+        for (colorIndex, requestedIndex) in requestedIndexes.enumerated() {
+            let expectedColor = expectedColors[colorIndex]
+            do {
+                let receivedColor = try sut.getColor(by: requestedIndex)
+                XCTAssertEqual(
+                    receivedColor,
+                    UIColor(hexString: expectedColor),
+                    "Expected to get color \(expectedColor) by index \(requestedIndex), got \(receivedColor) instead",
+                    file: file,
+                    line: line
+                )
+            } catch {
+                XCTFail(
+                    "Expected to get color for \(expectedColor), got error instead \(error)",
+                    file: file,
+                    line: line
+                )
+            }
+        }
     }
     
     private func validColors() -> [String] {

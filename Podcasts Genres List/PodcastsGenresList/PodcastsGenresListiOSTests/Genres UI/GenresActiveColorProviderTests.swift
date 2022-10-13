@@ -49,12 +49,8 @@ final class GenresActiveColorProviderTests: XCTestCase {
         let sut = makeSUT()
         let colors = validColors()
         
-        do {
-            try sut.setColors(colors)
-            XCTAssertEqual(sut.colors, colors)
-        } catch {
-            XCTFail("Expected successful set colors operation")
-        }
+        XCTAssertNoThrow(try sut.setColors(colors), "Expected successful set colors operation")
+        XCTAssertEqual(sut.colors, colors)
     }
     
     func test_onSetColors_deliversErrorIfAnyOfProvidedColorsAreNotValidHexString() {
@@ -90,27 +86,19 @@ final class GenresActiveColorProviderTests: XCTestCase {
         let sut = makeSUT()
         let index = 0
         
-        do {
-            try sut.setColors(validColors())
-            XCTAssertNoThrow(try sut.getColor(by: index), "Expected no error on non empty colors list")
-        } catch {
-            XCTFail("Expected successful set colors operation")
-        }
+        XCTAssertNoThrow(try sut.setColors(validColors()), "Expected successful set colors operation")
+        XCTAssertNoThrow(try sut.getColor(by: index), "Expected no error on non empty colors list")
     }
     
     func test_onGetColorByIndex_deliversColorByIndexOfPassedColorsList() {
         let sut = makeSUT()
-        let color1 = "e6194b"
-        let color2 = "3cb44b"
-        let colors = [color1, color2]
+        let validColor1 = "e6194b"
+        let validColor2 = "3cb44b"
+        let validColors = [validColor1, validColor2]
         
-        do {
-            try sut.setColors(colors)
-            XCTAssertEqual(try sut.getColor(by: 0), UIColor(hexString: color1))
-            XCTAssertEqual(try sut.getColor(by: 1), UIColor(hexString: color2))
-        } catch {
-            XCTFail("Expected successful set colors operation")
-        }
+        XCTAssertNoThrow(try sut.setColors(validColors), "Expected successful set colors operation")
+        XCTAssertEqual(try sut.getColor(by: 0), UIColor(hexString: validColor1))
+        XCTAssertEqual(try sut.getColor(by: 1), UIColor(hexString: validColor2))
     }
     
     // MARK: - Helpers

@@ -96,15 +96,7 @@ final class GenresActiveColorProviderTests: XCTestCase {
         XCTAssertNoThrow(try sut.setColors(validColors()), "Expected successful set colors operation")
         XCTAssertNoThrow(try sut.getColor(by: index), "Expected no error on non empty colors list")
     }
-    
-    func test_onGetColorByIndex_deliversColorByIndexOfPassedColorsList() {
-        let sut = makeSUT()
-        let validColors = validColors()
         
-        XCTAssertNoThrow(try sut.setColors(validColors), "Expected successful set colors operation")
-        expect(sut, requestedIndexes: [0, 1], expectedColors: validColors)
-    }
-    
     func test_onGetColorByIndex_deliversColorsByAnyIndexFromProviderWithNonEmptyListByGetFromStartPattern() {
         let sut = makeSUT()
         let validColor1 = "e6194b"

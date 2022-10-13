@@ -3,15 +3,15 @@
 import UIKit
 import PodcastsGenresList
 
-protocol GenresRefreshViewControllerDelegate {
+public protocol GenresRefreshViewControllerDelegate {
     func didRequestLoadingGenres()
 }
 
-final class GenresRefreshViewController: NSObject {
+public final class GenresRefreshViewController: NSObject {
     private(set) lazy var view = loadView()
     private let delegate: GenresRefreshViewControllerDelegate
     
-    init(delegate: GenresRefreshViewControllerDelegate) {
+    public init(delegate: GenresRefreshViewControllerDelegate) {
         self.delegate = delegate
     }
     
@@ -28,7 +28,7 @@ final class GenresRefreshViewController: NSObject {
 }
 
 extension GenresRefreshViewController: GenresLoadingView {
-    func display(_ viewModel: GenresLoadingViewModel) {
+    public func display(_ viewModel: GenresLoadingViewModel) {
         if viewModel.isLoading {
             view.beginRefreshing()
         } else {

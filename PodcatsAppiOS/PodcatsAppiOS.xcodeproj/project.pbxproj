@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D72D03928F8118900C17DDC /* GenresViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D03428F8118900C17DDC /* GenresViewAdapter.swift */; };
+		8D72D03A28F8118900C17DDC /* MainQueueDisaptchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D03528F8118900C17DDC /* MainQueueDisaptchDecorator.swift */; };
+		8D72D03B28F8118900C17DDC /* GenresLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D03628F8118900C17DDC /* GenresLoaderPresentationAdapter.swift */; };
+		8D72D03C28F8118900C17DDC /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D03728F8118900C17DDC /* WeakRefVirtualProxy.swift */; };
+		8D72D03D28F8118900C17DDC /* GenresUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D03828F8118900C17DDC /* GenresUIComposer.swift */; };
+		8D72D04628F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04028F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift */; };
+		8D72D04728F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04128F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift */; };
+		8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04228F8121C00C17DDC /* GenreCell+DSLHelpers.swift */; };
+		8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04328F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift */; };
+		8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04428F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift */; };
+		8D72D04B28F8121C00C17DDC /* GenresUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04528F8121C00C17DDC /* GenresUIIntegrationTests.swift */; };
+		8D72D05228F813CF00C17DDC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05028F8137E00C17DDC /* UIColor+Extensions.swift */; };
 		8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B87328D4A2540014A211 /* AppDelegate.swift */; };
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
@@ -43,6 +55,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8D72D03428F8118900C17DDC /* GenresViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresViewAdapter.swift; sourceTree = "<group>"; };
+		8D72D03528F8118900C17DDC /* MainQueueDisaptchDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainQueueDisaptchDecorator.swift; sourceTree = "<group>"; };
+		8D72D03628F8118900C17DDC /* GenresLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
+		8D72D03728F8118900C17DDC /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
+		8D72D03828F8118900C17DDC /* GenresUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresUIComposer.swift; sourceTree = "<group>"; };
+		8D72D04028F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GenresListViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
+		8D72D04128F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8D72D04228F8121C00C17DDC /* GenreCell+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GenreCell+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8D72D04328F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GenresListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8D72D04428F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GenresListViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
+		8D72D04528F8121C00C17DDC /* GenresUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresUIIntegrationTests.swift; sourceTree = "<group>"; };
+		8D72D05028F8137E00C17DDC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +98,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D72D03228F8118900C17DDC /* Genres UI */ = {
+			isa = PBXGroup;
+			children = (
+				8D72D03428F8118900C17DDC /* GenresViewAdapter.swift */,
+				8D72D03528F8118900C17DDC /* MainQueueDisaptchDecorator.swift */,
+				8D72D03628F8118900C17DDC /* GenresLoaderPresentationAdapter.swift */,
+				8D72D03728F8118900C17DDC /* WeakRefVirtualProxy.swift */,
+				8D72D03828F8118900C17DDC /* GenresUIComposer.swift */,
+			);
+			path = "Genres UI";
+			sourceTree = "<group>";
+		};
+		8D72D03E28F8121C00C17DDC /* Genres UI */ = {
+			isa = PBXGroup;
+			children = (
+				8D72D03F28F8121C00C17DDC /* Helpers */,
+				8D72D04528F8121C00C17DDC /* GenresUIIntegrationTests.swift */,
+			);
+			path = "Genres UI";
+			sourceTree = "<group>";
+		};
+		8D72D03F28F8121C00C17DDC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D72D04028F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift */,
+				8D72D04128F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift */,
+				8D72D04228F8121C00C17DDC /* GenreCell+DSLHelpers.swift */,
+				8D72D04328F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift */,
+				8D72D04428F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8D72D04F28F8137E00C17DDC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D72D05028F8137E00C17DDC /* UIColor+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8D76B86728D4A2540014A211 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +161,8 @@
 		8D76B87228D4A2540014A211 /* PodcatsAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				8D72D03228F8118900C17DDC /* Genres UI */,
+				8D72D04F28F8137E00C17DDC /* Extensions */,
 				8D76B87328D4A2540014A211 /* AppDelegate.swift */,
 				8D76B87C28D4A2550014A211 /* Assets.xcassets */,
 				8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */,
@@ -107,6 +174,7 @@
 		8D76B88928D4A2560014A211 /* PodcatsAppiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				8D72D03E28F8121C00C17DDC /* Genres UI */,
 				8D76B88A28D4A2560014A211 /* PodcatsAppiOSTests.swift */,
 			);
 			path = PodcatsAppiOSTests;
@@ -222,7 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D72D03B28F8118900C17DDC /* GenresLoaderPresentationAdapter.swift in Sources */,
+				8D72D03928F8118900C17DDC /* GenresViewAdapter.swift in Sources */,
+				8D72D03C28F8118900C17DDC /* WeakRefVirtualProxy.swift in Sources */,
 				8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */,
+				8D72D05228F813CF00C17DDC /* UIColor+Extensions.swift in Sources */,
+				8D72D03A28F8118900C17DDC /* MainQueueDisaptchDecorator.swift in Sources */,
+				8D72D03D28F8118900C17DDC /* GenresUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +304,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D72D04728F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift in Sources */,
+				8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8D76B88B28D4A2560014A211 /* PodcatsAppiOSTests.swift in Sources */,
+				8D72D04B28F8121C00C17DDC /* GenresUIIntegrationTests.swift in Sources */,
+				8D72D04628F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift in Sources */,
+				8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
+				8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

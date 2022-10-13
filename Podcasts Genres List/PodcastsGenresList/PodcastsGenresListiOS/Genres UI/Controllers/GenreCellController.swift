@@ -3,11 +3,11 @@
 import UIKit
 import PodcastsGenresList
 
-final class GenreCellController {
+public final class GenreCellController {
     
     private let model: GenreCellViewModel
     
-    init(model: GenreCellViewModel) {
+    public init(model: GenreCellViewModel) {
         self.model = model
     }
     

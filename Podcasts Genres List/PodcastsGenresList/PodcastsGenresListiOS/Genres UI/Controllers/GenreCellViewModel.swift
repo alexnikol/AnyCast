@@ -8,11 +8,11 @@
 
 import UIKit
 
-struct GenreCellViewModel: Hashable {
+public struct GenreCellViewModel: Hashable {
     let name: String
     let color: UIColor
     
-    init(name: String, color: UIColor) {
+    public init(name: String, color: UIColor) {
         self.name = name
         self.color = color
     }

@@ -18,13 +18,17 @@ public final class GenresListViewController: UICollectionViewController {
         didSet { collectionView.reloadData() }
     }
     
-    convenience init(refreshController: GenresRefreshViewController) {
+    public convenience init(refreshController: GenresRefreshViewController) {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = Defaults.Collection.lineSpacing
         layout.minimumInteritemSpacing = Defaults.Collection.perItemsSpacing
         layout.sectionInset = .init(top: 0, left: Defaults.Collection.sideSpacing, bottom: 0, right: Defaults.Collection.sideSpacing)
         self.init(collectionViewLayout: layout)
         self.refreshController = refreshController
+    }
+    
+    public func display(_ controllers: [GenreCellController]) {
+        collectionModel = controllers
     }
     
     public override func viewDidLoad() {

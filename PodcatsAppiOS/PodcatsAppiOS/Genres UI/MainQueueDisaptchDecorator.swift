@@ -17,13 +17,3 @@ final class MainQueueDisaptchDecorator<T> {
         completion()
     }
 }
-
-extension MainQueueDisaptchDecorator: GenresLoader where T == GenresLoader {
-    func load(completion: @escaping (LoadGenresResult) -> Void) {
-        self.decoratee.load { [weak self] result in
-            self?.dispatch {
-                completion(result)
-            }
-        }
-    }
-}

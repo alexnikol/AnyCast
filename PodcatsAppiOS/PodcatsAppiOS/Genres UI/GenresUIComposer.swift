@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import Combine
 import PodcastsGenresList
 import PodcastsGenresListiOS
 
@@ -8,8 +9,8 @@ final class GenresUIComposer {
     
     private init() {}
     
-    static func genresComposedWith(loader: GenresLoader) -> GenresListViewController {
-        let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: MainQueueDisaptchDecorator(loader))
+    static func genresComposedWith(loader: @escaping () -> GenresLoader.Publisher) -> GenresListViewController {        
+        let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader)
         let refreshController = GenresRefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)
         genresController.title = GenresPresenter.title
@@ -43,5 +44,29 @@ final class GenresUIComposer {
             fatalError("Unexpected colors set with error \(error)")
         }
         return genresActiveColorProvider
+    }
+}
+
+extension GenresLoader {
+    typealias Publisher = AnyPublisher<[Genre], Error>
+    
+    func loadPublisher() -> Publisher {
+        Deferred {
+            Future(load)
+        }.eraseToAnyPublisher()
+    }
+}
+
+extension Publisher {
+    func fallback(to fallbackPublisher: @escaping () -> AnyPublisher<Output, Failure>) -> AnyPublisher<Output, Failure> {        
+        self.catch { _ in fallbackPublisher() }.eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output == [Genre] {
+    func caching(to cache: GenresCache) -> AnyPublisher<Output, Failure> {
+        handleEvents(receiveOutput: { genres in
+            cache.save(genres, completion: { _ in })
+        }).eraseToAnyPublisher()
     }
 }

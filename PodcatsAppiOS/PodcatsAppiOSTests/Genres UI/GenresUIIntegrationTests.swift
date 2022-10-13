@@ -96,7 +96,7 @@ final class GenresUIIntegrationTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: GenresListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = GenresUIComposer.genresComposedWith(loader: loader)
+        let sut = GenresUIComposer.genresComposedWith(loader: loader.loadPublisher)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)

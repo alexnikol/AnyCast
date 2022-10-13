@@ -12,9 +12,14 @@ public class LocalGenresLoader {
     }
 }
 
-extension LocalGenresLoader {
+public protocol GenresCache {
+    typealias SaveResult = Error?
+    func save(_ genres: [Genre], completion: @escaping (SaveResult) -> Void)
+}
+
+extension LocalGenresLoader: GenresCache {
     
-    public typealias SaveResult = Error?
+    public typealias SaveResult = GenresCache.SaveResult
     
     public func save(_ genres: [Genre], completion: @escaping (SaveResult) -> Void) {
         store.deleteCacheGenres { [weak self] error in

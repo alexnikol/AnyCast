@@ -377,7 +377,9 @@
 		8DC351FB28D1DB1E00F12FD9 /* PodcastsGenresListiOS */ = {
 			isa = PBXGroup;
 			children = (
-				8DC3522728D20FB700F12FD9 /* Genres UI */,
+				8DC3522828D20FCE00F12FD9 /* Controllers */,
+				8DC3522928D20FD500F12FD9 /* Views */,
+				8DC3548C28D326E300F12FD9 /* Extensions */,
 			);
 			path = PodcastsGenresListiOS;
 			sourceTree = "<group>";
@@ -394,16 +396,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8DC3522728D20FB700F12FD9 /* Genres UI */ = {
-			isa = PBXGroup;
-			children = (
-				8DC3522828D20FCE00F12FD9 /* Controllers */,
-				8DC3522928D20FD500F12FD9 /* Views */,
-				8DC3548C28D326E300F12FD9 /* Extensions */,
-			);
-			path = "Genres UI";
 			sourceTree = "<group>";
 		};
 		8DC3522828D20FCE00F12FD9 /* Controllers */ = {

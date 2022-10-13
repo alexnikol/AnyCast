@@ -11,6 +11,7 @@
 		8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */; };
 		8D72CFDF28F7FD5E00C17DDC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDE28F7FD5E00C17DDC /* UIColor+Extensions.swift */; };
 		8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */; };
+		8D72CFE128F8093800C17DDC /* GenresActiveColorProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */; };
 		8D745DCC28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift */; };
 		8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */; };
 		8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DD028BFA728005DC3F8 /* Genre.swift */; };
@@ -46,7 +47,6 @@
 		8DA0931E28BF5A0200C4C68D /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
 		8DA0932928BF5AEF00C4C68D /* GenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0932828BF5AEF00C4C68D /* GenresLoader.swift */; };
 		8DA0932B28BF5E3700C4C68D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8DA0932A28BF5E3700C4C68D /* README.md */; };
-		8DB7F1E728D4BE5400D131F0 /* GenresActiveColorProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */; };
 		8DBA843828D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843728D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift */; };
 		8DBA843A28D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843928D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift */; };
 		8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA843B28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift */; };
@@ -478,7 +478,6 @@
 			children = (
 				8DC3549828D46B0A00F12FD9 /* Helpers */,
 				8DC3520F28D1DF8F00F12FD9 /* GenresUIIntegrationTests.swift */,
-				8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */,
 			);
 			path = "Genres UI";
 			sourceTree = "<group>";
@@ -500,6 +499,7 @@
 			children = (
 				8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */,
 				8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */,
+				8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */,
 			);
 			path = "Genres Presentation";
 			sourceTree = "<group>";
@@ -833,6 +833,7 @@
 				8D745E2928C216E2005DC3F8 /* URLSessionHTTPClientTests.swift in Sources */,
 				8DBA843A28D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift in Sources */,
 				8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */,
+				8D72CFE128F8093800C17DDC /* GenresActiveColorProviderTests.swift in Sources */,
 				8DA0544E28CB61D400418F3E /* SharedTestHelpers.swift in Sources */,
 				8DA0544528CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift in Sources */,
 				8DA0544A28CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift in Sources */,
@@ -866,7 +867,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC3549C28D46BA500F12FD9 /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
-				8DB7F1E728D4BE5400D131F0 /* GenresActiveColorProviderTests.swift in Sources */,
 				8DC3549E28D46C1A00F12FD9 /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8DC3549A28D46B2B00F12FD9 /* GenresListViewControllerTests+Localization.swift in Sources */,
 				8DC354A028D46C4100F12FD9 /* UIRefreshControl+DSLHelpers.swift in Sources */,

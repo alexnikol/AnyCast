@@ -5,7 +5,7 @@ import UIKit
 public class GenresActiveColorProvider {
     
     private enum Error: Swift.Error {
-        case invalidColorsList
+        case invalidColorsList(String)
         case emptyColorsList
     }
     
@@ -42,6 +42,6 @@ public class GenresActiveColorProvider {
         if isColorsStringValid {
             return
         }
-        throw Error.invalidColorsList
+        throw Error.invalidColorsList("Invalid hex color string: \(color)")
     }
 }

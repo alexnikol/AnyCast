@@ -10,6 +10,7 @@ class GenresAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
         let httpClient = HTTPClientStub.online(response)
+        
         let sut = SceneDelegate(httpClient: httpClient)
         sut.window = UIWindow()
         sut.configureWindow()
@@ -17,6 +18,7 @@ class GenresAcceptanceTests: XCTestCase {
         let nav = sut.window?.rootViewController as? UINavigationController
         let genresView = nav?.topViewController as! GenresListViewController
         
+        waitForExpectations(timeout: 2)
         XCTAssertEqual(genresView.numberOfRenderedGenresViews(), 2)
     }
     
@@ -60,8 +62,8 @@ class GenresAcceptanceTests: XCTestCase {
             
     private func makeGenresData() -> Data {
         return try! JSONSerialization.data(withJSONObject: ["genres": [
-            ["id": 1, "name": "Genre 1"],
-            ["id": 2, "name": "Genre 2"]
+            ["id": 1, "name": "Any Genre 1"],
+            ["id": 2, "name": "Any Genre 2"]
         ]])
     }
 }

@@ -21,7 +21,14 @@ class GenresActiveColorProvider {
         guard !colors.isEmpty else {
             throw Error.emptyColorsList
         }
-        return UIColor(hexString: colors[index])
+        
+        guard index >= colors.count else {
+            return UIColor(hexString: colors[index])
+        }
+        
+        let inxedWithoutOverflow = index % colors.count
+        
+        return UIColor(hexString: colors[inxedWithoutOverflow])
     }
     
     func setColors(_ colors: [String]) throws {
@@ -99,6 +106,20 @@ final class GenresActiveColorProviderTests: XCTestCase {
         XCTAssertNoThrow(try sut.setColors(validColors), "Expected successful set colors operation")
         XCTAssertEqual(try sut.getColor(by: 0), UIColor(hexString: validColor1))
         XCTAssertEqual(try sut.getColor(by: 1), UIColor(hexString: validColor2))
+    }
+    
+    func test_onGetColorByIndex_deliversColorsByAnyIndexFromProviderWithNonEmptyListByGetFromStartPattern() {
+        let sut = makeSUT()
+        let validColor1 = "e6194b"
+        let validColor2 = "3cb44b"
+        let validColor3 = "000000"
+        let validColors = [validColor1, validColor2, validColor3]
+        
+        XCTAssertNoThrow(try sut.setColors(validColors), "Expected successful set colors operation")
+        XCTAssertEqual(try sut.getColor(by: 4), UIColor(hexString: validColor2))
+        XCTAssertEqual(try sut.getColor(by: 5), UIColor(hexString: validColor3))
+        XCTAssertEqual(try sut.getColor(by: 6), UIColor(hexString: validColor1))
+        XCTAssertEqual(try sut.getColor(by: 7), UIColor(hexString: validColor2))
     }
     
     // MARK: - Helpers

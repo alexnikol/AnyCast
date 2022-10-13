@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		8D4D494028CF802A00D8EBEB /* GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */; };
 		8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */; };
-		8D72CFDC28F7FCE000C17DDC /* GenresActiveColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */; };
 		8D72CFDF28F7FD5E00C17DDC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDE28F7FD5E00C17DDC /* UIColor+Extensions.swift */; };
+		8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */; };
 		8D745DCC28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift */; };
 		8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCE28BFA704005DC3F8 /* RemoteGenresLoader.swift */; };
 		8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DD028BFA728005DC3F8 /* Genre.swift */; };
@@ -239,23 +239,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8D72CFDA28F7FCDA00C17DDC /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				8D72CFDD28F7FD3D00C17DDC /* UIColor+Extensions */,
-				8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		8D72CFDD28F7FD3D00C17DDC /* UIColor+Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				8D72CFDE28F7FD5E00C17DDC /* UIColor+Extensions.swift */,
-			);
-			path = "UIColor+Extensions";
-			sourceTree = "<group>";
-		};
 		8D745DCD28BFA6F6005DC3F8 /* Genres API */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,7 +424,6 @@
 		8DC3522728D20FB700F12FD9 /* Genres UI */ = {
 			isa = PBXGroup;
 			children = (
-				8D72CFDA28F7FCDA00C17DDC /* Presentation */,
 				8DC3522E28D2F5ED00F12FD9 /* Composers */,
 				8DC3522828D20FCE00F12FD9 /* Controllers */,
 				8DC3522928D20FD500F12FD9 /* Views */,
@@ -485,6 +467,7 @@
 		8DC3548C28D326E300F12FD9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8D72CFDE28F7FD5E00C17DDC /* UIColor+Extensions.swift */,
 				8DC3548D28D326F400F12FD9 /* UICollectionView+Extensions.swift */,
 			);
 			path = Extensions;
@@ -527,6 +510,7 @@
 				8DD2FA5428D4987E0031AAEA /* GenresView.swift */,
 				8DD2FA5628D498A00031AAEA /* GenresLoadingView.swift */,
 				8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */,
+				8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */,
 				8DD2FA5128D497090031AAEA /* Genres.strings */,
 			);
 			path = "Genres Presentation";
@@ -818,6 +802,7 @@
 				8D745E1B28C1E7F5005DC3F8 /* HTTPClient.swift in Sources */,
 				8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */,
 				8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */,
+				8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */,
 				8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */,
 				8DD2FA5528D4987E0031AAEA /* GenresView.swift in Sources */,
 				8DA0545028CB6B2200418F3E /* GenresCachePolicy.swift in Sources */,
@@ -863,7 +848,6 @@
 				8DC3522328D1F4B800F12FD9 /* GenresListViewController.swift in Sources */,
 				8DC3523028D2F5FC00F12FD9 /* GenresUIComposer.swift in Sources */,
 				8DC3548E28D326F400F12FD9 /* UICollectionView+Extensions.swift in Sources */,
-				8D72CFDC28F7FCE000C17DDC /* GenresActiveColorProvider.swift in Sources */,
 				8DC3522D28D215A900F12FD9 /* GenreCellController.swift in Sources */,
 				8D76B8AC28D4B3EF0014A211 /* GenreCellViewModel.swift in Sources */,
 				8DC354B428D4784500F12FD9 /* GenresLoaderPresentationAdapter.swift in Sources */,

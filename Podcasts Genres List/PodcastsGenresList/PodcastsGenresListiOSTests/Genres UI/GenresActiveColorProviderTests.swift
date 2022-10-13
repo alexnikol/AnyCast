@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import PodcastsGenresListiOS
+import PodcastsGenresList
 
 final class GenresActiveColorProviderTests: XCTestCase {
     

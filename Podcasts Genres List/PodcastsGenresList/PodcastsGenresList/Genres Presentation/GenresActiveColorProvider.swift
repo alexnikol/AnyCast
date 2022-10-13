@@ -2,7 +2,7 @@
 
 import UIKit
 
-public class GenresActiveColorProvider<Color> {
+public final class GenresActiveColorProvider<Color> {
     
     private enum Error: Swift.Error {
         case invalidColorsList(String)

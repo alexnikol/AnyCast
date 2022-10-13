@@ -17,12 +17,12 @@
 		8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04228F8121C00C17DDC /* GenreCell+DSLHelpers.swift */; };
 		8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04328F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift */; };
 		8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04428F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift */; };
-		8D72D04B28F8121C00C17DDC /* GenresUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04528F8121C00C17DDC /* GenresUIIntegrationTests.swift */; };
 		8D72D05228F813CF00C17DDC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05028F8137E00C17DDC /* UIColor+Extensions.swift */; };
+		8D72D05528F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05428F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift */; };
+		8D72D05628F8163E00C17DDC /* GenresUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04528F8121C00C17DDC /* GenresUIIntegrationTests.swift */; };
 		8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B87328D4A2540014A211 /* AppDelegate.swift */; };
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
-		8D76B88B28D4A2560014A211 /* PodcatsAppiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B88A28D4A2560014A211 /* PodcatsAppiOSTests.swift */; };
 		8D76B8A628D4A2B00014A211 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D76B8A428D4A2B00014A211 /* PodcastsGenresList.framework */; };
 		8D76B8A728D4A2B00014A211 /* PodcastsGenresList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D76B8A428D4A2B00014A211 /* PodcastsGenresList.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D76B8A828D4A2B00014A211 /* PodcastsGenresListiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D76B8A528D4A2B00014A211 /* PodcastsGenresListiOS.framework */; };
@@ -67,13 +67,13 @@
 		8D72D04428F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GenresListViewControllerTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		8D72D04528F8121C00C17DDC /* GenresUIIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresUIIntegrationTests.swift; sourceTree = "<group>"; };
 		8D72D05028F8137E00C17DDC /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		8D72D05428F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D76B87F28D4A2550014A211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D76B88128D4A2550014A211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D76B88628D4A2560014A211 /* PodcatsAppiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcatsAppiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D76B88A28D4A2560014A211 /* PodcatsAppiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcatsAppiOSTests.swift; sourceTree = "<group>"; };
 		8D76B8A428D4A2B00014A211 /* PodcastsGenresList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsGenresList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B8A528D4A2B00014A211 /* PodcastsGenresListiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsGenresListiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -139,6 +139,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8D72D05328F814E900C17DDC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D72D05428F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8D76B86728D4A2540014A211 = {
 			isa = PBXGroup;
 			children = (
@@ -174,8 +182,8 @@
 		8D76B88928D4A2560014A211 /* PodcatsAppiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				8D72D05328F814E900C17DDC /* Helpers */,
 				8D72D03E28F8121C00C17DDC /* Genres UI */,
-				8D76B88A28D4A2560014A211 /* PodcatsAppiOSTests.swift */,
 			);
 			path = PodcatsAppiOSTests;
 			sourceTree = "<group>";
@@ -237,6 +245,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
+				ORGANIZATIONNAME = "Almost Engineer";
 				TargetAttributes = {
 					8D76B86F28D4A2540014A211 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -305,9 +314,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D72D04728F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift in Sources */,
+				8D72D05528F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				8D72D05628F8163E00C17DDC /* GenresUIIntegrationTests.swift in Sources */,
 				8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */,
-				8D76B88B28D4A2560014A211 /* PodcatsAppiOSTests.swift in Sources */,
-				8D72D04B28F8121C00C17DDC /* GenresUIIntegrationTests.swift in Sources */,
 				8D72D04628F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift in Sources */,
 				8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
 				8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */,

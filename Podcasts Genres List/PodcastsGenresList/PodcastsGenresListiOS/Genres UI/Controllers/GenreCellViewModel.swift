@@ -1,10 +1,4 @@
-//
-//  GenreCellViewModel.swift
-//  PodcastsGenresListiOS
-//
-//  Created by Alexander Nikolaychuk on 16.09.2022.
-//  Copyright © 2022 Almost Engineer. All rights reserved.
-//
+// Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
 

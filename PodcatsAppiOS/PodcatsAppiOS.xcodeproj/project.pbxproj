@@ -11,8 +11,6 @@
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
 		8D76B88B28D4A2560014A211 /* PodcatsAppiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B88A28D4A2560014A211 /* PodcatsAppiOSTests.swift */; };
-		8D76B89528D4A2560014A211 /* PodcatsAppiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B89428D4A2560014A211 /* PodcatsAppiOSUITests.swift */; };
-		8D76B89728D4A2560014A211 /* PodcatsAppiOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B89628D4A2560014A211 /* PodcatsAppiOSUITestsLaunchTests.swift */; };
 		8D76B8A628D4A2B00014A211 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D76B8A428D4A2B00014A211 /* PodcastsGenresList.framework */; };
 		8D76B8A728D4A2B00014A211 /* PodcastsGenresList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D76B8A428D4A2B00014A211 /* PodcastsGenresList.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D76B8A828D4A2B00014A211 /* PodcastsGenresListiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D76B8A528D4A2B00014A211 /* PodcastsGenresListiOS.framework */; };
@@ -21,13 +19,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		8D76B88728D4A2560014A211 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8D76B86828D4A2540014A211 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D76B86F28D4A2540014A211;
-			remoteInfo = PodcatsAppiOS;
-		};
-		8D76B89128D4A2560014A211 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8D76B86828D4A2540014A211 /* Project object */;
 			proxyType = 1;
@@ -59,9 +50,6 @@
 		8D76B88128D4A2550014A211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D76B88628D4A2560014A211 /* PodcatsAppiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcatsAppiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B88A28D4A2560014A211 /* PodcatsAppiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcatsAppiOSTests.swift; sourceTree = "<group>"; };
-		8D76B89028D4A2560014A211 /* PodcatsAppiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcatsAppiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D76B89428D4A2560014A211 /* PodcatsAppiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcatsAppiOSUITests.swift; sourceTree = "<group>"; };
-		8D76B89628D4A2560014A211 /* PodcatsAppiOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcatsAppiOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		8D76B8A428D4A2B00014A211 /* PodcastsGenresList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsGenresList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B8A528D4A2B00014A211 /* PodcastsGenresListiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsGenresListiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -83,13 +71,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8D76B88D28D4A2560014A211 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -98,7 +79,6 @@
 			children = (
 				8D76B87228D4A2540014A211 /* PodcatsAppiOS */,
 				8D76B88928D4A2560014A211 /* PodcatsAppiOSTests */,
-				8D76B89328D4A2560014A211 /* PodcatsAppiOSUITests */,
 				8D76B87128D4A2540014A211 /* Products */,
 				8D76B8A328D4A2B00014A211 /* Frameworks */,
 			);
@@ -109,7 +89,6 @@
 			children = (
 				8D76B87028D4A2540014A211 /* Podcats.app */,
 				8D76B88628D4A2560014A211 /* PodcatsAppiOSTests.xctest */,
-				8D76B89028D4A2560014A211 /* PodcatsAppiOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,15 +110,6 @@
 				8D76B88A28D4A2560014A211 /* PodcatsAppiOSTests.swift */,
 			);
 			path = PodcatsAppiOSTests;
-			sourceTree = "<group>";
-		};
-		8D76B89328D4A2560014A211 /* PodcatsAppiOSUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8D76B89428D4A2560014A211 /* PodcatsAppiOSUITests.swift */,
-				8D76B89628D4A2560014A211 /* PodcatsAppiOSUITestsLaunchTests.swift */,
-			);
-			path = PodcatsAppiOSUITests;
 			sourceTree = "<group>";
 		};
 		8D76B8A328D4A2B00014A211 /* Frameworks */ = {
@@ -190,24 +160,6 @@
 			productReference = 8D76B88628D4A2560014A211 /* PodcatsAppiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8D76B88F28D4A2560014A211 /* PodcatsAppiOSUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8D76B8A028D4A2560014A211 /* Build configuration list for PBXNativeTarget "PodcatsAppiOSUITests" */;
-			buildPhases = (
-				8D76B88C28D4A2560014A211 /* Sources */,
-				8D76B88D28D4A2560014A211 /* Frameworks */,
-				8D76B88E28D4A2560014A211 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8D76B89228D4A2560014A211 /* PBXTargetDependency */,
-			);
-			name = PodcatsAppiOSUITests;
-			productName = PodcatsAppiOSUITests;
-			productReference = 8D76B89028D4A2560014A211 /* PodcatsAppiOSUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -222,10 +174,6 @@
 						CreatedOnToolsVersion = 13.4.1;
 					};
 					8D76B88528D4A2560014A211 = {
-						CreatedOnToolsVersion = 13.4.1;
-						TestTargetID = 8D76B86F28D4A2540014A211;
-					};
-					8D76B88F28D4A2560014A211 = {
 						CreatedOnToolsVersion = 13.4.1;
 						TestTargetID = 8D76B86F28D4A2540014A211;
 					};
@@ -246,7 +194,6 @@
 			targets = (
 				8D76B86F28D4A2540014A211 /* Podcats */,
 				8D76B88528D4A2560014A211 /* PodcatsAppiOSTests */,
-				8D76B88F28D4A2560014A211 /* PodcatsAppiOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -262,13 +209,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8D76B88428D4A2560014A211 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8D76B88E28D4A2560014A211 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -294,15 +234,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8D76B88C28D4A2560014A211 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8D76B89528D4A2560014A211 /* PodcatsAppiOSUITests.swift in Sources */,
-				8D76B89728D4A2560014A211 /* PodcatsAppiOSUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -310,11 +241,6 @@
 			isa = PBXTargetDependency;
 			target = 8D76B86F28D4A2540014A211 /* Podcats */;
 			targetProxy = 8D76B88728D4A2560014A211 /* PBXContainerItemProxy */;
-		};
-		8D76B89228D4A2560014A211 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8D76B86F28D4A2540014A211 /* Podcats */;
-			targetProxy = 8D76B89128D4A2560014A211 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -518,7 +444,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PodcatsAppiOS.app/PodcatsAppiOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Podcats.app/Podcats";
 			};
 			name = Debug;
 		};
@@ -538,43 +464,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PodcatsAppiOS.app/PodcatsAppiOS";
-			};
-			name = Release;
-		};
-		8D76B8A128D4A2560014A211 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WUJDW64U79;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcatsAppiOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PodcatsAppiOS;
-			};
-			name = Debug;
-		};
-		8D76B8A228D4A2560014A211 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WUJDW64U79;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcatsAppiOSUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PodcatsAppiOS;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Podcats.app/Podcats";
 			};
 			name = Release;
 		};
@@ -604,15 +494,6 @@
 			buildConfigurations = (
 				8D76B89E28D4A2560014A211 /* Debug */,
 				8D76B89F28D4A2560014A211 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8D76B8A028D4A2560014A211 /* Build configuration list for PBXNativeTarget "PodcatsAppiOSUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8D76B8A128D4A2560014A211 /* Debug */,
-				8D76B8A228D4A2560014A211 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

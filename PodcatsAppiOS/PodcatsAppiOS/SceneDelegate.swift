@@ -28,9 +28,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         configureWindow()
     }
     
-    convenience init(httpClient: HTTPClient) {
+    convenience init(httpClient: HTTPClient, genresStore: GenresStore) {
         self.init()
         self.httpClient = httpClient
+        self.genresStore = genresStore
     }
     
     func configureWindow() {

@@ -10,21 +10,20 @@ class GenresAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
         let httpClient = HTTPClientStub.online(response)
-        
-        let sut = SceneDelegate(httpClient: httpClient)
+        let store = InMemoryGenresStore()
+        let sut = SceneDelegate(httpClient: httpClient, genresStore: store)
         sut.window = UIWindow()
         sut.configureWindow()
         
         let nav = sut.window?.rootViewController as? UINavigationController
         let genresView = nav?.topViewController as! GenresListViewController
         
-        waitForExpectations(timeout: 2)
         XCTAssertEqual(genresView.numberOfRenderedGenresViews(), 2)
     }
     
     // MARK: - Helpers
     
-    class HTTPClientStub: HTTPClient {
+    private class HTTPClientStub: HTTPClient {
         private let stub: (URL) -> HTTPClientResult
         
         init(stub: @escaping (URL) -> HTTPClientResult) {
@@ -41,6 +40,34 @@ class GenresAcceptanceTests: XCTestCase {
         
         static func online(_ stub: @escaping (URL) -> (Data, HTTPURLResponse)) -> HTTPClientStub {
             HTTPClientStub { url in .success(stub(url)) }
+        }
+    }
+    
+    private class InMemoryGenresStore: GenresStore {
+        typealias GenresCache = (genres: [LocalGenre], timestamp: Date)
+        
+        private(set) var cache: GenresCache?
+        
+        init(cache: GenresCache? = nil) {
+            self.cache = cache
+        }
+        
+        func deleteCacheGenres(completion: @escaping DeletionCompletion) {
+            cache = nil
+            completion(nil)
+        }
+        
+        func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
+            cache = (genres, timestamp)
+            completion(nil)
+        }
+        
+        func retrieve(completion: @escaping RetrievalCompletion) {
+            if let cache = cache {
+                completion(.found(genres: cache.genres, timestamp: cache.timestamp))
+            } else {
+                completion(.empty)
+            }
         }
     }
     

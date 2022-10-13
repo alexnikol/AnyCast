@@ -5,9 +5,9 @@ import PodcastsGenresList
 
 final class GenresViewAdapter: GenresView {
     private weak var controller: GenresListViewController?
-    private let genresColorProvider: GenresActiveColorProvider
+    private let genresColorProvider: GenresActiveColorProvider<UIColor>
     
-    init(controller: GenresListViewController, genresColorProvider: GenresActiveColorProvider) {
+    init(controller: GenresListViewController, genresColorProvider: GenresActiveColorProvider<UIColor>) {
         self.controller = controller
         self.genresColorProvider = genresColorProvider
     }

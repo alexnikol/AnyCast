@@ -1,6 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import Foundation
+import UIKit
 import PodcastsGenresList
 
 public final class GenresUIComposer {
@@ -23,8 +23,8 @@ public final class GenresUIComposer {
         return genresController
     }
     
-    private static func makeGenresColorProvider() -> GenresActiveColorProvider {
-        let genresActiveColorProvider = GenresActiveColorProvider()
+    private static func makeGenresColorProvider() -> GenresActiveColorProvider<UIColor> {
+        let genresActiveColorProvider = GenresActiveColorProvider(colorConverted: { UIColor(hexString: $0) })
         do {
             try genresActiveColorProvider.setColors(
                 ["#e6194b", "#3cb44b", "#ffe119", "#4363d8",

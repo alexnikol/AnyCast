@@ -2,29 +2,32 @@
 
 import UIKit
 
-public class GenresActiveColorProvider {
+public class GenresActiveColorProvider<Color> {
     
     private enum Error: Swift.Error {
         case invalidColorsList(String)
         case emptyColorsList
     }
     
+    private let colorConverted: (String) -> Color
     public private(set) var colors: [String] = []
     
-    public init() {}
+    public init(colorConverted: @escaping (String) -> Color) {
+        self.colorConverted = colorConverted
+    }
     
-    public func getColor(by index: Int) throws -> UIColor {
+    public func getColor(by index: Int) throws -> Color {
         guard !colors.isEmpty else {
             throw Error.emptyColorsList
         }
         
         guard index >= colors.count else {
-            return UIColor(hexString: colors[index])
+            return colorConverted(colors[index])
         }
         
         let inxedWithoutOverflow = index % colors.count
         
-        return UIColor(hexString: colors[inxedWithoutOverflow])
+        return colorConverted(colors[inxedWithoutOverflow])
     }
     
     public func setColors(_ colors: [String]) throws {

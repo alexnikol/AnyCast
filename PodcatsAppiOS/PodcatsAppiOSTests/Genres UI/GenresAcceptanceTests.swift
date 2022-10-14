@@ -36,6 +36,14 @@ class GenresAcceptanceTests: XCTestCase {
         XCTAssertNil(store.cache, "Expected to delete expired cache")
     }
     
+    func test_onEnteringBackground_keepsNonExpiredFeedCache() {
+        let store = InMemoryGenresStore.withNonExpiredFeedCache
+        
+        enterBackground(with: store)
+        
+        XCTAssertNotNil(store.cache, "Expected to keep non expired cache")
+    }
+    
     // MARK: - Helpers
     
     private func launch(

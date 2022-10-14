@@ -21,11 +21,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             bundle: Bundle(for: CoreDataGenresStore.self))
     }()
     
+    private lazy var localGenresLoader: LocalGenresLoader = {
+        LocalGenresLoader(store: genresStore, currentDate: Date.init)
+    }()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: scene)
         configureWindow()
+    }
+    
+    func sceneWillResignActive(_ scene: UIScene) {
+        localGenresLoader.validateCache()
     }
     
     convenience init(httpClient: HTTPClient, genresStore: GenresStore) {
@@ -47,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let baseURL = URL(string: "https://listen-api-test.listennotes.com")!
         let genresRequestPath = baseURL.appendingPathComponent("api/v2/genres")
         let remoteGenresLoader = RemoteGenresLoader(url: genresRequestPath, client: httpClient)
-        let localGenresLoader = LocalGenresLoader(store: genresStore, currentDate: Date.init)
+        let localGenresLoader = localGenresLoader
         return localGenresLoader
             .loadPublisher()
             .tryMap { genres in

@@ -28,6 +28,14 @@ class GenresAcceptanceTests: XCTestCase {
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 1)
     }
     
+    func test_onEnteringBackground_deletesExpiredGenresCache() {
+        let store = InMemoryGenresStore.withExpiredFeedCache
+        
+        enterBackground(with: store)
+        
+        XCTAssertNil(store.cache, "Expected to delete expired cache")
+    }
+    
     // MARK: - Helpers
     
     private func launch(
@@ -43,6 +51,11 @@ class GenresAcceptanceTests: XCTestCase {
         let nav = sut.window?.rootViewController as? UINavigationController
         let genres = nav?.topViewController as! GenresListViewController
         return genres
+    }
+    
+    private func enterBackground(with store: InMemoryGenresStore) {
+        let sut = SceneDelegate(httpClient: HTTPClientStub.offline, genresStore: store)
+        sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
     }
     
     private class HTTPClientStub: HTTPClient {
@@ -83,6 +96,10 @@ class GenresAcceptanceTests: XCTestCase {
         
         static var withNonExpiredFeedCache: InMemoryGenresStore {
             return InMemoryGenresStore(cache: GenresCache(genres: [LocalGenre(id: 1, name: "Any Genre")], timestamp: Date()))
+        }
+        
+        static var withExpiredFeedCache: InMemoryGenresStore {
+            return InMemoryGenresStore(cache: GenresCache(genres: [LocalGenre(id: 1, name: "Any Genre")], timestamp: Date.distantPast))
         }
         
         func deleteCacheGenres(completion: @escaping DeletionCompletion) {

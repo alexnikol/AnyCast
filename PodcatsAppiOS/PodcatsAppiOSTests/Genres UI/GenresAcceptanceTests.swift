@@ -66,69 +66,6 @@ class GenresAcceptanceTests: XCTestCase {
         sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
     }
     
-    private class HTTPClientStub: HTTPClient {
-        private let stub: (URL) -> HTTPClientResult
-        
-        init(stub: @escaping (URL) -> HTTPClientResult) {
-            self.stub = stub
-        }
-        
-        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-            completion(stub(url))
-        }
-        
-        static var offline: HTTPClientStub {
-            HTTPClientStub(stub: { _ in .failure(NSError(domain: "offline", code: 0)) })
-        }
-        
-        static func online(_ stub: @escaping (URL) -> (Data, HTTPURLResponse)) -> HTTPClientStub {
-            HTTPClientStub { url in .success(stub(url)) }
-        }
-    }
-    
-    private class InMemoryGenresStore: GenresStore {
-        struct GenresCache {
-            let genres: [LocalGenre]
-            let timestamp: Date
-        }
-        
-        private(set) var cache: GenresCache?
-        
-        init(cache: GenresCache? = nil) {
-            self.cache = cache
-        }
-        
-        static var empty: InMemoryGenresStore {
-            InMemoryGenresStore(cache: nil)
-        }
-        
-        static var withNonExpiredFeedCache: InMemoryGenresStore {
-            return InMemoryGenresStore(cache: GenresCache(genres: [LocalGenre(id: 1, name: "Any Genre")], timestamp: Date()))
-        }
-        
-        static var withExpiredFeedCache: InMemoryGenresStore {
-            return InMemoryGenresStore(cache: GenresCache(genres: [LocalGenre(id: 1, name: "Any Genre")], timestamp: Date.distantPast))
-        }
-        
-        func deleteCacheGenres(completion: @escaping DeletionCompletion) {
-            cache = nil
-            completion(nil)
-        }
-        
-        func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
-            cache = GenresCache(genres: genres, timestamp: timestamp)
-            completion(nil)
-        }
-        
-        func retrieve(completion: @escaping RetrievalCompletion) {
-            if let cache = cache {
-                completion(.found(genres: cache.genres, timestamp: cache.timestamp))
-            } else {
-                completion(.empty)
-            }
-        }
-    }
-    
     private func response(for url: URL) -> (Data, HTTPURLResponse) {
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
         return (makeData(for: url), response)

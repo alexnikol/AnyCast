@@ -29,22 +29,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D76B88528D4A2560014A211"
                BuildableName = "PodcatsAppiOSTests.xctest"
                BlueprintName = "PodcatsAppiOSTests"
-               ReferencedContainer = "container:PodcatsAppiOS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D76B88F28D4A2560014A211"
-               BuildableName = "PodcatsAppiOSUITests.xctest"
-               BlueprintName = "PodcatsAppiOSUITests"
                ReferencedContainer = "container:PodcatsAppiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>

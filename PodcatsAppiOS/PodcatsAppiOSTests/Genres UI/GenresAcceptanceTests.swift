@@ -9,20 +9,20 @@ import PodcastsGenresListiOS
 class GenresAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
-        let genres = makeSUT(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
         
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 2)
     }
     
     func test_onLaunch_displaysNoGenresWhenCustomersHasNoConnectivityAndEmptyCache() {
-        let genres = makeSUT(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.offline)
+        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.offline)
         
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 0)
     }
     
     func test_onLaunch_displaysCachedGenresWhenCustomerHasConnectivityAndNonExpiredCache() {
         let sharedStore = InMemoryGenresStore.withNonExpiredFeedCache
-        let genres = makeSUT(store: sharedStore, httpClient: HTTPClientStub.offline)
+        let genres = launch(store: sharedStore, httpClient: HTTPClientStub.offline)
         
         XCTAssertNotNil(sharedStore.cache)
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 1)
@@ -30,7 +30,7 @@ class GenresAcceptanceTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(
+    private func launch(
         store: GenresStore,
         httpClient: HTTPClient,
         file: StaticString = #file,

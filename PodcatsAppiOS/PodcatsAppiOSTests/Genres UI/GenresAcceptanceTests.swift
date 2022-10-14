@@ -20,6 +20,14 @@ class GenresAcceptanceTests: XCTestCase {
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 0)
     }
     
+    func test_onLaunch_displaysCachedGenresWhenCustomerHasConnectivityAndNonExpiredCache() {
+        let sharedStore = InMemoryGenresStore.withNonExpiredFeedCache
+        let genres = makeSUT(store: sharedStore, httpClient: HTTPClientStub.offline)
+        
+        XCTAssertNotNil(sharedStore.cache)
+        XCTAssertEqual(genres.numberOfRenderedGenresViews(), 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -58,7 +66,10 @@ class GenresAcceptanceTests: XCTestCase {
     }
     
     private class InMemoryGenresStore: GenresStore {
-        typealias GenresCache = (genres: [LocalGenre], timestamp: Date)
+        struct GenresCache {
+            let genres: [LocalGenre]
+            let timestamp: Date
+        }
         
         private(set) var cache: GenresCache?
         
@@ -66,7 +77,13 @@ class GenresAcceptanceTests: XCTestCase {
             self.cache = cache
         }
         
-        static let empty: GenresStore = InMemoryGenresStore(cache: nil)
+        static var empty: InMemoryGenresStore {
+            InMemoryGenresStore(cache: nil)
+        }
+        
+        static var withNonExpiredFeedCache: InMemoryGenresStore {
+            return InMemoryGenresStore(cache: GenresCache(genres: [LocalGenre(id: 1, name: "Any Genre")], timestamp: Date()))
+        }
         
         func deleteCacheGenres(completion: @escaping DeletionCompletion) {
             cache = nil
@@ -74,7 +91,7 @@ class GenresAcceptanceTests: XCTestCase {
         }
         
         func insert(_ genres: [LocalGenre], timestamp: Date, completion: @escaping InsertionCompletion) {
-            cache = (genres, timestamp)
+            cache = GenresCache(genres: genres, timestamp: timestamp)
             completion(nil)
         }
         

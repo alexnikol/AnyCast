@@ -175,8 +175,13 @@ GET /api/v2/genres
 ---
 
 ## UI Specs
-
+### Active color of Genre Cell Use Case
 The genres list feature should deliver Podcast Genres model with a specific color value for each genre item.
-The list of available colors should be specific for each application that uses this feature.
+The list of available colors should(can be) be specific for each application that uses this feature.
+- Colors list will be provided as list of hex strings.
+- Passed colors should be validated and delivers an error if any of the colors is invalid hex color.
+- Provider deliver error if provided list is empty.
+- If genres count is greater than colors list count, than provider should return color from the start of the list (e.g. Colors list has 3 colors), for 5th genre provider should return 2nd color.
+- If provider is empty and does not have colors, provider should deliver error.
 
 ![Podcasts Genres List UI](Genres%20List%20UI/podcasts-genres-ui-iphone-light.png) ![Podcasts Genres List UI](Genres%20List%20UI/podcasts-genres-ui-iphone-dark.png)

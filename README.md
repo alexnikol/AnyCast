@@ -3,7 +3,7 @@ Only for non-commercial use
 
 > **Multiplatform podcast application**
 
-[![CI](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI.yml)
+[![CI macOS](https://github.com/alexnikol/Podcats/actions/workflows/CI_macOS.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI_macOS.yml) [![CI iOS](https://github.com/alexnikol/Podcats/actions/workflows/CI_iOS.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI_iOS.yml) 
 
 ![Large logo](Resources/large_icon.svg)
 

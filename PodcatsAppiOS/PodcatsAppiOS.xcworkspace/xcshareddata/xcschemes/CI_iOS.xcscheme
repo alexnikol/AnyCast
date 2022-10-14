@@ -17,7 +17,7 @@
                BlueprintIdentifier = "8DA0930B28BF59C900C4C68D"
                BuildableName = "PodcastsGenresList.framework"
                BlueprintName = "PodcastsGenresList"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,14 +35,14 @@
             BlueprintIdentifier = "8DA0930B28BF59C900C4C68D"
             BuildableName = "PodcastsGenresList.framework"
             BlueprintName = "PodcastsGenresList"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
             BuildableName = "PodcastsGenresListiOS.framework"
             BlueprintName = "PodcastsGenresListiOS"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -54,7 +54,7 @@
                BlueprintIdentifier = "8DA0931928BF5A0200C4C68D"
                BuildableName = "PodcastsGenresListTests.xctest"
                BlueprintName = "PodcastsGenresListTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -65,7 +65,7 @@
                BlueprintIdentifier = "8D745E3228C6259C005DC3F8"
                BuildableName = "PodcastsGenresListAPIEndToEndTests.xctest"
                BlueprintName = "PodcastsGenresListAPIEndToEndTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -76,7 +76,7 @@
                BlueprintIdentifier = "8D75815328D0AFA800751261"
                BuildableName = "PodcastsGenresListCacheIntegrationTests.xctest"
                BlueprintName = "PodcastsGenresListCacheIntegrationTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -87,7 +87,7 @@
                BlueprintIdentifier = "8DC3520028D1DB1E00F12FD9"
                BuildableName = "PodcastsGenresListiOSTests.xctest"
                BlueprintName = "PodcastsGenresListiOSTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -115,7 +115,7 @@
             BlueprintIdentifier = "8DA0930B28BF59C900C4C68D"
             BuildableName = "PodcastsGenresList.framework"
             BlueprintName = "PodcastsGenresList"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

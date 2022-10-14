@@ -9,7 +9,7 @@ import PodcastsGenresListiOS
 class GenresAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
-        let genres = makeSUT(store: InMemoryGenresStore(), httpClient: HTTPClientStub.online(response))
+        let genres = makeSUT(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
         
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 2)
     }
@@ -59,6 +59,8 @@ class GenresAcceptanceTests: XCTestCase {
         init(cache: GenresCache? = nil) {
             self.cache = cache
         }
+        
+        static let empty: GenresStore = InMemoryGenresStore(cache: nil)
         
         func deleteCacheGenres(completion: @escaping DeletionCompletion) {
             cache = nil

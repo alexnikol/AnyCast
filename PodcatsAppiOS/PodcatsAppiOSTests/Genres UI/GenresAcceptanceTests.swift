@@ -14,6 +14,12 @@ class GenresAcceptanceTests: XCTestCase {
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 2)
     }
     
+    func test_onLaunch_displaysNoGenresWhenCustomersHasNoConnectivityAndEmptyCache() {
+        let genres = makeSUT(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.offline)
+        
+        XCTAssertEqual(genres.numberOfRenderedGenresViews(), 0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

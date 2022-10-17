@@ -19,3 +19,4 @@ Only for non-commercial use
 **Feature**                 | **Link on documentation (specs, use cases)**
 --------------------------- | -----------------------------------------------
 **`Podcasts Genres List`** | [Genres List specs](Podcasts%20Genres%20List/README.md)
+**`Best Podcasts By Genre List`** | [Best Podcasts List specs](BestPodcasts/README.md)

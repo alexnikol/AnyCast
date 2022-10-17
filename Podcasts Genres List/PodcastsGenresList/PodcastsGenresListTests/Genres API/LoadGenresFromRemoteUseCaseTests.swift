@@ -5,9 +5,7 @@ import HTTPClient
 import PodcastsGenresList
 
 class LoadGenresFromRemoteUseCaseTests: XCTestCase {
-    
-    typealias RemoteGenresLoader = RemoteLoader<[Genre]>
-    
+        
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
                 
@@ -55,9 +53,9 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
         url: URL = URL(string: "http://a-url.com")!,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (loader: RemoteLoader<[Genre]>, client: HTTPClientSpy) {
+    ) -> (loader: RemoteGenresLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteLoader<[Genre]>(mapper: GenresItemsMapper.map, url: url, client: client)
+        let sut = RemoteGenresLoader(mapper: GenresItemsMapper.map, url: url, client: client)
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(client)

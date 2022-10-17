@@ -92,6 +92,20 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         })
     }
     
+    override func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClientSpy()
+        var sut: RemoteBestPodcastsLoader? = RemoteBestPodcastsLoader(genreID: 1, url: url, client: client)
+        
+        var capturedResults: [RemoteBestPodcastsLoader.Result] = []
+        sut?.load { capturedResults.append($0) }
+        
+        sut = nil
+        client.complete(withStatusCode: 200, data: makePodcastsListJSON(podcasts: []))
+        
+        XCTAssertTrue(capturedResults.isEmpty, "Expected to be empty, should not deliver result after SUT instance deallocation")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

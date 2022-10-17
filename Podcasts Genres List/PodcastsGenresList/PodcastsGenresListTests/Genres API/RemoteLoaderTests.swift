@@ -40,97 +40,50 @@ class RemoteLoaderTests: XCTestCase {
         })
     }
     
-    func test_load_deliversErrorOnNon200HTTPResponse() {
-        let (sut, client) = makeSUT()
-                
-        [199, 201, 400, 500].enumerated().forEach { (index, code) in
-            expect(sut, toCompleteWith: failure(.invalidData), when: {
-                let json = makeGenresJSON([])
-                client.complete(withStatusCode: code, data: json, at: index)
-            })
+    func test_load_deliversErrorOnMapperError() {
+        let (sut, client) = makeSUT { _, _ in
+            throw anyNSError()
         }
-    }
-    
-    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
-        let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.invalidData), when: {
-            let invalidJSON = Data("invalid json".utf8)
-            client.complete(withStatusCode: 200, data: invalidJSON)
+            client.complete(withStatusCode: 200, data: anyData())
         })
     }
     
-    func test_load_deliversNoGenresItemsOn200HTTPResponseWithEmptyJSONList() {
-        let (sut, client) = makeSUT()
-
-        expect(sut, toCompleteWith: .success([]), when: {
-            let emptyListJSON = makeGenresJSON([])
-            client.complete(withStatusCode: 200, data: emptyListJSON)
+    func test_load_deliversMappedResource() {
+        let resource = "a resource"
+        
+        let (sut, client) = makeSUT { _, _ in
+            return resource
+        }
+        
+        expect(sut, toCompleteWith: .success(resource), when: {
+            client.complete(withStatusCode: 200, data: anyData())
         })
-    }
-    
-    func test_load_deliversGenresItemsOn200HTTPResponseWithJSONItems() {
-        let (sut, client) = makeSUT()
-        
-        let genre1 = makeGenres(id: 1, name: "a genre name")
-        let genre2 = makeGenres(id: 2, name: "another genre name")
-        
-        expect(sut, toCompleteWith: .success([genre1.model, genre2.model]), when: {
-            let json = makeGenresJSON([genre1.json, genre2.json])
-            client.complete(withStatusCode: 200, data: json)
-        })
-    }
-    
-    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        let url = URL(string: "http://any-url.com")!
-        let client = HTTPClientSpy()
-        var sut: RemoteLoader? = RemoteLoader(url: url, client: client)
-        
-        var capturedResults: [RemoteLoader.Result] = []
-        sut?.load { capturedResults.append($0) }
-        
-        sut = nil
-        client.complete(withStatusCode: 200, data: makeGenresJSON([]))
-        
-        XCTAssertTrue(capturedResults.isEmpty)
     }
     
     // MARK: - Helpers
     
     private func makeSUT(
+        mapper: @escaping RemoteLoader<String>.Mapper = { _, _ in "any" },
         url: URL = URL(string: "http://a-url.com")!,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (loader: RemoteLoader, client: HTTPClientSpy) {
+    ) -> (loader: RemoteLoader<String>, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteLoader(url: url, client: client)
+        let sut = RemoteLoader(mapper: mapper, url: url, client: client)
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(client)
         return (sut, client)
     }
     
-    private func failure(_ error: RemoteLoader.Error) -> RemoteLoader.Result {
+    private func failure(_ error: RemoteLoader<String>.Error) -> RemoteLoader<String>.Result {
         return .failure(error)
     }
-    
-    private func makeGenres(id: Int, name: String) -> (model: Genre, json: [String: Any]) {
-        let genre = Genre(id: id, name: name)
-        let json = [
-            "id": id,
-            "name": name
-        ] as [String: Any]
         
-        return (genre, json)
-    }
-    
-    private func makeGenresJSON(_ genres: [[String: Any]]) -> Data {
-        let json = ["genres": genres]
-        return try! JSONSerialization.data(withJSONObject: json)
-    }
-    
-    private func expect(_ sut: RemoteLoader,
-                        toCompleteWith expectedResult: RemoteLoader.Result,
+    private func expect(_ sut: RemoteLoader<String>,
+                        toCompleteWith expectedResult: RemoteLoader<String>.Result,
                         when action: () -> Void,
                         file: StaticString = #file,
                         line: UInt = #line) {
@@ -139,10 +92,10 @@ class RemoteLoaderTests: XCTestCase {
         
         sut.load { receivedResult in
             switch (receivedResult, expectedResult) {
-            case let (.success(receivedGenres), .success(expectedGenres)):
-                XCTAssertEqual(receivedGenres, expectedGenres, file: file, line: line)
+            case let (.success(receivedResource), .success(expectedResource)):
+                XCTAssertEqual(receivedResource, expectedResource, file: file, line: line)
                 
-            case let (.failure(receivedError as RemoteLoader.Error), .failure(expectedError as RemoteLoader.Error)):
+            case let (.failure(receivedError), .failure(expectedError)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
             
             default:
@@ -155,6 +108,10 @@ class RemoteLoaderTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func anyData() -> Data {
+        Data()
     }
     
     final class HTTPClientSpy: HTTPClient {

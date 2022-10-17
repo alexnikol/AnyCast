@@ -3,9 +3,11 @@
 import Foundation
 import HTTPClient
 
-public final class RemoteLoader {
+public final class RemoteLoader<Resource> {
     
-    public typealias Result = LoadGenresResult
+    public typealias Result = Swift.Result<Resource, Error>
+    public typealias Mapper = (Data, HTTPURLResponse) throws -> Resource
+    public let mapper: Mapper
     
     public enum Error: Swift.Error {
         case connectivity
@@ -15,37 +17,28 @@ public final class RemoteLoader {
     private let url: URL
     private let client: HTTPClient
     
-    public init(url: URL, client: HTTPClient) {
+    public init(mapper: @escaping Mapper, url: URL, client: HTTPClient) {
+        self.mapper = mapper
         self.url = url
         self.client = client
     }
     
-    public func load(completion: @escaping (LoadGenresResult) -> Void) {
+    public func load(completion: @escaping (Result) -> Void) {
         client.get(from: url, completion: { [weak self] result in
-            guard self != nil else { return }
+            guard let self = self else { return }
             
             switch result {
             case let .success((data, response)):
-                completion(Self.map(data: data, response: response))
-            
+                do {
+                    let resource = try self.mapper(data, response)
+                    completion(.success(resource))
+                } catch {
+                    completion(.failure(Error.invalidData))
+                }
+                
             case .failure:
                 completion(.failure(Error.connectivity))
             }
         })
-    }
-    
-    private static func map(data: Data, response: HTTPURLResponse) -> Result {
-        do {
-            let items = try GenresItemsMapper.map(data, from: response)
-            return .success(items.toModels())
-        } catch {
-            return .failure(Error.invalidData)
-        }
-    }
-}
-
-private extension Array where Element == RemoteGenre {
-    func toModels() -> [Genre] {
-        return map { Genre(id: $0.id, name: $0.name) }
     }
 }

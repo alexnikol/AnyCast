@@ -81,8 +81,8 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func expect(_ sut: RemoteGenresLoader,
-                        toCompleteWith expectedResult: RemoteGenresLoader.Result,
+    private func expect(_ sut: RemoteLoader<[Genre]>,
+                        toCompleteWith expectedResult: RemoteLoader<[Genre]>.Result,
                         when action: () -> Void,
                         file: StaticString = #file,
                         line: UInt = #line) {
@@ -95,7 +95,7 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
                 XCTAssertEqual(receivedGenres, expectedGenres, file: file, line: line)
                 
             case let (.failure(receivedError), .failure(expectedError)):
-                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                XCTAssertEqual(receivedError as! RemoteLoader<[Genre]>.Error, expectedError as! RemoteLoader<[Genre]>.Error, file: file, line: line)
             
             default:
                 XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)

@@ -6,40 +6,6 @@ import BestPodcastsList
 
 class LoadBestPodcastsFromRemoteUseCaseTests: XCTestCase {
     
-    func test_init_doesNotRequestDataFromURL() {
-        let (_, client) = makeSUT()
-        
-        XCTAssertTrue(client.requestedURLs.isEmpty)
-    }
-    
-    func test_load_requestsDataFromURL() {
-        let url = URL(string: "http://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url)
-        
-        sut.load { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url])
-    }
-    
-    func test_loadTwice_requestsDataFromURLTwice() {
-        let url = URL(string: "http://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url)
-        
-        sut.load { _ in }
-        sut.load { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url, url])
-    }
-    
-    func test_load_deliversErrorOnClientError() {
-        let (sut, client) = makeSUT()
-        
-        expect(sut, toCompleteWith: failure(.connectivity), when: {
-            let clientError = NSError(domain: "Test", code: 0)
-            client.complete(with: clientError)
-        })
-    }
-    
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
         
@@ -92,20 +58,6 @@ class LoadBestPodcastsFromRemoteUseCaseTests: XCTestCase {
         })
     }
     
-    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        let url = URL(string: "http://any-url.com")!
-        let client = HTTPClientSpy()
-        var sut: RemoteBestPodcastsLoader? = RemoteBestPodcastsLoader(genreID: 1, url: url, client: client)
-        
-        var capturedResults: [RemoteBestPodcastsLoader.Result] = []
-        sut?.load { capturedResults.append($0) }
-        
-        sut = nil
-        client.complete(withStatusCode: 200, data: makePodcastsListJSON(podcasts: []))
-        
-        XCTAssertTrue(capturedResults.isEmpty, "Expected to be empty, should not deliver result after SUT instance deallocation")
-    }
-    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -114,8 +66,7 @@ class LoadBestPodcastsFromRemoteUseCaseTests: XCTestCase {
         line: UInt = #line
     ) -> (loader: RemoteBestPodcastsLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let anyGenreID = 1
-        let sut = RemoteBestPodcastsLoader(genreID: anyGenreID, url: url, client: client)
+        let sut = RemoteBestPodcastsLoader(url: url, client: client)
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(client)

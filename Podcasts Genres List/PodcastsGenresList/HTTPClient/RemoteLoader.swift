@@ -4,7 +4,7 @@ import Foundation
 
 public final class RemoteLoader<Resource> {
     
-    public typealias Result = Swift.Result<Resource, Error>
+    public typealias Result = Swift.Result<Resource, Swift.Error>
     public typealias Mapper = (Data, HTTPURLResponse) throws -> Resource
     public let mapper: Mapper
     
@@ -22,7 +22,7 @@ public final class RemoteLoader<Resource> {
         self.client = client
     }
     
-    public func load(completion: @escaping (Result) -> Void) {
+    public func load(completion: @escaping (RemoteLoader.Result) -> Void) {
         client.get(from: url, completion: { [weak self] result in
             guard let self = self else { return }
             

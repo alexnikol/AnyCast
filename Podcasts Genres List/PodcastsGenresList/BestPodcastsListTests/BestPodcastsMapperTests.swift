@@ -64,52 +64,7 @@ class BestPodcastsMapperTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    
-    private func makeSUT(
-        url: URL = URL(string: "http://a-url.com")!,
-        file: StaticString = #file,
-        line: UInt = #line
-    ) -> (loader: RemoteBestPodcastsLoader, client: HTTPClientSpy) {
-        let client = HTTPClientSpy()
-        let sut = RemoteBestPodcastsLoader(url: url, client: client)
         
-        trackForMemoryLeaks(sut)
-        trackForMemoryLeaks(client)
-        return (sut, client)
-    }
-    
-    private func expect(_ sut: RemoteBestPodcastsLoader,
-                        toCompleteWith expectedResult: RemoteBestPodcastsLoader.Result,
-                        when action: () -> Void,
-                        file: StaticString = #file,
-                        line: UInt = #line) {
-        
-        let exp = expectation(description: "Wait for load completion")
-        
-        sut.load { receivedResult in
-            switch (receivedResult, expectedResult) {
-            case let (.success(receivedPodcasts), .success(expectedPodcasts)):
-                XCTAssertEqual(receivedPodcasts, expectedPodcasts, file: file, line: line)
-                
-            case let (.failure(receivedError as RemoteBestPodcastsLoader.Error), .failure(expectedError as RemoteBestPodcastsLoader.Error)):
-                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
-                
-            default:
-                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
-            }
-            
-            exp.fulfill()
-        }
-        
-        action()
-        
-        wait(for: [exp], timeout: 1.0)
-    }
-    
-    private func failure(_ error: RemoteBestPodcastsLoader.Error) -> RemoteBestPodcastsLoader.Result {
-        return .failure(error)
-    }
-    
     private func makePodcast(id: String, title: String, image: URL) -> (model: Podcast, json: [String: Any]) {
         let podcast = Podcast(id: id, title: title, image: image)
         let json = [
@@ -133,32 +88,6 @@ class BestPodcastsMapperTests: XCTestCase {
         ] as [String: Any]
         
         return try! JSONSerialization.data(withJSONObject: json)
-    }
-    
-    final class HTTPClientSpy: HTTPClient {
-        var requestedURLs: [URL] {
-            return messages.map { $0.url }
-        }
-        
-        private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
-        
-        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-            messages.append((url, completion))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-        
-        func complete(withStatusCode code: Int, data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(
-                url: messages[index].url,
-                statusCode: code,
-                httpVersion: nil,
-                headerFields: nil
-            )!
-            messages[index].completion(.success((data, response)))
-        }
     }
 }
                 

@@ -40,7 +40,7 @@ extension LocalGenresLoader: GenresCache {
 
 extension LocalGenresLoader: GenresLoader {
     
-    public typealias LoadResult = LoadGenresResult
+    public typealias LoadResult = GenresLoaderResult
     
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in

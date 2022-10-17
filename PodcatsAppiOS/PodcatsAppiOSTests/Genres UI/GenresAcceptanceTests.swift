@@ -2,6 +2,7 @@
 
 import XCTest
 import UIKit
+import HTTPClient
 import PodcastsGenresList
 import PodcastsGenresListiOS
 @testable import Podcats

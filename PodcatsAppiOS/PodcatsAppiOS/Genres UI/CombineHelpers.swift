@@ -1,9 +1,11 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Combine
+import HTTPClient
 import PodcastsGenresList
+import Foundation
 
-public extension GenresLoader {
+extension GenresLoader {
     typealias Publisher = AnyPublisher<[Genre], Error>
     
     func loadPublisher() -> Publisher {
@@ -12,6 +14,8 @@ public extension GenresLoader {
         }.eraseToAnyPublisher()
     }
 }
+
+extension RemoteLoader: GenresLoader where Resource == [Genre] {}
 
 extension Publisher {
     func fallback(to fallbackPublisher: @escaping () -> AnyPublisher<Output, Failure>) -> AnyPublisher<Output, Failure> {

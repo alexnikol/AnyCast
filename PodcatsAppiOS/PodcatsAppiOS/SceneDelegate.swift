@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import HTTPClient
 import Combine
 import CoreData
 import PodcastsGenresList
@@ -49,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-    private func makeLocalGenresLoaderWithRemoteFallback() -> GenresLoader.Publisher {
+    private func makeLocalGenresLoaderWithRemoteFallback() -> RemoteGenresLoader.Publisher {
         struct EmptyCache: Error {}
         
         let baseURL = URL(string: "https://listen-api-test.listennotes.com")!

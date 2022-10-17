@@ -2,7 +2,11 @@
 
 import Foundation
 
-final class GenresItemsMapper {
+public final class GenresItemsMapper {
+    
+    public enum Error: Swift.Error {
+        case invalidData
+    }
     
     private struct Root: Decodable {
         let genres: [RemoteGenre]
@@ -10,11 +14,17 @@ final class GenresItemsMapper {
     
     private static var OK_200: Int { return 200 }
         
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> [RemoteGenre] {
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [Genre] {
         guard response.statusCode == OK_200, let root = try? JSONDecoder().decode(Root.self, from: data) else {
-            throw RemoteGenresLoader.Error.invalidData
+            throw Error.invalidData
         }
         
-        return root.genres
+        return root.genres.toModels()
+    }
+}
+
+private extension Array where Element == RemoteGenre {
+    func toModels() -> [Genre] {
+        return map { Genre(id: $0.id, name: $0.name) }
     }
 }

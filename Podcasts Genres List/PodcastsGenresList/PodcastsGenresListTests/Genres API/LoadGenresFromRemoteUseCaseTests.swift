@@ -1,44 +1,11 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import HTTPClient
 import PodcastsGenresList
 
 class LoadGenresFromRemoteUseCaseTests: XCTestCase {
-    
-    func test_init_doesNotRequestDataFromURL() {
-        let (_, client) = makeSUT()
         
-        XCTAssertTrue(client.requestedURLs.isEmpty)
-    }
-    
-    func test_load_requestsDataFromURL() {
-        let url = URL(string: "http://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url)
-        
-        sut.load { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url])
-    }
-    
-    func test_loadTwice_requestsDataFromURLTwice() {
-        let url = URL(string: "http://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url)
-        
-        sut.load { _ in }
-        sut.load { _ in }
-        
-        XCTAssertEqual(client.requestedURLs, [url, url])
-    }
-    
-    func test_load_deliversErrorOnClientError() {
-        let (sut, client) = makeSUT()
-        
-        expect(sut, toCompleteWith: failure(.connectivity), when: {
-            let clientError = NSError(domain: "Test", code: 0)
-            client.complete(with: clientError)
-        })
-    }
-    
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
                 
@@ -79,21 +46,7 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
             client.complete(withStatusCode: 200, data: json)
         })
     }
-    
-    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        let url = URL(string: "http://any-url.com")!
-        let client = HTTPClientSpy()
-        var sut: RemoteGenresLoader? = RemoteGenresLoader(url: url, client: client)
         
-        var capturedResults: [RemoteGenresLoader.Result] = []
-        sut?.load { capturedResults.append($0) }
-        
-        sut = nil
-        client.complete(withStatusCode: 200, data: makeGenresJSON([]))
-        
-        XCTAssertTrue(capturedResults.isEmpty)
-    }
-    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -128,8 +81,8 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
         return try! JSONSerialization.data(withJSONObject: json)
     }
     
-    private func expect(_ sut: RemoteGenresLoader,
-                        toCompleteWith expectedResult: RemoteGenresLoader.Result,
+    private func expect(_ sut: RemoteLoader<[Genre]>,
+                        toCompleteWith expectedResult: RemoteLoader<[Genre]>.Result,
                         when action: () -> Void,
                         file: StaticString = #file,
                         line: UInt = #line) {
@@ -141,8 +94,8 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
             case let (.success(receivedGenres), .success(expectedGenres)):
                 XCTAssertEqual(receivedGenres, expectedGenres, file: file, line: line)
                 
-            case let (.failure(receivedError as RemoteGenresLoader.Error), .failure(expectedError as RemoteGenresLoader.Error)):
-                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+            case let (.failure(receivedError), .failure(expectedError)):
+                XCTAssertEqual(receivedError as! RemoteLoader<[Genre]>.Error, expectedError as! RemoteLoader<[Genre]>.Error, file: file, line: line)
             
             default:
                 XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
@@ -156,7 +109,7 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private final class HTTPClientSpy: HTTPClient {
+    final class HTTPClientSpy: HTTPClient {
         var requestedURLs: [URL] {
             return messages.map { $0.url }
         }

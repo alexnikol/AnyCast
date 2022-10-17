@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import HTTPClient
 import PodcastsGenresList
 
 class URLSessionHTTPClientTests: XCTestCase {

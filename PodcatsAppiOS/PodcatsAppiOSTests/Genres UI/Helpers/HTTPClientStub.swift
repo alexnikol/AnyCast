@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import HTTPClient
 import PodcastsGenresList
 
 class HTTPClientStub: HTTPClient {

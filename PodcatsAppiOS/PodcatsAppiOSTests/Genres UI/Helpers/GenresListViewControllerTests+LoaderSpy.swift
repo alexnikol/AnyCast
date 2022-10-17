@@ -5,6 +5,7 @@ import PodcastsGenresList
 
 extension GenresUIIntegrationTests {
     class LoaderSpy: GenresLoader {
+        typealias LoadGenresResult = GenresLoaderResult
         private var completions = [(LoadGenresResult) -> Void]()
         
         var loadCallCount: Int {

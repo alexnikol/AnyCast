@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct Podcast {
+public struct Podcast: Equatable {
     let id: String
     let title: String
     let imageURL: String

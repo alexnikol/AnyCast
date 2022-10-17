@@ -71,7 +71,7 @@ class RemoteLoaderTests: XCTestCase {
         line: UInt = #line
     ) -> (loader: RemoteLoader<String>, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteLoader(mapper: mapper, url: url, client: client)
+        let sut = RemoteLoader(url: url, client: client, mapper: mapper)
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(client)

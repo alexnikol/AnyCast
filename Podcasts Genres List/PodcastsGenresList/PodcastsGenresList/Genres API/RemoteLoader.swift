@@ -17,7 +17,7 @@ public final class RemoteLoader<Resource> {
     private let url: URL
     private let client: HTTPClient
     
-    public init(mapper: @escaping Mapper, url: URL, client: HTTPClient) {
+    public init(url: URL, client: HTTPClient, mapper: @escaping Mapper) {
         self.mapper = mapper
         self.url = url
         self.client = client

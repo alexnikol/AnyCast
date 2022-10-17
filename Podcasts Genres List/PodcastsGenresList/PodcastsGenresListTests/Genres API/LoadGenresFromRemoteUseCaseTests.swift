@@ -55,7 +55,7 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
         line: UInt = #line
     ) -> (loader: RemoteGenresLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteGenresLoader(mapper: GenresItemsMapper.map, url: url, client: client)
+        let sut = RemoteGenresLoader(url: url, client: client)
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(client)

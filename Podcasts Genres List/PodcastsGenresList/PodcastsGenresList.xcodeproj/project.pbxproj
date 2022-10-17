@@ -73,6 +73,7 @@
 		8DEB7E0428FDC56F003AF72F /* HTTPClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8DEB7E0928FDC8CE003AF72F /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0828FDC8CE003AF72F /* HTTPClientSpy.swift */; };
 		8DEB7E0A28FDC922003AF72F /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0828FDC8CE003AF72F /* HTTPClientSpy.swift */; };
+		8DEB7E0B28FDD407003AF72F /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0828FDC8CE003AF72F /* HTTPClientSpy.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 		8DFAEAB728FD41740028B060 /* BestPodcastsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* BestPodcastsList.framework */; };
@@ -1231,6 +1232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFAEB3628FD9B210028B060 /* SharedTestHelpers.swift in Sources */,
+				8DEB7E0B28FDD407003AF72F /* HTTPClientSpy.swift in Sources */,
 				8DFAEB3228FD9A840028B060 /* RemoteLoaderTests.swift in Sources */,
 				8DFAEB3728FD9B2D0028B060 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);

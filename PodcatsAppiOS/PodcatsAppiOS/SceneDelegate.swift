@@ -55,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let baseURL = URL(string: "https://listen-api-test.listennotes.com")!
         let genresRequestPath = baseURL.appendingPathComponent("api/v2/genres")
-        let remoteGenresLoader = RemoteGenresLoader(url: genresRequestPath, client: httpClient)
+        let remoteGenresLoader = RemoteGenresLoader(url: genresRequestPath, client: httpClient, mapper: GenresItemsMapper.map)
         let localGenresLoader = localGenresLoader
         return localGenresLoader
             .loadPublisher()

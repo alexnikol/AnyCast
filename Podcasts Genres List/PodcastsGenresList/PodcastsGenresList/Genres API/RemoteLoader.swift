@@ -1,9 +1,9 @@
-// Copyright © 2022 Almost Engineer. All rights reserved. 
+// Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
 import HTTPClient
 
-public final class RemoteGenresLoader: GenresLoader {
+public final class RemoteLoader {
     
     public typealias Result = LoadGenresResult
     

@@ -88,6 +88,8 @@
 		8DFAEB1F28FD7B900028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; platformFilter = ios; };
 		8DFAEB2428FD7D4A0028B060 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
 		8DFAEB2828FD7D970028B060 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEB2728FD7D970028B060 /* HTTPClientTests.swift */; };
+		8DFAEB2E28FD84F60028B060 /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEB2D28FD84F60028B060 /* RemoteLoaderTests.swift */; };
+		8DFAEB3028FD858A0028B060 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEB2F28FD858A0028B060 /* RemoteLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +237,8 @@
 		8DFAEAF028FD76680028B060 /* HTTPClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTTPClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFAEAFE28FD768F0028B060 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		8DFAEB2728FD7D970028B060 /* HTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
+		8DFAEB2D28FD84F60028B060 /* RemoteLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoaderTests.swift; sourceTree = "<group>"; };
+		8DFAEB2F28FD858A0028B060 /* RemoteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +351,7 @@
 				8D745E1E28C1E8A6005DC3F8 /* GenresItemsMapper.swift */,
 				8D745E2D28C62173005DC3F8 /* URLSessionHTTPClient.swift */,
 				8DA0544228CA106F00418F3E /* RemoteGenre.swift */,
+				8DFAEB2F28FD858A0028B060 /* RemoteLoader.swift */,
 			);
 			path = "Genres API";
 			sourceTree = "<group>";
@@ -366,6 +371,7 @@
 			children = (
 				8D745DCB28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift */,
 				8D745E2828C216E2005DC3F8 /* URLSessionHTTPClientTests.swift */,
+				8DFAEB2D28FD84F60028B060 /* RemoteLoaderTests.swift */,
 			);
 			path = "Genres API";
 			sourceTree = "<group>";
@@ -1062,6 +1068,7 @@
 				8D745E1F28C1E8A6005DC3F8 /* GenresItemsMapper.swift in Sources */,
 				8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */,
 				8D745DCF28BFA704005DC3F8 /* RemoteGenresLoader.swift in Sources */,
+				8DFAEB3028FD858A0028B060 /* RemoteLoader.swift in Sources */,
 				8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */,
 				8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */,
 				8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */,
@@ -1096,6 +1103,7 @@
 				8DA0544828CB328800418F3E /* GenresStoreSpy.swift in Sources */,
 				8D745E2928C216E2005DC3F8 /* URLSessionHTTPClientTests.swift in Sources */,
 				8DBA843A28D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift in Sources */,
+				8DFAEB2E28FD84F60028B060 /* RemoteLoaderTests.swift in Sources */,
 				8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */,
 				8D72CFE128F8093800C17DDC /* GenresActiveColorProviderTests.swift in Sources */,
 				8DA0544E28CB61D400418F3E /* SharedTestHelpers.swift in Sources */,

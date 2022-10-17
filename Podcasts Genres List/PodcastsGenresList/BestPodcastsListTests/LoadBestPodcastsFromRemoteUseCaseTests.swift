@@ -71,6 +71,27 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         })
     }
     
+    func test_load_deliversPodcastsItemsOn200HTTPResponseWithJSONItems() {
+        let (sut, client) = makeSUT()
+        let anyGenreId = 1
+        let anyGenreName = "Any Genre"
+        let podcast1 = makePodcast(
+            id: UUID().uuidString,
+            title: "Any Podcast",
+            image: URL(string: "https://any-url")!
+        )
+        let podcast2 = makePodcast(
+            id: UUID().uuidString,
+            title: "Another Podcast",
+            image: URL(string: "https://another-url")!
+        )
+        
+        expect(sut, toCompleteWith: .success(BestPodcastsList(genreId: anyGenreId, genreName: anyGenreName, podcasts: [podcast1.model, podcast2.model])), when: {
+            let json = makePodcastsListJSON(genreId: anyGenreId, genreName: anyGenreName, podcasts: [podcast1.json, podcast2.json])
+            client.complete(withStatusCode: 200, data: json)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

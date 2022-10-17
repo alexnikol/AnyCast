@@ -71,8 +71,6 @@
 		8DD2FA5A28D499800031AAEA /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5128D497090031AAEA /* Genres.strings */; };
 		8DEB7E0328FDC56F003AF72F /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; platformFilter = ios; };
 		8DEB7E0428FDC56F003AF72F /* HTTPClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8DEB7E0928FDC8CE003AF72F /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0828FDC8CE003AF72F /* HTTPClientSpy.swift */; };
-		8DEB7E0A28FDC922003AF72F /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0828FDC8CE003AF72F /* HTTPClientSpy.swift */; };
 		8DEB7E0B28FDD407003AF72F /* HTTPClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0828FDC8CE003AF72F /* HTTPClientSpy.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
@@ -423,7 +421,6 @@
 			children = (
 				8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */,
 				8DA0544D28CB61D400418F3E /* SharedTestHelpers.swift */,
-				8DEB7E0828FDC8CE003AF72F /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -713,6 +710,7 @@
 		8DFAEB3528FD9AFE0028B060 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8DEB7E0828FDC8CE003AF72F /* HTTPClientSpy.swift */,
 				8DFAEB3328FD9AF90028B060 /* SharedTestHelpers.swift */,
 			);
 			path = Helpers;
@@ -1152,7 +1150,6 @@
 				8DBA843828D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift in Sources */,
 				8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */,
 				8DC354B728D47F3B00F12FD9 /* GenresPresenterTests.swift in Sources */,
-				8DEB7E0928FDC8CE003AF72F /* HTTPClientSpy.swift in Sources */,
 				8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */,
 				8D745DCC28BF98F7005DC3F8 /* FeedItemsMapperTests.swift in Sources */,
 				8DA0544C28CB611300418F3E /* GenresCacheTestHeplers.swift in Sources */,
@@ -1213,7 +1210,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFAEACC28FD46680028B060 /* BestPodcastsMapperTests.swift in Sources */,
-				8DEB7E0A28FDC922003AF72F /* HTTPClientSpy.swift in Sources */,
 				8DFAEAD328FD46F30028B060 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

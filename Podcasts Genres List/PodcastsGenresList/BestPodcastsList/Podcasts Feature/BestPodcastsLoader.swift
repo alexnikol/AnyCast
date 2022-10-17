@@ -3,7 +3,7 @@
 import Foundation
 
 public protocol BestPodcastsLoader {
-    typealias Result = Swift.Result<[Podcast], Error>
+    typealias Result = Swift.Result<BestPodcastsList, Error>
     
     func load(by genreID: Int, completion: @escaping (Result) -> Void)
 }

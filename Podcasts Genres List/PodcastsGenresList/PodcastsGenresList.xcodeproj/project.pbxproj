@@ -82,6 +82,7 @@
 		8DFAEACE28FD46DC0028B060 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8DFAEACF28FD46DC0028B060 /* PodcastsGenresList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8DFAEAD328FD46F30028B060 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
+		8DFAEAD528FD59A60028B060 /* BestPodcastsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEAD428FD59A60028B060 /* BestPodcastsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +222,7 @@
 		8DFAEAC728FD44FE0028B060 /* BestPodcastsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsLoader.swift; sourceTree = "<group>"; };
 		8DFAEAC928FD45150028B060 /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		8DFAEACB28FD46680028B060 /* LoadBestPodcastsFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadBestPodcastsFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		8DFAEAD428FD59A60028B060 /* BestPodcastsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -592,6 +594,7 @@
 			isa = PBXGroup;
 			children = (
 				8DFAEAC928FD45150028B060 /* Podcast.swift */,
+				8DFAEAD428FD59A60028B060 /* BestPodcastsList.swift */,
 				8DFAEAC728FD44FE0028B060 /* BestPodcastsLoader.swift */,
 			);
 			path = "Podcasts Feature";
@@ -1008,6 +1011,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFAEACA28FD45150028B060 /* Podcast.swift in Sources */,
+				8DFAEAD528FD59A60028B060 /* BestPodcastsList.swift in Sources */,
 				8DFAEAC828FD44FE0028B060 /* BestPodcastsLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

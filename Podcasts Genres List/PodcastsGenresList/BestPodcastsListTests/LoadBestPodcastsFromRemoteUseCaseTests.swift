@@ -4,6 +4,37 @@ import XCTest
 import BestPodcastsList
 import PodcastsGenresList
 
+struct RemoteBestPodcastsList: Decodable {
+    let genreId: String
+    let genreName: String
+    let podcasts: [RemotePodcast]
+    
+    private enum CodingKeys : String, CodingKey {
+        case genreId = "id"
+        case genreName = "name"
+        case podcasts
+    }
+}
+
+struct RemotePodcast: Decodable {
+    let id: String
+    let title: String
+    let image: URL
+}
+
+final class BestPodastsItemsMapper {
+    
+    private static var OK_200: Int { return 200 }
+    
+    static func map(_ data: Data, from response: HTTPURLResponse) throws -> RemoteBestPodcastsList {
+        guard response.statusCode == OK_200, let root = try? JSONDecoder().decode(RemoteBestPodcastsList.self, from: data) else {
+            throw RemoteBestPodcastsLoader.Error.invalidData
+        }
+        
+        return root
+    }
+}
+
 class RemoteBestPodcastsLoader {
     
     typealias Result = BestPodcastsLoader.Result
@@ -27,7 +58,23 @@ class RemoteBestPodcastsLoader {
             case .failure:
                 completion(.failure(Error.connectivity))
                 
-            default: break
+            case let .success((data, response)):
+                do {
+                    let remotePodcastsList = try BestPodastsItemsMapper.map(data, from: response)
+                    let podcasts = remotePodcastsList.podcasts.map {
+                        Podcast(id: $0.id, title: $0.title, image: $0.image)
+                    }
+                    
+                    let bestPodcastsList = BestPodcastsList(
+                        genreId: remotePodcastsList.genreId,
+                        genreName: remotePodcastsList.genreName,
+                        podcasts: podcasts
+                    )
+                    
+                    completion(.success(bestPodcastsList))
+                } catch {
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -69,6 +116,17 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         })
     }
     
+    override func test_load_deliversErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        [199, 201, 400, 500].enumerated().forEach { (index, code) in
+            expect(sut, toCompleteWith: failure(.invalidData), when: {
+                let json = makePodcastsListJSON(podcasts: [])
+                client.complete(withStatusCode: code, data: json, at: index)
+            })
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -100,11 +158,11 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
                 
             case let (.failure(receivedError as RemoteBestPodcastsLoader.Error), .failure(expectedError as RemoteBestPodcastsLoader.Error)):
                 XCTAssertEqual(receivedError, expectedError, file: file, line: line)
-            
+                
             default:
                 XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
             }
-
+            
             exp.fulfill()
         }
         
@@ -115,5 +173,30 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
     
     private func failure(_ error: RemoteBestPodcastsLoader.Error) -> RemoteBestPodcastsLoader.Result {
         return .failure(error)
+    }
+    
+    private func makePodcast(id: String, title: String, image: URL) -> (model: Podcast, json: [String: Any]) {
+        let podcast = Podcast(id: id, title: title, image: image)
+        let json = [
+            "id": id,
+            "title": title,
+            "image": image.absoluteString
+        ] as [String: Any]
+        
+        return (podcast, json)
+    }
+    
+    private func makePodcastsListJSON(
+        genreId: Int = 1,
+        genreName: String = "Any Genre",
+        podcasts: [[String: Any]]
+    ) -> Data {
+        let json = [
+            "id": genreId,
+            "name": genreName,
+            "podcasts": podcasts
+        ] as [String: Any]
+        
+        return try! JSONSerialization.data(withJSONObject: json)
     }
 }

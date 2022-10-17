@@ -15,8 +15,6 @@ extension GenresLoader {
     }
 }
 
-extension RemoteLoader: GenresLoader where Resource == [Genre] {}
-
 extension Publisher {
     func fallback(to fallbackPublisher: @escaping () -> AnyPublisher<Output, Failure>) -> AnyPublisher<Output, Failure> {
         self.catch { _ in fallbackPublisher() }.eraseToAnyPublisher()

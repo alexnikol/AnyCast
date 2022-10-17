@@ -4,7 +4,7 @@ import XCTest
 import HTTPClient
 import PodcastsGenresList
 
-class LoadGenresFromRemoteUseCaseTests: XCTestCase {
+class FeedItemsMapperTests: XCTestCase {
         
     func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
@@ -107,31 +107,5 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1.0)
-    }
-    
-    final class HTTPClientSpy: HTTPClient {
-        var requestedURLs: [URL] {
-            return messages.map { $0.url }
-        }
-        
-        private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
-        
-        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-            messages.append((url, completion))
-        }
-        
-        func complete(with error: Error, at index: Int = 0) {
-            messages[index].completion(.failure(error))
-        }
-        
-        func complete(withStatusCode code: Int, data: Data, at index: Int = 0) {
-            let response = HTTPURLResponse(
-                url: messages[index].url,
-                statusCode: code,
-                httpVersion: nil,
-                headerFields: nil
-            )!
-            messages[index].completion(.success((data, response)))
-        }
     }
 }

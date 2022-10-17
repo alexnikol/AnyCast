@@ -37,7 +37,7 @@ public final class RemoteGenresLoader: GenresLoader {
     private static func map(data: Data, response: HTTPURLResponse) -> Result {
         do {
             let items = try GenresItemsMapper.map(data, from: response)
-            return .success(items.toModels())
+            return .success(items)
         } catch {
             return .failure(Error.invalidData)
         }

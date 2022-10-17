@@ -156,7 +156,7 @@ class LoadGenresFromRemoteUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private final class HTTPClientSpy: HTTPClient {
+    final class HTTPClientSpy: HTTPClient {
         var requestedURLs: [URL] {
             return messages.map { $0.url }
         }

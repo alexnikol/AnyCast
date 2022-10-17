@@ -5,67 +5,45 @@ import HTTPClient
 import PodcastsGenresList
 
 class FeedItemsMapperTests: XCTestCase {
+    
+    func test_map_throwsErrorOnNon200HTTPResponse() throws {
+        let json = makeGenresJSON([])
         
-    func test_load_deliversErrorOnNon200HTTPResponse() {
-        let (sut, client) = makeSUT()
-                
-        [199, 201, 400, 500].enumerated().forEach { (index, code) in
-            expect(sut, toCompleteWith: failure(.invalidData), when: {
-                let json = makeGenresJSON([])
-                client.complete(withStatusCode: code, data: json, at: index)
-            })
+        try [199, 201, 400, 500].forEach { code in
+            XCTAssertThrowsError(
+                try GenresItemsMapper.map(json, from: HTTPURLResponse(statusCode: code))
+            )
         }
     }
     
-    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
-        let (sut, client) = makeSUT()
+    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
+        let invalidJSON = Data("invalid json".utf8)
         
-        expect(sut, toCompleteWith: failure(.invalidData), when: {
-            let invalidJSON = Data("invalid json".utf8)
-            client.complete(withStatusCode: 200, data: invalidJSON)
-        })
+        XCTAssertThrowsError(
+            try GenresItemsMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
+        )
     }
     
-    func test_load_deliversNoGenresItemsOn200HTTPResponseWithEmptyJSONList() {
-        let (sut, client) = makeSUT()
-
-        expect(sut, toCompleteWith: .success([]), when: {
-            let emptyListJSON = makeGenresJSON([])
-            client.complete(withStatusCode: 200, data: emptyListJSON)
-        })
+    func test_map_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() throws {
+        let emptyListJSON = makeGenresJSON([])
+        
+        let result = try GenresItemsMapper.map(emptyListJSON, from: HTTPURLResponse(statusCode: 200))
+        
+        XCTAssertEqual(result, [])
     }
     
-    func test_load_deliversGenresItemsOn200HTTPResponseWithJSONItems() {
-        let (sut, client) = makeSUT()
-        
+    func test_map_deliversGenresItemsOn200HTTPResponseWithJSONItems() throws {
         let genre1 = makeGenres(id: 1, name: "a genre name")
         let genre2 = makeGenres(id: 2, name: "another genre name")
+        let json = makeGenresJSON([genre1.json, genre2.json])
         
-        expect(sut, toCompleteWith: .success([genre1.model, genre2.model]), when: {
-            let json = makeGenresJSON([genre1.json, genre2.json])
-            client.complete(withStatusCode: 200, data: json)
-        })
+        let result = try GenresItemsMapper.map(json, from: HTTPURLResponse(statusCode: 200))
+        
+        XCTAssertEqual(result, [genre1.model, genre2.model])
     }
-        
+    
     // MARK: - Helpers
-    
-    private func makeSUT(
-        url: URL = URL(string: "http://a-url.com")!,
-        file: StaticString = #file,
-        line: UInt = #line
-    ) -> (loader: RemoteGenresLoader, client: HTTPClientSpy) {
-        let client = HTTPClientSpy()
-        let sut = RemoteGenresLoader(url: url, client: client)
-        
-        trackForMemoryLeaks(sut)
-        trackForMemoryLeaks(client)
-        return (sut, client)
-    }
-    
-    private func failure(_ error: RemoteGenresLoader.Error) -> RemoteGenresLoader.Result {
-        return .failure(error)
-    }
-    
+            
     private func makeGenres(id: Int, name: String) -> (model: Genre, json: [String: Any]) {
         let genre = Genre(id: id, name: name)
         let json = [
@@ -80,32 +58,11 @@ class FeedItemsMapperTests: XCTestCase {
         let json = ["genres": genres]
         return try! JSONSerialization.data(withJSONObject: json)
     }
-    
-    private func expect(_ sut: RemoteLoader<[Genre]>,
-                        toCompleteWith expectedResult: RemoteLoader<[Genre]>.Result,
-                        when action: () -> Void,
-                        file: StaticString = #file,
-                        line: UInt = #line) {
-        
-        let exp = expectation(description: "Wait for load completion")
-        
-        sut.load { receivedResult in
-            switch (receivedResult, expectedResult) {
-            case let (.success(receivedGenres), .success(expectedGenres)):
-                XCTAssertEqual(receivedGenres, expectedGenres, file: file, line: line)
-                
-            case let (.failure(receivedError), .failure(expectedError)):
-                XCTAssertEqual(receivedError as! RemoteLoader<[Genre]>.Error, expectedError as! RemoteLoader<[Genre]>.Error, file: file, line: line)
-            
-            default:
-                XCTFail("Expected result \(expectedResult) got \(receivedResult) instead", file: file, line: line)
-            }
+}
 
-            exp.fulfill()
-        }
-        
-        action()
-        
-        wait(for: [exp], timeout: 1.0)
+private extension HTTPURLResponse {
+    convenience init(statusCode: Int) {
+        let anyURL = URL(string: "http://a-url.com")!
+        self.init(url: anyURL, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
 }

@@ -60,6 +60,17 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         })
     }
     
+    func test_load_deliversNoPodcastsItemsOn200HTTPResponseWithNonJSONAndEmptyPocastsList() {
+        let (sut, client) = makeSUT()
+
+        let anyGenreId = 1
+        let anyGenreName = "Any Genre"
+        expect(sut, toCompleteWith: .success(BestPodcastsList(genreId: anyGenreId, genreName: anyGenreName, podcasts: [])), when: {
+            let emptyJSON = makePodcastsListJSON(genreId: anyGenreId, genreName: anyGenreName, podcasts: [])
+            client.complete(withStatusCode: 200, data: emptyJSON)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

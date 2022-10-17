@@ -3,11 +3,11 @@
 import Foundation
 
 struct RemoteBestPodcastsList: Decodable {
-    let genreId: String
+    let genreId: Int
     let genreName: String
     let podcasts: [RemotePodcast]
     
-    private enum CodingKeys : String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case genreId = "id"
         case genreName = "name"
         case podcasts

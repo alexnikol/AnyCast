@@ -2,6 +2,6 @@
 
 import XCTest
 
-class BestPodcastsListTests: XCTestCase {
+class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
     
 }

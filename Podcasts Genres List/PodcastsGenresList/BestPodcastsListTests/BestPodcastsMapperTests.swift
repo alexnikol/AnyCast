@@ -4,58 +4,63 @@ import XCTest
 import HTTPClient
 import BestPodcastsList
 
-class LoadBestPodcastsFromRemoteUseCaseTests: XCTestCase {
+class BestPodcastsMapperTests: XCTestCase {
     
-    func test_load_deliversErrorOnNon200HTTPResponse() {
-        let (sut, client) = makeSUT()
+    func test_map_throwsErrorOnNon200HTTPURLResponse() throws {
+        let validJSON = makePodcastsListJSON(podcasts: [])
         
-        [199, 201, 400, 500].enumerated().forEach { (index, code) in
-            expect(sut, toCompleteWith: failure(.invalidData), when: {
-                let json = makePodcastsListJSON(podcasts: [])
-                client.complete(withStatusCode: code, data: json, at: index)
-            })
+        try [199, 201, 400, 500].forEach { code in
+            XCTAssertThrowsError(
+                try BestPodastsItemsMapper.map(validJSON, from: HTTPURLResponse(statusCode: code))
+            )
         }
     }
     
-    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
-        let (sut, client) = makeSUT()
+    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
+        let invalidJSON = Data("invalid json".utf8)
         
-        expect(sut, toCompleteWith: failure(.invalidData), when: {
-            let invalidJSON = Data("invalid json".utf8)
-            client.complete(withStatusCode: 200, data: invalidJSON)
-        })
+        XCTAssertThrowsError(
+            try BestPodastsItemsMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
+        )
     }
     
-    func test_load_deliversNoPodcastsItemsOn200HTTPResponseWithNonJSONAndEmptyPocastsList() {
-        let (sut, client) = makeSUT()
+    func test_map_deliversNoPodcastsItemsOn200HTTPResponseWithNonJSONAndEmptyPocastsList() throws {
+        let anyGenreId = 1
+        let anyGenreName = "Any Genre"
+        let validJSON = makePodcastsListJSON(genreId: anyGenreId, genreName: anyGenreName, podcasts: [])
 
-        let anyGenreId = 1
-        let anyGenreName = "Any Genre"
-        expect(sut, toCompleteWith: .success(BestPodcastsList(genreId: anyGenreId, genreName: anyGenreName, podcasts: [])), when: {
-            let emptyJSON = makePodcastsListJSON(genreId: anyGenreId, genreName: anyGenreName, podcasts: [])
-            client.complete(withStatusCode: 200, data: emptyJSON)
-        })
+        let result = try BestPodastsItemsMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
+        
+        XCTAssertEqual(result, BestPodcastsList(genreId: anyGenreId, genreName: anyGenreName, podcasts: []))
     }
     
-    func test_load_deliversPodcastsItemsOn200HTTPResponseWithJSONItems() {
-        let (sut, client) = makeSUT()
+    func test_map_deliversPodcastsItemsOn200HTTPResponseWithJSONItems() throws {
         let anyGenreId = 1
         let anyGenreName = "Any Genre"
+        
         let podcast1 = makePodcast(
             id: UUID().uuidString,
             title: "Any Podcast",
             image: URL(string: "https://any-url")!
         )
+        
         let podcast2 = makePodcast(
             id: UUID().uuidString,
             title: "Another Podcast",
             image: URL(string: "https://another-url")!
         )
         
-        expect(sut, toCompleteWith: .success(BestPodcastsList(genreId: anyGenreId, genreName: anyGenreName, podcasts: [podcast1.model, podcast2.model])), when: {
-            let json = makePodcastsListJSON(genreId: anyGenreId, genreName: anyGenreName, podcasts: [podcast1.json, podcast2.json])
-            client.complete(withStatusCode: 200, data: json)
-        })
+        let validJSON = makePodcastsListJSON(
+            genreId: anyGenreId,
+            genreName: anyGenreName,
+            podcasts: [podcast1.json, podcast2.json]
+        )
+        
+        let result = try BestPodastsItemsMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
+        
+        XCTAssertEqual(
+            result, BestPodcastsList(genreId: anyGenreId, genreName: anyGenreName, podcasts: [podcast1.model, podcast2.model])
+        )
     }
     
     // MARK: - Helpers
@@ -154,5 +159,12 @@ class LoadBestPodcastsFromRemoteUseCaseTests: XCTestCase {
             )!
             messages[index].completion(.success((data, response)))
         }
+    }
+}
+                
+private extension HTTPURLResponse {
+    convenience init(statusCode: Int) {
+        let anyURL = URL(string: "http://a-url.com")!
+        self.init(url: anyURL, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
 }

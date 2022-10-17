@@ -69,6 +69,8 @@
 		8DD2FA5728D498A00031AAEA /* GenresLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5628D498A00031AAEA /* GenresLoadingView.swift */; };
 		8DD2FA5928D4990B0031AAEA /* GenresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */; };
 		8DD2FA5A28D499800031AAEA /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5128D497090031AAEA /* Genres.strings */; };
+		8DEB7E0328FDC56F003AF72F /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; platformFilter = ios; };
+		8DEB7E0428FDC56F003AF72F /* HTTPClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 		8DFAEAB728FD41740028B060 /* BestPodcastsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* BestPodcastsList.framework */; };
@@ -84,13 +86,14 @@
 		8DFAEADF28FD611D0028B060 /* RemoteBestPodcastsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEADE28FD611D0028B060 /* RemoteBestPodcastsLoader.swift */; };
 		8DFAEAF128FD76680028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; };
 		8DFAEAFF28FD768F0028B060 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEAFE28FD768F0028B060 /* HTTPClient.swift */; };
-		8DFAEB1A28FD7AE30028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; platformFilter = ios; };
-		8DFAEB1F28FD7B900028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; platformFilter = ios; };
-		8DFAEB2428FD7D4A0028B060 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
 		8DFAEB3128FD9A750028B060 /* RemoteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEB2F28FD858A0028B060 /* RemoteLoader.swift */; };
 		8DFAEB3228FD9A840028B060 /* RemoteLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEB2D28FD84F60028B060 /* RemoteLoaderTests.swift */; };
 		8DFAEB3628FD9B210028B060 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEB3328FD9AF90028B060 /* SharedTestHelpers.swift */; };
 		8DFAEB3728FD9B2D0028B060 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
+		8DFAEB3828FDB55E0028B060 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
+		8DFAEB3928FDB55E0028B060 /* PodcastsGenresList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8DFAEB3E28FDB5C50028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; };
+		8DFAEB3F28FDB5C50028B060 /* HTTPClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +132,13 @@
 			remoteGlobalIDString = 8DC351F928D1DB1E00F12FD9;
 			remoteInfo = PodcastsGenresListiOS;
 		};
+		8DEB7E0528FDC56F003AF72F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DFAEAE828FD76670028B060;
+			remoteInfo = HTTPClient;
+		};
 		8DFAEAB828FD41740028B060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -150,14 +160,43 @@
 			remoteGlobalIDString = 8DFAEAE828FD76670028B060;
 			remoteInfo = HTTPClient;
 		};
-		8DFAEB2128FD7B900028B060 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DFAEAE828FD76670028B060;
-			remoteInfo = HTTPClient;
-		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DEB7E0728FDC56F003AF72F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8DEB7E0428FDC56F003AF72F /* HTTPClient.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DFAEB3A28FDB55E0028B060 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8DFAEB3928FDB55E0028B060 /* PodcastsGenresList.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DFAEB4028FDB5C50028B060 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8DFAEB3F28FDB5C50028B060 /* HTTPClient.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStoreSpecs.swift; sourceTree = "<group>"; };
@@ -263,7 +302,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DFAEB1A28FD7AE30028B060 /* HTTPClient.framework in Frameworks */,
+				8DFAEB3E28FDB5C50028B060 /* HTTPClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,7 +318,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DFAEB2428FD7D4A0028B060 /* PodcastsGenresList.framework in Frameworks */,
+				8DFAEB3828FDB55E0028B060 /* PodcastsGenresList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +334,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DFAEB1F28FD7B900028B060 /* HTTPClient.framework in Frameworks */,
+				8DEB7E0328FDC56F003AF72F /* HTTPClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +791,7 @@
 				8DA0930828BF59C900C4C68D /* Sources */,
 				8DA0930928BF59C900C4C68D /* Frameworks */,
 				8DA0930A28BF59C900C4C68D /* Resources */,
+				8DFAEB4028FDB5C50028B060 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -789,6 +829,7 @@
 				8DC351F628D1DB1E00F12FD9 /* Sources */,
 				8DC351F728D1DB1E00F12FD9 /* Frameworks */,
 				8DC351F828D1DB1E00F12FD9 /* Resources */,
+				8DFAEB3A28FDB55E0028B060 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -826,11 +867,12 @@
 				8DFAEAAB28FD41730028B060 /* Sources */,
 				8DFAEAAC28FD41730028B060 /* Frameworks */,
 				8DFAEAAD28FD41730028B060 /* Resources */,
+				8DEB7E0728FDC56F003AF72F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8DFAEB2228FD7B900028B060 /* PBXTargetDependency */,
+				8DEB7E0628FDC56F003AF72F /* PBXTargetDependency */,
 			);
 			name = BestPodcastsList;
 			productName = BestPodcastsList;
@@ -1218,6 +1260,12 @@
 			target = 8DC351F928D1DB1E00F12FD9 /* PodcastsGenresListiOS */;
 			targetProxy = 8DC3520328D1DB1E00F12FD9 /* PBXContainerItemProxy */;
 		};
+		8DEB7E0628FDC56F003AF72F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8DFAEAE828FD76670028B060 /* HTTPClient */;
+			targetProxy = 8DEB7E0528FDC56F003AF72F /* PBXContainerItemProxy */;
+		};
 		8DFAEAB928FD41740028B060 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DFAEAAE28FD41730028B060 /* BestPodcastsList */;
@@ -1230,15 +1278,8 @@
 		};
 		8DFAEB1D28FD7AE30028B060 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 8DFAEAE828FD76670028B060 /* HTTPClient */;
 			targetProxy = 8DFAEB1C28FD7AE30028B060 /* PBXContainerItemProxy */;
-		};
-		8DFAEB2228FD7B900028B060 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 8DFAEAE828FD76670028B060 /* HTTPClient */;
-			targetProxy = 8DFAEB2128FD7B900028B060 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

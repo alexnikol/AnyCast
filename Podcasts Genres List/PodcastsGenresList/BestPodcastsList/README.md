@@ -1,6 +1,6 @@
 # **Shows best podcasts by genre list feature**
 
-## **(BDD) Show podcasts by genre list Spec**
+## **(BDD) Show podcasts by genre Spec**
 ### Story: Client requests to see Podcasts by Genre list
 
 ### Narrative #1
@@ -20,35 +20,35 @@ Given the client has connectivity
 
 
  Given the client has connectivity
-  And there’s a cached version of the genres list
+  And there’s a cached version of the podcasts list
   And the cache is less than 7 days old
- When the client requests to see the genres list
+ When the client requests to see the podcasts list
  Then the app should fetch and display podcasts list from remote server
 
 
 Given the client doesn't have connectivity
-  And there’s a cached version of the genres list
+  And there’s a cached version of the podcasts list
   And the cache is less than 7 days old
- When the client requests to see genres list
- Then the app should display the latest cached genres list
+ When the client requests to see podcasts list
+ Then the app should display the latest cached podcasts list
 
 
 Given the client doesn't have connectivity
-  And there’s a cached version of the genres list
+  And there’s a cached version of the podcasts list
   And the cache is 7 days old or more
- When the client requests to see the genres list
+ When the client requests to see the podcasts list
  Then the app should display an empty list
 
 
 Given the client doesn't have connectivity
   And the cache is empty
- When the client requests to see the genres list
+ When the client requests to see the podcasts list
  Then the app should display an empty list
 ```
 ---
 ## **Use Cases**
 
-### Load Podcasts by Genre list From Remote Use Case
+### Load Podcasts by Genre From Remote Use Case
 
 #### Data:
 - URL
@@ -84,10 +84,10 @@ Given the client doesn't have connectivity
 1 . System delivers error.
 
 #### Expired cache course (sad path): 
-1. System delivers no Genres list.
+1. System delivers no Podcasts list.
 
 #### Empty cache course (sad path): 
-1. System delivers no Genres list.
+1. System delivers no Podcasts list.
 
 ---
 
@@ -129,7 +129,7 @@ Given the client doesn't have connectivity
 
 ## Model Specs
 
-### Remote Podcast Genre Model
+### Remote Podcasts Genre Model
 
 #### Podcasts by Genre Object
 | Property      | Type                     |

@@ -6,7 +6,19 @@ import PodcastsGenresList
 
 class RemoteBestPodcastsLoader {
     
-    init(url: URL, client: HTTPClient) {}
+    private let client: HTTPClient
+    private let url: URL
+    
+    init(genreID: Int, url: URL, client: HTTPClient) {
+        self.client = client
+        self.url = url
+    }
+    
+    func load(completion: @escaping (BestPodcastsLoader.Result) -> Void) {
+        client.get(from: url) { result in
+            
+        }
+    }
 }
 
 class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
@@ -17,6 +29,15 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
+    override func test_load_requestsDataFromURL() {
+        let url = URL(string: "http://a-given-url.com")!
+        let (sut, client) = makeSUT(url: url)
+        
+        sut.load { _ in }
+        
+        XCTAssertEqual(client.requestedURLs, [url])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -25,7 +46,8 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         line: UInt = #line
     ) -> (loader: RemoteBestPodcastsLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteBestPodcastsLoader(url: url, client: client)
+        let anyGenreID = 1
+        let sut = RemoteBestPodcastsLoader(genreID: anyGenreID, url: url, client: client)
         
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(client)

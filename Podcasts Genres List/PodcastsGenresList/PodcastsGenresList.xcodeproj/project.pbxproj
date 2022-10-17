@@ -38,7 +38,6 @@
 		8D75815F28D0BA5400751261 /* GenresCacheTestHeplers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0544B28CB611300418F3E /* GenresCacheTestHeplers.swift */; };
 		8D76B81628D49BC80014A211 /* GenresLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */; };
 		8D76B8AC28D4B3EF0014A211 /* GenreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B8AB28D4B3EF0014A211 /* GenreCellViewModel.swift */; };
-		8D9CC42928D4B6CE00EF7D4D /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
@@ -77,9 +76,6 @@
 		8DFAEAC828FD44FE0028B060 /* BestPodcastsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEAC728FD44FE0028B060 /* BestPodcastsLoader.swift */; };
 		8DFAEACA28FD45150028B060 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEAC928FD45150028B060 /* Podcast.swift */; };
 		8DFAEACC28FD46680028B060 /* LoadBestPodcastsFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEACB28FD46680028B060 /* LoadBestPodcastsFromRemoteUseCaseTests.swift */; };
-		8DFAEACD28FD46AF0028B060 /* LoadGenresFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* LoadGenresFromRemoteUseCaseTests.swift */; };
-		8DFAEACE28FD46DC0028B060 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; platformFilter = ios; };
-		8DFAEACF28FD46DC0028B060 /* PodcastsGenresList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8DFAEAD328FD46F30028B060 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DFAEAD528FD59A60028B060 /* BestPodcastsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEAD428FD59A60028B060 /* BestPodcastsList.swift */; };
 		8DFAEAD928FD60EA0028B060 /* RemoteBestPodcastsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEAD728FD60CF0028B060 /* RemoteBestPodcastsList.swift */; };
@@ -87,10 +83,11 @@
 		8DFAEADD28FD61080028B060 /* BestPodastsItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEADC28FD61080028B060 /* BestPodastsItemsMapper.swift */; };
 		8DFAEADF28FD611D0028B060 /* RemoteBestPodcastsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEADE28FD611D0028B060 /* RemoteBestPodcastsLoader.swift */; };
 		8DFAEAF128FD76680028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; };
-		8DFAEAF628FD76680028B060 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEAF528FD76680028B060 /* HTTPClientTests.swift */; };
 		8DFAEAFF28FD768F0028B060 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEAFE28FD768F0028B060 /* HTTPClient.swift */; };
-		8DFAEB0528FD77C80028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; platformFilter = ios; };
-		8DFAEB0628FD77C80028B060 /* HTTPClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8DFAEB1A28FD7AE30028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; platformFilter = ios; };
+		8DFAEB1F28FD7B900028B060 /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; platformFilter = ios; };
+		8DFAEB2428FD7D4A0028B060 /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
+		8DFAEB2828FD7D970028B060 /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFAEB2728FD7D970028B060 /* HTTPClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,13 +133,6 @@
 			remoteGlobalIDString = 8DFAEAAE28FD41730028B060;
 			remoteInfo = BestPodcastsList;
 		};
-		8DFAEAD028FD46DC0028B060 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DA0930B28BF59C900C4C68D;
-			remoteInfo = PodcastsGenresList;
-		};
 		8DFAEAF228FD76680028B060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -150,7 +140,14 @@
 			remoteGlobalIDString = 8DFAEAE828FD76670028B060;
 			remoteInfo = HTTPClient;
 		};
-		8DFAEB0728FD77C80028B060 /* PBXContainerItemProxy */ = {
+		8DFAEB1C28FD7AE30028B060 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DFAEAE828FD76670028B060;
+			remoteInfo = HTTPClient;
+		};
+		8DFAEB2128FD7B900028B060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
 			proxyType = 1;
@@ -158,31 +155,6 @@
 			remoteInfo = HTTPClient;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		8DFAEAD228FD46DC0028B060 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8DFAEACF28FD46DC0028B060 /* PodcastsGenresList.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DFAEB0928FD77C80028B060 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8DFAEB0628FD77C80028B060 /* HTTPClient.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStoreSpecs.swift; sourceTree = "<group>"; };
@@ -261,8 +233,8 @@
 		8DFAEADE28FD611D0028B060 /* RemoteBestPodcastsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteBestPodcastsLoader.swift; sourceTree = "<group>"; };
 		8DFAEAE928FD76670028B060 /* HTTPClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTTPClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFAEAF028FD76680028B060 /* HTTPClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTTPClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DFAEAF528FD76680028B060 /* HTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 		8DFAEAFE28FD768F0028B060 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		8DFAEB2728FD7D970028B060 /* HTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,7 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DFAEB0528FD77C80028B060 /* HTTPClient.framework in Frameworks */,
+				8DFAEB1A28FD7AE30028B060 /* HTTPClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,7 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D9CC42928D4B6CE00EF7D4D /* PodcastsGenresList.framework in Frameworks */,
+				8DFAEB2428FD7D4A0028B060 /* PodcastsGenresList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DFAEACE28FD46DC0028B060 /* PodcastsGenresList.framework in Frameworks */,
+				8DFAEB1F28FD7B900028B060 /* HTTPClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +654,7 @@
 		8DFAEAF428FD76680028B060 /* HTTPClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DFAEAF528FD76680028B060 /* HTTPClientTests.swift */,
+				8DFAEB2728FD7D970028B060 /* HTTPClientTests.swift */,
 			);
 			path = HTTPClientTests;
 			sourceTree = "<group>";
@@ -765,12 +737,11 @@
 				8DA0930828BF59C900C4C68D /* Sources */,
 				8DA0930928BF59C900C4C68D /* Frameworks */,
 				8DA0930A28BF59C900C4C68D /* Resources */,
-				8DFAEB0928FD77C80028B060 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8DFAEB0828FD77C80028B060 /* PBXTargetDependency */,
+				8DFAEB1D28FD7AE30028B060 /* PBXTargetDependency */,
 			);
 			name = PodcastsGenresList;
 			productName = PodcastsGenresList;
@@ -840,12 +811,11 @@
 				8DFAEAAB28FD41730028B060 /* Sources */,
 				8DFAEAAC28FD41730028B060 /* Frameworks */,
 				8DFAEAAD28FD41730028B060 /* Resources */,
-				8DFAEAD228FD46DC0028B060 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8DFAEAD128FD46DC0028B060 /* PBXTargetDependency */,
+				8DFAEB2228FD7B900028B060 /* PBXTargetDependency */,
 			);
 			name = BestPodcastsList;
 			productName = BestPodcastsList;
@@ -952,6 +922,7 @@
 					};
 					8DFAEAEF28FD76680028B060 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -969,6 +940,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				8DFAEAE828FD76670028B060 /* HTTPClient */,
+				8DFAEAEF28FD76680028B060 /* HTTPClientTests */,
 				8DA0930B28BF59C900C4C68D /* PodcastsGenresList */,
 				8DA0931928BF5A0200C4C68D /* PodcastsGenresListTests */,
 				8D745E3228C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
@@ -977,8 +950,6 @@
 				8DC3520028D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */,
 				8DFAEAAE28FD41730028B060 /* BestPodcastsList */,
 				8DFAEAB528FD41740028B060 /* BestPodcastsListTests */,
-				8DFAEAE828FD76670028B060 /* HTTPClient */,
-				8DFAEAEF28FD76680028B060 /* HTTPClientTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1179,7 +1150,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFAEACC28FD46680028B060 /* LoadBestPodcastsFromRemoteUseCaseTests.swift in Sources */,
-				8DFAEACD28FD46AF0028B060 /* LoadGenresFromRemoteUseCaseTests.swift in Sources */,
 				8DFAEAD328FD46F30028B060 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1196,7 +1166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DFAEAF628FD76680028B060 /* HTTPClientTests.swift in Sources */,
+				8DFAEB2828FD7D970028B060 /* HTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,7 +1187,6 @@
 		};
 		8D9CC42C28D4B6CE00EF7D4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilter = ios;
 			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
 			targetProxy = 8D9CC42B28D4B6CE00EF7D4D /* PBXContainerItemProxy */;
 		};
@@ -1236,22 +1205,22 @@
 			target = 8DFAEAAE28FD41730028B060 /* BestPodcastsList */;
 			targetProxy = 8DFAEAB828FD41740028B060 /* PBXContainerItemProxy */;
 		};
-		8DFAEAD128FD46DC0028B060 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
-			targetProxy = 8DFAEAD028FD46DC0028B060 /* PBXContainerItemProxy */;
-		};
 		8DFAEAF328FD76680028B060 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DFAEAE828FD76670028B060 /* HTTPClient */;
 			targetProxy = 8DFAEAF228FD76680028B060 /* PBXContainerItemProxy */;
 		};
-		8DFAEB0828FD77C80028B060 /* PBXTargetDependency */ = {
+		8DFAEB1D28FD7AE30028B060 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
 			target = 8DFAEAE828FD76670028B060 /* HTTPClient */;
-			targetProxy = 8DFAEB0728FD77C80028B060 /* PBXContainerItemProxy */;
+			targetProxy = 8DFAEB1C28FD7AE30028B060 /* PBXContainerItemProxy */;
+		};
+		8DFAEB2228FD7B900028B060 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8DFAEAE828FD76670028B060 /* HTTPClient */;
+			targetProxy = 8DFAEB2128FD7B900028B060 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1568,7 +1537,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Almost Engineer. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1601,7 +1570,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Almost Engineer. All rights reserved.";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1692,11 +1661,12 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.BestPodcastsList";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1723,11 +1693,12 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.BestPodcastsList";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1751,6 +1722,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.BestPodcastsListTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1775,6 +1747,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.BestPodcastsListTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1847,15 +1820,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WUJDW64U79;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.HTTPClientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -1864,14 +1845,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WUJDW64U79;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.HTTPClientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};

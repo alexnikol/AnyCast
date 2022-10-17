@@ -1,7 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
-import PodcastsGenresList
+import HTTPClient
 
 public class RemoteBestPodcastsLoader {
     

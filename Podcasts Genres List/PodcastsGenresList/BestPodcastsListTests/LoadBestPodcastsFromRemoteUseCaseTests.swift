@@ -1,18 +1,18 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import HTTPClient
 import BestPodcastsList
-import PodcastsGenresList
 
-class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
+class LoadBestPodcastsFromRemoteUseCaseTests: XCTestCase {
     
-    override func test_init_doesNotRequestDataFromURL() {
+    func test_init_doesNotRequestDataFromURL() {
         let (_, client) = makeSUT()
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
-    override func test_load_requestsDataFromURL() {
+    func test_load_requestsDataFromURL() {
         let url = URL(string: "http://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
         
@@ -21,7 +21,7 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         XCTAssertEqual(client.requestedURLs, [url])
     }
     
-    override func test_loadTwice_requestsDataFromURLTwice() {
+    func test_loadTwice_requestsDataFromURLTwice() {
         let url = URL(string: "http://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
         
@@ -31,7 +31,7 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
-    override func test_load_deliversErrorOnClientError() {
+    func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.connectivity), when: {
@@ -40,7 +40,7 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         })
     }
     
-    override func test_load_deliversErrorOnNon200HTTPResponse() {
+    func test_load_deliversErrorOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
         
         [199, 201, 400, 500].enumerated().forEach { (index, code) in
@@ -51,7 +51,7 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         }
     }
     
-    override func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
+    func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON() {
         let (sut, client) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.invalidData), when: {
@@ -92,7 +92,7 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         })
     }
     
-    override func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let url = URL(string: "http://any-url.com")!
         let client = HTTPClientSpy()
         var sut: RemoteBestPodcastsLoader? = RemoteBestPodcastsLoader(genreID: 1, url: url, client: client)
@@ -177,5 +177,31 @@ class LoadBestPodcastsFromRemoteUseCaseTests: LoadGenresFromRemoteUseCaseTests {
         ] as [String: Any]
         
         return try! JSONSerialization.data(withJSONObject: json)
+    }
+    
+    final class HTTPClientSpy: HTTPClient {
+        var requestedURLs: [URL] {
+            return messages.map { $0.url }
+        }
+        
+        private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
+        
+        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+            messages.append((url, completion))
+        }
+        
+        func complete(with error: Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
+        }
+        
+        func complete(withStatusCode code: Int, data: Data, at index: Int = 0) {
+            let response = HTTPURLResponse(
+                url: messages[index].url,
+                statusCode: code,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+            messages[index].completion(.success((data, response)))
+        }
     }
 }

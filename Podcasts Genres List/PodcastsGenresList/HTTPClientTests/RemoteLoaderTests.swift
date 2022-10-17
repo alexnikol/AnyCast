@@ -2,7 +2,6 @@
 
 import XCTest
 import HTTPClient
-import PodcastsGenresList
 
 class RemoteLoaderTests: XCTestCase {
     

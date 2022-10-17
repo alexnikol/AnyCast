@@ -4,13 +4,32 @@ import Foundation
 
 final class BestPodastsItemsMapper {
     
+    public enum Error: Swift.Error {
+        case invalidData
+    }
+    
     private static var OK_200: Int { return 200 }
     
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> RemoteBestPodcastsList {
-        guard response.statusCode == OK_200, let root = try? JSONDecoder().decode(RemoteBestPodcastsList.self, from: data) else {
-            throw RemoteBestPodcastsLoader.Error.invalidData
+    static func map(_ data: Data, from response: HTTPURLResponse) throws -> BestPodcastsList {
+        guard response.statusCode == OK_200,
+              let remoteBestPocdastsList = try? JSONDecoder().decode(RemoteBestPodcastsList.self, from: data) else {
+            throw Error.invalidData
         }
-        
-        return root
+
+        return remoteBestPocdastsList.toModel()
+    }
+}
+
+private extension RemoteBestPodcastsList {
+    func toModel() -> BestPodcastsList {
+        return BestPodcastsList(genreId: genreId, genreName: genreName, podcasts: podcasts.toModels())
+    }
+}
+
+private extension Array where Element == RemotePodcast {
+    func toModels() -> [Podcast] {
+        return map {
+            Podcast(id: $0.id, title: $0.title, image: $0.image)
+        }
     }
 }

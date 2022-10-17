@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
-import HTTPClient
 
 public final class RemoteLoader<Resource> {
     

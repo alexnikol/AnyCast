@@ -5,6 +5,8 @@ import PodcastsGenresList
 import PodcastsGenresListiOS
 
 final class GenresViewAdapter: ResourceView {
+    typealias ResourceViewModel = GenresViewModel
+    
     private weak var controller: GenresListViewController?
     private let genresColorProvider: GenresActiveColorProvider<UIColor>
     
@@ -13,7 +15,7 @@ final class GenresViewAdapter: ResourceView {
         self.genresColorProvider = genresColorProvider
     }
 
-    func display(_ viewModel: GenresViewModel) {
+    func display(_ viewModel: ResourceViewModel) {
         controller?.display(viewModel.genres.enumerated().map { (index, model) in
             let cellModel = GenreCellViewModel(name: model.name, color: associatedColorByIndex(index))
             return GenreCellController(model: cellModel)

@@ -2,20 +2,6 @@
 
 import Foundation
 
-public protocol ResourceView {
-    associatedtype ResourceViewModel
-    
-    func display(_ viewModel: ResourceViewModel)
-}
-
-public struct ResourceLoadingViewModel {
-    public let isLoading: Bool
-}
-
-public protocol ResourceLoadingView {
-    func display(_ viewModel: ResourceLoadingViewModel)
-}
-
 public class LoadResourcePresenter<Resource, View: ResourceView> {
     public typealias Mapper = (Resource) -> (View.ResourceViewModel)
     let resourceView: View

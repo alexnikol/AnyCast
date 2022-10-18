@@ -2,10 +2,6 @@
 
 import Foundation
 
-public protocol GenresView {
-    func display(_ viewModel: GenresViewModel)
-}
-
 public struct GenresViewModel: Hashable {
     public let genres: [Genre]
     

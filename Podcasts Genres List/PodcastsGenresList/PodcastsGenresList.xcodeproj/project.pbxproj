@@ -396,6 +396,14 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		8D5C207028FEC4E6006CD42F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8D5C206928FEB0E4006CD42F /* LoadResourcePresenterTests.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		8D72D05D28F82A1B00C17DDC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,10 +648,10 @@
 		8DC354B528D47F2100F12FD9 /* Genres Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				8D5C207028FEC4E6006CD42F /* Shared */,
 				8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */,
 				8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */,
 				8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */,
-				8D5C206928FEB0E4006CD42F /* LoadResourcePresenterTests.swift */,
 			);
 			path = "Genres Presentation";
 			sourceTree = "<group>";

@@ -28,30 +28,32 @@ class LoadResourcePresenterTests: XCTestCase {
     }
     
     func test_didFinishLoading_displaysResourceAndStopsLoading() {
-        let (sut, view) = makeSUT()
-        let uniqueGenres = uniqueGenres().models
+        let (sut, view) = makeSUT { resource in
+            return resource + " view model"
+        }
+        let resource = "any resource"
         
-        sut.didFinishLoading(with: uniqueGenres)
+        sut.didFinishLoading(with: resource)
         
         XCTAssertEqual(view.messages, [
             .display(isLoading: false),
-            .display(genres: uniqueGenres)
+            .display(recource: resource + " view model")
         ])
     }
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LoadResourcePresenter, view: ViewSpy) {
+    private func makeSUT(mapper: @escaping LoadResourcePresenter.Mapper = { _ in "any" }, file: StaticString = #file, line: UInt = #line) -> (sut: LoadResourcePresenter, view: ViewSpy) {
         let view = ViewSpy()
-        let sut = LoadResourcePresenter(genresView: view, loadingView: view)
+        let sut = LoadResourcePresenter(resourceView: view, loadingView: view, mapper: mapper)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, view)
     }
         
-    private class ViewSpy: GenresLoadingView, GenresView {
+    private class ViewSpy: GenresLoadingView, ResourceView {
         enum Message: Hashable {
             case display(isLoading: Bool)
-            case display(genres: [Genre])
+            case display(recource: String)
         }
         
         private(set) var messages: Set<Message> = []
@@ -59,9 +61,9 @@ class LoadResourcePresenterTests: XCTestCase {
         func display(_ viewModel: GenresLoadingViewModel) {
             messages.insert(.display(isLoading: viewModel.isLoading))
         }
-        
-        func display(_ viewModel: GenresViewModel) {
-            messages.insert(.display(genres: viewModel.genres))
+                
+        func display(_ viewModel: String) {
+            messages.insert(.display(recource: viewModel))
         }
     }
 }

@@ -2,13 +2,20 @@
 
 import Foundation
 
+public protocol ResourceView {
+     func display(_ viewModel: String)
+}
+
 public class LoadResourcePresenter {
-    let genresView: GenresView
+    public typealias Mapper = (String) -> (String)
+    let resourceView: ResourceView
     let loadingView: GenresLoadingView
+    let mapper: Mapper
         
-    public init(genresView: GenresView, loadingView: GenresLoadingView) {
-        self.genresView = genresView
+    public init(resourceView: ResourceView, loadingView: GenresLoadingView, mapper: @escaping Mapper) {
+        self.resourceView = resourceView
         self.loadingView = loadingView
+        self.mapper = mapper
     }
     
     public func didStartLoading() {
@@ -19,8 +26,8 @@ public class LoadResourcePresenter {
         loadingView.display(.init(isLoading: false))
     }
     
-    public func didFinishLoading(with genres: [Genre]) {
-        genresView.display(.init(genres: genres))
+    public func didFinishLoading(with resource: String) {
+        resourceView.display(mapper(resource))
         loadingView.display(.init(isLoading: false))
     }
 }

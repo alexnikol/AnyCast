@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-    private func makeLocalGenresLoaderWithRemoteFallback() -> GenresLoader.Publisher {
+    private func makeLocalGenresLoaderWithRemoteFallback() -> AnyPublisher<[Genre], Error> {
         struct EmptyCache: Error {}
         
         let baseURL = URL(string: "https://listen-api-test.listennotes.com")!

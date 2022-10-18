@@ -1,28 +1,30 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import Combine
 import PodcastsGenresList
 
 extension GenresUIIntegrationTests {
-    class LoaderSpy: GenresLoader {
-        typealias LoadGenresResult = GenresLoaderResult
-        private var completions = [(LoadGenresResult) -> Void]()
+    class LoaderSpy {
+        private var genresRequests = [PassthroughSubject<[Genre], Error>]()
         
         var loadCallCount: Int {
-            return completions.count
+            return genresRequests.count
         }
         
-        func load(completion: @escaping (LoadGenresResult) -> Void) {
-            completions.append(completion)
+        func loadPublisher() -> AnyPublisher<[Genre], Error> {
+            let publisher = PassthroughSubject<[Genre], Error>()
+            genresRequests.append(publisher)
+            return publisher.eraseToAnyPublisher()
         }
         
         func completeGenresLoading(with genres: [Genre] = [], at index: Int) {
-            completions[index](.success(genres))
+            genresRequests[index].send(genres)
         }
         
         func completeGenresLoadingWithError(at index: Int) {
             let error = NSError(domain: "any error", code: 0)
-            completions[index](.failure(error))
+            genresRequests[index].send(completion: .failure(error))
         }
     }
 }

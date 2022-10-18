@@ -5,12 +5,12 @@ import HTTPClient
 import PodcastsGenresList
 import Foundation
 
-extension GenresLoader {
+extension LocalGenresLoader {
     typealias Publisher = AnyPublisher<[Genre], Error>
     
     func loadPublisher() -> Publisher {
         Deferred {
-            Future(load)
+            Future(self.load)
         }.eraseToAnyPublisher()
     }
 }

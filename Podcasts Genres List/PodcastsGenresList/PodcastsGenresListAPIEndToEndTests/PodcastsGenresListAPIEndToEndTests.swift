@@ -22,11 +22,11 @@ class PodcastsGenresListAPIEndToEndTests: XCTestCase {
     
     // MARK: - Heplers
     
-    private func getGenresListResult(file: StaticString = #file, line: UInt = #line) -> GenresLoaderResult? {
+    private func getGenresListResult(file: StaticString = #file, line: UInt = #line) -> Swift.Result<[Genre], Error>? {
         let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Genres%2FGET-genres-list.json?alt=media&token=dc1af9d5-fa47-4396-92d8-180f74c9a061")!
         let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         trackForMemoryLeaks(client, file: file, line: line)
-        var receivedResult: GenresLoaderResult?
+        var receivedResult: Swift.Result<[Genre], Error>?
         let exp = expectation(description: "Wait for load completion")
         
         client.get(from: testServerURL) { result in

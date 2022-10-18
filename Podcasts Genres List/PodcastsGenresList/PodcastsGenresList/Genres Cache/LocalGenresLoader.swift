@@ -38,9 +38,9 @@ extension LocalGenresLoader: GenresCache {
     }
 }
 
-extension LocalGenresLoader: GenresLoader {
+extension LocalGenresLoader {
     
-    public typealias LoadResult = GenresLoaderResult
+    public typealias LoadResult = Swift.Result<[Genre], Error>
     
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in

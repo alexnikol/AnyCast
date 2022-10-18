@@ -11,15 +11,15 @@ class LoadResourcePresenterTests: XCTestCase {
         XCTAssertTrue(view.messages.isEmpty, "Expected no view messages")
     }
     
-    func test_didStartLoadingGenres_displaysLoadingMessage() {
+    func test_didStartLoading_displaysLoadingMessage() {
         let (sut, view) = makeSUT()
         
-        sut.didStartLoadingGenres()
+        sut.didStartLoading()
         
         XCTAssertEqual(view.messages, [.display(isLoading: true)])
     }
     
-    func test_didFinishLoadingGenresWithError_stopsLoading() {
+    func test_didFinishLoadingWithError_stopsLoading() {
         let (sut, view) = makeSUT()
         
         sut.didFinishLoading(with: anyNSError())
@@ -27,11 +27,11 @@ class LoadResourcePresenterTests: XCTestCase {
         XCTAssertEqual(view.messages, [.display(isLoading: false)])
     }
     
-    func test_didFinishLoadingGenres_displaysGenresAndStopsLoading() {
+    func test_didFinishLoading_displaysResourceAndStopsLoading() {
         let (sut, view) = makeSUT()
         let uniqueGenres = uniqueGenres().models
         
-        sut.didFinishLoadingGenres(with: uniqueGenres)
+        sut.didFinishLoading(with: uniqueGenres)
         
         XCTAssertEqual(view.messages, [
             .display(isLoading: false),

@@ -11,7 +11,7 @@ public class LoadResourcePresenter {
         self.loadingView = loadingView
     }
     
-    public func didStartLoadingGenres() {
+    public func didStartLoading() {
         loadingView.display(.init(isLoading: true))
     }
     
@@ -19,7 +19,7 @@ public class LoadResourcePresenter {
         loadingView.display(.init(isLoading: false))
     }
     
-    public func didFinishLoadingGenres(with genres: [Genre]) {
+    public func didFinishLoading(with genres: [Genre]) {
         genresView.display(.init(genres: genres))
         loadingView.display(.init(isLoading: false))
     }

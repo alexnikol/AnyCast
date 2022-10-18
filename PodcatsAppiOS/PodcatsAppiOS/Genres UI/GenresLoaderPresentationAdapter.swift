@@ -6,11 +6,11 @@ import PodcastsGenresList
 import PodcastsGenresListiOS
 
 final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate {
-    private let genresLoader: () -> GenresLoader.Publisher
+    private let genresLoader: () -> AnyPublisher<[Genre], Error>
     private var cancellable: Cancellable?
     var presenter: GenresPresenter?
     
-    init(genresLoader: @escaping () -> GenresLoader.Publisher) {
+    init(genresLoader: @escaping () -> AnyPublisher<[Genre], Error>) {
         self.genresLoader = genresLoader
     }
     

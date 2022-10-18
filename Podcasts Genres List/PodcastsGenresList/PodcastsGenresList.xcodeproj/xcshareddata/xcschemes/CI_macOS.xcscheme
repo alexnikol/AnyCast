@@ -77,9 +77,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DFAEAEF28FD76680028B060"
-               BuildableName = "HTTPClientTests.xctest"
-               BlueprintName = "HTTPClientTests"
+               BlueprintIdentifier = "8DFAEAB528FD41740028B060"
+               BuildableName = "BestPodcastsListTests.xctest"
+               BlueprintName = "BestPodcastsListTests"
                ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -88,9 +88,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DFAEAB528FD41740028B060"
-               BuildableName = "BestPodcastsListTests.xctest"
-               BlueprintName = "BestPodcastsListTests"
+               BlueprintIdentifier = "8D5C204728FE8EC4006CD42F"
+               BuildableName = "URLSessionHTTPClientTests.xctest"
+               BlueprintName = "URLSessionHTTPClientTests"
                ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>

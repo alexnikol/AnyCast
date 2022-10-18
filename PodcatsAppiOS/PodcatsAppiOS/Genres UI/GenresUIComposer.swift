@@ -9,7 +9,7 @@ final class GenresUIComposer {
     
     private init() {}
     
-    static func genresComposedWith(loader: @escaping () -> GenresLoader.Publisher) -> GenresListViewController {        
+    static func genresComposedWith(loader: @escaping () -> AnyPublisher<[Genre], Error>) -> GenresListViewController {        
         let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader)
         let refreshController = GenresRefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)

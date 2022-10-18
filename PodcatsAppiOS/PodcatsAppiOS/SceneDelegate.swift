@@ -2,6 +2,7 @@
 
 import UIKit
 import HTTPClient
+import URLSessionHTTPClient
 import Combine
 import CoreData
 import PodcastsGenresList
@@ -50,12 +51,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-    private func makeLocalGenresLoaderWithRemoteFallback() -> RemoteGenresLoader.Publisher {
+    private func makeLocalGenresLoaderWithRemoteFallback() -> AnyPublisher<[Genre], Error> {
         struct EmptyCache: Error {}
         
         let baseURL = URL(string: "https://listen-api-test.listennotes.com")!
         let genresRequestPath = baseURL.appendingPathComponent("api/v2/genres")
-        let remoteGenresLoader = RemoteGenresLoader(url: genresRequestPath, client: httpClient)
         let localGenresLoader = localGenresLoader
         return localGenresLoader
             .loadPublisher()
@@ -65,9 +65,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
                 return genres
             }
-            .fallback(to: {
-                remoteGenresLoader
-                    .loadPublisher()
+            .fallback(to: { [weak self] in
+                guard let self = self else { return Empty().eraseToAnyPublisher() }
+                return self.httpClient
+                    .loadPublisher(from: genresRequestPath)
+                    .tryMap(GenresItemsMapper.map)
                     .caching(to: localGenresLoader)
             })
     }

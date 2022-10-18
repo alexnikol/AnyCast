@@ -2,7 +2,7 @@
 
 import Foundation
 
-final class BestPodastsItemsMapper {
+public final class BestPodastsItemsMapper {
     
     public enum Error: Swift.Error {
         case invalidData
@@ -10,7 +10,7 @@ final class BestPodastsItemsMapper {
     
     private static var OK_200: Int { return 200 }
     
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> BestPodcastsList {
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> BestPodcastsList {
         guard response.statusCode == OK_200,
               let remoteBestPocdastsList = try? JSONDecoder().decode(RemoteBestPodcastsList.self, from: data) else {
             throw Error.invalidData

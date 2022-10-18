@@ -2,7 +2,7 @@
 
 import XCTest
 import HTTPClient
-import PodcastsGenresList
+import URLSessionHTTPClient
 
 class URLSessionHTTPClientTests: XCTestCase {
             
@@ -131,6 +131,10 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     private func anyData() -> Data {
         Data("anyData".utf8)
+    }
+    
+    private func anyNSError() -> NSError {
+        NSError(domain: "any error", code: 0)
     }
         
     private func nonHTTPURLResponse() -> URLResponse {

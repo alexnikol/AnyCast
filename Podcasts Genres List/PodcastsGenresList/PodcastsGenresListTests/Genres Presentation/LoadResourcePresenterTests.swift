@@ -52,7 +52,7 @@ class LoadResourcePresenterTests: XCTestCase {
         return (sut, view)
     }
         
-    private class ViewSpy: GenresLoadingView, ResourceView {
+    private class ViewSpy: ResourceLoadingView, ResourceView {
         typealias ResourceViewModel = String
         
         enum Message: Hashable {
@@ -62,7 +62,7 @@ class LoadResourcePresenterTests: XCTestCase {
         
         private(set) var messages: Set<Message> = []
         
-        func display(_ viewModel: GenresLoadingViewModel) {
+        func display(_ viewModel: ResourceLoadingViewModel) {
             messages.insert(.display(isLoading: viewModel.isLoading))
         }
                 

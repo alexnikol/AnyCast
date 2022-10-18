@@ -2,6 +2,7 @@
 
 import UIKit
 import HTTPClient
+import URLSessionHTTPClient
 import Combine
 import CoreData
 import PodcastsGenresList

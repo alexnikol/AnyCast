@@ -112,6 +112,17 @@
                ReferencedContainer = "container:PodcatsAppiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D5C204728FE8EC4006CD42F"
+               BuildableName = "URLSessionHTTPClientTests.xctest"
+               BlueprintName = "URLSessionHTTPClientTests"
+               ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

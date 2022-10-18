@@ -32,4 +32,8 @@ public class GenresPresenter {
         genresView.display(.init(genres: genres))
         loadingView.display(.init(isLoading: false))
     }
+    
+    public static func map(_ genres: [Genre]) -> GenresViewModel {
+        return GenresViewModel(genres: genres)
+    }
 }

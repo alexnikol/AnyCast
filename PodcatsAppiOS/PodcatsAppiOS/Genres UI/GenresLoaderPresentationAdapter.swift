@@ -8,14 +8,14 @@ import PodcastsGenresListiOS
 final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate {
     private let genresLoader: () -> AnyPublisher<[Genre], Error>
     private var cancellable: Cancellable?
-    var presenter: GenresPresenter?
+    var presenter: LoadResourcePresenter<[Genre], GenresViewAdapter>?
     
     init(genresLoader: @escaping () -> AnyPublisher<[Genre], Error>) {
         self.genresLoader = genresLoader
     }
     
     func didRequestLoadingGenres() {
-        presenter?.didStartLoadingGenres()
+        presenter?.didStartLoading()
         
         cancellable = genresLoader()
             .dispatchOnMainQueue()
@@ -29,7 +29,7 @@ final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate
                     }
                 },
                 receiveValue: { [weak self] genres in
-                    self?.presenter?.didFinishLoadingGenres(with: genres)
+                    self?.presenter?.didFinishLoading(with: genres)
                 }
             )
     }

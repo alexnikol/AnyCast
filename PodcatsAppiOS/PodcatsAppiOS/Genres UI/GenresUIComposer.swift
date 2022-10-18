@@ -15,12 +15,13 @@ final class GenresUIComposer {
         let genresController = GenresListViewController(refreshController: refreshController)
         genresController.title = GenresPresenter.title
         
-        presentationAdapter.presenter = GenresPresenter(
-            genresView: GenresViewAdapter(
+        presentationAdapter.presenter = LoadResourcePresenter(
+            resourceView: GenresViewAdapter(
                 controller: genresController,
                 genresColorProvider: makeGenresColorProvider()
             ),
-            loadingView: WeakRefVirtualProxy(refreshController)
+            loadingView: WeakRefVirtualProxy(refreshController),
+            mapper: GenresPresenter.map
         )
         return genresController
     }

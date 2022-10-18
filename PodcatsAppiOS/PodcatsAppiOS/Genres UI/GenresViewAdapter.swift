@@ -4,7 +4,7 @@ import UIKit
 import PodcastsGenresList
 import PodcastsGenresListiOS
 
-final class GenresViewAdapter: GenresView {
+final class GenresViewAdapter: ResourceView {
     private weak var controller: GenresListViewController?
     private let genresColorProvider: GenresActiveColorProvider<UIColor>
     

@@ -5,16 +5,7 @@ import Foundation
 public class LoadResourcePresenter {
     let genresView: GenresView
     let loadingView: GenresLoadingView
-    
-    public static var title: String {
-        return NSLocalizedString(
-            "GENRES_VIEW_TITLE",
-             tableName: "Genres",
-             bundle: .init(for: Self.self),
-             comment: "Title for the genres view"
-        )
-    }
-    
+        
     public init(genresView: GenresView, loadingView: GenresLoadingView) {
         self.genresView = genresView
         self.loadingView = loadingView

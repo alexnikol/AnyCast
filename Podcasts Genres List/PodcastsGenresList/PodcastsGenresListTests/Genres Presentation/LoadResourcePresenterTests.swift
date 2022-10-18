@@ -4,11 +4,7 @@ import XCTest
 import PodcastsGenresList
 
 class LoadResourcePresenterTests: XCTestCase {
-    
-    func test_title_isLocalized() {
-        XCTAssertEqual(GenresPresenter.title, localized("GENRES_VIEW_TITLE"))
-    }
-    
+        
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()
         
@@ -51,18 +47,7 @@ class LoadResourcePresenterTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, view)
     }
-    
-    func localized(_ key: String, file: StaticString = #file, line: UInt = #line) -> String {
-        let table = "Genres"
-        let bundle = Bundle(for: LoadResourcePresenter.self)
-        let value = bundle.localizedString(forKey: key, value: nil, table: "Genres")
         
-        if value == key {
-            XCTFail("Missing localized string for key: \(key) in table: \(table)", file: file, line: line)
-        }
-        return value
-    }
-    
     private class ViewSpy: GenresLoadingView, GenresView {
         enum Message: Hashable {
             case display(isLoading: Bool)

@@ -17,6 +17,8 @@
 		8D5C205E28FE9026006CD42F /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8D5C205F28FE91C0006CD42F /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */; platformFilter = ios; };
 		8D5C206028FE91C0006CD42F /* URLSessionHTTPClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8D5C206828FEB092006CD42F /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C206728FEB092006CD42F /* LoadResourcePresenter.swift */; };
+		8D5C206A28FEB0E4006CD42F /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C206928FEB0E4006CD42F /* LoadResourcePresenterTests.swift */; };
 		8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */; };
 		8D72CFE128F8093800C17DDC /* GenresActiveColorProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */; };
 		8D72D05C28F8287E00C17DDC /* GenresUISnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05B28F8287E00C17DDC /* GenresUISnapshotTests.swift */; };
@@ -201,6 +203,8 @@
 		8D5C204828FE8EC4006CD42F /* URLSessionHTTPClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = URLSessionHTTPClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5C204D28FE8EC4006CD42F /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		8D5C205B28FE8F6A006CD42F /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		8D5C206728FEB092006CD42F /* LoadResourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenter.swift; sourceTree = "<group>"; };
+		8D5C206928FEB0E4006CD42F /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresActiveColorProvider.swift; sourceTree = "<group>"; };
 		8D72D05B28F8287E00C17DDC /* GenresUISnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresUISnapshotTests.swift; sourceTree = "<group>"; };
 		8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Snapshot.swift"; sourceTree = "<group>"; };
@@ -627,6 +631,7 @@
 				8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */,
 				8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */,
 				8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */,
+				8D5C206928FEB0E4006CD42F /* LoadResourcePresenterTests.swift */,
 			);
 			path = "Genres Presentation";
 			sourceTree = "<group>";
@@ -639,6 +644,7 @@
 				8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */,
 				8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */,
 				8DD2FA5128D497090031AAEA /* Genres.strings */,
+				8D5C206728FEB092006CD42F /* LoadResourcePresenter.swift */,
 			);
 			path = "Genres Presentation";
 			sourceTree = "<group>";
@@ -1173,6 +1179,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D5C206828FEB092006CD42F /* LoadResourcePresenter.swift in Sources */,
 				8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */,
 				8D745E1F28C1E8A6005DC3F8 /* GenresItemsMapper.swift in Sources */,
 				8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */,
@@ -1201,6 +1208,7 @@
 				8D4D494028CF802A00D8EBEB /* GenresStoreSpecs.swift in Sources */,
 				8DBA843828D06C530021781B /* XCTestCase+FailableRetrieveGenresStoreSpecs.swift in Sources */,
 				8DBA843C28D06F760021781B /* XCTestCase+FailableDeleteGenresStoreSpecs.swift in Sources */,
+				8D5C206A28FEB0E4006CD42F /* LoadResourcePresenterTests.swift in Sources */,
 				8DC354B728D47F3B00F12FD9 /* GenresPresenterTests.swift in Sources */,
 				8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */,
 				8D745DCC28BF98F7005DC3F8 /* FeedItemsMapperTests.swift in Sources */,

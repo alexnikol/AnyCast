@@ -4,9 +4,13 @@ import XCTest
 import HTTPClient
 
 class RemoteImageDataLoader {
-    typealias Result = Swift.Result<Data, Error>
+    typealias Result = Swift.Result<Data, Swift.Error>
     
     private let client: HTTPClient
+    
+    public enum Error: Swift.Error {
+        case invalidData
+    }
     
     init(client: HTTPClient) {
         self.client = client
@@ -18,7 +22,10 @@ class RemoteImageDataLoader {
             case let .failure(error):
                 completion(.failure(error))
                 
-            default: break
+            case let .success(_, response):
+                if response.statusCode != 200 {
+                    completion(.failure(Error.invalidData))
+                }
             }
         })
     }
@@ -63,6 +70,18 @@ class RemoteImageDataLoaderTests: XCTestCase {
         })
     }
     
+    func test_loadImageDataFromURL_deliversInvalidDataErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        let samples = [199, 201, 300, 400, 500]
+        
+        samples.enumerated().forEach { index, code in
+            expect(sut, expectedResult: .failure(RemoteImageDataLoader.Error.invalidData), when: {
+                client.complete(withStatusCode: code, data: anyData(), at: index)
+            })
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RemoteImageDataLoader, client: HTTPClientSpy) {
@@ -89,8 +108,11 @@ class RemoteImageDataLoaderTests: XCTestCase {
             case (let .success(receivedData), let .success(expectedData)):
                 XCTAssertEqual(receivedData, expectedData, file: file, line: line)
                 
-            case (.failure, .failure):
-                break
+            case let (.failure(receivedError as RemoteImageDataLoader.Error), .failure(expectedError as RemoteImageDataLoader.Error)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+                
+            case let (.failure(receivedError as NSError), .failure(expectedError as NSError)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
                 
             default:
                 XCTFail("Expected \(expectedResult), got \(receivedResult) instead", file: file, line: line)
@@ -110,6 +132,10 @@ class RemoteImageDataLoaderTests: XCTestCase {
     
     func anyNSError() -> NSError {
         NSError(domain: "any error", code: 0)
+    }
+    
+    private func anyData() -> Data {
+        Data()
     }
     
     private final class HTTPClientSpy: HTTPClient {

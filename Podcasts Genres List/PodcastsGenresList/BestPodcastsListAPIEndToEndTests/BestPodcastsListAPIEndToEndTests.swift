@@ -9,6 +9,8 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
     func test_endToEndTestServerGETBestPodcastsResult_matchesFixedTestBestPodcastsData() {
         switch getBestPodcastsListResult() {
         case let .success(bestPodcastsList):
+            XCTAssertEqual(bestPodcastsList.genreId, 93)
+            XCTAssertEqual(bestPodcastsList.genreName, "Business")
             XCTAssertEqual(bestPodcastsList.podcasts .count, 3, "Expected 3 items in the test best podcasts list")
             XCTAssertEqual(bestPodcastsList.podcasts[0], expectedPodcast(at: 0))
             XCTAssertEqual(bestPodcastsList.podcasts[1], expectedPodcast(at: 1))

@@ -10,8 +10,15 @@ class RemoteImageDataLoader {
         self.client = client
     }
     
-    func loadImageData(from url: URL) {
-        client.get(from: url, completion: { _ in })
+    func loadImageData(from url: URL, completion: @escaping (Error?) -> Void) {
+        client.get(from: url, completion: { result in
+            switch result {
+            case let .failure(error):
+                completion(error)
+                
+            default: break
+            }
+        })
     }
 }
 
@@ -29,7 +36,7 @@ class RemoteImageDataLoaderTests: XCTestCase {
         let sut = RemoteImageDataLoader(client: client)
         let requestURL = anyURL()
         
-        sut.loadImageData(from: requestURL)
+        sut.loadImageData(from: requestURL) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [requestURL])
     }
@@ -39,10 +46,29 @@ class RemoteImageDataLoaderTests: XCTestCase {
         let sut = RemoteImageDataLoader(client: client)
         let requestURL = anyURL()
         
-        sut.loadImageData(from: requestURL)
-        sut.loadImageData(from: requestURL)
+        sut.loadImageData(from: requestURL) { _ in }
+        sut.loadImageData(from: requestURL) { _ in }
         
         XCTAssertEqual(client.requestedURLs, [requestURL, requestURL])
+    }
+    
+    func test_loadImageData_deliversErrorOnClientError() {
+        let client = HTTPClientSpy()
+        let sut = RemoteImageDataLoader(client: client)
+        let requestURL = anyURL()
+        let exp = expectation(description: "Wait on loading completion")
+        
+        var receivedError: Error?
+        sut.loadImageData(from: requestURL) { error in
+            receivedError = error
+        
+            exp.fulfill()
+        }
+        client.complete(with: anyNSError())
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertNotNil(receivedError)
     }
     
     // MARK: - Helpers
@@ -57,6 +83,10 @@ class RemoteImageDataLoaderTests: XCTestCase {
     
     private func anyURL() -> URL {
         URL(string: "http://a-url.com")!
+    }
+    
+    func anyNSError() -> NSError {
+        NSError(domain: "any error", code: 0)
     }
     
     private final class HTTPClientSpy: HTTPClient {

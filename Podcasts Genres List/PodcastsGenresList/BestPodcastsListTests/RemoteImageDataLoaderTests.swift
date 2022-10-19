@@ -84,6 +84,21 @@ class RemoteImageDataLoaderTests: XCTestCase {
         XCTAssertEqual(client.cancelledURLs, [url], "Expected no cancelled URL request until task is cancelled")
     }
     
+    func test_cancelLoadImageDataURLTask_doesNotDeliverResultAfterCancellingTask() {
+        let (sut, client) = makeSUT()
+        let nonEmptyData = Data("non-empty data".utf8)
+        
+        var received = [RemoteImageDataLoader.Result]()
+        let task = sut.loadImageData(from: anyURL()) { received.append($0) }
+        task.cancel()
+        
+        client.complete(withStatusCode: 404, data: anyData())
+        client.complete(withStatusCode: 200, data: nonEmptyData)
+        client.complete(with: anyNSError())
+        
+        XCTAssertTrue(received.isEmpty, "Expected no received results after cancelling task")
+    }
+    
     func test_loadImageDataFromURL_doesNotDeliverResultAfterInstanceHasBeedDeallocated() {
         let client = HTTPClientSpy()
         var sut: RemoteImageDataLoader? = RemoteImageDataLoader(client: client)
@@ -97,7 +112,7 @@ class RemoteImageDataLoaderTests: XCTestCase {
         
         XCTAssertTrue(receivedResult.isEmpty)
     }
-        
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RemoteImageDataLoader, client: HTTPClientSpy) {

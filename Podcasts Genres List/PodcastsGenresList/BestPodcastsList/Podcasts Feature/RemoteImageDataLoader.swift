@@ -8,11 +8,25 @@ public protocol ImageDataLoaderTask {
 }
 
 public class RemoteImageDataLoader {
-    private struct HTTPTaskWrapper: ImageDataLoaderTask {
-        let wrapped: HTTPClientTask
+    private class HTTPTaskWrapper: ImageDataLoaderTask {
+        private var completion: ((RemoteImageDataLoader.Result) -> Void)?
+        var wrapped: HTTPClientTask?
+        
+        init(_ completion: @escaping (RemoteImageDataLoader.Result) -> Void) {
+            self.completion = completion
+        }
         
         func cancel() {
-            wrapped.cancel()
+            preventFurtherCompletions()
+            wrapped?.cancel()
+        }
+        
+        func complete(with result: RemoteImageDataLoader.Result) {
+            completion?(result)
+        }
+        
+        private func preventFurtherCompletions() {
+            completion = nil
         }
     }
     
@@ -32,21 +46,22 @@ public class RemoteImageDataLoader {
     
     @discardableResult
     public func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ImageDataLoaderTask {
-        let httpTask = client.get(from: url, completion: { [weak self] result in
+        let task = HTTPTaskWrapper(completion)
+        task.wrapped = client.get(from: url, completion: { [weak self] result in
             guard self != nil else { return }
             
             switch result {
             case let .success((data, response)):
                 if response.statusCode == Self.OK_200 && !data.isEmpty {
-                    completion(.success(data))
+                    task.complete(with: .success(data))
                 } else {
-                    completion(.failure(Error.invalidData))
+                    task.complete(with: .failure(Error.invalidData))
                 }
                 
             case let .failure(error):
-                completion(.failure(error))
+                task.complete(with: .failure(error))
             }
         })
-        return HTTPTaskWrapper(wrapped: httpTask)
+        return task
     }
 }

@@ -2,38 +2,7 @@
 
 import XCTest
 import HTTPClient
-
-class RemoteImageDataLoader {
-    typealias Result = Swift.Result<Data, Swift.Error>
-    
-    private let client: HTTPClient
-    
-    public enum Error: Swift.Error {
-        case invalidData
-    }
-    
-    init(client: HTTPClient) {
-        self.client = client
-    }
-    
-    func loadImageData(from url: URL, completion: @escaping (Result) -> Void) {
-        client.get(from: url, completion: { [weak self] result in
-            guard self != nil else { return }
-            
-            switch result {
-            case let .success((data, response)):
-                if response.statusCode == 200 && !data.isEmpty {
-                    completion(.success(data))
-                } else {
-                    completion(.failure(Error.invalidData))
-                }
-                
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        })
-    }
-}
+import BestPodcastsList
 
 class RemoteImageDataLoaderTests: XCTestCase {
     

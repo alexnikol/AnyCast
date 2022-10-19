@@ -132,9 +132,9 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         }
         
         private(set) var receivedMessages: [Message] = []
-        private(set) var requestCompletions: [(BestPodcastsStore.Result) -> Void] = []
+        private(set) var requestCompletions: [(BestPodcastsStore.RetrievalResult) -> Void] = []
         
-        func retrieve(dataForURL url: URL, completion: @escaping (BestPodcastsStore.Result) -> Void) {
+        func retrieve(dataForURL url: URL, completion: @escaping (BestPodcastsStore.RetrievalResult) -> Void) {
             receivedMessages.append(.retrieve(for: url))
             requestCompletions.append(completion)
         }

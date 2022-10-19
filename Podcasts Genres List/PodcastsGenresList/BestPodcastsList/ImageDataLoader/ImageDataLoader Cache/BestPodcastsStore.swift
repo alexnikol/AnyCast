@@ -3,7 +3,7 @@
 import Foundation
 
 public protocol BestPodcastsStore {
-    typealias Result = Swift.Result<Data?, Error>
+    typealias RetrievalResult = Swift.Result<Data?, Error>
     
-    func retrieve(dataForURL url: URL, completion: @escaping (Result) -> Void)
+    func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void)
 }

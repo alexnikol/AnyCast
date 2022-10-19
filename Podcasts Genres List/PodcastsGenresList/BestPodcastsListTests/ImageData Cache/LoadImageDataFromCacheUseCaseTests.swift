@@ -12,6 +12,11 @@ class LocalPodcastsImageDataLoader {
         func cancel() {}
     }
     
+    public enum Error: Swift.Error {
+        case failed
+        case notFound
+    }
+    
     private let store: BestPodcastsStore
     
     init(store: BestPodcastsStore) {
@@ -21,8 +26,8 @@ class LocalPodcastsImageDataLoader {
     func loadImageData(from url: URL, completion: @escaping (ImageDataLoader.Result) -> Void) -> ImageDataLoaderTask {
         store.retrieve(dataForURL: url) { result in
             switch result {
-            case let .failure(error):
-                completion(.failure(error))
+            case .failure:
+                completion(.failure(Error.failed))
                 
             default: break
             }
@@ -51,9 +56,8 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
     func test_loadImageDataFromURL_deliversErrorOnStoreRetrivalError() {
         let (sut, store) = makeSUT()
         
-        let retrievalError = anyNSError()
-        expect(sut, toCompleteWith: .failure(retrievalError), when: {
-            store.completeRetrieval(with: retrievalError)
+        expect(sut, toCompleteWith: failure(.failed), when: {
+            store.completeRetrieval(with: anyNSError())
         })
     }
     
@@ -79,7 +83,8 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
             case (let .success(expectedData), let .success(receivedData)):
                 XCTAssertEqual(expectedData, receivedData, file: file, line: line)
                 
-            case (let .failure(expectedError as NSError), let .failure(receivedError as NSError)):
+            case (.failure(let expectedError as LocalPodcastsImageDataLoader.Error),
+                  .failure(let receivedError as LocalPodcastsImageDataLoader.Error)):
                 XCTAssertEqual(expectedError, receivedError, file: file, line: line)
                 
             default:
@@ -91,6 +96,10 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         action()
         
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    func failure(_ error: LocalPodcastsImageDataLoader.Error) -> Result<Data, Error> {
+        return .failure(error)
     }
     
     private func anyURL() -> URL {

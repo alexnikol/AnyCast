@@ -3,7 +3,7 @@
 import XCTest
 import BestPodcastsList
 
-class RemoteImageDataLoaderTests: XCTestCase {
+class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotPerformAnyRequestOnCreation() {
         let client = HTTPClientSpy()

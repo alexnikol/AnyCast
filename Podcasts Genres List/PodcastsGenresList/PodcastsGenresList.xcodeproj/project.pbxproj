@@ -434,6 +434,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8D5C20AA29004293006CD42F /* ImageData API */ = {
+			isa = PBXGroup;
+			children = (
+				8DEB7E0C28FDD5A5003AF72F /* Helpers */,
+				8D5C209828FFF6B0006CD42F /* LoadImageDataFromRemoteUseCaseTests.swift */,
+			);
+			path = "ImageData API";
+			sourceTree = "<group>";
+		};
+		8D5C20AB290042B5006CD42F /* BestPodcasts Feature */ = {
+			isa = PBXGroup;
+			children = (
+				8DFAEACB28FD46680028B060 /* BestPodcastsMapperTests.swift */,
+			);
+			path = "BestPodcasts Feature";
+			sourceTree = "<group>";
+		};
 		8D72D05D28F82A1B00C17DDC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,9 +759,8 @@
 		8DFAEABA28FD41740028B060 /* BestPodcastsListTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DEB7E0C28FDD5A5003AF72F /* Helpers */,
-				8DFAEACB28FD46680028B060 /* BestPodcastsMapperTests.swift */,
-				8D5C209828FFF6B0006CD42F /* LoadImageDataFromRemoteUseCaseTests.swift */,
+				8D5C20AB290042B5006CD42F /* BestPodcasts Feature */,
+				8D5C20AA29004293006CD42F /* ImageData API */,
 			);
 			path = BestPodcastsListTests;
 			sourceTree = "<group>";

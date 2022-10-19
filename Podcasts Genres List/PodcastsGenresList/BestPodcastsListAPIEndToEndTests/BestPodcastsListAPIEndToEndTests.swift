@@ -68,14 +68,14 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
         return receivedResult
     }
     
-    private func getPodcastImageDataResult(file: StaticString = #file, line: UInt = #line) -> ImageDataLoader.Result? {
+    private func getPodcastImageDataResult(file: StaticString = #file, line: UInt = #line) -> PodcastImageDataLoader.Result? {
         let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/ImageLoader%2Ftest_image.png?alt=media&token=40cfe977-c65a-4d73-bbbb-3422e1e70965")!
         let loader = RemoteImageDataLoader(client: ephemeralClient())
         trackForMemoryLeaks(loader, file: file, line: line)
         
         let exp = expectation(description: "Wait for load completion")
         
-        var receivedResult: ImageDataLoader.Result?
+        var receivedResult: PodcastImageDataLoader.Result?
         _ = loader.loadImageData(from: testServerURL) { result in
             receivedResult = result
             exp.fulfill()

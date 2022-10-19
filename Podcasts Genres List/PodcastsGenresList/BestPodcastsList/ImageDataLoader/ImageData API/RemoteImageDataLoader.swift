@@ -3,8 +3,8 @@
 import Foundation
 import HTTPClient
 
-public class RemoteImageDataLoader: ImageDataLoader {
-    private class HTTPTaskWrapper: ImageDataLoaderTask {
+public class RemoteImageDataLoader: PodcastImageDataLoader {
+    private class HTTPTaskWrapper: PodcastImageDataLoaderTask {
         private var completion: ((RemoteImageDataLoader.Result) -> Void)?
         var wrapped: HTTPClientTask?
         
@@ -39,7 +39,7 @@ public class RemoteImageDataLoader: ImageDataLoader {
         self.client = client
     }
     
-    public func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ImageDataLoaderTask {
+    public func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> PodcastImageDataLoaderTask {
         let task = HTTPTaskWrapper(completion)
         task.wrapped = client.get(from: url, completion: { [weak self] result in
             guard self != nil else { return }

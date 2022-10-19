@@ -49,7 +49,7 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT()
         let foundData = anyData()
         
-        var received: [ImageDataLoader.Result] = []
+        var received: [PodcastImageDataLoader.Result] = []
         let task = sut.loadImageData(from: anyURL(), completion: { received.append($0) })
         task.cancel()
         
@@ -64,7 +64,7 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         let store = StoreSpy()
         var sut: LocalPodcastsImageDataLoader? = LocalPodcastsImageDataLoader(store: store)
         
-        var received = [ImageDataLoader.Result]()
+        var received = [PodcastImageDataLoader.Result]()
         _ = sut?.loadImageData(from: anyURL()) { received.append($0) }
         
         sut = nil

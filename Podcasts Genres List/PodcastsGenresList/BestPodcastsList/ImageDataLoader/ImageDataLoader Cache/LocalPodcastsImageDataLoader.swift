@@ -2,11 +2,11 @@
 
 import Foundation
 
-public class LocalPodcastsImageDataLoader: ImageDataLoader {
-    private class Task: ImageDataLoaderTask {
-        private var completion: ((ImageDataLoader.Result) -> Void)?
+public class LocalPodcastsImageDataLoader: PodcastImageDataLoader {
+    private class Task: PodcastImageDataLoaderTask {
+        private var completion: ((PodcastImageDataLoader.Result) -> Void)?
         
-        init(completion: @escaping (ImageDataLoader.Result) -> Void) {
+        init(completion: @escaping (PodcastImageDataLoader.Result) -> Void) {
             self.completion = completion
         }
         
@@ -18,7 +18,7 @@ public class LocalPodcastsImageDataLoader: ImageDataLoader {
             completion = nil
         }
         
-        func complete(with result: ImageDataLoader.Result) {
+        func complete(with result: PodcastImageDataLoader.Result) {
             completion?(result)
         }
     }
@@ -34,7 +34,7 @@ public class LocalPodcastsImageDataLoader: ImageDataLoader {
         self.store = store
     }
     
-    public func loadImageData(from url: URL, completion: @escaping (ImageDataLoader.Result) -> Void) -> ImageDataLoaderTask {
+    public func loadImageData(from url: URL, completion: @escaping (PodcastImageDataLoader.Result) -> Void) -> PodcastImageDataLoaderTask {
         let task = Task(completion: completion)
         
         store.retrieve(dataForURL: url) { [weak self] result in

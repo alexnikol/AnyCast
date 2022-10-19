@@ -41,7 +41,6 @@ public class RemoteImageDataLoader: ImageDataLoader {
     
     private static var OK_200: Int { return 200 }
     
-    @discardableResult
     public func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ImageDataLoaderTask {
         let task = HTTPTaskWrapper(completion)
         task.wrapped = client.get(from: url, completion: { [weak self] result in

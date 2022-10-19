@@ -123,6 +123,17 @@
                ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
+               BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
+               BlueprintName = "BestPodcastsListAPIEndToEndTests"
+               ReferencedContainer = "container:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -66,6 +66,23 @@ Given the client doesn't have connectivity
 #### No connectivity – error course (sad path):
 1. System delivers connectivity error.
 
+### Load Podcasts Thumbnail Image Data From Remote Use Case
+
+#### Data:
+- URL
+
+#### Primary course (happy path):
+1. Execute "Load Podcasts Thumbnail Image Data" command with above data.
+2. System downloads data from the URL.
+3. System validates downloaded data.
+5. System delivers image data.
+
+#### Invalid data – error course (sad path):
+1. System delivers invalid data error.
+
+#### No connectivity – error course (sad path):
+1. System delivers connectivity error.
+
 ---
 
 ### Load Podcasts list From Cache Use Case
@@ -88,6 +105,27 @@ Given the client doesn't have connectivity
 
 #### Empty cache course (sad path): 
 1. System delivers no Podcasts list.
+
+---
+
+### Load Podcasts Thumbnail Image Data From Cache Use Case
+
+#### Data:
+- URL
+
+#### Primary course (happy path):
+1. Execute "Load Podcasts Thumbnail Image" command with above data.
+2. System retrieves data from the cache.
+3. System delivers cached image data.
+
+#### Cancel course:
+1. System does not deliver image data nor error.
+
+#### Retrieval error course (sad path):
+1. System delivers error.
+
+#### Empty cache course (sad path):
+1. System delivers not found error.
 
 ---
 

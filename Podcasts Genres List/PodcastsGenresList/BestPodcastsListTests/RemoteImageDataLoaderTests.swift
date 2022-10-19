@@ -33,11 +33,11 @@ class RemoteImageDataLoaderTests: XCTestCase {
         XCTAssertEqual(client.requestedURLs, [requestURL, requestURL])
     }
     
-    func test_loadImageDataFromURL_deliversErrorOnClientError() {
+    func test_loadImageDataFromURL_deliversConnectivityErrorOnClientError() {
         let client = HTTPClientSpy()
         let sut = RemoteImageDataLoader(client: client)
         
-        expect(sut, expectedResult: .failure(anyNSError()), when: {
+        expect(sut, expectedResult: .failure(RemoteImageDataLoader.Error.connectivity), when: {
             client.complete(with: anyNSError())
         })
     }

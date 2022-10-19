@@ -117,7 +117,7 @@ class RemoteImageDataLoaderTests: XCTestCase {
         
         XCTAssertTrue(receivedResult.isEmpty)
     }
-    
+        
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: RemoteImageDataLoader, client: HTTPClientSpy) {
@@ -175,14 +175,29 @@ class RemoteImageDataLoaderTests: XCTestCase {
     }
     
     private final class HTTPClientSpy: HTTPClient {
+        private class Task: HTTPClientTask {
+            private let cancelCallback: () -> Void
+            
+            init(cancelCallback: @escaping () -> Void) {
+                self.cancelCallback = cancelCallback
+            }
+            
+            func cancel() {
+                cancelCallback()
+            }
+        }
+        
         var requestedURLs: [URL] {
             return messages.map { $0.url }
         }
         
         private var messages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
         
-        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+        func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) -> HTTPClientTask {
             messages.append((url, completion))
+            return Task {
+                
+            }
         }
         
         func complete(with error: Error, at index: Int = 0) {

@@ -5,7 +5,7 @@ import HTTPClient
 import URLSessionHTTPClient
 
 class URLSessionHTTPClientTests: XCTestCase {
-            
+    
     override func setUp() {
         super.setUp()
         URLProtocolStub.startInerceptingRequests()
@@ -78,6 +78,25 @@ class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertEqual(receivedResponse.url, response.url)
     }
     
+    func test_cancelGetFromURLTask_cancelsURLRequest() {
+        let url = anyURL()
+        let exp = expectation(description: "Wait for request")
+        
+        let task = makeSUT().get(from: url) { result in
+            switch result {
+            case let .failure(error as NSError) where error.code == URLError.cancelled.rawValue:
+                break
+                
+            default:
+                XCTFail("Expected cancelled result, got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        
+        task.cancel()
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> HTTPClient {
@@ -136,7 +155,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func anyNSError() -> NSError {
         NSError(domain: "any error", code: 0)
     }
-        
+    
     private func nonHTTPURLResponse() -> URLResponse {
         URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
     }
@@ -144,7 +163,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     private func anyHTTPURLResponse() -> HTTPURLResponse {
         HTTPURLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
     }
-        
+    
     private class URLProtocolStub: URLProtocol {
         private static var stub: Stub?
         private static var requestObserver: ((URLRequest) -> Void)?

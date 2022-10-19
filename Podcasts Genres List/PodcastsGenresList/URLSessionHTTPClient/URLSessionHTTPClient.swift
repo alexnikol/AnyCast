@@ -3,7 +3,19 @@
 import Foundation
 import HTTPClient
 
-public class URLSessionHTTPClient: HTTPClient {
+public final class URLSessionHTTPClient: HTTPClient {
+    private class URLSessionTaskWrapper: HTTPClientTask {
+        private let wrapped: URLSessionDataTask
+        
+        init(wrapped: URLSessionDataTask) {
+            self.wrapped = wrapped
+        }
+        
+        func cancel() {
+            wrapped.cancel()
+        }
+    }
+    
     private let session: URLSession
     
     public init(session: URLSession = .shared) {
@@ -12,8 +24,9 @@ public class URLSessionHTTPClient: HTTPClient {
     
     struct UnexpectedValuesRepresentation: Error {}
     
-    public func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
-        session.dataTask(with: url) { data, response, error in
+    @discardableResult
+    public func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) -> HTTPClientTask {
+        let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
             } else if let data = data, let response = response as? HTTPURLResponse {
@@ -21,6 +34,8 @@ public class URLSessionHTTPClient: HTTPClient {
             } else {
                 completion(.failure(UnexpectedValuesRepresentation()))
             }
-        }.resume()
+        }
+        task.resume()
+        return URLSessionTaskWrapper(wrapped: task)
     }
 }

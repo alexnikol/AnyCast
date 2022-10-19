@@ -4,7 +4,9 @@ import XCTest
 import BestPodcastsList
 
 protocol BestPodcastsStore {
-    func retrieve(dataForURL url: URL, completion: @escaping (Result<Data, Error>) -> Void)
+    typealias Result = Swift.Result<Data?, Error>
+    
+    func retrieve(dataForURL url: URL, completion: @escaping (Result) -> Void)
 }
 
 class LocalPodcastsImageDataLoader {
@@ -29,7 +31,8 @@ class LocalPodcastsImageDataLoader {
             case .failure:
                 completion(.failure(Error.failed))
                 
-            default: break
+            case .success:
+                completion(.failure(Error.notFound))
             }
         }
         return Task()
@@ -58,6 +61,14 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         
         expect(sut, toCompleteWith: failure(.failed), when: {
             store.completeRetrieval(with: anyNSError())
+        })
+    }
+    
+    func test_loadImageDataFromURL_deliversNotFoundErrorOnNotFound() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWith: failure(.notFound), when: {
+            store.completeRetrieval(with: .none)
         })
     }
     
@@ -120,15 +131,19 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         }
         
         private(set) var receivedMessages: [Message] = []
-        private(set) var requestCompletions: [(Result<Data, Error>) -> Void] = []
+        private(set) var requestCompletions: [(BestPodcastsStore.Result) -> Void] = []
         
-        func retrieve(dataForURL url: URL, completion: @escaping (Result<Data, Error>) -> Void) {
+        func retrieve(dataForURL url: URL, completion: @escaping (BestPodcastsStore.Result) -> Void) {
             receivedMessages.append(.retrieve(for: url))
             requestCompletions.append(completion)
         }
         
         func completeRetrieval(with error: Error, at index: Int = 0) {
             requestCompletions[index](.failure(error))
+        }
+        
+        func completeRetrieval(with data: Data?, at index: Int = 0) {
+            requestCompletions[index](.success(data))
         }
     }
 }

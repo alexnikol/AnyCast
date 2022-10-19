@@ -3,7 +3,19 @@
 import Foundation
 import HTTPClient
 
+public protocol ImageDataLoaderTask {
+    func cancel()
+}
+
 public class RemoteImageDataLoader {
+    private struct HTTPTaskWrapper: ImageDataLoaderTask {
+        let wrapped: HTTPClientTask
+        
+        func cancel() {
+            wrapped.cancel()
+        }
+    }
+    
     public typealias Result = Swift.Result<Data, Swift.Error>
     
     public enum Error: Swift.Error {
@@ -18,8 +30,9 @@ public class RemoteImageDataLoader {
     
     private static var OK_200: Int { return 200 }
     
-    public func loadImageData(from url: URL, completion: @escaping (Result) -> Void) {
-        client.get(from: url, completion: { [weak self] result in
+    @discardableResult
+    public func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ImageDataLoaderTask {
+        let httpTask = client.get(from: url, completion: { [weak self] result in
             guard self != nil else { return }
             
             switch result {
@@ -34,5 +47,6 @@ public class RemoteImageDataLoader {
                 completion(.failure(error))
             }
         })
+        return HTTPTaskWrapper(wrapped: httpTask)
     }
 }

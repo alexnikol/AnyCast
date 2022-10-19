@@ -27,13 +27,12 @@ class LocalPodcastsImageDataLoader {
     
     func loadImageData(from url: URL, completion: @escaping (ImageDataLoader.Result) -> Void) -> ImageDataLoaderTask {
         store.retrieve(dataForURL: url) { result in
-            switch result {
-            case .failure:
-                completion(.failure(Error.failed))
-                
-            case .success:
-                completion(.failure(Error.notFound))
-            }
+            completion(result
+                .mapError { _ in Error.failed }
+                .flatMap { data in
+                    data.map { .success($0) } ?? .failure(Error.notFound)
+                }
+            )
         }
         return Task()
     }
@@ -69,6 +68,15 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         
         expect(sut, toCompleteWith: failure(.notFound), when: {
             store.completeRetrieval(with: .none)
+        })
+    }
+    
+    func test_loadImageDataFromURL_deliversStoredDataWhenStoreFoundDataForURL() {
+        let (sut, store) = makeSUT()
+        
+        let storedData = anyData()
+        expect(sut, toCompleteWith: .success(storedData), when: {
+            store.completeRetrieval(with: storedData)
         })
     }
     

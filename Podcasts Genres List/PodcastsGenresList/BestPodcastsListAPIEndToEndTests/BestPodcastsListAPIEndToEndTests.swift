@@ -5,7 +5,7 @@ import URLSessionHTTPClient
 import BestPodcastsList
 
 class BestPodcastsListAPIEndToEndTests: XCTestCase {
-
+    
     func test_endToEndTestServerGETBestPodcastsResult_matchesFixedTestBestPodcastsData() {
         switch getBestPodcastsListResult() {
         case let .success(bestPodcastsList):
@@ -20,6 +20,19 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
             XCTFail("Expected successful podcasts list, but got \(error) instead")
         default:
             XCTFail("Expected successful podcasts list, but got no result instead")
+        }
+    }
+    
+    func test_endToEndTestServerGETPodcastImageDataResult_matchesFixedTestData() {
+        switch getPodcastImageDataResult() {
+        case let .success(data)?:
+            XCTAssertFalse(data.isEmpty, "Expected non-empty image data")
+            
+        case let .failure(error)?:
+            XCTFail("Expected successful image data result, got \(error) instead")
+            
+        default:
+            XCTFail("Expected successful image data result, got no result instead")
         }
     }
     
@@ -47,6 +60,25 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 3.0)
+        return receivedResult
+    }
+    
+    private func getPodcastImageDataResult(file: StaticString = #file, line: UInt = #line) -> ImageDataLoader.Result? {
+        let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/ImageLoader%2Ftest_image.png?alt=media&token=40cfe977-c65a-4d73-bbbb-3422e1e70965")!
+        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+        let loader = RemoteImageDataLoader(client: client)
+        trackForMemoryLeaks(client, file: file, line: line)
+        trackForMemoryLeaks(loader, file: file, line: line)
+        
+        let exp = expectation(description: "Wait for load completion")
+        
+        var receivedResult: ImageDataLoader.Result?
+        _ = loader.loadImageData(from: testServerURL) { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 5.0)
+        
         return receivedResult
     }
     

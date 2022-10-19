@@ -11,7 +11,23 @@ protocol BestPodcastsStore {
 
 class LocalPodcastsImageDataLoader {
     private class Task: ImageDataLoaderTask {
-        func cancel() {}
+        private var completion: ((ImageDataLoader.Result) -> Void)?
+        
+        init(completion: @escaping (ImageDataLoader.Result) -> Void) {
+            self.completion = completion
+        }
+        
+        func cancel() {
+            preventFurtherCompletions()
+        }
+        
+        private func preventFurtherCompletions() {
+            completion = nil
+        }
+        
+        func complete(with result: ImageDataLoader.Result) {
+            completion?(result)
+        }
     }
     
     public enum Error: Swift.Error {
@@ -26,15 +42,17 @@ class LocalPodcastsImageDataLoader {
     }
     
     func loadImageData(from url: URL, completion: @escaping (ImageDataLoader.Result) -> Void) -> ImageDataLoaderTask {
+        let task = Task(completion: completion)
+        
         store.retrieve(dataForURL: url) { result in
-            completion(result
+            task.complete(with: result
                 .mapError { _ in Error.failed }
                 .flatMap { data in
                     data.map { .success($0) } ?? .failure(Error.notFound)
                 }
             )
         }
-        return Task()
+        return task
     }
 }
 
@@ -78,6 +96,21 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         expect(sut, toCompleteWith: .success(storedData), when: {
             store.completeRetrieval(with: storedData)
         })
+    }
+    
+    func test_loadImageDataFromURL_doesNotDeliverResultAfterCancellingTask() {
+        let (sut, store) = makeSUT()
+        let foundData = anyData()
+        
+        var received: [ImageDataLoader.Result] = []
+        let task = sut.loadImageData(from: anyURL(), completion: { received.append($0) })
+        task.cancel()
+        
+        store.completeRetrieval(with: anyNSError())
+        store.completeRetrieval(with: .none)
+        store.completeRetrieval(with: foundData)
+        
+        XCTAssertTrue(received.isEmpty, "Expected no received results after cancelling task")
     }
     
     private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalPodcastsImageDataLoader, store: StoreSpy) {

@@ -3,61 +3,6 @@
 import XCTest
 import BestPodcastsList
 
-protocol BestPodcastsStore {
-    typealias Result = Swift.Result<Data?, Error>
-    
-    func retrieve(dataForURL url: URL, completion: @escaping (Result) -> Void)
-}
-
-class LocalPodcastsImageDataLoader {
-    private class Task: ImageDataLoaderTask {
-        private var completion: ((ImageDataLoader.Result) -> Void)?
-        
-        init(completion: @escaping (ImageDataLoader.Result) -> Void) {
-            self.completion = completion
-        }
-        
-        func cancel() {
-            preventFurtherCompletions()
-        }
-        
-        private func preventFurtherCompletions() {
-            completion = nil
-        }
-        
-        func complete(with result: ImageDataLoader.Result) {
-            completion?(result)
-        }
-    }
-    
-    public enum Error: Swift.Error {
-        case failed
-        case notFound
-    }
-    
-    private let store: BestPodcastsStore
-    
-    init(store: BestPodcastsStore) {
-        self.store = store
-    }
-    
-    func loadImageData(from url: URL, completion: @escaping (ImageDataLoader.Result) -> Void) -> ImageDataLoaderTask {
-        let task = Task(completion: completion)
-        
-        store.retrieve(dataForURL: url) { [weak self] result in
-            guard self != nil else { return }
-            
-            task.complete(with: result
-                .mapError { _ in Error.failed }
-                .flatMap { data in
-                    data.map { .success($0) } ?? .failure(Error.notFound)
-                }
-            )
-        }
-        return task
-    }
-}
-
 class LoadImageDataFromCacheUseCaseTests: XCTestCase {
     
     func test_init_doesNotMessageStoreUponCreation() {

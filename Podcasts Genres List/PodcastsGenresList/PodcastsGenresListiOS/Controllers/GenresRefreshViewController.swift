@@ -27,8 +27,8 @@ public final class GenresRefreshViewController: NSObject {
     }
 }
 
-extension GenresRefreshViewController: GenresLoadingView {
-    public func display(_ viewModel: GenresLoadingViewModel) {
+extension GenresRefreshViewController: ResourceLoadingView {
+    public func display(_ viewModel: ResourceLoadingViewModel) {
         if viewModel.isLoading {
             view.beginRefreshing()
         } else {

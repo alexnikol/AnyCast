@@ -39,8 +39,6 @@ public class RemoteImageDataLoader: ImageDataLoader {
         self.client = client
     }
     
-    private static var OK_200: Int { return 200 }
-    
     public func loadImageData(from url: URL, completion: @escaping (Result) -> Void) -> ImageDataLoaderTask {
         let task = HTTPTaskWrapper(completion)
         task.wrapped = client.get(from: url, completion: { [weak self] result in
@@ -50,7 +48,7 @@ public class RemoteImageDataLoader: ImageDataLoader {
                 with: result
                     .mapError { _ in Error.connectivity }
                     .flatMap { (data, response) in
-                        let isValidResponse = response.statusCode == 200 && !data.isEmpty
+                        let isValidResponse = response.isOK && !data.isEmpty
                         return isValidResponse ? .success(data) : .failure(Error.invalidData)
                     }
             )

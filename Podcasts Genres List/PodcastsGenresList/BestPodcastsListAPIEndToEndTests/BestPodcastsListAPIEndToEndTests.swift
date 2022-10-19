@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import HTTPClient
 import URLSessionHTTPClient
 import BestPodcastsList
 
@@ -40,15 +41,19 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
     
     private typealias Result = Swift.Result<BestPodcastsList, Error>
     
+    private func ephemeralClient(file: StaticString = #file, line: UInt = #line) -> HTTPClient {
+        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+        trackForMemoryLeaks(client, file: file, line: line)
+        return client
+    }
+    
     private func getBestPodcastsListResult(file: StaticString = #file, line: UInt = #line) -> Result? {
         let testServerURL = URL(string:
                                     "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Podcasts%2FGET-best-podcasts-by-genre.json?alt=media&token=b4e828cd-b5b3-47d1-803f-0bd93c05204b")!
-        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        trackForMemoryLeaks(client, file: file, line: line)
         var receivedResult: Result?
         let exp = expectation(description: "Wait for load completion")
         
-        client.get(from: testServerURL) { result in
+        ephemeralClient().get(from: testServerURL) { result in
             receivedResult = result.flatMap { (data, response) in
                 do {
                     return .success(try BestPodastsItemsMapper.map(data, from: response))
@@ -65,9 +70,7 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
     
     private func getPodcastImageDataResult(file: StaticString = #file, line: UInt = #line) -> ImageDataLoader.Result? {
         let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/ImageLoader%2Ftest_image.png?alt=media&token=40cfe977-c65a-4d73-bbbb-3422e1e70965")!
-        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        let loader = RemoteImageDataLoader(client: client)
-        trackForMemoryLeaks(client, file: file, line: line)
+        let loader = RemoteImageDataLoader(client: ephemeralClient())
         trackForMemoryLeaks(loader, file: file, line: line)
         
         let exp = expectation(description: "Wait for load completion")

@@ -28,9 +28,9 @@ public class LocalPodcastsImageDataLoader: PodcastImageDataLoader {
         case notFound
     }
     
-    private let store: BestPodcastsStore
+    private let store: PodcastsImageDataStore
     
-    public init(store: BestPodcastsStore) {
+    public init(store: PodcastsImageDataStore) {
         self.store = store
     }
     

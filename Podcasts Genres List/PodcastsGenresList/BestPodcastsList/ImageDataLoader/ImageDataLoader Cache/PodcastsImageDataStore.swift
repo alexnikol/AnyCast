@@ -2,7 +2,7 @@
 
 import Foundation
 
-public protocol BestPodcastsStore {
+public protocol PodcastsImageDataStore {
     typealias RetrievalResult = Swift.Result<Data?, Error>
     
     func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void)

@@ -126,15 +126,15 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         Data("any data".utf8)
     }
     
-    private class StoreSpy: BestPodcastsStore {
+    private class StoreSpy: PodcastsImageDataStore {
         enum Message: Equatable {
             case retrieve(for: URL)
         }
         
         private(set) var receivedMessages: [Message] = []
-        private(set) var requestCompletions: [(BestPodcastsStore.RetrievalResult) -> Void] = []
+        private(set) var requestCompletions: [(PodcastsImageDataStore.RetrievalResult) -> Void] = []
         
-        func retrieve(dataForURL url: URL, completion: @escaping (BestPodcastsStore.RetrievalResult) -> Void) {
+        func retrieve(dataForURL url: URL, completion: @escaping (PodcastsImageDataStore.RetrievalResult) -> Void) {
             receivedMessages.append(.retrieve(for: url))
             requestCompletions.append(completion)
         }

@@ -3,11 +3,7 @@
 import Foundation
 import HTTPClient
 
-public protocol ImageDataLoaderTask {
-    func cancel()
-}
-
-public class RemoteImageDataLoader {
+public class RemoteImageDataLoader: ImageDataLoader {
     private class HTTPTaskWrapper: ImageDataLoaderTask {
         private var completion: ((RemoteImageDataLoader.Result) -> Void)?
         var wrapped: HTTPClientTask?

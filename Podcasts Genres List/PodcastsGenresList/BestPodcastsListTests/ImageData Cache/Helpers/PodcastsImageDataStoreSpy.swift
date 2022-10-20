@@ -40,4 +40,8 @@ class PodcastsImageDataStoreSpy: PodcastsImageDataStore {
     func completeInsrertion(with error: Error, at index: Int = 0) {
         insertCompletions[index](.failure(error))
     }
+    
+    func completeInsrertionSuccessfully(at index: Int = 0) {
+        insertCompletions[index](.success(()))
+    }
 }

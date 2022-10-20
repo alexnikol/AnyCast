@@ -29,6 +29,14 @@ class CachePodcastImageDataUseCaseTests: XCTestCase {
         })
     }
     
+    func test_saveImageDataForURL_deliverSuccessOnInsertionSuccess() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWith: .success(()), when: {
+            store.completeInsrertionSuccessfully()
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalPodcastsImageDataLoader, store: PodcastsImageDataStoreSpy) {

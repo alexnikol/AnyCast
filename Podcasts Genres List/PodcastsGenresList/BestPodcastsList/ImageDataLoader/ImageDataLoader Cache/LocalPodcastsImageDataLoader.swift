@@ -60,7 +60,7 @@ extension LocalPodcastsImageDataLoader {
     
     public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
         store.save(data, for: url, completion: { result in
-            completion(.failure(SaveError.failed))
+            completion(result.mapError { _ in SaveError.failed })
         })
     }
 }

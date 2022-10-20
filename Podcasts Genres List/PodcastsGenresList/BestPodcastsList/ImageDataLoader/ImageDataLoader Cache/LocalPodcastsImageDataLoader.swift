@@ -49,4 +49,8 @@ public class LocalPodcastsImageDataLoader: PodcastImageDataLoader {
         }
         return task
     }
+    
+    public func save(_ data: Data, for url: URL, completion: @escaping (Error?) -> Void) {
+        store.save(data, for: url, completion: { _ in })
+    }
 }

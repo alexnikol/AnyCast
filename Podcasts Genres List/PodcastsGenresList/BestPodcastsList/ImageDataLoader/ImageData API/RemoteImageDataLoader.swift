@@ -3,7 +3,7 @@
 import Foundation
 import HTTPClient
 
-public class RemoteImageDataLoader: PodcastImageDataLoader {
+public class RemoteImageDataLoader: PodcastImageDataLoader {    
     private class HTTPTaskWrapper: PodcastImageDataLoaderTask {
         private var completion: ((RemoteImageDataLoader.Result) -> Void)?
         var wrapped: HTTPClientTask?

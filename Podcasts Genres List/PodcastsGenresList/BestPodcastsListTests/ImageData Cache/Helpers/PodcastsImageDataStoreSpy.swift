@@ -6,21 +6,33 @@ import BestPodcastsList
 class PodcastsImageDataStoreSpy: PodcastsImageDataStore {
     enum Message: Equatable {
         case retrieve(for: URL)
+        case insert(data: Data, for: URL)
     }
     
     private(set) var receivedMessages: [Message] = []
-    private(set) var requestCompletions: [(PodcastsImageDataStore.RetrievalResult) -> Void] = []
+    
+    // MARK: - Retrieve
+    
+    private(set) var retreiveCompletions: [(PodcastsImageDataStore.RetrievalResult) -> Void] = []
     
     func retrieve(dataForURL url: URL, completion: @escaping (PodcastsImageDataStore.RetrievalResult) -> Void) {
         receivedMessages.append(.retrieve(for: url))
-        requestCompletions.append(completion)
+        retreiveCompletions.append(completion)
     }
     
     func completeRetrieval(with error: Error, at index: Int = 0) {
-        requestCompletions[index](.failure(error))
+        retreiveCompletions[index](.failure(error))
     }
     
     func completeRetrieval(with data: Data?, at index: Int = 0) {
-        requestCompletions[index](.success(data))
+        retreiveCompletions[index](.success(data))
+    }
+    
+    // MARK: - Insertion
+    
+    private(set) var insertCompletions: [(PodcastsImageDataStore.InsertionResult) -> Void] = []
+    
+    func save(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
+        receivedMessages.append(.insert(data: data, for: url))
     }
 }

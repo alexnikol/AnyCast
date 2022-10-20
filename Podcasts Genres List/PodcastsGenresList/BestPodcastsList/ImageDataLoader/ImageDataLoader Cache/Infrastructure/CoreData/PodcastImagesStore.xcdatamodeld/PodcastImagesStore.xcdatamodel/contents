@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedPodcastImage" representedClassName="ManagedPodcastImage" syncable="YES">
+        <attribute name="data" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="url" attributeType="URI" spotlightIndexingEnabled="YES"/>
+        <relationship name="cache" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPodcastImagesStoreCache" inverseName="images" inverseEntity="ManagedPodcastImagesStoreCache"/>
+    </entity>
+    <entity name="ManagedPodcastImagesStoreCache" representedClassName="ManagedPodcastImagesStoreCache" syncable="YES">
+        <relationship name="images" toMany="YES" deletionRule="Cascade" destinationEntity="ManagedPodcastImage" inverseName="cache" inverseEntity="ManagedPodcastImage"/>
+    </entity>
+    <elements>
+        <element name="ManagedPodcastImage" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="ManagedPodcastImagesStoreCache" positionX="-54" positionY="0" width="128" height="44"/>
+    </elements>
+</model>

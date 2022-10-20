@@ -113,19 +113,7 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
     func failure(_ error: LocalPodcastsImageDataLoader.Error) -> Result<Data, Error> {
         return .failure(error)
     }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
-    }
-    
-    func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 0)
-    }
-    
-    private func anyData() -> Data {
-        Data("any data".utf8)
-    }
-    
+        
     private class StoreSpy: PodcastsImageDataStore {
         enum Message: Equatable {
             case retrieve(for: URL)

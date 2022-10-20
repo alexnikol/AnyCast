@@ -3,7 +3,7 @@
 import XCTest
 import BestPodcastsList
 
-class LoadImageDataFromCacheUseCaseTests: XCTestCase {
+class LoadPodcastImageDataFromCacheUse: XCTestCase {
     
     func test_init_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()

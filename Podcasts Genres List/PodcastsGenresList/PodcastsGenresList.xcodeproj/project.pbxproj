@@ -32,12 +32,12 @@
 		8D5C20A1290022AC006CD42F /* PodcastImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C20A0290022AC006CD42F /* PodcastImageDataLoader.swift */; };
 		8D5C20A429002994006CD42F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C20A329002994006CD42F /* HTTPURLResponse+Extensions.swift */; };
 		8D5C20A929002A00006CD42F /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C20A829002A00006CD42F /* URLProtocolStub.swift */; };
-		8D5C20B129004595006CD42F /* LoadImageDataFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C20B029004595006CD42F /* LoadImageDataFromCacheUseCaseTests.swift */; };
+		8D5C20B129004595006CD42F /* LoadPodcastImageDataFromCacheUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C20B029004595006CD42F /* LoadPodcastImageDataFromCacheUse.swift */; };
 		8D5C20B429005B99006CD42F /* PodcastsImageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C20B329005B99006CD42F /* PodcastsImageDataStore.swift */; };
 		8D5C20B729005C0F006CD42F /* LocalPodcastsImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C20B529005BBA006CD42F /* LocalPodcastsImageDataLoader.swift */; };
 		8D5C20BA29012DC6006CD42F /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C20B929012DC6006CD42F /* SharedHelpers.swift */; };
 		8D5C21E92901392B006CD42F /* PodcastsImageDataStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C21E82901392B006CD42F /* PodcastsImageDataStoreSpy.swift */; };
-		8D5C21EB29013A92006CD42F /* CacheImageDataUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C21EA29013A92006CD42F /* CacheImageDataUseCaseTests.swift */; };
+		8D5C21EB29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C21EA29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift */; };
 		8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */; };
 		8D72CFE128F8093800C17DDC /* GenresActiveColorProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */; };
 		8D72D05C28F8287E00C17DDC /* GenresUISnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05B28F8287E00C17DDC /* GenresUISnapshotTests.swift */; };
@@ -200,12 +200,12 @@
 		8D5C20A0290022AC006CD42F /* PodcastImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastImageDataLoader.swift; sourceTree = "<group>"; };
 		8D5C20A329002994006CD42F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8D5C20A829002A00006CD42F /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
-		8D5C20B029004595006CD42F /* LoadImageDataFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImageDataFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
+		8D5C20B029004595006CD42F /* LoadPodcastImageDataFromCacheUse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPodcastImageDataFromCacheUse.swift; sourceTree = "<group>"; };
 		8D5C20B329005B99006CD42F /* PodcastsImageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsImageDataStore.swift; sourceTree = "<group>"; };
 		8D5C20B529005BBA006CD42F /* LocalPodcastsImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPodcastsImageDataLoader.swift; sourceTree = "<group>"; };
 		8D5C20B929012DC6006CD42F /* SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelpers.swift; sourceTree = "<group>"; };
 		8D5C21E82901392B006CD42F /* PodcastsImageDataStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsImageDataStoreSpy.swift; sourceTree = "<group>"; };
-		8D5C21EA29013A92006CD42F /* CacheImageDataUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheImageDataUseCaseTests.swift; sourceTree = "<group>"; };
+		8D5C21EA29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachePodcastImageDataUseCaseTests.swift; sourceTree = "<group>"; };
 		8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresActiveColorProvider.swift; sourceTree = "<group>"; };
 		8D72D05B28F8287E00C17DDC /* GenresUISnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresUISnapshotTests.swift; sourceTree = "<group>"; };
 		8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Snapshot.swift"; sourceTree = "<group>"; };
@@ -485,8 +485,8 @@
 			isa = PBXGroup;
 			children = (
 				8D5C21E729013924006CD42F /* Helpers */,
-				8D5C20B029004595006CD42F /* LoadImageDataFromCacheUseCaseTests.swift */,
-				8D5C21EA29013A92006CD42F /* CacheImageDataUseCaseTests.swift */,
+				8D5C20B029004595006CD42F /* LoadPodcastImageDataFromCacheUse.swift */,
+				8D5C21EA29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift */,
 			);
 			path = "ImageData Cache";
 			sourceTree = "<group>";
@@ -1449,10 +1449,10 @@
 				8D5C21E92901392B006CD42F /* PodcastsImageDataStoreSpy.swift in Sources */,
 				8D5C20BA29012DC6006CD42F /* SharedHelpers.swift in Sources */,
 				8DFAEACC28FD46680028B060 /* BestPodcastsMapperTests.swift in Sources */,
-				8D5C21EB29013A92006CD42F /* CacheImageDataUseCaseTests.swift in Sources */,
+				8D5C21EB29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift in Sources */,
 				8DFAEAD328FD46F30028B060 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */,
-				8D5C20B129004595006CD42F /* LoadImageDataFromCacheUseCaseTests.swift in Sources */,
+				8D5C20B129004595006CD42F /* LoadPodcastImageDataFromCacheUse.swift in Sources */,
 				8D5C209E290021DA006CD42F /* HTTPClientSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

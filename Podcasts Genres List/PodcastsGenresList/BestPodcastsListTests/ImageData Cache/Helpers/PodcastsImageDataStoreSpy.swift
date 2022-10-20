@@ -34,5 +34,10 @@ class PodcastsImageDataStoreSpy: PodcastsImageDataStore {
     
     func save(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
         receivedMessages.append(.insert(data: data, for: url))
+        insertCompletions.append(completion)
+    }
+    
+    func completeInsrertion(with error: Error, at index: Int = 0) {
+        insertCompletions[index](.failure(error))
     }
 }

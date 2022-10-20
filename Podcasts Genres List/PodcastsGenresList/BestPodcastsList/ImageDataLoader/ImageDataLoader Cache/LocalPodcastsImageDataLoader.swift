@@ -49,8 +49,18 @@ public class LocalPodcastsImageDataLoader: PodcastImageDataLoader {
         }
         return task
     }
+}
+
+extension LocalPodcastsImageDataLoader {
+    public typealias SaveResult = Swift.Result<Void, Swift.Error>
     
-    public func save(_ data: Data, for url: URL, completion: @escaping (Error?) -> Void) {
-        store.save(data, for: url, completion: { _ in })
+    public enum SaveError: Swift.Error {
+        case failed
+    }
+    
+    public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
+        store.save(data, for: url, completion: { result in
+            completion(.failure(SaveError.failed))
+        })
     }
 }

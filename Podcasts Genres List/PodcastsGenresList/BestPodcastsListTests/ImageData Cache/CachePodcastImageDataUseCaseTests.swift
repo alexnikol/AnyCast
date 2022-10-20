@@ -21,6 +21,25 @@ class CachePodcastImageDataUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.insert(data: data, for: url)])
     }
     
+    func test_saveImageDataForURL_deliverErrorOnInertionError() {
+        let (sut, store) = makeSUT()
+        let url = anyURL()
+        let data = anyData()
+        let exp = expectation(description: "Wait on insrertion completion")
+        
+        var receivedResult: LocalPodcastsImageDataLoader.SaveResult?
+        sut.save(data, for: url, completion: { result in
+            receivedResult = result
+            exp.fulfill()
+        })
+        
+        store.completeInsrertion(with: anyNSError())
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertNotNil(receivedResult)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalPodcastsImageDataLoader, store: PodcastsImageDataStoreSpy) {
@@ -30,10 +49,4 @@ class CachePodcastImageDataUseCaseTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, store)
     }
-        
-    func failure(_ error: LocalPodcastsImageDataLoader.Error) -> Result<Data, Error> {
-        return .failure(error)
-    }
-    
-    
 }

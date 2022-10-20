@@ -61,7 +61,7 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_loadImageDataFromURL_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
-        let store = StoreSpy()
+        let store = PodcastsImageDataStoreSpy()
         var sut: LocalPodcastsImageDataLoader? = LocalPodcastsImageDataLoader(store: store)
         
         var received = [PodcastImageDataLoader.Result]()
@@ -73,8 +73,8 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
         XCTAssertTrue(received.isEmpty, "Expected no received results after instance has been deallocated")
     }
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalPodcastsImageDataLoader, store: StoreSpy) {
-        let store = StoreSpy()
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalPodcastsImageDataLoader, store: PodcastsImageDataStoreSpy) {
+        let store = PodcastsImageDataStoreSpy()
         let sut = LocalPodcastsImageDataLoader(store: store)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -112,27 +112,5 @@ class LoadImageDataFromCacheUseCaseTests: XCTestCase {
     
     func failure(_ error: LocalPodcastsImageDataLoader.Error) -> Result<Data, Error> {
         return .failure(error)
-    }
-        
-    private class StoreSpy: PodcastsImageDataStore {
-        enum Message: Equatable {
-            case retrieve(for: URL)
-        }
-        
-        private(set) var receivedMessages: [Message] = []
-        private(set) var requestCompletions: [(PodcastsImageDataStore.RetrievalResult) -> Void] = []
-        
-        func retrieve(dataForURL url: URL, completion: @escaping (PodcastsImageDataStore.RetrievalResult) -> Void) {
-            receivedMessages.append(.retrieve(for: url))
-            requestCompletions.append(completion)
-        }
-        
-        func completeRetrieval(with error: Error, at index: Int = 0) {
-            requestCompletions[index](.failure(error))
-        }
-        
-        func completeRetrieval(with data: Data?, at index: Int = 0) {
-            requestCompletions[index](.success(data))
-        }
     }
 }

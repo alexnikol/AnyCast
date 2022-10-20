@@ -3,15 +3,6 @@
 import XCTest
 import BestPodcastsList
 
-class CoreDataPodcastsImageDataStore: PodcastsImageDataStore {
-    
-    func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void) {
-        completion(.success(.none))
-    }
-    
-    func save(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {}
-}
-
 class CoreDataPodcastImageDataStoreTests: XCTestCase {
     
     func test_retrieveImageData_deliversNotFoundWhenEmpty() {
@@ -23,7 +14,8 @@ class CoreDataPodcastImageDataStoreTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PodcastsImageDataStore {
-        let sut = CoreDataPodcastsImageDataStore()
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = CoreDataPodcastsImageDataStore(storeURL: storeURL)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }

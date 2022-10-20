@@ -4,19 +4,28 @@ import XCTest
 import BestPodcastsList
 
 struct LocalPodcastImageData {
-    private let timestamp: Date
-    private let data: Data
+    let timestamp: Date
+    let data: Data
 }
 
 class InMemoryPodcastsImagesDataStore: PodcastsImageDataStore {
     
+    private enum RetrieveError: Error {
+        case notFound
+    }
+    
     private var storage: [URL: LocalPodcastImageData] = [:]
     
     func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void) {
-        completion(.success(.none))
+        if let foundData = storage[url] {
+            completion(.success(foundData.data))
+        } else {
+            completion(.success(nil))
+        }
     }
     
     func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
+        storage[url] = LocalPodcastImageData(timestamp: Date(), data: data)
         completion(.success(()))
     }
 }
@@ -37,6 +46,16 @@ class InMemoryPodcastsImagesDataStoreTests: XCTestCase {
         insert(anyData(), for: url, into: sut)
         
         expect(sut, toCompleteRetrievalWith: notFound(), for: nonMatchingURL)
+    }
+    
+    func test_retrieveImageData_deliversFoundDataWhenThereIsAStoredImageDataMatchingURL() {
+        let sut = makeSUT()
+        let url = URL(string: "http://a-url.com")!
+        let data = anyData()
+        
+        insert(data, for: url, into: sut)
+        
+        expect(sut, toCompleteRetrievalWith: .success(data), for: url)
     }
     
     // MARK: - Helpers

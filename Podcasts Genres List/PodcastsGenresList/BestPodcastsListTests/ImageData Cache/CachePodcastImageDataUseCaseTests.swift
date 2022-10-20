@@ -37,6 +37,22 @@ class CachePodcastImageDataUseCaseTests: XCTestCase {
         })
     }
     
+    func test_saveImageDataForURL_doesNotDeliverResultAfterSUTHasBeenDeallocated() {
+        let store = PodcastsImageDataStoreSpy()
+        var sut: LocalPodcastsImageDataLoader? = LocalPodcastsImageDataLoader(store: store)
+        
+        var receivedResult: [LocalPodcastsImageDataLoader.SaveResult] = []
+        
+        _ = sut?.save(anyData(), for: anyURL(), completion: { receivedResult.append($0) })
+        
+        sut = nil
+        
+        store.completeInsrertion(with: anyNSError())
+        store.completeInsrertionSuccessfully()
+        
+        XCTAssertTrue(receivedResult.isEmpty, "Expected to be empty after sut has been deallocated")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalPodcastsImageDataLoader, store: PodcastsImageDataStoreSpy) {

@@ -51,11 +51,11 @@ class InMemoryPodcastsImagesDataStoreTests: XCTestCase {
     func test_retrieveImageData_deliversFoundDataWhenThereIsAStoredImageDataMatchingURL() {
         let sut = makeSUT()
         let url = URL(string: "http://a-url.com")!
-        let data = anyData()
+        let storedData = anyData()
         
-        insert(data, for: url, into: sut)
+        insert(storedData, for: url, into: sut)
         
-        expect(sut, toCompleteRetrievalWith: .success(data), for: url)
+        expect(sut, toCompleteRetrievalWith: found(storedData), for: url)
     }
     
     // MARK: - Helpers
@@ -107,5 +107,9 @@ class InMemoryPodcastsImagesDataStoreTests: XCTestCase {
     
     private func notFound() -> PodcastsImageDataStore.RetrievalResult {
         return .success(.none)
+    }
+    
+    private func found(_ storedData: Data) -> PodcastsImageDataStore.RetrievalResult {
+        return .success(storedData)
     }
 }

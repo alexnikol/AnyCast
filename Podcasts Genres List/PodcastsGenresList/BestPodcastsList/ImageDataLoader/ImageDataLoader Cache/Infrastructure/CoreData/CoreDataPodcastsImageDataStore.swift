@@ -17,5 +17,5 @@ public final class CoreDataPodcastsImageDataStore: PodcastsImageDataStore {
         completion(.success(.none))
     }
     
-    public func save(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {}
+    public func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {}
 }

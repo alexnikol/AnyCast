@@ -7,5 +7,5 @@ public protocol PodcastsImageDataStore {
     typealias InsertionResult = Swift.Result<Void, Error>
     
     func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void)
-    func save(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void)
+    func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void)
 }

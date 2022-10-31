@@ -44,6 +44,7 @@ public final class BestPodcastsListViewController: UITableViewController {
             if let data = try? result.get() {
                 self.cellModels = data.podcasts.map { podcast in PodcastCellController(model: podcast) }
                 self.tableView.reloadData()
+                self.title = data.genreName
             }
             self.refreshControl?.endRefreshing()
         })

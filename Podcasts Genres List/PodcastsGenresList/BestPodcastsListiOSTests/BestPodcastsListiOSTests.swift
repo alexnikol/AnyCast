@@ -41,25 +41,30 @@ class BestPodcastsListiOSTests: XCTestCase {
         let podcast1 = makePodcast(title: "another name", image: anyURL())
         let podcast2 = makePodcast(title: "long name", image: anyURL())
         let podcast3 = makePodcast(title: "some name", image: anyURL())
+        let genreName0 = "Any Genre name"
         let bestPodcastsListResult0 = BestPodcastsList(genreId: 1,
-                                                       genreName: "Any Genre name",
+                                                       genreName: genreName0,
                                                        podcasts: [podcast0])
         
+        let genreName1 = "Another Genre name"
         let bestPodcastsListResult1 = BestPodcastsList(genreId: 1,
-                                                       genreName: "Any Genre name",
+                                                       genreName: genreName1,
                                                        podcasts: [podcast0, podcast1, podcast2, podcast3])
                 
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
+        assertThat(sut, isRendering: String())
         
         loader.completeBestPodcastsLoading(with: bestPodcastsListResult0, at: 0)
         assertThat(sut, isRendering: [podcast0])
+        assertThat(sut, isRendering: genreName0)
         
         sut.simulateUserInitiatedPodcastsListReload()
         loader.completeBestPodcastsLoading(with: bestPodcastsListResult1, at: 1)
         assertThat(sut, isRendering: [podcast0, podcast1, podcast2, podcast3])
+        assertThat(sut, isRendering: genreName1)
     }
     
     // MARK: - Helpers
@@ -96,6 +101,10 @@ class BestPodcastsListiOSTests: XCTestCase {
         let view = sut.podcastView(at: index) as? PodcastCell
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, podcast.title, "Wrong name at index \(index)", file: file, line: line)
+    }
+    
+    private func assertThat(_ sut: BestPodcastsListViewController, isRendering title: String, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(sut.title ?? "", title)
     }
     
     private func makePodcast(title: String, image: URL) -> Podcast {

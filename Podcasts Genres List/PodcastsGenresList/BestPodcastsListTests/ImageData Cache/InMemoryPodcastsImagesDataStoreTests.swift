@@ -10,6 +10,8 @@ struct LocalPodcastImageData {
 
 class InMemoryPodcastsImagesDataStore: PodcastsImageDataStore {
     
+    private let queue = DispatchQueue(label: "\(String(describing: InMemoryPodcastsImagesDataStore.self)).queue")
+    
     private enum RetrieveError: Error {
         case notFound
     }
@@ -25,8 +27,10 @@ class InMemoryPodcastsImagesDataStore: PodcastsImageDataStore {
     }
     
     func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
-        storage[url] = LocalPodcastImageData(timestamp: Date(), data: data)
-        completion(.success(()))
+        queue.sync {
+            self.storage[url] = LocalPodcastImageData(timestamp: Date(), data: data)
+            completion(.success(()))
+        }
     }
 }
 
@@ -68,6 +72,22 @@ class InMemoryPodcastsImagesDataStoreTests: XCTestCase {
         insert(lastStoredData, for: url, into: sut)
         
         expect(sut, toCompleteRetrievalWith: found(lastStoredData), for: url)
+    }
+    
+    func test_sideEffects_runSerially() {
+        let sut = makeSUT()
+        let url = anyURL()
+                
+        let op1 = expectation(description: "Operation 1")
+        sut.insert(anyData(), for: url) { _ in op1.fulfill() }
+        
+        let op2 = expectation(description: "Operation 2")
+        sut.insert(anyData(), for: url) { _ in    op2.fulfill() }
+        
+        let op3 = expectation(description: "Operation 3")
+        sut.insert(anyData(), for: url) { _ in op3.fulfill() }
+        
+        wait(for: [op1, op2, op3], timeout: 5.0, enforceOrder: true)
     }
     
     // MARK: - Helpers

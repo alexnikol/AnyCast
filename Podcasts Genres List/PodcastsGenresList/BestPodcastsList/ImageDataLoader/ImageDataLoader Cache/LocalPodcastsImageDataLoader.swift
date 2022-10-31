@@ -28,9 +28,11 @@ public class LocalPodcastsImageDataLoader: PodcastImageDataLoader {
         case notFound
     }
     
+    private let currentDate: () -> Date
     private let store: PodcastsImageDataStore
     
-    public init(store: PodcastsImageDataStore) {
+    public init(store: PodcastsImageDataStore, currentDate: @escaping () -> Date) {
+        self.currentDate = currentDate
         self.store = store
     }
     
@@ -67,7 +69,7 @@ extension LocalPodcastsImageDataLoader {
     }
     
     public func save(_ data: Data, for url: URL, completion: @escaping (SaveResult) -> Void) {
-        store.insert(data, for: url, completion: { [weak self] result in
+        store.insert(data, for: url, with: currentDate(), completion: { [weak self] result in
             guard self != nil else { return }
             
             completion(result.mapError { _ in SaveError.failed })

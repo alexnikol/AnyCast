@@ -98,6 +98,7 @@
 		8DD2FA5928D4990B0031AAEA /* GenresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */; };
 		8DD2FA5A28D499800031AAEA /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5128D497090031AAEA /* Genres.strings */; };
 		8DE329E6291001D900830695 /* LocalPocastImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE329E5291001D900830695 /* LocalPocastImageData.swift */; };
+		8DE329E72910065500830695 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
@@ -1466,6 +1467,7 @@
 				8D5C20B429005B99006CD42F /* PodcastsImageDataStore.swift in Sources */,
 				8D5C20A429002994006CD42F /* HTTPURLResponse+Extensions.swift in Sources */,
 				8D7F45C6290BD3030093301F /* PodcastsImageDataStore.xcdatamodeld in Sources */,
+				8DE329E72910065500830695 /* CoreDataHelpers.swift in Sources */,
 				8D5C209B290014F1006CD42F /* RemoteImageDataLoader.swift in Sources */,
 				8DFAEAD528FD59A60028B060 /* BestPodcastsList.swift in Sources */,
 				8DE329E6291001D900830695 /* LocalPocastImageData.swift in Sources */,

@@ -39,7 +39,7 @@ class CachePodcastImageDataUseCaseTests: XCTestCase {
     
     func test_saveImageDataForURL_doesNotDeliverResultAfterSUTHasBeenDeallocated() {
         let store = PodcastsImageDataStoreSpy()
-        var sut: LocalPodcastsImageDataLoader? = LocalPodcastsImageDataLoader(store: store)
+        var sut: LocalPodcastsImageDataLoader? = LocalPodcastsImageDataLoader(store: store, currentDate: Date.init)
         
         var receivedResult: [LocalPodcastsImageDataLoader.SaveResult] = []
         
@@ -55,9 +55,9 @@ class CachePodcastImageDataUseCaseTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalPodcastsImageDataLoader, store: PodcastsImageDataStoreSpy) {
+    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalPodcastsImageDataLoader, store: PodcastsImageDataStoreSpy) {
         let store = PodcastsImageDataStoreSpy()
-        let sut = LocalPodcastsImageDataLoader(store: store)
+        let sut = LocalPodcastsImageDataLoader(store: store, currentDate: currentDate)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, store)

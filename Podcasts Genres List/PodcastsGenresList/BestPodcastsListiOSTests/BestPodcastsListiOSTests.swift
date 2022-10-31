@@ -82,6 +82,19 @@ class BestPodcastsListiOSTests: XCTestCase {
         assertThat(sut, isRendering: genreName)
     }
     
+    func test_loadPodcastsCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completeBestPodcastsLoading(with: .init(genreId: 1, genreName: "Any Genre Name", podcasts: []), at: 0)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

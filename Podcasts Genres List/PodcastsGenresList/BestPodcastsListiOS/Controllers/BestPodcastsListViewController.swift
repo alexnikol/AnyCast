@@ -41,6 +41,20 @@ public final class BestPodcastsListViewController: UITableViewController {
         loader.load(by: genreID, completion: { [weak self] result in
             guard let self = self else { return }
             
+            guard Thread.isMainThread else {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    
+                    if let data = try? result.get() {
+                        self.cellModels = data.podcasts.map { podcast in PodcastCellController(model: podcast) }
+                        self.tableView.reloadData()
+                        self.title = data.genreName
+                    }
+                    self.refreshControl?.endRefreshing()
+                }
+                return
+            }
+            
             if let data = try? result.get() {
                 self.cellModels = data.podcasts.map { podcast in PodcastCellController(model: podcast) }
                 self.tableView.reloadData()

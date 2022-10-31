@@ -4,7 +4,7 @@ import XCTest
 import BestPodcastsList
 import BestPodcastsListiOS
 
-class BestPodcastsListiOSTests: XCTestCase {
+class BestPodcastsListUIIngtegrationTests: XCTestCase {
     
     func test_loadPodcastsActions_requestPodcastsByGenreFromLoader() {
         let (sut, loader) = makeSUT()
@@ -101,8 +101,8 @@ class BestPodcastsListiOSTests: XCTestCase {
         genreID: Int = 1,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: BestPodcastsListViewController, loader: LoaderSpy) {
-        let loader = LoaderSpy()
+    ) -> (sut: BestPodcastsListViewController, loader: BestPodcastsLoaderSpy) {
+        let loader = BestPodcastsLoaderSpy()
         let sut = BestPodcastsListViewController(genreID: genreID, loader: loader)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -145,66 +145,5 @@ class BestPodcastsListiOSTests: XCTestCase {
     
     func anyURL() -> URL {
         URL(string: "http://a-url.com")!
-    }
-    
-    private class LoaderSpy: BestPodcastsLoader {
-        
-        private var bestPodcastRequests: [(BestPodcastsLoader.Result) -> Void] = []
-        
-        var loadCallCount: Int {
-            return bestPodcastRequests.count
-        }
-        
-        func load(by genreID: Int, completion: @escaping (BestPodcastsLoader.Result) -> Void) {
-            bestPodcastRequests.append(completion)
-        }
-        
-        func completeBestPodcastsLoading(with bestPodcastsList: BestPodcastsList = .init(genreId: 1, genreName: "any genre name", podcasts: []), at index: Int) {
-            bestPodcastRequests[index](.success(bestPodcastsList))
-        }
-        
-        func completeBestPodcastsLoadingWithError(at index: Int) {
-            let error = NSError(domain: "any error", code: 0)
-            bestPodcastRequests[index](.failure(error))
-        }
-    }
-}
-
-private extension BestPodcastsListViewController {
-    func simulateUserInitiatedPodcastsListReload() {
-        tableView.refreshControl?.simulatePullToRefresh()
-    }
-    
-    var isShowinLoadingIndicator: Bool {
-        return tableView.refreshControl?.isRefreshing ?? false
-    }
-    
-    private var podcastsSection: Int {
-        return 0
-    }
-    
-    func numberOfRenderedGenresViews() -> Int {
-        return tableView.numberOfRows(inSection: podcastsSection)
-    }
-    
-    func podcastView(at row: Int) -> UITableViewCell? {
-        let ds = tableView.dataSource
-        let index = IndexPath(row: row, section: podcastsSection)
-        return ds?.tableView(tableView, cellForRowAt: index)
-    }
-}
-
-private extension UIRefreshControl {
-    func simulatePullToRefresh() {
-        self.allTargets.forEach { target in
-                actions(forTarget: target, forControlEvent: .valueChanged)?
-                .forEach { (target as NSObject).perform(Selector($0)) }
-        }
-    }
-}
-
-private extension PodcastCell {
-    var titleText: String? {
-        return titleLabel.text
     }
 }

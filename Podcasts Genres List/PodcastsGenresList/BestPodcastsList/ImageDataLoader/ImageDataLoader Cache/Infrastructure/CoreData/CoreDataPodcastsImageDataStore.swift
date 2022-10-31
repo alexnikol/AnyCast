@@ -14,13 +14,9 @@ public final class CoreDataPodcastsImageDataStore: PodcastsImageDataStore {
     
     public func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void) {
         let context = self.context
+        let request = fetchImageDataRequest(by: url)
         context.perform {
             do {
-                let request = NSFetchRequest<ManagedPodcastImage>(entityName: ManagedPodcastImage.entity().name!)
-                request.returnsObjectsAsFaults = false
-                request.fetchLimit = 1
-                request.predicate = NSPredicate(format: "url == %@", url as CVarArg)
-                
                 if let cache = try context.fetch(request).first {
                     let image = LocalPocastImageData(data: cache.data)
                     completion(.found(cache: image, timestamp: cache.timestamp))
@@ -35,12 +31,9 @@ public final class CoreDataPodcastsImageDataStore: PodcastsImageDataStore {
     
     public func insert(_ data: Data, for url: URL, with timestamp: Date, completion: @escaping (InsertionResult) -> Void) {
         let context = self.context
+        let request = fetchImageDataRequest(by: url)
         context.perform {
             do {
-                let request = NSFetchRequest<ManagedPodcastImage>(entityName: ManagedPodcastImage.entity().name!)
-                request.returnsObjectsAsFaults = false
-                request.fetchLimit = 1
-                request.predicate = NSPredicate(format: "url == %@", url as CVarArg)
                 try context.fetch(request).first.map(context.delete)
                 
                 let cacheImage = ManagedPodcastImage(context: context)
@@ -54,5 +47,13 @@ public final class CoreDataPodcastsImageDataStore: PodcastsImageDataStore {
                 completion(.failure(error))
             }
         }
+    }
+    
+    private func fetchImageDataRequest(by url: URL) -> NSFetchRequest<ManagedPodcastImage> {
+        let request = NSFetchRequest<ManagedPodcastImage>(entityName: ManagedPodcastImage.entity().name!)
+        request.returnsObjectsAsFaults = false
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "url == %@", url as CVarArg)
+        return request
     }
 }

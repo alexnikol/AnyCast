@@ -2,14 +2,6 @@
 
 import Foundation
 
-public struct LocalPocastImageData: Equatable {
-    public let data: Data
-    
-    public init(data: Data) {
-        self.data = data
-    }
-}
-
 public enum PodcastsImageDataStoreResult {
     case empty
     case found(cache: LocalPocastImageData, timestamp: Date)

@@ -67,6 +67,21 @@ class BestPodcastsListiOSTests: XCTestCase {
         assertThat(sut, isRendering: genreName1)
     }
     
+    func test_loadPodcastsCompletion_doesNotAlterCurrentRenderingStateOnError() {
+        let podcast = makePodcast(title: "any name", image: anyURL())
+        let genreName = "Any Genre name"
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeBestPodcastsLoading(with: .init(genreId: 1, genreName: genreName, podcasts: [podcast]), at: 0)
+        assertThat(sut, isRendering: [podcast])
+        assertThat(sut, isRendering: genreName)
+        
+        sut.simulateUserInitiatedPodcastsListReload()
+        loader.completeBestPodcastsLoadingWithError(at: 1)
+        assertThat(sut, isRendering: genreName)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

@@ -80,7 +80,7 @@ final class GenresUIIntegrationTests: XCTestCase {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
-        let exp = expectation(description: "Wait for bacground queue")
+        let exp = expectation(description: "Wait for background queue")
         DispatchQueue.global().async {
             loader.completeGenresLoading(at: 0)
             exp.fulfill()

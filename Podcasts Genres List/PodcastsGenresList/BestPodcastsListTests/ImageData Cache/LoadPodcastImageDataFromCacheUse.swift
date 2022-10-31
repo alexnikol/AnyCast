@@ -32,7 +32,7 @@ class LoadPodcastImageDataFromCacheUse: XCTestCase {
         let (sut, store) = makeSUT()
         
         expect(sut, toCompleteWith: failure(.notFound), when: {
-            store.completeRetrieval(with: .none)
+            store.completeRetrievalWithEmptyCache()
         })
     }
     
@@ -54,7 +54,7 @@ class LoadPodcastImageDataFromCacheUse: XCTestCase {
         task.cancel()
         
         store.completeRetrieval(with: anyNSError())
-        store.completeRetrieval(with: .none)
+        store.completeRetrievalWithEmptyCache()
         store.completeRetrieval(with: foundData)
         
         XCTAssertTrue(received.isEmpty, "Expected no received results after cancelling task")

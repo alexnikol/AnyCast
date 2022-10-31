@@ -44,8 +44,13 @@ class CoreDataPodcastImageDataStoreTests: XCTestCase {
         let exp = expectation(description: "Wait for load completion")
         sut.retrieve(dataForURL: url, completion: { receivedResult in
             switch (receivedResult, expectedResult) {
-            case let (.success( receivedData), .success(expectedData)):
-                XCTAssertEqual(receivedData, expectedData, file: file, line: line)
+                
+            case let (.found(receivedCache, receivedTimestamp), .found(expectedCache, expectedTimestamp)):
+                XCTAssertEqual(receivedCache, expectedCache, file: file, line: line)
+                XCTAssertEqual(receivedTimestamp, expectedTimestamp, file: file, line: line)
+                
+            case (.empty, .empty):
+                break
                 
             default:
                 XCTFail("Expected \(expectedResult), got \(receivedResult) instead", file: file, line: line)
@@ -74,10 +79,6 @@ class CoreDataPodcastImageDataStoreTests: XCTestCase {
     }
     
     private func notFound() -> PodcastsImageDataStore.RetrievalResult {
-        return .success(.none)
-    }
-    
-    private func found(_ storedData: Data) -> PodcastsImageDataStore.RetrievalResult {
-        return .success(storedData)
+        return .empty
     }
 }

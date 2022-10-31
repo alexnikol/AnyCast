@@ -24,8 +24,12 @@ class PodcastsImageDataStoreSpy: PodcastsImageDataStore {
         retreiveCompletions[index](.failure(error))
     }
     
-    func completeRetrieval(with data: Data?, at index: Int = 0) {
-        retreiveCompletions[index](.success(data))
+    func completeRetrieval(with data: Data, at index: Int = 0) {
+        retreiveCompletions[index](.found(cache: LocalPocastImageData(data: data), timestamp: .init()))
+    }
+    
+    func completeRetrievalWithEmptyCache(at index: Int = 0) {
+        retreiveCompletions[index](.empty)
     }
     
     // MARK: - Insertion

@@ -30,7 +30,7 @@ public final class CoreDataPodcastsImageDataStore: PodcastsImageDataStore {
     }
     
     public func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void) {
-        completion(.success(.none))
+        completion(.empty)
     }
     
     public func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {

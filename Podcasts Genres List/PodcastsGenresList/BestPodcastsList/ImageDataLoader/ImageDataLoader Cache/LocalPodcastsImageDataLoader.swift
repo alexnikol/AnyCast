@@ -40,12 +40,20 @@ public class LocalPodcastsImageDataLoader: PodcastImageDataLoader {
         store.retrieve(dataForURL: url) { [weak self] result in
             guard self != nil else { return }
             
-            task.complete(with: result
-                .mapError { _ in Error.failed }
-                .flatMap { data in
-                    data.map { .success($0) } ?? .failure(Error.notFound)
-                }
-            )
+            var loaderRetrieveResult: LocalPodcastsImageDataLoader.Result
+            
+            switch result {
+            case .empty:
+                loaderRetrieveResult = .failure(Error.notFound)
+                
+            case let .found(cache, _):
+                loaderRetrieveResult = .success(cache.data)
+                
+            case .failure:
+                loaderRetrieveResult = .failure(Error.failed)
+            }
+            
+            task.complete(with: loaderRetrieveResult)
         }
         return task
     }

@@ -21,6 +21,46 @@ class CoreDataPodcastImageDataStoreTests: XCTestCase {
         expect(sut, toCompleteRetrievalWith: notFound(), for: nonMatchingURL)
     }
     
+    func test_retrieveImageData_deliversFoundDataWhenThereIsAStoredImageDataMatchingURL() {
+        let cacheDate = Date()
+        let sut = makeSUT(currentDate: { cacheDate })
+        let url = URL(string: "http://a-url.com")!
+        let storedData = anyData()
+        
+        insert(storedData, for: url, into: sut)
+        
+        expect(sut, toCompleteRetrievalWith: found(storedData, timestamp: cacheDate), for: url)
+    }
+    
+    func test_retrieveImageData_deliversLastInsertedValue() {
+        let cacheDate = Date()
+        let sut = makeSUT(currentDate: { cacheDate })
+        let firstStoredData = Data("first".utf8)
+        let lastStoredData = Data("last".utf8)
+        let url = URL(string: "http://a-url.com")!
+        
+        insert(firstStoredData, for: url, into: sut)
+        insert(lastStoredData, for: url, into: sut)
+        
+        expect(sut, toCompleteRetrievalWith: found(lastStoredData, timestamp: cacheDate), for: url)
+    }
+    
+    func test_sideEffects_runSerially() {
+        let sut = makeSUT()
+        let url = anyURL()
+        
+        let op1 = expectation(description: "Operation 1")
+        sut.insert(anyData(), for: url) { _ in op1.fulfill() }
+        
+        let op2 = expectation(description: "Operation 2")
+        sut.insert(anyData(), for: url) { _ in    op2.fulfill() }
+        
+        let op3 = expectation(description: "Operation 3")
+        sut.insert(anyData(), for: url) { _ in op3.fulfill() }
+        
+        wait(for: [op1, op2, op3], timeout: 5.0, enforceOrder: true)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -80,5 +120,9 @@ class CoreDataPodcastImageDataStoreTests: XCTestCase {
     
     private func notFound() -> PodcastsImageDataStore.RetrievalResult {
         return .empty
+    }
+    
+    private func found(_ storedData: Data, timestamp: Date) -> PodcastsImageDataStore.RetrievalResult {
+        return .found(cache: LocalPocastImageData(data: storedData), timestamp: timestamp)
     }
 }

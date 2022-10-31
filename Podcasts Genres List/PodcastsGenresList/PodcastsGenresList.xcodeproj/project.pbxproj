@@ -108,6 +108,7 @@
 		8DE32A0E29103A3E00830695 /* UIRefreshControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A0D29103A3E00830695 /* UIRefreshControl+Extensions.swift */; };
 		8DE32A1029103A5B00830695 /* PodcastCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A0F29103A5B00830695 /* PodcastCell+DSLHelpers.swift */; };
 		8DE32A1229103A8D00830695 /* BestPodcastsLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1129103A8D00830695 /* BestPodcastsLoaderSpy.swift */; };
+		8DE32A1429103AF700830695 /* PodcastCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1329103AF700830695 /* PodcastCellController.swift */; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
@@ -297,6 +298,7 @@
 		8DE32A0D29103A3E00830695 /* UIRefreshControl+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Extensions.swift"; sourceTree = "<group>"; };
 		8DE32A0F29103A5B00830695 /* PodcastCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastCell+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DE32A1129103A8D00830695 /* BestPodcastsLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsLoaderSpy.swift; sourceTree = "<group>"; };
+		8DE32A1329103AF700830695 /* PodcastCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCellController.swift; sourceTree = "<group>"; };
 		8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
@@ -883,7 +885,7 @@
 			isa = PBXGroup;
 			children = (
 				8DE32A0529100F1200830695 /* BestPodcastsListViewController.swift */,
-				8DE32A0829101F5100830695 /* PodcastCell.swift */,
+				8DE32A1329103AF700830695 /* PodcastCellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -891,6 +893,7 @@
 		8DE32A0329100EC500830695 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8DE32A0829101F5100830695 /* PodcastCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1624,6 +1627,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE32A1429103AF700830695 /* PodcastCellController.swift in Sources */,
 				8DE32A0929101F5100830695 /* PodcastCell.swift in Sources */,
 				8DE32A0629100F1200830695 /* BestPodcastsListViewController.swift in Sources */,
 			);

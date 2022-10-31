@@ -3,21 +3,6 @@
 import UIKit
 import BestPodcastsList
 
-class PodcastCellController {
-        
-    private let model: Podcast
-    
-    init(model: Podcast) {
-        self.model = model
-    }
-    
-    func view(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PodcastCell.self)) as! PodcastCell
-        cell.titleLabel.text = model.title
-        return cell
-    }
-}
-
 public final class BestPodcastsListViewController: UITableViewController {
     private var loader: BestPodcastsLoader
     private var genreID: Int

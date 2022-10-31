@@ -37,6 +37,27 @@
             BlueprintName = "PodcastsGenresList"
             ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
+            BuildableName = "BestPodcastsList.framework"
+            BlueprintName = "BestPodcastsList"
+            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8DFAEAE828FD76670028B060"
+            BuildableName = "HTTPClient.framework"
+            BlueprintName = "HTTPClient"
+            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
+            BuildableName = "URLSessionHTTPClient.framework"
+            BlueprintName = "URLSessionHTTPClient"
+            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference

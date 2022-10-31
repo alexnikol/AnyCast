@@ -3,12 +3,25 @@
 import UIKit
 import BestPodcastsList
 
-class PodcastCellController {}
+class PodcastCellController {
+        
+    private let model: Podcast
+    
+    init(model: Podcast) {
+        self.model = model
+    }
+    
+    func view(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PodcastCell.self)) as! PodcastCell
+        cell.titleLabel.text = model.title
+        return cell
+    }
+}
 
 public final class BestPodcastsListViewController: UITableViewController {
     private var loader: BestPodcastsLoader
     private var genreID: Int
-    private var cells: [PodcastCellController] = []
+    private var cellModels: [PodcastCellController] = []
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +29,9 @@ public final class BestPodcastsListViewController: UITableViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.refreshControl = refreshControl
+        
+        tableView.register(PodcastCell.self, forCellReuseIdentifier: String(describing: PodcastCell.self))
+        
         refresh()
     }
     
@@ -26,7 +42,7 @@ public final class BestPodcastsListViewController: UITableViewController {
             guard let self = self else { return }
             
             if let data = try? result.get() {
-                self.cells = data.podcasts.map { _ in PodcastCellController() }
+                self.cellModels = data.podcasts.map { podcast in PodcastCellController(model: podcast) }
                 self.tableView.reloadData()
             }
             self.refreshControl?.endRefreshing()
@@ -44,10 +60,10 @@ public final class BestPodcastsListViewController: UITableViewController {
     }
     
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cells.count
+        return cellModels.count
     }
     
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        return cellModels[indexPath.row].view(tableView, cellForRowAt: indexPath)
     }
 }

@@ -36,6 +36,32 @@ class BestPodcastsListiOSTests: XCTestCase {
         XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is completes with error")
     }
     
+    func test_loadPodcastsCompletion_rendersSuccessfullyLoadedPodcastsData() {
+        let podcast0 = makePodcast(title: "any name", image: anyURL())
+        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let podcast2 = makePodcast(title: "long name", image: anyURL())
+        let podcast3 = makePodcast(title: "some name", image: anyURL())
+        let bestPodcastsListResult0 = BestPodcastsList(genreId: 1,
+                                                       genreName: "Any Genre name",
+                                                       podcasts: [podcast0])
+        
+        let bestPodcastsListResult1 = BestPodcastsList(genreId: 1,
+                                                       genreName: "Any Genre name",
+                                                       podcasts: [podcast0, podcast1, podcast2, podcast3])
+                
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        assertThat(sut, isRendering: [])
+        
+        loader.completeBestPodcastsLoading(with: bestPodcastsListResult0, at: 0)
+        assertThat(sut, isRendering: [podcast0])
+        
+        sut.simulateUserInitiatedPodcastsListReload()
+        loader.completeBestPodcastsLoading(with: bestPodcastsListResult1, at: 1)
+        assertThat(sut, isRendering: [podcast0, podcast1, podcast2, podcast3])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -48,6 +74,40 @@ class BestPodcastsListiOSTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)
+    }
+    
+    private func assertThat(_ sut: BestPodcastsListViewController, isRendering podcasts: [Podcast], file: StaticString = #file, line: UInt = #line) {
+        guard sut.numberOfRenderedGenresViews() == podcasts.count else {
+            return XCTFail("Expected \(podcasts.count) rendered genres, got \(sut.numberOfRenderedGenresViews()) rendered views instead")
+        }
+        
+        podcasts.enumerated().forEach { index, podcast in
+            assertThat(sut, hasViewConfiguredFor: podcast, at: index, file: file, line: line)
+        }
+    }
+    
+    private func assertThat(
+        _ sut: BestPodcastsListViewController,
+        hasViewConfiguredFor podcast: Podcast,
+        at index: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let view = sut.podcastView(at: index) as? PodcastCell
+        XCTAssertNotNil(view, file: file, line: line)
+        XCTAssertEqual(view?.titleText, podcast.title, "Wrong name at index \(index)", file: file, line: line)
+    }
+    
+    private func makePodcast(title: String, image: URL) -> Podcast {
+        Podcast(id: UUID().uuidString, title: title, image: image)
+    }
+    
+    private func makeBestPodcastsList(genreId: Int = 1, genreName: String = "Any genre name", podcasts: [Podcast]) -> BestPodcastsList {
+        BestPodcastsList(genreId: genreId, genreName: genreName, podcasts: podcasts)
+    }
+    
+    func anyURL() -> URL {
+        URL(string: "http://a-url.com")!
     }
     
     private class LoaderSpy: BestPodcastsLoader {
@@ -81,6 +141,20 @@ private extension BestPodcastsListViewController {
     var isShowinLoadingIndicator: Bool {
         return tableView.refreshControl?.isRefreshing ?? false
     }
+    
+    private var podcastsSection: Int {
+        return 0
+    }
+    
+    func numberOfRenderedGenresViews() -> Int {
+        return tableView.numberOfRows(inSection: podcastsSection)
+    }
+    
+    func podcastView(at row: Int) -> UITableViewCell? {
+        let ds = tableView.dataSource
+        let index = IndexPath(row: row, section: podcastsSection)
+        return ds?.tableView(tableView, cellForRowAt: index)
+    }
 }
 
 private extension UIRefreshControl {
@@ -89,5 +163,11 @@ private extension UIRefreshControl {
                 actions(forTarget: target, forControlEvent: .valueChanged)?
                 .forEach { (target as NSObject).perform(Selector($0)) }
         }
+    }
+}
+
+private extension PodcastCell {
+    var titleText: String? {
+        return titleLabel.text
     }
 }

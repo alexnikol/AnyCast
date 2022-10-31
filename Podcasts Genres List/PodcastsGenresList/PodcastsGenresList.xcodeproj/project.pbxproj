@@ -109,6 +109,9 @@
 		8DE32A1029103A5B00830695 /* PodcastCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A0F29103A5B00830695 /* PodcastCell+DSLHelpers.swift */; };
 		8DE32A1229103A8D00830695 /* BestPodcastsLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1129103A8D00830695 /* BestPodcastsLoaderSpy.swift */; };
 		8DE32A1429103AF700830695 /* PodcastCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1329103AF700830695 /* PodcastCellController.swift */; };
+		8DE32A1829103E0200830695 /* BestPodcastsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1729103E0200830695 /* BestPodcastsPresenterTests.swift */; };
+		8DE32A1A2910403400830695 /* BestPodcastsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A192910403400830695 /* BestPodcastsPresenter.swift */; };
+		8DE32A1C2910404C00830695 /* BestPodcastsPresenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1B2910404C00830695 /* BestPodcastsPresenterViewModel.swift */; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
@@ -299,6 +302,9 @@
 		8DE32A0F29103A5B00830695 /* PodcastCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastCell+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DE32A1129103A8D00830695 /* BestPodcastsLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsLoaderSpy.swift; sourceTree = "<group>"; };
 		8DE32A1329103AF700830695 /* PodcastCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCellController.swift; sourceTree = "<group>"; };
+		8DE32A1729103E0200830695 /* BestPodcastsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsPresenterTests.swift; sourceTree = "<group>"; };
+		8DE32A192910403400830695 /* BestPodcastsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsPresenter.swift; sourceTree = "<group>"; };
+		8DE32A1B2910404C00830695 /* BestPodcastsPresenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsPresenterViewModel.swift; sourceTree = "<group>"; };
 		8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
@@ -510,12 +516,12 @@
 			path = "ImageData API";
 			sourceTree = "<group>";
 		};
-		8D5C20AB290042B5006CD42F /* BestPodcasts Feature */ = {
+		8D5C20AB290042B5006CD42F /* Podcasts API */ = {
 			isa = PBXGroup;
 			children = (
 				8DFAEACB28FD46680028B060 /* BestPodcastsMapperTests.swift */,
 			);
-			path = "BestPodcasts Feature";
+			path = "Podcasts API";
 			sourceTree = "<group>";
 		};
 		8D5C20AD290044F7006CD42F /* ImageDataLoader */ = {
@@ -916,6 +922,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8DE32A1529103CD700830695 /* Podcasts Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8DE32A192910403400830695 /* BestPodcastsPresenter.swift */,
+				8DE32A1B2910404C00830695 /* BestPodcastsPresenterViewModel.swift */,
+			);
+			path = "Podcasts Presentation";
+			sourceTree = "<group>";
+		};
+		8DE32A1629103D2400830695 /* Podcasts Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8DE32A1729103E0200830695 /* BestPodcastsPresenterTests.swift */,
+			);
+			path = "Podcasts Presentation";
+			sourceTree = "<group>";
+		};
 		8DEB7E0C28FDD5A5003AF72F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -951,6 +974,7 @@
 				8D5C20AD290044F7006CD42F /* ImageDataLoader */,
 				8DFAEAC628FD44DE0028B060 /* Podcasts Feature */,
 				8DFAEAD628FD60BD0028B060 /* Podcasts API */,
+				8DE32A1529103CD700830695 /* Podcasts Presentation */,
 				8DFAEAC428FD42BC0028B060 /* README.md */,
 			);
 			path = BestPodcastsList;
@@ -960,9 +984,10 @@
 			isa = PBXGroup;
 			children = (
 				8D5C20B829012DBA006CD42F /* Helpers */,
-				8D5C20AB290042B5006CD42F /* BestPodcasts Feature */,
 				8D5C20AA29004293006CD42F /* ImageData API */,
 				8D5C20AF29004549006CD42F /* ImageData Cache */,
+				8D5C20AB290042B5006CD42F /* Podcasts API */,
+				8DE32A1629103D2400830695 /* Podcasts Presentation */,
 			);
 			path = BestPodcastsListTests;
 			sourceTree = "<group>";
@@ -1652,7 +1677,9 @@
 			files = (
 				8DFAEADB28FD60F60028B060 /* RemotePodcast.swift in Sources */,
 				8DFAEACA28FD45150028B060 /* Podcast.swift in Sources */,
+				8DE32A1A2910403400830695 /* BestPodcastsPresenter.swift in Sources */,
 				8D5C20B729005C0F006CD42F /* LocalPodcastsImageDataLoader.swift in Sources */,
+				8DE32A1C2910404C00830695 /* BestPodcastsPresenterViewModel.swift in Sources */,
 				8D5C20B429005B99006CD42F /* PodcastsImageDataStore.swift in Sources */,
 				8D5C20A429002994006CD42F /* HTTPURLResponse+Extensions.swift in Sources */,
 				8D7F45C6290BD3030093301F /* PodcastsImageDataStore.xcdatamodeld in Sources */,
@@ -1675,6 +1702,7 @@
 			files = (
 				8D5C209928FFF6B0006CD42F /* LoadImageDataFromRemoteUseCaseTests.swift in Sources */,
 				8D5C21ED29014F8B006CD42F /* CoreDataPodcastImageDataStoreTests.swift in Sources */,
+				8DE32A1829103E0200830695 /* BestPodcastsPresenterTests.swift in Sources */,
 				8D5C21E92901392B006CD42F /* PodcastsImageDataStoreSpy.swift in Sources */,
 				8D5C20BA29012DC6006CD42F /* SharedHelpers.swift in Sources */,
 				8DFAEACC28FD46680028B060 /* BestPodcastsMapperTests.swift in Sources */,

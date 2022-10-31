@@ -21,16 +21,15 @@ public final class BestPodcastsListViewController: UITableViewController {
     
     @objc
     private func refresh() {
+        refreshControl?.beginRefreshing()
         loader.load(by: genreID, completion: { [weak self] result in
             guard let self = self else { return }
             
-            switch result {
-            case let .success(data):
+            if let data = try? result.get() {
                 self.cells = data.podcasts.map { _ in PodcastCellController() }
                 self.tableView.reloadData()
-            case .failure:
-                break
             }
+            self.refreshControl?.endRefreshing()
         })
     }
     

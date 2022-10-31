@@ -20,6 +20,22 @@ class BestPodcastsListiOSTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 3, "Expected a third loading request once user initiates a load")
     }
     
+    func test_loadPodcastsIndicator_isVisibleWhileLoadingPodcasts() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once view is loaded")
+        
+        loader.completeBestPodcastsLoading(at: 0)
+        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is complete succesfully")
+        
+        sut.simulateUserInitiatedPodcastsListReload()
+        XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once user initiates a reload")
+                
+        loader.completeBestPodcastsLoadingWithError(at: 1)
+        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is completes with error")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -36,14 +52,23 @@ class BestPodcastsListiOSTests: XCTestCase {
     
     private class LoaderSpy: BestPodcastsLoader {
         
-        private var completions: [(BestPodcastsLoader.Result) -> Void] = []
+        private var bestPodcastRequests: [(BestPodcastsLoader.Result) -> Void] = []
         
         var loadCallCount: Int {
-            return completions.count
+            return bestPodcastRequests.count
         }
         
         func load(by genreID: Int, completion: @escaping (BestPodcastsLoader.Result) -> Void) {
-            completions.append(completion)
+            bestPodcastRequests.append(completion)
+        }
+        
+        func completeBestPodcastsLoading(with bestPodcastsList: BestPodcastsList = .init(genreId: 1, genreName: "any genre name", podcasts: []), at index: Int) {
+            bestPodcastRequests[index](.success(bestPodcastsList))
+        }
+        
+        func completeBestPodcastsLoadingWithError(at index: Int) {
+            let error = NSError(domain: "any error", code: 0)
+            bestPodcastRequests[index](.failure(error))
         }
     }
 }
@@ -51,6 +76,10 @@ class BestPodcastsListiOSTests: XCTestCase {
 private extension BestPodcastsListViewController {
     func simulateUserInitiatedPodcastsListReload() {
         tableView.refreshControl?.simulatePullToRefresh()
+    }
+    
+    var isShowinLoadingIndicator: Bool {
+        return tableView.refreshControl?.isRefreshing ?? false
     }
 }
 

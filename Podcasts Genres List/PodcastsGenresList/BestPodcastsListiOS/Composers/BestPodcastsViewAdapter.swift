@@ -27,7 +27,10 @@ final class BestPodcastsViewAdapter: ResourceView {
                 resourceView: WeakRefVirtualProxy(cellController),
                 loadingView: WeakRefVirtualProxy(cellController),
                 mapper: { data in
-                    PodcastImageViewModel(image: UIImage(data: data))
+                    PodcastImageViewModel(
+                        title: model.title,
+                        image: UIImage(data: data)
+                    )
                 }
             )
             return cellController

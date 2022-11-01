@@ -1,6 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import Foundation
+import UIKit
 import LoadResourcePresenter
 import BestPodcastsList
 
@@ -12,8 +12,8 @@ final class WeakRefVirtualProxy<T: AnyObject> {
     }
 }
 
-extension WeakRefVirtualProxy: ResourceView where T: ResourceView, T.ResourceViewModel == PodcastImageViewModel {
-    func display(_ viewModel: PodcastImageViewModel) {
+extension WeakRefVirtualProxy: ResourceView where T: ResourceView, T.ResourceViewModel == PodcastImageViewModel<UIImage> {
+    func display(_ viewModel: PodcastImageViewModel<UIImage>) {
         object?.display(viewModel)
     }
 }

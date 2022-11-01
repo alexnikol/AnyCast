@@ -1,7 +1,8 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import UIKit
+import Foundation
 
-public struct PodcastImageViewModel {
-    let image: UIImage?
+public struct PodcastImageViewModel<Image> {
+    let title: String
+    let image: Image?
 }

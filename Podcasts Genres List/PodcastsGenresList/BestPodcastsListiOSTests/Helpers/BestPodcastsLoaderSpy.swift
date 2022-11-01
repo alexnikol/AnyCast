@@ -6,13 +6,8 @@ import BestPodcastsList
 class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
 
     private var bestPodcastRequests: [(BestPodcastsLoader.Result) -> Void] = []
-    private(set) var loadedImageURLs: [URL] = []
     private(set) var cancelledImageURLs: [URL] = []
-    
-    var loadCallCount: Int {
-        return bestPodcastRequests.count
-    }
-    
+        
     // MARK: - BestPodcastsLoader
     
     func load(by genreID: Int, completion: @escaping (BestPodcastsLoader.Result) -> Void) {
@@ -30,11 +25,30 @@ class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
     
     // MARK: - PodcastImageDataLoader
     
+    private var imageRequests: [(url: URL, completion: (PodcastImageDataLoader.Result) -> Void)] = []
+    
+    var loadCallCount: Int {
+        return bestPodcastRequests.count
+    }
+    
+    var loadedImageURLs: [URL] {
+        return imageRequests.map { $0.url }
+    }
+    
     func loadImageData(from url: URL, completion: @escaping (PodcastImageDataLoader.Result) -> Void) -> PodcastImageDataLoaderTask {
-        loadedImageURLs.append(url)
+        imageRequests.append((url, completion))
         return Task { [weak self] in
             self?.cancelledImageURLs.append(url)
         }
+    }
+    
+    func completeImageLoading(with imageData: Data = Data(), at index: Int = 0) {
+        imageRequests[index].completion(.success(imageData))
+    }
+    
+    func completeImageLoadingWithError(at index: Int = 0) {
+        let error = NSError(domain: "any error", code: 0)
+        imageRequests[index].completion(.failure(error))
     }
     
     private struct Task: PodcastImageDataLoaderTask {

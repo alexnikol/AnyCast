@@ -31,7 +31,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         
         sut.simulateUserInitiatedPodcastsListReload()
         XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once user initiates a reload")
-                
+        
         loader.completeBestPodcastsLoadingWithError(at: 1)
         XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is completes with error")
     }
@@ -50,7 +50,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         let bestPodcastsListResult1 = BestPodcastsList(genreId: 1,
                                                        genreName: genreName1,
                                                        podcasts: [podcast0, podcast1, podcast2, podcast3])
-                
+        
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -86,8 +86,8 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         let podcast0 = makePodcast(title: "any name", image: anyURL())
         let podcast1 = makePodcast(title: "another name", image: anyURL())
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,
-                                                       genreName: "Any Genre Name",
-                                                       podcasts: [podcast0, podcast1])
+                                                      genreName: "Any Genre Name",
+                                                      podcasts: [podcast0, podcast1])
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -103,8 +103,8 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         let podcast0 = makePodcast(title: "any name", image: anyURL())
         let podcast1 = makePodcast(title: "another name", image: anyURL())
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,
-                                                       genreName: "Any Genre Name",
-                                                       podcasts: [podcast0, podcast1])
+                                                      genreName: "Any Genre Name",
+                                                      podcasts: [podcast0, podcast1])
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         loader.completeBestPodcastsLoading(with: bestPodcastsListResult, at: 0)
@@ -115,6 +115,32 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         
         sut.simulatePodcastImageNotViewVisible(at: 1)
         XCTAssertEqual(loader.cancelledImageURLs, [podcast0.image, podcast1.image], "Expected one cancelled image URL request once first image is not visible anymore")
+    }
+    
+    func test_podcastImageViewLoadingIndicator_isVisibleWhileLoadingImage() {
+        let podcast0 = makePodcast(title: "any name", image: anyURL())
+        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let bestPodcastsListResult = BestPodcastsList(genreId: 1,
+                                                      genreName: "Any Genre Name",
+                                                      podcasts: [podcast0, podcast1])
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeBestPodcastsLoading(with: bestPodcastsListResult, at: 0)
+        
+        let view0 = sut.simulatePodcastImageViewVisible(at: 0)
+        let view1 = sut.simulatePodcastImageViewVisible(at: 1)
+
+        XCTAssertEqual(view0?.isShowingImageLoadingIndicator, true, "Expected loading indicator for first view while loading first image")
+        XCTAssertEqual(view1?.isShowingImageLoadingIndicator, true, "Expected loading indicator for second view while loading second image")
+        
+        loader.completeImageLoading(at: 0)
+        XCTAssertEqual(view0?.isShowingImageLoadingIndicator, false, "Expected no loading indicator for first view once first image loading completes successfully")
+        XCTAssertEqual(view1?.isShowingImageLoadingIndicator, true, "Expected no loading indicator state change for second view once first image loading completes successfully")
+        
+        loader.completeImageLoadingWithError(at: 1)
+        XCTAssertEqual(view0?.isShowingImageLoadingIndicator, false, "Expected no loading indicator state change for first view once second image loading completes with error")
+        XCTAssertEqual(view1?.isShowingImageLoadingIndicator, false, "Expected no loading indicator for second view once second image loading completes with error")
     }
     
     func test_loadPodcastsCompletion_dispatchesFromBackgroundToMainThread() {

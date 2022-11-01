@@ -7,4 +7,8 @@ extension PodcastCell {
     var titleText: String? {
         return titleLabel.text
     }
+    
+    var isShowingImageLoadingIndicator: Bool {
+        container.isShimmering
+    }
 }

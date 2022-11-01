@@ -182,6 +182,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
     }
     
     func test_loadPodcastsCompletion_dispatchesFromBackgroundToMainThread() {
+        
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
@@ -191,6 +192,25 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
             exp.fulfill()
         }
         
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_loadImageDataCompletion_dispatchesFromBackgroundToMainThread() {
+        let podcast0 = makePodcast(title: "any name", image: anyURL())
+        let bestPodcastsListResult = BestPodcastsList(genreId: 1,
+                                                      genreName: "Any Genre Name",
+                                                      podcasts: [podcast0])
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeBestPodcastsLoading(with: bestPodcastsListResult, at: 0)
+        _ = sut.simulatePodcastImageViewVisible(at: 0)
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completeImageLoading(with: self.anyImageData(), at: 0)
+            exp.fulfill()
+        }
         wait(for: [exp], timeout: 1.0)
     }
     
@@ -242,7 +262,11 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         BestPodcastsList(genreId: genreId, genreName: genreName, podcasts: podcasts)
     }
     
-    func anyURL() -> URL {
+    private func anyURL() -> URL {
         URL(string: "http://a-url.com")!
+    }
+    
+    private func anyImageData() -> Data {
+        return Data()
     }
 }

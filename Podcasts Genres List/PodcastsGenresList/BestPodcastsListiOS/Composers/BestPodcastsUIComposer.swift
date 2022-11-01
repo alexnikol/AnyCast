@@ -22,7 +22,7 @@ public final class BestPodcastsUIComposer {
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: BestPodcastsViewAdapter(
                 controller: controller,
-                imageLoader: imageLoader
+                imageLoader: MainQueueDispatchDecorator(decoratee: imageLoader)
             ),
             loadingView: WeakRefVirtualProxy(refreshController),
             mapper: BestPodcastsPresenter.map

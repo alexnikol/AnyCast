@@ -26,3 +26,11 @@ extension MainQueueDispatchDecorator: BestPodcastsLoader where T == BestPodcasts
         })
     }
 }
+
+extension MainQueueDispatchDecorator: PodcastImageDataLoader where T == PodcastImageDataLoader {
+    func loadImageData(from url: URL, completion: @escaping (PodcastImageDataLoader.Result) -> Void) -> PodcastImageDataLoaderTask {
+        return decoratee.loadImageData(from: url, completion: { [weak self] result in
+            self?.dispatch { completion(result) }
+        })
+    }
+}

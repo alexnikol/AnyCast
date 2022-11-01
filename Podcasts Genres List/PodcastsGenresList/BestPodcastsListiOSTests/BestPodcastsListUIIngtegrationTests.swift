@@ -110,8 +110,8 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
     }
     
     private func assertThat(_ sut: BestPodcastsListViewController, isRendering podcasts: [Podcast], file: StaticString = #file, line: UInt = #line) {
-        guard sut.numberOfRenderedGenresViews() == podcasts.count else {
-            return XCTFail("Expected \(podcasts.count) rendered podcast, got \(sut.numberOfRenderedGenresViews()) rendered views instead")
+        guard sut.numberOfRenderedPodcastsViews() == podcasts.count else {
+            return XCTFail("Expected \(podcasts.count) rendered podcast, got \(sut.numberOfRenderedPodcastsViews()) rendered views instead")
         }
         
         podcasts.enumerated().forEach { index, podcast in

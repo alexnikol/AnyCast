@@ -16,7 +16,7 @@ extension BestPodcastsListViewController {
         return 0
     }
     
-    func numberOfRenderedGenresViews() -> Int {
+    func numberOfRenderedPodcastsViews() -> Int {
         return tableView.numberOfRows(inSection: podcastsSection)
     }
     

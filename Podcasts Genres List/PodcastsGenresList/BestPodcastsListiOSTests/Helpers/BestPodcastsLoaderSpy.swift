@@ -7,6 +7,7 @@ class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
 
     private var bestPodcastRequests: [(BestPodcastsLoader.Result) -> Void] = []
     private(set) var loadedImageURLs: [URL] = []
+    private(set) var cancelledImageURLs: [URL] = []
     
     var loadCallCount: Int {
         return bestPodcastRequests.count
@@ -31,10 +32,20 @@ class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
     
     func loadImageData(from url: URL, completion: @escaping (PodcastImageDataLoader.Result) -> Void) -> PodcastImageDataLoaderTask {
         loadedImageURLs.append(url)
-        return Task()
+        return Task { [weak self] in
+            self?.cancelledImageURLs.append(url)
+        }
     }
     
     private struct Task: PodcastImageDataLoaderTask {
-        func cancel() {}
+        private let callback: () -> Void
+        
+        init(callback: @escaping () -> Void) {
+            self.callback = callback
+        }
+        
+        func cancel() {
+            callback()
+        }
     }
 }

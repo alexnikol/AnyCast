@@ -8,6 +8,7 @@ final class PodcastImageDataLoaderPresentationAdapter: PodcastCellControllerDele
     private let model: Podcast
     private let imageLoader: PodcastImageDataLoader
     var presenter: LoadResourcePresenter<Data, WeakRefVirtualProxy<PodcastCellController>>?
+    var task: PodcastImageDataLoaderTask?
     
     init(model: Podcast, imageLoader: PodcastImageDataLoader) {
         self.model = model
@@ -17,7 +18,7 @@ final class PodcastImageDataLoaderPresentationAdapter: PodcastCellControllerDele
     func didRequestImage() {
         presenter?.didStartLoading()
         
-        _ = imageLoader.loadImageData(from: model.image, completion: { [weak self] result in
+        task = imageLoader.loadImageData(from: model.image, completion: { [weak self] result in
             switch result {
             case let .success(data):
                 self?.presenter?.didFinishLoading(with: data)
@@ -26,5 +27,9 @@ final class PodcastImageDataLoaderPresentationAdapter: PodcastCellControllerDele
                 self?.presenter?.didFinishLoading(with: error)
             }
         })
+    }
+    
+    func didCancelImageLoad() {
+        task?.cancel()
     }
 }

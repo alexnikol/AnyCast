@@ -35,4 +35,13 @@ public final class BestPodcastsListViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cellModels[indexPath.row].view(tableView, cellForRowAt: indexPath)
     }
+    
+    override public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cellController(forRowAt: indexPath).cancelLoad()
+    }
+    
+    private func cellController(forRowAt indexPath: IndexPath) -> PodcastCellController {
+        let cellController = cellModels[indexPath.row]
+        return cellController
+    }
 }

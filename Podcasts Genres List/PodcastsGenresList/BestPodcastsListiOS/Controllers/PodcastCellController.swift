@@ -6,6 +6,7 @@ import LoadResourcePresenter
 
 protocol PodcastCellControllerDelegate {
     func didRequestImage()
+    func didCancelImageLoad()
 }
 
 public final class PodcastCellController {
@@ -25,6 +26,10 @@ public final class PodcastCellController {
         cell?.titleLabel.text = model.title
         delegate.didRequestImage()
         return cell!
+    }
+    
+    func cancelLoad() {
+        delegate.didCancelImageLoad()
     }
 }
 

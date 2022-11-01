@@ -21,20 +21,23 @@ final class BestPodcastsViewAdapter: ResourceView {
                 model: model,
                 imageLoader: imageLoader
             )
+            let model = PodcastImageViewModel<UIImage>(title: model.title, image: nil)
             let cellController = PodcastCellController(model: model, delegete: adapter)
             
             adapter.presenter = LoadResourcePresenter(
                 resourceView: WeakRefVirtualProxy(cellController),
                 loadingView: WeakRefVirtualProxy(cellController),
                 mapper: { data in
-                    PodcastImageViewModel(
-                        title: model.title,
-                        image: UIImage(data: data)
-                    )
+                    guard let image = UIImage(data: data) else {
+                        throw InvalidImageData()
+                    }
+                    return image
                 }
             )
             return cellController
         })
         controller?.title = viewModel.title
     }
+    
+    private struct InvalidImageData: Error {}
 }

@@ -4,7 +4,7 @@ import XCTest
 import LoadResourcePresenter
 
 class LoadResourcePresenterTests: XCTestCase {
-        
+    
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()
         
@@ -41,6 +41,18 @@ class LoadResourcePresenterTests: XCTestCase {
         ])
     }
     
+    func test_didFinishLoadingWithMapperError_stopsLoading() {
+        let (sut, view) = makeSUT(mapper: { resource in
+            throw anyNSError()
+        })
+        
+        sut.didFinishLoading(with: "resource")
+        
+        XCTAssertEqual(view.messages, [
+            .display(isLoading: false)
+        ])
+    }
+    
     // MARK: - Helpers
     
     private typealias SUT = LoadResourcePresenter<String, ViewSpy>
@@ -51,7 +63,7 @@ class LoadResourcePresenterTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, view)
     }
-        
+    
     private class ViewSpy: ResourceLoadingView, ResourceView {
         typealias ResourceViewModel = String
         
@@ -65,7 +77,7 @@ class LoadResourcePresenterTests: XCTestCase {
         func display(_ viewModel: ResourceLoadingViewModel) {
             messages.insert(.display(isLoading: viewModel.isLoading))
         }
-                
+        
         func display(_ viewModel: ResourceViewModel) {
             messages.insert(.display(recource: viewModel))
         }

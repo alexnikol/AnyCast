@@ -12,8 +12,8 @@ final class WeakRefVirtualProxy<T: AnyObject> {
     }
 }
 
-extension WeakRefVirtualProxy: ResourceView where T: ResourceView, T.ResourceViewModel == PodcastImageViewModel<UIImage> {
-    func display(_ viewModel: PodcastImageViewModel<UIImage>) {
+extension WeakRefVirtualProxy: ResourceView where T: ResourceView, T.ResourceViewModel == UIImage {
+    func display(_ viewModel: UIImage) {
         object?.display(viewModel)
     }
 }

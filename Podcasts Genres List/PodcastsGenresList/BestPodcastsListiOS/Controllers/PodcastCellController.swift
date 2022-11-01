@@ -9,11 +9,13 @@ protocol PodcastCellControllerDelegate {
 }
 
 public final class PodcastCellController {
-    private let model: Podcast
+    public typealias ResourceViewModel = UIImage
+    
+    private let model: PodcastImageViewModel<UIImage>
     private let delegate: PodcastCellControllerDelegate
     private var cell: PodcastCell?
     
-    init(model: Podcast, delegete: PodcastCellControllerDelegate) {
+    init(model: PodcastImageViewModel<UIImage>, delegete: PodcastCellControllerDelegate) {
         self.model = model
         self.delegate = delegete
     }
@@ -27,9 +29,10 @@ public final class PodcastCellController {
 }
 
 extension PodcastCellController: ResourceView {
-    public typealias ResourceViewModel = PodcastImageViewModel<UIImage>
     
-    public func display(_ viewModel: ResourceViewModel) {}
+    public func display(_ viewModel: ResourceViewModel) {
+        
+    }
 }
 
 extension PodcastCellController: ResourceLoadingView {

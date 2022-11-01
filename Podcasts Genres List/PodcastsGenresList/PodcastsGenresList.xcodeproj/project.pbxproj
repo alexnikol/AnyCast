@@ -121,6 +121,12 @@
 		8DE32A4C291110DF00830695 /* BestPodcastsListRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4B291110DF00830695 /* BestPodcastsListRefreshViewController.swift */; };
 		8DE32A4E29111B3400830695 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4D29111B3400830695 /* UITableView+Extensions.swift */; };
 		8DE32A5029111BAF00830695 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4F29111BAF00830695 /* Reusable.swift */; };
+		8DE32A5229113F1A00830695 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5129113F1A00830695 /* WeakRefVirtualProxy.swift */; };
+		8DE32A5429113F5700830695 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5329113F5700830695 /* MainQueueDispatchDecorator.swift */; };
+		8DE32A5629113F9100830695 /* PodcastImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5529113F9100830695 /* PodcastImageViewModel.swift */; };
+		8DE32A5829113FAC00830695 /* PodcastImageDataLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5729113FAC00830695 /* PodcastImageDataLoaderPresentationAdapter.swift */; };
+		8DE32A5A29113FD100830695 /* BestPodcastsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5929113FD100830695 /* BestPodcastsViewAdapter.swift */; };
+		8DE32A5C29113FFB00830695 /* BestPodcastsLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5B29113FFB00830695 /* BestPodcastsLoaderPresentationAdapter.swift */; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
@@ -336,6 +342,12 @@
 		8DE32A4B291110DF00830695 /* BestPodcastsListRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsListRefreshViewController.swift; sourceTree = "<group>"; };
 		8DE32A4D29111B3400830695 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		8DE32A4F29111BAF00830695 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		8DE32A5129113F1A00830695 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
+		8DE32A5329113F5700830695 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
+		8DE32A5529113F9100830695 /* PodcastImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastImageViewModel.swift; sourceTree = "<group>"; };
+		8DE32A5729113FAC00830695 /* PodcastImageDataLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastImageDataLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
+		8DE32A5929113FD100830695 /* BestPodcastsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsViewAdapter.swift; sourceTree = "<group>"; };
+		8DE32A5B29113FFB00830695 /* BestPodcastsLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
@@ -1005,6 +1017,12 @@
 			isa = PBXGroup;
 			children = (
 				8DE32A4929110FD200830695 /* BestPodcastsUIComposer.swift */,
+				8DE32A5329113F5700830695 /* MainQueueDispatchDecorator.swift */,
+				8DE32A5129113F1A00830695 /* WeakRefVirtualProxy.swift */,
+				8DE32A5529113F9100830695 /* PodcastImageViewModel.swift */,
+				8DE32A5729113FAC00830695 /* PodcastImageDataLoaderPresentationAdapter.swift */,
+				8DE32A5929113FD100830695 /* BestPodcastsViewAdapter.swift */,
+				8DE32A5B29113FFB00830695 /* BestPodcastsLoaderPresentationAdapter.swift */,
 			);
 			path = Composers;
 			sourceTree = "<group>";
@@ -1786,10 +1804,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE32A4A29110FD200830695 /* BestPodcastsUIComposer.swift in Sources */,
+				8DE32A5429113F5700830695 /* MainQueueDispatchDecorator.swift in Sources */,
 				8DE32A1429103AF700830695 /* PodcastCellController.swift in Sources */,
+				8DE32A5A29113FD100830695 /* BestPodcastsViewAdapter.swift in Sources */,
+				8DE32A5229113F1A00830695 /* WeakRefVirtualProxy.swift in Sources */,
+				8DE32A5C29113FFB00830695 /* BestPodcastsLoaderPresentationAdapter.swift in Sources */,
 				8DE32A4E29111B3400830695 /* UITableView+Extensions.swift in Sources */,
 				8DE32A0929101F5100830695 /* PodcastCell.swift in Sources */,
+				8DE32A5829113FAC00830695 /* PodcastImageDataLoaderPresentationAdapter.swift in Sources */,
 				8DE32A4C291110DF00830695 /* BestPodcastsListRefreshViewController.swift in Sources */,
+				8DE32A5629113F9100830695 /* PodcastImageViewModel.swift in Sources */,
 				8DE32A0629100F1200830695 /* BestPodcastsListViewController.swift in Sources */,
 				8DE32A5029111BAF00830695 /* Reusable.swift in Sources */,
 			);

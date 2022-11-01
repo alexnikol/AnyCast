@@ -3,7 +3,7 @@
 import UIKit
 import BestPodcastsList
 
-final class PodcastCellController {
+public final class PodcastCellController {
         
     private let model: Podcast
     

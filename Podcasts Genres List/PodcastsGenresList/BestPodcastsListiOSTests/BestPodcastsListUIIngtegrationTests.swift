@@ -103,7 +103,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: BestPodcastsListViewController, loader: BestPodcastsLoaderSpy) {
         let loader = BestPodcastsLoaderSpy()
-        let sut = BestPodcastsListViewController(genreID: genreID, loader: loader)
+        let sut = BestPodcastsUIComposer.bestPodcastComposed(genreID: genreID, loader: loader)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)
@@ -111,7 +111,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
     
     private func assertThat(_ sut: BestPodcastsListViewController, isRendering podcasts: [Podcast], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedGenresViews() == podcasts.count else {
-            return XCTFail("Expected \(podcasts.count) rendered genres, got \(sut.numberOfRenderedGenresViews()) rendered views instead")
+            return XCTFail("Expected \(podcasts.count) rendered podcast, got \(sut.numberOfRenderedGenresViews()) rendered views instead")
         }
         
         podcasts.enumerated().forEach { index, podcast in

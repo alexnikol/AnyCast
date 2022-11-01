@@ -117,6 +117,8 @@
 		8DE32A4029110BCF00830695 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DE32A4129110CB300830695 /* LoadResourcePresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; platformFilter = ios; };
 		8DE32A4229110CB300830695 /* LoadResourcePresenter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8DE32A4A29110FD200830695 /* BestPodcastsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4929110FD200830695 /* BestPodcastsUIComposer.swift */; };
+		8DE32A4C291110DF00830695 /* BestPodcastsListRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4B291110DF00830695 /* BestPodcastsListRefreshViewController.swift */; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
@@ -328,6 +330,8 @@
 		8DE32A3929110B6800830695 /* ResourceLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingView.swift; sourceTree = "<group>"; };
 		8DE32A3B29110B8500830695 /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
 		8DE32A3E29110BB300830695 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		8DE32A4929110FD200830695 /* BestPodcastsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsUIComposer.swift; sourceTree = "<group>"; };
+		8DE32A4B291110DF00830695 /* BestPodcastsListRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsListRefreshViewController.swift; sourceTree = "<group>"; };
 		8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
@@ -896,6 +900,7 @@
 			children = (
 				8DE32A0229100EC000830695 /* Controllers */,
 				8DE32A0329100EC500830695 /* Views */,
+				8DE32A4829110FAC00830695 /* Composers */,
 				8DE32A0429100ED100830695 /* Extensions */,
 			);
 			path = BestPodcastsListiOS;
@@ -915,6 +920,7 @@
 			children = (
 				8DE32A0529100F1200830695 /* BestPodcastsListViewController.swift */,
 				8DE32A1329103AF700830695 /* PodcastCellController.swift */,
+				8DE32A4B291110DF00830695 /* BestPodcastsListRefreshViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -987,6 +993,14 @@
 				8DE32A3E29110BB300830695 /* SharedTestHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8DE32A4829110FAC00830695 /* Composers */ = {
+			isa = PBXGroup;
+			children = (
+				8DE32A4929110FD200830695 /* BestPodcastsUIComposer.swift */,
+			);
+			path = Composers;
 			sourceTree = "<group>";
 		};
 		8DEB7E0C28FDD5A5003AF72F /* Helpers */ = {
@@ -1765,8 +1779,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE32A4A29110FD200830695 /* BestPodcastsUIComposer.swift in Sources */,
 				8DE32A1429103AF700830695 /* PodcastCellController.swift in Sources */,
 				8DE32A0929101F5100830695 /* PodcastCell.swift in Sources */,
+				8DE32A4C291110DF00830695 /* BestPodcastsListRefreshViewController.swift in Sources */,
 				8DE32A0629100F1200830695 /* BestPodcastsListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

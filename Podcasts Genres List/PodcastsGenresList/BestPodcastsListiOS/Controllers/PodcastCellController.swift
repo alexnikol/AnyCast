@@ -31,12 +31,16 @@ public final class PodcastCellController {
     func cancelLoad() {
         delegate.didCancelImageLoad()
     }
+    
+    func preload() {
+        delegate.didRequestImage()
+    }
 }
 
 extension PodcastCellController: ResourceView {
     
     public func display(_ viewModel: ResourceViewModel) {
-        
+        cell?.thumbnailImageView.image = viewModel
     }
 }
 

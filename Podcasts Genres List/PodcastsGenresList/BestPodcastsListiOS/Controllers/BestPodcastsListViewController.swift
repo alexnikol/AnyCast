@@ -3,7 +3,7 @@
 import UIKit
 import BestPodcastsList
 
-public final class BestPodcastsListViewController: UITableViewController {
+public final class BestPodcastsListViewController: UITableViewController, UITableViewDataSourcePrefetching {
     private var cellModels: [PodcastCellController] = []
     private var refreshController: BestPodcastsListRefreshViewController?
     
@@ -24,6 +24,7 @@ public final class BestPodcastsListViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.prefetchDataSource = self
         refreshControl = refreshController?.view
         refreshController?.refresh()
     }
@@ -38,6 +39,12 @@ public final class BestPodcastsListViewController: UITableViewController {
     
     override public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cellController(forRowAt: indexPath).cancelLoad()
+    }
+    
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach {
+            cellController(forRowAt: $0).preload()
+        }
     }
     
     private func cellController(forRowAt indexPath: IndexPath) -> PodcastCellController {

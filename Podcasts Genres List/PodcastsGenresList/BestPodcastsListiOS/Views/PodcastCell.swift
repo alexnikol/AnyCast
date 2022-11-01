@@ -4,5 +4,6 @@ import UIKit
 
 public final class PodcastCell: UITableViewCell, Reusable {
     public private(set) var titleLabel = UILabel()
+    public private(set) var thumbnailImageView = UIImageView()
     public private(set) var container = UIView()
 }

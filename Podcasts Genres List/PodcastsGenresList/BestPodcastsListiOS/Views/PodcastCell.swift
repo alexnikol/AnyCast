@@ -2,6 +2,6 @@
 
 import UIKit
 
-public final class PodcastCell: UITableViewCell {
+public final class PodcastCell: UITableViewCell, Reusable {
     public private(set) var titleLabel = UILabel()
 }

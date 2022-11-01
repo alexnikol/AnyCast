@@ -12,7 +12,7 @@ public final class PodcastCellController {
     }
     
     func view(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PodcastCell.self)) as! PodcastCell
+        let cell: PodcastCell = tableView.dequeueAndRegisterCell(indexPath: indexPath)
         cell.titleLabel.text = model.title
         return cell
     }

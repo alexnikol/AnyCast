@@ -24,7 +24,6 @@ public final class BestPodcastsListViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(PodcastCell.self, forCellReuseIdentifier: String(describing: PodcastCell.self))
         refreshControl = refreshController?.view
         refreshController?.refresh()
     }

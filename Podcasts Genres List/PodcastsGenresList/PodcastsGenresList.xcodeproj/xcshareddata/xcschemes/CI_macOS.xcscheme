@@ -46,16 +46,16 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DFAEAE828FD76670028B060"
-            BuildableName = "HTTPClient.framework"
-            BlueprintName = "HTTPClient"
+            BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
+            BuildableName = "URLSessionHTTPClient.framework"
+            BlueprintName = "URLSessionHTTPClient"
             ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
-            BuildableName = "URLSessionHTTPClient.framework"
-            BlueprintName = "URLSessionHTTPClient"
+            BlueprintIdentifier = "8DE32A2129110AAC00830695"
+            BuildableName = "LoadResourcePresenter.framework"
+            BlueprintName = "LoadResourcePresenter"
             ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -123,6 +123,17 @@
                BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
                BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
                BlueprintName = "BestPodcastsListAPIEndToEndTests"
+               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DE32A2829110AAC00830695"
+               BuildableName = "LoadResourcePresenterTests.xctest"
+               BlueprintName = "LoadResourcePresenterTests"
                ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
             </BuildableReference>
          </TestableReference>

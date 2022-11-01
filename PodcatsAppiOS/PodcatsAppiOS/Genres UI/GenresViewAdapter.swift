@@ -3,6 +3,7 @@
 import UIKit
 import PodcastsGenresList
 import PodcastsGenresListiOS
+import LoadResourcePresenter
 
 final class GenresViewAdapter: ResourceView {
     typealias ResourceViewModel = GenresViewModel

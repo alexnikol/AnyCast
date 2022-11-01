@@ -2,6 +2,7 @@
 
 import UIKit
 import PodcastsGenresList
+import LoadResourcePresenter
 
 public protocol GenresRefreshViewControllerDelegate {
     func didRequestLoadingGenres()

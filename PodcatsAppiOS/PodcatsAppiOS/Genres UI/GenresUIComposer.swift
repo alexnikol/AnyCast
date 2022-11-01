@@ -4,6 +4,7 @@ import UIKit
 import Combine
 import PodcastsGenresList
 import PodcastsGenresListiOS
+import LoadResourcePresenter
 
 final class GenresUIComposer {
     

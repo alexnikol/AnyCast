@@ -115,6 +115,8 @@
 		8DE32A3C29110B8500830695 /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A3B29110B8500830695 /* ResourceView.swift */; };
 		8DE32A3F29110BB300830695 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A3E29110BB300830695 /* SharedTestHelpers.swift */; };
 		8DE32A4029110BCF00830695 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
+		8DE32A4129110CB300830695 /* LoadResourcePresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; platformFilter = ios; };
+		8DE32A4229110CB300830695 /* LoadResourcePresenter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
@@ -184,6 +186,13 @@
 			remoteGlobalIDString = 8DE32A2129110AAC00830695;
 			remoteInfo = LoadResourcePresenter;
 		};
+		8DE32A4329110CB300830695 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DE32A2129110AAC00830695;
+			remoteInfo = LoadResourcePresenter;
+		};
 		8DFAEAB828FD41740028B060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -212,6 +221,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				8DFAEB3928FDB55E0028B060 /* PodcastsGenresList.framework in Embed Frameworks */,
+				8DE32A4229110CB300830695 /* LoadResourcePresenter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFAEB3828FDB55E0028B060 /* PodcastsGenresList.framework in Frameworks */,
+				8DE32A4129110CB300830695 /* LoadResourcePresenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,6 +1264,7 @@
 			);
 			dependencies = (
 				8D9CC42C28D4B6CE00EF7D4D /* PBXTargetDependency */,
+				8DE32A4429110CB300830695 /* PBXTargetDependency */,
 			);
 			name = PodcastsGenresListiOS;
 			productName = PodcastsGenresListiOS;
@@ -1880,6 +1892,12 @@
 			isa = PBXTargetDependency;
 			target = 8DE32A2129110AAC00830695 /* LoadResourcePresenter */;
 			targetProxy = 8DE32A2B29110AAC00830695 /* PBXContainerItemProxy */;
+		};
+		8DE32A4429110CB300830695 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8DE32A2129110AAC00830695 /* LoadResourcePresenter */;
+			targetProxy = 8DE32A4329110CB300830695 /* PBXContainerItemProxy */;
 		};
 		8DFAEAB928FD41740028B060 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

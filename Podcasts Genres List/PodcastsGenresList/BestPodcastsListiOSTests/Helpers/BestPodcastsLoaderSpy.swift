@@ -3,13 +3,16 @@
 import Foundation
 import BestPodcastsList
 
-class BestPodcastsLoaderSpy: BestPodcastsLoader {
-    
+class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
+
     private var bestPodcastRequests: [(BestPodcastsLoader.Result) -> Void] = []
+    private(set) var loadedImageURLs: [URL] = []
     
     var loadCallCount: Int {
         return bestPodcastRequests.count
     }
+    
+    // MARK: - BestPodcastsLoader
     
     func load(by genreID: Int, completion: @escaping (BestPodcastsLoader.Result) -> Void) {
         bestPodcastRequests.append(completion)
@@ -22,5 +25,16 @@ class BestPodcastsLoaderSpy: BestPodcastsLoader {
     func completeBestPodcastsLoadingWithError(at index: Int) {
         let error = NSError(domain: "any error", code: 0)
         bestPodcastRequests[index](.failure(error))
+    }
+    
+    // MARK: - PodcastImageDataLoader
+    
+    func loadImageData(from url: URL, completion: @escaping (PodcastImageDataLoader.Result) -> Void) -> PodcastImageDataLoaderTask {
+        loadedImageURLs.append(url)
+        return Task()
+    }
+    
+    private struct Task: PodcastImageDataLoaderTask {
+        func cancel() {}
     }
 }

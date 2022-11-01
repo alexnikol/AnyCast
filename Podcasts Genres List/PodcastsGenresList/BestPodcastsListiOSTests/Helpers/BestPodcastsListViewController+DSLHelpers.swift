@@ -8,6 +8,10 @@ extension BestPodcastsListViewController {
         tableView.refreshControl?.simulatePullToRefresh()
     }
     
+    func simulatePodcastImageViewVisible(at index: Int) {
+        _ = podcastView(at: index) as? PodcastCell
+    }
+    
     var isShowinLoadingIndicator: Bool {
         return tableView.refreshControl?.isRefreshing ?? false
     }

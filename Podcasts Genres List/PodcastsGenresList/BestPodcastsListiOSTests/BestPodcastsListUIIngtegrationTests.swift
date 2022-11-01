@@ -82,6 +82,23 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         assertThat(sut, isRendering: genreName)
     }
     
+    func test_podcastImageView_loadsImageURLWhenVisible() {
+        let podcast0 = makePodcast(title: "any name", image: anyURL())
+        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let bestPodcastsListResult = BestPodcastsList(genreId: 1,
+                                                       genreName: "Any Genre Name",
+                                                       podcasts: [podcast0, podcast1])
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeBestPodcastsLoading(with: bestPodcastsListResult, at: 0)
+        
+        XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
+        
+        sut.simulatePodcastImageViewVisible(at: 0)
+        XCTAssertEqual(loader.loadedImageURLs, [podcast0.image], "Expected first image URL request once first view becomes visible")
+    }
+    
     func test_loadPodcastsCompletion_dispatchesFromBackgroundToMainThread() {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
@@ -103,7 +120,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: BestPodcastsListViewController, loader: BestPodcastsLoaderSpy) {
         let loader = BestPodcastsLoaderSpy()
-        let sut = BestPodcastsUIComposer.bestPodcastComposed(genreID: genreID, loader: loader)
+        let sut = BestPodcastsUIComposer.bestPodcastComposed(genreID: genreID, podcastsLoader: loader, imageLoader: loader)
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)

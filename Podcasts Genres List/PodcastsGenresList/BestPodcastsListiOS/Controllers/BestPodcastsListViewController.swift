@@ -47,6 +47,12 @@ public final class BestPodcastsListViewController: UITableViewController, UITabl
         }
     }
     
+    public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach {
+            cellController(forRowAt: $0).cancelLoad()
+        }
+    }
+    
     private func cellController(forRowAt indexPath: IndexPath) -> PodcastCellController {
         let cellController = cellModels[indexPath.row]
         return cellController

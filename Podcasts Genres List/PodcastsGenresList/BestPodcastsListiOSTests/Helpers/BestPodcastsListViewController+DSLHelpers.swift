@@ -28,6 +28,14 @@ extension BestPodcastsListViewController {
         ds?.tableView(tableView, prefetchRowsAt: [indexPath])
     }
     
+    func simulatePodcastImageViewNotNearVisible(at row: Int) {
+        simulatePodcastImageViewNearVisible(at: row)
+        
+        let ds = tableView.prefetchDataSource
+        let indexPath = IndexPath(row: row, section: podcastsSection)
+        ds?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
+    }
+    
     var isShowinLoadingIndicator: Bool {
         return tableView.refreshControl?.isRefreshing ?? false
     }

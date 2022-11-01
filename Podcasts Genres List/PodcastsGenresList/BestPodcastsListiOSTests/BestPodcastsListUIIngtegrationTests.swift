@@ -136,6 +136,25 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(loader.loadedImageURLs, [podcast0.image, podcast1.image], "Expected second image URL request once second image is near visible")
     }
     
+    func test_podcastImageView_cancelsImageURLPreloadingWhenNotNearVisibleAnymore() {
+        let podcast0 = makePodcast(title: "any name", image: anyURL())
+        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let bestPodcastsListResult = BestPodcastsList(genreId: 1,
+                                                      genreName: "Any Genre Name",
+                                                      podcasts: [podcast0, podcast1])
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completeBestPodcastsLoading(with: bestPodcastsListResult, at: 0)
+        XCTAssertEqual(loader.cancelledImageURLs, [], "Expected no cancelled image URL requests until image is not near visible")
+        
+        sut.simulatePodcastImageViewNotNearVisible(at: 0)
+        XCTAssertEqual(loader.cancelledImageURLs, [podcast0.image], "Expected first cancelled image URL request once first image is not near visible anymore")
+        
+        sut.simulatePodcastImageViewNotNearVisible(at: 1)
+        XCTAssertEqual(loader.cancelledImageURLs, [podcast0.image, podcast1.image], "Expected second cancelled image URL request once second image is not near visible anymore")
+    }
+    
     func test_podcastImageViewLoadingIndicator_isVisibleWhileLoadingImage() {
         let podcast0 = makePodcast(title: "any name", image: anyURL())
         let podcast1 = makePodcast(title: "another name", image: anyURL())

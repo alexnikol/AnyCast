@@ -21,14 +21,7 @@ final class BestPodcastsViewAdapter: ResourceView {
                 model: model,
                 imageLoader: imageLoader
             )
-            let viewModel = PodcastImageViewModel<UIImage>(
-                title: model.title,
-                publisher: model.publisher,
-                language: model.language,
-                type: String(describing: model.type),
-                image: nil
-            )
-            let cellController = PodcastCellController(model: viewModel, delegete: adapter)
+            let cellController = PodcastCellController(model: model, delegete: adapter)
             
             adapter.presenter = LoadResourcePresenter(
                 resourceView: WeakRefVirtualProxy(cellController),

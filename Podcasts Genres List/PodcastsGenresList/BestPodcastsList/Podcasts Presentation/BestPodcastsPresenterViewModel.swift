@@ -4,5 +4,5 @@ import Foundation
 
 public struct BestPodcastsPresenterViewModel {
     public let title: String
-    public let podcasts: [Podcast]
+    public let podcasts: [PodcastImageViewModel]
 }

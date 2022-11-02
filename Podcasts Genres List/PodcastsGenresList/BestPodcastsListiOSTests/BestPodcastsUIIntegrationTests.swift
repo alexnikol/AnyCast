@@ -46,8 +46,7 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
                     title: "Any name",
                     publisher: "Any publisher",
                     language: "Any language",
-                    type: "Serial",
-                    image: nil
+                    type: "Serial"
                 ),
                 delegete: CellDelegate()
             ),
@@ -56,8 +55,7 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
                     title: "Another name",
                     publisher: "Another publisher",
                     language: "Another language",
-                    type: "Serial",
-                    image: nil
+                    type: "Serial"
                 ),
                 delegete: CellDelegate()
             ),
@@ -66,8 +64,7 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
                     title: "Long long long long long long long long long long long long long long long long name",
                     publisher: "Long long long long long publisher",
                     language: "Long long long long long language",
-                    type: "Long long long long long Serial",
-                    image: nil
+                    type: "Long long long long long Serial"
                 ),
                 delegete: CellDelegate()
             ),

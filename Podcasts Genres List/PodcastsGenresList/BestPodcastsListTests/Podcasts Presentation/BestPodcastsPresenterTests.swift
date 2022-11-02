@@ -11,9 +11,14 @@ class BestPodcastsPresenterTests: XCTestCase {
         let podcastsList = makeBestPodcastsList(genreId: 1, genreName: "Any Genre Name", podcasts: [podcast1, podcast2])
         
         let viewModel = BestPodcastsPresenter.map(podcastsList)
-        
-        XCTAssertEqual(podcastsList.podcasts, viewModel.podcasts)
         XCTAssertEqual(podcastsList.genreName, viewModel.title)
+        
+        for index in 0..<2 {
+            XCTAssertEqual(podcastsList.podcasts[index].title, viewModel.podcasts[index].title)
+            XCTAssertEqual(podcastsList.podcasts[index].publisher, viewModel.podcasts[index].publisher)
+            XCTAssertEqual(podcastsList.podcasts[index].language, viewModel.podcasts[index].language)
+            XCTAssertEqual(String(describing: podcastsList.podcasts[index].type), viewModel.podcasts[index].type)
+        }
     }
     
     // MARK: - Helpers

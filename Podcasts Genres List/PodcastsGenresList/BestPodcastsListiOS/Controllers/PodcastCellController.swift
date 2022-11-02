@@ -12,11 +12,11 @@ public protocol PodcastCellControllerDelegate {
 public final class PodcastCellController {
     public typealias ResourceViewModel = UIImage
     
-    private let model: PodcastImageViewModel<UIImage>
+    private let model: PodcastImageViewModel
     private let delegate: PodcastCellControllerDelegate
     private var cell: PodcastCell?
     
-    public init(model: PodcastImageViewModel<UIImage>, delegete: PodcastCellControllerDelegate) {
+    public init(model: PodcastImageViewModel, delegete: PodcastCellControllerDelegate) {
         self.model = model
         self.delegate = delegete
     }

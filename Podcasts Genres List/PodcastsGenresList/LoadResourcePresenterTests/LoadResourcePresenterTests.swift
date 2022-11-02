@@ -19,12 +19,15 @@ class LoadResourcePresenterTests: XCTestCase {
         XCTAssertEqual(view.messages, [.display(isLoading: true)])
     }
     
-    func test_didFinishLoadingWithError_stopsLoading() {
+    func test_didFinishLoadingWithError_displaysErrorAndstopsLoading() {
         let (sut, view) = makeSUT()
         
         sut.didFinishLoading(with: anyNSError())
         
-        XCTAssertEqual(view.messages, [.display(isLoading: false)])
+        XCTAssertEqual(view.messages, [
+            .display(isLoading: false),
+            .display(errorMessage: "SHARED_CONNECTION_ERROR")
+        ])
     }
     
     func test_didFinishLoading_displaysResourceAndStopsLoading() {
@@ -49,7 +52,8 @@ class LoadResourcePresenterTests: XCTestCase {
         sut.didFinishLoading(with: "resource")
         
         XCTAssertEqual(view.messages, [
-            .display(isLoading: false)
+            .display(isLoading: false),
+            .display(errorMessage: "SHARED_CONNECTION_ERROR")
         ])
     }
     
@@ -59,17 +63,18 @@ class LoadResourcePresenterTests: XCTestCase {
     
     private func makeSUT(mapper: @escaping SUT.Mapper = { _ in "any" }, file: StaticString = #file, line: UInt = #line) -> (sut: SUT, view: ViewSpy) {
         let view = ViewSpy()
-        let sut = SUT(resourceView: view, loadingView: view, mapper: mapper)
+        let sut = SUT(resourceView: view, loadingView: view, errorView: view, mapper: mapper)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, view)
     }
     
-    private class ViewSpy: ResourceLoadingView, ResourceView {
+    private class ViewSpy: ResourceLoadingView, ResourceView, ResourceErrorView {
         typealias ResourceViewModel = String
         
         enum Message: Hashable {
             case display(isLoading: Bool)
             case display(recource: String)
+            case display(errorMessage: String?)
         }
         
         private(set) var messages: Set<Message> = []
@@ -80,6 +85,10 @@ class LoadResourcePresenterTests: XCTestCase {
         
         func display(_ viewModel: ResourceViewModel) {
             messages.insert(.display(recource: viewModel))
+        }
+        
+        func display(_ viewModel: ResourceErrorViewModel) {
+            messages.insert(.display(errorMessage: viewModel.message))
         }
     }
 }

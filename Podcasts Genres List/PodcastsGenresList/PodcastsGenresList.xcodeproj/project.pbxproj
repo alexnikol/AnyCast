@@ -38,6 +38,7 @@
 		8D5C21F129015441006CD42F /* CoreDataPodcastsImageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C21F029015441006CD42F /* CoreDataPodcastsImageDataStore.swift */; };
 		8D5C21F8290180DB006CD42F /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; };
 		8D5FA22B2912A83D002BB874 /* PodcastImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA22A2912A83D002BB874 /* PodcastImageViewModel.swift */; };
+		8D5FA22D2912C528002BB874 /* FeedErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA22C2912C528002BB874 /* FeedErrorView.swift */; };
 		8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */; };
 		8D72CFE128F8093800C17DDC /* GenresActiveColorProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */; };
 		8D72D05C28F8287E00C17DDC /* GenresUISnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05B28F8287E00C17DDC /* GenresUISnapshotTests.swift */; };
@@ -281,6 +282,7 @@
 		8D5C21EC29014F8B006CD42F /* CoreDataPodcastImageDataStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPodcastImageDataStoreTests.swift; sourceTree = "<group>"; };
 		8D5C21F029015441006CD42F /* CoreDataPodcastsImageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPodcastsImageDataStore.swift; sourceTree = "<group>"; };
 		8D5FA22A2912A83D002BB874 /* PodcastImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastImageViewModel.swift; sourceTree = "<group>"; };
+		8D5FA22C2912C528002BB874 /* FeedErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedErrorView.swift; sourceTree = "<group>"; };
 		8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresActiveColorProvider.swift; sourceTree = "<group>"; };
 		8D72D05B28F8287E00C17DDC /* GenresUISnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresUISnapshotTests.swift; sourceTree = "<group>"; };
 		8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Snapshot.swift"; sourceTree = "<group>"; };
@@ -1040,6 +1042,7 @@
 				8DE32A3729110B4400830695 /* LoadResourcePresenter.swift */,
 				8DE32A3929110B6800830695 /* ResourceLoadingView.swift */,
 				8DE32A3B29110B8500830695 /* ResourceView.swift */,
+				8D5FA22C2912C528002BB874 /* FeedErrorView.swift */,
 			);
 			path = LoadResourcePresenter;
 			sourceTree = "<group>";
@@ -1924,6 +1927,7 @@
 				8DE32A3829110B4400830695 /* LoadResourcePresenter.swift in Sources */,
 				8DE32A3A29110B6800830695 /* ResourceLoadingView.swift in Sources */,
 				8DE32A3C29110B8500830695 /* ResourceView.swift in Sources */,
+				8D5FA22D2912C528002BB874 /* FeedErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,6 +26,7 @@ final class BestPodcastsViewAdapter: ResourceView {
             adapter.presenter = LoadResourcePresenter(
                 resourceView: WeakRefVirtualProxy(cellController),
                 loadingView: WeakRefVirtualProxy(cellController),
+                errorView: WeakRefVirtualProxy(cellController),
                 mapper: { data in
                     guard let image = UIImage(data: data) else {
                         throw InvalidImageData()

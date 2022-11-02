@@ -5,7 +5,7 @@ import Foundation
 public struct ResourceErrorViewModel {
     public let message: String?
     
-    private init(message: String?) {
+    public init(message: String?) {
         self.message = message
     }
     

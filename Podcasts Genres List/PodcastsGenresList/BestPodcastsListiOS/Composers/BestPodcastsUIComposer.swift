@@ -25,6 +25,7 @@ public final class BestPodcastsUIComposer {
                 imageLoader: MainQueueDispatchDecorator(decoratee: imageLoader)
             ),
             loadingView: WeakRefVirtualProxy(refreshController),
+            errorView: WeakRefVirtualProxy(refreshController),
             mapper: BestPodcastsPresenter.map
         )
         return controller

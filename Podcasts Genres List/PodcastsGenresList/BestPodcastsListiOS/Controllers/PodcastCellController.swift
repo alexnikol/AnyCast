@@ -56,3 +56,9 @@ extension PodcastCellController: ResourceLoadingView {
         cell?.imageContainer.isShimmering = viewModel.isLoading
     }
 }
+
+extension PodcastCellController: ResourceErrorView {
+    public func display(_ viewModel: ResourceErrorViewModel) {
+        cell?.thumbnailImageView.image = nil
+    }
+}

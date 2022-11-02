@@ -68,7 +68,7 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
                 image: anyURL()),
         ]
         
-        let stubbedImages = [UIImage.make(withColor: .blue), UIImage.make(withColor: .red), UIImage.make(withColor: .yellow)]
+        let stubbedImages: [UIImage?] = [UIImage.make(withColor: .blue), nil, UIImage.make(withColor: .yellow)]
         
         return models.enumerated().map { (index, viewModel) in
             let imageStub = ImageStub(image: stubbedImages[index])
@@ -90,16 +90,20 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
     }
     
     private class ImageStub: PodcastCellControllerDelegate {
-        private let image: UIImage
+        private let image: UIImage?
         
-        init(image: UIImage) {
+        init(image: UIImage?) {
             self.image = image
         }
         
         weak var imageDataResourceView: PodcastCellController?
         
         func didRequestImage() {
-            imageDataResourceView?.display(image)
+            if let image = image {
+                imageDataResourceView?.display(image)
+            } else {
+                imageDataResourceView?.display(ResourceErrorViewModel(message: "ERROR_MESSAGE"))
+            }
         }
         
         func didCancelImageLoad() {}

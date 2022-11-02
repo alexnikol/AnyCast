@@ -36,3 +36,7 @@ extension BestPodcastsListRefreshViewController: ResourceLoadingView {
         }
     }
 }
+
+extension BestPodcastsListRefreshViewController: ResourceErrorView {
+    public func display(_ viewModel: ResourceErrorViewModel) {}
+}

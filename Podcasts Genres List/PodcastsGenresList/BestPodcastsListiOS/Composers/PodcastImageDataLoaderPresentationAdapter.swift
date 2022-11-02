@@ -5,12 +5,12 @@ import LoadResourcePresenter
 import BestPodcastsList
 
 final class PodcastImageDataLoaderPresentationAdapter: PodcastCellControllerDelegate {
-    private let model: Podcast
+    private let model: PodcastImageViewModel
     private let imageLoader: PodcastImageDataLoader
     var presenter: LoadResourcePresenter<Data, WeakRefVirtualProxy<PodcastCellController>>?
     var task: PodcastImageDataLoaderTask?
     
-    init(model: Podcast, imageLoader: PodcastImageDataLoader) {
+    init(model: PodcastImageViewModel, imageLoader: PodcastImageDataLoader) {
         self.model = model
         self.imageLoader = imageLoader
     }

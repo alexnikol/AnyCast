@@ -9,6 +9,14 @@ public final class BestPodcastsPresenter {
     }
     
     private static func map(_ model: Podcast) -> PodcastImageViewModel {
-        .init(title: model.title, publisher: model.publisher, language: model.language, type: String(describing: model.type))
+        .init(
+            title: model.title,
+            publisher: model.publisher,
+            languageStaticLabel: "Language:",
+            languageValueLabel: model.language,
+            typeStaticLabel: "Type:",
+            typeValueLabel: String(describing: model.type),
+            image: model.image
+        )
     }
 }

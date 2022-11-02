@@ -25,8 +25,10 @@ public final class PodcastCellController {
         cell = tableView.dequeueAndRegisterCell(indexPath: indexPath) as PodcastCell
         cell?.titleLabel.text = model.title
         cell?.publisherLabel.text = model.publisher
-        cell?.languageValueLabel.text = model.language
-        cell?.typeValueLabel.text = model.type
+        cell?.languageStaticLabel.text = model.languageStaticLabel
+        cell?.languageValueLabel.text = model.languageValueLabel
+        cell?.typeValueLabel.text = model.typeValueLabel
+        cell?.typeStaticLabel.text = model.typeStaticLabel
 
         delegate.didRequestImage()
         return cell!

@@ -16,8 +16,9 @@ class BestPodcastsPresenterTests: XCTestCase {
         for index in 0..<2 {
             XCTAssertEqual(podcastsList.podcasts[index].title, viewModel.podcasts[index].title)
             XCTAssertEqual(podcastsList.podcasts[index].publisher, viewModel.podcasts[index].publisher)
-            XCTAssertEqual(podcastsList.podcasts[index].language, viewModel.podcasts[index].language)
-            XCTAssertEqual(String(describing: podcastsList.podcasts[index].type), viewModel.podcasts[index].type)
+            XCTAssertEqual(podcastsList.podcasts[index].language, viewModel.podcasts[index].languageValueLabel)
+            XCTAssertEqual(podcastsList.podcasts[index].image, viewModel.podcasts[index].image)
+            XCTAssertEqual(String(describing: podcastsList.podcasts[index].type), viewModel.podcasts[index].typeValueLabel)
         }
     }
     

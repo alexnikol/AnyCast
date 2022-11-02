@@ -34,7 +34,7 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
         controller.tableView.showsHorizontalScrollIndicator = false
         return (controller, refreshController)
     }
-        
+    
     private func emptyPodcasts() -> [PodcastCellController] {
         return []
     }
@@ -45,30 +45,40 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
                 model: .init(
                     title: "Any name",
                     publisher: "Any publisher",
-                    language: "Any language",
-                    type: "Serial"
-                ),
+                    languageStaticLabel: "Language:",
+                    languageValueLabel: "Any language",
+                    typeStaticLabel: "Type:",
+                    typeValueLabel: "Any type",
+                    image: anyURL()),
                 delegete: CellDelegate()
             ),
             PodcastCellController(
                 model: .init(
                     title: "Another name",
                     publisher: "Another publisher",
-                    language: "Another language",
-                    type: "Serial"
-                ),
+                    languageStaticLabel: "Language:",
+                    languageValueLabel: "Another language",
+                    typeStaticLabel: "Type:",
+                    typeValueLabel: "Another type",
+                    image: anyURL()),
                 delegete: CellDelegate()
             ),
             PodcastCellController(
                 model: .init(
                     title: "Long long long long long long long long long long long long long long long long name",
                     publisher: "Long long long long long publisher",
-                    language: "Long long long long long language",
-                    type: "Long long long long long Serial"
-                ),
+                    languageStaticLabel: "Language:",
+                    languageValueLabel: "Long long long long long language",
+                    typeStaticLabel: "Type:",
+                    typeValueLabel: "Long long long long long type",
+                    image: anyURL()),
                 delegete: CellDelegate()
-            ),
+            )
         ]
+    }
+    
+    private func anyURL() -> URL {
+        URL(string: "http://a-url.com")!
     }
     
     private class NullObjectRefreshViewControllerDelegate: BestPodcastsListRefreshViewControllerDelegate {

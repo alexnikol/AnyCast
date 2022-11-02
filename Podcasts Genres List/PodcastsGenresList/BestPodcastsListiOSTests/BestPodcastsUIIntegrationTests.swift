@@ -18,7 +18,7 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
     func test_bestPodcastsWithContent() {
         let (sut, _) = makeSUT()
         
-        sut.display(podcastsList())
+        sut.display(podcastsList() + podcastsList())
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "BEST_PODCASTS_WITH_CONTENT_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "BEST_PODCASTS_WITH_CONTENT_dark")

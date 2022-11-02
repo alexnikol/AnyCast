@@ -14,5 +14,7 @@ public final class PodcastCell: UITableViewCell, NibReusable {
             
     public override func awakeFromNib() {
         super.awakeFromNib()
+        imageContainer.layer.cornerRadius = 4.0
+        thumbnailImageView.clipsToBounds = true
     }
 }

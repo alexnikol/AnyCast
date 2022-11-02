@@ -25,6 +25,7 @@ public final class BestPodcastsListViewController: UITableViewController, UITabl
         super.viewDidLoad()
         
         tableView.prefetchDataSource = self
+        tableView.separatorStyle = .none
         refreshControl = refreshController?.view
         refreshController?.refresh()
     }

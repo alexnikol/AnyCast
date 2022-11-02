@@ -24,7 +24,10 @@ public final class PodcastCellController {
     func view(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueAndRegisterCell(indexPath: indexPath) as PodcastCell
         cell?.titleLabel.text = model.title
-        cell?.thumbnailImageView.image = model.image
+        cell?.publisherLabel.text = model.publisher
+        cell?.languageValueLabel.text = model.language
+        cell?.typeValueLabel.text = model.type
+
         delegate.didRequestImage()
         return cell!
     }

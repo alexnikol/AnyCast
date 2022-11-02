@@ -89,6 +89,9 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
         return Podcast(
             id: id(at: index),
             title: title(at: index),
+            publisher: publisher(at: index),
+            language: language(at: index),
+            type: type(at: index),
             image: image(at: index)
         )
     }
@@ -115,6 +118,30 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
             baseURL.appendingPathComponent("the-indicator-from-planet-money-npr-fw5ISgUVsYh-G2EDjFO-TLA.1400x1400.jpg"),
             baseURL.appendingPathComponent("worklife-with-adam-grant-ted-KgaXjFPEoVc.1400x1400.jpg"),
             baseURL.appendingPathComponent("the-pulte-podcast-8PvlfCgcR_X-xBWa8_-4MTR.1400x1400.jpg")
+        ][index]
+    }
+    
+    private func type(at index: Int) -> PodcastType {
+        return [
+            .episodic,
+            .episodic,
+            .episodic
+        ][index]
+    }
+    
+    private func language(at index: Int) -> String {
+        return [
+            "English",
+            "English",
+            "English"
+        ][index]
+    }
+    
+    private func publisher(at index: Int) -> String {
+        return [
+            "NPR",
+            "TED",
+            "Bill Pulte | Giving Money and Knowledge"
         ][index]
     }
 }

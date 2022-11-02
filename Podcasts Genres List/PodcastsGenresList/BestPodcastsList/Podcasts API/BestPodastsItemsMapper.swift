@@ -29,7 +29,18 @@ private extension RemoteBestPodcastsList {
 private extension Array where Element == RemotePodcast {
     func toModels() -> [Podcast] {
         return map {
-            Podcast(id: $0.id, title: $0.title, image: $0.image)
+            Podcast(id: $0.id, title: $0.title, publisher: $0.publisher, language: $0.language, type: $0.type.toModel(), image: $0.image)
+        }
+    }
+}
+
+private extension RemotePodcastType {
+    func toModel() -> PodcastType {
+        switch self {
+        case .serial:
+            return .serial
+        case .episodic:
+            return .episodic
         }
     }
 }

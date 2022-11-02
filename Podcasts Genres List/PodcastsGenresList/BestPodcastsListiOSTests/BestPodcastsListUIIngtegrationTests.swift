@@ -37,19 +37,16 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
     }
     
     func test_loadPodcastsCompletion_rendersSuccessfullyLoadedPodcastsData() {
-        let podcast0 = makePodcast(title: "any name", image: anyURL())
-        let podcast1 = makePodcast(title: "another name", image: anyURL())
-        let podcast2 = makePodcast(title: "long name", image: anyURL())
-        let podcast3 = makePodcast(title: "some name", image: anyURL())
+        let uniquePodcasts = makeUniquePodcasts()
         let genreName0 = "Any Genre name"
         let bestPodcastsListResult0 = BestPodcastsList(genreId: 1,
                                                        genreName: genreName0,
-                                                       podcasts: [podcast0])
+                                                       podcasts: [uniquePodcasts[0]])
         
         let genreName1 = "Another Genre name"
         let bestPodcastsListResult1 = BestPodcastsList(genreId: 1,
                                                        genreName: genreName1,
-                                                       podcasts: [podcast0, podcast1, podcast2, podcast3])
+                                                       podcasts: uniquePodcasts)
         
         let (sut, loader) = makeSUT()
         
@@ -58,17 +55,17 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         assertThat(sut, isRendering: String())
         
         loader.completeBestPodcastsLoading(with: bestPodcastsListResult0, at: 0)
-        assertThat(sut, isRendering: [podcast0])
+        assertThat(sut, isRendering: [uniquePodcasts[0]])
         assertThat(sut, isRendering: genreName0)
         
         sut.simulateUserInitiatedPodcastsListReload()
         loader.completeBestPodcastsLoading(with: bestPodcastsListResult1, at: 1)
-        assertThat(sut, isRendering: [podcast0, podcast1, podcast2, podcast3])
+        assertThat(sut, isRendering: uniquePodcasts)
         assertThat(sut, isRendering: genreName1)
     }
     
     func test_loadPodcastsCompletion_doesNotAlterCurrentRenderingStateOnError() {
-        let podcast = makePodcast(title: "any name", image: anyURL())
+        let podcast = makeUniquePodcasts()[0]
         let genreName = "Any Genre name"
         let (sut, loader) = makeSUT()
         
@@ -83,11 +80,10 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
     }
     
     func test_podcastImageView_loadsImageURLWhenVisible() {
-        let podcast0 = makePodcast(title: "any name", image: anyURL())
-        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let podcasts = makeUniquePodcasts()
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,
                                                       genreName: "Any Genre Name",
-                                                      podcasts: [podcast0, podcast1])
+                                                      podcasts: [podcasts[0], podcasts[1]])
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -96,33 +92,31 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
         
         sut.simulatePodcastImageViewVisible(at: 0)
-        XCTAssertEqual(loader.loadedImageURLs, [podcast0.image], "Expected first image URL request once first view becomes visible")
+        XCTAssertEqual(loader.loadedImageURLs, [podcasts[0].image], "Expected first image URL request once first view becomes visible")
     }
     
     func test_podcastImageView_cancelsImageLoadingWhenNotVisibleAnymore() {
-        let podcast0 = makePodcast(title: "any name", image: anyURL())
-        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let podcasts = makeUniquePodcasts()
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,
                                                       genreName: "Any Genre Name",
-                                                      podcasts: [podcast0, podcast1])
+                                                      podcasts: [podcasts[0], podcasts[1]])
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         loader.completeBestPodcastsLoading(with: bestPodcastsListResult, at: 0)
         XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
         
         sut.simulatePodcastImageNotViewVisible(at: 0)
-        XCTAssertEqual(loader.cancelledImageURLs, [podcast0.image], "Expected one cancelled image URL request once first image is not visible anymore")
+        XCTAssertEqual(loader.cancelledImageURLs, [podcasts[0].image], "Expected one cancelled image URL request once first image is not visible anymore")
         
         sut.simulatePodcastImageNotViewVisible(at: 1)
-        XCTAssertEqual(loader.cancelledImageURLs, [podcast0.image, podcast1.image], "Expected one cancelled image URL request once first image is not visible anymore")
+        XCTAssertEqual(loader.cancelledImageURLs, [podcasts[0].image, podcasts[1].image], "Expected one cancelled image URL request once first image is not visible anymore")
     }
     
     func test_podcastImageView_preloadsImageURLWhenNearVisible() {
-        let podcast0 = makePodcast(title: "any name", image: anyURL())
-        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let podcasts = makeUniquePodcasts()
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,
                                                       genreName: "Any Genre Name",
-                                                      podcasts: [podcast0, podcast1])
+                                                      podcasts: [podcasts[0], podcasts[1]])
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -130,18 +124,17 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until image is near visible")
         
         sut.simulatePodcastImageViewNearVisible(at: 0)
-        XCTAssertEqual(loader.loadedImageURLs, [podcast0.image], "Expected first image URL request once first image is near visible")
+        XCTAssertEqual(loader.loadedImageURLs, [podcasts[0].image], "Expected first image URL request once first image is near visible")
         
         sut.simulatePodcastImageViewNearVisible(at: 1)
-        XCTAssertEqual(loader.loadedImageURLs, [podcast0.image, podcast1.image], "Expected second image URL request once second image is near visible")
+        XCTAssertEqual(loader.loadedImageURLs, [podcasts[0].image, podcasts[1].image], "Expected second image URL request once second image is near visible")
     }
     
     func test_podcastImageView_cancelsImageURLPreloadingWhenNotNearVisibleAnymore() {
-        let podcast0 = makePodcast(title: "any name", image: anyURL())
-        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let podcasts = makeUniquePodcasts()
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,
                                                       genreName: "Any Genre Name",
-                                                      podcasts: [podcast0, podcast1])
+                                                      podcasts: [podcasts[0], podcasts[1]])
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -149,18 +142,17 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(loader.cancelledImageURLs, [], "Expected no cancelled image URL requests until image is not near visible")
         
         sut.simulatePodcastImageViewNotNearVisible(at: 0)
-        XCTAssertEqual(loader.cancelledImageURLs, [podcast0.image], "Expected first cancelled image URL request once first image is not near visible anymore")
+        XCTAssertEqual(loader.cancelledImageURLs, [podcasts[0].image], "Expected first cancelled image URL request once first image is not near visible anymore")
         
         sut.simulatePodcastImageViewNotNearVisible(at: 1)
-        XCTAssertEqual(loader.cancelledImageURLs, [podcast0.image, podcast1.image], "Expected second cancelled image URL request once second image is not near visible anymore")
+        XCTAssertEqual(loader.cancelledImageURLs, [podcasts[0].image, podcasts[1].image], "Expected second cancelled image URL request once second image is not near visible anymore")
     }
     
     func test_podcastImageViewLoadingIndicator_isVisibleWhileLoadingImage() {
-        let podcast0 = makePodcast(title: "any name", image: anyURL())
-        let podcast1 = makePodcast(title: "another name", image: anyURL())
+        let podcasts = makeUniquePodcasts()
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,
                                                       genreName: "Any Genre Name",
-                                                      podcasts: [podcast0, podcast1])
+                                                      podcasts: podcasts)
         let (sut, loader) = makeSUT()
         
         sut.loadViewIfNeeded()
@@ -196,7 +188,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
     }
     
     func test_loadImageDataCompletion_dispatchesFromBackgroundToMainThread() {
-        let podcast0 = makePodcast(title: "any name", image: anyURL())
+        let podcast0 = makeUniquePodcasts()[0]
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,
                                                       genreName: "Any Genre Name",
                                                       podcasts: [podcast0])
@@ -254,10 +246,25 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(sut.title ?? "", title)
     }
     
-    private func makePodcast(title: String, image: URL) -> Podcast {
-        Podcast(id: UUID().uuidString, title: title, image: image)
+    private func makePodcast(
+        id: String = UUID().uuidString,
+        title: String,
+        publisher: String = "Any Publisher",
+        language: String = "Any Language",
+        type: PodcastType = .serial,
+        image: URL
+    ) -> Podcast {
+        Podcast(id: id, title: title, publisher: publisher, language: language, type: type, image: image)
     }
     
+    private func makeUniquePodcasts() -> [Podcast] {
+        let podcast0 = makePodcast(title: "any name", publisher: "any publisher", language: "any language", type: .serial, image: anyURL())
+        let podcast1 = makePodcast(title: "another name", publisher: "another publisher", language: "another language", type: .serial, image: anyURL())
+        let podcast2 = makePodcast(title: "long name", publisher: "long publisher", language: "long language", type: .episodic, image: anyURL())
+        let podcast3 = makePodcast(title: "some name", publisher: "some publisher", language: "some language", type: .episodic, image: anyURL())
+        return [podcast0, podcast1, podcast2, podcast3]
+    }
+        
     private func makeBestPodcastsList(genreId: Int = 1, genreName: String = "Any genre name", podcasts: [Podcast]) -> BestPodcastsList {
         BestPodcastsList(genreId: genreId, genreName: genreName, podcasts: podcasts)
     }

@@ -38,17 +38,19 @@ class BestPodcastsMapperTests: XCTestCase {
         let anyGenreId = 1
         let anyGenreName = "Any Genre"
         
-        let podcast1 = makePodcast(
-            id: UUID().uuidString,
-            title: "Any Podcast",
-            image: URL(string: "https://any-url")!
-        )
+        let podcast1 = makePodcast(id: UUID().uuidString,
+                                   title: "Any Podcast",
+                                   publisher: "Any Publisher",
+                                   language: "English",
+                                   type: .serial,
+                                   image: URL(string: "https://any-url")!)
         
-        let podcast2 = makePodcast(
-            id: UUID().uuidString,
-            title: "Another Podcast",
-            image: URL(string: "https://another-url")!
-        )
+        let podcast2 = makePodcast(id: UUID().uuidString,
+                                   title: "Another Podcast",
+                                   publisher: "Another Publisher",
+                                   language: "Ukrainian",
+                                   type: .episodic,
+                                   image: URL(string: "https://another-url")!)
         
         let validJSON = makePodcastsListJSON(
             genreId: anyGenreId,
@@ -65,12 +67,15 @@ class BestPodcastsMapperTests: XCTestCase {
     
     // MARK: - Helpers
         
-    private func makePodcast(id: String, title: String, image: URL) -> (model: Podcast, json: [String: Any]) {
-        let podcast = Podcast(id: id, title: title, image: image)
+    private func makePodcast(id: String, title: String, publisher: String, language: String, type: PodcastType, image: URL) -> (model: Podcast, json: [String: Any]) {
+        let podcast = Podcast(id: id, title: title, publisher: publisher, language: language, type: type, image: image)
         let json = [
             "id": id,
             "title": title,
-            "image": image.absoluteString
+            "publisher": publisher,
+            "language": language,
+            "type": String(describing: type),
+            "image": image.absoluteString,
         ] as [String: Any]
         
         return (podcast, json)

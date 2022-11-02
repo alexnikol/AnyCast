@@ -26,7 +26,7 @@ class LoadResourcePresenterTests: XCTestCase {
         
         XCTAssertEqual(view.messages, [
             .display(isLoading: false),
-            .display(errorMessage: "SHARED_CONNECTION_ERROR")
+            .display(errorMessage: SUT.loadError)
         ])
     }
     
@@ -44,7 +44,7 @@ class LoadResourcePresenterTests: XCTestCase {
         ])
     }
     
-    func test_didFinishLoadingWithMapperError_stopsLoading() {
+    func test_didFinishLoadingWithMapperError_displaysErrorAndStopsLoading() {
         let (sut, view) = makeSUT(mapper: { resource in
             throw anyNSError()
         })
@@ -53,7 +53,7 @@ class LoadResourcePresenterTests: XCTestCase {
         
         XCTAssertEqual(view.messages, [
             .display(isLoading: false),
-            .display(errorMessage: "SHARED_CONNECTION_ERROR")
+            .display(errorMessage: SUT.loadError)
         ])
     }
     

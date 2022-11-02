@@ -990,7 +990,7 @@
 		8DE32A0329100EC500830695 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8DE32A9429128BB700830695 /* DDD */,
+				8DE32A9429128BB700830695 /* PodcastCell */,
 				8DE32A4F29111BAF00830695 /* Reusable.swift */,
 			);
 			path = Views;
@@ -1085,13 +1085,13 @@
 			path = snapshots;
 			sourceTree = "<group>";
 		};
-		8DE32A9429128BB700830695 /* DDD */ = {
+		8DE32A9429128BB700830695 /* PodcastCell */ = {
 			isa = PBXGroup;
 			children = (
 				8DE32A9529128BC700830695 /* PodcastCell.swift */,
 				8DE32A9629128BC700830695 /* PodcastCell.xib */,
 			);
-			path = DDD;
+			path = PodcastCell;
 			sourceTree = "<group>";
 		};
 		8DEB7E0C28FDD5A5003AF72F /* Helpers */ = {

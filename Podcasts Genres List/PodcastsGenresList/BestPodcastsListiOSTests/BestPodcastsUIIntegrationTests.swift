@@ -2,6 +2,7 @@
 
 import XCTest
 import LoadResourcePresenter
+import BestPodcastsList
 import BestPodcastsListiOS
 
 class BestPodcastsUIIntegrationTests: XCTestCase {
@@ -18,7 +19,7 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
     func test_bestPodcastsWithContent() {
         let (sut, _) = makeSUT()
         
-        sut.display(podcastsList() + podcastsList())
+        sut.display(podcastsList())
         
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "BEST_PODCASTS_WITH_CONTENT_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "BEST_PODCASTS_WITH_CONTENT_dark")
@@ -40,41 +41,44 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
     }
     
     private func podcastsList() -> [PodcastCellController] {
-        return [
-            PodcastCellController(
-                model: .init(
-                    title: "Any name",
-                    publisher: "Any publisher",
-                    languageStaticLabel: "Language:",
-                    languageValueLabel: "Any language",
-                    typeStaticLabel: "Type:",
-                    typeValueLabel: "Any type",
-                    image: anyURL()),
-                delegete: CellDelegate()
-            ),
-            PodcastCellController(
-                model: .init(
-                    title: "Another name",
-                    publisher: "Another publisher",
-                    languageStaticLabel: "Language:",
-                    languageValueLabel: "Another language",
-                    typeStaticLabel: "Type:",
-                    typeValueLabel: "Another type",
-                    image: anyURL()),
-                delegete: CellDelegate()
-            ),
-            PodcastCellController(
-                model: .init(
-                    title: "Long long long long long long long long long long long long long long long long name",
-                    publisher: "Long long long long long publisher",
-                    languageStaticLabel: "Language:",
-                    languageValueLabel: "Long long long long long language",
-                    typeStaticLabel: "Type:",
-                    typeValueLabel: "Long long long long long type",
-                    image: anyURL()),
-                delegete: CellDelegate()
-            )
+        let models: [PodcastImageViewModel] = [
+            .init(
+                title: "Any name",
+                publisher: "Any publisher",
+                languageStaticLabel: "Language:",
+                languageValueLabel: "Any language",
+                typeStaticLabel: "Type:",
+                typeValueLabel: "Any type",
+                image: anyURL()),
+            .init(
+                title: "Long long long long long long long long long long long long long long long long name",
+                publisher: "Long long long long long publisher",
+                languageStaticLabel: "Language:",
+                languageValueLabel: "Long long long long long language",
+                typeStaticLabel: "Type:",
+                typeValueLabel: "Long long long long long type",
+                image: anyURL()),
+            .init(
+                title: "Long long long long long long long long long long long long long long long long name",
+                publisher: "Long long long long long publisher",
+                languageStaticLabel: "Language:",
+                languageValueLabel: "Long long long long long language",
+                typeStaticLabel: "Type:",
+                typeValueLabel: "Long long long long long type",
+                image: anyURL()),
         ]
+        
+        let stubbedImages = [UIImage.make(withColor: .blue), UIImage.make(withColor: .red), UIImage.make(withColor: .yellow)]
+        
+        return models.enumerated().map { (index, viewModel) in
+            let imageStub = ImageStub(image: stubbedImages[index])
+            let cellController = PodcastCellController(
+                model: viewModel,
+                delegete: imageStub
+            )
+            imageStub.imageDataResourceView = cellController
+            return cellController
+        }
     }
     
     private func anyURL() -> URL {
@@ -85,8 +89,18 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
         func didRequestLoadingPodcasts() {}
     }
     
-    private class CellDelegate: PodcastCellControllerDelegate {
-        func didRequestImage() {}
+    private class ImageStub: PodcastCellControllerDelegate {
+        private let image: UIImage
+        
+        init(image: UIImage) {
+            self.image = image
+        }
+        
+        weak var imageDataResourceView: PodcastCellController?
+        
+        func didRequestImage() {
+            imageDataResourceView?.display(image)
+        }
         
         func didCancelImageLoad() {}
     }

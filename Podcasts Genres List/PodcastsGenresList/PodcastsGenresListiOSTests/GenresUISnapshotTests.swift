@@ -3,11 +3,12 @@
 import XCTest
 import PodcastsGenresList
 import PodcastsGenresListiOS
+import LoadResourcePresenter
 
 class GenresUISnapshotTests: XCTestCase {
     
     func test_emptyGenres() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.display(emptyGenres())
         
@@ -16,7 +17,7 @@ class GenresUISnapshotTests: XCTestCase {
     }
     
     func test_genresContent() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         sut.display(genresContent())
 
@@ -24,14 +25,42 @@ class GenresUISnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
     }
     
+    func test_genresLoadingStateWithNoContent() {
+        let (sut, loadingView) = makeSUT()
+        
+        loadingView.display(.init(isLoading: true))
+
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_LOADING_STATE_NO_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_LOADING_STATE_NO_CONTENT_dark")
+        
+        loadingView.display(.init(isLoading: false))
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_NOT_LOADING_STATE_NO_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_NOT_LOADING_STATE_NO_CONTENT_dark")
+    }
+    
+    func test_genresLoadingStateWithContent() {
+        let (sut, loadingView) = makeSUT()
+        
+        sut.display(genresContent())
+        
+        loadingView.display(.init(isLoading: true))
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_LOADING_STATE_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_LOADING_STATE_WITH_CONTENT_dark")
+        
+        loadingView.display(.init(isLoading: false))
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_NOT_LOADING_STATE_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_NOT_LOADING_STATE_WITH_CONTENT_dark")
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> GenresListViewController {
+    private func makeSUT() -> (sut: GenresListViewController, loadingView: ResourceLoadingView) {
         let genresRefreshDelegate = GenresRefreshSpyDelegate()
         let refreshController = GenresRefreshViewController(delegate: genresRefreshDelegate)
         let controller = GenresListViewController(refreshController: refreshController)
         controller.loadViewIfNeeded()
-        return controller
+        return (controller, refreshController)
     }
     
     private func emptyGenres() -> [GenreCellController] {

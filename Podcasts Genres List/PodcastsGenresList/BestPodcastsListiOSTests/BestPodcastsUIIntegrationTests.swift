@@ -41,10 +41,36 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
     
     private func podcastsList() -> [PodcastCellController] {
         return [
-            PodcastCellController(model: .init(title: "Title with no image", image: nil), delegete: CellDelegate()),
-            PodcastCellController(model: .init(title: "Title 1", image: UIImage.make(withColor: .red)), delegete: CellDelegate()),
-            PodcastCellController(model: .init(title: String(repeating: "Long ", count: 10) + "title", image: UIImage.make(withColor: .green)), delegete: CellDelegate()),
-            PodcastCellController(model: .init(title: "Another title", image: nil), delegete: CellDelegate())
+            PodcastCellController(
+                model: .init(
+                    title: "Any name",
+                    publisher: "Any publisher",
+                    language: "Any language",
+                    type: "Serial",
+                    image: nil
+                ),
+                delegete: CellDelegate()
+            ),
+            PodcastCellController(
+                model: .init(
+                    title: "Another name",
+                    publisher: "Another publisher",
+                    language: "Another language",
+                    type: "Serial",
+                    image: nil
+                ),
+                delegete: CellDelegate()
+            ),
+            PodcastCellController(
+                model: .init(
+                    title: "Long long long long long long long long long long long long long long long long name",
+                    publisher: "Long long long long long publisher",
+                    language: "Long long long long long language",
+                    type: "Long long long long long Serial",
+                    image: nil
+                ),
+                delegete: CellDelegate()
+            ),
         ]
     }
     

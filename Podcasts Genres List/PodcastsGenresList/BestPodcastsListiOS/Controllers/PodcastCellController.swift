@@ -4,7 +4,7 @@ import UIKit
 import BestPodcastsList
 import LoadResourcePresenter
 
-protocol PodcastCellControllerDelegate {
+public protocol PodcastCellControllerDelegate {
     func didRequestImage()
     func didCancelImageLoad()
 }
@@ -16,7 +16,7 @@ public final class PodcastCellController {
     private let delegate: PodcastCellControllerDelegate
     private var cell: PodcastCell?
     
-    init(model: PodcastImageViewModel<UIImage>, delegete: PodcastCellControllerDelegate) {
+    public init(model: PodcastImageViewModel<UIImage>, delegete: PodcastCellControllerDelegate) {
         self.model = model
         self.delegate = delegete
     }
@@ -24,6 +24,7 @@ public final class PodcastCellController {
     func view(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueAndRegisterCell(indexPath: indexPath) as PodcastCell
         cell?.titleLabel.text = model.title
+        cell?.thumbnailImageView.image = model.image
         delegate.didRequestImage()
         return cell!
     }

@@ -3,9 +3,26 @@
 import UIKit
 
 public final class PodcastCell: UITableViewCell, Reusable {
-    public private(set) var titleLabel = UILabel()
-    public private(set) var thumbnailImageView = UIImageView()
-    public private(set) var container = UIView()
+    
+    public private(set) lazy var titleLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    public private(set) lazy var thumbnailImageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFill
+        view.backgroundColor = .systemGray
+        return view
+    }()
+    
+    public private(set) lazy var container: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

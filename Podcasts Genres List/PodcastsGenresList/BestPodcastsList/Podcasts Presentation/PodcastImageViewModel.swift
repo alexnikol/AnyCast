@@ -14,4 +14,4 @@ public struct PodcastImageViewModel {
         self.language = language
         self.type = type
     }
-}z
+}

@@ -11,3 +11,13 @@ extension Reusable {
         return String(describing: self)
     }
 }
+
+protocol NibReusable: AnyObject {
+    static var reuseIdentifier: String { get }
+}
+
+extension NibReusable {
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+}

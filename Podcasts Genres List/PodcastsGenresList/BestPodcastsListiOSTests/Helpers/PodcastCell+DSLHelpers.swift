@@ -9,6 +9,6 @@ extension PodcastCell {
     }
     
     var isShowingImageLoadingIndicator: Bool {
-        container.isShimmering
+        imageContainer.isShimmering
     }
 }

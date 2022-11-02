@@ -48,6 +48,6 @@ extension PodcastCellController: ResourceView {
 extension PodcastCellController: ResourceLoadingView {
     
     public func display(_ viewModel: ResourceLoadingViewModel) {
-        cell?.container.isShimmering = viewModel.isLoading
+        cell?.imageContainer.isShimmering = viewModel.isLoading
     }
 }

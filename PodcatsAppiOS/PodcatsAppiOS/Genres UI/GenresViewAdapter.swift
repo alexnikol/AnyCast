@@ -10,16 +10,24 @@ final class GenresViewAdapter: ResourceView {
     
     private weak var controller: GenresListViewController?
     private let genresColorProvider: GenresActiveColorProvider<UIColor>
+    private let selection: (Genre) -> Void
     
-    init(controller: GenresListViewController, genresColorProvider: GenresActiveColorProvider<UIColor>) {
+    init(controller: GenresListViewController,
+         genresColorProvider: GenresActiveColorProvider<UIColor>,
+         selection: @escaping (Genre) -> Void) {
         self.controller = controller
         self.genresColorProvider = genresColorProvider
+        self.selection = selection
     }
 
     func display(_ viewModel: ResourceViewModel) {
         controller?.display(viewModel.genres.enumerated().map { (index, model) in
             let cellModel = GenreCellViewModel(name: model.name, color: associatedColorByIndex(index))
-            return GenreCellController(model: cellModel)
+            return GenreCellController(
+                model: cellModel,
+                selection: { [weak self] in
+                    self?.selection(model)
+                })
         })
     }
     

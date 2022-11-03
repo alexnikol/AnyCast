@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import Combine
 import BestPodcastsList
 
 class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
@@ -12,6 +13,14 @@ class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
     
     func load(by genreID: Int, completion: @escaping (BestPodcastsLoader.Result) -> Void) {
         bestPodcastRequests.append(completion)
+    }
+    
+    func podcastsPublisher(by genreID: Int) -> AnyPublisher<BestPodcastsList, Error> {
+        return Deferred {
+            Future { completion in
+                self.load(by: genreID, completion: completion)
+            }
+        }.eraseToAnyPublisher()
     }
     
     func completeBestPodcastsLoading(with bestPodcastsList: BestPodcastsList = .init(genreId: 1, genreName: "any genre name", podcasts: []), at index: Int) {

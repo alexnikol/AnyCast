@@ -19,3 +19,17 @@ extension LocalPodcastsImageDataLoader {
         }.eraseToAnyPublisher()
     }
 }
+
+protocol PodcastImageDataCache {
+    typealias Result = Swift.Result<Void, Error>
+    
+    func save(_ data: Data, for url: URL, completion: @escaping (Result) -> Void)
+}
+
+extension Publisher where Output == Data {
+    func caching(to cache: PodcastImageDataCache, for url: URL) -> AnyPublisher<Output, Failure> {
+        handleEvents(receiveOutput: { data in
+            cache.save(data, for: url, completion: { _ in })
+        }).eraseToAnyPublisher()
+    }
+}

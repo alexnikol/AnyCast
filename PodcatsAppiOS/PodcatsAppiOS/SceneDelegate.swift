@@ -54,7 +54,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureGenresUI() -> UIViewController {
-        return GenresUIComposer.genresComposedWith(loader: makeLocalGenresLoaderWithRemoteFallback)
+        return GenresUIComposer.genresComposedWith(
+            loader: makeLocalGenresLoaderWithRemoteFallback,
+            selection: showBestPodcasts
+        )
     }
     
     private func makeLocalGenresLoaderWithRemoteFallback() -> AnyPublisher<[Genre], Error> {
@@ -78,5 +81,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .tryMap(GenresItemsMapper.map)
                     .caching(to: localGenresLoader)
             })
+    }
+    
+    func showBestPodcasts(byGenre genre: Genre) {
+        let podcasts = BestPodcastsUIComposer.bestPodcastComposed(
+            genreID: genre.id,
+            podcastsLoader: makeBestPodcastsRemoteLoader,
+            imageLoader: RemoteImageDataLoader(client: httpClient)
+        )
+        (window?.rootViewController as? UINavigationController)?.pushViewController(podcasts, animated: true)
+    }
+    
+    private func makeBestPodcastsRemoteLoader(byGenreID genreID: Int) -> AnyPublisher<BestPodcastsList, Swift.Error> {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = "listen-api-test.listennotes.com"
+        urlBuilder.path = "/api/v2/best_podcasts"
+        urlBuilder.queryItems = [URLQueryItem(name: "genre_id", value: String(genreID))]
+        return httpClient
+            .loadPublisher(from: urlBuilder.url!)
+            .tryMap(BestPodastsItemsMapper.map)
+            .eraseToAnyPublisher()
     }
 }

@@ -16,7 +16,7 @@
 		8D5FA24C2913C4C1002BB874 /* MainQueueDispatchDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2462913C4C1002BB874 /* MainQueueDispatchDecorator.swift */; };
 		8D5FA24D2913C4C1002BB874 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2472913C4C1002BB874 /* WeakRefVirtualProxy.swift */; };
 		8D5FA2562913C539002BB874 /* PodcastCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2522913C539002BB874 /* PodcastCell+DSLHelpers.swift */; };
-		8D5FA2572913C539002BB874 /* BestPodcastsListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2532913C539002BB874 /* BestPodcastsListViewController+DSLHelpers.swift */; };
+		8D5FA2572913C539002BB874 /* ListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2532913C539002BB874 /* ListViewController+DSLHelpers.swift */; };
 		8D5FA2592913C539002BB874 /* BestPodcastsLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2552913C539002BB874 /* BestPodcastsLoaderSpy.swift */; };
 		8D5FA25B2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA25A2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift */; };
 		8D5FA25E2913C611002BB874 /* BestPodcastsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5FA25C2913C611002BB874 /* BestPodcastsList.framework */; };
@@ -99,7 +99,7 @@
 		8D5FA2462913C4C1002BB874 /* MainQueueDispatchDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainQueueDispatchDecorator.swift; sourceTree = "<group>"; };
 		8D5FA2472913C4C1002BB874 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
 		8D5FA2522913C539002BB874 /* PodcastCell+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PodcastCell+DSLHelpers.swift"; sourceTree = "<group>"; };
-		8D5FA2532913C539002BB874 /* BestPodcastsListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BestPodcastsListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8D5FA2532913C539002BB874 /* ListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8D5FA2552913C539002BB874 /* BestPodcastsLoaderSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestPodcastsLoaderSpy.swift; sourceTree = "<group>"; };
 		8D5FA25A2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestPodcastsListUIIngtegrationTests.swift; sourceTree = "<group>"; };
 		8D5FA25C2913C611002BB874 /* BestPodcastsList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = BestPodcastsList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,7 +189,7 @@
 		8D5FA2512913C510002BB874 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8D5FA2532913C539002BB874 /* BestPodcastsListViewController+DSLHelpers.swift */,
+				8D5FA2532913C539002BB874 /* ListViewController+DSLHelpers.swift */,
 				8D5FA2552913C539002BB874 /* BestPodcastsLoaderSpy.swift */,
 				8D5FA2522913C539002BB874 /* PodcastCell+DSLHelpers.swift */,
 			);
@@ -451,7 +451,7 @@
 				8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8D72D04628F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift in Sources */,
 				8D5FA27C2913CC90002BB874 /* BestPodcastsList+CombineHelpers.swift in Sources */,
-				8D5FA2572913C539002BB874 /* BestPodcastsListViewController+DSLHelpers.swift in Sources */,
+				8D5FA2572913C539002BB874 /* ListViewController+DSLHelpers.swift in Sources */,
 				8D5FA2592913C539002BB874 /* BestPodcastsLoaderSpy.swift in Sources */,
 				8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
 				8D5FA2562913C539002BB874 /* PodcastCell+DSLHelpers.swift in Sources */,

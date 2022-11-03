@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import Combine
 import LoadResourcePresenter
 import BestPodcastsList
 import BestPodcastsListiOS
@@ -10,12 +11,12 @@ public final class BestPodcastsUIComposer {
     
     public static func bestPodcastComposed(
         genreID: Int,
-        podcastsLoader: BestPodcastsLoader,
+        podcastsLoader: @escaping (Int) -> AnyPublisher<BestPodcastsList, Error>,
         imageLoader: PodcastImageDataLoader
     ) -> ListViewController {
         let presentationAdapter = BestPodcastsLoaderPresentationAdapter(
             genreID: genreID,
-            loader: MainQueueDispatchDecorator(decoratee: podcastsLoader)
+            loader: podcastsLoader
         )
         let refreshController = RefreshViewController(delegate: presentationAdapter)
         let controller = ListViewController(refreshController: refreshController)

@@ -215,7 +215,11 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: ListViewController, loader: BestPodcastsLoaderSpy) {
         let loader = BestPodcastsLoaderSpy()
-        let sut = BestPodcastsUIComposer.bestPodcastComposed(genreID: genreID, podcastsLoader: loader, imageLoader: loader)
+        let sut = BestPodcastsUIComposer.bestPodcastComposed(
+            genreID: genreID,
+            podcastsLoader: loader.podcastsPublisher,
+            imageLoader: loader
+        )
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)

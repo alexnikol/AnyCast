@@ -5,6 +5,7 @@ import UIKit
 import HTTPClient
 import PodcastsGenresList
 import PodcastsGenresListiOS
+import BestPodcastsListiOS
 @testable import Podcats
 
 class GenresAcceptanceTests: XCTestCase {
@@ -45,6 +46,12 @@ class GenresAcceptanceTests: XCTestCase {
         XCTAssertNotNil(store.cache, "Expected to keep non expired cache")
     }
     
+    func test_onPodcastGenreSelection_displaysBestPodcasts() {
+        let bestPodcasts = showBestPodcasts()
+        
+        XCTAssertEqual(bestPodcasts.numberOfRenderedPodcastsViews(), 2)
+    }
+    
     // MARK: - Helpers
     
     private func launch(
@@ -72,21 +79,58 @@ class GenresAcceptanceTests: XCTestCase {
         return (makeData(for: url), response)
     }
     
+    private func showBestPodcasts() -> ListViewController {
+        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        
+        genres.simulateTapOnGenre(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let nav = genres.navigationController
+        return nav?.topViewController as! ListViewController
+    }
+    
     private func makeData(for url: URL) -> Data {
         let baseURL = "https://listen-api-test.listennotes.com"
         switch url.absoluteString {
         case "\(baseURL)/api/v2/genres":
             return makeGenresData()
             
+        case "\(baseURL)/api/v2/best_podcasts?genre_id=1":
+            return makeBestPodcastsData()
+            
         default:
             return Data()
         }
     }
-            
+    
     private func makeGenresData() -> Data {
         return try! JSONSerialization.data(withJSONObject: ["genres": [
             ["id": 1, "name": "Any Genre 1"],
             ["id": 2, "name": "Any Genre 2"]
         ]])
+    }
+    
+    private func makeBestPodcastsData() -> Data {
+        return try! JSONSerialization.data(withJSONObject: [
+            "id": 1,
+            "name": "Any Genre name",
+            "podcasts": [
+                [
+                    "id": UUID().uuidString,
+                    "title": "Any Podcast name",
+                    "publisher": "Any Publisher name",
+                    "type": "episodic",
+                    "image": "https://any-url.com/image1",
+                    "language": "English"
+                ],
+                [
+                    "id": UUID().uuidString,
+                    "title": "Another Podcast name",
+                    "publisher": "Another Publisher name",
+                    "type": "serial",
+                    "image": "https://any-url.com/image1",
+                    "language": "Ukrainian"
+                ]
+            ]])
     }
 }

@@ -50,6 +50,10 @@ public final class GenresListViewController: UICollectionViewController {
     private func cellController(forRowAt indexPath: IndexPath) -> GenreCellController {
         return collectionModel[indexPath.row]
     }
+    
+    public override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionModel[indexPath.row].didSelect()
+    }
 }
 
 extension GenresListViewController: UICollectionViewDelegateFlowLayout {

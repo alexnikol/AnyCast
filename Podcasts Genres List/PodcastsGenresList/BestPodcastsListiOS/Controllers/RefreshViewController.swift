@@ -3,21 +3,21 @@
 import UIKit
 import LoadResourcePresenter
 
-public protocol BestPodcastsListRefreshViewControllerDelegate {
-    func didRequestLoadingPodcasts()
+public protocol RefreshViewControllerDelegate {
+    func didRequestLoading()
 }
 
-public final class BestPodcastsListRefreshViewController: NSObject {
+public final class RefreshViewController: NSObject {
     private(set) lazy var view = loadView()
-    private let delegate: BestPodcastsListRefreshViewControllerDelegate
+    private let delegate: RefreshViewControllerDelegate
     
-    public init(delegate: BestPodcastsListRefreshViewControllerDelegate) {
+    public init(delegate: RefreshViewControllerDelegate) {
         self.delegate = delegate
     }
     
     @objc
     func refresh() {
-        delegate.didRequestLoadingPodcasts()
+        delegate.didRequestLoading()
     }
     
     private func loadView() -> UIRefreshControl {
@@ -27,7 +27,7 @@ public final class BestPodcastsListRefreshViewController: NSObject {
     }
 }
 
-extension BestPodcastsListRefreshViewController: ResourceLoadingView {
+extension RefreshViewController: ResourceLoadingView {
     public func display(_ viewModel: ResourceLoadingViewModel) {
         if viewModel.isLoading {
             view.beginRefreshing()
@@ -37,6 +37,6 @@ extension BestPodcastsListRefreshViewController: ResourceLoadingView {
     }
 }
 
-extension BestPodcastsListRefreshViewController: ResourceErrorView {
+extension RefreshViewController: ResourceErrorView {
     public func display(_ viewModel: ResourceErrorViewModel) {}
 }

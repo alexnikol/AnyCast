@@ -9,37 +9,24 @@ public protocol PodcastCellControllerDelegate {
     func didCancelImageLoad()
 }
 
-public final class PodcastCellController {
+public final class PodcastCellController: NSObject {
     public typealias ResourceViewModel = UIImage
     
     private let model: PodcastImageViewModel
-    private let delegate: PodcastCellControllerDelegate
+    private let cellDelegate: PodcastCellControllerDelegate
     private var cell: PodcastCell?
     
     public init(model: PodcastImageViewModel, delegete: PodcastCellControllerDelegate) {
         self.model = model
-        self.delegate = delegete
+        self.cellDelegate = delegete
     }
-    
-    func view(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cell = tableView.dequeueAndRegisterCell(indexPath: indexPath) as PodcastCell
-        cell?.titleLabel.text = model.title
-        cell?.publisherLabel.text = model.publisher
-        cell?.languageStaticLabel.text = model.languageStaticLabel
-        cell?.languageValueLabel.text = model.languageValueLabel
-        cell?.typeValueLabel.text = model.typeValueLabel
-        cell?.typeStaticLabel.text = model.typeStaticLabel
 
-        delegate.didRequestImage()
-        return cell!
-    }
-    
     func cancelLoad() {
-        delegate.didCancelImageLoad()
+        cellDelegate.didCancelImageLoad()
     }
     
     func preload() {
-        delegate.didRequestImage()
+        cellDelegate.didRequestImage()
     }
 }
 
@@ -60,5 +47,55 @@ extension PodcastCellController: ResourceLoadingView {
 extension PodcastCellController: ResourceErrorView {
     public func display(_ viewModel: ResourceErrorViewModel) {
         cell?.thumbnailImageView.image = nil
+    }
+}
+
+extension PodcastCellController: CellController {    
+    public var delegate: UITableViewDelegate? {
+        return self
+    }
+    
+    public var dataSource: UITableViewDataSource {
+        return self
+    }
+    
+    public var prefetchingDataSource: UITableViewDataSourcePrefetching? {
+        return self
+    }
+}
+
+extension PodcastCellController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cancelLoad()
+    }
+}
+
+extension PodcastCellController: UITableViewDataSource {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+        
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        cell = tableView.dequeueAndRegisterCell(indexPath: indexPath) as PodcastCell
+        cell?.titleLabel.text = model.title
+        cell?.publisherLabel.text = model.publisher
+        cell?.languageStaticLabel.text = model.languageStaticLabel
+        cell?.languageValueLabel.text = model.languageValueLabel
+        cell?.typeValueLabel.text = model.typeValueLabel
+        cell?.typeStaticLabel.text = model.typeStaticLabel
+
+        cellDelegate.didRequestImage()
+        return cell!
+    }
+}
+
+extension PodcastCellController: UITableViewDataSourcePrefetching {
+    
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        preload()
+    }
+    
+    public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        cancelLoad()
     }
 }

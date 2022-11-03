@@ -27,9 +27,9 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: BestPodcastsListViewController, loadingView: ResourceLoadingView) {
-        let refreshController = BestPodcastsListRefreshViewController(delegate: NullObjectRefreshViewControllerDelegate())
-        let controller = BestPodcastsListViewController(refreshController: refreshController)
+    private func makeSUT() -> (sut: ListViewController, loadingView: ResourceLoadingView) {
+        let refreshController = RefreshViewController(delegate: NullObjectRefreshViewControllerDelegate())
+        let controller = ListViewController(refreshController: refreshController)
         controller.loadViewIfNeeded()
         controller.tableView.showsVerticalScrollIndicator = false
         controller.tableView.showsHorizontalScrollIndicator = false
@@ -85,8 +85,8 @@ class BestPodcastsUIIntegrationTests: XCTestCase {
         URL(string: "http://a-url.com")!
     }
     
-    private class NullObjectRefreshViewControllerDelegate: BestPodcastsListRefreshViewControllerDelegate {
-        func didRequestLoadingPodcasts() {}
+    private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
+        func didRequestLoading() {}
     }
     
     private class ImageStub: PodcastCellControllerDelegate {

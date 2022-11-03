@@ -212,7 +212,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         genreID: Int = 1,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: BestPodcastsListViewController, loader: BestPodcastsLoaderSpy) {
+    ) -> (sut: ListViewController, loader: BestPodcastsLoaderSpy) {
         let loader = BestPodcastsLoaderSpy()
         let sut = BestPodcastsUIComposer.bestPodcastComposed(genreID: genreID, podcastsLoader: loader, imageLoader: loader)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -220,7 +220,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         return (sut, loader)
     }
     
-    private func assertThat(_ sut: BestPodcastsListViewController, isRendering podcasts: [Podcast], file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ListViewController, isRendering podcasts: [Podcast], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedPodcastsViews() == podcasts.count else {
             return XCTFail("Expected \(podcasts.count) rendered podcast, got \(sut.numberOfRenderedPodcastsViews()) rendered views instead")
         }
@@ -231,7 +231,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
     }
     
     private func assertThat(
-        _ sut: BestPodcastsListViewController,
+        _ sut: ListViewController,
         hasViewConfiguredFor podcast: Podcast,
         at index: Int,
         file: StaticString = #file,
@@ -242,7 +242,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(view?.titleText, podcast.title, "Wrong name at index \(index)", file: file, line: line)
     }
     
-    private func assertThat(_ sut: BestPodcastsListViewController, isRendering title: String, file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: ListViewController, isRendering title: String, file: StaticString = #file, line: UInt = #line) {
         XCTAssertEqual(sut.title ?? "", title)
     }
     

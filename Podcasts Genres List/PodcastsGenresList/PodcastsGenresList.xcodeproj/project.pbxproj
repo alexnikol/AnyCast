@@ -96,7 +96,7 @@
 		8DE329E72910065500830695 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8DE329F529100E9B00830695 /* BestPodcastsListiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE329ED29100E9B00830695 /* BestPodcastsListiOS.framework */; };
 		8DE329FA29100E9B00830695 /* BestPodcastsListUIIngtegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE329F929100E9B00830695 /* BestPodcastsListUIIngtegrationTests.swift */; };
-		8DE32A0629100F1200830695 /* BestPodcastsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A0529100F1200830695 /* BestPodcastsListViewController.swift */; };
+		8DE32A0629100F1200830695 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A0529100F1200830695 /* ListViewController.swift */; };
 		8DE32A07291011ED00830695 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DE32A0C29103A1700830695 /* BestPodcastsListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A0B29103A1700830695 /* BestPodcastsListViewController+DSLHelpers.swift */; };
 		8DE32A0E29103A3E00830695 /* UIRefreshControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A0D29103A3E00830695 /* UIRefreshControl+Extensions.swift */; };
@@ -116,7 +116,7 @@
 		8DE32A4129110CB300830695 /* LoadResourcePresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; platformFilter = ios; };
 		8DE32A4229110CB300830695 /* LoadResourcePresenter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8DE32A4A29110FD200830695 /* BestPodcastsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4929110FD200830695 /* BestPodcastsUIComposer.swift */; };
-		8DE32A4C291110DF00830695 /* BestPodcastsListRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4B291110DF00830695 /* BestPodcastsListRefreshViewController.swift */; };
+		8DE32A4C291110DF00830695 /* RefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4B291110DF00830695 /* RefreshViewController.swift */; };
 		8DE32A4E29111B3400830695 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4D29111B3400830695 /* UITableView+Extensions.swift */; };
 		8DE32A5029111BAF00830695 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4F29111BAF00830695 /* Reusable.swift */; };
 		8DE32A5229113F1A00830695 /* WeakRefVirtualProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5129113F1A00830695 /* WeakRefVirtualProxy.swift */; };
@@ -342,7 +342,7 @@
 		8DE329ED29100E9B00830695 /* BestPodcastsListiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BestPodcastsListiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE329F429100E9B00830695 /* BestPodcastsListiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestPodcastsListiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE329F929100E9B00830695 /* BestPodcastsListUIIngtegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsListUIIngtegrationTests.swift; sourceTree = "<group>"; };
-		8DE32A0529100F1200830695 /* BestPodcastsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsListViewController.swift; sourceTree = "<group>"; };
+		8DE32A0529100F1200830695 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		8DE32A0B29103A1700830695 /* BestPodcastsListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BestPodcastsListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DE32A0D29103A3E00830695 /* UIRefreshControl+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Extensions.swift"; sourceTree = "<group>"; };
 		8DE32A0F29103A5B00830695 /* PodcastCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastCell+DSLHelpers.swift"; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 		8DE32A3B29110B8500830695 /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
 		8DE32A3E29110BB300830695 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		8DE32A4929110FD200830695 /* BestPodcastsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsUIComposer.swift; sourceTree = "<group>"; };
-		8DE32A4B291110DF00830695 /* BestPodcastsListRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsListRefreshViewController.swift; sourceTree = "<group>"; };
+		8DE32A4B291110DF00830695 /* RefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewController.swift; sourceTree = "<group>"; };
 		8DE32A4D29111B3400830695 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		8DE32A4F29111BAF00830695 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		8DE32A5129113F1A00830695 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
@@ -985,9 +985,9 @@
 		8DE32A0229100EC000830695 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8DE32A0529100F1200830695 /* BestPodcastsListViewController.swift */,
+				8DE32A0529100F1200830695 /* ListViewController.swift */,
 				8DE32A1329103AF700830695 /* PodcastCellController.swift */,
-				8DE32A4B291110DF00830695 /* BestPodcastsListRefreshViewController.swift */,
+				8DE32A4B291110DF00830695 /* RefreshViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1902,8 +1902,8 @@
 				8DE32A9729128BC700830695 /* PodcastCell.swift in Sources */,
 				8DE32A4E29111B3400830695 /* UITableView+Extensions.swift in Sources */,
 				8DE32A5829113FAC00830695 /* PodcastImageDataLoaderPresentationAdapter.swift in Sources */,
-				8DE32A4C291110DF00830695 /* BestPodcastsListRefreshViewController.swift in Sources */,
-				8DE32A0629100F1200830695 /* BestPodcastsListViewController.swift in Sources */,
+				8DE32A4C291110DF00830695 /* RefreshViewController.swift in Sources */,
+				8DE32A0629100F1200830695 /* ListViewController.swift in Sources */,
 				8DE32A5029111BAF00830695 /* Reusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

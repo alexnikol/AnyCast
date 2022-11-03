@@ -8,9 +8,9 @@ final class BestPodcastsViewAdapter: ResourceView {
     typealias ResourceViewModel = BestPodcastsPresenterViewModel
     
     private let imageLoader: PodcastImageDataLoader
-    weak var controller: BestPodcastsListViewController?
+    weak var controller: ListViewController?
     
-    init(controller: BestPodcastsListViewController, imageLoader: PodcastImageDataLoader) {
+    init(controller: ListViewController, imageLoader: PodcastImageDataLoader) {
         self.controller = controller
         self.imageLoader = imageLoader
     }

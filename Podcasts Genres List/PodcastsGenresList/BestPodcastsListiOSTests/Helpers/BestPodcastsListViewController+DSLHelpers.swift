@@ -3,7 +3,7 @@
 import UIKit
 import BestPodcastsListiOS
 
-extension BestPodcastsListViewController {
+extension ListViewController {
     func simulateUserInitiatedPodcastsListReload() {
         tableView.refreshControl?.simulatePullToRefresh()
     }

@@ -4,7 +4,7 @@ import Foundation
 import LoadResourcePresenter
 import BestPodcastsList
 
-final class BestPodcastsLoaderPresentationAdapter: BestPodcastsListRefreshViewControllerDelegate {
+final class BestPodcastsLoaderPresentationAdapter: RefreshViewControllerDelegate {
     private let genreID: Int
     private let loader: BestPodcastsLoader
     var presenter: LoadResourcePresenter<BestPodcastsList, BestPodcastsViewAdapter>?
@@ -14,7 +14,7 @@ final class BestPodcastsLoaderPresentationAdapter: BestPodcastsListRefreshViewCo
         self.loader = loader
     }
      
-    func didRequestLoadingPodcasts() {
+    func didRequestLoading() {
         presenter?.didStartLoading()
         loader.load(by: genreID) { [weak self] result in
             switch result {

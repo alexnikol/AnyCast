@@ -11,13 +11,13 @@ public final class BestPodcastsUIComposer {
         genreID: Int,
         podcastsLoader: BestPodcastsLoader,
         imageLoader: PodcastImageDataLoader
-    ) -> BestPodcastsListViewController {
+    ) -> ListViewController {
         let presentationAdapter = BestPodcastsLoaderPresentationAdapter(
             genreID: genreID,
             loader: MainQueueDispatchDecorator(decoratee: podcastsLoader)
         )
-        let refreshController = BestPodcastsListRefreshViewController(delegate: presentationAdapter)
-        let controller = BestPodcastsListViewController(refreshController: refreshController)
+        let refreshController = RefreshViewController(delegate: presentationAdapter)
+        let controller = ListViewController(refreshController: refreshController)
         
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: BestPodcastsViewAdapter(

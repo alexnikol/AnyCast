@@ -1,18 +1,23 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
-import BestPodcastsList
 
-public final class BestPodcastsListViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var cellModels: [PodcastCellController] = []
-    private var refreshController: BestPodcastsListRefreshViewController?
+public protocol CellController {
+    var delegate: UITableViewDelegate? { get }
+    var dataSource: UITableViewDataSource { get }
+    var prefetchingDataSource: UITableViewDataSourcePrefetching? { get }
+}
+
+public final class ListViewController: UITableViewController, UITableViewDataSourcePrefetching {
+    private var cellModels: [CellController] = []
+    private var refreshController: RefreshViewController?
     
-    public init(refreshController: BestPodcastsListRefreshViewController) {
+    public init(refreshController: RefreshViewController) {
         self.refreshController = refreshController
         super.init(style: .plain)
     }
     
-    public func display(_ models: [PodcastCellController]) {
+    public func display(_ models: [CellController]) {
         cellModels = models
         tableView.reloadData()
     }
@@ -35,27 +40,22 @@ public final class BestPodcastsListViewController: UITableViewController, UITabl
     }
     
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellModels[indexPath.row].view(tableView, cellForRowAt: indexPath)
+        return cellModels[indexPath.row].dataSource.tableView(tableView, cellForRowAt: indexPath)
     }
     
     override public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cellController(forRowAt: indexPath).cancelLoad()
+        cellModels[indexPath.row].delegate?.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach {
-            cellController(forRowAt: $0).preload()
+            cellModels[$0.row].prefetchingDataSource?.tableView(tableView, prefetchRowsAt: indexPaths)
         }
     }
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach {
-            cellController(forRowAt: $0).cancelLoad()
+            cellModels[$0.row].prefetchingDataSource?.tableView?(tableView, cancelPrefetchingForRowsAt: indexPaths)
         }
-    }
-    
-    private func cellController(forRowAt indexPath: IndexPath) -> PodcastCellController {
-        let cellController = cellModels[indexPath.row]
-        return cellController
     }
 }

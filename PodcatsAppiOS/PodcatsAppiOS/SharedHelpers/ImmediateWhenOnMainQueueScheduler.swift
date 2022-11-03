@@ -2,7 +2,6 @@
 
 import Foundation
 import Combine
-import PodcastsGenresList
 
 extension Publisher {
     func dispatchOnMainQueue() -> AnyPublisher<Output, Failure> {

@@ -193,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				8D5FA2472913C4C1002BB874 /* WeakRefVirtualProxy.swift */,
+				8D72D03528F8118900C17DDC /* ImmediateWhenOnMainQueueScheduler.swift */,
 			);
 			path = SharedHelpers;
 			sourceTree = "<group>";
@@ -202,7 +203,6 @@
 			children = (
 				8D72D03828F8118900C17DDC /* GenresUIComposer.swift */,
 				8D72D07228F85AC900C17DDC /* CombineHelpers.swift */,
-				8D72D03528F8118900C17DDC /* ImmediateWhenOnMainQueueScheduler.swift */,
 				8D72D03428F8118900C17DDC /* GenresViewAdapter.swift */,
 				8D72D03628F8118900C17DDC /* GenresLoaderPresentationAdapter.swift */,
 			);

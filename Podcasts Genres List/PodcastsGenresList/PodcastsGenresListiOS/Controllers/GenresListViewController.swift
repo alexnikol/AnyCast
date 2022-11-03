@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import LoadResourcePresenter
 
 public final class GenresListViewController: UICollectionViewController {
     
@@ -65,4 +66,8 @@ private extension GenresListViewController {
     func configureCollection(collectionView: UICollectionView) {
         collectionView.refreshControl = refreshController?.view
     }
+}
+
+extension GenresListViewController: ResourceErrorView {
+    public func display(_ viewModel: ResourceErrorViewModel) {}
 }

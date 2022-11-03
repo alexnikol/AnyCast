@@ -22,6 +22,7 @@ final class GenresUIComposer {
                 genresColorProvider: makeGenresColorProvider()
             ),
             loadingView: WeakRefVirtualProxy(refreshController),
+            errorView: WeakRefVirtualProxy(genresController),
             mapper: GenresPresenter.map
         )
         return genresController

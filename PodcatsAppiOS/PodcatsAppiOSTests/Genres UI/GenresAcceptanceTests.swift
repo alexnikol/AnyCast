@@ -129,7 +129,7 @@ class GenresAcceptanceTests: XCTestCase {
                     "publisher": "Another Publisher name",
                     "type": "serial",
                     "image": "https://any-url.com/image1",
-                    "language": "Ukrainian"
+                    "language": "Ukranian"
                 ]
             ]])
     }

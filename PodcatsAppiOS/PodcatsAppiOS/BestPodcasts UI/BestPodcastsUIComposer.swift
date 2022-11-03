@@ -1,8 +1,9 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
-import BestPodcastsList
 import LoadResourcePresenter
+import BestPodcastsList
+import BestPodcastsListiOS
 
 public final class BestPodcastsUIComposer {
     private init() {}

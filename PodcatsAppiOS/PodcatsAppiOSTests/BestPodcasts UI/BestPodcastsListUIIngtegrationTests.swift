@@ -3,6 +3,7 @@
 import XCTest
 import BestPodcastsList
 import BestPodcastsListiOS
+@testable import Podcats
 
 class BestPodcastsListUIIngtegrationTests: XCTestCase {
     

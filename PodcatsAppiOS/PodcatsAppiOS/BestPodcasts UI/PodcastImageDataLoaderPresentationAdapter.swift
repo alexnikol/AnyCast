@@ -3,6 +3,7 @@
 import Foundation
 import LoadResourcePresenter
 import BestPodcastsList
+import BestPodcastsListiOS
 
 final class PodcastImageDataLoaderPresentationAdapter: PodcastCellControllerDelegate {
     private let model: PodcastImageViewModel

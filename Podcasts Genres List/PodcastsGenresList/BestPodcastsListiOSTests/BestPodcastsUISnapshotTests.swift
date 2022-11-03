@@ -5,7 +5,7 @@ import LoadResourcePresenter
 import BestPodcastsList
 import BestPodcastsListiOS
 
-class BestPodcastsUIIntegrationTests: XCTestCase {
+class BestPodcastsUISnapshotTests: XCTestCase {
     
     func test_emptyBestPodcasts() {
         let (sut, _) = makeSUT()

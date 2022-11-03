@@ -3,6 +3,7 @@
 import Foundation
 import LoadResourcePresenter
 import BestPodcastsList
+import BestPodcastsListiOS
 
 final class BestPodcastsLoaderPresentationAdapter: RefreshViewControllerDelegate {
     private let genreID: Int

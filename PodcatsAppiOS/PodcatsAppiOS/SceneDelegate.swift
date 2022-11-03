@@ -7,6 +7,8 @@ import Combine
 import CoreData
 import PodcastsGenresList
 import PodcastsGenresListiOS
+import BestPodcastsList
+import BestPodcastsListiOS
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -45,10 +47,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        let genresController = GenresUIComposer.genresComposedWith(loader: makeLocalGenresLoaderWithRemoteFallback)
-        let nav = UINavigationController(rootViewController: genresController)
+        let rootController = configureGenresUI()
+        let nav = UINavigationController(rootViewController: rootController)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
+    }
+    
+    func configureGenresUI() -> UIViewController {
+        return GenresUIComposer.genresComposedWith(loader: makeLocalGenresLoaderWithRemoteFallback)
     }
     
     private func makeLocalGenresLoaderWithRemoteFallback() -> AnyPublisher<[Genre], Error> {

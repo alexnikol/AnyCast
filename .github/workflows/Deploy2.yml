@@ -52,4 +52,4 @@ jobs:
       run: xcodebuild -exportArchive -archivePath DerivedData/Archive/PodcatsiOSApp.xcarchive -exportOptionsPlist .github/secrets/exportOptions.plist -exportPath DerivedData/ipa
       
     - name: Deploy
-      run: xcrun altool --upload-app --type ios --file "DerivedData/ipa/PodcatsiOSApp.ipa" --username "${{ secrets.APPSTORE_USERNAME }}" --password "${{ secrets.APPSTORE_PASSWORD }}" --verbose
+      run: xcrun altool --upload-app --type ios --file "DerivedData/ipa/Podcats.ipa" --username "${{ secrets.APPSTORE_USERNAME }}" --password "${{ secrets.APPSTORE_PASSWORD }}" --verbose

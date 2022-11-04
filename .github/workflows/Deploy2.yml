@@ -20,7 +20,7 @@ jobs:
 
     - name: Install provisioning profile
       run: |
-        gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/com.podcats.app.product.iOS.mobileprovision .github/secrets/com.podcats.app.product.iOS.mobileprovision.gpg
+        gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/com.podcats.app.product.iOS.mobileprovision .github/secrets/com.podcats.app.product.iOS.mobileprovision1.gpg
         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
         cp .github/secrets/com.podcats.app.product.iOS.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
@@ -28,7 +28,7 @@ jobs:
       run: |
         gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/com.podcats.app.product.iOS.p12 .github/secrets/com.podcats.app.product.iOS.p12.gpg
         security create-keychain -p "" build.keychain
-        security import .github/secrets/com.podcats.app.product.iOS.p12 -t agg -k ~/Library/Keychains/build.keychain -P "dfdf" -A
+        security import .github/secrets/com.podcats.app.product.iOS.p12 -t agg -k ~/Library/Keychains/build.keychain -P "" -A
         security list-keychains -s ~/Library/Keychains/build.keychain
         security default-keychain -s ~/Library/Keychains/build.keychain
         security unlock-keychain -p "" ~/Library/Keychains/build.keychain

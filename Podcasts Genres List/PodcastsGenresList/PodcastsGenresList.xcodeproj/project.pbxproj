@@ -708,7 +708,7 @@
 			path = Infrastructure;
 			sourceTree = "<group>";
 		};
-		8D5FA2822914F760002BB874 /* PodcastsGenresList Module */ = {
+		8D5FA2822914F760002BB874 /* PodcastsGenresList Feature */ = {
 			isa = PBXGroup;
 			children = (
 				8DA0930E28BF59C900C4C68D /* PodcastsGenresList */,
@@ -718,10 +718,10 @@
 				8DC351FB28D1DB1E00F12FD9 /* PodcastsGenresListiOS */,
 				8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */,
 			);
-			path = "PodcastsGenresList Module";
+			path = "PodcastsGenresList Feature";
 			sourceTree = "<group>";
 		};
-		8D5FA2832914F7A9002BB874 /* BestPodcastsList Module */ = {
+		8D5FA2832914F7A9002BB874 /* BestPodcastsList Feature */ = {
 			isa = PBXGroup;
 			children = (
 				8DFAEAB028FD41730028B060 /* BestPodcastsList */,
@@ -730,7 +730,7 @@
 				8DE329EE29100E9B00830695 /* BestPodcastsListiOS */,
 				8DE329F829100E9B00830695 /* BestPodcastsListiOSTests */,
 			);
-			path = "BestPodcastsList Module";
+			path = "BestPodcastsList Feature";
 			sourceTree = "<group>";
 		};
 		8D72D05D28F82A1B00C17DDC /* Helpers */ = {
@@ -863,8 +863,8 @@
 				8D5FA2802914F6CE002BB874 /* Networking */,
 				8DE32A2329110AAC00830695 /* LoadResourcePresenter */,
 				8DE32A2D29110AAC00830695 /* LoadResourcePresenterTests */,
-				8D5FA2822914F760002BB874 /* PodcastsGenresList Module */,
-				8D5FA2832914F7A9002BB874 /* BestPodcastsList Module */,
+				8D5FA2822914F760002BB874 /* PodcastsGenresList Feature */,
+				8D5FA2832914F7A9002BB874 /* BestPodcastsList Feature */,
 				8DA0930D28BF59C900C4C68D /* Products */,
 				8DC3521128D1E48700F12FD9 /* Frameworks */,
 			);

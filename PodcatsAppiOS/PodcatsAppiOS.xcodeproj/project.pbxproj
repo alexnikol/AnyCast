@@ -18,7 +18,6 @@
 		8D5FA2572913C539002BB874 /* ListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2532913C539002BB874 /* ListViewController+DSLHelpers.swift */; };
 		8D5FA2592913C539002BB874 /* BestPodcastsLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2552913C539002BB874 /* BestPodcastsLoaderSpy.swift */; };
 		8D5FA25B2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA25A2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift */; };
-		8D5FA25E2913C611002BB874 /* BestPodcastsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5FA25C2913C611002BB874 /* BestPodcastsList.framework */; };
 		8D5FA25F2913C611002BB874 /* BestPodcastsList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5FA25C2913C611002BB874 /* BestPodcastsList.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D5FA2602913C611002BB874 /* BestPodcastsListiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5FA25D2913C611002BB874 /* BestPodcastsListiOS.framework */; };
 		8D5FA2612913C611002BB874 /* BestPodcastsListiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5FA25D2913C611002BB874 /* BestPodcastsListiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -146,7 +145,6 @@
 				8DEB7E1328FDDA9F003AF72F /* BestPodcastsList.framework in Frameworks */,
 				8DE32A4629110CF800830695 /* LoadResourcePresenter.framework in Frameworks */,
 				8D5C206528FE925E006CD42F /* URLSessionHTTPClient.framework in Frameworks */,
-				8D5FA25E2913C611002BB874 /* BestPodcastsList.framework in Frameworks */,
 				8DEB7E1528FDDA9F003AF72F /* HTTPClient.framework in Frameworks */,
 				8D5FA2602913C611002BB874 /* BestPodcastsListiOS.framework in Frameworks */,
 			);

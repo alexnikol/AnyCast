@@ -218,7 +218,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         let sut = BestPodcastsUIComposer.bestPodcastComposed(
             genreID: genreID,
             podcastsLoader: loader.podcastsPublisher,
-            imageLoader: loader
+            imageLoader: loader.imageDataPublisher
         )
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)

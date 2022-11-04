@@ -51,6 +51,18 @@ class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
         }
     }
     
+    func imageDataPublisher(from url: URL) -> AnyPublisher<Data, Error> {
+        var task: PodcastImageDataLoaderTask?
+        return Deferred {
+            Future { completion in
+                task = self.loadImageData(from: url, completion: completion)
+            }
+            .handleEvents(receiveCancel: {
+                task?.cancel()
+            })
+        }.eraseToAnyPublisher()
+    }
+    
     func completeImageLoading(with imageData: Data = Data(), at index: Int = 0) {
         imageRequests[index].completion(.success(imageData))
     }

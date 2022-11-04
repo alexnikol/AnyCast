@@ -5,6 +5,6 @@ set -eo pipefail
 xcodebuild -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace \
             -scheme Podcats \
             -sdk iphoneos \
-            -configuration AppStoreDistribution \
+            -configuration "Release" \
             -archivePath $PWD/build/Podcats.xcarchive \
             clean archive | xcpretty

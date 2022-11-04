@@ -2,7 +2,7 @@ name: Deploying
 on:
   push:
     branches:
-      - feature/image-data-loader
+      - feature/image-data-loader234234
 jobs:
   deploy:
     name: Deploying to Testflight

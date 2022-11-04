@@ -20,7 +20,7 @@ jobs:
 
     - name: Install provisioning profile
       run: |
-        gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/com.podcats.app.product.iOS.mobileprovision .github/secrets/com.podcats.app.product.iOS.mobileprovision1.gpg
+        gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/com.podcats.app.product.iOS.mobileprovision .github/secrets/com.podcats.app.product.iOS.mobileprovision.gpg
         mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
         cp .github/secrets/com.podcats.app.product.iOS.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 

@@ -5,6 +5,7 @@ set -eo pipefail
 xcodebuild -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace \
             -scheme Podcats \
             -sdk iphoneos \
-            -configuration "Release" \
-            -archivePath $PWD/build/Podcats.xcarchive \
+            -configuration Release \
+            -derivedDataPath "DerivedData" \
+            -archivePath "DerivedData/Archive/EssentialApp.xcarchive" \
             clean archive | xcpretty

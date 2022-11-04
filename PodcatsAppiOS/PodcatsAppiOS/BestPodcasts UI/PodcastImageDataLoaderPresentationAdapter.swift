@@ -1,17 +1,18 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import Combine
 import LoadResourcePresenter
 import BestPodcastsList
 import BestPodcastsListiOS
 
 final class PodcastImageDataLoaderPresentationAdapter: PodcastCellControllerDelegate {
     private let model: PodcastImageViewModel
-    private let imageLoader: PodcastImageDataLoader
+    private let imageLoader: (URL) -> AnyPublisher<Data, Error>
     var presenter: LoadResourcePresenter<Data, WeakRefVirtualProxy<PodcastCellController>>?
-    var task: PodcastImageDataLoaderTask?
+    var cancellable: AnyCancellable?
     
-    init(model: PodcastImageViewModel, imageLoader: PodcastImageDataLoader) {
+    init(model: PodcastImageViewModel, imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>) {
         self.model = model
         self.imageLoader = imageLoader
     }
@@ -19,18 +20,23 @@ final class PodcastImageDataLoaderPresentationAdapter: PodcastCellControllerDele
     func didRequestImage() {
         presenter?.didStartLoading()
         
-        task = imageLoader.loadImageData(from: model.image, completion: { [weak self] result in
-            switch result {
-            case let .success(data):
-                self?.presenter?.didFinishLoading(with: data)
+        cancellable = imageLoader(model.image)
+            .dispatchOnMainQueue()
+            .sink(receiveCompletion: { [weak self] completion in
                 
-            case let .failure(error):
-                self?.presenter?.didFinishLoading(with: error)
-            }
-        })
+                switch completion {
+                case .finished: break
+                    
+                case let .failure(error):
+                    self?.presenter?.didFinishLoading(with: error)
+                }
+                
+            }, receiveValue: { [weak self] data in
+                self?.presenter?.didFinishLoading(with: data)
+            })
     }
     
     func didCancelImageLoad() {
-        task?.cancel()
+        cancellable?.cancel()
     }
 }

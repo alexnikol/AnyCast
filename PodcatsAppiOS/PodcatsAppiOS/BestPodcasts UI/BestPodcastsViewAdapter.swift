@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import Combine
 import LoadResourcePresenter
 import BestPodcastsList
 import BestPodcastsListiOS
@@ -8,10 +9,11 @@ import BestPodcastsListiOS
 final class BestPodcastsViewAdapter: ResourceView {
     typealias ResourceViewModel = BestPodcastsPresenterViewModel
     
-    private let imageLoader: PodcastImageDataLoader
+    private let imageLoader: (URL) -> AnyPublisher<Data, Error>
+    private var cancellable: AnyCancellable?
     weak var controller: ListViewController?
     
-    init(controller: ListViewController, imageLoader: PodcastImageDataLoader) {
+    init(controller: ListViewController, imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>) {
         self.controller = controller
         self.imageLoader = imageLoader
     }

@@ -17,4 +17,8 @@ public final class PodcastCell: UITableViewCell, NibReusable {
         imageContainer.layer.cornerRadius = 4.0
         thumbnailImageView.clipsToBounds = true
     }
+    
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+    }
 }

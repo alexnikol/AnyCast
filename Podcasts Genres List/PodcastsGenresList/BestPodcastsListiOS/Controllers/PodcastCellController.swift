@@ -23,10 +23,15 @@ public final class PodcastCellController: NSObject {
 
     func cancelLoad() {
         cellDelegate.didCancelImageLoad()
+        releaseCellForResuse()
     }
     
     func preload() {
         cellDelegate.didRequestImage()
+    }
+    
+    private func releaseCellForResuse() {
+        cell = nil
     }
 }
 
@@ -50,7 +55,7 @@ extension PodcastCellController: ResourceErrorView {
     }
 }
 
-extension PodcastCellController: CellController {    
+extension PodcastCellController: CellController {
     public var delegate: UITableViewDelegate? {
         return self
     }
@@ -65,12 +70,14 @@ extension PodcastCellController: CellController {
 }
 
 extension PodcastCellController: UITableViewDelegate {
+    
     public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cancelLoad()
     }
 }
 
 extension PodcastCellController: UITableViewDataSource {
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -83,6 +90,7 @@ extension PodcastCellController: UITableViewDataSource {
         cell?.languageValueLabel.text = model.languageValueLabel
         cell?.typeValueLabel.text = model.typeValueLabel
         cell?.typeStaticLabel.text = model.typeStaticLabel
+        cell?.thumbnailImageView.image = nil
 
         cellDelegate.didRequestImage()
         return cell!

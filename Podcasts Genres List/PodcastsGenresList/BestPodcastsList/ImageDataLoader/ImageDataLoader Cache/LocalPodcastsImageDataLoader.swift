@@ -61,8 +61,8 @@ public class LocalPodcastsImageDataLoader: PodcastImageDataLoader {
     }
 }
 
-extension LocalPodcastsImageDataLoader {
-    public typealias SaveResult = Swift.Result<Void, Swift.Error>
+extension LocalPodcastsImageDataLoader: PodcastImageDataCache {
+    public typealias SaveResult = PodcastImageDataCache.SaveResult
     
     public enum SaveError: Swift.Error {
         case failed

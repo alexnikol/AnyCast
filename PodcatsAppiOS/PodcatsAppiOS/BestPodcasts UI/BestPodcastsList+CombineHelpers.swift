@@ -4,7 +4,7 @@ import Foundation
 import Combine
 import BestPodcastsList
 
-extension LocalPodcastsImageDataLoader {
+extension PodcastImageDataLoader {
     typealias Publisher = AnyPublisher<Data, Swift.Error>
     
     func loadPublisher(from url: URL) -> Publisher {
@@ -20,16 +20,12 @@ extension LocalPodcastsImageDataLoader {
     }
 }
 
-protocol PodcastImageDataCache {
-    typealias Result = Swift.Result<Void, Error>
-    
-    func save(_ data: Data, for url: URL, completion: @escaping (Result) -> Void)
-}
-
 extension Publisher where Output == Data {
     func caching(to cache: PodcastImageDataCache, for url: URL) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { data in
-            cache.save(data, for: url, completion: { _ in })
+            cache.save(data, for: url, completion: { result in
+                print("RESULTT save for url: \(result)")
+            })
         }).eraseToAnyPublisher()
     }
 }

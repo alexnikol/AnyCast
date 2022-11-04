@@ -25,6 +25,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             bundle: Bundle(for: CoreDataGenresStore.self))
     }()
     
+    private lazy var podcastsImageDataStore: PodcastsImageDataStore = {
+        try! CoreDataPodcastsImageDataStore(
+            storeURL: NSPersistentContainer
+                .defaultDirectoryURL()
+                .appendingPathComponent("best-podcasts-image-data-store.sqlite")
+        )
+    }()
+    
     private lazy var localGenresLoader: LocalGenresLoader = {
         LocalGenresLoader(store: genresStore, currentDate: Date.init)
     }()
@@ -87,7 +95,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let podcasts = BestPodcastsUIComposer.bestPodcastComposed(
             genreID: genre.id,
             podcastsLoader: makeBestPodcastsRemoteLoader,
-            imageLoader: RemoteImageDataLoader(client: httpClient)
+            imageLoader: makeLocalPodcastImageDataLoaderWithRemoteFallback(for:)
         )
         (window?.rootViewController as? UINavigationController)?.pushViewController(podcasts, animated: true)
     }
@@ -101,6 +109,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return httpClient
             .loadPublisher(from: urlBuilder.url!)
             .tryMap(BestPodastsItemsMapper.map)
+            .eraseToAnyPublisher()
+    }
+    
+    private func makeLocalPodcastImageDataLoaderWithRemoteFallback(for url: URL) -> AnyPublisher<Data, Error> {
+        let localLoader = LocalPodcastsImageDataLoader(store: podcastsImageDataStore, currentDate: Date.init)
+        let remoteLoader = RemoteImageDataLoader(client: httpClient)
+        
+        return localLoader
+            .loadPublisher(from: url)
+            .handleEvents(receiveOutput: { localData in
+                print("RESULTT LOCALDATA for url: \(localData) \(url)")
+            })
+            .fallback(to: {
+                remoteLoader
+                    .loadPublisher(from: url)
+                    .handleEvents(receiveOutput: { data in
+                        print("RESULTT REMOTERESULT for url: \(data) \(url)")
+                    })
+                    .caching(to: localLoader, for: url)
+            })
             .eraseToAnyPublisher()
     }
 }

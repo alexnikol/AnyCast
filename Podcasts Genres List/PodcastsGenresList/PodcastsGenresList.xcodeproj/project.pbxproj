@@ -690,6 +690,49 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		8D5FA2802914F6CE002BB874 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8DFAEAEA28FD76670028B060 /* HTTPClient */,
+				8D5FA2812914F72F002BB874 /* Infrastructure */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8D5FA2812914F72F002BB874 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				8D5C204228FE8EC4006CD42F /* URLSessionHTTPClient */,
+				8D5C204C28FE8EC4006CD42F /* URLSessionHTTPClientTests */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		8D5FA2822914F760002BB874 /* PodcastsGenresList Module */ = {
+			isa = PBXGroup;
+			children = (
+				8DA0930E28BF59C900C4C68D /* PodcastsGenresList */,
+				8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */,
+				8D745E3428C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
+				8D75815528D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */,
+				8DC351FB28D1DB1E00F12FD9 /* PodcastsGenresListiOS */,
+				8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */,
+			);
+			path = "PodcastsGenresList Module";
+			sourceTree = "<group>";
+		};
+		8D5FA2832914F7A9002BB874 /* BestPodcastsList Module */ = {
+			isa = PBXGroup;
+			children = (
+				8DFAEAB028FD41730028B060 /* BestPodcastsList */,
+				8DFAEABA28FD41740028B060 /* BestPodcastsListTests */,
+				8D5C208D28FFE5DD006CD42F /* BestPodcastsListAPIEndToEndTests */,
+				8DE329EE29100E9B00830695 /* BestPodcastsListiOS */,
+				8DE329F829100E9B00830695 /* BestPodcastsListiOSTests */,
+			);
+			path = "BestPodcastsList Module";
+			sourceTree = "<group>";
+		};
 		8D72D05D28F82A1B00C17DDC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,22 +860,11 @@
 			isa = PBXGroup;
 			children = (
 				8DA0932A28BF5E3700C4C68D /* README.md */,
-				8DFAEAEA28FD76670028B060 /* HTTPClient */,
-				8D5C204228FE8EC4006CD42F /* URLSessionHTTPClient */,
-				8D5C204C28FE8EC4006CD42F /* URLSessionHTTPClientTests */,
+				8D5FA2802914F6CE002BB874 /* Networking */,
 				8DE32A2329110AAC00830695 /* LoadResourcePresenter */,
 				8DE32A2D29110AAC00830695 /* LoadResourcePresenterTests */,
-				8DA0930E28BF59C900C4C68D /* PodcastsGenresList */,
-				8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */,
-				8D745E3428C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
-				8D75815528D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */,
-				8DFAEAB028FD41730028B060 /* BestPodcastsList */,
-				8DFAEABA28FD41740028B060 /* BestPodcastsListTests */,
-				8D5C208D28FFE5DD006CD42F /* BestPodcastsListAPIEndToEndTests */,
-				8DC351FB28D1DB1E00F12FD9 /* PodcastsGenresListiOS */,
-				8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */,
-				8DE329EE29100E9B00830695 /* BestPodcastsListiOS */,
-				8DE329F829100E9B00830695 /* BestPodcastsListiOSTests */,
+				8D5FA2822914F760002BB874 /* PodcastsGenresList Module */,
+				8D5FA2832914F7A9002BB874 /* BestPodcastsList Module */,
 				8DA0930D28BF59C900C4C68D /* Products */,
 				8DC3521128D1E48700F12FD9 /* Frameworks */,
 			);

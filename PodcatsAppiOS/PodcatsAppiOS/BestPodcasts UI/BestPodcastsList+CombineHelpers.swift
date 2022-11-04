@@ -23,9 +23,7 @@ extension PodcastImageDataLoader {
 extension Publisher where Output == Data {
     func caching(to cache: PodcastImageDataCache, for url: URL) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { data in
-            cache.save(data, for: url, completion: { result in
-                print("RESULTT save for url: \(result)")
-            })
+            cache.save(data, for: url, completion: { _ in })
         }).eraseToAnyPublisher()
     }
 }

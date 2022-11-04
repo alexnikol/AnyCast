@@ -817,22 +817,22 @@
 			isa = PBXGroup;
 			children = (
 				8DA0932A28BF5E3700C4C68D /* README.md */,
+				8DFAEAEA28FD76670028B060 /* HTTPClient */,
+				8D5C204228FE8EC4006CD42F /* URLSessionHTTPClient */,
+				8D5C204C28FE8EC4006CD42F /* URLSessionHTTPClientTests */,
+				8DE32A2329110AAC00830695 /* LoadResourcePresenter */,
+				8DE32A2D29110AAC00830695 /* LoadResourcePresenterTests */,
 				8DA0930E28BF59C900C4C68D /* PodcastsGenresList */,
 				8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */,
 				8D745E3428C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
 				8D75815528D0AFA800751261 /* PodcastsGenresListCacheIntegrationTests */,
-				8DC351FB28D1DB1E00F12FD9 /* PodcastsGenresListiOS */,
-				8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */,
 				8DFAEAB028FD41730028B060 /* BestPodcastsList */,
 				8DFAEABA28FD41740028B060 /* BestPodcastsListTests */,
 				8D5C208D28FFE5DD006CD42F /* BestPodcastsListAPIEndToEndTests */,
-				8DFAEAEA28FD76670028B060 /* HTTPClient */,
-				8D5C204228FE8EC4006CD42F /* URLSessionHTTPClient */,
-				8D5C204C28FE8EC4006CD42F /* URLSessionHTTPClientTests */,
+				8DC351FB28D1DB1E00F12FD9 /* PodcastsGenresListiOS */,
+				8DC3520528D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */,
 				8DE329EE29100E9B00830695 /* BestPodcastsListiOS */,
 				8DE329F829100E9B00830695 /* BestPodcastsListiOSTests */,
-				8DE32A2329110AAC00830695 /* LoadResourcePresenter */,
-				8DE32A2D29110AAC00830695 /* LoadResourcePresenterTests */,
 				8DA0930D28BF59C900C4C68D /* Products */,
 				8DC3521128D1E48700F12FD9 /* Frameworks */,
 			);
@@ -1599,6 +1599,10 @@
 			projectRoot = "";
 			targets = (
 				8DFAEAE828FD76670028B060 /* HTTPClient */,
+				8D5C204028FE8EC4006CD42F /* URLSessionHTTPClient */,
+				8D5C204728FE8EC4006CD42F /* URLSessionHTTPClientTests */,
+				8DE32A2129110AAC00830695 /* LoadResourcePresenter */,
+				8DE32A2829110AAC00830695 /* LoadResourcePresenterTests */,
 				8DA0930B28BF59C900C4C68D /* PodcastsGenresList */,
 				8DA0931928BF5A0200C4C68D /* PodcastsGenresListTests */,
 				8D745E3228C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */,
@@ -1606,14 +1610,10 @@
 				8DFAEAAE28FD41730028B060 /* BestPodcastsList */,
 				8DFAEAB528FD41740028B060 /* BestPodcastsListTests */,
 				8D5C208B28FFE5DD006CD42F /* BestPodcastsListAPIEndToEndTests */,
-				8D5C204028FE8EC4006CD42F /* URLSessionHTTPClient */,
-				8D5C204728FE8EC4006CD42F /* URLSessionHTTPClientTests */,
 				8DC351F928D1DB1E00F12FD9 /* PodcastsGenresListiOS */,
 				8DC3520028D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */,
 				8DE329EC29100E9B00830695 /* BestPodcastsListiOS */,
 				8DE329F329100E9B00830695 /* BestPodcastsListiOSTests */,
-				8DE32A2129110AAC00830695 /* LoadResourcePresenter */,
-				8DE32A2829110AAC00830695 /* LoadResourcePresenterTests */,
 			);
 		};
 /* End PBXProject section */

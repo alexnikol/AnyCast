@@ -69,11 +69,11 @@ class GenresUISnapshotTests: XCTestCase {
     
     private func genresContent() -> [GenreCellController] {
         return [
-            GenreCellController(model: GenreCellViewModel(name: "Genre 1", color: .red)),
-            GenreCellController(model: GenreCellViewModel(name: "Genre 2", color: .green)),
-            GenreCellController(model: GenreCellViewModel(name: "Genre 3", color: .blue)),
-            GenreCellController(model: GenreCellViewModel(name: "Genre 4", color: .orange)),
-            GenreCellController(model: GenreCellViewModel(name: "Genre 5", color: .yellow))
+            GenreCellController(model: GenreCellViewModel(name: "Genre 1", color: .red), selection: {}),
+            GenreCellController(model: GenreCellViewModel(name: "Genre 2", color: .green), selection: {}),
+            GenreCellController(model: GenreCellViewModel(name: "Genre 3", color: .blue), selection: {}),
+            GenreCellController(model: GenreCellViewModel(name: "Genre 4", color: .orange), selection: {}),
+            GenreCellController(model: GenreCellViewModel(name: "Genre 5", color: .yellow), selection: {})
         ]
     }
     

@@ -36,7 +36,6 @@
 		8D5C21EB29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C21EA29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift */; };
 		8D5C21ED29014F8B006CD42F /* CoreDataPodcastImageDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C21EC29014F8B006CD42F /* CoreDataPodcastImageDataStoreTests.swift */; };
 		8D5C21F129015441006CD42F /* CoreDataPodcastsImageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5C21F029015441006CD42F /* CoreDataPodcastsImageDataStore.swift */; };
-		8D5C21F8290180DB006CD42F /* HTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAE928FD76670028B060 /* HTTPClient.framework */; };
 		8D5FA22B2912A83D002BB874 /* PodcastImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA22A2912A83D002BB874 /* PodcastImageViewModel.swift */; };
 		8D5FA22D2912C528002BB874 /* FeedErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA22C2912C528002BB874 /* FeedErrorView.swift */; };
 		8D5FA2302912D76C002BB874 /* LoadResourcePresenter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5FA2322912D76C002BB874 /* LoadResourcePresenter.strings */; };
@@ -528,7 +527,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D5C21F8290180DB006CD42F /* HTTPClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

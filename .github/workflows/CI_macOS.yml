@@ -32,6 +32,6 @@ jobs:
 
     - name: Convert result to report with xcresulttool
     - uses: kishikawakatsumi/xcresulttool@v1
-        with:
-          path: TestResults.xcresult
-        if: success() || failure()
+      with:
+        path: TestResults.xcresult
+      if: success() || failure()

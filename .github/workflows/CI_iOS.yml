@@ -4,7 +4,8 @@ name: CI iOS
 # Triggers the workflow on pull request events but only for the master branch.
 on:
   push:
-    branches: [ main ]
+    # branches: [ main ]
+    branches: [ feature/image-data-loader ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,4 +28,8 @@ jobs:
       run: /usr/bin/xcodebuild -version
       
     - name: Build and Test
-      run: xcodebuild clean build test -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES
+      run: xcodebuild clean build test -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES  -resultBundlePath TestResults
+    - uses: kishikawakatsumi/xcresulttool@v1
+    with:
+      path: TestResults.xcresult
+    if: success() || failure()

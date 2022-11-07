@@ -37,7 +37,7 @@ jobs:
       run: |
         buildNumber=$(($GITHUB_RUN_NUMBER + 1))
         echo $buildNumber
-        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion 3" PodcatsAppiOS/PodcatsAppiOS/Info.plist
+        /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string $buildNumber" PodcatsAppiOS/PodcatsAppiOS/Info.plist
 
     - name: Build
       run: xcodebuild clean archive -sdk iphoneos -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -configuration "Release" -scheme "Podcats" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/Podcats.xcarchive"

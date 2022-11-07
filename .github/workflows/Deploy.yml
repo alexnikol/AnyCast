@@ -33,11 +33,11 @@ jobs:
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
 
-    - name: Xcode build number auto update
-      uses: poad/xcode-build-number-auto-update@v1
-      with:
-          path: ./PodcatsAppiOS/PodcatsAppiOS/Info.plist
-          new-number: ${{ github.run_number }}
+    - name: Set build number
+      run: |
+        buildNumber=$(($GITHUB_RUN_NUMBER + 1))
+        echo $buildNumber
+        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" "PodcatsAppiOS/PodcatsAppiOSf/Info.plist"
 
     - name: Build
       run: xcodebuild clean archive -sdk iphoneos -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -configuration "Release" -scheme "Podcats" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/Podcats.xcarchive"

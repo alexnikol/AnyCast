@@ -34,6 +34,6 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         debug: true
-        coverageCommand: slather coverage -s --output-directory slather-test-output --scheme CI_macOS PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj
+        coverageCommand: slather coverage --scheme CI_macOS --show ./PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj
         coverageLocations: |
           ./slather-test-output/cobertura.xml

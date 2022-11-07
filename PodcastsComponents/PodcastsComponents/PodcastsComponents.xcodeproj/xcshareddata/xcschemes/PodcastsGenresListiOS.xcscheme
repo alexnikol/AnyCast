@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DE329EC29100E9B00830695"
-               BuildableName = "BestPodcastsListiOS.framework"
-               BlueprintName = "BestPodcastsListiOS"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
+               BuildableName = "PodcastsGenresListiOS.framework"
+               BlueprintName = "PodcastsGenresListiOS"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DE329EC29100E9B00830695"
-            BuildableName = "BestPodcastsListiOS.framework"
-            BlueprintName = "BestPodcastsListiOS"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
+            BuildableName = "PodcastsGenresListiOS.framework"
+            BlueprintName = "PodcastsGenresListiOS"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -44,10 +44,10 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DE329F329100E9B00830695"
-               BuildableName = "BestPodcastsListiOSTests.xctest"
-               BlueprintName = "BestPodcastsListiOSTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               BlueprintIdentifier = "8DC3520028D1DB1E00F12FD9"
+               BuildableName = "PodcastsGenresListiOSTests.xctest"
+               BlueprintName = "PodcastsGenresListiOSTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -72,10 +72,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DE329EC29100E9B00830695"
-            BuildableName = "BestPodcastsListiOS.framework"
-            BlueprintName = "BestPodcastsListiOS"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
+            BuildableName = "PodcastsGenresListiOS.framework"
+            BlueprintName = "PodcastsGenresListiOS"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -17,7 +17,21 @@
                BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
                BuildableName = "URLSessionHTTPClient.framework"
                BlueprintName = "URLSessionHTTPClient"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D5C204728FE8EC4006CD42F"
+               BuildableName = "URLSessionHTTPClientTests.xctest"
+               BlueprintName = "URLSessionHTTPClientTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,7 +40,18 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
+            BuildableName = "URLSessionHTTPClient.framework"
+            BlueprintName = "URLSessionHTTPClient"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO"
@@ -36,7 +61,7 @@
                BlueprintIdentifier = "8D5C204728FE8EC4006CD42F"
                BuildableName = "URLSessionHTTPClientTests.xctest"
                BlueprintName = "URLSessionHTTPClientTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,15 +83,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
-            BuildableName = "URLSessionHTTPClient.framework"
-            BlueprintName = "URLSessionHTTPClient"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

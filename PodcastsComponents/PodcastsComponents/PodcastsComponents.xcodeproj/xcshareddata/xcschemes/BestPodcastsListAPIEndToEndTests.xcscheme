@@ -8,16 +8,16 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
-               BuildableName = "PodcastsGenresListiOS.framework"
-               BlueprintName = "PodcastsGenresListiOS"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
+               BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
+               BlueprintName = "BestPodcastsListAPIEndToEndTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,17 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
-            BuildableName = "PodcastsGenresListiOS.framework"
-            BlueprintName = "PodcastsGenresListiOS"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
+            BuildableName = "BestPodcastsList.framework"
+            BlueprintName = "BestPodcastsList"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
+            BuildableName = "URLSessionHTTPClient.framework"
+            BlueprintName = "URLSessionHTTPClient"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -44,10 +51,10 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DC3520028D1DB1E00F12FD9"
-               BuildableName = "PodcastsGenresListiOSTests.xctest"
-               BlueprintName = "PodcastsGenresListiOSTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
+               BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
+               BlueprintName = "BestPodcastsListAPIEndToEndTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -69,15 +76,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
-            BuildableName = "PodcastsGenresListiOS.framework"
-            BlueprintName = "PodcastsGenresListiOS"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

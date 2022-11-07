@@ -17,7 +17,21 @@
                BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
                BuildableName = "BestPodcastsList.framework"
                BlueprintName = "BestPodcastsList"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DFAEAB528FD41740028B060"
+               BuildableName = "BestPodcastsListTests.xctest"
+               BlueprintName = "BestPodcastsListTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,7 +40,18 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
+            BuildableName = "BestPodcastsList.framework"
+            BlueprintName = "BestPodcastsList"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO"
@@ -36,7 +61,7 @@
                BlueprintIdentifier = "8DFAEAB528FD41740028B060"
                BuildableName = "BestPodcastsListTests.xctest"
                BlueprintName = "BestPodcastsListTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -64,7 +89,7 @@
             BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
             BuildableName = "BestPodcastsList.framework"
             BlueprintName = "BestPodcastsList"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DA0930B28BF59C900C4C68D"
-               BuildableName = "PodcastsGenresList.framework"
-               BlueprintName = "PodcastsGenresList"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               BlueprintIdentifier = "8DE32A2129110AAC00830695"
+               BuildableName = "LoadResourcePresenter.framework"
+               BlueprintName = "LoadResourcePresenter"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DE32A2829110AAC00830695"
+               BuildableName = "LoadResourcePresenterTests.xctest"
+               BlueprintName = "LoadResourcePresenterTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,29 +41,27 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      enableThreadSanitizer = "YES"
       codeCoverageEnabled = "YES"
       onlyGenerateCoverageForSpecifiedTargets = "YES">
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DA0930B28BF59C900C4C68D"
-            BuildableName = "PodcastsGenresList.framework"
-            BlueprintName = "PodcastsGenresList"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            BlueprintIdentifier = "8DE32A2129110AAC00830695"
+            BuildableName = "LoadResourcePresenter.framework"
+            BlueprintName = "LoadResourcePresenter"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO"
-            parallelizable = "YES"
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DA0931928BF5A0200C4C68D"
-               BuildableName = "PodcastsGenresListTests.xctest"
-               BlueprintName = "PodcastsGenresListTests"
-               ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+               BlueprintIdentifier = "8DE32A2829110AAC00830695"
+               BuildableName = "LoadResourcePresenterTests.xctest"
+               BlueprintName = "LoadResourcePresenterTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -74,10 +86,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DA0930B28BF59C900C4C68D"
-            BuildableName = "PodcastsGenresList.framework"
-            BlueprintName = "PodcastsGenresList"
-            ReferencedContainer = "container:PodcastsGenresList.xcodeproj">
+            BlueprintIdentifier = "8DE32A2129110AAC00830695"
+            BuildableName = "LoadResourcePresenter.framework"
+            BlueprintName = "LoadResourcePresenter"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

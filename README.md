@@ -3,7 +3,8 @@ Only for non-commercial use
 
 > **Multiplatform podcast application**
 
-[![CI macOS](https://github.com/alexnikol/Podcats/actions/workflows/CI_macOS.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI_macOS.yml) [![CI iOS](https://github.com/alexnikol/Podcats/actions/workflows/CI_iOS.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI_iOS.yml) 
+[![Deploy](https://github.com/alexnikol/Podcats/actions/workflows/Deploy.yml/badge.svg?event=deployment)](https://github.com/alexnikol/Podcats/actions/workflows/Deploy.yml) [![CI macOS](https://github.com/alexnikol/Podcats/actions/workflows/CI_macOS.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI_macOS.yml) [![CI iOS](https://github.com/alexnikol/Podcats/actions/workflows/CI_iOS.yml/badge.svg)](https://github.com/alexnikol/Podcats/actions/workflows/CI_iOS.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8162b7af4639d0871449/maintainability)](https://codeclimate.com/github/alexnikol/Podcats/maintainability)
 
 ![Large logo](Resources/large_icon.svg)
 

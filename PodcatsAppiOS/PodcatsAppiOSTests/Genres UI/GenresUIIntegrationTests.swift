@@ -80,7 +80,7 @@ final class GenresUIIntegrationTests: XCTestCase {
         let (sut, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
-        let exp = expectation(description: "Wait for bacground queue")
+        let exp = expectation(description: "Wait for background queue")
         DispatchQueue.global().async {
             loader.completeGenresLoading(at: 0)
             exp.fulfill()
@@ -96,7 +96,7 @@ final class GenresUIIntegrationTests: XCTestCase {
         line: UInt = #line
     ) -> (sut: GenresListViewController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = GenresUIComposer.genresComposedWith(loader: loader.loadPublisher)
+        let sut = GenresUIComposer.genresComposedWith(loader: loader.loadPublisher, selection: { _ in })
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)

@@ -7,6 +7,8 @@ import Combine
 import CoreData
 import PodcastsGenresList
 import PodcastsGenresListiOS
+import BestPodcastsList
+import BestPodcastsListiOS
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -21,6 +23,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 .defaultDirectoryURL()
                 .appendingPathComponent("genres-store.sqlite"),
             bundle: Bundle(for: CoreDataGenresStore.self))
+    }()
+    
+    private lazy var podcastsImageDataStore: PodcastsImageDataStore = {
+        try! CoreDataPodcastsImageDataStore(
+            storeURL: NSPersistentContainer
+                .defaultDirectoryURL()
+                .appendingPathComponent("best-podcasts-image-data-store.sqlite")
+        )
     }()
     
     private lazy var localGenresLoader: LocalGenresLoader = {
@@ -45,10 +55,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        let genresController = GenresUIComposer.genresComposedWith(loader: makeLocalGenresLoaderWithRemoteFallback)
-        let nav = UINavigationController(rootViewController: genresController)
+        let rootController = configureGenresUI()
+        let nav = UINavigationController(rootViewController: rootController)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
+    }
+    
+    func configureGenresUI() -> UIViewController {
+        return GenresUIComposer.genresComposedWith(
+            loader: makeLocalGenresLoaderWithRemoteFallback,
+            selection: showBestPodcasts
+        )
     }
     
     private func makeLocalGenresLoaderWithRemoteFallback() -> AnyPublisher<[Genre], Error> {
@@ -72,5 +89,46 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     .tryMap(GenresItemsMapper.map)
                     .caching(to: localGenresLoader)
             })
+    }
+    
+    func showBestPodcasts(byGenre genre: Genre) {
+        let podcasts = BestPodcastsUIComposer.bestPodcastComposed(
+            genreID: genre.id,
+            podcastsLoader: makeBestPodcastsRemoteLoader,
+            imageLoader: makeLocalPodcastImageDataLoaderWithRemoteFallback(for:)
+        )
+        (window?.rootViewController as? UINavigationController)?.pushViewController(podcasts, animated: true)
+    }
+    
+    private func makeBestPodcastsRemoteLoader(byGenreID genreID: Int) -> AnyPublisher<BestPodcastsList, Swift.Error> {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = "listen-api-test.listennotes.com"
+        urlBuilder.path = "/api/v2/best_podcasts"
+        urlBuilder.queryItems = [URLQueryItem(name: "genre_id", value: String(genreID))]
+        return httpClient
+            .loadPublisher(from: urlBuilder.url!)
+            .tryMap(BestPodastsItemsMapper.map)
+            .eraseToAnyPublisher()
+    }
+    
+    private func makeLocalPodcastImageDataLoaderWithRemoteFallback(for url: URL) -> AnyPublisher<Data, Error> {
+        let localLoader = LocalPodcastsImageDataLoader(store: podcastsImageDataStore, currentDate: Date.init)
+        let remoteLoader = RemoteImageDataLoader(client: httpClient)
+        
+        return localLoader
+            .loadPublisher(from: url)
+            .handleEvents(receiveOutput: { localData in
+                print("RESULTT LOCALDATA for url: \(localData) \(url)")
+            })
+            .fallback(to: {
+                remoteLoader
+                    .loadPublisher(from: url)
+                    .handleEvents(receiveOutput: { data in
+                        print("RESULTT REMOTERESULT for url: \(data) \(url)")
+                    })
+                    .caching(to: localLoader, for: url)
+            })
+            .eraseToAnyPublisher()
     }
 }

@@ -4,12 +4,16 @@ import UIKit
 import Combine
 import PodcastsGenresList
 import PodcastsGenresListiOS
+import LoadResourcePresenter
 
 final class GenresUIComposer {
     
     private init() {}
     
-    static func genresComposedWith(loader: @escaping () -> AnyPublisher<[Genre], Error>) -> GenresListViewController {        
+    static func genresComposedWith(
+        loader: @escaping () -> AnyPublisher<[Genre], Error>,
+        selection: @escaping (Genre) -> Void
+    ) -> GenresListViewController {
         let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader)
         let refreshController = GenresRefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)
@@ -18,9 +22,11 @@ final class GenresUIComposer {
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: GenresViewAdapter(
                 controller: genresController,
-                genresColorProvider: makeGenresColorProvider()
+                genresColorProvider: makeGenresColorProvider(),
+                selection: selection
             ),
             loadingView: WeakRefVirtualProxy(refreshController),
+            errorView: WeakRefVirtualProxy(genresController),
             mapper: GenresPresenter.map
         )
         return genresController

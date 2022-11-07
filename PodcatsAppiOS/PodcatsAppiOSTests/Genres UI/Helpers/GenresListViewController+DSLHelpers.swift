@@ -8,6 +8,12 @@ extension GenresListViewController {
         collectionView.refreshControl?.simulatePullToRefresh()
     }
     
+    func simulateTapOnGenre(at index: Int) {
+        let delegate = collectionView.delegate
+        let indexPath = IndexPath(row: index, section: genresSection)
+        delegate?.collectionView?(collectionView, didSelectItemAt: indexPath)
+    }
+    
     var isShowinLoadingIndicator: Bool {
         return collectionView.refreshControl?.isRefreshing == true
     }

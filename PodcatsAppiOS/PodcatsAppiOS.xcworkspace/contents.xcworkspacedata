@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../Podcasts Genres List/PodcastsGenresList/PodcastsGenresList.xcodeproj">
+      location = "group:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
    </FileRef>
    <FileRef
       location = "container:PodcatsAppiOS.xcodeproj">

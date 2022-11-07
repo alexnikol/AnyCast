@@ -5,6 +5,78 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
+               BuildableName = "BestPodcastsList.framework"
+               BlueprintName = "BestPodcastsList"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DFAEAE828FD76670028B060"
+               BuildableName = "HTTPClient.framework"
+               BlueprintName = "HTTPClient"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DE32A2129110AAC00830695"
+               BuildableName = "LoadResourcePresenter.framework"
+               BlueprintName = "LoadResourcePresenter"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
+               BuildableName = "URLSessionHTTPClient.framework"
+               BlueprintName = "URLSessionHTTPClient"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DA0930B28BF59C900C4C68D"
+               BuildableName = "PodcastsGenresList.framework"
+               BlueprintName = "PodcastsGenresList"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -139,6 +211,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
+            BuildableName = "BestPodcastsList.framework"
+            BlueprintName = "BestPodcastsList"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

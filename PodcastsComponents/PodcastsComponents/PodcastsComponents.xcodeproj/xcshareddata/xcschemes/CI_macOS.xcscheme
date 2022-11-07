@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DFAEAE828FD76670028B060"
+               BuildableName = "HTTPClient.framework"
+               BlueprintName = "HTTPClient"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
                BuildableName = "BestPodcastsList.framework"
                BlueprintName = "BestPodcastsList"
@@ -62,20 +76,6 @@
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DFAEAE828FD76670028B060"
-               BuildableName = "HTTPClient.framework"
-               BlueprintName = "HTTPClient"
-               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -83,7 +83,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -111,6 +112,13 @@
             BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
             BuildableName = "URLSessionHTTPClient.framework"
             BlueprintName = "URLSessionHTTPClient"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8DFAEAE828FD76670028B060"
+            BuildableName = "HTTPClient.framework"
+            BlueprintName = "HTTPClient"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -186,9 +194,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D5C204728FE8EC4006CD42F"
-               BuildableName = "URLSessionHTTPClientTests.xctest"
-               BlueprintName = "URLSessionHTTPClientTests"
+               BlueprintIdentifier = "8DB834ED2919531E00969996"
+               BuildableName = "HTTPClientTests.xctest"
+               BlueprintName = "HTTPClientTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -197,9 +205,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DB834ED2919531E00969996"
-               BuildableName = "HTTPClientTests.xctest"
-               BlueprintName = "HTTPClientTests"
+               BlueprintIdentifier = "8D5C204728FE8EC4006CD42F"
+               BuildableName = "URLSessionHTTPClientTests.xctest"
+               BlueprintName = "URLSessionHTTPClientTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>

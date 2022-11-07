@@ -26,8 +26,14 @@ jobs:
         path: CImacOSResults.xcresult
       if: success() || failure()
 
-    - name: Code Climate Test Reporter
-      uses: aktions/codeclimate-test-reporter@v1
+    - name: Format code coverage
+      uses: ./.github/actions/cc-test-reporter
       with:
-        codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
-        command: after-build
+        subcommand: "format-coverage -t lcov ./coverage/lcov.info"
+
+    - name: upload code coverage
+      uses: ./.github/actions/cc-test-reporter
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        subcommand: "upload-coverage"

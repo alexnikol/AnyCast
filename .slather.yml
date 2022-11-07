@@ -1,0 +1,8 @@
+coverage_service: cobertura_xml
+output_directory: slather-test-output
+scheme: CI_macOS
+workspace: PodcatsAppiOS/PodcatsAppiOS.xcworkspace
+project: PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj
+ignore:
+    - ../**/*/Xcode*
+    - ../core/*

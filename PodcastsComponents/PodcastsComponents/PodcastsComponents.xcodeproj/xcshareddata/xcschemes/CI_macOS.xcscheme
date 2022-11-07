@@ -28,20 +28,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DFAEAE828FD76670028B060"
-               BuildableName = "HTTPClient.framework"
-               BlueprintName = "HTTPClient"
-               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DE32A2129110AAC00830695"
                BuildableName = "LoadResourcePresenter.framework"
                BlueprintName = "LoadResourcePresenter"

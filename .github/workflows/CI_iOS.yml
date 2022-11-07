@@ -2,7 +2,7 @@ name: CI iOS
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ mainasdad ]
 
 jobs:
   build-and-test:

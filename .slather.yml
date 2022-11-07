@@ -1,8 +1,0 @@
-coverage_service: cobertura_xml
-output_directory: slather-test-output
-build_directory: /tmp/XcodeDerivedDataWithCoverage
-scheme: CI_macOS
-workspace: PodcatsAppiOS/PodcatsAppiOS.xcworkspace
-project: PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj
-ignore:
-  - ProjectTestsGroup/*

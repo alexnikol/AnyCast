@@ -18,18 +18,10 @@ jobs:
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
       
-    - name: Install Slather
-      run: gem install slather
-
     - name: Build and Test
-      run: xcodebuild clean build test -project PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj -scheme "CI_macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -destination "platform=macOS" ONLY_ACTIVE_ARCH=YES -derivedDataPath /tmp/XcodeDerivedDataWithCoverage
+      run: xcodebuild clean build test -project PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj -scheme "CI_macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -destination "platform=macOS" ONLY_ACTIVE_ARCH=YES -resultBundlePath CImacOSResults
 
-    - name: Codeclimate
-      uses: paambaati/codeclimate-action@v3.2.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+    - uses: kishikawakatsumi/xcresulttool@v1
       with:
-        debug: true
-        coverageCommand: slather coverage --scheme CI_macOS --show ./PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj
-        coverageLocations: |
-          ./slather-test-output/cobertura.xml
+        path: CImacOSResults.xcresult
+      if: success() || failure()

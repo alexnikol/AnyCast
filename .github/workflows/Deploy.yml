@@ -1,7 +1,7 @@
 name: Deploy
 
 on:
-  push:
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -36,6 +36,7 @@ jobs:
     - name: Set build number
       run: |
         buildNumber=$(($GITHUB_RUN_NUMBER + 1))
+        echo $buildNumber
         /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" "PodcatsAppiOS/PodcatsAppiOS/Info.plist"
 
     - name: Build

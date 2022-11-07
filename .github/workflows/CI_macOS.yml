@@ -9,16 +9,15 @@ jobs:
     runs-on: macos-12
     timeout-minutes: 10
 
+    steps:
+    - uses: actions/checkout@v2
+
     - name: Badge Action
       uses: emibcn/badge-action@v1.2.4
       label: 'Test coverage'
       status: '53.4%'
       color: 'blue,555,daf'
       path: '.github/badges/coverage.svg'
-
-
-    steps:
-    - uses: actions/checkout@v2
 
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_14.0.app

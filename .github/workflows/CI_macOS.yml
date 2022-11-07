@@ -33,6 +33,6 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        coverageCommand: slather coverage -x PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj
+        coverageCommand: slather coverage -x --output-directory slather-test-output --scheme CI_macOS PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj
         coverageLocations: |
           ./slather-test-output/cobertura.xml

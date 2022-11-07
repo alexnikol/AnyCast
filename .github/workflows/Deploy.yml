@@ -36,7 +36,7 @@ jobs:
     - name: Xcode build number auto update
       uses: poad/xcode-build-number-auto-update@v1
       with:
-          path: ./your_project/Info.plist
+          path: ./PodcatsAppiOS/PodcatsAppiOS/Info.plist
           new-number: ${{ github.run_number }}
 
     - name: Build

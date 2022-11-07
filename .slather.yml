@@ -4,3 +4,5 @@ build_directory: /tmp/XcodeDerivedDataWithCoverage
 scheme: CI_macOS
 workspace: PodcatsAppiOS/PodcatsAppiOS.xcworkspace
 project: PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj
+ignore:
+  - ProjectTestsGroup/*

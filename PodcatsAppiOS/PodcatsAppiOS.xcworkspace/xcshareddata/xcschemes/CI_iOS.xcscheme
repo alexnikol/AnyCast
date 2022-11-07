@@ -130,13 +130,6 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DFAEAE828FD76670028B060"
-            BuildableName = "HTTPClient.framework"
-            BlueprintName = "HTTPClient"
-            ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DE32A2129110AAC00830695"
             BuildableName = "LoadResourcePresenter.framework"
             BlueprintName = "LoadResourcePresenter"

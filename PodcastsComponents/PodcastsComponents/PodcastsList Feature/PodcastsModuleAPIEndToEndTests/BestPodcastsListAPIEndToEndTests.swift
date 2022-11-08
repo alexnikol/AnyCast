@@ -3,10 +3,10 @@
 import XCTest
 import PodcastsModule
 
-class BestPodcastsListAPIEndToEndTests: XCTestCase, EphemeralClientHelpers {
+class BestPodcastsListAPIEndToEndTests: XCTestCase, EphemeralClient {
     
     func test_endToEndTestServerGETBestPodcastsResult_matchesFixedTestBestPodcastsData() {
-        switch getBestPodcastsListResult() {
+        switch fetchResult(from: testServerURL, withMapper: BestPodastsItemsMapper.map) {
         case let .success(bestPodcastsList):
             XCTAssertEqual(bestPodcastsList.genreId, 93)
             XCTAssertEqual(bestPodcastsList.genreName, "Business")
@@ -37,29 +37,10 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase, EphemeralClientHelpers {
     
     // MARK: - Heplers
     
-    private typealias Result = Swift.Result<BestPodcastsList, Error>
-    
-    private func getBestPodcastsListResult(file: StaticString = #file, line: UInt = #line) -> Result? {
-        let testServerURL = URL(string:
-                                    "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Podcasts%2FGET-best-podcasts-by-genre.json?alt=media&token=17e16a8b-88a0-4cf5-b097-9af5ac173475")!
-        var receivedResult: Result?
-        let exp = expectation(description: "Wait for load completion")
-        
-        ephemeralClient().get(from: testServerURL) { result in
-            receivedResult = result.flatMap { (data, response) in
-                do {
-                    return .success(try BestPodastsItemsMapper.map(data, from: response))
-                } catch {
-                    return .failure(error)
-                }
-            }
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 5.0)
-        return receivedResult
+    var testServerURL: URL {
+        URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Podcasts%2FGET-best-podcasts-by-genre.json?alt=media&token=17e16a8b-88a0-4cf5-b097-9af5ac173475")!
     }
-    
+        
     private func getPodcastImageDataResult(file: StaticString = #file, line: UInt = #line) -> PodcastImageDataLoader.Result? {
         let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/ImageLoader%2Ftest_image.png?alt=media&token=40cfe977-c65a-4d73-bbbb-3422e1e70965")!
         let loader = RemoteImageDataLoader(client: ephemeralClient())

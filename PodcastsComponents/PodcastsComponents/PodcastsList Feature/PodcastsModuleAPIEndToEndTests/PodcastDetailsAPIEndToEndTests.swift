@@ -3,10 +3,10 @@
 import XCTest
 import PodcastsModule
 
-class PodcastDetailsAPIEndToEndTests: XCTestCase, EphemeralClientHelpers {
-        
+class PodcastDetailsAPIEndToEndTests: XCTestCase, EphemeralClient {
+
     func test_endToEndTestServerGETPodcastDetails_matchesFixedTestPodcastDetailsData() {
-        switch getPodcastDetailsResult() {
+        switch fetchResult(from: testServerURL, withMapper: PodcastDetailsMapper.map)  {
         case let .success(podcastDetails):
             XCTAssertEqual(podcastDetails.id, "4d3fe717742d4963a85562e9f84d8c79")
             XCTAssertEqual(podcastDetails.title, "Star Wars 7x7: The Daily Star Wars Podcast")
@@ -30,27 +30,8 @@ class PodcastDetailsAPIEndToEndTests: XCTestCase, EphemeralClientHelpers {
     
     // MARK: - Heplers
     
-    private typealias Result = Swift.Result<PodcastDetails, Error>
-    
-    private func getPodcastDetailsResult(file: StaticString = #file, line: UInt = #line) -> Result? {
-        let testServerURL = URL(string:
-                                    "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Podcasts%2FGET-podcast-details-by-id.json?alt=media&token=b392ea30-f57d-445f-a83c-2b9ec3f6445a")!
-        var receivedResult: Result?
-        let exp = expectation(description: "Wait for load completion")
-        
-        ephemeralClient().get(from: testServerURL) { result in
-            receivedResult = result.flatMap { (data, response) in
-                do {
-                    return .success(try PodcastDetailsMapper.map(data, from: response))
-                } catch {
-                    return .failure(error)
-                }
-            }
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 5.0)
-        return receivedResult
+    private var testServerURL: URL {
+        URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Podcasts%2FGET-podcast-details-by-id.json?alt=media&token=b392ea30-f57d-445f-a83c-2b9ec3f6445a")!
     }
     
     private func expectedPodcastDescription() -> String {
@@ -72,7 +53,7 @@ class PodcastDetailsAPIEndToEndTests: XCTestCase, EphemeralClientHelpers {
             containsExplicitContent: containsExplicitContent(at: index)
         )
     }
-
+    
     private func id(at index: Int) -> String {
         return [
             "4e7c59e10e4640b98f2f3cb1777dbb43",

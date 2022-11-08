@@ -107,6 +107,7 @@
 		8DDBB74B291A97320024A37A /* RemotePodcastType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB74A291A97320024A37A /* RemotePodcastType.swift */; };
 		8DDBB74E291A9CA80024A37A /* PodcastDetailsAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB74C291A9CA10024A37A /* PodcastDetailsAPIEndToEndTests.swift */; };
 		8DDBB752291A9D200024A37A /* EphemeralClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */; };
+		8DDBB753291AAF530024A37A /* EphemeralClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */; };
 		8DE329E6291001D900830695 /* LocalPocastImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE329E5291001D900830695 /* LocalPocastImageData.swift */; };
 		8DE329E72910065500830695 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8DE329F529100E9B00830695 /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */; };
@@ -1937,6 +1938,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D745E3628C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift in Sources */,
+				8DDBB753291AAF530024A37A /* EphemeralClientHelper.swift in Sources */,
 				8D745E3D28C635F3005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

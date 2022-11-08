@@ -8,15 +8,29 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
+               BuildableName = "BestPodcastsFeature.framework"
+               BlueprintName = "PodcastsModule"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
             buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
-               BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
-               BlueprintName = "BestPodcastsListAPIEndToEndTests"
+               BlueprintIdentifier = "8DFAEAB528FD41740028B060"
+               BuildableName = "BestPodcastsFeatureTests.xctest"
+               BlueprintName = "PodcastsModuleTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,15 +47,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-            BuildableName = "BestPodcastsList.framework"
-            BlueprintName = "BestPodcastsList"
-            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D5C204028FE8EC4006CD42F"
-            BuildableName = "URLSessionHTTPClient.framework"
-            BlueprintName = "URLSessionHTTPClient"
+            BuildableName = "BestPodcastsFeature.framework"
+            BlueprintName = "PodcastsModule"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -51,9 +58,9 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
-               BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
-               BlueprintName = "BestPodcastsListAPIEndToEndTests"
+               BlueprintIdentifier = "8DFAEAB528FD41740028B060"
+               BuildableName = "BestPodcastsFeatureTests.xctest"
+               BlueprintName = "PodcastsModuleTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -76,6 +83,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
+            BuildableName = "BestPodcastsFeature.framework"
+            BlueprintName = "PodcastsModule"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

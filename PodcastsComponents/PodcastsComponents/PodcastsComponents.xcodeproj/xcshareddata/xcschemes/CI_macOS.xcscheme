@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-               BuildableName = "BestPodcastsList.framework"
-               BlueprintName = "BestPodcastsList"
+               BuildableName = "BestPodcastsFeature.framework"
+               BlueprintName = "PodcastsModule"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-            BuildableName = "BestPodcastsList.framework"
-            BlueprintName = "BestPodcastsList"
+            BuildableName = "BestPodcastsFeature.framework"
+            BlueprintName = "PodcastsModule"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
          <BuildableReference
@@ -127,7 +127,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
                BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
-               BlueprintName = "BestPodcastsListAPIEndToEndTests"
+               BlueprintName = "PodcastsModuleAPIEndToEndTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -137,8 +137,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DFAEAB528FD41740028B060"
-               BuildableName = "BestPodcastsListTests.xctest"
-               BlueprintName = "BestPodcastsListTests"
+               BuildableName = "BestPodcastsFeatureTests.xctest"
+               BlueprintName = "PodcastsModuleTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -209,8 +209,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-            BuildableName = "BestPodcastsList.framework"
-            BlueprintName = "BestPodcastsList"
+            BuildableName = "BestPodcastsFeature.framework"
+            BlueprintName = "PodcastsModule"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

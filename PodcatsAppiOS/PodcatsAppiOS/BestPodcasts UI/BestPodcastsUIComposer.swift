@@ -3,8 +3,8 @@
 import UIKit
 import Combine
 import LoadResourcePresenter
-import BestPodcastsList
-import BestPodcastsListiOS
+import PodcastsModule
+import PodcastsModuleiOS
 
 public final class BestPodcastsUIComposer {
     private init() {}

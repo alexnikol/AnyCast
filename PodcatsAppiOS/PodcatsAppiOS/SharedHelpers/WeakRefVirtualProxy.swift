@@ -2,7 +2,7 @@
 
 import UIKit
 import LoadResourcePresenter
-import BestPodcastsList
+import PodcastsModule
 
 final class WeakRefVirtualProxy<T: AnyObject> {
     private weak var object: T?

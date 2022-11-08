@@ -52,9 +52,8 @@ class PodcastsGenresListCacheIntegrationTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> LocalGenresLoader {
-        let storeBundle = Bundle(for: CoreDataGenresStore.self)
         let storeURL = specificTestStoreURL()
-        let store = try! CoreDataGenresStore(storeURL: storeURL, bundle: storeBundle)
+        let store = try! CoreDataGenresStore(storeURL: storeURL)
         let sut = LocalGenresLoader(store: store, currentDate: Date.init)
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)

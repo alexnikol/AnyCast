@@ -54,6 +54,14 @@ public final class GenresListViewController: UICollectionViewController {
     public override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionModel[indexPath.row].didSelect()
     }
+    
+    public override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        collectionModel[indexPath.row].updateHighlight(true)
+    }
+    
+    public override func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        collectionModel[indexPath.row].updateHighlight(false)
+    }
 }
 
 extension GenresListViewController: UICollectionViewDelegateFlowLayout {

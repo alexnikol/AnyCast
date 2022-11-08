@@ -4,10 +4,10 @@ import XCTest
 import URLSessionHTTPClient
 import PodcastsGenresList
 
-class PodcastsGenresListAPIEndToEndTests: XCTestCase {
+class PodcastsGenresListAPIEndToEndTests: XCTestCase, EphemeralClient {
     
     func test_endToEndTestServerGETGenresResult_matchesFixedTestGenresData() {
-        switch getGenresListResult() {
+        switch fetchResult(from: testServerURL, withMapper: GenresItemsMapper.map) {
         case let .success(genres):
             XCTAssertEqual(genres.count, 3, "Expected 3 items in the test genres list")
             XCTAssertEqual(genres[0], expectedGenre(at: 0))
@@ -23,26 +23,8 @@ class PodcastsGenresListAPIEndToEndTests: XCTestCase {
     
     // MARK: - Heplers
     
-    private func getGenresListResult(file: StaticString = #file, line: UInt = #line) -> Swift.Result<[Genre], Error>? {
-        let testServerURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Genres%2FGET-genres-list.json?alt=media&token=dc1af9d5-fa47-4396-92d8-180f74c9a061")!
-        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        trackForMemoryLeaks(client, file: file, line: line)
-        var receivedResult: Swift.Result<[Genre], Error>?
-        let exp = expectation(description: "Wait for load completion")
-        
-        client.get(from: testServerURL) { result in
-            receivedResult = result.flatMap { (data, response) in
-                do {
-                    return .success(try GenresItemsMapper.map(data, from: response))
-                } catch {
-                    return .failure(error)
-                }
-            }
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 5.0)
-        return receivedResult
+    private var testServerURL: URL {
+        URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Genres%2FGET-genres-list.json?alt=media&token=dc1af9d5-fa47-4396-92d8-180f74c9a061")!
     }
     
     private func expectedGenre(at index: Int) -> Genre {

@@ -5,7 +5,7 @@ import UIKit
 import HTTPClient
 import PodcastsGenresList
 import PodcastsGenresListiOS
-import BestPodcastsListiOS
+import PodcastsModuleiOS
 @testable import Podcats
 
 class GenresAcceptanceTests: XCTestCase {

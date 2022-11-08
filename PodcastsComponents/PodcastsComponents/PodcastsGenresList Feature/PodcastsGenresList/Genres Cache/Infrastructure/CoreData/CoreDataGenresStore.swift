@@ -50,7 +50,8 @@ public final class CoreDataGenresStore: GenresStore {
         }
     }
     
-    public init(storeURL: URL, bundle: Bundle = .main) throws {
+    public init(storeURL: URL) throws {
+        let bundle = Bundle(for: Self.self)
         container = try NSPersistentContainer.load(modelName: "GenresStore", url: storeURL, in: bundle)
         context = container.newBackgroundContext()
     }

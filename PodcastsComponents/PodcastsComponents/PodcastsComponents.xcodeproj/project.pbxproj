@@ -105,6 +105,8 @@
 		8DDBB747291A95D50024A37A /* RemotePodcastDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB744291A95A80024A37A /* RemotePodcastDetails.swift */; };
 		8DDBB749291A96100024A37A /* RemoteEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB748291A96100024A37A /* RemoteEpisode.swift */; };
 		8DDBB74B291A97320024A37A /* RemotePodcastType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB74A291A97320024A37A /* RemotePodcastType.swift */; };
+		8DDBB74E291A9CA80024A37A /* PodcastDetailsAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB74C291A9CA10024A37A /* PodcastDetailsAPIEndToEndTests.swift */; };
+		8DDBB752291A9D200024A37A /* EphemeralClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */; };
 		8DE329E6291001D900830695 /* LocalPocastImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE329E5291001D900830695 /* LocalPocastImageData.swift */; };
 		8DE329E72910065500830695 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8DE329F529100E9B00830695 /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */; };
@@ -376,6 +378,8 @@
 		8DDBB744291A95A80024A37A /* RemotePodcastDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePodcastDetails.swift; sourceTree = "<group>"; };
 		8DDBB748291A96100024A37A /* RemoteEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEpisode.swift; sourceTree = "<group>"; };
 		8DDBB74A291A97320024A37A /* RemotePodcastType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePodcastType.swift; sourceTree = "<group>"; };
+		8DDBB74C291A9CA10024A37A /* PodcastDetailsAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsAPIEndToEndTests.swift; sourceTree = "<group>"; };
+		8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EphemeralClientHelper.swift; sourceTree = "<group>"; };
 		8DE329E5291001D900830695 /* LocalPocastImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPocastImageData.swift; sourceTree = "<group>"; };
 		8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE329F429100E9B00830695 /* PodcastsModuleiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsModuleiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -587,7 +591,9 @@
 		8D5C208D28FFE5DD006CD42F /* PodcastsModuleAPIEndToEndTests */ = {
 			isa = PBXGroup;
 			children = (
+				8DDBB74F291A9CE10024A37A /* Helpers */,
 				8D5C208E28FFE5DD006CD42F /* BestPodcastsListAPIEndToEndTests.swift */,
+				8DDBB74C291A9CA10024A37A /* PodcastDetailsAPIEndToEndTests.swift */,
 			);
 			path = PodcastsModuleAPIEndToEndTests;
 			sourceTree = "<group>";
@@ -1101,6 +1107,14 @@
 				8DDBB748291A96100024A37A /* RemoteEpisode.swift */,
 			);
 			path = "PodcastDetails API";
+			sourceTree = "<group>";
+		};
+		8DDBB74F291A9CE10024A37A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8DE329EE29100E9B00830695 /* PodcastsModuleiOS */ = {
@@ -1911,8 +1925,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DDBB752291A9D200024A37A /* EphemeralClientHelper.swift in Sources */,
 				8D5C208F28FFE5DD006CD42F /* BestPodcastsListAPIEndToEndTests.swift in Sources */,
 				8D5C209528FFE7B7006CD42F /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				8DDBB74E291A9CA80024A37A /* PodcastDetailsAPIEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

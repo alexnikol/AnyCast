@@ -1,11 +1,9 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-import HTTPClient
-import URLSessionHTTPClient
 import PodcastsModule
 
-class BestPodcastsListAPIEndToEndTests: XCTestCase {
+class BestPodcastsListAPIEndToEndTests: XCTestCase, EphemeralClientHelpers {
     
     func test_endToEndTestServerGETBestPodcastsResult_matchesFixedTestBestPodcastsData() {
         switch getBestPodcastsListResult() {
@@ -41,15 +39,9 @@ class BestPodcastsListAPIEndToEndTests: XCTestCase {
     
     private typealias Result = Swift.Result<BestPodcastsList, Error>
     
-    private func ephemeralClient(file: StaticString = #file, line: UInt = #line) -> HTTPClient {
-        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-        trackForMemoryLeaks(client, file: file, line: line)
-        return client
-    }
-    
     private func getBestPodcastsListResult(file: StaticString = #file, line: UInt = #line) -> Result? {
         let testServerURL = URL(string:
-                                    "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Podcasts%2FGET-best-podcasts-by-genre.json?alt=media&token=b4e828cd-b5b3-47d1-803f-0bd93c05204b")!
+                                    "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Podcasts%2FGET-best-podcasts-by-genre.json?alt=media&token=17e16a8b-88a0-4cf5-b097-9af5ac173475")!
         var receivedResult: Result?
         let exp = expectation(description: "Wait for load completion")
         

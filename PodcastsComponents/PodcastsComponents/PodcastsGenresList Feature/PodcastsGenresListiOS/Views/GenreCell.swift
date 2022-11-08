@@ -3,6 +3,11 @@
 import UIKit
 
 public final class GenreCell: UICollectionViewCell, Reusable {
+    private enum Defaults {
+        static let defaultBackground: UIColor = .secondarySystemBackground
+        static let highlightedBackground: UIColor = .tertiarySystemBackground
+    }
+    
     public private(set) lazy var nameLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +29,7 @@ public final class GenreCell: UICollectionViewCell, Reusable {
     }
     
     private func configureUI() {
-        contentView.backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = Defaults.defaultBackground
         contentView.layer.cornerRadius = 4.0
         contentView.clipsToBounds = true
         
@@ -43,6 +48,10 @@ public final class GenreCell: UICollectionViewCell, Reusable {
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0.0),
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0.0)
         ])
+    }
+    
+    public func updateHighlighted(_ highlighted: Bool) {
+        contentView.backgroundColor = highlighted ? Defaults.highlightedBackground : Defaults.defaultBackground
     }
     
     required init?(coder: NSCoder) {

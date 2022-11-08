@@ -7,6 +7,7 @@ public final class GenreCellController {
     
     private let model: GenreCellViewModel
     private let selection: () -> Void
+    private var cell: GenreCell?
     
     public init(model: GenreCellViewModel, selection: @escaping () -> Void) {
         self.model = model
@@ -14,13 +15,17 @@ public final class GenreCellController {
     }
     
     func view(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: GenreCell = collectionView.dequeueAndRegisterCell(indexPath: indexPath)
-        cell.nameLabel.text = model.name
-        cell.tagView.backgroundColor = model.color
-        return cell
+        cell = collectionView.dequeueAndRegisterCell(indexPath: indexPath) as GenreCell
+        cell?.nameLabel.text = model.name
+        cell?.tagView.backgroundColor = model.color
+        return cell!
     }
     
     func didSelect() {
         selection()
+    }
+    
+    func updateHighlight(_ isHighlight: Bool) {
+        cell?.updateHighlighted(isHighlight)
     }
 }

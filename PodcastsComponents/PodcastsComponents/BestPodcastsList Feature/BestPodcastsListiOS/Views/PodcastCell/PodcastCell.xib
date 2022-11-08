@@ -92,7 +92,6 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="QNU-TD-fjB" firstAttribute="leading" secondItem="J9W-gW-Yqm" secondAttribute="leading" id="3pf-XU-6bL"/>
                                     <constraint firstAttribute="trailing" secondItem="7Zi-ZT-1Cy" secondAttribute="trailing" id="4kV-kf-q8e"/>
@@ -107,7 +106,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="J9W-gW-Yqm" secondAttribute="bottom" id="7Nj-cm-OTe"/>
                             <constraint firstItem="qAt-77-hXH" firstAttribute="leading" secondItem="gbZ-E0-ofk" secondAttribute="leading" id="FUj-ac-mrD"/>
@@ -128,6 +127,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cellContainer" destination="gbZ-E0-ofk" id="Mz8-6H-c7x"/>
                 <outlet property="imageContainer" destination="qAt-77-hXH" id="ytg-xD-EQ7"/>
                 <outlet property="languageStaticLabel" destination="Eyt-fv-v7V" id="Hhp-Rc-8Ch"/>
                 <outlet property="languageValueLabel" destination="dSZ-Em-T6K" id="tzB-uR-mma"/>
@@ -144,8 +144,8 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         try! CoreDataGenresStore(
             storeURL: NSPersistentContainer
                 .defaultDirectoryURL()
-                .appendingPathComponent("genres-store.sqlite"),
-            bundle: Bundle(for: CoreDataGenresStore.self))
+                .appendingPathComponent("genres-store.sqlite")
+        )
     }()
     
     private lazy var podcastsImageDataStore: PodcastsImageDataStore = {

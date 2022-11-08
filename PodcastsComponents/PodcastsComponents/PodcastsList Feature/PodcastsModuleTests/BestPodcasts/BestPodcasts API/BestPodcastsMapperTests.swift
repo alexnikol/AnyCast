@@ -23,17 +23,7 @@ class BestPodcastsMapperTests: XCTestCase {
             try BestPodastsItemsMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
         )
     }
-    
-    func test_map_deliversNoPodcastsItemsOn200HTTPResponseWithNonJSONAndEmptyPocastsList() throws {
-        let anyGenreId = 1
-        let anyGenreName = "Any Genre"
-        let validJSON = makePodcastsListJSON(genreId: anyGenreId, genreName: anyGenreName, podcasts: [])
-
-        let result = try BestPodastsItemsMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
         
-        XCTAssertEqual(result, BestPodcastsList(genreId: anyGenreId, genreName: anyGenreName, podcasts: []))
-    }
-    
     func test_map_deliversPodcastsItemsOn200HTTPResponseWithJSONItems() throws {
         let anyGenreId = 1
         let anyGenreName = "Any Genre"

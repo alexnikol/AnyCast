@@ -33,14 +33,3 @@ private extension Array where Element == RemotePodcast {
         }
     }
 }
-
-private extension RemotePodcastType {
-    func toModel() -> PodcastType {
-        switch self {
-        case .serial:
-            return .serial
-        case .episodic:
-            return .episodic
-        }
-    }
-}

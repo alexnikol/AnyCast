@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct Episode {
+public struct Episode: Equatable {
     public let id: String
     public let title: String
     public let description: String

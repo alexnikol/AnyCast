@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct PodcastDetails: PodcastFullInfo {
+public struct PodcastDetails: PodcastFullInfo, Equatable {
     public var id: String
     public var title: String
     public var publisher: String

@@ -1,7 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
-import BestPodcastsList
+import PodcastsModule
 import LoadResourcePresenter
 
 public protocol PodcastCellControllerDelegate {

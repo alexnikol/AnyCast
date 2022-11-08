@@ -1,7 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
-import BestPodcastsList
+import PodcastsModule
 
 class PodcastsImageDataStoreSpy: PodcastsImageDataStore {
     enum Message: Equatable {

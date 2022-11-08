@@ -1,8 +1,8 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-import BestPodcastsList
-import BestPodcastsListiOS
+import PodcastsModule
+import PodcastsModuleiOS
 @testable import Podcats
 
 class BestPodcastsListUIIngtegrationTests: XCTestCase {

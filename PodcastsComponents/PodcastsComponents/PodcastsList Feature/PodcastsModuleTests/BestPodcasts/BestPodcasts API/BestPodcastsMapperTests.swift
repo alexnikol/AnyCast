@@ -2,7 +2,7 @@
 
 import XCTest
 import HTTPClient
-import BestPodcastsList
+import PodcastsModule
 
 class BestPodcastsMapperTests: XCTestCase {
     

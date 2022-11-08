@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-               BuildableName = "BestPodcastsFeature.framework"
+               BuildableName = "PodcastsModule.framework"
                BlueprintName = "PodcastsModule"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DFAEAB528FD41740028B060"
-               BuildableName = "BestPodcastsFeatureTests.xctest"
+               BuildableName = "PodcastsModuleTests.xctest"
                BlueprintName = "PodcastsModuleTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -47,7 +47,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-            BuildableName = "BestPodcastsFeature.framework"
+            BuildableName = "PodcastsModule.framework"
             BlueprintName = "PodcastsModule"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
@@ -59,7 +59,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DFAEAB528FD41740028B060"
-               BuildableName = "BestPodcastsFeatureTests.xctest"
+               BuildableName = "PodcastsModuleTests.xctest"
                BlueprintName = "PodcastsModuleTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -87,7 +87,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-            BuildableName = "BestPodcastsFeature.framework"
+            BuildableName = "PodcastsModule.framework"
             BlueprintName = "PodcastsModule"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>

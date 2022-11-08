@@ -2,7 +2,7 @@
 
 import Foundation
 import Combine
-import BestPodcastsList
+import PodcastsModule
 
 class BestPodcastsLoaderSpy: BestPodcastsLoader, PodcastImageDataLoader {
 

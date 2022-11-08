@@ -1,7 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
-import BestPodcastsListiOS
+import PodcastsModuleiOS
 
 extension ListViewController {
     func simulateUserInitiatedPodcastsListReload() {

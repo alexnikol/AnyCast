@@ -57,7 +57,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DE329EC29100E9B00830695"
-               BuildableName = "BestPodcastsListiOS.framework"
+               BuildableName = "PodcastsModuleiOS.framework"
                BlueprintName = "PodcastsModuleiOS"
                ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -71,7 +71,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-               BuildableName = "BestPodcastsFeature.framework"
+               BuildableName = "PodcastsModule.framework"
                BlueprintName = "PodcastsModule"
                ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -117,14 +117,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-            BuildableName = "BestPodcastsFeature.framework"
+            BuildableName = "PodcastsModule.framework"
             BlueprintName = "PodcastsModule"
             ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DE329EC29100E9B00830695"
-            BuildableName = "BestPodcastsListiOS.framework"
+            BuildableName = "PodcastsModuleiOS.framework"
             BlueprintName = "PodcastsModuleiOS"
             ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
          </BuildableReference>
@@ -164,7 +164,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
-               BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
+               BuildableName = "PodcastsModuleAPIEndToEndTests.xctest"
                BlueprintName = "PodcastsModuleAPIEndToEndTests"
                ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -175,7 +175,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DFAEAB528FD41740028B060"
-               BuildableName = "BestPodcastsFeatureTests.xctest"
+               BuildableName = "PodcastsModuleTests.xctest"
                BlueprintName = "PodcastsModuleTests"
                ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -186,7 +186,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DE329F329100E9B00830695"
-               BuildableName = "BestPodcastsListiOSTests.xctest"
+               BuildableName = "PodcastsModuleiOSTests.xctest"
                BlueprintName = "PodcastsModuleiOSTests"
                ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>

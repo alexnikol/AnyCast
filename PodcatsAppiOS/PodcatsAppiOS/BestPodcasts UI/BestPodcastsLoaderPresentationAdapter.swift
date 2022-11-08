@@ -3,8 +3,8 @@
 import Foundation
 import Combine
 import LoadResourcePresenter
-import BestPodcastsList
-import BestPodcastsListiOS
+import PodcastsModule
+import PodcastsModuleiOS
 
 final class BestPodcastsLoaderPresentationAdapter: RefreshViewControllerDelegate {
     private let genreID: Int

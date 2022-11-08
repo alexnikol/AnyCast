@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
-               BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
+               BuildableName = "PodcastsModuleAPIEndToEndTests.xctest"
                BlueprintName = "PodcastsModuleAPIEndToEndTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DFAEAAE28FD41730028B060"
-            BuildableName = "BestPodcastsFeature.framework"
+            BuildableName = "PodcastsModule.framework"
             BlueprintName = "PodcastsModule"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D5C208B28FFE5DD006CD42F"
-               BuildableName = "BestPodcastsListAPIEndToEndTests.xctest"
+               BuildableName = "PodcastsModuleAPIEndToEndTests.xctest"
                BlueprintName = "PodcastsModuleAPIEndToEndTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>

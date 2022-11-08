@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DE329EC29100E9B00830695"
-               BuildableName = "BestPodcastsListiOS.framework"
+               BuildableName = "PodcastsModuleiOS.framework"
                BlueprintName = "PodcastsModuleiOS"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DE329F329100E9B00830695"
-               BuildableName = "BestPodcastsListiOSTests.xctest"
+               BuildableName = "PodcastsModuleiOSTests.xctest"
                BlueprintName = "PodcastsModuleiOSTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -47,7 +47,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DE329EC29100E9B00830695"
-            BuildableName = "BestPodcastsListiOS.framework"
+            BuildableName = "PodcastsModuleiOS.framework"
             BlueprintName = "PodcastsModuleiOS"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
@@ -59,7 +59,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DE329F329100E9B00830695"
-               BuildableName = "BestPodcastsListiOSTests.xctest"
+               BuildableName = "PodcastsModuleiOSTests.xctest"
                BlueprintName = "PodcastsModuleiOSTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -87,7 +87,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8DE329EC29100E9B00830695"
-            BuildableName = "BestPodcastsListiOS.framework"
+            BuildableName = "PodcastsModuleiOS.framework"
             BlueprintName = "PodcastsModuleiOS"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>

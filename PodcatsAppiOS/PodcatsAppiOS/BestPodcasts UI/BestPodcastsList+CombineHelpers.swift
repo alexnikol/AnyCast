@@ -2,7 +2,7 @@
 
 import Foundation
 import Combine
-import BestPodcastsList
+import PodcastsModule
 
 extension PodcastImageDataLoader {
     typealias Publisher = AnyPublisher<Data, Swift.Error>

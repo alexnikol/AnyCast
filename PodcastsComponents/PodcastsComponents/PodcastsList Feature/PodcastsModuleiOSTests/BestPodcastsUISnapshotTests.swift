@@ -2,8 +2,8 @@
 
 import XCTest
 import LoadResourcePresenter
-import BestPodcastsList
-import BestPodcastsListiOS
+import PodcastsModule
+import PodcastsModuleiOS
 
 class BestPodcastsUISnapshotTests: XCTestCase {
     

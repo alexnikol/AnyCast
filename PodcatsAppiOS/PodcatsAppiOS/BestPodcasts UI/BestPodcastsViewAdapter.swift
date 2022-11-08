@@ -3,8 +3,8 @@
 import UIKit
 import Combine
 import LoadResourcePresenter
-import BestPodcastsList
-import BestPodcastsListiOS
+import PodcastsModule
+import PodcastsModuleiOS
 
 final class BestPodcastsViewAdapter: ResourceView {
     typealias ResourceViewModel = BestPodcastsPresenterViewModel

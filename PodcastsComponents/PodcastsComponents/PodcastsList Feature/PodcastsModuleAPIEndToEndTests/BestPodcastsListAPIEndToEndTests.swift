@@ -3,7 +3,7 @@
 import XCTest
 import HTTPClient
 import URLSessionHTTPClient
-import BestPodcastsList
+import PodcastsModule
 
 class BestPodcastsListAPIEndToEndTests: XCTestCase {
     

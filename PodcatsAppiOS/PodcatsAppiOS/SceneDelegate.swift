@@ -7,8 +7,8 @@ import Combine
 import CoreData
 import PodcastsGenresList
 import PodcastsGenresListiOS
-import BestPodcastsList
-import BestPodcastsListiOS
+import PodcastsModule
+import PodcastsModuleiOS
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?

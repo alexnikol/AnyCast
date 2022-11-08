@@ -1,7 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-import BestPodcastsList
+import PodcastsModule
 
 class CoreDataPodcastImageDataStoreTests: XCTestCase {
     

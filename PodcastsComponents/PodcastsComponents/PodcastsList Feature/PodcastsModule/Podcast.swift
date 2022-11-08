@@ -2,11 +2,6 @@
 
 import Foundation
 
-public enum PodcastType {
-    case serial
-    case episodic
-}
-
 public struct Podcast: Equatable {
     public let id: String
     public let title: String

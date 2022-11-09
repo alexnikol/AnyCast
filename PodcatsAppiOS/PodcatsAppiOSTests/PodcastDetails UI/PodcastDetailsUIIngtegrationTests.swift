@@ -7,7 +7,7 @@ import PodcastsModuleiOS
 
 class PodcastDetailsUIIngtegrationTests: XCTestCase {
     
-    func test_loadPodcastDetailsActions_requestPodcastDetailsByPodcastIDFromLoader() {
+    func test_loadPodcastDetailsActions_requestPodcastDetails() {
         let (sut, loader) = makeSUT()
         XCTAssertEqual(loader.loadCallCount, 0, "Expected no loading requests before view is loaded")
         
@@ -19,6 +19,22 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         
         sut.simulateUserInitiatedListReload()
         XCTAssertEqual(loader.loadCallCount, 3, "Expected a third loading request once user initiates a load")
+    }
+    
+    func test_loadPodcastDetailsIndicator_isVisibleWhileLoadingPodcastDetails() {
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once view is loaded")
+        
+        loader.completePodcastDetailsLoading(at: 0)
+        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is complete succesfully")
+        
+        sut.simulateUserInitiatedListReload()
+        XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once user initiates a reload")
+        
+        loader.completePodcastDetailsLoadingWithError(at: 1)
+        XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is completes with error")
     }
     
     // MARK: - Helpers

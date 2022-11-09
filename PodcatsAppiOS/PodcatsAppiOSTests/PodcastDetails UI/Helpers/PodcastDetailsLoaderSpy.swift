@@ -11,7 +11,7 @@ class PodcastDetailsLoaderSpy: PodcastImageDataLoader {
     private var podcastDetailsRequests: [(Result) -> Void] = []
     private(set) var cancelledImageURLs: [URL] = []
     
-    // MARK: - BestPodcastsLoader
+    // MARK: - PodcastDetails Loader
     
     func load(by podcastID: String, completion: @escaping (Result) -> Void) {
         podcastDetailsRequests.append(completion)
@@ -25,11 +25,11 @@ class PodcastDetailsLoaderSpy: PodcastImageDataLoader {
         }.eraseToAnyPublisher()
     }
     
-    func completeBestPodcastsLoading(with podcastDetails: PodcastDetails = PodcastDetails.default, at index: Int) {
+    func completePodcastDetailsLoading(with podcastDetails: PodcastDetails = PodcastDetails.default, at index: Int) {
         podcastDetailsRequests[index](.success(podcastDetails))
     }
     
-    func completeBestPodcastsLoadingWithError(at index: Int) {
+    func completePodcastDetailsLoadingWithError(at index: Int) {
         let error = NSError(domain: "any error", code: 0)
         podcastDetailsRequests[index](.failure(error))
     }

@@ -32,11 +32,7 @@ extension ListViewController {
         let indexPath = IndexPath(row: row, section: podcastsSection)
         ds?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
     }
-    
-    var isShowinLoadingIndicator: Bool {
-        return tableView.refreshControl?.isRefreshing ?? false
-    }
-    
+        
     private var podcastsSection: Int {
         return 0
     }

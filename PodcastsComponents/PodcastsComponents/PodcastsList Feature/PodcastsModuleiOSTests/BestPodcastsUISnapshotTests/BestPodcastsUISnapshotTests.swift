@@ -80,11 +80,7 @@ class BestPodcastsUISnapshotTests: XCTestCase {
             return cellController
         }
     }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
-    }
-    
+        
     private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
         func didRequestLoading() {}
     }

@@ -8,4 +8,12 @@ public struct EpisodeViewModel {
     public let thumbnail: URL
     public let audio: URL
     public let displayAudioLengthInSeconds: String
+    
+    public init(title: String, description: String, thumbnail: URL, audio: URL, displayAudioLengthInSeconds: String) {
+        self.title = title
+        self.description = description
+        self.thumbnail = thumbnail
+        self.audio = audio
+        self.displayAudioLengthInSeconds = displayAudioLengthInSeconds
+    }
 }

@@ -118,6 +118,10 @@
 		8DDBB796291BF26F0024A37A /* PodcastDetailsUISnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB793291BF2510024A37A /* PodcastDetailsUISnapshotTests.swift */; };
 		8DDBB79C291BF3740024A37A /* EMPTY_PODCAST_DETAILS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DDBB79A291BF3740024A37A /* EMPTY_PODCAST_DETAILS_dark.png */; };
 		8DDBB79D291BF3740024A37A /* EMPTY_PODCAST_DETAILS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DDBB79B291BF3740024A37A /* EMPTY_PODCAST_DETAILS_light.png */; };
+		8DDBB7A0291BF4DB0024A37A /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB79F291BF4DB0024A37A /* SharedHelpers.swift */; };
+		8DDBB7A2291BF5840024A37A /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB7A1291BF5840024A37A /* String+Extensions.swift */; };
+		8DDBB7A5291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DDBB7A3291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_dark.png */; };
+		8DDBB7A6291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DDBB7A4291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_light.png */; };
 		8DE329E6291001D900830695 /* LocalPocastImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE329E5291001D900830695 /* LocalPocastImageData.swift */; };
 		8DE329E72910065500830695 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8DE329F529100E9B00830695 /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */; };
@@ -401,6 +405,10 @@
 		8DDBB793291BF2510024A37A /* PodcastDetailsUISnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsUISnapshotTests.swift; sourceTree = "<group>"; };
 		8DDBB79A291BF3740024A37A /* EMPTY_PODCAST_DETAILS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_PODCAST_DETAILS_dark.png; sourceTree = "<group>"; };
 		8DDBB79B291BF3740024A37A /* EMPTY_PODCAST_DETAILS_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_PODCAST_DETAILS_light.png; sourceTree = "<group>"; };
+		8DDBB79F291BF4DB0024A37A /* SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelpers.swift; sourceTree = "<group>"; };
+		8DDBB7A1291BF5840024A37A /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		8DDBB7A3291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PODCAST_DETAILS_WITH_CONTENT_dark.png; sourceTree = "<group>"; };
+		8DDBB7A4291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PODCAST_DETAILS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
 		8DE329E5291001D900830695 /* LocalPocastImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPocastImageData.swift; sourceTree = "<group>"; };
 		8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE329F429100E9B00830695 /* PodcastsModuleiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsModuleiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1233,8 +1241,19 @@
 			children = (
 				8DDBB79A291BF3740024A37A /* EMPTY_PODCAST_DETAILS_dark.png */,
 				8DDBB79B291BF3740024A37A /* EMPTY_PODCAST_DETAILS_light.png */,
+				8DDBB7A3291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_dark.png */,
+				8DDBB7A4291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_light.png */,
 			);
 			path = snapshots;
+			sourceTree = "<group>";
+		};
+		8DDBB79E291BF4D00024A37A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8DDBB79F291BF4DB0024A37A /* SharedHelpers.swift */,
+				8DDBB7A1291BF5840024A37A /* String+Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8DE329EE29100E9B00830695 /* PodcastsModuleiOS */ = {
@@ -1251,6 +1270,7 @@
 		8DE329F829100E9B00830695 /* PodcastsModuleiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				8DDBB79E291BF4D00024A37A /* Helpers */,
 				8DDBB797291BF2860024A37A /* BestPodcastsUISnapshotTests */,
 				8DDBB798291BF2A10024A37A /* PodcastDetailsUISnapshotTests */,
 			);
@@ -1976,10 +1996,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DDBB7A6291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_light.png in Resources */,
 				8DE32A8A291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_light.png in Resources */,
 				8DE32A8729125EDC00830695 /* EMPTY_BEST_PODCASTS_dark.png in Resources */,
 				8DDBB79D291BF3740024A37A /* EMPTY_PODCAST_DETAILS_light.png in Resources */,
 				8DDBB79C291BF3740024A37A /* EMPTY_PODCAST_DETAILS_dark.png in Resources */,
+				8DDBB7A5291BF65B0024A37A /* PODCAST_DETAILS_WITH_CONTENT_dark.png in Resources */,
 				8DE32A8B291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_dark.png in Resources */,
 				8DE32A8629125EDC00830695 /* EMPTY_BEST_PODCASTS_light.png in Resources */,
 			);
@@ -2169,8 +2191,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE32A8229125D3600830695 /* XCTestCase+Snapshot.swift in Sources */,
+				8DDBB7A0291BF4DB0024A37A /* SharedHelpers.swift in Sources */,
 				8DDBB796291BF26F0024A37A /* PodcastDetailsUISnapshotTests.swift in Sources */,
 				8DE32A8E2912612500830695 /* UIImage+TestHelpers.swift in Sources */,
+				8DDBB7A2291BF5840024A37A /* String+Extensions.swift in Sources */,
 				8DE32A8129125D3600830695 /* ViewController+Snapshot.swift in Sources */,
 				8DE32A8029125C1A00830695 /* BestPodcastsUISnapshotTests.swift in Sources */,
 				8DE32A07291011ED00830695 /* XCTestCase+MemoryLeakTracking.swift in Sources */,

@@ -16,6 +16,15 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "EMPTY_PODCAST_DETAILS_dark")
     }
     
+    func test_podcastDetailsWithContent() {
+        let (sut, _) = makeSUT()
+        
+        sut.display(podcastDetailsWithContent())
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "PODCAST_DETAILS_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "PODCAST_DETAILS_WITH_CONTENT_dark")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: ListViewController, loadingView: ResourceLoadingView) {
@@ -33,5 +42,37 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
     
     private func emptyPodcastDetails() -> [EpisodeCellController] {
         return []
+    }
+    
+    private func podcastDetailsWithContent() -> [EpisodeCellController] {
+        return [
+            EpisodeCellController(
+                viewModel: EpisodeViewModel(
+                    title: "Any Episode title",
+                    description: "Any Description",
+                    thumbnail: anyURL(),
+                    audio: anyURL(),
+                    displayAudioLengthInSeconds: "44 hours 22 min"
+                )
+            ),
+            EpisodeCellController(
+                viewModel: EpisodeViewModel(
+                    title: "Any Episode title".repeatTimes(10),
+                    description: "Any Description",
+                    thumbnail: anyURL(),
+                    audio: anyURL(),
+                    displayAudioLengthInSeconds: "44 hours 22 min".repeatTimes(10)
+                )
+            ),
+            EpisodeCellController(
+                viewModel: EpisodeViewModel(
+                    title: "Any Episode title".repeatTimes(10),
+                    description: "Any Description".repeatTimes(10),
+                    thumbnail: anyURL(),
+                    audio: anyURL(),
+                    displayAudioLengthInSeconds: "1 min".repeatTimes(10)
+                )
+            )
+        ]
     }
 }

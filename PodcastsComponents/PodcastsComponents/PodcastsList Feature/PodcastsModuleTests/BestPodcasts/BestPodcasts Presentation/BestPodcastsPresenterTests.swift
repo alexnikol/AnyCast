@@ -6,20 +6,19 @@ import PodcastsModule
 class BestPodcastsPresenterTests: XCTestCase {
     
     func test_map_createsViewModel() {
-        let podcast1 = makePodcast(title: "Podcast name 1", image: anyURL(), type: .episodic)
-        let podcast2 = makePodcast(title: "Podcast name 2", image: anyURL(), type: .serial)
-        let podcastsList = makeBestPodcastsList(genreId: 1, genreName: "Any Genre Name", podcasts: [podcast1, podcast2])
+        let podcast = makePodcast(title: "Podcast name 1", image: anyURL(), type: .episodic)
+        let podcastsList = makeBestPodcastsList(genreId: 1, genreName: "Any Genre Name", podcasts: [podcast])
+        let podcast1ViewModel = BestPodcastsPresenter.map(podcast)
         
-        let viewModel = BestPodcastsPresenter.map(podcastsList)
-        XCTAssertEqual(podcastsList.genreName, viewModel.title)
+        let podcastsListViewModel = BestPodcastsPresenter.map(podcastsList)
+        XCTAssertEqual(podcastsList.genreName, podcastsListViewModel.title)
+        XCTAssertEqual(podcastsList.podcasts[0], podcast)
         
-        for index in 0..<2 {
-            XCTAssertEqual(podcastsList.podcasts[index].title, viewModel.podcasts[index].title)
-            XCTAssertEqual(podcastsList.podcasts[index].publisher, viewModel.podcasts[index].publisher)
-            XCTAssertEqual(podcastsList.podcasts[index].language, viewModel.podcasts[index].languageValueLabel)
-            XCTAssertEqual(podcastsList.podcasts[index].image, viewModel.podcasts[index].image)
-            XCTAssertEqual(String(describing: podcastsList.podcasts[index].type), viewModel.podcasts[index].typeValueLabel)
-        }
+        XCTAssertEqual(podcast.title, podcast1ViewModel.title)
+        XCTAssertEqual(podcast.publisher, podcast1ViewModel.publisher)
+        XCTAssertEqual(podcast.language, podcast1ViewModel.languageValueLabel)
+        XCTAssertEqual(podcast.image, podcast1ViewModel.image)
+        XCTAssertEqual(String(describing: podcast.type), podcast1ViewModel.typeValueLabel)
     }
     
     // MARK: - Helpers

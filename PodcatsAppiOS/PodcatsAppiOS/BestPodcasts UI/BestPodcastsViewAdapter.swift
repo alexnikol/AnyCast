@@ -20,11 +20,12 @@ final class BestPodcastsViewAdapter: ResourceView {
     
     func display(_ viewModel: BestPodcastsPresenterViewModel) {
         controller?.display(viewModel.podcasts.map { model in
+            let podcastViewModel = BestPodcastsPresenter.map(model)
             let adapter = PodcastImageDataLoaderPresentationAdapter(
-                model: model,
+                model: podcastViewModel,
                 imageLoader: imageLoader
             )
-            let cellController = PodcastCellController(model: model, delegete: adapter)
+            let cellController = PodcastCellController(model: podcastViewModel, delegete: adapter)
             
             adapter.presenter = LoadResourcePresenter(
                 resourceView: WeakRefVirtualProxy(cellController),

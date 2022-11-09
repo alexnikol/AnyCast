@@ -1071,6 +1071,7 @@
 			children = (
 				8DDBB739291A8E480024A37A /* PodcastDetails Feature */,
 				8DDBB73F291A91470024A37A /* PodcastDetails API */,
+				8DDBB754291BA4CB0024A37A /* Podcast Details Presentation */,
 			);
 			path = PodcastDetails;
 			sourceTree = "<group>";
@@ -1116,6 +1117,13 @@
 				8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8DDBB754291BA4CB0024A37A /* Podcast Details Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Podcast Details Presentation";
 			sourceTree = "<group>";
 		};
 		8DE329EE29100E9B00830695 /* PodcastsModuleiOS */ = {

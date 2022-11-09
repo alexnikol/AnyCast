@@ -110,6 +110,8 @@
 		8DDBB753291AAF530024A37A /* EphemeralClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */; };
 		8DDBB75B291BB6230024A37A /* PodcastDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB758291BB6030024A37A /* PodcastDetailsPresenterTests.swift */; };
 		8DDBB75D291BB8420024A37A /* PodcastDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB755291BB5990024A37A /* PodcastDetailsPresenter.swift */; };
+		8DDBB760291BBAFD0024A37A /* PodcastDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB75E291BBAF30024A37A /* PodcastDetailsViewModel.swift */; };
+		8DDBB762291BBB150024A37A /* EpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB761291BBB150024A37A /* EpisodeViewModel.swift */; };
 		8DE329E6291001D900830695 /* LocalPocastImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE329E5291001D900830695 /* LocalPocastImageData.swift */; };
 		8DE329E72910065500830695 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8DE329F529100E9B00830695 /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */; };
@@ -385,6 +387,8 @@
 		8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EphemeralClientHelper.swift; sourceTree = "<group>"; };
 		8DDBB755291BB5990024A37A /* PodcastDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsPresenter.swift; sourceTree = "<group>"; };
 		8DDBB758291BB6030024A37A /* PodcastDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsPresenterTests.swift; sourceTree = "<group>"; };
+		8DDBB75E291BBAF30024A37A /* PodcastDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsViewModel.swift; sourceTree = "<group>"; };
+		8DDBB761291BBB150024A37A /* EpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewModel.swift; sourceTree = "<group>"; };
 		8DE329E5291001D900830695 /* LocalPocastImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPocastImageData.swift; sourceTree = "<group>"; };
 		8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE329F429100E9B00830695 /* PodcastsModuleiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsModuleiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1128,6 +1132,8 @@
 			isa = PBXGroup;
 			children = (
 				8DDBB755291BB5990024A37A /* PodcastDetailsPresenter.swift */,
+				8DDBB75E291BBAF30024A37A /* PodcastDetailsViewModel.swift */,
+				8DDBB761291BBB150024A37A /* EpisodeViewModel.swift */,
 			);
 			path = "Podcast Details Presentation";
 			sourceTree = "<group>";
@@ -2106,6 +2112,7 @@
 				8DDBB74B291A97320024A37A /* RemotePodcastType.swift in Sources */,
 				8DE32A1C2910404C00830695 /* BestPodcastsPresenterViewModel.swift in Sources */,
 				8DDBB747291A95D50024A37A /* RemotePodcastDetails.swift in Sources */,
+				8DDBB762291BBB150024A37A /* EpisodeViewModel.swift in Sources */,
 				8D5C20B429005B99006CD42F /* PodcastsImageDataStore.swift in Sources */,
 				8D5C20A429002994006CD42F /* HTTPURLResponse+Extensions.swift in Sources */,
 				8D7F45C6290BD3030093301F /* PodcastsImageDataStore.xcdatamodeld in Sources */,
@@ -2124,6 +2131,7 @@
 				8DDBB732291A82BA0024A37A /* PodcastShortInfo.swift in Sources */,
 				8D5C21F129015441006CD42F /* CoreDataPodcastsImageDataStore.swift in Sources */,
 				8DFAEADD28FD61080028B060 /* BestPodastsItemsMapper.swift in Sources */,
+				8DDBB760291BBAFD0024A37A /* PodcastDetailsViewModel.swift in Sources */,
 				8DDBB72F291A81E80024A37A /* PodcastDetails.swift in Sources */,
 				8DDBB735291A82C90024A37A /* PodcastFullInfo.swift in Sources */,
 				8DDBB75D291BB8420024A37A /* PodcastDetailsPresenter.swift in Sources */,

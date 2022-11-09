@@ -2,25 +2,6 @@
 
 import Foundation
 
-public struct PodcastDetailsViewModel {
-    public let title: String
-    public let publisher: String
-    public let language: String
-    public let type: String
-    public let image: URL
-    public let episodes: [Episode]
-    public let description: String
-    public let totalEpisodes: String
-}
-
-public struct EpisodeViewModel {
-    public let title: String
-    public let description: String
-    public let thumbnail: URL
-    public let audio: URL
-    public let displayAudioLengthInSeconds: String
-}
-
 public final class PodcastDetailsPresenter {
     
     public static func map(_ model: PodcastDetails) -> PodcastDetailsViewModel {

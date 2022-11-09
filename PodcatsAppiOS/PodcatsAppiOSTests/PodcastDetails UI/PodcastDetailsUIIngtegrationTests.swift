@@ -127,7 +127,8 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         thumbnail: URL,
         audio: URL,
         audioLengthInSeconds: Int,
-        containsExplicitContent: Bool
+        containsExplicitContent: Bool,
+        publishDateInMiliseconds: Int
     ) -> Episode {
         Episode(
             id: id,
@@ -136,7 +137,8 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
             thumbnail: thumbnail,
             audio: audio,
             audioLengthInSeconds: audioLengthInSeconds,
-            containsExplicitContent: containsExplicitContent
+            containsExplicitContent: containsExplicitContent,
+            publishDateInMiliseconds: publishDateInMiliseconds
         )
     }
     
@@ -148,7 +150,8 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
             thumbnail: anyURL(),
             audio: anyURL(),
             audioLengthInSeconds: Int.random(in: 1...1000),
-            containsExplicitContent: Bool.random()
+            containsExplicitContent: Bool.random(),
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
         )
         
         let episode2 = makeEpisode(
@@ -158,7 +161,8 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
             thumbnail: anyURL(),
             audio: anyURL(),
             audioLengthInSeconds: Int.random(in: 1...1000),
-            containsExplicitContent: Bool.random()
+            containsExplicitContent: Bool.random(),
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
         )
         return [episode1, episode2]
     }

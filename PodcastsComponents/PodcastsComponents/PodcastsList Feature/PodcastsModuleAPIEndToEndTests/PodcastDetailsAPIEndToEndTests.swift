@@ -50,7 +50,8 @@ class PodcastDetailsAPIEndToEndTests: XCTestCase, EphemeralClient {
             thumbnail: thumbnail(at: index),
             audio: audio(at: index),
             audioLengthInSeconds: audioLengthInSeconds(at: index),
-            containsExplicitContent: containsExplicitContent(at: index)
+            containsExplicitContent: containsExplicitContent(at: index),
+            publishDateInMiliseconds: publishDateInMiliseconds(at: index)
         )
     }
     
@@ -109,6 +110,14 @@ class PodcastDetailsAPIEndToEndTests: XCTestCase, EphemeralClient {
             false,
             true,
             false
+        ][index]
+    }
+    
+    private func publishDateInMiliseconds(at index: Int) -> Int {
+        return [
+            1479110402015,
+            1479024002016,
+            1478937602017
         ][index]
     }
 }

@@ -112,7 +112,8 @@ private extension Episode {
             thumbnail: anyURL(),
             audio: anyURL(),
             audioLengthInSeconds: 200,
-            containsExplicitContent: false
+            containsExplicitContent: false,
+            publishDateInMiliseconds: 1478937602017
         )
     }
 }

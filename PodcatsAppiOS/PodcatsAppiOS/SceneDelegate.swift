@@ -118,15 +118,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         return localLoader
             .loadPublisher(from: url)
-            .handleEvents(receiveOutput: { localData in
-                print("RESULTT LOCALDATA for url: \(localData) \(url)")
-            })
             .fallback(to: {
                 remoteLoader
                     .loadPublisher(from: url)
-                    .handleEvents(receiveOutput: { data in
-                        print("RESULTT REMOTERESULT for url: \(data) \(url)")
-                    })
                     .caching(to: localLoader, for: url)
             })
             .eraseToAnyPublisher()

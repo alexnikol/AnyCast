@@ -9,7 +9,7 @@ public final class PodcastDetailsPresenter {
             title: model.title,
             publisher: model.publisher,
             language: model.language,
-            type: "",
+            type: String(describing: model.type),
             image: model.image,
             episodes: model.episodes,
             description: model.description,
@@ -17,13 +17,24 @@ public final class PodcastDetailsPresenter {
         )
     }
     
-    public static func map(_ model: Episode) -> EpisodeViewModel {
-        .init(
-            title: model.title,
-            description: model.description,
-            thumbnail: model.thumbnail,
-            audio: model.audio,
-            displayAudioLengthInSeconds: String(model.audioLengthInSeconds)
-        )
-    }
+    public static func map(
+        _ model: Episode,
+        currentDate: Date = Date(),
+        calendar: Calendar = .current,
+        locale: Locale = .current
+    ) -> EpisodeViewModel {
+            let formatter = RelativeDateTimeFormatter()
+            formatter.calendar = calendar
+            formatter.locale = locale
+            let publishDate = Date(timeIntervalSince1970: TimeInterval(model.publishDateInMiliseconds))
+            
+            return EpisodeViewModel(
+                title: model.title,
+                description: model.description,
+                thumbnail: model.thumbnail,
+                audio: model.audio,
+                displayAudioLengthInSeconds: String(model.audioLengthInSeconds),
+                displayPublishDate: formatter.localizedString(for: publishDate, relativeTo: currentDate)
+            )
+        }
 }

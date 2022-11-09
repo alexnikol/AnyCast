@@ -57,6 +57,22 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         assertThat(sut, isRendering: uniquePodcastDetails2.title)
     }
     
+    func test_loadPodcastDetailsCompletion_doesNotAlterCurrentRenderingStateOnError() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+        assertThat(sut, isRendering: uniquePodcastDetails.episodes)
+        assertThat(sut, isRendering: uniquePodcastDetails.title)
+        
+        sut.simulateUserInitiatedListReload()
+        loader.completePodcastDetailsLoadingWithError(at: 1)
+        assertThat(sut, isRendering: uniquePodcastDetails.episodes)
+        assertThat(sut, isRendering: uniquePodcastDetails.title)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

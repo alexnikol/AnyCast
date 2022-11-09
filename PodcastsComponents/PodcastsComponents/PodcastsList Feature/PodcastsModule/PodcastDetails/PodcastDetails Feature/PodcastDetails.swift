@@ -3,15 +3,15 @@
 import Foundation
 
 public struct PodcastDetails: PodcastFullInfo, Equatable {
-    public var id: String
-    public var title: String
-    public var publisher: String
-    public var language: String
-    public var type: PodcastType
-    public var image: URL
-    public var episodes: [Episode]
-    public var description: String
-    public var totalEpisodes: Int
+    public let id: String
+    public let title: String
+    public let publisher: String
+    public let language: String
+    public let type: PodcastType
+    public let image: URL
+    public let episodes: [Episode]
+    public let description: String
+    public let totalEpisodes: Int
     
     public init(id: String,
                 title: String,

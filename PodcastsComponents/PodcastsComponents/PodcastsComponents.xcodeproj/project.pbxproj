@@ -120,7 +120,7 @@
 		8DE32A1429103AF700830695 /* PodcastCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1329103AF700830695 /* PodcastCellController.swift */; };
 		8DE32A1829103E0200830695 /* BestPodcastsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1729103E0200830695 /* BestPodcastsPresenterTests.swift */; };
 		8DE32A1A2910403400830695 /* BestPodcastsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A192910403400830695 /* BestPodcastsPresenter.swift */; };
-		8DE32A1C2910404C00830695 /* BestPodcastsPresenterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1B2910404C00830695 /* BestPodcastsPresenterViewModel.swift */; };
+		8DE32A1C2910404C00830695 /* BestPodcastsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A1B2910404C00830695 /* BestPodcastsListViewModel.swift */; };
 		8DE32A2A29110AAC00830695 /* LoadResourcePresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; };
 		8DE32A2F29110AAC00830695 /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A2E29110AAC00830695 /* LoadResourcePresenterTests.swift */; };
 		8DE32A3829110B4400830695 /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A3729110B4400830695 /* LoadResourcePresenter.swift */; };
@@ -396,7 +396,7 @@
 		8DE32A1329103AF700830695 /* PodcastCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCellController.swift; sourceTree = "<group>"; };
 		8DE32A1729103E0200830695 /* BestPodcastsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsPresenterTests.swift; sourceTree = "<group>"; };
 		8DE32A192910403400830695 /* BestPodcastsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsPresenter.swift; sourceTree = "<group>"; };
-		8DE32A1B2910404C00830695 /* BestPodcastsPresenterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsPresenterViewModel.swift; sourceTree = "<group>"; };
+		8DE32A1B2910404C00830695 /* BestPodcastsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsListViewModel.swift; sourceTree = "<group>"; };
 		8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoadResourcePresenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE32A2929110AAC00830695 /* LoadResourcePresenterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoadResourcePresenterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE32A2E29110AAC00830695 /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
@@ -1196,7 +1196,7 @@
 			isa = PBXGroup;
 			children = (
 				8DE32A192910403400830695 /* BestPodcastsPresenter.swift */,
-				8DE32A1B2910404C00830695 /* BestPodcastsPresenterViewModel.swift */,
+				8DE32A1B2910404C00830695 /* BestPodcastsListViewModel.swift */,
 				8D5FA22A2912A83D002BB874 /* PodcastImageViewModel.swift */,
 			);
 			path = "BestPodcasts Presentation";
@@ -2110,7 +2110,7 @@
 				8DE32A1A2910403400830695 /* BestPodcastsPresenter.swift in Sources */,
 				8D5C20B729005C0F006CD42F /* LocalPodcastsImageDataLoader.swift in Sources */,
 				8DDBB74B291A97320024A37A /* RemotePodcastType.swift in Sources */,
-				8DE32A1C2910404C00830695 /* BestPodcastsPresenterViewModel.swift in Sources */,
+				8DE32A1C2910404C00830695 /* BestPodcastsListViewModel.swift in Sources */,
 				8DDBB747291A95D50024A37A /* RemotePodcastDetails.swift in Sources */,
 				8DDBB762291BBB150024A37A /* EpisodeViewModel.swift in Sources */,
 				8D5C20B429005B99006CD42F /* PodcastsImageDataStore.swift in Sources */,

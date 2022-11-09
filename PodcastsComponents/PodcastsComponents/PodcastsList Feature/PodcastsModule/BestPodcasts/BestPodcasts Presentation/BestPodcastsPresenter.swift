@@ -4,7 +4,7 @@ import Foundation
 
 public final class BestPodcastsPresenter {
     
-    public static func map(_ model: BestPodcastsList) -> BestPodcastsPresenterViewModel {
+    public static func map(_ model: BestPodcastsList) -> BestPodcastsListViewModel {
         .init(title: model.genreName, podcasts: model.podcasts)
     }
     

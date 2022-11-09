@@ -7,7 +7,7 @@ import PodcastsModule
 import PodcastsModuleiOS
 
 final class BestPodcastsViewAdapter: ResourceView {
-    typealias ResourceViewModel = BestPodcastsPresenterViewModel
+    typealias ResourceViewModel = BestPodcastsListViewModel
     
     private let imageLoader: (URL) -> AnyPublisher<Data, Error>
     private var cancellable: AnyCancellable?
@@ -18,7 +18,7 @@ final class BestPodcastsViewAdapter: ResourceView {
         self.imageLoader = imageLoader
     }
     
-    func display(_ viewModel: BestPodcastsPresenterViewModel) {
+    func display(_ viewModel: BestPodcastsListViewModel) {
         controller?.display(viewModel.podcasts.map { model in
             let podcastViewModel = BestPodcastsPresenter.map(model)
             let adapter = PodcastImageDataLoaderPresentationAdapter(

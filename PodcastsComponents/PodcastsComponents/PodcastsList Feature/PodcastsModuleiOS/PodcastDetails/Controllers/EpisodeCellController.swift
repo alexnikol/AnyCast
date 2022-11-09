@@ -20,6 +20,7 @@ public final class EpisodeCellController: NSObject, UITableViewDataSource {
         cell?.titleLabel.text = viewModel.title
         cell?.descriptionLabel.text = viewModel.description
         cell?.audioLengthLabel.text = viewModel.displayAudioLengthInSeconds
+        cell?.publishDateLabel.text = viewModel.displayPublishDate
         return cell!
     }
 }

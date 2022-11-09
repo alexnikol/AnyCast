@@ -21,8 +21,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
         
         sut.display(podcastDetailsWithContent())
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "PODCAST_DETAILS_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "PODCAST_DETAILS_WITH_CONTENT_dark")
+        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "PODCAST_DETAILS_WITH_CONTENT_light")
+        record(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "PODCAST_DETAILS_WITH_CONTENT_dark")
     }
     
     // MARK: - Helpers
@@ -52,7 +52,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                     description: "Any Description",
                     thumbnail: anyURL(),
                     audio: anyURL(),
-                    displayAudioLengthInSeconds: "44 hours 22 min"
+                    displayAudioLengthInSeconds: "44 hours 22 min",
+                    displayPublishDate: "5 years ago"
                 )
             ),
             EpisodeCellController(
@@ -61,7 +62,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                     description: "Any Description",
                     thumbnail: anyURL(),
                     audio: anyURL(),
-                    displayAudioLengthInSeconds: "44 hours 22 min".repeatTimes(10)
+                    displayAudioLengthInSeconds: "44 hours 22 min".repeatTimes(10),
+                    displayPublishDate: "5 days ago"
                 )
             ),
             EpisodeCellController(
@@ -70,7 +72,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                     description: "Any Description".repeatTimes(10),
                     thumbnail: anyURL(),
                     audio: anyURL(),
-                    displayAudioLengthInSeconds: "1 min".repeatTimes(10)
+                    displayAudioLengthInSeconds: "1 min".repeatTimes(10),
+                    displayPublishDate: "5 min ago".repeatTimes(20)
                 )
             )
         ]

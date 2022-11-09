@@ -3,7 +3,7 @@
 import UIKit
 
 public final class EpisodeCell: UITableViewCell, NibReusable {
-    @IBOutlet public private(set) weak var dateLabel: UILabel!
+    @IBOutlet public private(set) weak var publishDateLabel: UILabel!
     @IBOutlet public private(set) weak var titleLabel: UILabel!
     @IBOutlet public private(set) weak var descriptionLabel: UILabel!
     @IBOutlet public private(set) weak var audioLengthLabel: UILabel!

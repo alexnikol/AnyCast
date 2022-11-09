@@ -15,4 +15,8 @@ extension EpisodeCell {
     var audoLengthText: String? {
         return audioLengthLabel.text
     }
+    
+    var publishDateText: String? {
+        return publishDateLabel.text
+    }
 }

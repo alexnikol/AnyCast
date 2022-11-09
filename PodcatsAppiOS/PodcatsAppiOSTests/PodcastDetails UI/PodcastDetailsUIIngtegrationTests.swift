@@ -114,6 +114,7 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(view?.titleText, episodeViewModel.title, "Wrong title at index \(index)", file: file, line: line)
         XCTAssertEqual(view?.descriptionText, episodeViewModel.description, "Wrong description at index \(index)", file: file, line: line)
         XCTAssertEqual(view?.audoLengthText, episodeViewModel.displayAudioLengthInSeconds, "Wrong audio length at index \(index)", file: file, line: line)
+        XCTAssertEqual(view?.publishDateText, episodeViewModel.displayPublishDate, "Wrong publish date at index \(index)", file: file, line: line)
     }
     
     private func assertThat(_ sut: ListViewController, isRendering title: String, file: StaticString = #file, line: UInt = #line) {

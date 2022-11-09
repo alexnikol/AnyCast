@@ -71,8 +71,8 @@
             <connections>
                 <outlet property="audioLengthLabel" destination="WGd-94-7yC" id="fWK-bT-2zs"/>
                 <outlet property="cellContainer" destination="TFM-aj-C8W" id="fhn-Ya-6pb"/>
-                <outlet property="dateLabel" destination="W0C-EH-yMv" id="aHU-ua-Ht2"/>
                 <outlet property="descriptionLabel" destination="PBW-aD-EUX" id="Htk-k5-jtP"/>
+                <outlet property="publishDateLabel" destination="W0C-EH-yMv" id="aHU-ua-Ht2"/>
                 <outlet property="titleLabel" destination="7yW-Cr-0eR" id="z83-pk-DJM"/>
             </connections>
             <point key="canvasLocation" x="215.21739130434784" y="147.99107142857142"/>
@@ -80,7 +80,7 @@
     </objects>
     <resources>
         <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.93333333333333335" green="0.30588235294117649" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

@@ -4,9 +4,6 @@ import UIKit
 import PodcastsModuleiOS
 
 extension ListViewController {
-    func simulateUserInitiatedListReload() {
-        tableView.refreshControl?.simulatePullToRefresh()
-    }
     
     @discardableResult
     func simulatePodcastImageViewVisible(at row: Int) -> PodcastCell? {

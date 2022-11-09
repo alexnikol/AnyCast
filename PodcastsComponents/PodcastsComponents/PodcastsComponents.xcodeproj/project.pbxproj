@@ -134,7 +134,7 @@
 		8DE32A4129110CB300830695 /* LoadResourcePresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; platformFilter = ios; };
 		8DE32A4C291110DF00830695 /* RefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4B291110DF00830695 /* RefreshViewController.swift */; };
 		8DE32A4E29111B3400830695 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4D29111B3400830695 /* UITableView+Extensions.swift */; };
-		8DE32A5029111BAF00830695 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4F29111BAF00830695 /* Reusable.swift */; };
+		8DE32A5029111BAF00830695 /* NibReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4F29111BAF00830695 /* NibReusable.swift */; };
 		8DE32A5E29116ACE00830695 /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5D29116ACE00830695 /* UIView+Shimmering.swift */; };
 		8DE32A732912563200830695 /* GENRES_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A672912563100830695 /* GENRES_WITH_CONTENT_light.png */; };
 		8DE32A742912563200830695 /* GENRES_NOT_LOADING_STATE_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A682912563100830695 /* GENRES_NOT_LOADING_STATE_WITH_CONTENT_dark.png */; };
@@ -412,7 +412,7 @@
 		8DE32A3E29110BB300830695 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		8DE32A4B291110DF00830695 /* RefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewController.swift; sourceTree = "<group>"; };
 		8DE32A4D29111B3400830695 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
-		8DE32A4F29111BAF00830695 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		8DE32A4F29111BAF00830695 /* NibReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibReusable.swift; sourceTree = "<group>"; };
 		8DE32A5D29116ACE00830695 /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
 		8DE32A672912563100830695 /* GENRES_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GENRES_WITH_CONTENT_light.png; sourceTree = "<group>"; };
 		8DE32A682912563100830695 /* GENRES_NOT_LOADING_STATE_WITH_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GENRES_NOT_LOADING_STATE_WITH_CONTENT_dark.png; sourceTree = "<group>"; };
@@ -1186,9 +1186,28 @@
 			path = EpisodeCell;
 			sourceTree = "<group>";
 		};
+		8DDBB790291BEFDF0024A37A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8DDBB791291BEFE30024A37A /* Controllers */,
+				8DE32A4F29111BAF00830695 /* NibReusable.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		8DDBB791291BEFE30024A37A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8DE32A0529100F1200830695 /* ListViewController.swift */,
+				8DE32A4B291110DF00830695 /* RefreshViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		8DE329EE29100E9B00830695 /* PodcastsModuleiOS */ = {
 			isa = PBXGroup;
 			children = (
+				8DDBB790291BEFDF0024A37A /* Shared */,
 				8DDBB703291A66BC0024A37A /* BestPodcasts */,
 				8DDBB784291BDF7D0024A37A /* PodcastDetails */,
 				8DE32A0429100ED100830695 /* Extensions */,
@@ -1208,9 +1227,7 @@
 		8DE32A0229100EC000830695 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8DE32A0529100F1200830695 /* ListViewController.swift */,
 				8DE32A1329103AF700830695 /* PodcastCellController.swift */,
-				8DE32A4B291110DF00830695 /* RefreshViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1219,7 +1236,6 @@
 			isa = PBXGroup;
 			children = (
 				8DE32A9429128BB700830695 /* PodcastCell */,
-				8DE32A4F29111BAF00830695 /* Reusable.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2109,7 +2125,7 @@
 				8DE32A4C291110DF00830695 /* RefreshViewController.swift in Sources */,
 				8DDBB78A291BE0820024A37A /* EpisodeCell.swift in Sources */,
 				8DE32A0629100F1200830695 /* ListViewController.swift in Sources */,
-				8DE32A5029111BAF00830695 /* Reusable.swift in Sources */,
+				8DE32A5029111BAF00830695 /* NibReusable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

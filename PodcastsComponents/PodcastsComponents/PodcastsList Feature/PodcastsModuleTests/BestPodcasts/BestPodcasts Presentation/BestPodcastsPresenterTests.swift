@@ -30,8 +30,4 @@ class BestPodcastsPresenterTests: XCTestCase {
     private func makeBestPodcastsList(genreId: Int = 1, genreName: String = "Any genre name", podcasts: [Podcast]) -> BestPodcastsList {
         BestPodcastsList(genreId: genreId, genreName: genreName, podcasts: podcasts)
     }
-    
-    func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
-    }
 }

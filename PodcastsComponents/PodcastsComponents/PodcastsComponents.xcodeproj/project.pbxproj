@@ -108,6 +108,8 @@
 		8DDBB74E291A9CA80024A37A /* PodcastDetailsAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB74C291A9CA10024A37A /* PodcastDetailsAPIEndToEndTests.swift */; };
 		8DDBB752291A9D200024A37A /* EphemeralClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */; };
 		8DDBB753291AAF530024A37A /* EphemeralClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */; };
+		8DDBB75B291BB6230024A37A /* PodcastDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB758291BB6030024A37A /* PodcastDetailsPresenterTests.swift */; };
+		8DDBB75D291BB8420024A37A /* PodcastDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB755291BB5990024A37A /* PodcastDetailsPresenter.swift */; };
 		8DE329E6291001D900830695 /* LocalPocastImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE329E5291001D900830695 /* LocalPocastImageData.swift */; };
 		8DE329E72910065500830695 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8DE329F529100E9B00830695 /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */; };
@@ -381,6 +383,8 @@
 		8DDBB74A291A97320024A37A /* RemotePodcastType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePodcastType.swift; sourceTree = "<group>"; };
 		8DDBB74C291A9CA10024A37A /* PodcastDetailsAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EphemeralClientHelper.swift; sourceTree = "<group>"; };
+		8DDBB755291BB5990024A37A /* PodcastDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsPresenter.swift; sourceTree = "<group>"; };
+		8DDBB758291BB6030024A37A /* PodcastDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		8DE329E5291001D900830695 /* LocalPocastImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPocastImageData.swift; sourceTree = "<group>"; };
 		8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE329F429100E9B00830695 /* PodcastsModuleiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsModuleiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1089,6 +1093,7 @@
 			isa = PBXGroup;
 			children = (
 				8DDBB73B291A8E710024A37A /* PodcastDetails API */,
+				8DDBB757291BB5B20024A37A /* PodcastDetails Presentation */,
 			);
 			path = PodcastDetails;
 			sourceTree = "<group>";
@@ -1122,8 +1127,17 @@
 		8DDBB754291BA4CB0024A37A /* Podcast Details Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				8DDBB755291BB5990024A37A /* PodcastDetailsPresenter.swift */,
 			);
 			path = "Podcast Details Presentation";
+			sourceTree = "<group>";
+		};
+		8DDBB757291BB5B20024A37A /* PodcastDetails Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8DDBB758291BB6030024A37A /* PodcastDetailsPresenterTests.swift */,
+			);
+			path = "PodcastDetails Presentation";
 			sourceTree = "<group>";
 		};
 		8DE329EE29100E9B00830695 /* PodcastsModuleiOS */ = {
@@ -2112,6 +2126,7 @@
 				8DFAEADD28FD61080028B060 /* BestPodastsItemsMapper.swift in Sources */,
 				8DDBB72F291A81E80024A37A /* PodcastDetails.swift in Sources */,
 				8DDBB735291A82C90024A37A /* PodcastFullInfo.swift in Sources */,
+				8DDBB75D291BB8420024A37A /* PodcastDetailsPresenter.swift in Sources */,
 				8D7F45CE290C22410093301F /* ManagedPodcastImage.swift in Sources */,
 				8DDBB738291A83400024A37A /* Episode.swift in Sources */,
 				8DFAEAC828FD44FE0028B060 /* BestPodcastsLoader.swift in Sources */,
@@ -2122,6 +2137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DDBB75B291BB6230024A37A /* PodcastDetailsPresenterTests.swift in Sources */,
 				8D5C209928FFF6B0006CD42F /* LoadImageDataFromRemoteUseCaseTests.swift in Sources */,
 				8D5C21ED29014F8B006CD42F /* CoreDataPodcastImageDataStoreTests.swift in Sources */,
 				8DDBB73E291A8FD70024A37A /* PodcastDetailsMapperTests.swift in Sources */,

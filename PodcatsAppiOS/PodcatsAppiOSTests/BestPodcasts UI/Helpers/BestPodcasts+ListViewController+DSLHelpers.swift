@@ -7,7 +7,7 @@ extension ListViewController {
     
     @discardableResult
     func simulatePodcastImageViewVisible(at row: Int) -> PodcastCell? {
-        return podcastView(at: row) as? PodcastCell
+        return podcastView(at: row)
     }
     
     @discardableResult
@@ -41,9 +41,7 @@ extension ListViewController {
         return tableView.numberOfRows(inSection: podcastsSection)
     }
     
-    func podcastView(at row: Int) -> UITableViewCell? {
-        let ds = tableView.dataSource
-        let index = IndexPath(row: row, section: podcastsSection)
-        return ds?.tableView(tableView, cellForRowAt: index)
+    func podcastView(at row: Int) -> PodcastCell? {
+        return view(at: row, section: podcastsSection) as? PodcastCell
     }
 }

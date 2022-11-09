@@ -242,7 +242,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let view = sut.podcastView(at: index) as? PodcastCell
+        let view = sut.podcastView(at: index)
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, podcast.title, "Wrong name at index \(index)", file: file, line: line)
     }

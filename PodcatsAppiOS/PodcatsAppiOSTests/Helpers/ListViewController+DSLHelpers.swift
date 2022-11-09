@@ -1,6 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import Foundation
+import UIKit
 import PodcastsModuleiOS
 
 extension ListViewController {
@@ -11,5 +11,11 @@ extension ListViewController {
     
     var isShowinLoadingIndicator: Bool {
         return tableView.refreshControl?.isRefreshing ?? false
+    }
+    
+    func view(at row: Int, section: Int) -> UITableViewCell? {
+        let ds = tableView.dataSource
+        let index = IndexPath(row: row, section: section)
+        return ds?.tableView(tableView, cellForRowAt: index)
     }
 }

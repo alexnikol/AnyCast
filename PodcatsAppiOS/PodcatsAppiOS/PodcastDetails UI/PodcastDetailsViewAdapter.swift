@@ -19,7 +19,12 @@ final class PodcastDetailsViewAdapter: ResourceView {
     }
     
     func display(_ viewModel: PodcastDetailsViewModel) {
-        controller?.display([])
+        controller?.display(
+            viewModel.episodes.map({ episode in
+                let episodeViewModel = PodcastDetailsPresenter.map(episode)
+                return EpisodeCellController(viewModel: episodeViewModel)
+            })
+        )
         controller?.title = viewModel.title
     }
     

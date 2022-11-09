@@ -37,6 +37,26 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is completes with error")
     }
     
+    func test_loadPodcastDetailsCompletion_rendersSuccessfullyLoadedPodcastDetails() {
+        let uniquePodcastDetails1 = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+        let uniquePodcastDetails2 = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+        
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        assertThat(sut, isRendering: [])
+        assertThat(sut, isRendering: String())
+        
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails1, at: 0)
+        assertThat(sut, isRendering: uniquePodcastDetails1.episodes)
+        assertThat(sut, isRendering: uniquePodcastDetails1.title)
+        
+        sut.simulateUserInitiatedListReload()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails2, at: 1)
+        assertThat(sut, isRendering: uniquePodcastDetails2.episodes)
+        assertThat(sut, isRendering: uniquePodcastDetails2.title)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -53,5 +73,93 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, loader)
+    }
+    
+    private func assertThat(_ sut: ListViewController, isRendering episodes: [Episode], file: StaticString = #file, line: UInt = #line) {
+        guard sut.numberOfRenderedEpisodesViews() == episodes.count else {
+            return XCTFail("Expected \(episodes.count) rendered episodes, got \(sut.numberOfRenderedEpisodesViews()) rendered views instead")
+        }
+        
+        episodes.enumerated().forEach { index, episode in
+            assertThat(sut, hasViewConfiguredFor: episode, at: index, file: file, line: line)
+        }
+    }
+    
+    private func assertThat(
+        _ sut: ListViewController,
+        hasViewConfiguredFor episode: Episode,
+        at index: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let episodeViewModel = PodcastDetailsPresenter.map(episode)
+        let view = sut.episodeView(at: index)
+        XCTAssertNotNil(view, file: file, line: line)
+        XCTAssertEqual(view?.titleText, episodeViewModel.title, "Wrong title at index \(index)", file: file, line: line)
+        XCTAssertEqual(view?.descriptionText, episodeViewModel.description, "Wrong description at index \(index)", file: file, line: line)
+        XCTAssertEqual(view?.audoLengthText, episodeViewModel.displayAudioLengthInSeconds, "Wrong audio length at index \(index)", file: file, line: line)
+    }
+    
+    private func assertThat(_ sut: ListViewController, isRendering title: String, file: StaticString = #file, line: UInt = #line) {
+        XCTAssertEqual(sut.title ?? "", title)
+    }
+    
+    private func makeEpisode(
+        id: String,
+        title: String,
+        description: String,
+        thumbnail: URL,
+        audio: URL,
+        audioLengthInSeconds: Int,
+        containsExplicitContent: Bool
+    ) -> Episode {
+        Episode(
+            id: id,
+            title: title,
+            description: description,
+            thumbnail: thumbnail,
+            audio: audio,
+            audioLengthInSeconds: audioLengthInSeconds,
+            containsExplicitContent: containsExplicitContent
+        )
+    }
+    
+    private func makeUniqueEpisodes() -> [Episode] {
+        let episode1 = makeEpisode(
+            id: UUID().uuidString,
+            title: "Any Title 1",
+            description: "Any Description 1",
+            thumbnail: anyURL(),
+            audio: anyURL(),
+            audioLengthInSeconds: Int.random(in: 1...1000),
+            containsExplicitContent: Bool.random()
+        )
+        
+        let episode2 = makeEpisode(
+            id: UUID().uuidString,
+            title: "Any Title 2",
+            description: "Any Description 2",
+            thumbnail: anyURL(),
+            audio: anyURL(),
+            audioLengthInSeconds: Int.random(in: 1...1000),
+            containsExplicitContent: Bool.random()
+        )
+        return [episode1, episode2]
+    }
+    
+    private func makeUniquePodcastDetails(
+        episodes: [Episode]
+    ) -> PodcastDetails {
+        PodcastDetails(
+            id: UUID().uuidString,
+            title: "Any Title",
+            publisher: "Any Publisher",
+            language: "Any Language",
+            type: .episodic,
+            image: anyURL(),
+            episodes: episodes,
+            description: "Any Description",
+            totalEpisodes: Int.random(in: 1...1000)
+        )
     }
 }

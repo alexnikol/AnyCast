@@ -14,10 +14,10 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         XCTAssertEqual(loader.loadCallCount, 1, "Expected a loading request once view is loaded")
         
-        sut.simulateUserInitiatedPodcastsListReload()
+        sut.simulateUserInitiatedListReload()
         XCTAssertEqual(loader.loadCallCount, 2, "Expected another loading request once user initiates a load")
         
-        sut.simulateUserInitiatedPodcastsListReload()
+        sut.simulateUserInitiatedListReload()
         XCTAssertEqual(loader.loadCallCount, 3, "Expected a third loading request once user initiates a load")
     }
     
@@ -30,7 +30,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         loader.completeBestPodcastsLoading(at: 0)
         XCTAssertFalse(sut.isShowinLoadingIndicator, "Expected no loading indicator once loading is complete succesfully")
         
-        sut.simulateUserInitiatedPodcastsListReload()
+        sut.simulateUserInitiatedListReload()
         XCTAssertTrue(sut.isShowinLoadingIndicator, "Expected loading indicator once user initiates a reload")
         
         loader.completeBestPodcastsLoadingWithError(at: 1)
@@ -59,7 +59,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         assertThat(sut, isRendering: [uniquePodcasts[0]])
         assertThat(sut, isRendering: genreName0)
         
-        sut.simulateUserInitiatedPodcastsListReload()
+        sut.simulateUserInitiatedListReload()
         loader.completeBestPodcastsLoading(with: bestPodcastsListResult1, at: 1)
         assertThat(sut, isRendering: uniquePodcasts)
         assertThat(sut, isRendering: genreName1)
@@ -75,7 +75,7 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         assertThat(sut, isRendering: [podcast])
         assertThat(sut, isRendering: genreName)
         
-        sut.simulateUserInitiatedPodcastsListReload()
+        sut.simulateUserInitiatedListReload()
         loader.completeBestPodcastsLoadingWithError(at: 1)
         assertThat(sut, isRendering: genreName)
     }

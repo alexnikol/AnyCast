@@ -10,25 +10,25 @@ public final class PodcastDetailsUIComposer {
     private init() {}
     
     public static func podcastDetailsComposedWith(
-        genreID: Int,
-        podcastsLoader: @escaping (Int) -> AnyPublisher<BestPodcastsList, Error>,
+        podcastID: String,
+        podcastsLoader: @escaping (String) -> AnyPublisher<PodcastDetails, Error>,
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>
     ) -> ListViewController {
-        let presentationAdapter = BestPodcastsLoaderPresentationAdapter(
-            genreID: genreID,
+        let presentationAdapter = PodcastDetailsLoaderPresentationAdapter(
+            podcastID: podcastID,
             loader: podcastsLoader
         )
         let refreshController = RefreshViewController(delegate: presentationAdapter)
         let controller = ListViewController(refreshController: refreshController)
         
         presentationAdapter.presenter = LoadResourcePresenter(
-            resourceView: BestPodcastsViewAdapter(
+            resourceView: PodcastDetailsViewAdapter(
                 controller: controller,
                 imageLoader: imageLoader
             ),
             loadingView: WeakRefVirtualProxy(refreshController),
             errorView: WeakRefVirtualProxy(refreshController),
-            mapper: BestPodcastsPresenter.map
+            mapper: PodcastDetailsPresenter.map
         )
         return controller
     }

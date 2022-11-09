@@ -7,31 +7,31 @@ import PodcastsModuleiOS
 
 class PodcastDetailsUIIngtegrationTests: XCTestCase {
     
-    func test_loadPodcastDetailsActions_requestPodcastsByGenreFromLoader() {
+    func test_loadPodcastDetailsActions_requestPodcastDetailsByPodcastIDFromLoader() {
         let (sut, loader) = makeSUT()
         XCTAssertEqual(loader.loadCallCount, 0, "Expected no loading requests before view is loaded")
         
         sut.loadViewIfNeeded()
         XCTAssertEqual(loader.loadCallCount, 1, "Expected a loading request once view is loaded")
         
-        sut.simulateUserInitiatedPodcastsListReload()
+        sut.simulateUserInitiatedListReload()
         XCTAssertEqual(loader.loadCallCount, 2, "Expected another loading request once user initiates a load")
         
-        sut.simulateUserInitiatedPodcastsListReload()
+        sut.simulateUserInitiatedListReload()
         XCTAssertEqual(loader.loadCallCount, 3, "Expected a third loading request once user initiates a load")
     }
     
     // MARK: - Helpers
     
     private func makeSUT(
-        genreID: Int = 1,
+        podcastID: String = UUID().uuidString,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: ListViewController, loader: BestPodcastsLoaderSpy) {
-        let loader = BestPodcastsLoaderSpy()
+    ) -> (sut: ListViewController, loader: PodcastDetailsLoaderSpy) {
+        let loader = PodcastDetailsLoaderSpy()
         let sut = PodcastDetailsUIComposer.podcastDetailsComposedWith(
-            genreID: genreID,
-            podcastsLoader: loader.podcastsPublisher,
+            podcastID: podcastID,
+            podcastsLoader: loader.podcastDetailsPublisher,
             imageLoader: loader.imageDataPublisher
         )
         trackForMemoryLeaks(sut, file: file, line: line)

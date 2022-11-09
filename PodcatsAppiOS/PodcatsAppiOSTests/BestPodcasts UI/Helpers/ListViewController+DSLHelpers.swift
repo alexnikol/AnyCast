@@ -4,7 +4,7 @@ import UIKit
 import PodcastsModuleiOS
 
 extension ListViewController {
-    func simulateUserInitiatedPodcastsListReload() {
+    func simulateUserInitiatedListReload() {
         tableView.refreshControl?.simulatePullToRefresh()
     }
     

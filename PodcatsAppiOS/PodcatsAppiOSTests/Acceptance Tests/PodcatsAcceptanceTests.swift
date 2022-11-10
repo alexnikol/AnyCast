@@ -168,12 +168,13 @@ class PodcatsAcceptanceTests: XCTestCase {
                     "description": "Any Description",
                     "thumbnail": "https://any-url.com/thumbnail",
                     "audio": "https://any-url.com/audio",
-                    "audioLengthInSeconds": 300,
-                    "containsExplicitContent": true
+                    "audio_length_sec": 300,
+                    "explicit_content": true,
+                    "pub_date_ms": 12312312332
                 ]
             ],
             "description": "Any Description",
-            "totalEpisodes": 200
+            "total_episodes": 200
         ])
     }
 }

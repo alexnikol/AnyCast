@@ -32,7 +32,13 @@ extension ListViewController {
         let indexPath = IndexPath(row: row, section: podcastsSection)
         ds?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
     }
-        
+    
+    func simulateTapOnPodcast(at row: Int) {
+        let delegate = tableView.delegate
+        let indexPath = IndexPath(row: row, section: podcastsSection)
+        delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+    }
+    
     private var podcastsSection: Int {
         return 0
     }

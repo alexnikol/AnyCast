@@ -12,7 +12,8 @@ public final class BestPodcastsUIComposer {
     public static func bestPodcastComposed(
         genreID: Int,
         podcastsLoader: @escaping (Int) -> AnyPublisher<BestPodcastsList, Error>,
-        imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>
+        imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>,
+        selection: @escaping (Podcast) -> Void
     ) -> ListViewController {
         let presentationAdapter = BestPodcastsLoaderPresentationAdapter(
             genreID: genreID,
@@ -24,7 +25,8 @@ public final class BestPodcastsUIComposer {
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: BestPodcastsViewAdapter(
                 controller: controller,
-                imageLoader: imageLoader
+                imageLoader: imageLoader,
+                selection: selection
             ),
             loadingView: WeakRefVirtualProxy(refreshController),
             errorView: WeakRefVirtualProxy(refreshController),

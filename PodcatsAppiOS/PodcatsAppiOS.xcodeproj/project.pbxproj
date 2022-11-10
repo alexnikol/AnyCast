@@ -313,8 +313,8 @@
 			isa = PBXGroup;
 			children = (
 				8D5FA2622913C6C6002BB874 /* SharedHelpers */,
-				8D5FA23D2913C44A002BB874 /* BestPodcasts UI */,
 				8D72D03228F8118900C17DDC /* Genres UI */,
+				8D5FA23D2913C44A002BB874 /* BestPodcasts UI */,
 				8DDBB76F291BC5FD0024A37A /* PodcastDetails UI */,
 				8D72D04F28F8137E00C17DDC /* Extensions */,
 				8D76B87328D4A2540014A211 /* AppDelegate.swift */,

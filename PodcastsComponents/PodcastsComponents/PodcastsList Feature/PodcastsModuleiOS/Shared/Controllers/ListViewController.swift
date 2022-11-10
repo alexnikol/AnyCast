@@ -39,6 +39,10 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         return cellModels.count
     }
     
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        cellModels[indexPath.row].delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+    }
+    
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return cellModels[indexPath.row].dataSource.tableView(tableView, cellForRowAt: indexPath)
     }

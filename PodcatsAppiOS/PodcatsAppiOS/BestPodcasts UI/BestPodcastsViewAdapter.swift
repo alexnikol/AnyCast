@@ -11,11 +11,15 @@ final class BestPodcastsViewAdapter: ResourceView {
     
     private let imageLoader: (URL) -> AnyPublisher<Data, Error>
     private var cancellable: AnyCancellable?
+    private var selection: (Podcast) -> Void
     weak var controller: ListViewController?
     
-    init(controller: ListViewController, imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>) {
+    init(controller: ListViewController,
+         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>,
+         selection: @escaping (Podcast) -> Void) {
         self.controller = controller
         self.imageLoader = imageLoader
+        self.selection = selection
     }
     
     func display(_ viewModel: BestPodcastsListViewModel) {
@@ -25,7 +29,13 @@ final class BestPodcastsViewAdapter: ResourceView {
                 model: podcastViewModel,
                 imageLoader: imageLoader
             )
-            let cellController = PodcastCellController(model: podcastViewModel, delegete: adapter)
+            let cellController = PodcastCellController(
+                model: podcastViewModel,
+                delegete: adapter,
+                selection: { [weak self] in
+                    self?.selection(model)
+                }
+            )
             
             adapter.presenter = LoadResourcePresenter(
                 resourceView: WeakRefVirtualProxy(cellController),

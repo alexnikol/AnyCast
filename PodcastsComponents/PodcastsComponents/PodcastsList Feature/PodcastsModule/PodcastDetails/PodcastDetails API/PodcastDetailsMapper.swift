@@ -15,7 +15,6 @@ public final class PodcastDetailsMapper {
               let remotePodcastDetails = try? JSONDecoder().decode(RemotePodcastDetails.self, from: data) else {
             throw Error.invalidData
         }
-        
         return remotePodcastDetails.toModel()
     }
 }

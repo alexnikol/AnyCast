@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsModule
 
-class PodcastDetailsMapperTests: XCTest {
+class PodcastDetailsMapperTests: XCTestCase {
     
     func test_map_throwsErrorOnNon200HTTPURLResponse() throws {
         let validJSON = makePodcastDetails(episodes: []).data
@@ -58,10 +58,11 @@ class PodcastDetailsMapperTests: XCTest {
             "id": id,
             "title": title,
             "description": description,
-            "thumbnail": thumbnail,
-            "audio": audio,
-            "audioLengthInSeconds": audioLengthInSeconds,
-            "containsExplicitContent": containsExplicitContent
+            "thumbnail": thumbnail.absoluteString,
+            "audio": audio.absoluteString,
+            "audio_length_sec": audioLengthInSeconds,
+            "explicit_content": containsExplicitContent,
+            "pub_date_ms": publishDateInMiliseconds
         ] as [String: Any]
         
         return (episode, json)
@@ -110,10 +111,10 @@ class PodcastDetailsMapperTests: XCTest {
             "publisher": publisher,
             "language": language,
             "type": type,
-            "image": image,
+            "image": image.absoluteString,
             "episodes": episodes.map { $0.json },
             "description": description,
-            "totalEpisodes": totalEpisodes
+            "total_episodes": totalEpisodes
         ] as [String: Any]
         
         let model = PodcastDetails(

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D4D494028CF802A00D8EBEB /* GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */; };
 		8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */; };
 		8D5C204928FE8EC4006CD42F /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */; };
@@ -100,7 +101,6 @@
 		8DDBB732291A82BA0024A37A /* PodcastShortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB730291A82A60024A37A /* PodcastShortInfo.swift */; };
 		8DDBB735291A82C90024A37A /* PodcastFullInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB733291A82C60024A37A /* PodcastFullInfo.swift */; };
 		8DDBB738291A83400024A37A /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB736291A83310024A37A /* Episode.swift */; };
-		8DDBB73E291A8FD70024A37A /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8DDBB743291A95850024A37A /* PodcastDetailsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB740291A95160024A37A /* PodcastDetailsMapper.swift */; };
 		8DDBB747291A95D50024A37A /* RemotePodcastDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB744291A95A80024A37A /* RemotePodcastDetails.swift */; };
 		8DDBB749291A96100024A37A /* RemoteEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB748291A96100024A37A /* RemoteEpisode.swift */; };
@@ -2268,11 +2268,11 @@
 				8DDBB75B291BB6230024A37A /* PodcastDetailsPresenterTests.swift in Sources */,
 				8D5C209928FFF6B0006CD42F /* LoadImageDataFromRemoteUseCaseTests.swift in Sources */,
 				8D5C21ED29014F8B006CD42F /* CoreDataPodcastImageDataStoreTests.swift in Sources */,
-				8DDBB73E291A8FD70024A37A /* PodcastDetailsMapperTests.swift in Sources */,
 				8DE32A1829103E0200830695 /* BestPodcastsPresenterTests.swift in Sources */,
 				8D5C21E92901392B006CD42F /* PodcastsImageDataStoreSpy.swift in Sources */,
 				8D5C20BA29012DC6006CD42F /* SharedHelpers.swift in Sources */,
 				8DFAEACC28FD46680028B060 /* BestPodcastsMapperTests.swift in Sources */,
+				8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */,
 				8D5C21EB29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift in Sources */,
 				8DFAEAD328FD46F30028B060 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */,

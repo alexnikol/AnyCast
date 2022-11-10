@@ -23,19 +23,25 @@ public final class PodcastDetailsPresenter {
         calendar: Calendar = .current,
         locale: Locale = .current
     ) -> EpisodeViewModel {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.calendar = calendar
-        formatter.locale = locale
+        let relativeDateTimeFormatter = RelativeDateTimeFormatter()
+        relativeDateTimeFormatter.calendar = calendar
+        relativeDateTimeFormatter.locale = locale
         let publishDateInSeconds = model.publishDateInMiliseconds / 1000
         let publishDate = Date(timeIntervalSince1970: TimeInterval(publishDateInSeconds))
+
+        let dateFormatter = DateComponentsFormatter()
+        dateFormatter.allowedUnits = [.hour, .minute, .second]
+        dateFormatter.calendar = calendar
+        dateFormatter.unitsStyle = .brief
+        let result = dateFormatter.string(from: TimeInterval(model.audioLengthInSeconds)) ?? "INVALID_DURATION"
         
         return EpisodeViewModel(
             title: model.title,
             description: model.description,
             thumbnail: model.thumbnail,
             audio: model.audio,
-            displayAudioLengthInSeconds: String(model.audioLengthInSeconds),
-            displayPublishDate: formatter.localizedString(for: publishDate, relativeTo: currentDate)
+            displayAudioLengthInSeconds: result,
+            displayPublishDate: relativeDateTimeFormatter.localizedString(for: publishDate, relativeTo: currentDate)
         )
     }
 }

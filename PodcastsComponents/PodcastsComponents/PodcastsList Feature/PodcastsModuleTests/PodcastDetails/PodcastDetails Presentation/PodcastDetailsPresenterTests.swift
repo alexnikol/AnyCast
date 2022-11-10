@@ -24,8 +24,8 @@ class PodcastDetailsPresenterTests: XCTestCase {
         let now = Date()
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
-        let episode1 = makeEpisode(publishDate: now.adding(minutes: -5))
-        let episode2 = makeEpisode(publishDate: now.adding(days: -3))
+        let episode1 = makeEpisode(publishDate: now.adding(minutes: -5), audioLengthInSeconds: 62)
+        let episode2 = makeEpisode(publishDate: now.adding(days: -3), audioLengthInSeconds: 86420)
         let episodeViewModel1 = PodcastDetailsPresenter.map(episode1, currentDate: now, calendar: calendar, locale: locale)
         let episodeViewModel2 = PodcastDetailsPresenter.map(episode2, currentDate: now, calendar: calendar, locale: locale)
         
@@ -37,8 +37,8 @@ class PodcastDetailsPresenterTests: XCTestCase {
         XCTAssertEqual(episodeViewModel1.displayPublishDate, "5 minutes ago")
         XCTAssertEqual(episodeViewModel2.displayPublishDate, "3 days ago")
         
-        XCTAssertEqual(episodeViewModel1.displayAudioLengthInSeconds, String(episode1.audioLengthInSeconds))
-        XCTAssertEqual(episodeViewModel2.displayAudioLengthInSeconds, String(episode2.audioLengthInSeconds))
+        XCTAssertEqual(episodeViewModel1.displayAudioLengthInSeconds, "1min 2secs")
+        XCTAssertEqual(episodeViewModel2.displayAudioLengthInSeconds, "24hrs 20secs")
     }
     
     // MARK: - Helpers
@@ -57,7 +57,7 @@ class PodcastDetailsPresenterTests: XCTestCase {
         )
     }
     
-    private func makeEpisode(publishDate: Date = Date()) -> Episode {
+    private func makeEpisode(publishDate: Date = Date(), audioLengthInSeconds: Int = 100) -> Episode {
         let publishDateInMiliseconds = Int(publishDate.timeIntervalSince1970) * 1000
         return Episode(
             id: UUID().uuidString,
@@ -65,7 +65,7 @@ class PodcastDetailsPresenterTests: XCTestCase {
             description: "Any Episode description",
             thumbnail: anyURL(),
             audio: anyURL(),
-            audioLengthInSeconds: 200,
+            audioLengthInSeconds: audioLengthInSeconds,
             containsExplicitContent: false,
             publishDateInMiliseconds: publishDateInMiliseconds
         )

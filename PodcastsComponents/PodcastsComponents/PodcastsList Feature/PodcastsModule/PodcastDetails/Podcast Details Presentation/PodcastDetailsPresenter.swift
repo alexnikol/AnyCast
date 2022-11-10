@@ -17,31 +17,56 @@ public final class PodcastDetailsPresenter {
         )
     }
     
+    private static var relativeDateTimeFormatter: RelativeDateTimeFormatter = {
+        RelativeDateTimeFormatter()
+    }()
+    
+    private static var dateFormatter: DateComponentsFormatter = {
+        let dateFormatter = DateComponentsFormatter()
+        dateFormatter.allowedUnits = [.hour, .minute, .second]
+        dateFormatter.unitsStyle = .brief
+        return dateFormatter
+    }()
+    
     public static func map(
         _ model: Episode,
         currentDate: Date = Date(),
         calendar: Calendar = .current,
         locale: Locale = .current
     ) -> EpisodeViewModel {
-        let relativeDateTimeFormatter = RelativeDateTimeFormatter()
-        relativeDateTimeFormatter.calendar = calendar
-        relativeDateTimeFormatter.locale = locale
-        let publishDateInSeconds = model.publishDateInMiliseconds / 1000
-        let publishDate = Date(timeIntervalSince1970: TimeInterval(publishDateInSeconds))
-
-        let dateFormatter = DateComponentsFormatter()
-        dateFormatter.allowedUnits = [.hour, .minute, .second]
-        dateFormatter.calendar = calendar
-        dateFormatter.unitsStyle = .brief
-        let result = dateFormatter.string(from: TimeInterval(model.audioLengthInSeconds)) ?? "INVALID_DURATION"
         
+        let presentablePublishDate = mapToPresentablePublishDate(
+            publishDateInMiliseconds: model.publishDateInMiliseconds,
+            currentDate,
+            calendar,
+            locale
+        )
         return EpisodeViewModel(
             title: model.title,
             description: model.description,
             thumbnail: model.thumbnail,
             audio: model.audio,
-            displayAudioLengthInSeconds: result,
-            displayPublishDate: relativeDateTimeFormatter.localizedString(for: publishDate, relativeTo: currentDate)
+            displayAudioLengthInSeconds: mapToPresentableAudioLength(model.audioLengthInSeconds, calendar: calendar),
+            displayPublishDate: presentablePublishDate
         )
+    }
+    
+    private static func mapToPresentableAudioLength(_ lengthInSeconds: Int, calendar: Calendar) -> String {
+        dateFormatter.calendar = calendar
+        let presentableAudioLength = dateFormatter.string(from: TimeInterval(lengthInSeconds)) ?? "INVALID_DURATION"
+        return presentableAudioLength
+    }
+    
+    private static func mapToPresentablePublishDate(
+        publishDateInMiliseconds: Int,
+        _ currentDate: Date,
+        _ calendar: Calendar,
+        _ locale: Locale
+    ) -> String {
+        relativeDateTimeFormatter.calendar = calendar
+        relativeDateTimeFormatter.locale = locale
+        let publishDateInSeconds = publishDateInMiliseconds / 1000
+        let presentablePublishDate = Date(timeIntervalSince1970: TimeInterval(publishDateInSeconds))
+        return relativeDateTimeFormatter.localizedString(for: presentablePublishDate, relativeTo: currentDate)
     }
 }

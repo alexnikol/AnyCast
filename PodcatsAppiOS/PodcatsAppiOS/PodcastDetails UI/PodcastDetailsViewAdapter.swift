@@ -11,6 +11,7 @@ final class PodcastDetailsViewAdapter: ResourceView {
     
     private let imageLoader: (URL) -> AnyPublisher<Data, Error>
     private var cancellable: AnyCancellable?
+    private let episodesPresenter = EpisodesPresenter()
     weak var controller: ListViewController?
     
     init(controller: ListViewController, imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>) {
@@ -21,7 +22,7 @@ final class PodcastDetailsViewAdapter: ResourceView {
     func display(_ viewModel: PodcastDetailsViewModel) {
         controller?.display(
             viewModel.episodes.map({ episode in
-                let episodeViewModel = PodcastDetailsPresenter.map(episode)
+                let episodeViewModel = episodesPresenter.map(episode)
                 return EpisodeCellController(viewModel: episodeViewModel)
             })
         )

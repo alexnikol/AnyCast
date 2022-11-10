@@ -108,7 +108,7 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let episodeViewModel = PodcastDetailsPresenter.map(episode)
+        let episodeViewModel = EpisodesPresenter().map(episode)
         let view = sut.episodeView(at: index)
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, episodeViewModel.title, "Wrong title at index \(index)", file: file, line: line)

@@ -24,28 +24,21 @@ class PodcastDetailsPresenterTests: XCTestCase {
         let now = Date()
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
-        let episode = makeEpisode()
-        let episodeViewModel = PodcastDetailsPresenter.map(episode, currentDate: now, calendar: calendar, locale: locale)
-        
-        XCTAssertEqual(episodeViewModel.title, episode.title)
-        XCTAssertEqual(episodeViewModel.description, episode.description)
-        XCTAssertEqual(episodeViewModel.thumbnail, episode.thumbnail)
-        XCTAssertEqual(episodeViewModel.audio, episode.audio)
-        XCTAssertEqual(episodeViewModel.displayAudioLengthInSeconds, String(episode.audioLengthInSeconds))
-    }
-    
-    func test_map_convertsEpisodePublishDate() {
-        let now = Date()
-        let calendar = Calendar(identifier: .gregorian)
-        let locale = Locale(identifier: "en_US_POSIX")
         let episode1 = makeEpisode(publishDate: now.adding(minutes: -5))
         let episode2 = makeEpisode(publishDate: now.adding(days: -3))
-        
         let episodeViewModel1 = PodcastDetailsPresenter.map(episode1, currentDate: now, calendar: calendar, locale: locale)
         let episodeViewModel2 = PodcastDetailsPresenter.map(episode2, currentDate: now, calendar: calendar, locale: locale)
         
+        XCTAssertEqual(episodeViewModel1.title, episode1.title)
+        XCTAssertEqual(episodeViewModel1.description, episode1.description)
+        XCTAssertEqual(episodeViewModel1.thumbnail, episode1.thumbnail)
+        XCTAssertEqual(episodeViewModel1.audio, episode1.audio)
+        
         XCTAssertEqual(episodeViewModel1.displayPublishDate, "5 minutes ago")
         XCTAssertEqual(episodeViewModel2.displayPublishDate, "3 days ago")
+        
+        XCTAssertEqual(episodeViewModel1.displayAudioLengthInSeconds, String(episode1.audioLengthInSeconds))
+        XCTAssertEqual(episodeViewModel2.displayAudioLengthInSeconds, String(episode2.audioLengthInSeconds))
     }
     
     // MARK: - Helpers

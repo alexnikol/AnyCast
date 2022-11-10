@@ -80,7 +80,6 @@ extension PodcastCellController: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("HERE__")
         selection()
     }
 }

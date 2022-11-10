@@ -65,7 +65,8 @@ class PodcastDetailsPresenterTests: XCTestCase {
     }
     
     private func makeEpisode(publishDate: Date = Date()) -> Episode {
-        Episode(
+        let publishDateInMiliseconds = Int(publishDate.timeIntervalSince1970) * 1000
+        return Episode(
             id: UUID().uuidString,
             title: "Any Episode title",
             description: "Any Episode description",
@@ -73,7 +74,7 @@ class PodcastDetailsPresenterTests: XCTestCase {
             audio: anyURL(),
             audioLengthInSeconds: 200,
             containsExplicitContent: false,
-            publishDateInMiliseconds: Int(publishDate.timeIntervalSince1970)
+            publishDateInMiliseconds: publishDateInMiliseconds
         )
     }
 }

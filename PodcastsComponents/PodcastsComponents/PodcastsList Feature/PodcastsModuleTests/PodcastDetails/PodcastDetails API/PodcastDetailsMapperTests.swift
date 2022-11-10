@@ -77,7 +77,7 @@ class PodcastDetailsMapperTests: XCTestCase {
             audio: anyURL(),
             audioLengthInSeconds: Int.random(in: 1...1000),
             containsExplicitContent: Bool.random(),
-            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
+            publishDateInMiliseconds: Int.random(in: 1479110301853...1479110401853)
         )
         
         let episode2 = makeEpisode(

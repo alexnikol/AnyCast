@@ -23,18 +23,19 @@ public final class PodcastDetailsPresenter {
         calendar: Calendar = .current,
         locale: Locale = .current
     ) -> EpisodeViewModel {
-            let formatter = RelativeDateTimeFormatter()
-            formatter.calendar = calendar
-            formatter.locale = locale
-            let publishDate = Date(timeIntervalSince1970: TimeInterval(model.publishDateInMiliseconds))
-            
-            return EpisodeViewModel(
-                title: model.title,
-                description: model.description,
-                thumbnail: model.thumbnail,
-                audio: model.audio,
-                displayAudioLengthInSeconds: String(model.audioLengthInSeconds),
-                displayPublishDate: formatter.localizedString(for: publishDate, relativeTo: currentDate)
-            )
-        }
+        let formatter = RelativeDateTimeFormatter()
+        formatter.calendar = calendar
+        formatter.locale = locale
+        let publishDateInSeconds = model.publishDateInMiliseconds / 1000
+        let publishDate = Date(timeIntervalSince1970: TimeInterval(publishDateInSeconds))
+        
+        return EpisodeViewModel(
+            title: model.title,
+            description: model.description,
+            thumbnail: model.thumbnail,
+            audio: model.audio,
+            displayAudioLengthInSeconds: String(model.audioLengthInSeconds),
+            displayPublishDate: formatter.localizedString(for: publishDate, relativeTo: currentDate)
+        )
+    }
 }

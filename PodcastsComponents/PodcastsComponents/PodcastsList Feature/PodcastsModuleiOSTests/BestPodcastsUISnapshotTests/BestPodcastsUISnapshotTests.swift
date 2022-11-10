@@ -74,7 +74,8 @@ class BestPodcastsUISnapshotTests: XCTestCase {
             let imageStub = ImageStub(image: stubbedImages[index])
             let cellController = PodcastCellController(
                 model: viewModel,
-                delegete: imageStub
+                delegete: imageStub,
+                selection: {}
             )
             imageStub.imageDataResourceView = cellController
             return cellController

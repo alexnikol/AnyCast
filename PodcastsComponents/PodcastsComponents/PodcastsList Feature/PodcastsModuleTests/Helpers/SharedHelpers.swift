@@ -20,7 +20,7 @@ func makeEpisode(publishDate: Date = Date(), audioLengthInSeconds: Int = 100) ->
     return Episode(
         id: UUID().uuidString,
         title: "Any Episode title",
-        description: "Any Episode description",
+        description: "<strong>Any Episode description</strong>",
         thumbnail: anyURL(),
         audio: anyURL(),
         audioLengthInSeconds: audioLengthInSeconds,

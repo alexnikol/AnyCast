@@ -17,7 +17,6 @@ class EpisodesPresenterTests: XCTestCase {
         let episodeViewModel2 = episodesPresenter.map(episode2, currentDate: now)
         
         XCTAssertEqual(episodeViewModel1.title, episode1.title)
-        XCTAssertEqual(episodeViewModel1.description, episode1.description)
         XCTAssertEqual(episodeViewModel1.thumbnail, episode1.thumbnail)
         XCTAssertEqual(episodeViewModel1.audio, episode1.audio)
         
@@ -26,5 +25,11 @@ class EpisodesPresenterTests: XCTestCase {
         
         XCTAssertEqual(episodeViewModel1.displayAudioLengthInSeconds, "1min 2secs")
         XCTAssertEqual(episodeViewModel2.displayAudioLengthInSeconds, "24hrs 20secs")
+        
+        XCTAssertEqual(episodeViewModel1.description, "Any Episode description")
+        XCTAssertEqual(
+            episodeViewModel1.descriptionWithHTMLMarkup.string,
+            NSAttributedString(string: "<strong>Any Episode description</strong>").string
+        )
     }
 }

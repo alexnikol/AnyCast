@@ -21,8 +21,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
         
         sut.display(podcastDetailsWithContent())
         
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "PODCAST_DETAILS_WITH_CONTENT_light")
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "PODCAST_DETAILS_WITH_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "PODCAST_DETAILS_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "PODCAST_DETAILS_WITH_CONTENT_dark")
     }
     
     // MARK: - Helpers

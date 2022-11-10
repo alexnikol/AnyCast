@@ -9,7 +9,7 @@ extension EpisodeCell {
     }
     
     var descriptionText: String? {
-        return descriptionLabel.text
+        return desciptionView.attributedText.string
     }
     
     var audoLengthText: String? {

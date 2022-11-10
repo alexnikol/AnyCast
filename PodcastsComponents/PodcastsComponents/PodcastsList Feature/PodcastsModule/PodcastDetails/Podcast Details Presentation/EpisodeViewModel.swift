@@ -5,7 +5,6 @@ import Foundation
 public struct EpisodeViewModel {
     public let title: String
     public let description: String
-    public let descriptionWithHTMLMarkup: NSAttributedString
     public let thumbnail: URL
     public let audio: URL
     public let displayAudioLengthInSeconds: String
@@ -23,12 +22,6 @@ public struct EpisodeViewModel {
         self.displayAudioLengthInSeconds = displayAudioLengthInSeconds
         self.displayPublishDate = displayPublishDate
         self.description = description.htmlStripped
-        let descriptionData = Data(description.utf8)
-        if let attributedString = try? NSAttributedString(markdown: descriptionData) {
-            descriptionWithHTMLMarkup = attributedString
-        } else {
-            descriptionWithHTMLMarkup = NSAttributedString(string: description)
-        }
     }
 }
 

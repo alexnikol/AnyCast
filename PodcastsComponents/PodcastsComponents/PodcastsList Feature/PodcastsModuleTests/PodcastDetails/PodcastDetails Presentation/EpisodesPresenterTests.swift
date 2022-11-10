@@ -23,13 +23,9 @@ class EpisodesPresenterTests: XCTestCase {
         XCTAssertEqual(episodeViewModel1.displayPublishDate, "5 minutes ago")
         XCTAssertEqual(episodeViewModel2.displayPublishDate, "3 days ago")
         
-        XCTAssertEqual(episodeViewModel1.displayAudioLengthInSeconds, "1min 2secs")
-        XCTAssertEqual(episodeViewModel2.displayAudioLengthInSeconds, "24hrs 20secs")
+        XCTAssertEqual(episodeViewModel1.displayAudioLengthInSeconds, "1min 2sec")
+        XCTAssertEqual(episodeViewModel2.displayAudioLengthInSeconds, "24hr 20sec")
         
         XCTAssertEqual(episodeViewModel1.description, "Any Episode description")
-        XCTAssertEqual(
-            episodeViewModel1.descriptionWithHTMLMarkup.string,
-            NSAttributedString(string: "<strong>Any Episode description</strong>").string
-        )
     }
 }

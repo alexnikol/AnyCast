@@ -18,7 +18,7 @@ public final class EpisodeCellController: NSObject, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         cell = tableView.dequeueAndRegisterCell(indexPath: indexPath) as EpisodeCell
         cell?.titleLabel.text = viewModel.title
-        cell?.updateDescription(viewModel.description)
+        cell?.updateDescription(viewModel.descriptionWithHTMLMarkup)
         cell?.audioLengthLabel.text = viewModel.displayAudioLengthInSeconds
         cell?.publishDateLabel.text = viewModel.displayPublishDate
         return cell!

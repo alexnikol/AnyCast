@@ -23,14 +23,13 @@ public final class EpisodesPresenter {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
         formatter.unitsStyle = .brief
-        formatter.calendar = calendar
+        var newCalendar = calendar
+        newCalendar.locale = locale
+        formatter.calendar = newCalendar
         return formatter
     }()
     
-    public func map(
-        _ model: Episode,
-        currentDate: Date = Date()
-    ) -> EpisodeViewModel {
+    public func map(_ model: Episode, currentDate: Date = Date()) -> EpisodeViewModel {
         let presentablePublishDate = mapToPresentablePublishDate(
             publishDateInMiliseconds: model.publishDateInMiliseconds,
             relativeTo: currentDate
@@ -46,8 +45,7 @@ public final class EpisodesPresenter {
     }
     
     private func mapToPresentableAudioLength(_ lengthInSeconds: Int, calendar: Calendar) -> String {
-        let presentableAudioLength = dateFormatter.string(from: TimeInterval(lengthInSeconds)) ?? "INVALID_DURATION"
-        return presentableAudioLength
+        dateFormatter.string(from: TimeInterval(lengthInSeconds)) ?? "INVALID_DURATION"
     }
     
     private func mapToPresentablePublishDate(publishDateInMiliseconds: Int, relativeTo currentDate: Date) -> String {

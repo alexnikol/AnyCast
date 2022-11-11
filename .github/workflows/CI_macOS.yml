@@ -32,9 +32,6 @@ jobs:
     - name: Code coverage converting to cobertura.xml format
       run: slather coverage -x
 
-    - name: CodeClimate Code Coverage Test Reporter
-      uses: xylabs/action-code-climate-test-reporter@v1.0.0
-
     - name: Publish code coverage
       uses: paambaati/codeclimate-action@v3.2.0
       env:

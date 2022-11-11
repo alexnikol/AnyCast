@@ -31,7 +31,9 @@ public final class EpisodeCell: UITableViewCell, NibReusable {
         let attributedString = NSMutableAttributedString(attributedString: descriptionAttributedString)
         attributedString.addAttributes(
             [
-                .foregroundColor: UIColor.tertiaryLabel,
+//                .foregroundColor: UIColor.tertiaryLabel,
+                .foregroundColor: UIColor.green,
+                .backgroundColor: UIColor.clear,
                 .font: UIFont.systemFont(ofSize: 15, weight: .medium)
             ],
             range: NSRange(location: 0, length: attributedString.string.count))

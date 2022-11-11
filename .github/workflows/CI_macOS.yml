@@ -1,8 +1,8 @@
 name: CI macOS
 
 on:
-  pull_request:
-    branches: [ main ]
+  push:
+    branches: [ feature/code_coverage_codeclimate_integration ]
 
 jobs:
   build-and-test:
@@ -26,11 +26,8 @@ jobs:
         path: CImacOSResults.xcresult
       if: success() || failure()
 
-    # - name: Failed snapshot artifacts
-    #   run: tar -cvf failed_snapshots.tar PodcastsComponents/PodcastsComponents/PodcastsList Feature/PodcastsModuleiOSTests/PodcastDetailsUISnapshotTests/failed_snapshots/
+    - name: Slather install
+      run: sudo gem install slather
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: PodcastsComponents/PodcastsComponents/PodcastsList Feature/PodcastsModuleiOSTests/PodcastDetailsUISnapshotTests/failed_snapshots/
-        path: failed_snapshots.tar
+    - name: Code coverage converting to cobertura.xml format
+    - run: slather coverage -x --workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace

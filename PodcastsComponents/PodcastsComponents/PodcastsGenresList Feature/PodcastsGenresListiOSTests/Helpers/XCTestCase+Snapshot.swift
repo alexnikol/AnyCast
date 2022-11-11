@@ -21,6 +21,12 @@ extension XCTestCase {
             
             saveFailedSnapshotArtifacts(expectedURL: snapshotURL, receivedURL: temporarySnapshotURL, file: file)
             
+            var issue = XCTIssue(type: .assertionFailure, compactDescription: "New snapshot does not match stored snapshot. New snapshot URL: \(temporarySnapshotURL), Stored snapshot URL: \(snapshotURL)")
+            let attachment = XCTAttachment(image: snapshot, quality: .low)
+            issue.add(attachment)
+            self.record(issue)
+            
+            
             XCTFail("New snapshot does not match stored snapshot. New snapshot URL: \(temporarySnapshotURL), Stored snapshot URL: \(snapshotURL)", file: file, line: line)
         }
     }

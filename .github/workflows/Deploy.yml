@@ -56,13 +56,16 @@ jobs:
     - name: CI_iOS Build and Test
       run: xcodebuild clean build test -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES  -resultBundlePath CIiOSResults -derivedDataPath /tmp/XcodeDerivedDataWithCoverageCIiOS
 
+    - name: Convert code coverage for CI_macOS
+      run: slather coverage -x --scheme "CI_macOS" --output-directory "slather_reports/CI_macOS" -b "/tmp/XcodeDerivedDataWithCoverageCImacOS" "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj"
+
     - name: Publish code coverage
       uses: paambaati/codeclimate-action@v3.2.0
       env:
         CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
       with:
         debug: true
-        coverageCommand: slather coverage -x --scheme "CI_macOS" --output-directory "slather_reports/CI_macOS" -b "/tmp/XcodeDerivedDataWithCoverageCImacOS" "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj" && slather coverage -x --scheme "CI_iOS" --workspace "PodcatsAppiOS/PodcatsAppiOS.xcworkspace" --output-directory "slather_reports/CI_iOS" -b "/tmp/XcodeDerivedDataWithCoverageCIiOS" "PodcatsAppiOS/PodcatsAppiOS.xcodeproj"
+        coverageCommand: slather coverage -x --scheme "CI_iOS" --workspace "PodcatsAppiOS/PodcatsAppiOS.xcworkspace" --output-directory "slather_reports/CI_iOS" -b "/tmp/XcodeDerivedDataWithCoverageCIiOS" "PodcatsAppiOS/PodcatsAppiOS.xcodeproj"
         coverageLocations: |
           ${{github.workspace}}/slather_reports/CI_macOS/cobertura.xml:cobertura
           ${{github.workspace}}/slather_reports/CI_iOS/cobertura.xml:cobertura

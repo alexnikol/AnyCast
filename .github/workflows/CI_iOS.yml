@@ -1,8 +1,8 @@
 name: CI iOS
 
 on:
-  pull_request:
-    branches: [ main_dsdsds ]
+  push:
+    branches: [ feature/code_coverage_codeclimate_integration ]
 
 jobs:
   build-and-test:
@@ -17,11 +17,32 @@ jobs:
       
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
+
+    - name: Slather install
+      run: sudo gem install slather
       
     - name: Build and Test
-      run: xcodebuild clean build test -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES  -resultBundlePath CIiOSResults
+      run: xcodebuild clean build test -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES  -resultBundlePath CIiOSResults -derivedDataPath /tmp/XcodeDerivedDataWithCoverage
 
     - uses: kishikawakatsumi/xcresulttool@v1
       with:
         path: CIiOSResults.xcresult
       if: success() || failure()
+
+    - name: Code coverage converting to cobertura.xml format
+      run: slather coverage -x
+
+    - name: Publish code coverage
+      uses: paambaati/codeclimate-action@v3.2.0
+      env:
+        CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
+      with:
+        debug: true
+        coverageLocations: ${{github.workspace}}/slather_reports/**/*.xml:cobertura
+        coverageCommand: |
+          slather coverage -x
+          --scheme "CI_iOS"
+          --workspace "PodcatsAppiOS/PodcatsAppiOS.xcworkspace"
+          --output-directory "slather_reports/CI_iOS"
+          -b "/tmp/XcodeDerivedDataWithCoverage"
+          "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj"

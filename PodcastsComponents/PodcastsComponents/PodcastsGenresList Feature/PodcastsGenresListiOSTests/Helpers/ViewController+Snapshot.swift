@@ -26,7 +26,7 @@ struct SnapshotConfiguration {
                 .init(userInterfaceIdiom: .phone),
                 .init(horizontalSizeClass: .compact),
                 .init(verticalSizeClass: .regular),
-                .init(displayScale: 3),
+                .init(displayScale: 2),
                 .init(displayGamut: .P3),
                 .init(userInterfaceStyle: style)
             ]))

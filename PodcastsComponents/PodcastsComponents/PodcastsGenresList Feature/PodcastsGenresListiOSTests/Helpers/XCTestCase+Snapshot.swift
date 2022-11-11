@@ -19,7 +19,39 @@ extension XCTestCase {
             
             try? snapshotData?.write(to: temporarySnapshotURL)
             
+            saveFailedSnapshotArtifacts(expectedURL: snapshotURL, receivedURL: temporarySnapshotURL, file: file)
+            
             XCTFail("New snapshot does not match stored snapshot. New snapshot URL: \(temporarySnapshotURL), Stored snapshot URL: \(snapshotURL)", file: file, line: line)
+        }
+    }
+    
+    private func saveFailedSnapshotArtifacts(expectedURL: URL, receivedURL: URL, file: StaticString) {
+        let fileName = expectedURL.lastPathComponent
+        let failedArtifactsURL = URL(fileURLWithPath: String(describing: file))
+            .deletingLastPathComponent()
+            .appendingPathComponent("failed_snapshots")
+            .appendingPathComponent(fileName)
+        
+        do {
+            try? FileManager.default.removeItem(at: failedArtifactsURL)
+            
+            try FileManager.default.createDirectory(
+                at: failedArtifactsURL,
+                withIntermediateDirectories: true
+            )
+            try FileManager.default.copyItem(
+                at: expectedURL,
+                to: failedArtifactsURL
+                    .appendingPathComponent("EXPECTED__\(fileName)")
+            )
+            try FileManager.default.copyItem(
+                at: receivedURL,
+                to: failedArtifactsURL
+                    .appendingPathComponent("RECEIVED__\(fileName)")
+            )
+            print("Failed snapshots copied to failed_snapshots at \(failedArtifactsURL)")
+        } catch {
+            print("Failed to record snapshot with error: \(error)")
         }
     }
     

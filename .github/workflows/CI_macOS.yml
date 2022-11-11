@@ -1,8 +1,8 @@
 name: CI macOS
 
 on:
-  push:
-    branches: [ feature/code_coverage_codeclimate_integration ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-test:
@@ -28,9 +28,3 @@ jobs:
       with:
         path: CImacOSResults.xcresult
       if: success() || failure()
-
-    - name: Slather install
-      run: sudo gem install slather
-
-    - name: Code coverage converting to cobertura.xml format
-    - run: slather coverage -x --workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace

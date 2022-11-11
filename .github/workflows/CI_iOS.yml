@@ -29,9 +29,6 @@ jobs:
         path: CIiOSResults.xcresult
       if: success() || failure()
 
-    - name: Code coverage converting to cobertura.xml format
-      run: slather coverage -x
-
     - name: Publish code coverage
       uses: paambaati/codeclimate-action@v3.2.0
       env:

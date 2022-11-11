@@ -2,8 +2,7 @@ name: Deploy Podcats iOS
 
 on:
   push:
-    # branches: [ main ]
-    branches: [ feature/code_coverage_codeclimate_integration ]
+    branches: [ main ]
 
 jobs:
   build-and-deploy:

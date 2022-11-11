@@ -25,3 +25,12 @@ jobs:
       with:
         path: CImacOSResults.xcresult
       if: success() || failure()
+
+    # - name: Failed snapshot artifacts
+    #   run: tar -cvf failed_snapshots.tar PodcastsComponents/PodcastsComponents/PodcastsList Feature/PodcastsModuleiOSTests/PodcastDetailsUISnapshotTests/failed_snapshots/
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: PodcastsComponents/PodcastsComponents/PodcastsList Feature/PodcastsModuleiOSTests/PodcastDetailsUISnapshotTests/failed_snapshots/
+        path: failed_snapshots.tar

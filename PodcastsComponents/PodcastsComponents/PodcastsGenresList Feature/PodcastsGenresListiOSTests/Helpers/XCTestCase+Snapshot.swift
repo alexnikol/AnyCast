@@ -21,7 +21,7 @@ extension XCTestCase {
             
             let errorMessage = "New snapshot does not match stored snapshot. New snapshot URL: \(temporarySnapshotURL), Stored snapshot URL: \(snapshotURL)"
             var issue = XCTIssue(type: .assertionFailure, compactDescription: errorMessage)
-            let receivedAttachment = XCTAttachment(image: snapshot, quality: .low)
+            let receivedAttachment = XCTAttachment(contentsOfFile: temporarySnapshotURL)
             receivedAttachment.name = "RECEIVED RESULT"
             
             let expectedAttachment = XCTAttachment(contentsOfFile: snapshotURL)

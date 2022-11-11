@@ -49,33 +49,33 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
             EpisodeCellController(
                 viewModel: EpisodeViewModel(
                     title: "Any Episode title",
-                    description: "",
+                    description: "Any Description",
                     thumbnail: anyURL(),
                     audio: anyURL(),
                     displayAudioLengthInSeconds: "44 hours 22 min",
                     displayPublishDate: "5 years ago"
                 )
             ),
-//            EpisodeCellController(
-//                viewModel: EpisodeViewModel(
-//                    title: "Any Episode title".repeatTimes(10),
-//                    description: "Any Description",
-//                    thumbnail: anyURL(),
-//                    audio: anyURL(),
-//                    displayAudioLengthInSeconds: "44 hours 22 min".repeatTimes(10),
-//                    displayPublishDate: "5 days ago"
-//                )
-//            ),
-//            EpisodeCellController(
-//                viewModel: EpisodeViewModel(
-//                    title: "Any Episode title".repeatTimes(10),
-//                    description: "Any Description".repeatTimes(10),
-//                    thumbnail: anyURL(),
-//                    audio: anyURL(),
-//                    displayAudioLengthInSeconds: "1 min".repeatTimes(10),
-//                    displayPublishDate: "5 min ago".repeatTimes(20)
-//                )
-//            )
+            EpisodeCellController(
+                viewModel: EpisodeViewModel(
+                    title: "Any Episode title".repeatTimes(10),
+                    description: "Any Description",
+                    thumbnail: anyURL(),
+                    audio: anyURL(),
+                    displayAudioLengthInSeconds: "44 hours 22 min".repeatTimes(10),
+                    displayPublishDate: "5 days ago"
+                )
+            ),
+            EpisodeCellController(
+                viewModel: EpisodeViewModel(
+                    title: "Any Episode title".repeatTimes(10),
+                    description: "Any Description".repeatTimes(10),
+                    thumbnail: anyURL(),
+                    audio: anyURL(),
+                    displayAudioLengthInSeconds: "1 min".repeatTimes(10),
+                    displayPublishDate: "5 min ago".repeatTimes(20)
+                )
+            )
         ]
     }
 }

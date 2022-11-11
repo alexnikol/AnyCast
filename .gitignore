@@ -133,3 +133,10 @@ slather-test-output
 ### BuildTools ###
 BuildTools/.build 
 BuildTools/.swiftpm
+
+###Codeclimate
+slather_reports
+CImacOSResults
+CImacOSResults.xcresult
+CIiOSResults
+CIiOSResults.xcresult

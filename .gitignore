@@ -133,5 +133,3 @@ slather-test-output
 ### BuildTools ###
 BuildTools/.build 
 BuildTools/.swiftpm
-
-PodcastsComponents/PodcastsComponents/PodcastsList Feature/PodcastsModuleiOSTests/PodcastDetailsUISnapshotTests/failed_snapshots/

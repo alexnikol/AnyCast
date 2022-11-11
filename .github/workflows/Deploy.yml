@@ -2,7 +2,8 @@ name: Deploy Podcats iOS
 
 on:
   push:
-    branches: [ main ]
+    # branches: [ main ]
+    branches: [ feature/code_coverage_codeclimate_integration ]
 
 jobs:
   build-and-deploy:
@@ -40,11 +41,28 @@ jobs:
         echo $buildNumber
         /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" PodcatsAppiOS/PodcatsAppiOS/Info.plist
 
-    - name: Build
-      run: xcodebuild clean archive -sdk iphoneos -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -configuration "Release" -scheme "Podcats" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/Podcats.xcarchive"
+    - name: CI_macOS Build and Test
+      run: xcodebuild clean build test -project PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj -scheme "CI_macOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -destination "platform=macOS" ONLY_ACTIVE_ARCH=YES -resultBundlePath CImacOSResults -derivedDataPath /tmp/XcodeDerivedDataWithCoverageCImacOS
+
+    - name: CI_iOS Build and Test
+      run: xcodebuild clean build test -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES  -resultBundlePath CIiOSResults -derivedDataPath /tmp/XcodeDerivedDataWithCoverageCIiOS
+
+    - name: Publish code coverage
+      uses: paambaati/codeclimate-action@v3.2.0
+      env:
+        CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
+      with:
+        debug: true
+        coverageCommand: slather coverage -x --scheme "CI_macOS" --output-directory "slather_reports/CI_macOS" -b "/tmp/XcodeDerivedDataWithCoverage" "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj" && slather coverage -x --scheme "CI_iOS" --workspace "PodcatsAppiOS/PodcatsAppiOS.xcworkspace" --output-directory "slather_reports/CI_iOS" -b "/tmp/XcodeDerivedDataWithCoverage" "PodcatsAppiOS/PodcatsAppiOS.xcodeproj"
+        coverageLocations: |
+          ${{github.workspace}}/slather_reports/CI_macOS/cobertura.xml:cobertura
+          ${{github.workspace}}/slather_reports/CI_iOS/cobertura.xml:cobertura
+
+    # - name: Build
+    #   run: xcodebuild clean archive -sdk iphoneos -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -configuration "Release" -scheme "Podcats" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/Podcats.xcarchive"
     
-    - name: Export
-      run: xcodebuild -exportArchive -archivePath DerivedData/Archive/Podcats.xcarchive -exportOptionsPlist .github/secrets/exportOptions.plist -exportPath DerivedData/ipa
+    # - name: Export
+    #   run: xcodebuild -exportArchive -archivePath DerivedData/Archive/Podcats.xcarchive -exportOptionsPlist .github/secrets/exportOptions.plist -exportPath DerivedData/ipa
       
-    - name: Deploy
-      run: xcrun altool --upload-app --type ios --file "DerivedData/ipa/Podcats.ipa" --username "${{ secrets.APPLEID_USERNAME }}" --password "${{ secrets.APPLEID_PASSWORD }}" --verbose
+    # - name: Deploy
+    #   run: xcrun altool --upload-app --type ios --file "DerivedData/ipa/Podcats.ipa" --username "${{ secrets.APPLEID_USERNAME }}" --password "${{ secrets.APPLEID_PASSWORD }}" --verbose

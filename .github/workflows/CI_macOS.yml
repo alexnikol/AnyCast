@@ -2,7 +2,7 @@ name: CI macOS
 
 on:
   push:
-    branches: [ feature/code_coverage_codeclimate_integration ]
+    branches: [ feature/code_coverage_codeclimate_integration11 ]
 
 jobs:
   build-and-test:

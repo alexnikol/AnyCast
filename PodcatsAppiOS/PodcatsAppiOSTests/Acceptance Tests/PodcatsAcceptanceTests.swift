@@ -8,7 +8,7 @@ import PodcastsGenresListiOS
 import PodcastsModuleiOS
 @testable import Podcats
 
-class GenresAcceptanceTests: XCTestCase {
+class PodcatsAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
         let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
@@ -52,6 +52,13 @@ class GenresAcceptanceTests: XCTestCase {
         XCTAssertEqual(bestPodcasts.numberOfRenderedPodcastsViews(), 2)
     }
     
+    func test_onPodcastSelection_displaysPodcastDetails() {
+        let bestPodcasts = showBestPodcasts()
+        let podcastDetails = showPodcastDetails(from: bestPodcasts)
+
+        XCTAssertEqual(podcastDetails.numberOfRenderedEpisodesViews(), 1)
+    }
+    
     // MARK: - Helpers
     
     private func launch(
@@ -89,6 +96,14 @@ class GenresAcceptanceTests: XCTestCase {
         return nav?.topViewController as! ListViewController
     }
     
+    private func showPodcastDetails(from bestPodcastsListScreen: ListViewController) -> ListViewController {
+        bestPodcastsListScreen.simulateTapOnPodcast(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let nav = bestPodcastsListScreen.navigationController
+        return nav?.topViewController as! ListViewController
+    }
+    
     private func makeData(for url: URL) -> Data {
         let baseURL = "https://listen-api-test.listennotes.com"
         switch url.absoluteString {
@@ -97,6 +112,9 @@ class GenresAcceptanceTests: XCTestCase {
             
         case "\(baseURL)/api/v2/best_podcasts?genre_id=1":
             return makeBestPodcastsData()
+            
+        case "\(baseURL)/api/v2/podcasts/unique_podcast_id":
+            return makePodcastDetailsData()
             
         default:
             return Data()
@@ -116,7 +134,7 @@ class GenresAcceptanceTests: XCTestCase {
             "name": "Any Genre name",
             "podcasts": [
                 [
-                    "id": UUID().uuidString,
+                    "id": "unique_podcast_id",
                     "title": "Any Podcast name",
                     "publisher": "Any Publisher name",
                     "type": "episodic",
@@ -132,5 +150,30 @@ class GenresAcceptanceTests: XCTestCase {
                     "language": "Ukranian"
                 ]
             ]])
+    }
+    
+    private func makePodcastDetailsData() -> Data {
+        return try! JSONSerialization.data(withJSONObject: [
+            "id": UUID().uuidString,
+            "title": "Any Podcast Details Title",
+            "publisher": "Any Publisher",
+            "language": "Any Language",
+            "type": "serial",
+            "image": "https://any-url.com/image",
+            "episodes": [
+                [
+                    "id": UUID().uuidString,
+                    "title": "Any Episode Title",
+                    "description": "Any Description",
+                    "thumbnail": "https://any-url.com/thumbnail",
+                    "audio": "https://any-url.com/audio",
+                    "audio_length_sec": 300,
+                    "explicit_content": true,
+                    "pub_date_ms": 12312312332
+                ]
+            ],
+            "description": "Any Description",
+            "total_episodes": 200
+        ])
     }
 }

@@ -4,13 +4,10 @@ import UIKit
 import PodcastsModuleiOS
 
 extension ListViewController {
-    func simulateUserInitiatedPodcastsListReload() {
-        tableView.refreshControl?.simulatePullToRefresh()
-    }
     
     @discardableResult
     func simulatePodcastImageViewVisible(at row: Int) -> PodcastCell? {
-        return podcastView(at: row) as? PodcastCell
+        return podcastView(at: row)
     }
     
     @discardableResult
@@ -36,8 +33,10 @@ extension ListViewController {
         ds?.tableView?(tableView, cancelPrefetchingForRowsAt: [indexPath])
     }
     
-    var isShowinLoadingIndicator: Bool {
-        return tableView.refreshControl?.isRefreshing ?? false
+    func simulateTapOnPodcast(at row: Int) {
+        let delegate = tableView.delegate
+        let indexPath = IndexPath(row: row, section: podcastsSection)
+        delegate?.tableView?(tableView, didSelectRowAt: indexPath)
     }
     
     private var podcastsSection: Int {
@@ -48,9 +47,7 @@ extension ListViewController {
         return tableView.numberOfRows(inSection: podcastsSection)
     }
     
-    func podcastView(at row: Int) -> UITableViewCell? {
-        let ds = tableView.dataSource
-        let index = IndexPath(row: row, section: podcastsSection)
-        return ds?.tableView(tableView, cellForRowAt: index)
+    func podcastView(at row: Int) -> PodcastCell? {
+        return view(at: row, section: podcastsSection) as? PodcastCell
     }
 }

@@ -11,7 +11,13 @@ public struct PodcastImageViewModel {
     public let typeValueLabel: String
     public let image: URL
     
-    public init(title: String, publisher: String, languageStaticLabel: String, languageValueLabel: String, typeStaticLabel: String, typeValueLabel: String, image: URL) {
+    public init(title: String,
+                publisher: String,
+                languageStaticLabel: String,
+                languageValueLabel: String,
+                typeStaticLabel: String,
+                typeValueLabel: String,
+                image: URL) {
         self.title = title
         self.publisher = publisher
         self.languageStaticLabel = languageStaticLabel

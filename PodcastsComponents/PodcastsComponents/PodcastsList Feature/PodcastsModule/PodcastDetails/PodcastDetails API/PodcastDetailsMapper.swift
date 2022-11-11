@@ -15,7 +15,6 @@ public final class PodcastDetailsMapper {
               let remotePodcastDetails = try? JSONDecoder().decode(RemotePodcastDetails.self, from: data) else {
             throw Error.invalidData
         }
-        
         return remotePodcastDetails.toModel()
     }
 }
@@ -46,7 +45,8 @@ private extension Array where Element == RemoteEpisode {
                 thumbnail: $0.thumbnail,
                 audio: $0.audio,
                 audioLengthInSeconds: $0.audioLengthInSeconds,
-                containsExplicitContent: $0.containsExplicitContent
+                containsExplicitContent: $0.containsExplicitContent,
+                publishDateInMiliseconds: $0.publishDateInMiliseconds
             )
         }
     }

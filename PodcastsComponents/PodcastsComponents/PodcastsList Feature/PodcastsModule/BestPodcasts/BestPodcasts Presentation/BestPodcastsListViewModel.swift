@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct BestPodcastsPresenterViewModel {
+public struct BestPodcastsListViewModel {
     public let title: String
-    public let podcasts: [PodcastImageViewModel]
+    public let podcasts: [Podcast]
 }

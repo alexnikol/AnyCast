@@ -15,12 +15,12 @@ class BestPodcastsUISnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "EMPTY_BEST_PODCASTS_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "EMPTY_BEST_PODCASTS_dark")
     }
-    
+  
     func test_bestPodcastsWithContent() {
         let (sut, _) = makeSUT()
-        
+
         sut.display(podcastsList())
-        
+
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "BEST_PODCASTS_WITH_CONTENT_light")
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "BEST_PODCASTS_WITH_CONTENT_dark")
     }
@@ -74,17 +74,14 @@ class BestPodcastsUISnapshotTests: XCTestCase {
             let imageStub = ImageStub(image: stubbedImages[index])
             let cellController = PodcastCellController(
                 model: viewModel,
-                delegete: imageStub
+                delegete: imageStub,
+                selection: {}
             )
             imageStub.imageDataResourceView = cellController
             return cellController
         }
     }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
-    }
-    
+        
     private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
         func didRequestLoading() {}
     }

@@ -7,24 +7,35 @@ import PodcastsModule
 import PodcastsModuleiOS
 
 final class BestPodcastsViewAdapter: ResourceView {
-    typealias ResourceViewModel = BestPodcastsPresenterViewModel
+    typealias ResourceViewModel = BestPodcastsListViewModel
     
     private let imageLoader: (URL) -> AnyPublisher<Data, Error>
     private var cancellable: AnyCancellable?
+    private var selection: (Podcast) -> Void
     weak var controller: ListViewController?
     
-    init(controller: ListViewController, imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>) {
+    init(controller: ListViewController,
+         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>,
+         selection: @escaping (Podcast) -> Void) {
         self.controller = controller
         self.imageLoader = imageLoader
+        self.selection = selection
     }
     
-    func display(_ viewModel: BestPodcastsPresenterViewModel) {
+    func display(_ viewModel: BestPodcastsListViewModel) {
         controller?.display(viewModel.podcasts.map { model in
+            let podcastViewModel = BestPodcastsPresenter.map(model)
             let adapter = PodcastImageDataLoaderPresentationAdapter(
-                model: model,
+                model: podcastViewModel,
                 imageLoader: imageLoader
             )
-            let cellController = PodcastCellController(model: model, delegete: adapter)
+            let cellController = PodcastCellController(
+                model: podcastViewModel,
+                delegete: adapter,
+                selection: { [weak self] in
+                    self?.selection(model)
+                }
+            )
             
             adapter.presenter = LoadResourcePresenter(
                 resourceView: WeakRefVirtualProxy(cellController),

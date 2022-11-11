@@ -95,6 +95,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let podcasts = BestPodcastsUIComposer.bestPodcastComposed(
             genreID: genre.id,
             podcastsLoader: makeBestPodcastsRemoteLoader,
+            imageLoader: makeLocalPodcastImageDataLoaderWithRemoteFallback(for:),
+            selection: showPodcastDetails
+        )
+        (window?.rootViewController as? UINavigationController)?.pushViewController(podcasts, animated: true)
+    }
+    
+    func showPodcastDetails(byPodcast podcast: Podcast) {
+        let podcasts = PodcastDetailsUIComposer.podcastDetailsComposedWith(
+            podcastID: podcast.id,
+            podcastsLoader: makeRemotePodcastDetailsLoader,
             imageLoader: makeLocalPodcastImageDataLoaderWithRemoteFallback(for:)
         )
         (window?.rootViewController as? UINavigationController)?.pushViewController(podcasts, animated: true)
@@ -118,17 +128,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         return localLoader
             .loadPublisher(from: url)
-            .handleEvents(receiveOutput: { localData in
-                print("RESULTT LOCALDATA for url: \(localData) \(url)")
-            })
             .fallback(to: {
                 remoteLoader
                     .loadPublisher(from: url)
-                    .handleEvents(receiveOutput: { data in
-                        print("RESULTT REMOTERESULT for url: \(data) \(url)")
-                    })
                     .caching(to: localLoader, for: url)
             })
+            .eraseToAnyPublisher()
+    }
+        
+    private func makeRemotePodcastDetailsLoader(byPodcastID podcastID: String) -> AnyPublisher<PodcastDetails, Swift.Error> {
+        var urlBuilder = URLComponents()
+        urlBuilder.scheme = "https"
+        urlBuilder.host = "listen-api-test.listennotes.com"
+        urlBuilder.path = "/api/v2/podcasts/\(podcastID)"
+        return httpClient
+            .loadPublisher(from: urlBuilder.url!)
+            .tryMap(PodcastDetailsMapper.map)
             .eraseToAnyPublisher()
     }
 }

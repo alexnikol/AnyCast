@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsModule
 
-class PodcastDetailsMapperTests: XCTest {
+class PodcastDetailsMapperTests: XCTestCase {
     
     func test_map_throwsErrorOnNon200HTTPURLResponse() throws {
         let validJSON = makePodcastDetails(episodes: []).data
@@ -41,7 +41,8 @@ class PodcastDetailsMapperTests: XCTest {
         thumbnail: URL,
         audio: URL,
         audioLengthInSeconds: Int,
-        containsExplicitContent: Bool
+        containsExplicitContent: Bool,
+        publishDateInMiliseconds: Int
     ) -> (model: Episode, json: [String: Any]) {
         let episode = Episode(
             id: id,
@@ -50,16 +51,18 @@ class PodcastDetailsMapperTests: XCTest {
             thumbnail: thumbnail,
             audio: audio,
             audioLengthInSeconds: audioLengthInSeconds,
-            containsExplicitContent: containsExplicitContent
+            containsExplicitContent: containsExplicitContent,
+            publishDateInMiliseconds: publishDateInMiliseconds
         )
         let json = [
             "id": id,
             "title": title,
             "description": description,
-            "thumbnail": thumbnail,
-            "audio": audio,
-            "audioLengthInSeconds": audioLengthInSeconds,
-            "containsExplicitContent": containsExplicitContent
+            "thumbnail": thumbnail.absoluteString,
+            "audio": audio.absoluteString,
+            "audio_length_sec": audioLengthInSeconds,
+            "explicit_content": containsExplicitContent,
+            "pub_date_ms": publishDateInMiliseconds
         ] as [String: Any]
         
         return (episode, json)
@@ -73,7 +76,8 @@ class PodcastDetailsMapperTests: XCTest {
             thumbnail: anyURL(),
             audio: anyURL(),
             audioLengthInSeconds: Int.random(in: 1...1000),
-            containsExplicitContent: Bool.random()
+            containsExplicitContent: Bool.random(),
+            publishDateInMiliseconds: Int.random(in: 1479110301853...1479110401853)
         )
         
         let episode2 = makeEpisode(
@@ -83,7 +87,8 @@ class PodcastDetailsMapperTests: XCTest {
             thumbnail: anyURL(),
             audio: anyURL(),
             audioLengthInSeconds: Int.random(in: 1...1000),
-            containsExplicitContent: Bool.random()
+            containsExplicitContent: Bool.random(),
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
         )
         return [episode1, episode2]
     }
@@ -106,10 +111,10 @@ class PodcastDetailsMapperTests: XCTest {
             "publisher": publisher,
             "language": language,
             "type": type,
-            "image": image,
+            "image": image.absoluteString,
             "episodes": episodes.map { $0.json },
             "description": description,
-            "totalEpisodes": totalEpisodes
+            "total_episodes": totalEpisodes
         ] as [String: Any]
         
         let model = PodcastDetails(

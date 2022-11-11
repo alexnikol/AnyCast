@@ -10,10 +10,12 @@ struct RemoteEpisode: Decodable {
     let audio: URL
     let audioLengthInSeconds: Int
     let containsExplicitContent: Bool
+    let publishDateInMiliseconds: Int
     
     private enum CodingKeys: String, CodingKey {
         case id, title, description, thumbnail, audio
         case audioLengthInSeconds = "audio_length_sec"
         case containsExplicitContent = "explicit_content"
+        case publishDateInMiliseconds = "pub_date_ms"
     }
 }

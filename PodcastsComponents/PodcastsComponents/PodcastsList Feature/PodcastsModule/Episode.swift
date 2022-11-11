@@ -10,6 +10,7 @@ public struct Episode: Equatable {
     public let audio: URL
     public let audioLengthInSeconds: Int
     public let containsExplicitContent: Bool
+    public let publishDateInMiliseconds: Int
     
     public init(id: String,
                 title: String,
@@ -17,7 +18,8 @@ public struct Episode: Equatable {
                 thumbnail: URL,
                 audio: URL,
                 audioLengthInSeconds: Int,
-                containsExplicitContent: Bool) {
+                containsExplicitContent: Bool,
+                publishDateInMiliseconds: Int) {
         self.id = id
         self.title = title
         self.description = description
@@ -25,5 +27,6 @@ public struct Episode: Equatable {
         self.audio = audio
         self.audioLengthInSeconds = audioLengthInSeconds
         self.containsExplicitContent = containsExplicitContent
+        self.publishDateInMiliseconds = publishDateInMiliseconds
     }
 }

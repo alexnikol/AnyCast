@@ -15,10 +15,14 @@ public final class PodcastCellController: NSObject {
     private let model: PodcastImageViewModel
     private let cellDelegate: PodcastCellControllerDelegate
     private var cell: PodcastCell?
+    private let selection: () -> Void
     
-    public init(model: PodcastImageViewModel, delegete: PodcastCellControllerDelegate) {
+    public init(model: PodcastImageViewModel,
+                delegete: PodcastCellControllerDelegate,
+                selection: @escaping () -> Void) {
         self.model = model
         self.cellDelegate = delegete
+        self.selection = selection
     }
 
     func cancelLoad() {
@@ -73,6 +77,10 @@ extension PodcastCellController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cancelLoad()
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection()
     }
 }
 

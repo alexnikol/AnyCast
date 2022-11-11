@@ -37,6 +37,7 @@ jobs:
       env:
         CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
       with:
-        coverageCommand: npm run coverage
         workingDirectory: slather_reports/CI_macOS/
         debug: true
+        coverageLocations: |
+        ${{github.workspace}}/slather_reports/CI_macOS/*.xml:cobertura

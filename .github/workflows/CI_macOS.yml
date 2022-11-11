@@ -36,9 +36,4 @@ jobs:
       with:
         debug: true
         coverageLocations: ${{github.workspace}}/slather_reports/**/*.xml:cobertura
-        coverageCommand: |
-          slather coverage -x
-          --scheme "CI_macOS"
-          --output-directory "slather_reports/CI_macOS"
-          -b "/tmp/XcodeDerivedDataWithCoverage"
-          "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj"
+        coverageCommand: slather coverage -x --scheme "CI_macOS" --output-directory "slather_reports/CI_macOS" -b "/tmp/XcodeDerivedDataWithCoverage" "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj"

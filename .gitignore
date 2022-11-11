@@ -138,3 +138,5 @@ BuildTools/.swiftpm
 slather_reports
 CImacOSResults
 CImacOSResults.xcresult
+CIiOSResults
+CIiOSResults.xcresult

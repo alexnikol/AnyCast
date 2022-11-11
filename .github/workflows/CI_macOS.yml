@@ -30,4 +30,4 @@ jobs:
       run: sudo gem install slather
 
     - name: Code coverage converting to cobertura.xml format
-    - run: slather coverage -x --workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace
+      run: slather coverage -x --workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace

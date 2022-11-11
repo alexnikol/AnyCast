@@ -56,7 +56,7 @@ jobs:
         CC_TEST_REPORTER_ID: "${{ secrets.CC_TEST_REPORTER_ID }}"
       with:
         debug: true
-        coverageCommand: slather coverage -x --scheme "CI_macOS" --output-directory "slather_reports/CI_macOS" -b "/tmp/XcodeDerivedDataWithCoverage" "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj" && slather coverage -x --scheme "CI_iOS" --workspace "PodcatsAppiOS/PodcatsAppiOS.xcworkspace" --output-directory "slather_reports/CI_iOS" -b "/tmp/XcodeDerivedDataWithCoverage" "PodcatsAppiOS/PodcatsAppiOS.xcodeproj"
+        coverageCommand: slather coverage -x --scheme "CI_macOS" --output-directory "slather_reports/CI_macOS" -b "/tmp/XcodeDerivedDataWithCoverageCImacOS" "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj" && slather coverage -x --scheme "CI_iOS" --workspace "PodcatsAppiOS/PodcatsAppiOS.xcworkspace" --output-directory "slather_reports/CI_iOS" -b "/tmp/XcodeDerivedDataWithCoverageCIiOS" "PodcatsAppiOS/PodcatsAppiOS.xcodeproj"
         coverageLocations: |
           ${{github.workspace}}/slather_reports/CI_macOS/cobertura.xml:cobertura
           ${{github.workspace}}/slather_reports/CI_iOS/cobertura.xml:cobertura

@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DFAEAE828FD76670028B060"
-               BuildableName = "HTTPClient.framework"
-               BlueprintName = "HTTPClient"
-               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
                BuildableName = "PodcastsGenresListiOS.framework"
                BlueprintName = "PodcastsGenresListiOS"
@@ -287,15 +273,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DFAEAE828FD76670028B060"
-            BuildableName = "HTTPClient.framework"
-            BlueprintName = "HTTPClient"
-            ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

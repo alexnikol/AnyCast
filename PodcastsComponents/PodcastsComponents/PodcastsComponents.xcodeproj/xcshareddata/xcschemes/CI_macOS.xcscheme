@@ -100,13 +100,6 @@
             BlueprintName = "URLSessionHTTPClient"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DFAEAE828FD76670028B060"
-            BuildableName = "HTTPClient.framework"
-            BlueprintName = "HTTPClient"
-            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
-         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference

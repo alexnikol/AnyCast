@@ -29,5 +29,5 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: PodcastsComponents/PodcastsComponents/PodcastsList Feature/PodcastsModuleiOSTests/PodcastDetailsUISnapshotTests/failed_snapshots/
-        path: failed_snapshots.tar
+        name: failed_snapshots
+        path: PodcastsComponents/PodcastsComponents/PodcastsList Feature/PodcastsModuleiOSTests/PodcastDetailsUISnapshotTests/failed_snapshots/

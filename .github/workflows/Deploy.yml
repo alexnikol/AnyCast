@@ -12,28 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install provisioning profile
-      run: |
-        gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/Podcats_iOS.mobileprovision .github/secrets/Podcats_iOS.mobileprovision.gpg
-        mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-        cp .github/secrets/Podcats_iOS.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
-
-    - name: Install keychain certificate
-      run: |
-        gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/com.podcats.app.product.iOS.p12 .github/secrets/com.podcats.app.product.iOS.p12.gpg
-        security create-keychain -p "" build.keychain
-        security import .github/secrets/com.podcats.app.product.iOS.p12 -t agg -k ~/Library/Keychains/build.keychain -P "" -A
-        security list-keychains -s ~/Library/Keychains/build.keychain
-        security default-keychain -s ~/Library/Keychains/build.keychain
-        security unlock-keychain -p "" ~/Library/Keychains/build.keychain
-        security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
-
-    - name: Set build number
-      run: |
-        buildNumber=$(($GITHUB_RUN_NUMBER + 1))
-        echo $buildNumber
-        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" PodcatsAppiOS/PodcatsAppiOS/Info.plist
-
     - name: Slather install
       run: sudo gem install slather
 
@@ -69,11 +47,36 @@ jobs:
           ${{github.workspace}}/slather_reports/CI_macOS/cobertura.xml:cobertura
           ${{github.workspace}}/slather_reports/CI_iOS/cobertura.xml:cobertura  
     
+    - name: Install provisioning profile
+      run: |
+        gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/Podcats_iOS.mobileprovision .github/secrets/Podcats_iOS.mobileprovision.gpg
+        mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+        cp .github/secrets/Podcats_iOS.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+
+    - name: Install keychain certificate
+      run: |
+        gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.SECRET_KEY }}" --output .github/secrets/com.podcats.app.product.iOS.p12 .github/secrets/com.podcats.app.product.iOS.p12.gpg
+        security create-keychain -p "" build.keychain
+        security import .github/secrets/com.podcats.app.product.iOS.p12 -t agg -k ~/Library/Keychains/build.keychain -P "" -A
+        security list-keychains -s ~/Library/Keychains/build.keychain
+        security default-keychain -s ~/Library/Keychains/build.keychain
+        security unlock-keychain -p "" ~/Library/Keychains/build.keychain
+        security set-key-partition-list -S apple-tool:,apple: -s -k "" ~/Library/Keychains/build.keychain
+
+    - name: Set build number
+      run: |
+        buildNumber=$(($GITHUB_RUN_NUMBER + 1))
+        echo $buildNumber
+        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" PodcatsAppiOS/PodcatsAppiOS/Info.plist
+
     - name: Archive
       run: xcodebuild clean archive -sdk iphoneos -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -configuration "Release" -scheme "Podcats" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/Podcats.xcarchive"
     
     - name: Export
-      run: xcodebuild -exportArchive -archivePath DerivedData/Archive/Podcats.xcarchive -exportOptionsPlist .github/secrets/exportOptions.plist -exportPath DerivedData/ipa
+      run: xcodebuild -exportArchive \
+                     -archivePath DerivedData/Archive/Podcats.xcarchive \
+                     -exportOptionsPlist .github/secrets/exportOptions.plist \
+                     -exportPath DerivedData/ipa
       
     - name: Deploy
       run: xcrun altool --upload-app --type ios --file "/tmp/XcodeDerivedDataWithCoverageCIiOS/ipa/Podcats.ipa" --username "${{ secrets.APPLEID_USERNAME }}" --password "${{ secrets.APPLEID_PASSWORD }}" --verbose

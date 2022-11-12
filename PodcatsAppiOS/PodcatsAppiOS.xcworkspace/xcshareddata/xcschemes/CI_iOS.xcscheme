@@ -90,6 +90,20 @@
                ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D76B86F28D4A2540014A211"
+               BuildableName = "Podcats.app"
+               BlueprintName = "Podcats"
+               ReferencedContainer = "container:PodcatsAppiOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -141,6 +155,13 @@
             BuildableName = "URLSessionHTTPClient.framework"
             BlueprintName = "URLSessionHTTPClient"
             ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D76B86F28D4A2540014A211"
+            BuildableName = "Podcats.app"
+            BlueprintName = "Podcats"
+            ReferencedContainer = "container:PodcatsAppiOS.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -273,6 +294,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8DC351F928D1DB1E00F12FD9"
+            BuildableName = "PodcastsGenresListiOS.framework"
+            BlueprintName = "PodcastsGenresListiOS"
+            ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

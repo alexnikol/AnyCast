@@ -79,7 +79,7 @@ jobs:
           ${{github.workspace}}/slather_reports/CI_macOS/cobertura.xml:cobertura
           ${{github.workspace}}/slather_reports/CI_iOS/cobertura.xml:cobertura  
     
-    - name: Build
+    - name: Archive
       run: xcodebuild clean archive -sdk iphoneos -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -configuration "Release" -scheme "Podcats" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/Podcats.xcarchive"
     
     - name: Export

@@ -79,8 +79,11 @@ jobs:
           ${{github.workspace}}/slather_reports/CI_macOS/cobertura.xml:cobertura
           ${{github.workspace}}/slather_reports/CI_iOS/cobertura.xml:cobertura  
     
+    - name: Build
+      run: xcodebuild clean archive -sdk iphoneos -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -configuration "Release" -scheme "Podcats" -derivedDataPath "DerivedData" -archivePath "DerivedData/Archive/Podcats.xcarchive"
+    
     - name: Export
-      run: xcodebuild -exportArchive -archivePath /tmp/XcodeDerivedDataWithCoverageCIiOS/Archive/Podcats.xcarchive -exportOptionsPlist .github/secrets/exportOptions.plist -exportPath /tmp/XcodeDerivedDataWithCoverageCIiOS/ipa
+      run: xcodebuild -exportArchive -archivePath DerivedData/Archive/Podcats.xcarchive -exportOptionsPlist .github/secrets/exportOptions.plist -exportPath DerivedData/ipa
       
     - name: Deploy
       run: xcrun altool --upload-app --type ios --file "/tmp/XcodeDerivedDataWithCoverageCIiOS/ipa/Podcats.ipa" --username "${{ secrets.APPLEID_USERNAME }}" --password "${{ secrets.APPLEID_PASSWORD }}" --verbose

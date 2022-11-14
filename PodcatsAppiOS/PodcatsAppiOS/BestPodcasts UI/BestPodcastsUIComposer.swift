@@ -3,7 +3,7 @@
 import UIKit
 import Combine
 import LoadResourcePresenter
-import SharedHelpersiOSModule
+import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 

@@ -2,7 +2,7 @@
 
 import XCTest
 import LoadResourcePresenter
-import SharedHelpersiOSModule
+import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 

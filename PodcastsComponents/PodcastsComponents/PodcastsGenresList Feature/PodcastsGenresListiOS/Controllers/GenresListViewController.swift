@@ -2,7 +2,7 @@
 
 import UIKit
 import LoadResourcePresenter
-import SharedHelpersiOSModule
+import SharedComponentsiOSModule
 
 public final class GenresListViewController: UICollectionViewController {
     

@@ -3,7 +3,7 @@
 import Foundation
 import Combine
 import LoadResourcePresenter
-import SharedHelpersiOSModule
+import SharedComponentsiOSModule
 
 final class GenericLoaderPresentationAdapter<Resource, View: ResourceView>: RefreshViewControllerDelegate {
     private let loader: () -> AnyPublisher<Resource, Error>

@@ -3,7 +3,7 @@
 import UIKit
 import PodcastsModule
 import LoadResourcePresenter
-import SharedHelpersiOSModule
+import SharedComponentsiOSModule
 
 public final class PodcastCellController: NSObject {
     public typealias ResourceViewModel = UIImage

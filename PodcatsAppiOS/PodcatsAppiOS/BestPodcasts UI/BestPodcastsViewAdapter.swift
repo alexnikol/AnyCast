@@ -23,13 +23,20 @@ final class BestPodcastsViewAdapter: ResourceView {
     }
     
     func display(_ viewModel: BestPodcastsListViewModel) {
-        controller?.display(viewModel.podcasts.map { model in
+        controller?.display(adaptModelsToCellControllers(podcasts: viewModel.podcasts))
+        controller?.title = viewModel.title
+    }
+    
+    private func adaptModelsToCellControllers(podcasts: [Podcast]) -> [CellController] {
+        podcasts.map { model in
             let podcastViewModel = BestPodcastsPresenter.map(model)
+            
             let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastCellController>>(
                 loader: {
                     self.imageLoader(model.image)
                 }
             )
+            
             let cellController = PodcastCellController(
                 model: podcastViewModel,
                 delegete: adapter,
@@ -38,21 +45,21 @@ final class BestPodcastsViewAdapter: ResourceView {
                 }
             )
             
-            adapter.presenter = LoadResourcePresenter(
-                resourceView: WeakRefVirtualProxy(cellController),
-                loadingView: WeakRefVirtualProxy(cellController),
-                errorView: WeakRefVirtualProxy(cellController),
-                mapper: { data in
-                    guard let image = UIImage(data: data) else {
-                        throw InvalidImageData()
-                    }
-                    return image
-                }
-            )
+            adapter.presenter = makePresenterFor(cellController)
             return cellController
-        })
-        controller?.title = viewModel.title
+        }
     }
     
-    private struct InvalidImageData: Error {}
+    private func makePresenterFor(
+        _ cellController: PodcastCellController
+    ) -> LoadResourcePresenter<Data, WeakRefVirtualProxy<PodcastCellController>> {
+        struct InvalidImageData: Error {}
+        
+        return LoadResourcePresenter(
+            resourceView: WeakRefVirtualProxy(cellController),
+            loadingView: WeakRefVirtualProxy(cellController),
+            errorView: WeakRefVirtualProxy(cellController),
+            mapper: UIImage.trytoMake(with:)
+        )
+    }
 }

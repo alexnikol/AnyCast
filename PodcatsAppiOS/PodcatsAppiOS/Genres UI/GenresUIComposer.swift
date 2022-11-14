@@ -5,7 +5,7 @@ import Combine
 import PodcastsGenresList
 import PodcastsGenresListiOS
 import LoadResourcePresenter
-import SharedHelpersiOSModule
+import SharedComponentsiOSModule
 
 final class GenresUIComposer {
     

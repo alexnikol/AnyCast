@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresList
 import PodcastsGenresListiOS
-import SharedHelpersiOSModule
+import SharedComponentsiOSModule
 import LoadResourcePresenter
 
 class GenresUISnapshotTests: XCTestCase {

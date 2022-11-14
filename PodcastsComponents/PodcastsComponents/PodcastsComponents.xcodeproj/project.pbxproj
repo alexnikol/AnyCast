@@ -14,8 +14,8 @@
 		8D42976A291D44770064F3E6 /* EpisodeViewModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429768291D43510064F3E6 /* EpisodeViewModel+Extensions.swift */; };
 		8D4298B0292234080064F3E6 /* LoadResourcePresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; platformFilter = ios; };
 		8D4298B6292234510064F3E6 /* RefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298B5292234510064F3E6 /* RefreshViewController.swift */; };
-		8D4298B7292235450064F3E6 /* SharedHelpersiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedHelpersiOSModule.framework */; };
-		8D4298BD292237830064F3E6 /* SharedHelpersiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedHelpersiOSModule.framework */; platformFilter = ios; };
+		8D4298B7292235450064F3E6 /* SharedComponentsiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */; };
+		8D4298BD292237830064F3E6 /* SharedComponentsiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */; platformFilter = ios; };
 		8D4D494028CF802A00D8EBEB /* GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */; };
 		8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */; };
 		8D5C204928FE8EC4006CD42F /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */; };
@@ -325,7 +325,7 @@
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
 		8D429766291D31720064F3E6 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		8D429768291D43510064F3E6 /* EpisodeViewModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EpisodeViewModel+Extensions.swift"; sourceTree = "<group>"; };
-		8D4298A9292233F30064F3E6 /* SharedHelpersiOSModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedHelpersiOSModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedComponentsiOSModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4298B5292234510064F3E6 /* RefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewController.swift; sourceTree = "<group>"; };
 		8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStoreSpecs.swift; sourceTree = "<group>"; };
 		8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+GenresStoreSpecs.swift"; sourceTree = "<group>"; };
@@ -559,7 +559,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DFAEB3828FDB55E0028B060 /* PodcastsGenresList.framework in Frameworks */,
-				8D4298B7292235450064F3E6 /* SharedHelpersiOSModule.framework in Frameworks */,
+				8D4298B7292235450064F3E6 /* SharedComponentsiOSModule.framework in Frameworks */,
 				8DE32A4129110CB300830695 /* LoadResourcePresenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,7 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5FA26C2913C79B002BB874 /* LoadResourcePresenter.framework in Frameworks */,
-				8D4298BD292237830064F3E6 /* SharedHelpersiOSModule.framework in Frameworks */,
+				8D4298BD292237830064F3E6 /* SharedComponentsiOSModule.framework in Frameworks */,
 				8D5FA2712913C7A1002BB874 /* PodcastsModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -984,7 +984,7 @@
 				8DE329F429100E9B00830695 /* PodcastsModuleiOSTests.xctest */,
 				8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */,
 				8DE32A2929110AAC00830695 /* LoadResourcePresenterTests.xctest */,
-				8D4298A9292233F30064F3E6 /* SharedHelpersiOSModule.framework */,
+				8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1557,9 +1557,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8D4298A8292233F30064F3E6 /* SharedHelpersiOSModule */ = {
+		8D4298A8292233F30064F3E6 /* SharedComponentsiOSModule */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D4298AD292233F30064F3E6 /* Build configuration list for PBXNativeTarget "SharedHelpersiOSModule" */;
+			buildConfigurationList = 8D4298AD292233F30064F3E6 /* Build configuration list for PBXNativeTarget "SharedComponentsiOSModule" */;
 			buildPhases = (
 				8D4298A4292233F30064F3E6 /* Headers */,
 				8D4298A5292233F30064F3E6 /* Sources */,
@@ -1572,9 +1572,9 @@
 			dependencies = (
 				8D4298B3292234080064F3E6 /* PBXTargetDependency */,
 			);
-			name = SharedHelpersiOSModule;
+			name = SharedComponentsiOSModule;
 			productName = SharedHelpersiOSModule;
-			productReference = 8D4298A9292233F30064F3E6 /* SharedHelpersiOSModule.framework */;
+			productReference = 8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8D5C204028FE8EC4006CD42F /* URLSessionHTTPClient */ = {
@@ -1975,7 +1975,7 @@
 				8DC3520028D1DB1E00F12FD9 /* PodcastsGenresListiOSTests */,
 				8DE329EC29100E9B00830695 /* PodcastsModuleiOS */,
 				8DE329F329100E9B00830695 /* PodcastsModuleiOSTests */,
-				8D4298A8292233F30064F3E6 /* SharedHelpersiOSModule */,
+				8D4298A8292233F30064F3E6 /* SharedComponentsiOSModule */,
 			);
 		};
 /* End PBXProject section */
@@ -2392,13 +2392,13 @@
 		};
 		8D4298BA292235450064F3E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D4298A8292233F30064F3E6 /* SharedHelpersiOSModule */;
+			target = 8D4298A8292233F30064F3E6 /* SharedComponentsiOSModule */;
 			targetProxy = 8D4298B9292235450064F3E6 /* PBXContainerItemProxy */;
 		};
 		8D4298C0292237830064F3E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
-			target = 8D4298A8292233F30064F3E6 /* SharedHelpersiOSModule */;
+			target = 8D4298A8292233F30064F3E6 /* SharedComponentsiOSModule */;
 			targetProxy = 8D4298BF292237830064F3E6 /* PBXContainerItemProxy */;
 		};
 		8D5C204B28FE8EC4006CD42F /* PBXTargetDependency */ = {
@@ -2509,8 +2509,8 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SharedHelpersiOSModule";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SharedComponentsiOSModule";
+				PRODUCT_NAME = SharedComponentsiOSModule;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -2542,8 +2542,8 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SharedHelpersiOSModule";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SharedComponentsiOSModule";
+				PRODUCT_NAME = SharedComponentsiOSModule;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
@@ -3521,7 +3521,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8D4298AD292233F30064F3E6 /* Build configuration list for PBXNativeTarget "SharedHelpersiOSModule" */ = {
+		8D4298AD292233F30064F3E6 /* Build configuration list for PBXNativeTarget "SharedComponentsiOSModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8D4298AE292233F30064F3E6 /* Debug */,

@@ -15,7 +15,7 @@ final class GenresUIComposer {
         loader: @escaping () -> AnyPublisher<[Genre], Error>,
         selection: @escaping (Genre) -> Void
     ) -> GenresListViewController {
-        let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader)
+        let presentationAdapter = GenericLoaderPresentationAdapter<[Genre], GenresViewAdapter>(loader: loader)
         let refreshController = RefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)
         genresController.title = GenresPresenter.title

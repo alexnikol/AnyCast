@@ -16,9 +16,8 @@ public final class BestPodcastsUIComposer {
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>,
         selection: @escaping (Podcast) -> Void
     ) -> ListViewController {
-        let presentationAdapter = BestPodcastsLoaderPresentationAdapter(
-            genreID: genreID,
-            loader: podcastsLoader
+        let presentationAdapter = GenericLoaderPresentationAdapter<BestPodcastsList, BestPodcastsViewAdapter>(
+            loader: { podcastsLoader(genreID) }
         )
         let refreshController = RefreshViewController(delegate: presentationAdapter)
         let controller = ListViewController(refreshController: refreshController)

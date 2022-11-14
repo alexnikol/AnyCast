@@ -2,7 +2,7 @@ name: Deploy Podcats iOS
 
 on:
   push:
-    branches: [ main ]
+    branches: [ deploy/deploy_podcast_iphone_ios ]
 
 jobs:
   build-and-deploy:

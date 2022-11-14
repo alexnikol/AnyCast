@@ -2,13 +2,13 @@
 
 import UIKit
 
-extension UITableView {
-    func dequeueAndRegisterCell<Cell>(indexPath: IndexPath) -> Cell where Cell: UITableViewCell & NibReusable {
+public extension UITableView {
+    func dequeueAndRegisterCell<Cell>(indexPath: IndexPath) -> Cell where Cell: UITableViewCell & Reusable {
         registerCell(type: Cell.self)
         return dequeueReusableCell(withIdentifier: Cell.reuseIdentifier, for: indexPath) as! Cell
     }
     
-    func registerCell<Cell>(type: Cell.Type) where Cell: UITableViewCell & NibReusable {
+    func registerCell<Cell>(type: Cell.Type) where Cell: UITableViewCell & Reusable {
         register(UINib(nibName: Cell.reuseIdentifier, bundle: Bundle(for: Cell.self)), forCellReuseIdentifier: Cell.reuseIdentifier)
     }
 }

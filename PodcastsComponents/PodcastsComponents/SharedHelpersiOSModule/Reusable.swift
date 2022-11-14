@@ -1,12 +1,12 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import UIKit
+import Foundation
 
-protocol Reusable: AnyObject {
+public protocol Reusable: AnyObject {
     static var reuseIdentifier: String { get }
 }
 
-extension Reusable {
+public extension Reusable {
     static var reuseIdentifier: String {
         return String(describing: self)
     }

@@ -46,7 +46,6 @@ public final class GenresListViewController: UICollectionViewController {
     
     public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellController = cellController(forRowAt: indexPath)
-        print("cellController__start \(cellController)")
         return cellController.view(collectionView, cellForItemAt: indexPath)
     }
     
@@ -59,7 +58,6 @@ public final class GenresListViewController: UICollectionViewController {
     }
     
     public override func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        print("cellController__highlt \(cellController)")
         collectionModel[indexPath.row].updateHighlight(true)
     }
     

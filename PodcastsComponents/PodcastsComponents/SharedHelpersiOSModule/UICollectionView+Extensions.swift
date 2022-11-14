@@ -2,7 +2,7 @@
 
 import UIKit
 
-extension UICollectionView {
+public extension UICollectionView {
     func dequeueAndRegisterCell<Cell>(indexPath: IndexPath) -> Cell where Cell: UICollectionViewCell & Reusable {
         registerCell(type: Cell.self)
         return dequeueReusableCell(withReuseIdentifier: Cell.reuseIdentifier, for: indexPath) as! Cell

@@ -1,8 +1,9 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import SharedComponentsiOSModule
 
-public final class PodcastCell: UITableViewCell, NibReusable {
+public final class PodcastCell: UITableViewCell, Reusable {
     private enum Defaults {
         static let defaultBackground: UIColor = .secondarySystemBackground
         static let highlightedBackground: UIColor = .tertiarySystemBackground

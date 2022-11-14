@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import SharedComponentsiOSModule
 
 public final class GenreCell: UICollectionViewCell, Reusable {
     private enum Defaults {

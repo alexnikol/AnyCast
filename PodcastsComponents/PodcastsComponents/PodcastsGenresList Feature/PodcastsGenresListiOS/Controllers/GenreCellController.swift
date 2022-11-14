@@ -18,6 +18,7 @@ public final class GenreCellController {
         cell = collectionView.dequeueAndRegisterCell(indexPath: indexPath) as GenreCell
         cell?.nameLabel.text = model.name
         cell?.tagView.backgroundColor = model.color
+        print("cellController__1 \(self) \(cell)")
         return cell!
     }
     
@@ -26,6 +27,7 @@ public final class GenreCellController {
     }
     
     func updateHighlight(_ isHighlight: Bool) {
+        print("cellController__2 \(self) \(cell)")
         cell?.updateHighlighted(isHighlight)
     }
 }

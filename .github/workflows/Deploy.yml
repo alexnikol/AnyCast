@@ -5,7 +5,7 @@ on:
     branches: [ deploy/deploy_podcast_iphone_ios ]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: macos-12
     timeout-minutes: 30
 

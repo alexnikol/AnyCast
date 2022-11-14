@@ -2,6 +2,7 @@
 
 import UIKit
 import LoadResourcePresenter
+import SharedComponentsiOSModule
 
 public final class GenresListViewController: UICollectionViewController {
     
@@ -14,12 +15,12 @@ public final class GenresListViewController: UICollectionViewController {
         }
     }
     
-    private var refreshController: GenresRefreshViewController?
+    private var refreshController: RefreshViewController?
     var collectionModel: [GenreCellController] = [] {
         didSet { collectionView.reloadData() }
     }
     
-    public convenience init(refreshController: GenresRefreshViewController) {
+    public convenience init(refreshController: RefreshViewController) {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = Defaults.Collection.lineSpacing
         layout.minimumInteritemSpacing = Defaults.Collection.perItemsSpacing

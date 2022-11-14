@@ -3,22 +3,18 @@
 import UIKit
 import PodcastsModule
 import LoadResourcePresenter
-
-public protocol PodcastCellControllerDelegate {
-    func didRequestImage()
-    func didCancelImageLoad()
-}
+import SharedComponentsiOSModule
 
 public final class PodcastCellController: NSObject {
     public typealias ResourceViewModel = UIImage
     
     private let model: PodcastImageViewModel
-    private let cellDelegate: PodcastCellControllerDelegate
+    private let cellDelegate: RefreshViewControllerDelegate
     private var cell: PodcastCell?
     private let selection: () -> Void
     
     public init(model: PodcastImageViewModel,
-                delegete: PodcastCellControllerDelegate,
+                delegete: RefreshViewControllerDelegate,
                 selection: @escaping () -> Void) {
         self.model = model
         self.cellDelegate = delegete
@@ -26,12 +22,12 @@ public final class PodcastCellController: NSObject {
     }
 
     func cancelLoad() {
-        cellDelegate.didCancelImageLoad()
+        cellDelegate.didRequestCancel()
         releaseCellForResuse()
     }
     
     func preload() {
-        cellDelegate.didRequestImage()
+        cellDelegate.didRequestLoading()
     }
     
     private func releaseCellForResuse() {
@@ -100,7 +96,7 @@ extension PodcastCellController: UITableViewDataSource {
         cell?.typeStaticLabel.text = model.typeStaticLabel
         cell?.thumbnailImageView.image = nil
 
-        cellDelegate.didRequestImage()
+        cellDelegate.didRequestLoading()
         return cell!
     }
 }

@@ -3,6 +3,7 @@
 import Foundation
 import Combine
 import LoadResourcePresenter
+import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 
@@ -14,14 +15,14 @@ public final class PodcastDetailsUIComposer {
         podcastsLoader: @escaping (String) -> AnyPublisher<PodcastDetails, Error>,
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>
     ) -> ListViewController {
-        let presentationAdapter = PodcastDetailsLoaderPresentationAdapter(
-            podcastID: podcastID,
-            loader: podcastsLoader
-        )
-        let refreshController = RefreshViewController(delegate: presentationAdapter)
+        
+        let genericPresentationAdapter = GenericLoaderPresentationAdapter<PodcastDetails, PodcastDetailsViewAdapter>(loader: {
+            podcastsLoader(podcastID)
+        })
+        let refreshController = RefreshViewController(delegate: genericPresentationAdapter)
         let controller = ListViewController(refreshController: refreshController)
         
-        presentationAdapter.presenter = LoadResourcePresenter(
+        genericPresentationAdapter.presenter = LoadResourcePresenter(
             resourceView: PodcastDetailsViewAdapter(
                 controller: controller,
                 imageLoader: imageLoader

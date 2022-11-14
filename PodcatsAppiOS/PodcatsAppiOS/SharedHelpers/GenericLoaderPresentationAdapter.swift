@@ -3,24 +3,21 @@
 import Foundation
 import Combine
 import LoadResourcePresenter
-import PodcastsModule
-import PodcastsModuleiOS
+import SharedComponentsiOSModule
 
-final class PodcastDetailsLoaderPresentationAdapter: RefreshViewControllerDelegate {
-    private let podcastID: String
-    private let loader: (String) -> AnyPublisher<PodcastDetails, Error>
+final class GenericLoaderPresentationAdapter<Resource, View: ResourceView>: RefreshViewControllerDelegate {
+    private let loader: () -> AnyPublisher<Resource, Error>
     private var cancellable: AnyCancellable?
-    var presenter: LoadResourcePresenter<PodcastDetails, PodcastDetailsViewAdapter>?
+    var presenter: LoadResourcePresenter<Resource, View>?
     
-    init(podcastID: String, loader: @escaping (String) -> AnyPublisher<PodcastDetails, Error>) {
-        self.podcastID = podcastID
+    init(loader: @escaping () -> AnyPublisher<Resource, Error>) {
         self.loader = loader
     }
     
     func didRequestLoading() {
         presenter?.didStartLoading()
         
-        cancellable = loader(podcastID)
+        cancellable = loader()
             .dispatchOnMainQueue()
             .sink(
                 receiveCompletion: { [weak self] result in
@@ -35,5 +32,9 @@ final class PodcastDetailsLoaderPresentationAdapter: RefreshViewControllerDelega
                     self?.presenter?.didFinishLoading(with: data)
                 }
             )
+    }
+    
+    func didRequestCancel() {
+        cancellable?.cancel()
     }
 }

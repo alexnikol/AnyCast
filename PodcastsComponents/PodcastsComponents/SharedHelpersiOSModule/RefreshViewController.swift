@@ -1,24 +1,24 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
-import PodcastsGenresList
 import LoadResourcePresenter
 
-public protocol GenresRefreshViewControllerDelegate {
-    func didRequestLoadingGenres()
+public protocol RefreshViewControllerDelegate {
+    func didRequestLoading()
+    func didRequestCancel()
 }
 
-public final class GenresRefreshViewController: NSObject {
-    private(set) lazy var view = loadView()
-    private let delegate: GenresRefreshViewControllerDelegate
+public final class RefreshViewController: NSObject {
+    public private(set) lazy var view = loadView()
+    private let delegate: RefreshViewControllerDelegate
     
-    public init(delegate: GenresRefreshViewControllerDelegate) {
+    public init(delegate: RefreshViewControllerDelegate) {
         self.delegate = delegate
     }
     
     @objc
-    func refresh() {
-        delegate.didRequestLoadingGenres()
+    public func refresh() {
+        delegate.didRequestLoading()
     }
     
     private func loadView() -> UIRefreshControl {
@@ -28,7 +28,7 @@ public final class GenresRefreshViewController: NSObject {
     }
 }
 
-extension GenresRefreshViewController: ResourceLoadingView {
+extension RefreshViewController: ResourceLoadingView {
     public func display(_ viewModel: ResourceLoadingViewModel) {
         if viewModel.isLoading {
             view.beginRefreshing()
@@ -36,4 +36,8 @@ extension GenresRefreshViewController: ResourceLoadingView {
             view.endRefreshing()
         }
     }
+}
+
+extension RefreshViewController: ResourceErrorView {
+    public func display(_ viewModel: ResourceErrorViewModel) {}
 }

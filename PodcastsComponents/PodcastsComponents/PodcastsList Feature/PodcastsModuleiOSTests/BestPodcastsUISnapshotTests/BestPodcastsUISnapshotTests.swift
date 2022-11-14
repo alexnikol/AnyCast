@@ -2,6 +2,7 @@
 
 import XCTest
 import LoadResourcePresenter
+import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 
@@ -84,9 +85,10 @@ class BestPodcastsUISnapshotTests: XCTestCase {
         
     private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
         func didRequestLoading() {}
+        func didRequestCancel() {}
     }
     
-    private class ImageStub: PodcastCellControllerDelegate {
+    private class ImageStub: RefreshViewControllerDelegate {        
         private let image: UIImage?
         
         init(image: UIImage?) {
@@ -95,7 +97,7 @@ class BestPodcastsUISnapshotTests: XCTestCase {
         
         weak var imageDataResourceView: PodcastCellController?
         
-        func didRequestImage() {
+        func didRequestLoading() {
             if let image = image {
                 imageDataResourceView?.display(image)
             } else {
@@ -103,6 +105,6 @@ class BestPodcastsUISnapshotTests: XCTestCase {
             }
         }
         
-        func didCancelImageLoad() {}
+        func didRequestCancel() {}
     }
 }

@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import SharedComponentsiOSModule
 
 public protocol CellController {
     var delegate: UITableViewDelegate? { get }

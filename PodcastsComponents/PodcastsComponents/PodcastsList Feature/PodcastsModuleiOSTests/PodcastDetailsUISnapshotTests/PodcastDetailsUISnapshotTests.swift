@@ -2,6 +2,7 @@
 
 import XCTest
 import LoadResourcePresenter
+import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 
@@ -38,6 +39,7 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
     
     private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
         func didRequestLoading() {}
+        func didRequestCancel() {}
     }
     
     private func emptyPodcastDetails() -> [EpisodeCellController] {

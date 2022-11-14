@@ -5,8 +5,9 @@ import Combine
 import PodcastsGenresList
 import PodcastsGenresListiOS
 import LoadResourcePresenter
+import SharedHelpersiOSModule
 
-final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate {
+final class GenresLoaderPresentationAdapter: RefreshViewControllerDelegate {
     private let genresLoader: () -> AnyPublisher<[Genre], Error>
     private var cancellable: Cancellable?
     var presenter: LoadResourcePresenter<[Genre], GenresViewAdapter>?
@@ -15,7 +16,7 @@ final class GenresLoaderPresentationAdapter: GenresRefreshViewControllerDelegate
         self.genresLoader = genresLoader
     }
     
-    func didRequestLoadingGenres() {
+    func didRequestLoading() {
         presenter?.didStartLoading()
         
         cancellable = genresLoader()

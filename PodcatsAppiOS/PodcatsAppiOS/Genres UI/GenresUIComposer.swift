@@ -5,6 +5,7 @@ import Combine
 import PodcastsGenresList
 import PodcastsGenresListiOS
 import LoadResourcePresenter
+import SharedHelpersiOSModule
 
 final class GenresUIComposer {
     
@@ -15,7 +16,7 @@ final class GenresUIComposer {
         selection: @escaping (Genre) -> Void
     ) -> GenresListViewController {
         let presentationAdapter = GenresLoaderPresentationAdapter(genresLoader: loader)
-        let refreshController = GenresRefreshViewController(delegate: presentationAdapter)
+        let refreshController = RefreshViewController(delegate: presentationAdapter)
         let genresController = GenresListViewController(refreshController: refreshController)
         genresController.title = GenresPresenter.title
         

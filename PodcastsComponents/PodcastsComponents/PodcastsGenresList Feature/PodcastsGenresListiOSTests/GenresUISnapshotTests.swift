@@ -3,6 +3,7 @@
 import XCTest
 import PodcastsGenresList
 import PodcastsGenresListiOS
+import SharedHelpersiOSModule
 import LoadResourcePresenter
 
 class GenresUISnapshotTests: XCTestCase {
@@ -56,8 +57,8 @@ class GenresUISnapshotTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: GenresListViewController, loadingView: ResourceLoadingView) {
-        let genresRefreshDelegate = GenresRefreshSpyDelegate()
-        let refreshController = GenresRefreshViewController(delegate: genresRefreshDelegate)
+        let genresRefreshDelegate = RefreshViewControllerSpyDelegate()
+        let refreshController = RefreshViewController(delegate: genresRefreshDelegate)
         let controller = GenresListViewController(refreshController: refreshController)
         controller.loadViewIfNeeded()
         return (controller, refreshController)
@@ -77,7 +78,7 @@ class GenresUISnapshotTests: XCTestCase {
         ]
     }
     
-    private class GenresRefreshSpyDelegate: GenresRefreshViewControllerDelegate {
-        func didRequestLoadingGenres() {}
+    private class RefreshViewControllerSpyDelegate: RefreshViewControllerDelegate {
+        func didRequestLoading() {}
     }
 }

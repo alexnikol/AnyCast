@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  test-and-gather-test-coverage:
     runs-on: macos-12
     timeout-minutes: 30
 

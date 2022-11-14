@@ -13,6 +13,10 @@ import PodcastsModuleiOS
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
+    private lazy var baseURL: URL = {
+        URL(string: "https://listen-api-test.listennotes.com")!
+    }()
+    
     private lazy var httpClient: HTTPClient = {
         return URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
     }()
@@ -70,9 +74,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func makeLocalGenresLoaderWithRemoteFallback() -> AnyPublisher<[Genre], Error> {
         struct EmptyCache: Error {}
-        
-        let baseURL = URL(string: "https://listen-api-test.listennotes.com")!
-        let genresRequestPath = baseURL.appendingPathComponent("api/v2/genres")
+        let requestURL = GenresEndpoint.getGenres.url(baseURL: baseURL)
         let localGenresLoader = localGenresLoader
         return localGenresLoader
             .loadPublisher()
@@ -85,7 +87,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .fallback(to: { [weak self] in
                 guard let self = self else { return Empty().eraseToAnyPublisher() }
                 return self.httpClient
-                    .loadPublisher(from: genresRequestPath)
+                    .loadPublisher(from: requestURL)
                     .tryMap(GenresItemsMapper.map)
                     .caching(to: localGenresLoader)
             })
@@ -111,13 +113,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func makeBestPodcastsRemoteLoader(byGenreID genreID: Int) -> AnyPublisher<BestPodcastsList, Swift.Error> {
-        var urlBuilder = URLComponents()
-        urlBuilder.scheme = "https"
-        urlBuilder.host = "listen-api-test.listennotes.com"
-        urlBuilder.path = "/api/v2/best_podcasts"
-        urlBuilder.queryItems = [URLQueryItem(name: "genre_id", value: String(genreID))]
+        let requestURL = PodcastsEndpoint.getBestPodcasts(genreID: genreID).url(baseURL: baseURL)
         return httpClient
-            .loadPublisher(from: urlBuilder.url!)
+            .loadPublisher(from: requestURL)
             .tryMap(BestPodastsItemsMapper.map)
             .eraseToAnyPublisher()
     }
@@ -137,12 +135,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
         
     private func makeRemotePodcastDetailsLoader(byPodcastID podcastID: String) -> AnyPublisher<PodcastDetails, Swift.Error> {
-        var urlBuilder = URLComponents()
-        urlBuilder.scheme = "https"
-        urlBuilder.host = "listen-api-test.listennotes.com"
-        urlBuilder.path = "/api/v2/podcasts/\(podcastID)"
+        let requestURL = PodcastsEndpoint.getPodcastDetails(podcastID: podcastID).url(baseURL: baseURL)
         return httpClient
-            .loadPublisher(from: urlBuilder.url!)
+            .loadPublisher(from: requestURL)
             .tryMap(PodcastDetailsMapper.map)
             .eraseToAnyPublisher()
     }

@@ -26,6 +26,25 @@ class GenresUISnapshotTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
     }
     
+    func test_highlightedGenreViewState() {
+        let (sut, _) = makeSUT()
+        
+        sut.display(genresContent())
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
+        
+        sut.simulateGenreHighlightState(at: 0, isHighlight: true)
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRE_VIEW_HIGHLIGHTED_STATE_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRE_VIEW_HIGHLIGHTED_STATE_dark")
+        
+        sut.simulateGenreHighlightState(at: 0, isHighlight: false)
+        
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
+    }
+    
     func test_genresLoadingStateWithNoContent() {
         let (sut, loadingView) = makeSUT()
         

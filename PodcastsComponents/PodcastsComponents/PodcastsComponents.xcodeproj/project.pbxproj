@@ -19,6 +19,8 @@
 		8D4298C5292256C50064F3E6 /* PodcastDetailsEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298C4292256C50064F3E6 /* PodcastDetailsEndpointTests.swift */; };
 		8D4298C92922605E0064F3E6 /* PodcastsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298C7292260590064F3E6 /* PodcastsEndpoint.swift */; };
 		8D4298CB292260F70064F3E6 /* BestPodcastsEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298CA292260F70064F3E6 /* BestPodcastsEndpointTests.swift */; };
+		8D4298CE292264890064F3E6 /* GenresEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298CC292264580064F3E6 /* GenresEndpoint.swift */; };
+		8D4298D02922650D0064F3E6 /* GenresEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298CF2922650D0064F3E6 /* GenresEndpointTests.swift */; };
 		8D4D494028CF802A00D8EBEB /* GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */; };
 		8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */; };
 		8D5C204928FE8EC4006CD42F /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */; };
@@ -333,6 +335,8 @@
 		8D4298C4292256C50064F3E6 /* PodcastDetailsEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsEndpointTests.swift; sourceTree = "<group>"; };
 		8D4298C7292260590064F3E6 /* PodcastsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsEndpoint.swift; sourceTree = "<group>"; };
 		8D4298CA292260F70064F3E6 /* BestPodcastsEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsEndpointTests.swift; sourceTree = "<group>"; };
+		8D4298CC292264580064F3E6 /* GenresEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresEndpoint.swift; sourceTree = "<group>"; };
+		8D4298CF2922650D0064F3E6 /* GenresEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresEndpointTests.swift; sourceTree = "<group>"; };
 		8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStoreSpecs.swift; sourceTree = "<group>"; };
 		8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+GenresStoreSpecs.swift"; sourceTree = "<group>"; };
 		8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = URLSessionHTTPClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -868,6 +872,7 @@
 			children = (
 				8D745E1E28C1E8A6005DC3F8 /* GenresItemsMapper.swift */,
 				8DA0544228CA106F00418F3E /* RemoteGenre.swift */,
+				8D4298CC292264580064F3E6 /* GenresEndpoint.swift */,
 			);
 			path = "Genres API";
 			sourceTree = "<group>";
@@ -885,6 +890,7 @@
 			isa = PBXGroup;
 			children = (
 				8D745DCB28BF98F7005DC3F8 /* FeedItemsMapperTests.swift */,
+				8D4298CF2922650D0064F3E6 /* GenresEndpointTests.swift */,
 			);
 			path = "Genres API";
 			sourceTree = "<group>";
@@ -2203,6 +2209,7 @@
 				8D745E1F28C1E8A6005DC3F8 /* GenresItemsMapper.swift in Sources */,
 				8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */,
 				8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */,
+				8D4298CE292264890064F3E6 /* GenresEndpoint.swift in Sources */,
 				8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */,
 				8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */,
 				8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */,
@@ -2237,6 +2244,7 @@
 				8DA0544E28CB61D400418F3E /* SharedTestHelpers.swift in Sources */,
 				8DA0544528CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift in Sources */,
 				8DA0544A28CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift in Sources */,
+				8D4298D02922650D0064F3E6 /* GenresEndpointTests.swift in Sources */,
 				8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */,
 				8D76B81628D49BC80014A211 /* GenresLocalizationTests.swift in Sources */,
 				8D745E2C28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */,

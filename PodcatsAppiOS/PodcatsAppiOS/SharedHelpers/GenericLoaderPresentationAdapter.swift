@@ -33,4 +33,8 @@ final class GenericLoaderPresentationAdapter<Resource, View: ResourceView>: Refr
                 }
             )
     }
+    
+    func didRequestCancel() {
+        cancellable?.cancel()
+    }
 }

@@ -80,5 +80,6 @@ class GenresUISnapshotTests: XCTestCase {
     
     private class RefreshViewControllerSpyDelegate: RefreshViewControllerDelegate {
         func didRequestLoading() {}
+        func didRequestCancel() {}
     }
 }

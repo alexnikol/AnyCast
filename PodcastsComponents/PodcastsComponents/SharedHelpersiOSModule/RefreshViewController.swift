@@ -5,6 +5,7 @@ import LoadResourcePresenter
 
 public protocol RefreshViewControllerDelegate {
     func didRequestLoading()
+    func didRequestCancel()
 }
 
 public final class RefreshViewController: NSObject {

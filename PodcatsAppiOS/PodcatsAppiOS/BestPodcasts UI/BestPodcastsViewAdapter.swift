@@ -25,9 +25,10 @@ final class BestPodcastsViewAdapter: ResourceView {
     func display(_ viewModel: BestPodcastsListViewModel) {
         controller?.display(viewModel.podcasts.map { model in
             let podcastViewModel = BestPodcastsPresenter.map(model)
-            let adapter = PodcastImageDataLoaderPresentationAdapter(
-                model: podcastViewModel,
-                imageLoader: imageLoader
+            let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastCellController>>(
+                loader: {
+                    self.imageLoader(model.image)
+                }
             )
             let cellController = PodcastCellController(
                 model: podcastViewModel,

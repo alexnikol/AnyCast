@@ -39,6 +39,7 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
     
     private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
         func didRequestLoading() {}
+        func didRequestCancel() {}
     }
     
     private func emptyPodcastDetails() -> [EpisodeCellController] {

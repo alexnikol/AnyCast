@@ -3,6 +3,7 @@
 import Foundation
 import Combine
 import LoadResourcePresenter
+import SharedHelpersiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 

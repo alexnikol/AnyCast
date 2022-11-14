@@ -15,6 +15,7 @@
 		8D4298B0292234080064F3E6 /* LoadResourcePresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; platformFilter = ios; };
 		8D4298B6292234510064F3E6 /* RefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298B5292234510064F3E6 /* RefreshViewController.swift */; };
 		8D4298B7292235450064F3E6 /* SharedHelpersiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedHelpersiOSModule.framework */; };
+		8D4298BD292237830064F3E6 /* SharedHelpersiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedHelpersiOSModule.framework */; platformFilter = ios; };
 		8D4D494028CF802A00D8EBEB /* GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D493F28CF802A00D8EBEB /* GenresStoreSpecs.swift */; };
 		8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4D494128CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift */; };
 		8D5C204928FE8EC4006CD42F /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */; };
@@ -145,7 +146,6 @@
 		8DE32A3F29110BB300830695 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A3E29110BB300830695 /* SharedTestHelpers.swift */; };
 		8DE32A4029110BCF00830695 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DE32A4129110CB300830695 /* LoadResourcePresenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE32A2229110AAC00830695 /* LoadResourcePresenter.framework */; platformFilter = ios; };
-		8DE32A4C291110DF00830695 /* RefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4B291110DF00830695 /* RefreshViewController.swift */; };
 		8DE32A4E29111B3400830695 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4D29111B3400830695 /* UITableView+Extensions.swift */; };
 		8DE32A5029111BAF00830695 /* NibReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A4F29111BAF00830695 /* NibReusable.swift */; };
 		8DE32A5E29116ACE00830695 /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A5D29116ACE00830695 /* UIView+Shimmering.swift */; };
@@ -198,6 +198,13 @@
 			remoteInfo = LoadResourcePresenter;
 		};
 		8D4298B9292235450064F3E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D4298A8292233F30064F3E6;
+			remoteInfo = SharedHelpersiOSModule;
+		};
+		8D4298BF292237830064F3E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
 			proxyType = 1;
@@ -292,16 +299,6 @@
 
 /* Begin PBXCopyFilesBuildPhase section */
 		8D4298B4292234080064F3E6 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8D5FA2702913C79B002BB874 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -449,7 +446,6 @@
 		8DE32A3929110B6800830695 /* ResourceLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingView.swift; sourceTree = "<group>"; };
 		8DE32A3B29110B8500830695 /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
 		8DE32A3E29110BB300830695 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
-		8DE32A4B291110DF00830695 /* RefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewController.swift; sourceTree = "<group>"; };
 		8DE32A4D29111B3400830695 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		8DE32A4F29111BAF00830695 /* NibReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibReusable.swift; sourceTree = "<group>"; };
 		8DE32A5D29116ACE00830695 /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
@@ -581,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5FA26C2913C79B002BB874 /* LoadResourcePresenter.framework in Frameworks */,
+				8D4298BD292237830064F3E6 /* SharedHelpersiOSModule.framework in Frameworks */,
 				8D5FA2712913C7A1002BB874 /* PodcastsModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1260,7 +1257,6 @@
 			isa = PBXGroup;
 			children = (
 				8DE32A0529100F1200830695 /* ListViewController.swift */,
-				8DE32A4B291110DF00830695 /* RefreshViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1752,13 +1748,13 @@
 				8DE329E929100E9B00830695 /* Sources */,
 				8DE329EA29100E9B00830695 /* Frameworks */,
 				8DE329EB29100E9B00830695 /* Resources */,
-				8D5FA2702913C79B002BB874 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				8D5FA26F2913C79B002BB874 /* PBXTargetDependency */,
 				8D5FA2742913C7A1002BB874 /* PBXTargetDependency */,
+				8D4298C0292237830064F3E6 /* PBXTargetDependency */,
 			);
 			name = PodcastsModuleiOS;
 			productName = BestPodcastsListiOS;
@@ -2273,7 +2269,6 @@
 				8DDBB78D291BE0EC0024A37A /* EpisodeCellController.swift in Sources */,
 				8D42976A291D44770064F3E6 /* EpisodeViewModel+Extensions.swift in Sources */,
 				8DE32A4E29111B3400830695 /* UITableView+Extensions.swift in Sources */,
-				8DE32A4C291110DF00830695 /* RefreshViewController.swift in Sources */,
 				8DDBB78A291BE0820024A37A /* EpisodeCell.swift in Sources */,
 				8DE32A0629100F1200830695 /* ListViewController.swift in Sources */,
 				8DE32A5029111BAF00830695 /* NibReusable.swift in Sources */,
@@ -2399,6 +2394,12 @@
 			isa = PBXTargetDependency;
 			target = 8D4298A8292233F30064F3E6 /* SharedHelpersiOSModule */;
 			targetProxy = 8D4298B9292235450064F3E6 /* PBXContainerItemProxy */;
+		};
+		8D4298C0292237830064F3E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 8D4298A8292233F30064F3E6 /* SharedHelpersiOSModule */;
+			targetProxy = 8D4298BF292237830064F3E6 /* PBXContainerItemProxy */;
 		};
 		8D5C204B28FE8EC4006CD42F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

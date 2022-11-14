@@ -1,21 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-
-enum PodcastsEndpoint {
-    case get(podcastID: String)
-    
-    func url(baseURL: URL) -> URL {
-        switch self {
-        case .get(let podcastID):
-            var urlBuilder = URLComponents()
-            urlBuilder.scheme = baseURL.scheme
-            urlBuilder.host = baseURL.host
-            urlBuilder.path = "/api/v2/podcasts/\(podcastID)"
-            return urlBuilder.url!
-        }
-    }
-}
+import PodcastsModule
 
 class PodcastsEndpointTests: XCTestCase {
     

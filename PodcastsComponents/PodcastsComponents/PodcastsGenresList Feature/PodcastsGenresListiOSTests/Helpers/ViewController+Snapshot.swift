@@ -7,10 +7,6 @@ extension UIViewController {
     func snapshot(for configuration: SnapshotConfiguration) -> UIImage {
         return SnapshotWindow(configuration: configuration, root: self).snapshot()
     }
-    
-    func snapshot2(for configuration: SnapshotConfiguration) -> UIImage {
-        return SnapshotWindow(configuration: configuration, root: self).snapshot2()
-    }
 }
 
 struct SnapshotConfiguration {
@@ -62,15 +58,6 @@ private final class SnapshotWindow: UIWindow {
         let renderer = UIGraphicsImageRenderer(bounds: bounds, format: .init(for: traitCollection))
         
         let data = renderer.jpegData(withCompressionQuality: 0.5) { action in
-            layer.render(in: action.cgContext)
-        }
-        return UIImage(data: data)!
-    }
-        
-    func snapshot2() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds, format: .init(for: traitCollection))
-        
-        let data = renderer.pngData { action in
             layer.render(in: action.cgContext)
         }
         return UIImage(data: data)!

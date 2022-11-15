@@ -66,13 +66,13 @@ private final class SnapshotWindow: UIWindow {
         }
         return UIImage(data: data)!
     }
-    
+        
     func snapshot2() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds, format: .init(for: traitCollection))
         
-        let image = renderer.image { action in
+        let data = renderer.pngData { action in
             layer.render(in: action.cgContext)
         }
-        return image
+        return UIImage(data: data)!
     }
 }

@@ -54,13 +54,6 @@ private final class SnapshotWindow: UIWindow {
         return UITraitCollection(traitsFrom: [super.traitCollection, configuration.traitCollection])
     }
     
-//    func snapshot() -> UIImage {
-//        let renderer = UIGraphicsImageRenderer(bounds: bounds, format: .init(for: traitCollection))
-//        return renderer.image { action in
-//            layer.render(in: action.cgContext)
-//        }
-//    }
-    
     func snapshot() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds, format: .init(for: traitCollection))
         

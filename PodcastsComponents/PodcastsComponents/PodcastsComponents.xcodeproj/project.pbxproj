@@ -1054,7 +1054,6 @@
 			children = (
 				8DC3522828D20FCE00F12FD9 /* Controllers */,
 				8DC3522928D20FD500F12FD9 /* Views */,
-				8DC3548C28D326E300F12FD9 /* Extensions */,
 			);
 			path = PodcastsGenresListiOS;
 			sourceTree = "<group>";
@@ -1092,13 +1091,6 @@
 				8DC3522428D1F99900F12FD9 /* GenreCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		8DC3548C28D326E300F12FD9 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8DC354B528D47F2100F12FD9 /* Genres Presentation */ = {

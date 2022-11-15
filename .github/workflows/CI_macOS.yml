@@ -2,7 +2,7 @@ name: CI macOS
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ main_ttt ]
 
 jobs:
   build-and-test:

@@ -3,9 +3,7 @@
 import UIKit
 import SharedComponentsiOSModule
 
-public protocol SectionController {
-    var delegate: UITableViewDelegate? { get }
-    var prefetchingDataSource: UITableViewDataSourcePrefetching? { get }
+public protocol SectionController: CellController {
     var cellControllers: [CellController] { get }
 }
 
@@ -39,6 +37,8 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         
         tableView.prefetchDataSource = self
         tableView.separatorStyle = .none
+        tableView.sectionHeaderHeight = .zero
+        tableView.sectionFooterHeight = .zero
         refreshControl = refreshController?.view
         refreshController?.refresh()
     }
@@ -46,9 +46,33 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     override public func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
+    
+    override public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        sections[section].delegate?.tableView?(tableView, viewForHeaderInSection: section)
+    }
+    
+    override public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        sections[section].dataSource.tableView?(tableView, titleForHeaderInSection: section)
+    }
+    
+    override public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        sections[section].delegate?.tableView?(tableView, heightForHeaderInSection: section) ?? 0.0
+    }
+    
+    override public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        sections[section].delegate?.tableView?(tableView, viewForFooterInSection: section)
+    }
+    
+    override public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        sections[section].dataSource.tableView?(tableView, titleForFooterInSection: section)
+    }
+    
+    override public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        sections[section].delegate?.tableView?(tableView, heightForFooterInSection: section) ?? 0.0
+    }
             
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].cellControllers.count
+        return sections[section].dataSource.tableView(tableView, numberOfRowsInSection: section)
     }
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

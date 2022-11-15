@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import PodcastsModuleiOS
 
 extension UIViewController {
     func snapshot(for configuration: SnapshotConfiguration) -> UIImage {
@@ -55,8 +56,10 @@ private final class SnapshotWindow: UIWindow {
     
     func snapshot() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds, format: .init(for: traitCollection))
-        return renderer.image { action in
+        
+        let data = renderer.jpegData(withCompressionQuality: 0.5) { action in
             layer.render(in: action.cgContext)
         }
+        return UIImage(data: data)!
     }
 }

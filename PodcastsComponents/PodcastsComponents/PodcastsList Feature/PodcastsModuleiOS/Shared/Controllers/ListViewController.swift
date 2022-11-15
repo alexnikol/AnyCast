@@ -3,6 +3,12 @@
 import UIKit
 import SharedComponentsiOSModule
 
+public protocol SectionController {
+    var delegate: UITableViewDelegate? { get }
+    var prefetchingDataSource: UITableViewDataSourcePrefetching? { get }
+    var cellControllers: [CellController] { get }
+}
+
 public protocol CellController {
     var delegate: UITableViewDelegate? { get }
     var dataSource: UITableViewDataSource { get }
@@ -10,16 +16,17 @@ public protocol CellController {
 }
 
 public final class ListViewController: UITableViewController, UITableViewDataSourcePrefetching {
-    private var cellModels: [CellController] = []
+    private var sectionsController: [SectionController] = []
     private var refreshController: RefreshViewController?
+    private var sections: [SectionController] = [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
     
     public init(refreshController: RefreshViewController) {
         self.refreshController = refreshController
         super.init(style: .plain)
     }
     
-    public func display(_ models: [CellController]) {
-        cellModels = models
+    public func display(_ models: [SectionController]) {
+        sections = models
         tableView.reloadData()
     }
     
@@ -35,32 +42,40 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         refreshControl = refreshController?.view
         refreshController?.refresh()
     }
+    
+    override public func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
             
     override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellModels.count
+        return sections[section].cellControllers.count
     }
     
     override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        cellModels[indexPath.row].delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+        cellController(for: indexPath).delegate?.tableView?(tableView, didSelectRowAt: indexPath)
     }
     
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellModels[indexPath.row].dataSource.tableView(tableView, cellForRowAt: indexPath)
+        return cellController(for: indexPath).dataSource.tableView(tableView, cellForRowAt: indexPath)
     }
     
     override public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cellModels[indexPath.row].delegate?.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
+        cellController(for: indexPath).delegate?.tableView?(tableView, didEndDisplaying: cell, forRowAt: indexPath)
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach {
-            cellModels[$0.row].prefetchingDataSource?.tableView(tableView, prefetchRowsAt: indexPaths)
+        indexPaths.forEach { indexPath in
+            cellController(for: indexPath).prefetchingDataSource?.tableView(tableView, prefetchRowsAt: indexPaths)
         }
     }
     
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach {
-            cellModels[$0.row].prefetchingDataSource?.tableView?(tableView, cancelPrefetchingForRowsAt: indexPaths)
+        indexPaths.forEach { indexPath in
+            cellController(for: indexPath).prefetchingDataSource?.tableView?(tableView, cancelPrefetchingForRowsAt: indexPaths)
         }
+    }
+    
+    private func cellController(for indexPath: IndexPath) -> CellController {
+        sections[indexPath.section].cellControllers[indexPath.row]
     }
 }

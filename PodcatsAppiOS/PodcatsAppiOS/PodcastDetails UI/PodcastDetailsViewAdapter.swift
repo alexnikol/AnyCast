@@ -20,12 +20,12 @@ final class PodcastDetailsViewAdapter: ResourceView {
     }
     
     func display(_ viewModel: PodcastDetailsViewModel) {
-        controller?.display(
-            viewModel.episodes.map({ episode in
-                let episodeViewModel = episodesPresenter.map(episode)
-                return EpisodeCellController(viewModel: episodeViewModel)
-            })
-        )
+        let episodeCellControllers = viewModel.episodes.map({ episode -> EpisodeCellController in
+            let episodeViewModel = episodesPresenter.map(episode)
+            return EpisodeCellController(viewModel: episodeViewModel)
+        })
+        let sections = [DefaultSectionWithNoHeaderAndFooter(cellControllers: episodeCellControllers)]
+        controller?.display(sections)
         controller?.title = viewModel.title
     }
     

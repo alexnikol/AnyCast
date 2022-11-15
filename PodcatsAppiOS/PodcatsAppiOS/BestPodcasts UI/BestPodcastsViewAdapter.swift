@@ -27,8 +27,8 @@ final class BestPodcastsViewAdapter: ResourceView {
         controller?.title = viewModel.title
     }
     
-    private func adaptModelsToCellControllers(podcasts: [Podcast]) -> [CellController] {
-        podcasts.map { model in
+    private func adaptModelsToCellControllers(podcasts: [Podcast]) -> [SectionController] {
+        let podcastCellControllers = podcasts.map { model -> PodcastCellController in
             let podcastViewModel = BestPodcastsPresenter.map(model)
             
             let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastCellController>>(
@@ -48,6 +48,8 @@ final class BestPodcastsViewAdapter: ResourceView {
             adapter.presenter = makePresenterFor(cellController)
             return cellController
         }
+        
+        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastCellControllers)]
     }
     
     private func makePresenterFor(

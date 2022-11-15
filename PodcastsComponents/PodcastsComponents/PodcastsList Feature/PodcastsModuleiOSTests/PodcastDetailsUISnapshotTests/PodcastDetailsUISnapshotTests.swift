@@ -42,12 +42,12 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
         func didRequestCancel() {}
     }
     
-    private func emptyPodcastDetails() -> [EpisodeCellController] {
-        return []
+    private func emptyPodcastDetails() -> [DefaultSectionWithNoHeaderAndFooter] {
+        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
     }
     
-    private func podcastDetailsWithContent() -> [EpisodeCellController] {
-        return [
+    private func podcastDetailsWithContent() -> [DefaultSectionWithNoHeaderAndFooter] {
+        let cellControllers = [
             EpisodeCellController(
                 viewModel: EpisodeViewModel(
                     title: "Any Episode title",
@@ -79,5 +79,7 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                 )
             )
         ]
+        
+        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: cellControllers)]
     }
 }

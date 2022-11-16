@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import CoreData
 import HTTPClient
 import PodcastsModule
 import PodcastsGenresList
@@ -9,6 +10,14 @@ final class GenresCoordinator {
     private let navigationController: UINavigationController
     private let baseURL: URL
     private let httpClient: HTTPClient
+    
+    private var podcastsImageDataStore: PodcastsImageDataStore = {
+        try! CoreDataPodcastsImageDataStore(
+            storeURL: NSPersistentContainer
+                .defaultDirectoryURL()
+                .appendingPathComponent("best-podcasts-image-data-store.sqlite")
+        )
+    }()
     
     private let genresLoaderService: GenresLoaderService
     private let bestPodcastsService: BestPodcastsService
@@ -21,8 +30,16 @@ final class GenresCoordinator {
         self.navigationController = navigationController
         self.baseURL = baseURL
         self.httpClient = httpClient
-        bestPodcastsService = BestPodcastsService(baseURL: baseURL, httpClient: httpClient)
-        podcastDetailsService = PodcastDetailsService(baseURL: baseURL, httpClient: httpClient)
+        bestPodcastsService = BestPodcastsService(
+            baseURL: baseURL,
+            httpClient: httpClient,
+            podcastsImageDataStore: podcastsImageDataStore
+        )
+        podcastDetailsService = PodcastDetailsService(
+            baseURL: baseURL,
+            httpClient: httpClient,
+            podcastsImageDataStore: podcastsImageDataStore
+        )
         genresLoaderService = GenresLoaderService(
             baseURL: baseURL,
             httpClient: httpClient,

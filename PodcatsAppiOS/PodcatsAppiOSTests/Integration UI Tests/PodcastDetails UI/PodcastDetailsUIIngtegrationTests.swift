@@ -106,6 +106,32 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(loader.cancelledImageURLs, [uniquePodcastDetails.image], "Expected one cancelled image URL request once image is not visible anymore")
     }
     
+    func test_podcastImageViewLoadingIndicator_isVisibleWhileLoadingImage() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+        
+        let headerView1 = sut.simulatePodcastDetailsMainImageViewVisible()
+
+        XCTAssertEqual(headerView1?.isShowingImageLoadingIndicator, true, "Expected loading indicator for view while loading image")
+        
+        loader.completeImageLoading(at: 0)
+        XCTAssertEqual(headerView1?.isShowingImageLoadingIndicator, false, "Expected no loading indicator for view once image loading completes successfully")
+        
+        sut.simulateUserInitiatedListReload()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 1)
+        
+        let headerView2 = sut.simulatePodcastDetailsMainImageViewVisible()
+        
+        XCTAssertEqual(headerView2?.isShowingImageLoadingIndicator, true, "Expected loading indicator for view while loading image")
+        
+        loader.completeImageLoading(at: 1)
+        XCTAssertEqual(headerView2?.isShowingImageLoadingIndicator, false, "Expected no loading indicator for view once image loading completes successfully")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

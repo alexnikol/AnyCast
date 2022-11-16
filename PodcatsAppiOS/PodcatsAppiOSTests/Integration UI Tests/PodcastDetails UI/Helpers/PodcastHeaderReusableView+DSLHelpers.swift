@@ -11,4 +11,8 @@ extension PodcastHeaderReusableView {
     var authorText: String? {
         return authorLabel.text
     }
+    
+    var isShowingImageLoadingIndicator: Bool {
+        imageInnerContainer.isShimmering
+    }
 }

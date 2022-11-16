@@ -50,7 +50,16 @@ extension PodcastHeaderCellController: UITableViewDataSource, UITableViewDelegat
     }
     
     public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        cancelLoadImage()
+    }
+    
+    private func cancelLoadImage() {
         imageLoaderDelegate.didRequestCancel()
+        releaseReusableViewForResuse()
+    }
+    
+    private func releaseReusableViewForResuse() {
+        podcastHeader = nil
     }
 }
 

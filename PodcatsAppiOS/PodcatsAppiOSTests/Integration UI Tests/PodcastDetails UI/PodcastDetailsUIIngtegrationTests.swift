@@ -132,6 +132,21 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         XCTAssertEqual(headerView2?.isShowingImageLoadingIndicator, false, "Expected no loading indicator for view once image loading completes successfully")
     }
     
+    func test_loadPodcastsCompletion_dispatchesFromBackgroundToMainThread() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

@@ -46,15 +46,18 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
         assertThat(sut, isRendering: String())
+        assertThat(sut, isRenderingPodcastHeaderWith: nil)
         
         loader.completePodcastDetailsLoading(with: uniquePodcastDetails1, at: 0)
         assertThat(sut, isRendering: uniquePodcastDetails1.episodes)
         assertThat(sut, isRendering: uniquePodcastDetails1.title)
+        assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails1)
         
         sut.simulateUserInitiatedListReload()
         loader.completePodcastDetailsLoading(with: uniquePodcastDetails2, at: 1)
         assertThat(sut, isRendering: uniquePodcastDetails2.episodes)
         assertThat(sut, isRendering: uniquePodcastDetails2.title)
+        assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails2)
     }
     
     func test_loadPodcastDetailsCompletion_doesNotAlterCurrentRenderingStateOnError() {
@@ -66,11 +69,13 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
         assertThat(sut, isRendering: uniquePodcastDetails.episodes)
         assertThat(sut, isRendering: uniquePodcastDetails.title)
+        assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails)
         
         sut.simulateUserInitiatedListReload()
         loader.completePodcastDetailsLoadingWithError(at: 1)
         assertThat(sut, isRendering: uniquePodcastDetails.episodes)
         assertThat(sut, isRendering: uniquePodcastDetails.title)
+        assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails)
     }
     
     // MARK: - Helpers
@@ -103,6 +108,23 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
     
     private func assertThat(
         _ sut: ListViewController,
+        isRenderingPodcastHeaderWith model: PodcastDetails?,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let podcastHeader = sut.podcastHeader()
+        if let model = model {
+            let viewModel = PodcastDetailsPresenter.map(model)
+            XCTAssertEqual(podcastHeader?.titleText, viewModel.title, file: file, line: line)
+            XCTAssertEqual(podcastHeader?.authorText, viewModel.publisher, file: file, line: line)
+            XCTAssertNotNil(podcastHeader, file: file, line: line)
+        } else {
+            XCTAssertNil(podcastHeader, file: file, line: line)
+        }
+    }
+    
+    private func assertThat(
+        _ sut: ListViewController,
         hasViewConfiguredFor episode: Episode,
         at index: Int,
         file: StaticString = #file,
@@ -113,7 +135,7 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, episodeViewModel.title, "Wrong title at index \(index)", file: file, line: line)
         XCTAssertEqual(view?.descriptionText, episodeViewModel.description, "Wrong description at index \(index)", file: file, line: line)
-        XCTAssertEqual(view?.audoLengthText, episodeViewModel.displayAudioLengthInSeconds, "Wrong audio length at index \(index)", file: file, line: line)
+        XCTAssertEqual(view?.audioLengthText, episodeViewModel.displayAudioLengthInSeconds, "Wrong audio length at index \(index)", file: file, line: line)
         XCTAssertEqual(view?.publishDateText, episodeViewModel.displayPublishDate, "Wrong publish date at index \(index)", file: file, line: line)
     }
     

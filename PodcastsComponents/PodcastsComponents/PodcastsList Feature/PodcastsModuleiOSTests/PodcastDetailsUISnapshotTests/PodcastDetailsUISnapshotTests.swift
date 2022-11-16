@@ -42,11 +42,11 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
         func didRequestCancel() {}
     }
     
-    private func emptyPodcastDetails() -> [DefaultSectionWithNoHeaderAndFooter] {
+    private func emptyPodcastDetails() -> [SectionController] {
         return [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
     }
     
-    private func podcastDetailsWithContent() -> [DefaultSectionWithNoHeaderAndFooter] {
+    private func podcastDetailsWithContent() -> [SectionController] {
         let cellControllers = [
             EpisodeCellController(
                 viewModel: EpisodeViewModel(
@@ -80,6 +80,19 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
             )
         ]
         
-        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: cellControllers)]
+        return [
+            PodcastHeaderCellController(
+                cellControllers: cellControllers,
+                viewModel: PodcastDetailsViewModel(
+                    title: "Any Podcast title",
+                    publisher: "Any Podcast title",
+                    language: "Any Podcast title",
+                    type: "Any Podcast title",
+                    image: anyURL(),
+                    episodes: [],
+                    description: "Any Podcast title",
+                    totalEpisodes: "20")
+            )
+        ]
     }
 }

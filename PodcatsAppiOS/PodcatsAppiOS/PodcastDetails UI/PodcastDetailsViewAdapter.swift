@@ -24,7 +24,13 @@ final class PodcastDetailsViewAdapter: ResourceView {
             let episodeViewModel = episodesPresenter.map(episode)
             return EpisodeCellController(viewModel: episodeViewModel)
         })
-        let sections = [DefaultSectionWithNoHeaderAndFooter(cellControllers: episodeCellControllers)]
+        
+        let sections = [
+            PodcastHeaderCellController(
+                cellControllers: episodeCellControllers,
+                viewModel: viewModel
+            )
+        ]
         controller?.display(sections)
         controller?.title = viewModel.title
     }

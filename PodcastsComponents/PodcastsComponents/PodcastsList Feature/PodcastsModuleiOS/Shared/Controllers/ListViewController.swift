@@ -17,10 +17,12 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     private var sectionsController: [SectionController] = []
     private var refreshController: RefreshViewController?
     private var sections: [SectionController] = [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
+    private let tableConfig: ListTableViewConfiguratior
     
-    public init(refreshController: RefreshViewController) {
+    public init(refreshController: RefreshViewController, tableConfig: ListTableViewConfiguratior = .default) {
         self.refreshController = refreshController
-        super.init(style: .plain)
+        self.tableConfig = tableConfig
+        super.init(style: tableConfig.tableStyle)
     }
     
     public func display(_ models: [SectionController]) {
@@ -36,9 +38,10 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         super.viewDidLoad()
         
         tableView.prefetchDataSource = self
-        tableView.separatorStyle = .none
-        tableView.sectionHeaderHeight = .zero
-        tableView.sectionFooterHeight = .zero
+        tableView.separatorStyle = tableConfig.separatorStyle
+        tableView.sectionHeaderHeight = tableConfig.sectionHeaderHeight
+        tableView.sectionFooterHeight = tableConfig.sectionFooterHeight
+        tableView.backgroundColor = tableConfig.backgroundColor
         refreshControl = refreshController?.view
         refreshController?.refresh()
     }

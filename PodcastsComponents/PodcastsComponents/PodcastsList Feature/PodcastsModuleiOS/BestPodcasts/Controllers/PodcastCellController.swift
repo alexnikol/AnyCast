@@ -9,7 +9,7 @@ public final class PodcastCellController: NSObject {
     public typealias ResourceViewModel = UIImage
     
     private let model: PodcastImageViewModel
-    private let cellDelegate: RefreshViewControllerDelegate
+    private let imageLoaderDelegate: RefreshViewControllerDelegate
     private var cell: PodcastCell?
     private let selection: () -> Void
     
@@ -17,17 +17,17 @@ public final class PodcastCellController: NSObject {
                 delegete: RefreshViewControllerDelegate,
                 selection: @escaping () -> Void) {
         self.model = model
-        self.cellDelegate = delegete
+        self.imageLoaderDelegate = delegete
         self.selection = selection
     }
 
     func cancelLoad() {
-        cellDelegate.didRequestCancel()
+        imageLoaderDelegate.didRequestCancel()
         releaseCellForResuse()
     }
     
     func preload() {
-        cellDelegate.didRequestLoading()
+        imageLoaderDelegate.didRequestLoading()
     }
     
     private func releaseCellForResuse() {
@@ -96,7 +96,7 @@ extension PodcastCellController: UITableViewDataSource {
         cell?.typeStaticLabel.text = model.typeStaticLabel
         cell?.thumbnailImageView.image = nil
 
-        cellDelegate.didRequestLoading()
+        imageLoaderDelegate.didRequestLoading()
         return cell!
     }
 }

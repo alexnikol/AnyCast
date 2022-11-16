@@ -11,4 +11,14 @@ public extension UITableView {
     func registerCell<Cell>(type: Cell.Type) where Cell: UITableViewCell & Reusable {
         register(UINib(nibName: Cell.reuseIdentifier, bundle: Bundle(for: Cell.self)), forCellReuseIdentifier: Cell.reuseIdentifier)
     }
+    
+    func dequeueAndRegisterReusableView<ReusableView>() -> ReusableView where ReusableView: UITableViewHeaderFooterView & Reusable {
+        registerReusableView(type: ReusableView.self)
+        return dequeueReusableHeaderFooterView(withIdentifier: ReusableView.reuseIdentifier) as! ReusableView
+    }
+    
+    func registerReusableView<ReusableView>(type: ReusableView.Type) where ReusableView: UITableViewHeaderFooterView & Reusable {
+        register(UINib(nibName: String(describing: ReusableView.self), bundle: Bundle(for: ReusableView.self)),
+                 forHeaderFooterViewReuseIdentifier: ReusableView.reuseIdentifier)
+    }
 }

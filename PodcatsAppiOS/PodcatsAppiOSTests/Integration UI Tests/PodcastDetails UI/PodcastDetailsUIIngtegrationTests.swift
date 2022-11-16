@@ -87,11 +87,23 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
-        
         XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
         
         sut.simulatePodcastDetailsMainImageViewVisible()
         XCTAssertEqual(loader.loadedImageURLs, [uniquePodcastDetails.image], "Expected main image URL request once podcast details view becomes visible")
+    }
+    
+    func test_podcastImageView_cancelsImageLoadingWhenNotVisibleAnymore() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+        XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
+        
+        sut.simulatePodcastDetailsMainImageViewNotVisible()
+        XCTAssertEqual(loader.cancelledImageURLs, [uniquePodcastDetails.image], "Expected one cancelled image URL request once image is not visible anymore")
     }
     
     // MARK: - Helpers

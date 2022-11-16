@@ -26,10 +26,7 @@ public final class PodcastHeaderCellController: NSObject, SectionController {
 }
 
 extension PodcastHeaderCellController: UITableViewDataSource, UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         
-    }
-    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellControllers.count
     }
@@ -50,6 +47,10 @@ extension PodcastHeaderCellController: UITableViewDataSource, UITableViewDelegat
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        imageLoaderDelegate.didRequestCancel()
     }
 }
 

@@ -28,4 +28,12 @@ extension ListViewController {
     func simulatePodcastDetailsMainImageViewVisible() -> PodcastHeaderReusableView? {
         return headerView(at: podcastHeaderSection) as? PodcastHeaderReusableView
     }
+    
+    @discardableResult
+    func simulatePodcastDetailsMainImageViewNotVisible() -> PodcastHeaderReusableView? {
+        guard let headerView = simulatePodcastDetailsMainImageViewVisible() else { return nil }
+        let delegate = tableView.delegate
+        delegate?.tableView?(tableView, didEndDisplayingHeaderView: headerView, forSection: podcastHeaderSection)
+        return headerView
+    }
 }

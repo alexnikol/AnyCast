@@ -23,4 +23,9 @@ extension ListViewController {
     func podcastHeader() -> PodcastHeaderReusableView? {
         return headerView(at: podcastHeaderSection) as? PodcastHeaderReusableView
     }
+    
+    @discardableResult
+    func simulatePodcastDetailsMainImageViewVisible() -> PodcastHeaderReusableView? {
+        return headerView(at: podcastHeaderSection) as? PodcastHeaderReusableView
+    }
 }

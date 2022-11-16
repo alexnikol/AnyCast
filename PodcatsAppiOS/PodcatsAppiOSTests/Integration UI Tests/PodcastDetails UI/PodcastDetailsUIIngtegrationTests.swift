@@ -78,6 +78,22 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails)
     }
     
+    // MARK: - Podcast Image Tests
+    
+    func test_podcastImageView_loadsImageURLWhenVisible() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+        
+        XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
+        
+        sut.simulatePodcastDetailsMainImageViewVisible()
+        XCTAssertEqual(loader.loadedImageURLs, [uniquePodcastDetails.image], "Expected main image URL request once podcast details view becomes visible")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

@@ -18,6 +18,10 @@ class PodcastDetailsService {
         )
     }()
     
+    private lazy var remoteLoader: RemoteImageDataLoader = {
+        RemoteImageDataLoader(client: httpClient)
+    }()
+    
     init(baseURL: URL, httpClient: HTTPClient) {
         self.baseURL = baseURL
         self.httpClient = httpClient
@@ -30,18 +34,10 @@ class PodcastDetailsService {
             .tryMap(PodcastDetailsMapper.map)
             .eraseToAnyPublisher()
     }
-    
-    func makeLocalPodcastImageDataLoaderWithRemoteFallback(for url: URL) -> AnyPublisher<Data, Error> {
-        let localLoader = LocalPodcastsImageDataLoader(store: podcastsImageDataStore, currentDate: Date.init)
-        let remoteLoader = RemoteImageDataLoader(client: httpClient)
         
-        return localLoader
+    func makeRemotePodcastImageDataLoader(for url: URL) -> AnyPublisher<Data, Error> {
+        return remoteLoader
             .loadPublisher(from: url)
-            .fallback(to: {
-                remoteLoader
-                    .loadPublisher(from: url)
-                    .caching(to: localLoader, for: url)
-            })
             .eraseToAnyPublisher()
     }
 }

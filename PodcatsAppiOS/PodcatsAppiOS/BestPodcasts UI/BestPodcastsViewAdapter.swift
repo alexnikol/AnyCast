@@ -55,7 +55,6 @@ final class BestPodcastsViewAdapter: ResourceView {
     private func makePresenterFor(
         _ cellController: PodcastCellController
     ) -> LoadResourcePresenter<Data, WeakRefVirtualProxy<PodcastCellController>> {
-        struct InvalidImageData: Error {}
         
         return LoadResourcePresenter(
             resourceView: WeakRefVirtualProxy(cellController),

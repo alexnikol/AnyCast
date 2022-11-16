@@ -64,7 +64,7 @@ final class GenresCoordinator {
         PodcastDetailsUIComposer.podcastDetailsComposedWith(
             podcastID: podcast.id,
             podcastsLoader: podcastDetailsService.makeRemotePodcastDetailsLoader,
-            imageLoader: podcastDetailsService.makeLocalPodcastImageDataLoaderWithRemoteFallback(for:)
+            imageLoader: podcastDetailsService.makeRemotePodcastImageDataLoader(for:)
         )
     }
 }

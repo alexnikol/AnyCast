@@ -9,7 +9,6 @@ import PodcastsModule
 class PodcastDetailsService {
     private let baseURL: URL
     private let httpClient: HTTPClient
-        
     private let podcastsImageDataStore: PodcastsImageDataStore
     
     private lazy var remoteLoader: RemoteImageDataLoader = {

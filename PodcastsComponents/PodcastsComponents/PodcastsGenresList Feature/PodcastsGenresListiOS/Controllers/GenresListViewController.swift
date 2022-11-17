@@ -8,9 +8,9 @@ public final class GenresListViewController: UICollectionViewController {
     
     private enum Defaults {
         enum Collection {
-            static let sideSpacing: CGFloat = 16.0
+            static let sideSpacing: CGFloat = 8.0
             static let lineSpacing: CGFloat = 8.0
-            static let perItemsSpacing: CGFloat = 8.0
+            static let perItemsSpacing: CGFloat = 4.0
             static let cellHeight: CGFloat = 40.0
         }
     }

@@ -37,11 +37,11 @@ class BestPodcastsUISnapshotTests: XCTestCase {
         return (controller, refreshController)
     }
     
-    private func emptyPodcasts() -> [PodcastCellController] {
-        return []
+    private func emptyPodcasts() -> [DefaultSectionWithNoHeaderAndFooter] {
+        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
     }
     
-    private func podcastsList() -> [PodcastCellController] {
+    private func podcastsList() -> [DefaultSectionWithNoHeaderAndFooter] {
         let models: [PodcastImageViewModel] = [
             .init(
                 title: "Any name",
@@ -71,7 +71,7 @@ class BestPodcastsUISnapshotTests: XCTestCase {
         
         let stubbedImages: [UIImage?] = [UIImage.make(withColor: .blue), nil, UIImage.make(withColor: .yellow)]
         
-        return models.enumerated().map { (index, viewModel) in
+        let cellControllers = models.enumerated().map { (index, viewModel) -> PodcastCellController in
             let imageStub = ImageStub(image: stubbedImages[index])
             let cellController = PodcastCellController(
                 model: viewModel,
@@ -81,6 +81,8 @@ class BestPodcastsUISnapshotTests: XCTestCase {
             imageStub.imageDataResourceView = cellController
             return cellController
         }
+        
+        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: cellControllers)]
     }
         
     private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {

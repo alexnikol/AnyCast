@@ -13,7 +13,7 @@ public final class EpisodeCell: UITableViewCell, Reusable {
     @IBOutlet public private(set) weak var audioLengthLabel: UILabel!
     @IBOutlet public private(set) weak var desciptionView: UITextView!
     @IBOutlet private(set) weak var cellContainer: UIView!
-        
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
         cellContainer.layer.cornerRadius = 4.0

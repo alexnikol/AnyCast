@@ -54,6 +54,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
+        globalAppearanceSetup()
         let rootNavigation = UINavigationController()
         appCoordinator = GenresCoordinator(
             navigationController: rootNavigation,
@@ -64,5 +65,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appCoordinator?.start()
         window?.rootViewController = rootNavigation
         window?.makeKeyAndVisible()
+    }
+    
+    private func globalAppearanceSetup() {
+        if #available(iOS 15.0, *) {
+            UITableView.appearance().isPrefetchingEnabled = false
+        }
     }
 }

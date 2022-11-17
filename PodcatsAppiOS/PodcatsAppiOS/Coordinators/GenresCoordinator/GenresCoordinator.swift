@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import CoreData
 import HTTPClient
 import PodcastsModule
 import PodcastsGenresList
@@ -9,10 +10,15 @@ final class GenresCoordinator {
     private let navigationController: UINavigationController
     private let baseURL: URL
     private let httpClient: HTTPClient
+    private let localGenresLoader: LocalGenresLoader
     
-    private let genresLoaderService: GenresLoaderService
-    private let bestPodcastsService: BestPodcastsService
-    private let podcastDetailsService: PodcastDetailsService
+    lazy var podcastsImageDataStore: PodcastsImageDataStore = {
+        try! CoreDataPodcastsImageDataStore(
+            storeURL: NSPersistentContainer
+                .defaultDirectoryURL()
+                .appendingPathComponent("best-podcasts-image-data-store.sqlite")
+        )
+    }()
     
     init(navigationController: UINavigationController,
          baseURL: URL,
@@ -21,15 +27,9 @@ final class GenresCoordinator {
         self.navigationController = navigationController
         self.baseURL = baseURL
         self.httpClient = httpClient
-        bestPodcastsService = BestPodcastsService(baseURL: baseURL, httpClient: httpClient)
-        podcastDetailsService = PodcastDetailsService(baseURL: baseURL, httpClient: httpClient)
-        genresLoaderService = GenresLoaderService(
-            baseURL: baseURL,
-            httpClient: httpClient,
-            localGenresLoader: localGenresLoader
-        )
+        self.localGenresLoader = localGenresLoader
     }
-    
+        
     func start() {
         navigationController.setViewControllers([createGenres()], animated: false)
     }
@@ -39,6 +39,11 @@ final class GenresCoordinator {
     }
     
     private func createGenres() -> UIViewController {
+        let genresLoaderService = GenresLoaderService(
+            baseURL: baseURL,
+            httpClient: httpClient,
+            localGenresLoader: localGenresLoader
+        )
         return GenresUIComposer.genresComposedWith(
             loader: genresLoaderService.makeLocalGenresLoaderWithRemoteFallback,
             selection: { genre in
@@ -49,7 +54,12 @@ final class GenresCoordinator {
     }
     
     private func createBestPodcasts(byGenre genre: Genre) -> UIViewController {
-        BestPodcastsUIComposer.bestPodcastComposed(
+        let bestPodcastsService = BestPodcastsService(
+            baseURL: baseURL,
+            httpClient: httpClient,
+            podcastsImageDataStore: podcastsImageDataStore
+        )
+        return BestPodcastsUIComposer.bestPodcastComposed(
             genreID: genre.id,
             podcastsLoader: bestPodcastsService.makeBestPodcastsRemoteLoader,
             imageLoader: bestPodcastsService.makeLocalPodcastImageDataLoaderWithRemoteFallback(for:),
@@ -61,10 +71,15 @@ final class GenresCoordinator {
     }
     
     private func createPodcastDetails(byPodcast podcast: Podcast) -> UIViewController {
-        PodcastDetailsUIComposer.podcastDetailsComposedWith(
+        let podcastDetailsService = PodcastDetailsService(
+            baseURL: baseURL,
+            httpClient: httpClient,
+            podcastsImageDataStore: podcastsImageDataStore
+        )
+        return PodcastDetailsUIComposer.podcastDetailsComposedWith(
             podcastID: podcast.id,
             podcastsLoader: podcastDetailsService.makeRemotePodcastDetailsLoader,
-            imageLoader: podcastDetailsService.makeLocalPodcastImageDataLoaderWithRemoteFallback(for:)
+            imageLoader: podcastDetailsService.makeRemotePodcastImageDataLoader(for:)
         )
     }
 }

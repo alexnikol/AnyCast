@@ -20,24 +20,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TFM-aj-C8W">
-                        <rect key="frame" x="4" y="2" width="419" height="118"/>
+                        <rect key="frame" x="8" y="4" width="411" height="114"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="UW6-ED-xmg">
-                                <rect key="frame" x="4" y="4" width="411" height="100.5"/>
+                                <rect key="frame" x="4" y="4" width="403" height="100.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0C-EH-yMv" userLabel="Date">
-                                        <rect key="frame" x="0.0" y="0.0" width="411" height="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="403" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" systemColor="tertiaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yW-Cr-0eR">
-                                        <rect key="frame" x="0.0" y="21" width="411" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="21" width="403" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jst-X8-qrs">
-                                        <rect key="frame" x="0.0" y="45.5" width="411" height="34"/>
+                                        <rect key="frame" x="0.0" y="45.5" width="403" height="34"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Description">
                                                 <attributes>
@@ -50,7 +50,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Length" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGd-94-7yC" userLabel="Length">
-                                        <rect key="frame" x="0.0" y="83.5" width="411" height="17"/>
+                                        <rect key="frame" x="0.0" y="83.5" width="403" height="17"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                         <color key="textColor" name="AccentColor"/>
                                         <nil key="highlightedColor"/>
@@ -67,11 +67,12 @@
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="TFM-aj-C8W" secondAttribute="bottom" constant="2" id="7if-7x-Jdj"/>
-                    <constraint firstItem="TFM-aj-C8W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="SBw-Rh-K0T"/>
-                    <constraint firstAttribute="trailing" secondItem="TFM-aj-C8W" secondAttribute="trailing" constant="4" id="W7X-FT-ryL"/>
-                    <constraint firstItem="TFM-aj-C8W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="Ydb-Mt-BQJ"/>
+                    <constraint firstAttribute="bottom" secondItem="TFM-aj-C8W" secondAttribute="bottom" constant="4" id="7if-7x-Jdj"/>
+                    <constraint firstItem="TFM-aj-C8W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="SBw-Rh-K0T"/>
+                    <constraint firstAttribute="trailing" secondItem="TFM-aj-C8W" secondAttribute="trailing" constant="8" id="W7X-FT-ryL"/>
+                    <constraint firstItem="TFM-aj-C8W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Ydb-Mt-BQJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -91,6 +92,9 @@
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>

@@ -36,18 +36,13 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
         controller.tableView.showsHorizontalScrollIndicator = false
         return (controller, refreshController)
     }
-    
-    private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
-        func didRequestLoading() {}
-        func didRequestCancel() {}
+        
+    private func emptyPodcastDetails() -> [SectionController] {
+        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
     }
     
-    private func emptyPodcastDetails() -> [EpisodeCellController] {
-        return []
-    }
-    
-    private func podcastDetailsWithContent() -> [EpisodeCellController] {
-        return [
+    private func podcastDetailsWithContent() -> [SectionController] {
+        let cellControllers = [
             EpisodeCellController(
                 viewModel: EpisodeViewModel(
                     title: "Any Episode title",
@@ -79,5 +74,26 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                 )
             )
         ]
+        
+        return [
+            PodcastHeaderCellController(
+                cellControllers: cellControllers,
+                viewModel: PodcastDetailsViewModel(
+                    title: "Any Podcast title",
+                    publisher: "Any Podcast title",
+                    language: "Any Podcast title",
+                    type: "Any Podcast title",
+                    image: anyURL(),
+                    episodes: [],
+                    description: "Any Podcast title",
+                    totalEpisodes: "20"),
+                imageLoaderDelegate: NullObjectRefreshViewControllerDelegate()
+            )
+        ]
+    }
+    
+    private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
+        func didRequestLoading() {}
+        func didRequestCancel() {}
     }
 }

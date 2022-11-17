@@ -8,9 +8,9 @@ public final class GenresListViewController: UICollectionViewController {
     
     private enum Defaults {
         enum Collection {
-            static let sideSpacing: CGFloat = 16.0
+            static let sideSpacing: CGFloat = 8.0
             static let lineSpacing: CGFloat = 8.0
-            static let perItemsSpacing: CGFloat = 8.0
+            static let perItemsSpacing: CGFloat = 4.0
             static let cellHeight: CGFloat = 40.0
         }
     }
@@ -25,6 +25,7 @@ public final class GenresListViewController: UICollectionViewController {
         layout.minimumLineSpacing = Defaults.Collection.lineSpacing
         layout.minimumInteritemSpacing = Defaults.Collection.perItemsSpacing
         layout.sectionInset = .init(top: 0, left: Defaults.Collection.sideSpacing, bottom: 0, right: Defaults.Collection.sideSpacing)
+        layout.sectionInsetReference = .fromSafeArea
         self.init(collectionViewLayout: layout)
         self.refreshController = refreshController
     }
@@ -33,6 +34,11 @@ public final class GenresListViewController: UICollectionViewController {
         collectionModel = controllers
     }
     
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView?.collectionViewLayout.invalidateLayout()
+    }
+        
     public override func viewDidLoad() {
         super.viewDidLoad()
         configureCollection(collectionView: collectionView)
@@ -70,7 +76,9 @@ extension GenresListViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - Defaults.Collection.perItemsSpacing - Defaults.Collection.sideSpacing * 2) / 2
+        let cellSpaces = Defaults.Collection.perItemsSpacing + Defaults.Collection.sideSpacing * 2
+        let safeAreaSpaces = collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
+        let width = (collectionView.bounds.width - safeAreaSpaces - cellSpaces) / 2
         let height: CGFloat = Defaults.Collection.cellHeight
         return .init(width: width, height: height)
     }

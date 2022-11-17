@@ -34,7 +34,17 @@ jobs:
         CODE_SIGNING_REQUIRED=NO \
 
     - name: CI_iOS Build and Test
-      run: xcodebuild clean build test -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace -scheme "CI_iOS" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" ONLY_ACTIVE_ARCH=YES  -resultBundlePath CIiOSResults -derivedDataPath /tmp/XcodeDerivedDataWithCoverageCIiOS
+      run: |
+        xcodebuild clean build test \
+        -workspace PodcatsAppiOS/PodcatsAppiOS.xcworkspace \
+        -scheme "CI_iOS" \
+        CODE_SIGN_IDENTITY="" \
+        CODE_SIGNING_REQUIRED=NO \
+        -sdk iphonesimulator \
+        -destination "platform=iOS Simulator,name=iPhone 13,OS=15.5" \
+        ONLY_ACTIVE_ARCH=YES \
+        -resultBundlePath CIiOSResults \
+        -derivedDataPath /tmp/XcodeDerivedDataWithCoverageCIiOS \
 
     - name: Convert code coverage for CI_macOS
       run: slather coverage -x --scheme "CI_macOS" --output-directory "slather_reports/CI_macOS" -b "/tmp/XcodeDerivedDataWithCoverageCImacOS" "PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj"

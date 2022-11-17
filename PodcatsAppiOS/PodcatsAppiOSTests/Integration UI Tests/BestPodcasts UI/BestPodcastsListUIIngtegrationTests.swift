@@ -80,6 +80,8 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         assertThat(sut, isRendering: genreName)
     }
     
+    // MARK: - Podcast Image Tests
+    
     func test_podcastImageView_loadsImageURLWhenVisible() {
         let podcasts = makeUniquePodcasts()
         let bestPodcastsListResult = BestPodcastsList(genreId: 1,

@@ -16,7 +16,6 @@ final class GenericLoaderPresentationAdapter<Resource, View: ResourceView>: Refr
     
     func didRequestLoading() {
         presenter?.didStartLoading()
-        
         cancellable = loader()
             .dispatchOnMainQueue()
             .sink(

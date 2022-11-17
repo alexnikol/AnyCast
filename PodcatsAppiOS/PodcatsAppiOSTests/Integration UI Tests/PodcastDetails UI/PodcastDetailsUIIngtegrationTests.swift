@@ -46,15 +46,18 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
         assertThat(sut, isRendering: String())
+        assertThat(sut, isRenderingPodcastHeaderWith: nil)
         
         loader.completePodcastDetailsLoading(with: uniquePodcastDetails1, at: 0)
         assertThat(sut, isRendering: uniquePodcastDetails1.episodes)
         assertThat(sut, isRendering: uniquePodcastDetails1.title)
+        assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails1)
         
         sut.simulateUserInitiatedListReload()
         loader.completePodcastDetailsLoading(with: uniquePodcastDetails2, at: 1)
         assertThat(sut, isRendering: uniquePodcastDetails2.episodes)
         assertThat(sut, isRendering: uniquePodcastDetails2.title)
+        assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails2)
     }
     
     func test_loadPodcastDetailsCompletion_doesNotAlterCurrentRenderingStateOnError() {
@@ -66,11 +69,98 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
         assertThat(sut, isRendering: uniquePodcastDetails.episodes)
         assertThat(sut, isRendering: uniquePodcastDetails.title)
+        assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails)
         
         sut.simulateUserInitiatedListReload()
         loader.completePodcastDetailsLoadingWithError(at: 1)
         assertThat(sut, isRendering: uniquePodcastDetails.episodes)
         assertThat(sut, isRendering: uniquePodcastDetails.title)
+        assertThat(sut, isRenderingPodcastHeaderWith: uniquePodcastDetails)
+    }
+    
+    // MARK: - Podcast Image Tests
+    
+    func test_podcastImageView_loadsImageURLWhenVisible() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+        XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
+        
+        sut.simulatePodcastDetailsMainImageViewVisible()
+        XCTAssertEqual(loader.loadedImageURLs, [uniquePodcastDetails.image], "Expected main image URL request once podcast details view becomes visible")
+    }
+    
+    func test_podcastImageView_cancelsImageLoadingWhenNotVisibleAnymore() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+        XCTAssertEqual(loader.loadedImageURLs, [], "Expected no image URL requests until views become visible")
+        
+        sut.simulatePodcastDetailsMainImageViewNotVisible()
+        XCTAssertEqual(loader.cancelledImageURLs, [uniquePodcastDetails.image], "Expected one cancelled image URL request once image is not visible anymore")
+    }
+    
+    func test_podcastImageViewLoadingIndicator_isVisibleWhileLoadingImage() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+        
+        let headerView1 = sut.simulatePodcastDetailsMainImageViewVisible()
+
+        XCTAssertEqual(headerView1?.isShowingImageLoadingIndicator, true, "Expected loading indicator for view while loading image")
+        
+        loader.completeImageLoading(at: 0)
+        XCTAssertEqual(headerView1?.isShowingImageLoadingIndicator, false, "Expected no loading indicator for view once image loading completes successfully")
+        
+        sut.simulateUserInitiatedListReload()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 1)
+        
+        let headerView2 = sut.simulatePodcastDetailsMainImageViewVisible()
+        
+        XCTAssertEqual(headerView2?.isShowingImageLoadingIndicator, true, "Expected loading indicator for view while loading image")
+        
+        loader.completeImageLoading(at: 1)
+        XCTAssertEqual(headerView2?.isShowingImageLoadingIndicator, false, "Expected no loading indicator for view once image loading completes successfully")
+    }
+    
+    func test_loadPodcastsDetailsCompletion_dispatchesFromBackgroundToMainThread() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_loadImageDataCompletion_dispatchesFromBackgroundToMainThread() {
+        let uniquePodcastDetails = makeUniquePodcastDetails(episodes: makeUniqueEpisodes())
+        let (sut, loader) = makeSUT()
+        
+        sut.loadViewIfNeeded()
+        loader.completePodcastDetailsLoading(with: uniquePodcastDetails, at: 0)
+        sut.simulatePodcastDetailsMainImageViewVisible()
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completeImageLoading(at: 0)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
     
     // MARK: - Helpers
@@ -103,6 +193,23 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
     
     private func assertThat(
         _ sut: ListViewController,
+        isRenderingPodcastHeaderWith model: PodcastDetails?,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let podcastHeader = sut.podcastHeader()
+        if let model = model {
+            let viewModel = PodcastDetailsPresenter.map(model)
+            XCTAssertEqual(podcastHeader?.titleText, viewModel.title, file: file, line: line)
+            XCTAssertEqual(podcastHeader?.authorText, viewModel.publisher, file: file, line: line)
+            XCTAssertNotNil(podcastHeader, file: file, line: line)
+        } else {
+            XCTAssertNil(podcastHeader, file: file, line: line)
+        }
+    }
+    
+    private func assertThat(
+        _ sut: ListViewController,
         hasViewConfiguredFor episode: Episode,
         at index: Int,
         file: StaticString = #file,
@@ -113,7 +220,7 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, episodeViewModel.title, "Wrong title at index \(index)", file: file, line: line)
         XCTAssertEqual(view?.descriptionText, episodeViewModel.description, "Wrong description at index \(index)", file: file, line: line)
-        XCTAssertEqual(view?.audoLengthText, episodeViewModel.displayAudioLengthInSeconds, "Wrong audio length at index \(index)", file: file, line: line)
+        XCTAssertEqual(view?.audioLengthText, episodeViewModel.displayAudioLengthInSeconds, "Wrong audio length at index \(index)", file: file, line: line)
         XCTAssertEqual(view?.publishDateText, episodeViewModel.displayPublishDate, "Wrong publish date at index \(index)", file: file, line: line)
     }
     

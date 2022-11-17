@@ -12,7 +12,7 @@ extension EpisodeCell {
         return desciptionView.attributedText.string
     }
     
-    var audoLengthText: String? {
+    var audioLengthText: String? {
         return audioLengthLabel.text
     }
     

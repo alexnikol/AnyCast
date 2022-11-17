@@ -36,7 +36,7 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         tableView.prefetchDataSource = self
         tableView.separatorStyle = tableConfig.separatorStyle
         tableView.sectionHeaderHeight = tableConfig.sectionHeaderHeight
@@ -95,17 +95,17 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
             cellController(for: indexPath).prefetchingDataSource?.tableView(tableView, prefetchRowsAt: indexPaths)
         }
     }
-    
-    override public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
-        sections[section].delegate?.tableView?(tableView, didEndDisplayingHeaderView: view, forSection: section)
-    }
-    
+
     public func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { indexPath in
             cellController(for: indexPath).prefetchingDataSource?.tableView?(tableView, cancelPrefetchingForRowsAt: indexPaths)
         }
     }
     
+    override public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        sections[section].delegate?.tableView?(tableView, didEndDisplayingHeaderView: view, forSection: section)
+    }
+        
     private func cellController(for indexPath: IndexPath) -> CellController {
         sections[indexPath.section].cellControllers[indexPath.row]
     }

@@ -95,6 +95,7 @@
 		8D9B86DD292BC1A8003B52AB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B86DC292BC1A8003B52AB /* AudioPlayer.swift */; };
 		8D9B86DE292BC1BE003B52AB /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
 		8D9B86E3292BC771003B52AB /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
+		8D9B86E7292C08F0003B52AB /* PlayerStateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B86E6292C08F0003B52AB /* PlayerStateServiceTests.swift */; };
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
@@ -429,6 +430,7 @@
 		8D9B86D2292BC0CF003B52AB /* AudioPlayerModuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioPlayerModuleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9B86D4292BC0CF003B52AB /* PlayingEpisodeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingEpisodeServiceTests.swift; sourceTree = "<group>"; };
 		8D9B86DC292BC1A8003B52AB /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		8D9B86E6292C08F0003B52AB /* PlayerStateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateServiceTests.swift; sourceTree = "<group>"; };
 		8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheGenresUseCaseTests.swift; sourceTree = "<group>"; };
 		8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenresLoader.swift; sourceTree = "<group>"; };
 		8DA0543E28C9F00700418F3E /* GenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStore.swift; sourceTree = "<group>"; };
@@ -1024,6 +1026,7 @@
 			isa = PBXGroup;
 			children = (
 				8D9B86D4292BC0CF003B52AB /* PlayingEpisodeServiceTests.swift */,
+				8D9B86E6292C08F0003B52AB /* PlayerStateServiceTests.swift */,
 			);
 			path = AudioPlayerModuleTests;
 			sourceTree = "<group>";
@@ -2384,6 +2387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9B86D5292BC0CF003B52AB /* PlayingEpisodeServiceTests.swift in Sources */,
+				8D9B86E7292C08F0003B52AB /* PlayerStateServiceTests.swift in Sources */,
 				8D9B86E3292BC771003B52AB /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

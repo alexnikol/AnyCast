@@ -94,6 +94,7 @@
 		8D9B86D6292BC0CF003B52AB /* AudioPlayerModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B86C7292BC0BF003B52AB /* AudioPlayerModule.framework */; };
 		8D9B86DD292BC1A8003B52AB /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B86DC292BC1A8003B52AB /* AudioPlayer.swift */; };
 		8D9B86DE292BC1BE003B52AB /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
+		8D9B86E3292BC771003B52AB /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
@@ -2383,6 +2384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9B86D5292BC0CF003B52AB /* AudioPlayerModuleTests.swift in Sources */,
+				8D9B86E3292BC771003B52AB /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

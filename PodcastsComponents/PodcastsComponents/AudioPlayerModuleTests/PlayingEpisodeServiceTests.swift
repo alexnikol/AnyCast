@@ -27,17 +27,55 @@ class PlayingEpisodeService {
                 
             case .empty:
                 completion(.failure(LoadError.noPlayingEpisodeFound))
-            default: break
+                
+            case .found(let localEpisode):
+                completion(.success(localEpisode.toModel()))
             }
         })
     }
 }
+                     
+extension LocalEpisode {
+    func toModel() -> Episode {
+        let episode = Episode(
+            id: self.id,
+            title: self.title,
+            description: self.description,
+            thumbnail: self.thumbnail,
+            audio: self.audio,
+            audioLengthInSeconds: self.audioLengthInSeconds,
+            containsExplicitContent: self.containsExplicitContent,
+            publishDateInMiliseconds: self.publishDateInMiliseconds
+        )
+        return episode
+    }
+}
 
-class LocalEpisode {}
+struct LocalEpisode: Equatable {
+    let id: String
+    let title: String
+    let description: String
+    let thumbnail: URL
+    let audio: URL
+    let audioLengthInSeconds: Int
+    let containsExplicitContent: Bool
+    let publishDateInMiliseconds: Int
+    
+    init(episode: Episode) {
+        self.id = episode.id
+        self.title = episode.title
+        self.description = episode.description
+        self.thumbnail = episode.thumbnail
+        self.audio = episode.audio
+        self.audioLengthInSeconds = episode.audioLengthInSeconds
+        self.containsExplicitContent = episode.containsExplicitContent
+        self.publishDateInMiliseconds = episode.publishDateInMiliseconds
+    }
+}
 
 enum RetrieveCachePlayingEpisodeResult {
     case empty
-    case found(genres: [LocalEpisode], timestamp: Date)
+    case found(episode: LocalEpisode)
     case failure(Error)
 }
 
@@ -77,7 +115,16 @@ class PlayingEpisodeServiceTests: XCTestCase {
         })
     }
     
-    func test_load_doesnNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+    func test_load_deliversPlayingEpisodeOnNonEmptyCache() {
+        let (sut, store) = makeSUT()
+        let episode = makeUniqueEpisode()
+        
+        expect(sut, toCompleteWith: .success(episode.model), when: {
+            store.completeRetrieval(with: episode.local)
+        })
+    }
+    
+    func test_load_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let store = PlayingEpisodeStoreSpy()
         var sut: PlayingEpisodeService? = PlayingEpisodeService(store: store)
         
@@ -131,6 +178,31 @@ class PlayingEpisodeServiceTests: XCTestCase {
         action()
         wait(for: [exp], timeout: 1.0)
     }
+    
+    func anyNSError() -> NSError {
+        NSError(domain: "any error", code: 0)
+    }
+    
+    private func anyURL() -> URL {
+        URL(string: "http://a-url.com")!
+    }
+
+    func makeUniqueEpisode(publishDate: Date = Date(), audioLengthInSeconds: Int = 100) -> (model: Episode, local: LocalEpisode) {
+        let publishDateInMiliseconds = Int(publishDate.timeIntervalSince1970) * 1000
+        let episode = Episode(
+            id: UUID().uuidString,
+            title: "Any Episode title",
+            description: "<strong>Any Episode description</strong>",
+            thumbnail: anyURL(),
+            audio: anyURL(),
+            audioLengthInSeconds: audioLengthInSeconds,
+            containsExplicitContent: false,
+            publishDateInMiliseconds: publishDateInMiliseconds
+        )
+        
+        let localEpisode = LocalEpisode(episode: episode)
+        return (episode, localEpisode)
+    }
 }
 
 private class PlayingEpisodeStoreSpy: PlayingEpisodeStore {
@@ -153,8 +225,8 @@ private class PlayingEpisodeStoreSpy: PlayingEpisodeStore {
     func completeRetrievalWithEmptyCache(at index: Int = 0) {
         retrievalCompletions[index](.empty)
     }
-}
-
-func anyNSError() -> NSError {
-    NSError(domain: "any error", code: 0)
+    
+    func completeRetrieval(with result: LocalEpisode, at index: Int = 0) {
+        retrievalCompletions[index](.found(episode: result))
+    }
 }

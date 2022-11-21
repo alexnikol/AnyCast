@@ -9,16 +9,30 @@ class PlayingEpisodeService {
     init(store: PlayingEpisodeStore) {
         self.store = store
     }
+    
+    func load(completion: @escaping (Result<Episode, Error>) -> Void) {
+        store.retrieve(completion: { _ in })
+    }
 }
 
-protocol PlayingEpisodeStore {}
+protocol PlayingEpisodeStore {
+    func retrieve(completion: @escaping (Result<Episode, Error>) -> Void)
+}
 
 class PlayingEpisodeServiceTests: XCTestCase {
     
     func test_init() {
         let (_, store) = makeSUT()
         
-        XCTAssertEqual(store.messages, [])
+        XCTAssertEqual(store.receivedMessages, [])
+    }
+    
+    func test_load_requestsCacheRetrieval() {
+        let (sut, store) = makeSUT()
+        
+        sut.load { _ in }
+        
+        XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
     // MARK: - Helpers
@@ -33,5 +47,13 @@ class PlayingEpisodeServiceTests: XCTestCase {
 }
 
 private class PlayingEpisodeStoreSpy: PlayingEpisodeStore {
-    var messages: [Int] = []
+    enum Message: Equatable {
+        case retrieve
+    }
+    
+    var receivedMessages: [Message] = []
+    
+    func retrieve(completion: @escaping (Result<Episode, Error>) -> Void) {
+        receivedMessages.append(.retrieve)
+    }
 }

@@ -20,9 +20,11 @@ class PlayingEpisodeService {
     func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve(completion: { result in
             switch result {
-            case .failure(let error):
+            case .failure:
                 completion(.failure(LoadError.retrievalError))
                 
+            case .empty:
+                completion(.failure(LoadError.noPlayingEpisodeFound))
             default: break
             }
         })
@@ -62,6 +64,14 @@ class PlayingEpisodeServiceTests: XCTestCase {
         
         expect(sut, toCompleteWith: .failure(PlayingEpisodeService.LoadError.retrievalError), when: {
             store.completeRetrieval(with: anyNSError())
+        })
+    }
+    
+    func test_load_deliversNoPlayingEpisodeOnEmptyCache() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWith: .failure(PlayingEpisodeService.LoadError.noPlayingEpisodeFound), when: {
+            store.completeRetrievalWithEmptyCache()
         })
     }
     
@@ -122,6 +132,10 @@ private class PlayingEpisodeStoreSpy: PlayingEpisodeStore {
     
     func completeRetrieval(with error: Error, at index: Int = 0) {
         retrievalCompletions[index](.failure(error))
+    }
+    
+    func completeRetrievalWithEmptyCache(at index: Int = 0) {
+        retrievalCompletions[index](.empty)
     }
 }
 

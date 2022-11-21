@@ -18,7 +18,9 @@ class PlayingEpisodeService {
     }
     
     func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve(completion: { result in
+        store.retrieve(completion: { [weak self] result in
+            guard self != nil else { return }
+            
             switch result {
             case .failure:
                 completion(.failure(LoadError.retrievalError))
@@ -73,6 +75,20 @@ class PlayingEpisodeServiceTests: XCTestCase {
         expect(sut, toCompleteWith: .failure(PlayingEpisodeService.LoadError.noPlayingEpisodeFound), when: {
             store.completeRetrievalWithEmptyCache()
         })
+    }
+    
+    func test_load_doesnNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let store = PlayingEpisodeStoreSpy()
+        var sut: PlayingEpisodeService? = PlayingEpisodeService(store: store)
+        
+        var receivedResults: [PlayingEpisodeService.LoadResult] = []
+        sut?.load { receivedResults.append($0) }
+        
+        sut = nil
+        
+        store.completeRetrievalWithEmptyCache()
+        
+        XCTAssertTrue(receivedResults.isEmpty)
     }
     
     // MARK: - Helpers

@@ -116,7 +116,7 @@ class PlayerStateServiceTests: XCTestCase {
         })
     }
     
-    func test_onReceiveValues_deliversTheSameValueToMultipleObservers() {
+    func test_onReceiveValues_deliversTheSameValueToMultipleObserversAndStopDeliverAfterUnsubscribe() {
         let publisher = makePublisher()
         let observer1 = makeSUT()
         let observer2 = makeSUT()
@@ -140,7 +140,7 @@ class PlayerStateServiceTests: XCTestCase {
         }
                 
         let subscription1 = publisher.subscribe(observer: observer1)
-        let subscription2 = publisher.subscribe(observer: observer2)
+        _ = publisher.subscribe(observer: observer2)
         
         publisher.receiveNewPlayerState(.noPlayingItem)
         publisher.receiveNewPlayerState(.noPlayingItem)
@@ -151,13 +151,12 @@ class PlayerStateServiceTests: XCTestCase {
         XCTAssertEqual(receivedStateObserver2, [.noPlayingItem, .noPlayingItem])
         
         subscription1.unsubscribe()
-        subscription2.unsubscribe()
         
         publisher.receiveNewPlayerState(.noPlayingItem)
         publisher.receiveNewPlayerState(.noPlayingItem)
         
         XCTAssertEqual(receivedStateObserver1, [.noPlayingItem, .noPlayingItem])
-        XCTAssertEqual(receivedStateObserver2, [.noPlayingItem, .noPlayingItem])
+        XCTAssertEqual(receivedStateObserver2, [.noPlayingItem, .noPlayingItem, .noPlayingItem, .noPlayingItem])
     }
     
     // MARK: - Helpers

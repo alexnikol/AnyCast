@@ -32,9 +32,12 @@ protocol AudioPlayerObserver {
     func receive(_ playerState: CurrentPlayerState)
 }
 
+protocol AudioPlayerStateSubscription {
+    func unsubscribe()
+}
+
 protocol AudioPlayerStatePublisher {
-    func subscribe(observer: AudioPlayerObserver)
-    func unsubscribe(observer: AudioPlayerObserver)
+    func subscribe(observer: AudioPlayerObserver) -> AudioPlayerStateSubscription
 }
 
 class AudioPlayerStateObserver: AudioPlayerObserver {
@@ -66,7 +69,7 @@ class PlayerStateServiceTests: XCTestCase {
         let observer = makeSUT()
         
         expect(observer, expectedResult: [.noPlayingItem], when: {
-            publisher.subscribe(observer: observer)
+            _ = publisher.subscribe(observer: observer)
             publisher.receiveNewPlayerState(.noPlayingItem)
         })
     }
@@ -77,7 +80,7 @@ class PlayerStateServiceTests: XCTestCase {
         
         expect(observer, expectedResult: [.noPlayingItem], when: {
             publisher.receiveNewPlayerState(.noPlayingItem)
-            publisher.subscribe(observer: observer)
+            _ = publisher.subscribe(observer: observer)
         })
     }
     
@@ -92,7 +95,7 @@ class PlayerStateServiceTests: XCTestCase {
             observer,
             expectedResult: [.noPlayingItem, .startPlayingNewItem(playingItem), .updatedPlayingItem(updatedPlayingItem)],
             when: {
-                publisher.subscribe(observer: observer)
+                _ = publisher.subscribe(observer: observer)
                 publisher.receiveNewPlayerState(.noPlayingItem)
                 publisher.receiveNewPlayerState(.startPlayingNewItem(playingItem))
                 publisher.receiveNewPlayerState(.updatedPlayingItem(updatedPlayingItem))
@@ -105,12 +108,56 @@ class PlayerStateServiceTests: XCTestCase {
         let observer = makeSUT()
         
         expect(observer, expectedResult: [.noPlayingItem], when: {
-            publisher.subscribe(observer: observer)
+            let subscription = publisher.subscribe(observer: observer)
             publisher.receiveNewPlayerState(.noPlayingItem)
             
-            publisher.unsubscribe(observer: observer)
+            subscription.unsubscribe()
             publisher.receiveNewPlayerState(.startPlayingNewItem(makePlayingItem()))
         })
+    }
+    
+    func test_onReceiveValues_deliversTheSameValueToMultipleObservers() {
+        let publisher = makePublisher()
+        let observer1 = makeSUT()
+        let observer2 = makeSUT()
+        
+        var receivedStateObserver1: [CurrentPlayerState] = []
+        let exp1 = expectation(description: "Wait on receive state")
+        exp1.assertForOverFulfill = false
+        
+        observer1.onReceiveUpdates = { state in
+            receivedStateObserver1.append(state)
+            exp1.fulfill()
+        }
+        
+        var receivedStateObserver2: [CurrentPlayerState] = []
+        let exp2 = expectation(description: "Wait on receive state")
+        exp2.assertForOverFulfill = false
+        
+        observer2.onReceiveUpdates = { state in
+            receivedStateObserver2.append(state)
+            exp2.fulfill()
+        }
+                
+        let subscription1 = publisher.subscribe(observer: observer1)
+        let subscription2 = publisher.subscribe(observer: observer2)
+        
+        publisher.receiveNewPlayerState(.noPlayingItem)
+        publisher.receiveNewPlayerState(.noPlayingItem)
+        
+        waitForExpectations(timeout: 1.0)
+        
+        XCTAssertEqual(receivedStateObserver1, [.noPlayingItem, .noPlayingItem])
+        XCTAssertEqual(receivedStateObserver2, [.noPlayingItem, .noPlayingItem])
+        
+        subscription1.unsubscribe()
+        subscription2.unsubscribe()
+        
+        publisher.receiveNewPlayerState(.noPlayingItem)
+        publisher.receiveNewPlayerState(.noPlayingItem)
+        
+        XCTAssertEqual(receivedStateObserver1, [.noPlayingItem, .noPlayingItem])
+        XCTAssertEqual(receivedStateObserver2, [.noPlayingItem, .noPlayingItem])
     }
     
     // MARK: - Helpers
@@ -191,33 +238,47 @@ class PlayerStateServiceTests: XCTestCase {
     }
     
     private class AudioPlayerStatePublisherSpy: AudioPlayerStatePublisher {
-        
-        private var previosState: CurrentPlayerState?
-        private var observer: AudioPlayerObserver?
-        
-        func subscribe(observer: AudioPlayerObserver) {
-            self.observer = observer
-            updateStateOfAttachedObserverIfPreviousStateExists(observer)
+        struct StateSubscription: AudioPlayerStateSubscription {
+            let onUnsubscribe: () -> Void
+            
+            init(onUnsubscribe: @escaping () -> Void) {
+                self.onUnsubscribe = onUnsubscribe
+            }
+            
+            func unsubscribe() {
+                onUnsubscribe()
+            }
         }
         
-        func unsubscribe(observer: AudioPlayerObserver) {
-            self.observer = nil
+        private var previosState: CurrentPlayerState?
+        private var observers: [UUID: AudioPlayerObserver] = [:]
+        
+        func subscribe(observer: AudioPlayerObserver) -> AudioPlayerStateSubscription {
+            let subscriptionID = UUID()
+            self.observers[subscriptionID] = observer
+            updateStateOfAttachedObserverIfPreviousStateExists(observer)
+            let subscription = StateSubscription(onUnsubscribe: { [weak self] in
+                self?.observers.removeValue(forKey: subscriptionID)
+            })
+            return subscription
         }
         
         func receiveNewPlayerState(_ state: CurrentPlayerState) {
             previosState = state
-            updateObserver(with: state)
+            updateObservers(with: state)
         }
         
-        private func updateObserver(with state: CurrentPlayerState) {
-            observer?.receive(state)
+        private func updateObservers(with state: CurrentPlayerState) {
+            observers.forEach { (key, observer) in
+                observer.receive(state)
+            }
         }
         
         private func updateStateOfAttachedObserverIfPreviousStateExists(_ observer: AudioPlayerObserver) {
             guard let previosState = previosState else {
                 return
             }
-            updateObserver(with: previosState)
+            updateObservers(with: previosState)
         }
     }
 }

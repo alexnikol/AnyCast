@@ -2,6 +2,6 @@
 
 import Foundation
 
-class AudioPlayer {
-    
+public protocol AudioPlayer {
+    var delegate: AudioPlayerOutputDelegate? { get set }
 }

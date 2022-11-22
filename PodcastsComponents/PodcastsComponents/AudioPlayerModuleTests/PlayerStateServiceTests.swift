@@ -1,27 +1,36 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import PodcastsModule
 
-class PlayerStateService {
-    
+struct CurrentPlayerState {
+    let data: Int
 }
 
-protocol LastPlayedEpisodeStore {
-    
+protocol AudioPlayerObserver {
+    func update(with playerState: CurrentPlayerState)
 }
 
 class PlayerStateServiceTests: XCTestCase {
     
-    func test_init_doesNotRequestsLastPlayedEpisodeStoreWithoutAnySubscriber() {
-        let sut = PlayerStateService()
-        let store = LastPlayedEpisodeStoreSpy()
+    func test_init_doesNotDeliversValueOnCreation() {
+        var receivedData: CurrentPlayerState?
+        _ = ConcreteAudioPlayerObserver(onReceiveUpdates: { state in
+            receivedData = state
+        })
         
-        XCTAssertTrue(store.receivedMessages.isEmpty)
+        XCTAssertNil(receivedData)
     }
     
-    private class LastPlayedEpisodeStoreSpy: LastPlayedEpisodeStore {
-        enum Message {}
+    private class ConcreteAudioPlayerObserver: AudioPlayerObserver {
+        var onReceiveUpdates: (CurrentPlayerState) -> Void
         
-        private(set) var receivedMessages: [Message] = []
+        init(onReceiveUpdates: @escaping (CurrentPlayerState) -> Void) {
+            self.onReceiveUpdates = onReceiveUpdates
+        }
+        
+        func update(with playerState: CurrentPlayerState) {
+            
+        }
     }
 }

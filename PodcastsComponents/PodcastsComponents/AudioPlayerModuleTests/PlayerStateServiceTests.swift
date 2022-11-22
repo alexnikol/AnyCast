@@ -8,11 +8,11 @@ enum CurrentPlayerState {
 }
 
 protocol AudioPlayerObserver {
-    func update(with playerState: CurrentPlayerState)
+    func receive(_ playerState: CurrentPlayerState)
 }
 
 protocol AudioPlayerStateSubject {
-    func attach(observer: AudioPlayerObserver)
+    func subscribe(observer: AudioPlayerObserver)
 }
 
 class PlayerStateServiceTests: XCTestCase {
@@ -35,7 +35,7 @@ class PlayerStateServiceTests: XCTestCase {
             exp.fulfill()
         })
         
-        playerSubject.attach(observer: observer)
+        playerSubject.subscribe(observer: observer)
         playerSubject.receiveNewPlayerState(.noPlayingItem)
         
         wait(for: [exp], timeout: 1.0)
@@ -53,7 +53,7 @@ class PlayerStateServiceTests: XCTestCase {
         })
         
         playerSubject.receiveNewPlayerState(.noPlayingItem)
-        playerSubject.attach(observer: observer)
+        playerSubject.subscribe(observer: observer)
         
         wait(for: [exp], timeout: 1.0)
         
@@ -69,7 +69,7 @@ class PlayerStateServiceTests: XCTestCase {
             self.onReceiveUpdates = onReceiveUpdates
         }
         
-        func update(with playerState: CurrentPlayerState) {
+        func receive(_ playerState: CurrentPlayerState) {
             onReceiveUpdates(playerState)
         }
     }
@@ -79,7 +79,7 @@ class PlayerStateServiceTests: XCTestCase {
         private var previosState: CurrentPlayerState?
         private var observer: AudioPlayerObserver?
         
-        func attach(observer: AudioPlayerObserver) {
+        func subscribe(observer: AudioPlayerObserver) {
             self.observer = observer
             updateStateOfAttachedObserverIfPreviousStateExists(observer)
         }
@@ -90,7 +90,7 @@ class PlayerStateServiceTests: XCTestCase {
         }
         
         private func updateObserver(with state: CurrentPlayerState) {
-            observer?.update(with: state)
+            observer?.receive(state)
         }
         
         private func updateStateOfAttachedObserverIfPreviousStateExists(_ observer: AudioPlayerObserver) {

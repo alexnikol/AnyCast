@@ -23,11 +23,11 @@ public extension PlayingItem {
 
 public extension PlayingItem {
     struct State: Equatable {
-        let playbackState: PlaybackState
-        let currentTimeInSeconds: Int
-        let totalTime: EpisodeDuration
-        let progressTimePercentage: Double
-        let volumeLevel: Double
+        public let playbackState: PlaybackState
+        public let currentTimeInSeconds: Int
+        public let totalTime: EpisodeDuration
+        public let progressTimePercentage: Double
+        public let volumeLevel: Double
         
         public init(
             playbackState: PlayingItem.PlaybackState,

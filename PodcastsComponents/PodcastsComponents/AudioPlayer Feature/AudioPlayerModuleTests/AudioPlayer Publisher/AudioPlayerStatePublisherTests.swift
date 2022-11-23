@@ -170,25 +170,6 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         )
     }
     
-    func makeUniqueEpisode(publishDate: Date = Date(), audioLengthInSeconds: Int = 100) -> Episode {
-        let publishDateInMiliseconds = Int(publishDate.timeIntervalSince1970) * 1000
-        let episode = Episode(
-            id: UUID().uuidString,
-            title: "Any Episode title",
-            description: "<strong>Any Episode description</strong>",
-            thumbnail: anyURL(),
-            audio: anyURL(),
-            audioLengthInSeconds: audioLengthInSeconds,
-            containsExplicitContent: false,
-            publishDateInMiliseconds: publishDateInMiliseconds
-        )
-        return episode
-    }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
-    }
-    
     private class AudioPlayerStateObserverSpy: AudioPlayerObserver {
         var onReceiveUpdates: (PlayerState) -> Void
         

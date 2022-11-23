@@ -9,8 +9,5 @@ class LargeAudioPlayerViewController: UIViewController {
 
 class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     
-    func test_onLoad_() {
-        let sut = LargeAudioPlayerViewController()
-        
-    }
+    func test_onLoad_() {}
 }

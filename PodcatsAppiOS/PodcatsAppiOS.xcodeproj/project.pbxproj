@@ -50,6 +50,7 @@
 		8D76B8A928D4A2B00014A211 /* PodcastsGenresListiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D76B8A528D4A2B00014A211 /* PodcastsGenresListiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D91860628F9976300DE19D1 /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91860528F9976300DE19D1 /* HTTPClientStub.swift */; };
 		8D91860828F9978300DE19D1 /* InMemoryGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91860728F9978300DE19D1 /* InMemoryGenresStore.swift */; };
+		8D9B8702292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */; };
 		8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */; };
 		8DDBB723291A810F0024A37A /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; };
 		8DDBB724291A810F0024A37A /* PodcastsModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -146,6 +147,7 @@
 		8D76B8A528D4A2B00014A211 /* PodcastsGenresListiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsGenresListiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D91860528F9976300DE19D1 /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
 		8D91860728F9978300DE19D1 /* InMemoryGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGenresStore.swift; sourceTree = "<group>"; };
+		8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerUIIntegrationTests.swift; sourceTree = "<group>"; };
 		8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastHeaderReusableView+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DDBB721291A810F0024A37A /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +229,7 @@
 		8D4C3B22291CF2F7002AD459 /* Integration UI Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8D9B8700292D1CBF003B52AB /* AudioPlayer UI */,
 				8D72D03E28F8121C00C17DDC /* Genres UI */,
 				8D5FA24E2913C4CD002BB874 /* BestPodcasts UI */,
 				8DDBB76C291BC5740024A37A /* PodcastDetails UI */,
@@ -399,6 +402,14 @@
 				8D76B8A528D4A2B00014A211 /* PodcastsGenresListiOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D9B8700292D1CBF003B52AB /* AudioPlayer UI */ = {
+			isa = PBXGroup;
+			children = (
+				8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */,
+			);
+			path = "AudioPlayer UI";
 			sourceTree = "<group>";
 		};
 		8DDBB76C291BC5740024A37A /* PodcastDetails UI */ = {
@@ -574,6 +585,7 @@
 				8D5FA2572913C539002BB874 /* BestPodcasts+ListViewController+DSLHelpers.swift in Sources */,
 				8D5FA2592913C539002BB874 /* BestPodcastsLoaderSpy.swift in Sources */,
 				8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
+				8D9B8702292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift in Sources */,
 				8D5FA2562913C539002BB874 /* PodcastCell+DSLHelpers.swift in Sources */,
 				8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */,
 				8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */,

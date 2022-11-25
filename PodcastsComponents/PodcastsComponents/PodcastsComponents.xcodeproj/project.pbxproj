@@ -1095,13 +1095,8 @@
 		8D9B86C8292BC0BF003B52AB /* AudioPlayerModule */ = {
 			isa = PBXGroup;
 			children = (
+				8DCA2285293141DB00DD1EC6 /* Domain models */,
 				8DCA227E2931412800DD1EC6 /* Presentation */,
-				8D9B86F0292D0F80003B52AB /* AudioPlayer.swift */,
-				8D9B86F2292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift */,
-				8D9B86E8292D0E88003B52AB /* AudioPlayerStatePublisher.swift */,
-				8D9B86EE292D0F0A003B52AB /* AudioPlayerObserver.swift */,
-				8D9B86EA292D0EA5003B52AB /* PlayerState.swift */,
-				8D9B86EC292D0EBF003B52AB /* PlayingItem.swift */,
 			);
 			path = AudioPlayerModule;
 			sourceTree = "<group>";
@@ -1357,6 +1352,19 @@
 				8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		8DCA2285293141DB00DD1EC6 /* Domain models */ = {
+			isa = PBXGroup;
+			children = (
+				8D9B86F0292D0F80003B52AB /* AudioPlayer.swift */,
+				8D9B86F2292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift */,
+				8D9B86E8292D0E88003B52AB /* AudioPlayerStatePublisher.swift */,
+				8D9B86EE292D0F0A003B52AB /* AudioPlayerObserver.swift */,
+				8D9B86EA292D0EA5003B52AB /* PlayerState.swift */,
+				8D9B86EC292D0EBF003B52AB /* PlayingItem.swift */,
+			);
+			path = "Domain models";
 			sourceTree = "<group>";
 		};
 		8DD2FA5328D4986A0031AAEA /* Genres Presentation */ = {

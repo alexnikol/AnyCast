@@ -51,6 +51,10 @@
 		8D91860628F9976300DE19D1 /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91860528F9976300DE19D1 /* HTTPClientStub.swift */; };
 		8D91860828F9978300DE19D1 /* InMemoryGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D91860728F9978300DE19D1 /* InMemoryGenresStore.swift */; };
 		8D9B8702292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */; };
+		8D9B873E2930C454003B52AB /* AudioPlayerModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873C2930C454003B52AB /* AudioPlayerModule.framework */; };
+		8D9B873F2930C454003B52AB /* AudioPlayerModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873C2930C454003B52AB /* AudioPlayerModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D9B87402930C454003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; };
+		8D9B87412930C454003B52AB /* AudioPlayerModuleiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */; };
 		8DDBB723291A810F0024A37A /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; };
 		8DDBB724291A810F0024A37A /* PodcastsModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -95,6 +99,8 @@
 				8DDBB724291A810F0024A37A /* PodcastsModule.framework in Embed Frameworks */,
 				8D4298DE29227CB60064F3E6 /* SharedComponentsiOSModule.framework in Embed Frameworks */,
 				8D5C206628FE925E006CD42F /* URLSessionHTTPClient.framework in Embed Frameworks */,
+				8D9B873F2930C454003B52AB /* AudioPlayerModule.framework in Embed Frameworks */,
+				8D9B87412930C454003B52AB /* AudioPlayerModuleiOS.framework in Embed Frameworks */,
 				8DEB7E1628FDDA9F003AF72F /* HTTPClient.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -148,6 +154,8 @@
 		8D91860528F9976300DE19D1 /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
 		8D91860728F9978300DE19D1 /* InMemoryGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryGenresStore.swift; sourceTree = "<group>"; };
 		8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerUIIntegrationTests.swift; sourceTree = "<group>"; };
+		8D9B873C2930C454003B52AB /* AudioPlayerModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastHeaderReusableView+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DDBB721291A810F0024A37A /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +185,8 @@
 				8DDBB723291A810F0024A37A /* PodcastsModule.framework in Frameworks */,
 				8D4298DD29227CB60064F3E6 /* SharedComponentsiOSModule.framework in Frameworks */,
 				8D5C206528FE925E006CD42F /* URLSessionHTTPClient.framework in Frameworks */,
+				8D9B873E2930C454003B52AB /* AudioPlayerModule.framework in Frameworks */,
+				8D9B87402930C454003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */,
 				8DEB7E1528FDDA9F003AF72F /* HTTPClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +399,8 @@
 		8D76B8A328D4A2B00014A211 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D9B873C2930C454003B52AB /* AudioPlayerModule.framework */,
+				8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */,
 				8D4298DC29227CB60064F3E6 /* SharedComponentsiOSModule.framework */,
 				8DDBB721291A810F0024A37A /* PodcastsModule.framework */,
 				8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */,

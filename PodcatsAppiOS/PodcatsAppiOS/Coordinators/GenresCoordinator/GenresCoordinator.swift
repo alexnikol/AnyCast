@@ -5,6 +5,7 @@ import CoreData
 import HTTPClient
 import PodcastsModule
 import PodcastsGenresList
+import AudioPlayerModuleiOS
 
 final class GenresCoordinator {
     private let navigationController: UINavigationController
@@ -31,7 +32,12 @@ final class GenresCoordinator {
     }
         
     func start() {
-        navigationController.setViewControllers([createGenres()], animated: false)
+        let controller = LargeAudioPlayerViewController(
+            nibName: String(describing: LargeAudioPlayerViewController.self),
+            bundle: Bundle(for: LargeAudioPlayerViewController.self)
+        )
+        navigationController.setViewControllers([controller], animated: false)
+//        navigationController.setViewControllers([createGenres()], animated: false)
     }
     
     private func show(screen: UIViewController) {

@@ -56,6 +56,9 @@
 		8D9B87402930C454003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; };
 		8D9B87412930C454003B52AB /* AudioPlayerModuleiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */; };
+		8DCA227929313B4800DD1EC6 /* AudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */; };
+		8DCA227B29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227A29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift */; };
+		8DCA227D29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227C29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift */; };
 		8DDBB723291A810F0024A37A /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; };
 		8DDBB724291A810F0024A37A /* PodcastsModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DDBB725291A810F0024A37A /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */; };
@@ -157,6 +160,9 @@
 		8D9B873C2930C454003B52AB /* AudioPlayerModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastHeaderReusableView+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerUIComposer.swift; sourceTree = "<group>"; };
+		8DCA227A29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerStatePublisher.swift; sourceTree = "<group>"; };
+		8DCA227C29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
 		8DDBB721291A810F0024A37A /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBB76D291BC58C0024A37A /* PodcastDetailsUIIngtegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsUIIngtegrationTests.swift; sourceTree = "<group>"; };
@@ -374,6 +380,7 @@
 				8D72D03228F8118900C17DDC /* Genres UI */,
 				8D5FA23D2913C44A002BB874 /* BestPodcasts UI */,
 				8DDBB76F291BC5FD0024A37A /* PodcastDetails UI */,
+				8DCA227729313B2600DD1EC6 /* AudioPlayer UI */,
 				8D4298D1292273FA0064F3E6 /* Coordinators */,
 				8D72D04F28F8137E00C17DDC /* Extensions */,
 				8D76B87328D4A2540014A211 /* AppDelegate.swift */,
@@ -420,6 +427,16 @@
 			isa = PBXGroup;
 			children = (
 				8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */,
+			);
+			path = "AudioPlayer UI";
+			sourceTree = "<group>";
+		};
+		8DCA227729313B2600DD1EC6 /* AudioPlayer UI */ = {
+			isa = PBXGroup;
+			children = (
+				8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */,
+				8DCA227A29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift */,
+				8DCA227C29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift */,
 			);
 			path = "AudioPlayer UI";
 			sourceTree = "<group>";
@@ -558,6 +575,7 @@
 				8D5FA24A2913C4C1002BB874 /* BestPodcastsUIComposer.swift in Sources */,
 				8D72D03928F8118900C17DDC /* GenresViewAdapter.swift in Sources */,
 				8DDBB772291BC68A0024A37A /* PodcastDetailsUIComposer.swift in Sources */,
+				8DCA227929313B4800DD1EC6 /* AudioPlayerUIComposer.swift in Sources */,
 				8D72D07428F85C3B00C17DDC /* PodcastsGenresList+CombineHelpers.swift in Sources */,
 				8D4298DA29227A140064F3E6 /* PodcastDetailsService.swift in Sources */,
 				8D4298D8292278470064F3E6 /* BestPodcastsService.swift in Sources */,
@@ -571,6 +589,8 @@
 				8D5FA24D2913C4C1002BB874 /* WeakRefVirtualProxy.swift in Sources */,
 				8DDBB777291BD2F80024A37A /* PodcastDetailsViewAdapter.swift in Sources */,
 				8D5FA2492913C4C1002BB874 /* BestPodcastsViewAdapter.swift in Sources */,
+				8DCA227B29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift in Sources */,
+				8DCA227D29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift in Sources */,
 				8D5FA27D2913F869002BB874 /* BestPodcastsList+CombineHelpers.swift in Sources */,
 				8D72D03A28F8118900C17DDC /* ImmediateWhenOnMainQueueScheduler.swift in Sources */,
 				8D4298C3292242E70064F3E6 /* UIImage+Extensions.swift in Sources */,

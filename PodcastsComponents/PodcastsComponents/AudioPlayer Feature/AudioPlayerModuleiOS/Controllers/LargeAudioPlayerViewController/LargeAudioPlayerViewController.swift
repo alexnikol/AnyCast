@@ -2,7 +2,6 @@
 
 import UIKit
 import SharedComponentsiOSModule
-import AudioPlayerModule
 
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
@@ -10,8 +9,8 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var progressView: UISlider!
     @IBOutlet weak var leftTimeLabel: UILabel!
     @IBOutlet weak var rightTimeLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet public private(set) weak var titleLabel: UILabel!
+    @IBOutlet public private(set) weak var descriptionLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var backwardButton: UIButton!
@@ -39,11 +38,6 @@ public final class LargeAudioPlayerViewController: UIViewController {
         super.viewDidLayoutSubviews()
         updateMainLayoutDueToOrientation()
     }
-}
-
-public extension LargeAudioPlayerViewController {
-    
-    func updateState(with state: PlayerState) {}
 }
 
 // MARK: - UI setup

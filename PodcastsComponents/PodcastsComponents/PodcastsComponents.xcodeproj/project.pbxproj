@@ -140,6 +140,9 @@
 		8DC3522528D1F99900F12FD9 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522428D1F99900F12FD9 /* GenreCell.swift */; };
 		8DC3522D28D215A900F12FD9 /* GenreCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC3522C28D215A900F12FD9 /* GenreCellController.swift */; };
 		8DC354B728D47F3B00F12FD9 /* GenresPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */; };
+		8DCA22802931413800DD1EC6 /* LargeAudioPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */; };
+		8DCA22822931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */; };
+		8DCA22842931416700DD1EC6 /* PlaybackStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */; };
 		8DD2FA5528D4987E0031AAEA /* GenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5428D4987E0031AAEA /* GenresViewModel.swift */; };
 		8DD2FA5928D4990B0031AAEA /* GenresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */; };
 		8DD2FA5A28D499800031AAEA /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5128D497090031AAEA /* Genres.strings */; };
@@ -510,6 +513,9 @@
 		8DC3522C28D215A900F12FD9 /* GenreCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCellController.swift; sourceTree = "<group>"; };
 		8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresLocalizationTests.swift; sourceTree = "<group>"; };
 		8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresPresenterTests.swift; sourceTree = "<group>"; };
+		8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerPresenter.swift; sourceTree = "<group>"; };
+		8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewModel.swift; sourceTree = "<group>"; };
+		8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackStateViewModel.swift; sourceTree = "<group>"; };
 		8DD2FA5028D497090031AAEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Genres.strings; sourceTree = "<group>"; };
 		8DD2FA5228D4970C0031AAEA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Genres.strings; sourceTree = "<group>"; };
 		8DD2FA5428D4987E0031AAEA /* GenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewModel.swift; sourceTree = "<group>"; };
@@ -1089,6 +1095,7 @@
 		8D9B86C8292BC0BF003B52AB /* AudioPlayerModule */ = {
 			isa = PBXGroup;
 			children = (
+				8DCA227E2931412800DD1EC6 /* Presentation */,
 				8D9B86F0292D0F80003B52AB /* AudioPlayer.swift */,
 				8D9B86F2292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift */,
 				8D9B86E8292D0E88003B52AB /* AudioPlayerStatePublisher.swift */,
@@ -1340,6 +1347,16 @@
 				8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */,
 			);
 			path = "Genres Presentation";
+			sourceTree = "<group>";
+		};
+		8DCA227E2931412800DD1EC6 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */,
+				8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */,
+				8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		8DD2FA5328D4986A0031AAEA /* Genres Presentation */ = {
@@ -2593,8 +2610,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DCA22822931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift in Sources */,
 				8D9B86EB292D0EA5003B52AB /* PlayerState.swift in Sources */,
+				8DCA22842931416700DD1EC6 /* PlaybackStateViewModel.swift in Sources */,
 				8D9B86EF292D0F0A003B52AB /* AudioPlayerObserver.swift in Sources */,
+				8DCA22802931413800DD1EC6 /* LargeAudioPlayerPresenter.swift in Sources */,
 				8D9B86F1292D0F80003B52AB /* AudioPlayer.swift in Sources */,
 				8D9B86ED292D0EBF003B52AB /* PlayingItem.swift in Sources */,
 				8D9B86E9292D0E88003B52AB /* AudioPlayerStatePublisher.swift in Sources */,
@@ -3326,6 +3346,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.AudioPlayerModuleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -3343,6 +3364,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.AudioPlayerModuleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};

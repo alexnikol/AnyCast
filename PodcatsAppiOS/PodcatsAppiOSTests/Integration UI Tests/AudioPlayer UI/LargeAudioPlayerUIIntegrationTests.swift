@@ -1,13 +1,11 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-import UIKit
-
-class LargeAudioPlayerViewController: UIViewController {
-    
-}
+import AudioPlayerModuleiOS
 
 class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     
-    func test_onLoad_() {}
+    func test_onLoad_() {
+        
+    }
 }

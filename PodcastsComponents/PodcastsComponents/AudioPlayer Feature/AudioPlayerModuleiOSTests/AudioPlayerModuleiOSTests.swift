@@ -8,15 +8,8 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     func test_pausedPlayerPortrait() {
         let sut = makeSUT()
         
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light")
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark")
-    }
-    
-    func test_pausedPlayerLandscape() {
-        let sut = makeSUT()
-        
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light")
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark")
     }
     
     // MARK: - Helpers

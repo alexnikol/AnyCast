@@ -112,9 +112,7 @@
 		8D9B872A292E6AB2003B52AB /* ViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */; };
 		8D9B8730292E72BD003B52AB /* SharedComponentsiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */; platformFilter = ios; };
 		8D9B87382930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D9B87342930C2A1003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */; };
-		8D9B87392930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D9B87352930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png */; };
 		8D9B873A2930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D9B87362930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png */; };
-		8D9B873B2930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D9B87372930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png */; };
 		8DA0543A28C8D56100418F3E /* CacheGenresUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */; };
 		8DA0543D28C9EFDA00418F3E /* LocalGenresLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */; };
 		8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0543E28C9F00700418F3E /* GenresStore.swift */; };
@@ -483,9 +481,7 @@
 		8D9B8721292E4936003B52AB /* LargeAudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewController.swift; sourceTree = "<group>"; };
 		8D9B8723292E4949003B52AB /* LargeAudioPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LargeAudioPlayerViewController.xib; sourceTree = "<group>"; };
 		8D9B87342930C2A1003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png; sourceTree = "<group>"; };
-		8D9B87352930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png; sourceTree = "<group>"; };
 		8D9B87362930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png; sourceTree = "<group>"; };
-		8D9B87372930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png; sourceTree = "<group>"; };
 		8DA0543928C8D56100418F3E /* CacheGenresUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheGenresUseCaseTests.swift; sourceTree = "<group>"; };
 		8DA0543C28C9EFDA00418F3E /* LocalGenresLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalGenresLoader.swift; sourceTree = "<group>"; };
 		8DA0543E28C9F00700418F3E /* GenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresStore.swift; sourceTree = "<group>"; };
@@ -1174,8 +1170,6 @@
 		8D9B872B292E6B35003B52AB /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
-				8D9B87352930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png */,
-				8D9B87372930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png */,
 				8D9B87342930C2A1003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */,
 				8D9B87362930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png */,
 			);
@@ -2528,8 +2522,6 @@
 			files = (
 				8D9B87382930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png in Resources */,
 				8D9B873A2930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png in Resources */,
-				8D9B873B2930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png in Resources */,
-				8D9B87392930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

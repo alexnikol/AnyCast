@@ -2,6 +2,7 @@
 
 import UIKit
 import SharedComponentsiOSModule
+import AudioPlayerModule
 
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
@@ -28,13 +29,61 @@ public final class LargeAudioPlayerViewController: UIViewController {
         super.viewDidLoad()
         configureViews()
     }
-        
+    
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateStacksDueToOrientation()
     }
     
-    private func updateStacksDueToOrientation() {
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateMainLayoutDueToOrientation()
+    }
+}
+
+public extension LargeAudioPlayerViewController {
+    
+    func updateState(with state: PlayerState) {}
+}
+
+// MARK: - UI setup
+private extension LargeAudioPlayerViewController {
+    
+    func configureViews() {
+        configureThumbnailView()
+        configureVolumeViews()
+        configureActionButtons()
+    }
+    
+    func configureThumbnailView() {
+        imageInnerContainer.layer.cornerRadius = 4.0
+        imageMainContainer.layer.cornerRadius = 4.0
+        imageMainContainer.layer.shadowColor = UIColor.tintColor.cgColor
+        imageMainContainer.layer.shadowOpacity = 0.5
+        imageMainContainer.layer.shadowOffset = .zero
+        imageMainContainer.layer.shadowRadius = 10.0
+    }
+    
+    func configureVolumeViews() {
+        leftVolumeIconView.image = .init(systemName: "speaker.fill")
+        rightVolumeIconView.image = .init(systemName: "speaker.wave.1.fill")
+    }
+    
+    func configureActionButtons() {
+        playButton.layer.cornerRadius = 4.0
+        playButton.tintColor = UIColor.tintColor
+        playButton.setImage(.init(systemName: "play.fill"), for: .normal)
+        forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
+        backwardButton.setImage(.init(systemName: "gobackward.15"), for: .normal)
+        forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
+        backwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
+    }
+}
+
+// MARK: - Rotation logic
+private extension LargeAudioPlayerViewController {
+    
+    func updateStacksDueToOrientation() {
         if UIDevice.current.orientation.isLandscape {
             bottomSpacer?.isHidden = true
             rootStackView?.axis = .horizontal
@@ -54,12 +103,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
         }
     }
     
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        updateMainLayoutDueToOrientation()
-    }
-    
-    private func updateMainLayoutDueToOrientation() {
+    func updateMainLayoutDueToOrientation() {
         if UIDevice.current.orientation.isLandscape {
             thumbnailIHeightCNST?.isActive = false
             thumbnailIWidthCNST?.isActive = true
@@ -67,35 +111,5 @@ public final class LargeAudioPlayerViewController: UIViewController {
             thumbnailIWidthCNST?.isActive = false
             thumbnailIHeightCNST?.isActive = true
         }
-    }
-    
-    private func configureViews() {
-        configureThumbnailView()
-        configureVolumeViews()
-        configureActionButtons()
-    }
-    
-    private func configureThumbnailView() {
-        imageInnerContainer.layer.cornerRadius = 4.0
-        imageMainContainer.layer.cornerRadius = 4.0
-        imageMainContainer.layer.shadowColor = UIColor.tintColor.cgColor
-        imageMainContainer.layer.shadowOpacity = 0.5
-        imageMainContainer.layer.shadowOffset = .zero
-        imageMainContainer.layer.shadowRadius = 10.0
-    }
-    
-    private func configureVolumeViews() {
-        leftVolumeIconView.image = .init(systemName: "speaker.fill")
-        rightVolumeIconView.image = .init(systemName: "speaker.wave.1.fill")
-    }
-    
-    private func configureActionButtons() {
-        playButton.layer.cornerRadius = 4.0
-        playButton.tintColor = UIColor.tintColor
-        playButton.setImage(.init(systemName: "play.fill"), for: .normal)
-        forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
-        backwardButton.setImage(.init(systemName: "gobackward.15"), for: .normal)
-        forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
-        backwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
     }
 }

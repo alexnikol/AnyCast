@@ -72,7 +72,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     private func configureViews() {
         configureThumbnailView()
         configureVolumeViews()
-        configureSeekButtons()
+        configureActionButtons()
     }
     
     private func configureThumbnailView() {
@@ -89,7 +89,10 @@ public final class LargeAudioPlayerViewController: UIViewController {
         rightVolumeIconView.image = .init(systemName: "speaker.wave.1.fill")
     }
     
-    private func configureSeekButtons() {
+    private func configureActionButtons() {
+        playButton.layer.cornerRadius = 4.0
+        playButton.tintColor = UIColor.tintColor
+        playButton.setImage(.init(systemName: "play.fill"), for: .normal)
         forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
         backwardButton.setImage(.init(systemName: "gobackward.15"), for: .normal)
         forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)

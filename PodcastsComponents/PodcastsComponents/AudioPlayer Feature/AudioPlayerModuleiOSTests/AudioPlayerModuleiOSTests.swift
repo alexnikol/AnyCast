@@ -18,7 +18,7 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         LargeAudioPlayerViewController(delegate: LargeAudioPlayerViewDelegateSpy())
     }
     
-    private class LargeAudioPlayerViewDelegateSpy: LargeAudioPlayerViewDelegate {
+    private class LargeAudioPlayerViewDelegateSpy: LargeAudioPlayerViewLifetimeDelegate {
         func onOpen() {}
         
         func onClose() {}

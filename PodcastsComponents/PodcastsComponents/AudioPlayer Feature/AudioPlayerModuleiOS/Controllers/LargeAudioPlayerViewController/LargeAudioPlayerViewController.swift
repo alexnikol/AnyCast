@@ -3,7 +3,7 @@
 import UIKit
 import SharedComponentsiOSModule
 
-public protocol LargeAudioPlayerViewDelegate {
+public protocol LargeAudioPlayerViewLifetimeDelegate {
     func onOpen()
     func onClose()
 }
@@ -28,7 +28,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var thumbnailIHeightCNST: NSLayoutConstraint!
     @IBOutlet weak var bottomSpacer: UIView!
     @IBOutlet weak var controlsStackView: UIStackView!
-    private var delegate: LargeAudioPlayerViewDelegate?
+    private var delegate: LargeAudioPlayerViewLifetimeDelegate?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
         delegate?.onClose()
     }
     
-    public convenience init(delegate: LargeAudioPlayerViewDelegate) {
+    public convenience init(delegate: LargeAudioPlayerViewLifetimeDelegate) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
         self.delegate = delegate
     }

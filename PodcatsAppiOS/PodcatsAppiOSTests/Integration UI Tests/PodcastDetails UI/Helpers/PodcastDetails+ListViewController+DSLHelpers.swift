@@ -36,4 +36,10 @@ extension ListViewController {
         delegate?.tableView?(tableView, didEndDisplayingHeaderView: headerView, forSection: podcastHeaderSection)
         return headerView
     }
+    
+    func simulateTapOnEpisode(at row: Int) {
+        let delegate = tableView.delegate
+        let indexPath = IndexPath(row: row, section: episodesSection)
+        delegate?.tableView?(tableView, didSelectRowAt: indexPath)
+    }
 }

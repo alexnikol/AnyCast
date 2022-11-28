@@ -6,6 +6,7 @@ import HTTPClient
 import PodcastsGenresList
 import PodcastsGenresListiOS
 import PodcastsModuleiOS
+import AudioPlayerModuleiOS
 @testable import Podcats
 
 class PodcatsAcceptanceTests: XCTestCase {
@@ -59,6 +60,17 @@ class PodcatsAcceptanceTests: XCTestCase {
         XCTAssertEqual(podcastDetails.numberOfRenderedEpisodesViews(), 1)
     }
     
+    func test_onEpisodeSelection_displaysAudioPlayer() {
+        let bestPodcasts = showBestPodcasts()
+        let podcastDetails = showPodcastDetails(from: bestPodcasts)
+        let audioPlayer = showAudioPlayer(from: podcastDetails)
+        audioPlayer.loadView()
+        
+        XCTAssertEqual(audioPlayer.episodeTitleText(), "Episode title")
+        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Podcast  title")
+        
+    }
+    
     // MARK: - Helpers
     
     private func launch(
@@ -102,6 +114,14 @@ class PodcatsAcceptanceTests: XCTestCase {
         
         let nav = bestPodcastsListScreen.navigationController
         return nav?.topViewController as! ListViewController
+    }
+    
+    private func showAudioPlayer(from podcastDetailsScreen: ListViewController) -> LargeAudioPlayerViewController {
+        podcastDetailsScreen.simulateTapOnEpisode(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let nav = podcastDetailsScreen.navigationController
+        return nav?.presentedViewController as! LargeAudioPlayerViewController
     }
     
     private func makeData(for url: URL) -> Data {

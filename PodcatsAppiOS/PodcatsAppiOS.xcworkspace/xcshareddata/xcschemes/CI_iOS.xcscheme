@@ -98,10 +98,66 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D9B86F8292D19E3003B52AB"
+               BuildableName = "AudioPlayerModuleiOS.framework"
+               BlueprintName = "AudioPlayerModuleiOS"
+               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D9B86C6292BC0BF003B52AB"
+               BuildableName = "AudioPlayerModule.framework"
+               BlueprintName = "AudioPlayerModule"
+               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8D76B86F28D4A2540014A211"
                BuildableName = "Podcats.app"
                BlueprintName = "Podcats"
                ReferencedContainer = "container:PodcatsAppiOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D9B86D1292BC0CF003B52AB"
+               BuildableName = "AudioPlayerModuleTests.xctest"
+               BlueprintName = "AudioPlayerModuleTests"
+               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D9B8714292E4901003B52AB"
+               BuildableName = "AudioPlayerModuleiOSTests.xctest"
+               BlueprintName = "AudioPlayerModuleiOSTests"
+               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -162,6 +218,20 @@
             BuildableName = "Podcats.app"
             BlueprintName = "Podcats"
             ReferencedContainer = "container:PodcatsAppiOS.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D9B86C6292BC0BF003B52AB"
+            BuildableName = "AudioPlayerModule.framework"
+            BlueprintName = "AudioPlayerModule"
+            ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D9B86F8292D19E3003B52AB"
+            BuildableName = "AudioPlayerModuleiOS.framework"
+            BlueprintName = "AudioPlayerModuleiOS"
+            ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
@@ -273,6 +343,28 @@
                BuildableName = "PodcatsAppiOSTests.xctest"
                BlueprintName = "PodcatsAppiOSTests"
                ReferencedContainer = "container:PodcatsAppiOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D9B86D1292BC0CF003B52AB"
+               BuildableName = "AudioPlayerModuleTests.xctest"
+               BlueprintName = "AudioPlayerModuleTests"
+               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D9B8714292E4901003B52AB"
+               BuildableName = "AudioPlayerModuleiOSTests.xctest"
+               BlueprintName = "AudioPlayerModuleiOSTests"
+               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

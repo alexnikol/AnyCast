@@ -39,12 +39,12 @@ public final class EpisodesPresenter {
             description: model.description,
             thumbnail: model.thumbnail,
             audio: model.audio,
-            displayAudioLengthInSeconds: mapToPresentableAudioLength(model.audioLengthInSeconds, calendar: calendar),
+            displayAudioLengthInSeconds: mapToPresentableAudioLength(model.audioLengthInSeconds),
             displayPublishDate: presentablePublishDate
         )
     }
     
-    private func mapToPresentableAudioLength(_ lengthInSeconds: Int, calendar: Calendar) -> String {
+    private func mapToPresentableAudioLength(_ lengthInSeconds: Int) -> String {
         dateFormatter.string(from: TimeInterval(lengthInSeconds)) ?? "INVALID_DURATION"
     }
     

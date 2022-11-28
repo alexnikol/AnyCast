@@ -50,7 +50,8 @@ public final class CoreDataPodcastsImageDataStore: PodcastsImageDataStore {
     }
     
     private func fetchImageDataRequest(by url: URL) -> NSFetchRequest<ManagedPodcastImage> {
-        let request = NSFetchRequest<ManagedPodcastImage>(entityName: ManagedPodcastImage.entity().name!)
+        // TODO: fix unique subclass for entity
+        let request = NSFetchRequest<ManagedPodcastImage>(entityName: "ManagedPodcastImage")
         request.returnsObjectsAsFaults = false
         request.fetchLimit = 1
         request.predicate = NSPredicate(format: "url == %@", url as CVarArg)

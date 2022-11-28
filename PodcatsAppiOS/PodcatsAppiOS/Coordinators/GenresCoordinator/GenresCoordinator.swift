@@ -5,12 +5,16 @@ import CoreData
 import HTTPClient
 import PodcastsModule
 import PodcastsGenresList
+import AudioPlayerModule
+import AudioPlayerModuleiOS
 
 final class GenresCoordinator {
     private let navigationController: UINavigationController
     private let baseURL: URL
     private let httpClient: HTTPClient
     private let localGenresLoader: LocalGenresLoader
+    private let audioPlayerControlsDelegate: AudioPlayerControlsDelegate
+    private let audioPlayerStatePublisher: AudioPlayerStatePublisher
     
     lazy var podcastsImageDataStore: PodcastsImageDataStore = {
         try! CoreDataPodcastsImageDataStore(
@@ -23,11 +27,15 @@ final class GenresCoordinator {
     init(navigationController: UINavigationController,
          baseURL: URL,
          httpClient: HTTPClient,
-         localGenresLoader: LocalGenresLoader) {
+         localGenresLoader: LocalGenresLoader,
+         audioPlayerControlsDelegate: AudioPlayerControlsDelegate,
+         audioPlayerStatePublisher: AudioPlayerStatePublisher) {
         self.navigationController = navigationController
         self.baseURL = baseURL
         self.httpClient = httpClient
         self.localGenresLoader = localGenresLoader
+        self.audioPlayerControlsDelegate = audioPlayerControlsDelegate
+        self.audioPlayerStatePublisher = audioPlayerStatePublisher
     }
         
     func start() {
@@ -36,6 +44,10 @@ final class GenresCoordinator {
     
     private func show(screen: UIViewController) {
         self.navigationController.pushViewController(screen, animated: true)
+    }
+    
+    private func present(screen: UIViewController) {
+        self.navigationController.showDetailViewController(screen, sender: self)
     }
     
     private func createGenres() -> UIViewController {
@@ -64,13 +76,21 @@ final class GenresCoordinator {
             podcastsLoader: bestPodcastsService.makeBestPodcastsRemoteLoader,
             imageLoader: bestPodcastsService.makeLocalPodcastImageDataLoaderWithRemoteFallback(for:),
             selection: { podcast in
-                let podcastDetails = self.createPodcastDetails(byPodcast: podcast)
+                let podcastDetails = self.createPodcastDetails(
+                    byPodcast: podcast,
+                    selection: { [weak self] episode, podcast in
+                        guard let self = self else { return }
+                        
+                        let player = self.openPlayerFor(episode: episode, podcast: podcast)
+                        self.present(screen: player)
+                    }
+                )
                 self.show(screen: podcastDetails)
             }
         )
     }
     
-    private func createPodcastDetails(byPodcast podcast: Podcast) -> UIViewController {
+    private func createPodcastDetails(byPodcast podcast: Podcast, selection: @escaping (_ episode: Episode, _ podcast: PodcastDetails) -> Void) -> UIViewController {
         let podcastDetailsService = PodcastDetailsService(
             baseURL: baseURL,
             httpClient: httpClient,
@@ -79,7 +99,16 @@ final class GenresCoordinator {
         return PodcastDetailsUIComposer.podcastDetailsComposedWith(
             podcastID: podcast.id,
             podcastsLoader: podcastDetailsService.makeRemotePodcastDetailsLoader,
-            imageLoader: podcastDetailsService.makeRemotePodcastImageDataLoader(for:)
+            imageLoader: podcastDetailsService.makeRemotePodcastImageDataLoader(for:),
+            selection: selection
+        )
+    }
+    
+    private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
+        AudioPlayerUIComposer.largePlayerWith(
+            data: (episode, podcast),
+            statePublisher: audioPlayerStatePublisher,
+            controlsDelegate: audioPlayerControlsDelegate
         )
     }
 }

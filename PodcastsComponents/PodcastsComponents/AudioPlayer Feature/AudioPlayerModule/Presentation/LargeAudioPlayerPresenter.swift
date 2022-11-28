@@ -3,11 +3,15 @@
 import Foundation
 import PodcastsModule
 
+public protocol AudioPlayerView {
+    
+}
+
 public final class LargeAudioPlayerPresenter {
     private let calendar: Calendar
     private let locale: Locale
     
-    public init(calendar: Calendar = .current, locale: Locale = .current) {
+    public init(resourceView: AudioPlayerView, calendar: Calendar = .current, locale: Locale = .current) {
         self.calendar = calendar
         self.locale = locale
     }

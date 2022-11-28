@@ -59,6 +59,7 @@
 		8DCA227929313B4800DD1EC6 /* AudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */; };
 		8DCA227B29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227A29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift */; };
 		8DCA227D29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227C29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift */; };
+		8DCA22872931428100DD1EC6 /* AudioPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22862931428100DD1EC6 /* AudioPlayerPresenter.swift */; };
 		8DDBB723291A810F0024A37A /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; };
 		8DDBB724291A810F0024A37A /* PodcastsModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DDBB725291A810F0024A37A /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */; };
@@ -163,6 +164,7 @@
 		8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerUIComposer.swift; sourceTree = "<group>"; };
 		8DCA227A29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerStatePublisher.swift; sourceTree = "<group>"; };
 		8DCA227C29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
+		8DCA22862931428100DD1EC6 /* AudioPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerPresenter.swift; sourceTree = "<group>"; };
 		8DDBB721291A810F0024A37A /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBB76D291BC58C0024A37A /* PodcastDetailsUIIngtegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsUIIngtegrationTests.swift; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 				8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */,
 				8DCA227A29313D3D00DD1EC6 /* AudioPlayerStatePublisher.swift */,
 				8DCA227C29313DF700DD1EC6 /* AudioPlayerViewAdapter.swift */,
+				8DCA22862931428100DD1EC6 /* AudioPlayerPresenter.swift */,
 			);
 			path = "AudioPlayer UI";
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DCA22872931428100DD1EC6 /* AudioPlayerPresenter.swift in Sources */,
 				8D5FA24A2913C4C1002BB874 /* BestPodcastsUIComposer.swift in Sources */,
 				8D72D03928F8118900C17DDC /* GenresViewAdapter.swift in Sources */,
 				8DDBB772291BC68A0024A37A /* PodcastDetailsUIComposer.swift in Sources */,

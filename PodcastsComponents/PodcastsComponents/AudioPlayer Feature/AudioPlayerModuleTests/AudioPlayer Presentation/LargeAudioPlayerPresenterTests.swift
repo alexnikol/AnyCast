@@ -6,11 +6,18 @@ import PodcastsModule
 
 class LargeAudioPlayerPresenterTests: XCTestCase {
     
+    func test_init_doesNotSendMessagesToView() {
+        let (_, view) = makeSUT()
+        
+        XCTAssertTrue(view.messages.isEmpty, "Expected no view messages")
+    }
+    
     func test_createsViewModel() {
         let podcast = makePodcast(title: "Any Podcast title", publisher: "Any Publisher name")
         let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined)
         
-        let viewModel = makeSUT().map(playingItem: playingItem, from: podcast)
+        let (sut, _) = makeSUT()
+        let viewModel = sut.map(playingItem: playingItem, from: podcast)
         
         XCTAssertEqual(viewModel.titleLabel, "Any Episode title")
         XCTAssertEqual(viewModel.descriptionLabel, "Any Podcast title | Any Publisher name")
@@ -21,49 +28,49 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     
     func test_timesViewModelConvertations() {
         expect(
-            makeSUT(),
+            makeSUT().sut,
             with: (currentTimeInSeconds: 0, totalTime: .notDefined),
             expectedTime: (currentTime: "0:00", totalTime: "...")
         )
         
         expect(
-            makeSUT(),
+            makeSUT().sut,
             with: (currentTimeInSeconds: 59, totalTime: .valueInSeconds(60)),
             expectedTime: (currentTime: "0:59", totalTime: "1:00")
         )
         
         expect(
-            makeSUT(),
+            makeSUT().sut,
             with: (currentTimeInSeconds: 60, totalTime: .valueInSeconds(121)),
             expectedTime: (currentTime: "1:00", totalTime: "2:01")
         )
         
         expect(
-            makeSUT(),
+            makeSUT().sut,
             with: (currentTimeInSeconds: 121, totalTime: .valueInSeconds(454545)),
             expectedTime: (currentTime: "2:01", totalTime: "126:15:45")
         )
         
         expect(
-            makeSUT(),
+            makeSUT().sut,
             with: (currentTimeInSeconds: 3599, totalTime: .notDefined),
             expectedTime: (currentTime: "59:59", totalTime: "...")
         )
         
         expect(
-            makeSUT(),
+            makeSUT().sut,
             with: (currentTimeInSeconds: 3600, totalTime: .notDefined),
             expectedTime: (currentTime: "1:00:00", totalTime: "...")
         )
         
         expect(
-            makeSUT(),
+            makeSUT().sut,
             with: (currentTimeInSeconds: 7199, totalTime: .notDefined),
             expectedTime: (currentTime: "1:59:59", totalTime: "...")
         )
         
         expect(
-            makeSUT(),
+            makeSUT().sut,
             with: (currentTimeInSeconds: 7204, totalTime: .notDefined),
             expectedTime: (currentTime: "2:00:04", totalTime: "...")
         )
@@ -71,12 +78,14 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> LargeAudioPlayerPresenter {
+    private func makeSUT() -> (sut: LargeAudioPlayerPresenter, view: ViewSpy) {
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
-        let presenter = LargeAudioPlayerPresenter(calendar: calendar, locale: locale)
+        let view = ViewSpy()
+        let presenter = LargeAudioPlayerPresenter(resourceView: view, calendar: calendar, locale: locale)
         trackForMemoryLeaks(presenter)
-        return presenter
+        trackForMemoryLeaks(view)
+        return (presenter, view)
     }
     
     private func expect(
@@ -113,5 +122,13 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     
     private func makePodcast(title: String, publisher: String) -> Podcast {
         Podcast(id: UUID().uuidString, title: title, publisher: publisher, language: "Any language", type: .episodic, image: anyURL())
+    }
+    
+    private class ViewSpy: AudioPlayerView {
+        enum Message {
+            
+        }
+        
+        private(set) var messages: [Message] = []
     }
 }

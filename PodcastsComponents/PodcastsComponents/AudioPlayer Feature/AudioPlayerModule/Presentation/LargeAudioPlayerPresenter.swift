@@ -4,16 +4,20 @@ import Foundation
 import PodcastsModule
 
 public protocol AudioPlayerView {
-    
+    func display(viewModel: LargeAudioPlayerViewModel)
 }
 
 public final class LargeAudioPlayerPresenter {
     private let calendar: Calendar
     private let locale: Locale
+    private let resourceView: AudioPlayerView
+    private let podcast: Podcast
     
-    public init(resourceView: AudioPlayerView, calendar: Calendar = .current, locale: Locale = .current) {
+    public init(resourceView: AudioPlayerView, from podcast: Podcast, calendar: Calendar = .current, locale: Locale = .current) {
+        self.resourceView = resourceView
         self.calendar = calendar
         self.locale = locale
+        self.podcast = podcast
     }
     
     private lazy var dateFormatter: DateComponentsFormatter = {
@@ -38,6 +42,10 @@ public final class LargeAudioPlayerPresenter {
             volumeLevel: playingItem.state.volumeLevel,
             playbackState: PlaybackStateViewModel(playbackState: playingItem.state.playbackState)
         )
+    }
+    
+    public func didReceivePlayerState(with playingItem: PlayingItem) {
+        resourceView.display(viewModel: map(playingItem: playingItem, from: podcast))
     }
     
     private func mapCurrentTimeLabel(_ timeInSeconds: Int) -> String {

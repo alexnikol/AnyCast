@@ -12,6 +12,15 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         XCTAssertTrue(view.messages.isEmpty, "Expected no view messages")
     }
     
+    func test_didReceiveNewPlayerState_displaysNewPlayerState() {
+        let (sut, view) = makeSUT()
+        
+        let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined)
+        sut.didReceivePlayerState(with: playingItem)
+        
+        XCTAssertEqual(view.messages, [.udaptePlayerState])
+    }
+    
     func test_createsViewModel() {
         let podcast = makePodcast(title: "Any Podcast title", publisher: "Any Publisher name")
         let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined)
@@ -82,7 +91,8 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
         let view = ViewSpy()
-        let presenter = LargeAudioPlayerPresenter(resourceView: view, calendar: calendar, locale: locale)
+        let podcast = makePodcast(title: "Any Podcast title", publisher: "Any Publisher name")
+        let presenter = LargeAudioPlayerPresenter(resourceView: view, from: podcast, calendar: calendar, locale: locale)
         trackForMemoryLeaks(presenter)
         trackForMemoryLeaks(view)
         return (presenter, view)
@@ -126,9 +136,17 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     
     private class ViewSpy: AudioPlayerView {
         enum Message {
-            
+            case udaptePlayerState
         }
-        
         private(set) var messages: [Message] = []
+        
+        func display(viewModel: LargeAudioPlayerViewModel) {
+            messages.append(.udaptePlayerState)
+        }
     }
+}
+
+public protocol AudioPlayerStateInput {
+    func didPlay()
+    func didPause()
 }

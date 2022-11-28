@@ -9,6 +9,7 @@ import PodcastsGenresList
 import PodcastsGenresListiOS
 import PodcastsModule
 import PodcastsModuleiOS
+import AudioPlayerModule
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -36,6 +37,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         LocalGenresLoader(store: genresStore, currentDate: Date.init)
     }()
     
+    var audioPlayer: AudioPlayer & AudioPlayerControlsDelegate = {
+        AudioPlayerClient()
+    }()
+    
+    var audioPlayerStatePublisher: AudioPlayerStatePublisher = {
+        AudioPlayerStatePublisher()
+    }()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
@@ -55,12 +64,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func configureWindow() {
         globalAppearanceSetup()
+        composeAudioPlayerWithStatePublisher()
         let rootNavigation = UINavigationController()
         appCoordinator = GenresCoordinator(
             navigationController: rootNavigation,
             baseURL: baseURL,
             httpClient: httpClient,
-            localGenresLoader: localGenresLoader
+            localGenresLoader: localGenresLoader,
+            audioPlayerControlsDelegate: audioPlayer,
+            audioPlayerStatePublisher: audioPlayerStatePublisher
         )
         appCoordinator?.start()
         window?.rootViewController = rootNavigation
@@ -71,5 +83,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if #available(iOS 15.0, *) {
             UITableView.appearance().isPrefetchingEnabled = false
         }
+    }
+    
+    private func composeAudioPlayerWithStatePublisher() {
+        audioPlayer.delegate = audioPlayerStatePublisher
     }
 }

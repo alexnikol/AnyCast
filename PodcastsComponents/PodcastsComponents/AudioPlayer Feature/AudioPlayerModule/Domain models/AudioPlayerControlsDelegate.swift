@@ -2,7 +2,7 @@
 
 import Foundation
 
-protocol AudioPlayerControlsDelegate {
+public protocol AudioPlayerControlsDelegate {
     func togglePlay()
     
     // MARK: - Volume cnahge from 0 to 1 format

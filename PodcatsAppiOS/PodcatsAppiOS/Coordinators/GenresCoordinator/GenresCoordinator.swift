@@ -5,6 +5,7 @@ import CoreData
 import HTTPClient
 import PodcastsModule
 import PodcastsGenresList
+import AudioPlayerModule
 import AudioPlayerModuleiOS
 
 final class GenresCoordinator {
@@ -12,6 +13,8 @@ final class GenresCoordinator {
     private let baseURL: URL
     private let httpClient: HTTPClient
     private let localGenresLoader: LocalGenresLoader
+    private let audioPlayerControlsDelegate: AudioPlayerControlsDelegate
+    private let audioPlayerStatePublisher: AudioPlayerStatePublisher
     
     lazy var podcastsImageDataStore: PodcastsImageDataStore = {
         try! CoreDataPodcastsImageDataStore(
@@ -24,11 +27,15 @@ final class GenresCoordinator {
     init(navigationController: UINavigationController,
          baseURL: URL,
          httpClient: HTTPClient,
-         localGenresLoader: LocalGenresLoader) {
+         localGenresLoader: LocalGenresLoader,
+         audioPlayerControlsDelegate: AudioPlayerControlsDelegate,
+         audioPlayerStatePublisher: AudioPlayerStatePublisher) {
         self.navigationController = navigationController
         self.baseURL = baseURL
         self.httpClient = httpClient
         self.localGenresLoader = localGenresLoader
+        self.audioPlayerControlsDelegate = audioPlayerControlsDelegate
+        self.audioPlayerStatePublisher = audioPlayerStatePublisher
     }
         
     func start() {
@@ -98,6 +105,10 @@ final class GenresCoordinator {
     }
     
     private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
-        AudioPlayerUIComposer.largePlayerWith(data: (episode, podcast))
+        AudioPlayerUIComposer.largePlayerWith(
+            data: (episode, podcast),
+            statePublisher: audioPlayerStatePublisher,
+            controlsDelegate: audioPlayerControlsDelegate
+        )
     }
 }

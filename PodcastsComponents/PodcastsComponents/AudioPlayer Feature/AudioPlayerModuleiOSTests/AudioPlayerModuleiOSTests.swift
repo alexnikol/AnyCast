@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import AudioPlayerModule
 import AudioPlayerModuleiOS
 
 class AudioPlayerModuleiOSTests: XCTestCase {
@@ -15,12 +16,20 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT() -> LargeAudioPlayerViewController {
-        LargeAudioPlayerViewController(delegate: LargeAudioPlayerViewDelegateSpy())
+        LargeAudioPlayerViewController(
+            delegate: LargeAudioPlayerViewDelegateNullObject(),
+            controlsDelegate: AudioPlayerControlsDelegateNullObject()
+        )
     }
     
-    private class LargeAudioPlayerViewDelegateSpy: LargeAudioPlayerViewLifetimeDelegate {
+    private class LargeAudioPlayerViewDelegateNullObject: LargeAudioPlayerViewLifetimeDelegate {
         func onOpen() {}
-        
         func onClose() {}
+    }
+    
+    private class AudioPlayerControlsDelegateNullObject: AudioPlayerControlsDelegate {
+        func togglePlay() {}
+        func onVolumeChange(value: Float) {}
+        func onSeek(value: Float) {}
     }
 }

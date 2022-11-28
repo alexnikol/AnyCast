@@ -39,3 +39,9 @@ extension AudioPlayerPresentationAdapter: AudioPlayerObserver {
         }
     }
 }
+
+extension AudioPlayerPresentationAdapter: AudioPlayerControlsDelegate {
+    func togglePlay() {}
+    func onVolumeChange(value: Float) {}
+    func onSeek(value: Float) {}
+}

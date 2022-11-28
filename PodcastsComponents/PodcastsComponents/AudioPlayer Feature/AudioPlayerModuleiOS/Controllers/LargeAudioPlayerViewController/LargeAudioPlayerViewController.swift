@@ -2,6 +2,7 @@
 
 import UIKit
 import SharedComponentsiOSModule
+import AudioPlayerModule
 
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
@@ -24,6 +25,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var bottomSpacer: UIView!
     @IBOutlet weak var controlsStackView: UIStackView!
     private var delegate: LargeAudioPlayerViewLifetimeDelegate?
+    private var controlsDelegate: AudioPlayerControlsDelegate?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +38,10 @@ public final class LargeAudioPlayerViewController: UIViewController {
         delegate?.onClose()
     }
     
-    public convenience init(delegate: LargeAudioPlayerViewLifetimeDelegate) {
+    public convenience init(delegate: LargeAudioPlayerViewLifetimeDelegate, controlsDelegate: AudioPlayerControlsDelegate) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
         self.delegate = delegate
+        self.controlsDelegate = controlsDelegate
     }
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

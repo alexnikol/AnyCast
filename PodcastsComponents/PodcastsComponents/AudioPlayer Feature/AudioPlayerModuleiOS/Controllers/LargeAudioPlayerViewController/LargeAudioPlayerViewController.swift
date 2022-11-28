@@ -27,16 +27,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     private var delegate: LargeAudioPlayerViewLifetimeDelegate?
     private var controlsDelegate: AudioPlayerControlsDelegate?
     
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        configureViews()
-        delegate?.onOpen()
-    }
-    
-    override public func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        delegate?.onClose()
-    }
+    // MARK: - Initialization
     
     public convenience init(delegate: LargeAudioPlayerViewLifetimeDelegate, controlsDelegate: AudioPlayerControlsDelegate) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
@@ -44,6 +35,18 @@ public final class LargeAudioPlayerViewController: UIViewController {
         self.controlsDelegate = controlsDelegate
     }
     
+    deinit {
+        delegate?.onClose()
+    }
+    
+    // MARK: - Lifecycle
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        configureViews()
+        delegate?.onOpen()
+    }
+            
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateStacksDueToOrientation()
@@ -52,6 +55,24 @@ public final class LargeAudioPlayerViewController: UIViewController {
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateMainLayoutDueToOrientation()
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func goBackwardTap(_ sender: Any) {
+    }
+    
+    @IBAction public func playToggleTap(_ sender: Any) {
+        controlsDelegate?.togglePlay()
+    }
+    
+    @IBAction func goForewardTap(_ sender: Any) {
+    }
+    
+    @IBAction func seekDidChange(_ sender: UISlider) {
+    }
+    
+    @IBAction func volumeDidChange(_ sender: UISlider) {
     }
 }
 

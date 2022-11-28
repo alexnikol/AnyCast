@@ -11,4 +11,8 @@ extension LargeAudioPlayerViewController {
     func episodeDescriptionText() -> String? {
         self.descriptionLabel.text
     }
+    
+    func simulateUserInitiatedTogglePlaybackEpisode() {
+        self.playToggleTap(self)
+    }
 }

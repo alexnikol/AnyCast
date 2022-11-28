@@ -9,31 +9,53 @@ import AudioPlayerModuleiOS
 class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     
     func test_onLoad_doesNotSendsControlSignals() {
-        let episode = makeEpisode()
-        let podcast = makePodcast()
-        
-        let controlsSpy = AudioPlayerControlsSpy()
-        let statePublisher = AudioPlayerStatePublisher()
-        
-        _ = AudioPlayerUIComposer.largePlayerWith(
-            data: (episode, podcast),
-            statePublisher: statePublisher,
-            controlsDelegate: controlsSpy
-        )
+        let (sut, _, controlsSpy) = makeSUT()
+        sut.loadViewIfNeeded()
         
         XCTAssertTrue(controlsSpy.messages.isEmpty)
     }
     
+    func test_sendControlMessages_sendsTogglePlaybackStateToControlsDelegate() {
+        let (sut, _, controlsSpy) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulateUserInitiatedTogglePlaybackEpisode()
+        
+        XCTAssertEqual(controlsSpy.messages, [.tooglePlaybackState])
+    }
+    
     // MARK: - Helpers
+    
+    private typealias SUT = (sut: LargeAudioPlayerViewController,
+                             statePublisher: AudioPlayerStatePublisher,
+                             controlsDelegate: AudioPlayerControlsSpy)
+    
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> SUT {
+        let episode = makeEpisode()
+        let podcast = makePodcast()
+        let controlsSpy = AudioPlayerControlsSpy()
+        let statePublisher = AudioPlayerStatePublisher()
+        let sut = AudioPlayerUIComposer.largePlayerWith(
+            data: (episode, podcast),
+            statePublisher: statePublisher,
+            controlsDelegate: controlsSpy
+        )
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(statePublisher, file: file, line: line)
+        trackForMemoryLeaks(controlsSpy, file: file, line: line)
+        return (sut, statePublisher, controlsSpy)
+    }
     
     private class AudioPlayerControlsSpy: AudioPlayerControlsDelegate {
         enum Message {
-            
+            case tooglePlaybackState
         }
         
         private(set) var messages: [Message] = []
         
-        func togglePlay() {}
+        func togglePlay() {
+            messages.append(.tooglePlaybackState)
+        }
         
         func onVolumeChange(value: Float) {}
         

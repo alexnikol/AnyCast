@@ -143,6 +143,8 @@
 		8DCA22802931413800DD1EC6 /* LargeAudioPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */; };
 		8DCA22822931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */; };
 		8DCA22842931416700DD1EC6 /* PlaybackStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */; };
+		8DCA22912934CB3A00DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift */; };
+		8DCA22942934CB7C00DD1EC6 /* AudioPlayerControlsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22922934CB6700DD1EC6 /* AudioPlayerControlsDelegate.swift */; };
 		8DD2FA5528D4987E0031AAEA /* GenresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5428D4987E0031AAEA /* GenresViewModel.swift */; };
 		8DD2FA5928D4990B0031AAEA /* GenresPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5828D4990B0031AAEA /* GenresPresenter.swift */; };
 		8DD2FA5A28D499800031AAEA /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8DD2FA5128D497090031AAEA /* Genres.strings */; };
@@ -516,6 +518,8 @@
 		8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerPresenter.swift; sourceTree = "<group>"; };
 		8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewModel.swift; sourceTree = "<group>"; };
 		8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackStateViewModel.swift; sourceTree = "<group>"; };
+		8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewLifetimeDelegate.swift; sourceTree = "<group>"; };
+		8DCA22922934CB6700DD1EC6 /* AudioPlayerControlsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerControlsDelegate.swift; sourceTree = "<group>"; };
 		8DD2FA5028D497090031AAEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Genres.strings; sourceTree = "<group>"; };
 		8DD2FA5228D4970C0031AAEA /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Genres.strings; sourceTree = "<group>"; };
 		8DD2FA5428D4987E0031AAEA /* GenresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresViewModel.swift; sourceTree = "<group>"; };
@@ -1163,6 +1167,7 @@
 		8D9B8725292E4952003B52AB /* LargeAudioPlayerViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift */,
 				8D9B8721292E4936003B52AB /* LargeAudioPlayerViewController.swift */,
 				8D9B8723292E4949003B52AB /* LargeAudioPlayerViewController.xib */,
 			);
@@ -1359,6 +1364,7 @@
 			children = (
 				8D9B86F0292D0F80003B52AB /* AudioPlayer.swift */,
 				8D9B86F2292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift */,
+				8DCA22922934CB6700DD1EC6 /* AudioPlayerControlsDelegate.swift */,
 				8D9B86E8292D0E88003B52AB /* AudioPlayerStatePublisher.swift */,
 				8D9B86EE292D0F0A003B52AB /* AudioPlayerObserver.swift */,
 				8D9B86EA292D0EA5003B52AB /* PlayerState.swift */,
@@ -2620,6 +2626,7 @@
 			files = (
 				8DCA22822931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift in Sources */,
 				8D9B86EB292D0EA5003B52AB /* PlayerState.swift in Sources */,
+				8DCA22942934CB7C00DD1EC6 /* AudioPlayerControlsDelegate.swift in Sources */,
 				8DCA22842931416700DD1EC6 /* PlaybackStateViewModel.swift in Sources */,
 				8D9B86EF292D0F0A003B52AB /* AudioPlayerObserver.swift in Sources */,
 				8DCA22802931413800DD1EC6 /* LargeAudioPlayerPresenter.swift in Sources */,
@@ -2645,6 +2652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DCA22912934CB3A00DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift in Sources */,
 				8D9B8726292E6737003B52AB /* LargeAudioPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

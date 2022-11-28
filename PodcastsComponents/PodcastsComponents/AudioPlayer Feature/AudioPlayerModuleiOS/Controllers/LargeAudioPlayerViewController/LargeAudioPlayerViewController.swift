@@ -3,11 +3,6 @@
 import UIKit
 import SharedComponentsiOSModule
 
-public protocol LargeAudioPlayerViewLifetimeDelegate {
-    func onOpen()
-    func onClose()
-}
-
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
     @IBOutlet weak var thumbnailImageView: UIImageView!

@@ -15,10 +15,12 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT() -> LargeAudioPlayerViewController {
-        let controller = LargeAudioPlayerViewController(
-            nibName: String(describing: LargeAudioPlayerViewController.self),
-            bundle: Bundle(for: LargeAudioPlayerViewController.self)
-        )
-        return controller
+        LargeAudioPlayerViewController(delegate: LargeAudioPlayerViewDelegateSpy())
+    }
+    
+    private class LargeAudioPlayerViewDelegateSpy: LargeAudioPlayerViewDelegate {
+        func onOpen() {}
+        
+        func onClose() {}
     }
 }

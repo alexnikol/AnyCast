@@ -3,6 +3,11 @@
 import UIKit
 import SharedComponentsiOSModule
 
+public protocol LargeAudioPlayerViewDelegate {
+    func onOpen()
+    func onClose()
+}
+
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
@@ -23,10 +28,22 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var thumbnailIHeightCNST: NSLayoutConstraint!
     @IBOutlet weak var bottomSpacer: UIView!
     @IBOutlet weak var controlsStackView: UIStackView!
+    private var delegate: LargeAudioPlayerViewDelegate?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         configureViews()
+        delegate?.onOpen()
+    }
+    
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        delegate?.onClose()
+    }
+    
+    public convenience init(delegate: LargeAudioPlayerViewDelegate) {
+        self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
+        self.delegate = delegate
     }
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

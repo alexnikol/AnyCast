@@ -93,7 +93,7 @@ private extension LargeAudioPlayerViewController {
 private extension LargeAudioPlayerViewController {
     
     func updateStacksDueToOrientation() {
-        if UIDevice.current.orientation.isLandscape {
+        if view.frame.width < view.frame.height {
             bottomSpacer?.isHidden = true
             rootStackView?.axis = .horizontal
             controlsStackView?.axis = .horizontal
@@ -113,7 +113,7 @@ private extension LargeAudioPlayerViewController {
     }
     
     func updateMainLayoutDueToOrientation() {
-        if UIDevice.current.orientation.isLandscape {
+        if view.frame.width > view.frame.height {
             thumbnailIHeightCNST?.isActive = false
             thumbnailIWidthCNST?.isActive = true
         } else {

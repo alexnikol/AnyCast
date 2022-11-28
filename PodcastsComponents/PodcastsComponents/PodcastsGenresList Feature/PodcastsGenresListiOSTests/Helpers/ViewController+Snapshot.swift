@@ -10,17 +10,48 @@ extension UIViewController {
 }
 
 struct SnapshotConfiguration {
+    enum Orientation {
+        case landscape
+        case portrait
+        
+        var size: CGSize {
+            switch self {
+            case .landscape:
+                return CGSize(width: 667, height: 375)
+            case .portrait:
+                return CGSize(width: 375, height: 667)
+            }
+        }
+        
+        var safeAreaInsets: UIEdgeInsets {
+            switch self {
+            case .landscape:
+                return UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+            case .portrait:
+                return UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+            }
+        }
+        
+        var layoutMargins: UIEdgeInsets {
+            switch self {
+            case .landscape:
+                return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+            case .portrait:
+                return UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16)
+            }
+        }
+    }
+    
     let size: CGSize
     let safeAreaInsets: UIEdgeInsets
     let layoutMargins: UIEdgeInsets
     let traitCollection: UITraitCollection
     
-    static func iPhone8(style: UIUserInterfaceStyle) -> SnapshotConfiguration {
+    static func iPhone8(style: UIUserInterfaceStyle, orientation: SnapshotConfiguration.Orientation = .portrait) -> SnapshotConfiguration {
         return SnapshotConfiguration(
-            size: CGSize(width: 375, height: 667),
-//            size: CGSize(width: 667, height: 375),
-            safeAreaInsets: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0),
-            layoutMargins: UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16),
+            size: orientation.size,
+            safeAreaInsets: orientation.safeAreaInsets,
+            layoutMargins: orientation.layoutMargins,
             traitCollection: UITraitCollection(traitsFrom: [
                 .init(forceTouchCapability: .available),
                 .init(layoutDirection: .leftToRight),

@@ -31,7 +31,7 @@ public final class LargeAudioPlayerPresenter {
         return formatter
     }()
     
-    public func map(playingItem: PlayingItem, from podcast: Podcast) -> LargeAudioPlayerViewModel {
+    public func map(playingItem: PlayingItem) -> LargeAudioPlayerViewModel {
         let description = "\(podcast.title) | \(podcast.publisher)"
         return LargeAudioPlayerViewModel(
             titleLabel: playingItem.episode.title,
@@ -45,7 +45,7 @@ public final class LargeAudioPlayerPresenter {
     }
     
     public func didReceivePlayerState(with playingItem: PlayingItem) {
-        resourceView.display(viewModel: map(playingItem: playingItem, from: podcast))
+        resourceView.display(viewModel: map(playingItem: playingItem))
     }
     
     private func mapCurrentTimeLabel(_ timeInSeconds: Int) -> String {

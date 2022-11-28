@@ -22,11 +22,10 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     }
     
     func test_createsViewModel() {
-        let podcast = makePodcast(title: "Any Podcast title", publisher: "Any Publisher name")
         let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined)
         
         let (sut, _) = makeSUT()
-        let viewModel = sut.map(playingItem: playingItem, from: podcast)
+        let viewModel = sut.map(playingItem: playingItem)
         
         XCTAssertEqual(viewModel.titleLabel, "Any Episode title")
         XCTAssertEqual(viewModel.descriptionLabel, "Any Podcast title | Any Publisher name")
@@ -105,14 +104,12 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let podcast = makePodcast(title: "Any Podcast title", publisher: "Any Publisher name")
         let viewModel = sut.map(
             playingItem: makePlayingItem(
                 playbackState: .pause,
                 currentTimeInSeconds: model.currentTimeInSeconds,
                 totalTime: model.totalTime
-            ),
-            from: podcast
+            )
         )
         XCTAssertEqual(viewModel.currentTimeLabel, expectedTime.currentTime, file: file, line: line)
         XCTAssertEqual(viewModel.endTimeLabel, expectedTime.totalTime, file: file, line: line)

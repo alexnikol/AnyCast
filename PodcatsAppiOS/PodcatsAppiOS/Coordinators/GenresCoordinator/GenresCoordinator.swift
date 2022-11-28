@@ -32,16 +32,15 @@ final class GenresCoordinator {
     }
         
     func start() {
-        let controller = LargeAudioPlayerViewController(
-            nibName: String(describing: LargeAudioPlayerViewController.self),
-            bundle: Bundle(for: LargeAudioPlayerViewController.self)
-        )
-        navigationController.setViewControllers([controller], animated: false)
-//        navigationController.setViewControllers([createGenres()], animated: false)
+        navigationController.setViewControllers([createGenres()], animated: false)
     }
     
     private func show(screen: UIViewController) {
         self.navigationController.pushViewController(screen, animated: true)
+    }
+    
+    private func present(screen: UIViewController) {
+        self.navigationController.showDetailViewController(screen, sender: self)
     }
     
     private func createGenres() -> UIViewController {
@@ -70,13 +69,21 @@ final class GenresCoordinator {
             podcastsLoader: bestPodcastsService.makeBestPodcastsRemoteLoader,
             imageLoader: bestPodcastsService.makeLocalPodcastImageDataLoaderWithRemoteFallback(for:),
             selection: { podcast in
-                let podcastDetails = self.createPodcastDetails(byPodcast: podcast)
+                let podcastDetails = self.createPodcastDetails(
+                    byPodcast: podcast,
+                    selection: { [weak self] episode, podcast in
+                        guard let self = self else { return }
+                        
+                        let player = self.openPlayerFor(episode: episode, podcast: podcast)
+                        self.present(screen: player)
+                    }
+                )
                 self.show(screen: podcastDetails)
             }
         )
     }
     
-    private func createPodcastDetails(byPodcast podcast: Podcast) -> UIViewController {
+    private func createPodcastDetails(byPodcast podcast: Podcast, selection: @escaping (_ episode: Episode, _ podcast: PodcastDetails) -> Void) -> UIViewController {
         let podcastDetailsService = PodcastDetailsService(
             baseURL: baseURL,
             httpClient: httpClient,
@@ -85,7 +92,12 @@ final class GenresCoordinator {
         return PodcastDetailsUIComposer.podcastDetailsComposedWith(
             podcastID: podcast.id,
             podcastsLoader: podcastDetailsService.makeRemotePodcastDetailsLoader,
-            imageLoader: podcastDetailsService.makeRemotePodcastImageDataLoader(for:)
+            imageLoader: podcastDetailsService.makeRemotePodcastImageDataLoader(for:),
+            selection: selection
         )
+    }
+    
+    private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
+        AudioPlayerUIComposer.largePlayerWith(data: (episode, podcast))
     }
 }

@@ -51,7 +51,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                     audio: anyURL(),
                     displayAudioLengthInSeconds: "44 hours 22 min",
                     displayPublishDate: "5 years ago"
-                )
+                ),
+                selection: {}
             ),
             EpisodeCellController(
                 viewModel: EpisodeViewModel(
@@ -61,7 +62,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                     audio: anyURL(),
                     displayAudioLengthInSeconds: "44 hours 22 min".repeatTimes(10),
                     displayPublishDate: "5 days ago"
-                )
+                ),
+                selection: {}
             ),
             EpisodeCellController(
                 viewModel: EpisodeViewModel(
@@ -71,7 +73,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                     audio: anyURL(),
                     displayAudioLengthInSeconds: "1 min".repeatTimes(10),
                     displayPublishDate: "5 min ago".repeatTimes(20)
-                )
+                ),
+                selection: {}
             )
         ]
         

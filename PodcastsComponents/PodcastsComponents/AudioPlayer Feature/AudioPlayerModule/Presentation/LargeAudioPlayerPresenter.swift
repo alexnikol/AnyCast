@@ -11,9 +11,9 @@ public final class LargeAudioPlayerPresenter {
     private let calendar: Calendar
     private let locale: Locale
     private let resourceView: AudioPlayerView
-    private let podcast: Podcast
+    private let podcast: PodcastDetails
     
-    public init(resourceView: AudioPlayerView, from podcast: Podcast, calendar: Calendar = .current, locale: Locale = .current) {
+    public init(resourceView: AudioPlayerView, from podcast: PodcastDetails, calendar: Calendar = .current, locale: Locale = .current) {
         self.resourceView = resourceView
         self.calendar = calendar
         self.locale = locale

@@ -3,19 +3,18 @@
 import Foundation
 import Combine
 import PodcastsModule
+import AudioPlayerModule
 import AudioPlayerModuleiOS
 
 public final class AudioPlayerUIComposer {
     private init() {}
     
-    public static func podcastDetailsComposedWith(data: (episode: Episode, podcast: Podcast)) -> LargeAudioPlayerViewController {
-        let controller = LargeAudioPlayerViewController(
-            nibName: String(describing: LargeAudioPlayerViewController.self),
-            bundle: Bundle(for: LargeAudioPlayerViewController.self)
-        )
-        let publisher = AudioPlayerStatePublisherService.shared
+    public static func largePlayerWith(data: (episode: Episode, podcast: PodcastDetails)) -> LargeAudioPlayerViewController {
+        let presentationAdapter = AudioPlayerPresentationAdapter(statePublisher: AudioPlayerStatePublisherService.shared)
+        let controller = LargeAudioPlayerViewController(delegate: presentationAdapter)
         let viewAdapter = AudioPlayerViewAdapter(controller: controller)
-        _ = publisher.subscribe(observer: viewAdapter)
+        let presenter = LargeAudioPlayerPresenter(resourceView: viewAdapter, from: data.podcast)
+        presentationAdapter.presenter = presenter
         return controller
     }
 }

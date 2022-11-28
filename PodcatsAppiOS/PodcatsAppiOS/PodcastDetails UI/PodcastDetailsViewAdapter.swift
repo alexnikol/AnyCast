@@ -14,16 +14,27 @@ final class PodcastDetailsViewAdapter: ResourceView {
     private var cancellable: AnyCancellable?
     private let episodesPresenter = EpisodesPresenter()
     weak var controller: ListViewController?
+    private var selection: (Episode) -> Void
     
-    init(controller: ListViewController, imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>) {
+    init(
+        controller: ListViewController,
+        imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>,
+        selection: @escaping (Episode) -> Void
+    ) {
         self.controller = controller
         self.imageLoader = imageLoader
+        self.selection = selection
     }
     
     func display(_ viewModel: PodcastDetailsViewModel) {
         let episodeCellControllers = viewModel.episodes.map({ episode -> EpisodeCellController in
             let episodeViewModel = episodesPresenter.map(episode)
-            return EpisodeCellController(viewModel: episodeViewModel)
+            return EpisodeCellController(
+                viewModel: episodeViewModel,
+                selection: { [weak self] in
+                    self?.selection(episode)
+                }
+            )
         })
         
         let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastHeaderCellController>>(
@@ -31,7 +42,7 @@ final class PodcastDetailsViewAdapter: ResourceView {
                 self.imageLoader(viewModel.image)
             }
         )
-                
+        
         let profileSection = PodcastHeaderCellController(
             cellControllers: episodeCellControllers,
             viewModel: viewModel,
@@ -43,7 +54,7 @@ final class PodcastDetailsViewAdapter: ResourceView {
             loadingView: WeakRefVirtualProxy(profileSection),
             errorView: WeakRefVirtualProxy(profileSection),
             mapper: UIImage.trytoMake(with:))
-    
+        
         controller?.display([profileSection])
         controller?.title = viewModel.title
     }

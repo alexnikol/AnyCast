@@ -3,12 +3,14 @@
 import UIKit
 import PodcastsModule
 
-public final class EpisodeCellController: NSObject, UITableViewDataSource {
+public final class EpisodeCellController: NSObject, UITableViewDataSource, UITableViewDelegate {
     private let viewModel: EpisodeViewModel
     private var cell: EpisodeCell?
+    private let selection: () -> Void
     
-    public init(viewModel: EpisodeViewModel) {
+    public init(viewModel: EpisodeViewModel, selection: @escaping () -> Void) {
         self.viewModel = viewModel
+        self.selection = selection
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,10 +25,14 @@ public final class EpisodeCellController: NSObject, UITableViewDataSource {
         cell?.publishDateLabel.text = viewModel.displayPublishDate
         return cell!
     }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selection()
+    }
 }
 
 extension EpisodeCellController: CellController {
-    public var delegate: UITableViewDelegate? { nil }
+    public var delegate: UITableViewDelegate? { self }
     public var dataSource: UITableViewDataSource { self }
     public var prefetchingDataSource: UITableViewDataSourcePrefetching? { nil }
 }

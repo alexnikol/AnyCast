@@ -127,8 +127,18 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         return PlayingItem(episode: playingEpisode, state: playingState)
     }
     
-    private func makePodcast(title: String, publisher: String) -> Podcast {
-        Podcast(id: UUID().uuidString, title: title, publisher: publisher, language: "Any language", type: .episodic, image: anyURL())
+    private func makePodcast(title: String, publisher: String) -> PodcastDetails {        
+        PodcastDetails(
+            id: UUID().uuidString,
+            title: title,
+            publisher: publisher,
+            language: "Any language",
+            type: .episodic,
+            image: anyURL(),
+            episodes: [],
+            description: "Any description",
+            totalEpisodes: 100
+        )
     }
     
     private class ViewSpy: AudioPlayerView {

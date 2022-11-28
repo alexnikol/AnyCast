@@ -174,7 +174,8 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
         let sut = PodcastDetailsUIComposer.podcastDetailsComposedWith(
             podcastID: podcastID,
             podcastsLoader: loader.podcastDetailsPublisher,
-            imageLoader: loader.imageDataPublisher
+            imageLoader: loader.imageDataPublisher,
+            selection: { _, _ in }
         )
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)

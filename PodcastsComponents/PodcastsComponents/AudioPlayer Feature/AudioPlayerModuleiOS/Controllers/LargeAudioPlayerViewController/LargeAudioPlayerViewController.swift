@@ -16,10 +16,10 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rightTimeLabel: UILabel!
     @IBOutlet public private(set) weak var titleLabel: UILabel!
     @IBOutlet public private(set) weak var descriptionLabel: UILabel!
-    @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var forwardButton: UIButton!
-    @IBOutlet weak var backwardButton: UIButton!
-    @IBOutlet weak var volumeView: UISlider!
+    @IBOutlet public private(set) weak var playButton: UIButton!
+    @IBOutlet public private(set) weak var forwardButton: UIButton!
+    @IBOutlet public private(set) weak var backwardButton: UIButton!
+    @IBOutlet public private(set) weak var volumeView: UISlider!
     @IBOutlet weak var leftVolumeIconView: UIImageView!
     @IBOutlet weak var rightVolumeIconView: UIImageView!
     @IBOutlet public private(set) weak var imageMainContainer: UIView!

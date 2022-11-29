@@ -1,5 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
+import UIKit
 import AudioPlayerModuleiOS
 
 extension LargeAudioPlayerViewController {
@@ -14,5 +15,11 @@ extension LargeAudioPlayerViewController {
     
     func simulateUserInitiatedTogglePlaybackEpisode() {
         self.playToggleTap(self)
+    }
+    
+    func simulateUserInitiatedVolumeChange(to value: Float) {
+        let slider = UISlider()
+        slider.value = value
+        self.volumeDidChange(slider)
     }
 }

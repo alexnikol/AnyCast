@@ -72,7 +72,8 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBAction func seekDidChange(_ sender: UISlider) {
     }
     
-    @IBAction func volumeDidChange(_ sender: UISlider) {
+    @IBAction public func volumeDidChange(_ sender: UISlider) {
+        controlsDelegate?.onVolumeChange(value: sender.value)
     }
 }
 

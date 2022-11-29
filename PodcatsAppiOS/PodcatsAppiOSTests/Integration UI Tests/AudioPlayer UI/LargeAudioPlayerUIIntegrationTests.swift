@@ -15,13 +15,23 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         XCTAssertTrue(controlsSpy.messages.isEmpty)
     }
     
-    func test_sendControlMessages_sendsTogglePlaybackStateToControlsDelegate() {
+    func test_sendControlMessages_sendTogglePlaybackStateToControlsDelegate() {
         let (sut, _, controlsSpy) = makeSUT()
         sut.loadViewIfNeeded()
         
         sut.simulateUserInitiatedTogglePlaybackEpisode()
         
         XCTAssertEqual(controlsSpy.messages, [.tooglePlaybackState])
+    }
+    
+    func test_sendControlMessages_sendVolumeStateToControlsDelegate() {
+        let (sut, _, controlsSpy) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulateUserInitiatedVolumeChange(to: 0.5)
+        sut.simulateUserInitiatedVolumeChange(to: 0.1)
+        
+        XCTAssertEqual(controlsSpy.messages, [.volumeChange(0.5), .volumeChange(0.1)])
     }
     
     // MARK: - Helpers
@@ -47,8 +57,9 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     }
     
     private class AudioPlayerControlsSpy: AudioPlayerControlsDelegate {
-        enum Message {
+        enum Message: Equatable {
             case tooglePlaybackState
+            case volumeChange(Float)
         }
         
         private(set) var messages: [Message] = []
@@ -57,7 +68,9 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             messages.append(.tooglePlaybackState)
         }
         
-        func onVolumeChange(value: Float) {}
+        func onVolumeChange(value: Float) {
+            messages.append(.volumeChange(value))
+        }
         
         func onSeek(value: Float) {}
     }

@@ -4,11 +4,13 @@ import Foundation
 import PodcastsModule
 
 public struct PlayingItem: Equatable {
+    public let podcast: PodcastDetails
     public let episode: Episode
     public let state: State
     
-    public init(episode: Episode, state: PlayingItem.State) {
+    public init(episode: Episode, podcast: PodcastDetails, state: PlayingItem.State) {
         self.episode = episode
+        self.podcast = podcast
         self.state = state
     }
 }

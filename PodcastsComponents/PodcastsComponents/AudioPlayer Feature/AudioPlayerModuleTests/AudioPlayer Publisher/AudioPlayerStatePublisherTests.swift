@@ -160,6 +160,7 @@ class AudioPlayerStatePublisherTests: XCTestCase {
     private func makePlayingItem() -> PlayingItem {
         PlayingItem(
             episode: makeUniqueEpisode(),
+            podcast: makePodcast(),
             state: PlayingItem.State(
                 playbackState: .playing,
                 currentTimeInSeconds: 10,

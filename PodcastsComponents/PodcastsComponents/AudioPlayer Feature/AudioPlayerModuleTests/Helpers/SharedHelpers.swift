@@ -20,6 +20,20 @@ extension XCTestCase {
         return episode
     }
     
+    func makePodcast(title: String = "Any Podcast Title", publisher: String = "Any Publisher Title") -> PodcastDetails {
+        PodcastDetails(
+            id: UUID().uuidString,
+            title: title,
+            publisher: publisher,
+            language: "Any language",
+            type: .episodic,
+            image: anyURL(),
+            episodes: [],
+            description: "Any description",
+            totalEpisodes: 100
+        )
+    }
+    
     func anyURL() -> URL {
         URL(string: "http://a-url.com")!
     }

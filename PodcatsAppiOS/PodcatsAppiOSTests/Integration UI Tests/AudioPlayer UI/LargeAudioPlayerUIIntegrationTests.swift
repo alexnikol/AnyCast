@@ -57,6 +57,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         
         let playingItem1 = PlayingItem(
             episode: makeEpisode(),
+            podcast: makePodcast(),
             state: PlayingItem.State(
                 playbackState: .playing,
                 currentTimeInSeconds: 10,
@@ -210,6 +211,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     private func makePlayingItem() -> PlayingItem {
         PlayingItem(
             episode: makeEpisode(),
+            podcast: makePodcast(),
             state: PlayingItem.State(
                 playbackState: .playing,
                 currentTimeInSeconds: 10,

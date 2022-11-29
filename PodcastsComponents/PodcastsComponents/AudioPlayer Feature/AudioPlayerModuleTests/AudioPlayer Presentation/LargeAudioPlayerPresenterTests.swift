@@ -124,23 +124,9 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
             progressTimePercentage: 0.1234,
             volumeLevel: 0.5
         )
-        return PlayingItem(episode: playingEpisode, state: playingState)
+        return PlayingItem(episode: playingEpisode, podcast: makePodcast(), state: playingState)
     }
-    
-    private func makePodcast(title: String, publisher: String) -> PodcastDetails {        
-        PodcastDetails(
-            id: UUID().uuidString,
-            title: title,
-            publisher: publisher,
-            language: "Any language",
-            type: .episodic,
-            image: anyURL(),
-            episodes: [],
-            description: "Any description",
-            totalEpisodes: 100
-        )
-    }
-    
+        
     private class ViewSpy: AudioPlayerView {
         enum Message {
             case udaptePlayerState

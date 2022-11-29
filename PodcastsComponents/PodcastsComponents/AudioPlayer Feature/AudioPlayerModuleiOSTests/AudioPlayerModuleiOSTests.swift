@@ -40,7 +40,9 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     private class AudioPlayerControlsDelegateNullObject: AudioPlayerControlsDelegate {
         func togglePlay() {}
         func changeVolumeTo(value: Float) {}
-        func seekTo(progress: Float) {}
+        func seekToProgress(_ progress: Float) {}
+        
+        func seekToSeconds(_ seconds: Int) {}
     }
     
     private class ViewControllerTransitionNullObject: NSObject, UIViewControllerTransitionCoordinator {

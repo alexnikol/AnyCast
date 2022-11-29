@@ -13,12 +13,12 @@ extension LargeAudioPlayerViewController {
         self.descriptionLabel.text
     }
     
-    func volumeLevel() -> String? {
-        String(volumeView.value)
+    func volumeLevel() -> Float? {
+        volumeView.value
     }
     
-    func playbackProgress() -> String {
-        String(progressView.value)
+    func playbackProgress() -> Float? {
+        progressView.value
     }
     
     func leftTimeLabelText() -> String? {

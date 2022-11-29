@@ -49,17 +49,11 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         )
     }
     
-    
     func test_rendersState_rendersCurrentPlayersStateAndUpdateStateOnNewReceive() {
-        let (sut, audioPlayerSpy, controlsSpy) = makeSUT()
-        sut.loadViewIfNeeded()
+        let (sut, audioPlayerSpy, _) = makeSUT()
         
-        XCTAssertEqual(sut.episodeTitleText(), nil)
-        XCTAssertEqual(sut.episodeDescriptionText(), nil)
-        XCTAssertEqual(sut.leftTimeLabelText(), nil)
-        XCTAssertEqual(sut.rightTimeLabelText(), nil)
-        XCTAssertEqual(sut.volumeLevel(), "0.0")
-        XCTAssertEqual(sut.playbackProgress(), "0.0")
+        sut.loadViewIfNeeded()
+        assertThat(sut, isRendering: nil, with: makePodcast())
         
         let playingItem1 = PlayingItem(
             episode: makeEpisode(),
@@ -72,32 +66,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             )
         )
         audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem1))
-        
-        XCTAssertEqual(sut.episodeTitleText(), "Any Episode Title")
-        XCTAssertEqual(sut.episodeDescriptionText(), "Any Podcast Title | Any Publisher Title")
-        XCTAssertEqual(sut.leftTimeLabelText(), "0:10")
-        XCTAssertEqual(sut.rightTimeLabelText(), "...")
-        XCTAssertEqual(sut.volumeLevel(), "0.5")
-        XCTAssertEqual(sut.playbackProgress(), "0.1")
-        
-        let playingItem2 = PlayingItem(
-            episode: makeEpisode(),
-            state: PlayingItem.State(
-                playbackState: .pause,
-                currentTimeInSeconds: 4,
-                totalTime: .valueInSeconds(423),
-                progressTimePercentage: 0.6,
-                volumeLevel: 1.0
-            )
-        )
-        audioPlayerSpy.sendNewPlayerState(.updatedPlayingItem(playingItem2))
-        
-        XCTAssertEqual(sut.episodeTitleText(), "Any Episode Title")
-        XCTAssertEqual(sut.episodeDescriptionText(), "Any Podcast Title | Any Publisher Title")
-        XCTAssertEqual(sut.leftTimeLabelText(), "0:04")
-        XCTAssertEqual(sut.rightTimeLabelText(), "7:03")
-        XCTAssertEqual(sut.volumeLevel(), "1.0")
-        XCTAssertEqual(sut.playbackProgress(), "0.6")
+        assertThat(sut, isRendering: playingItem1, with: makePodcast())
     }
         
     // MARK: - Helpers
@@ -106,7 +75,10 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
                              audioPlayerSpy: AudioPlayerClientSpy,
                              controlsDelegate: AudioPlayerControlsSpy)
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> SUT {
+    private func makeSUT(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> SUT {
         let episode = makeEpisode()
         let podcast = makePodcast()
         let controlsSpy = AudioPlayerControlsSpy()
@@ -122,6 +94,55 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(controlsSpy, file: file, line: line)
         audioPlayer.delegate = statePublisher
         return (sut, audioPlayer, controlsSpy)
+    }
+    
+    private func assertThat(
+        _ sut: LargeAudioPlayerViewController,
+        isRendering playingItem: PlayingItem?,
+        with podcastDetails: PodcastDetails,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let presenter = makePresenter(with: podcastDetails)
+        
+        guard let playingItem = playingItem else {
+            XCTAssertEqual(sut.episodeTitleText(), nil, file: file, line: line)
+            XCTAssertEqual(sut.episodeDescriptionText(), nil, file: file, line: line)
+            XCTAssertEqual(sut.leftTimeLabelText(), nil, file: file, line: line)
+            XCTAssertEqual(sut.rightTimeLabelText(), nil, file: file, line: line)
+            XCTAssertEqual(sut.volumeLevel(), 0, file: file, line: line)
+            XCTAssertEqual(sut.playbackProgress(), 0, file: file, line: line)
+            return
+        }
+        
+        let viewModel = presenter.map(playingItem: playingItem)
+        XCTAssertEqual(sut.episodeTitleText(), viewModel.titleLabel, file: file, line: line)
+        XCTAssertEqual(sut.episodeDescriptionText(), viewModel.descriptionLabel, file: file, line: line)
+        XCTAssertEqual(sut.leftTimeLabelText(), viewModel.currentTimeLabel, file: file, line: line)
+        XCTAssertEqual(sut.rightTimeLabelText(), viewModel.endTimeLabel, file: file, line: line)
+        XCTAssertEqual(sut.volumeLevel(), viewModel.volumeLevel, file: file, line: line)
+        XCTAssertEqual(sut.playbackProgress(), viewModel.progressTimePercentage, file: file, line: line)
+    }
+    
+    private func makePresenter(
+        with podcastDetails: PodcastDetails,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> LargeAudioPlayerPresenter {
+        class AudioPlayerViewNullObject: AudioPlayerView {
+            func display(viewModel: LargeAudioPlayerViewModel) {}
+        }
+        
+        let calendar = Calendar(identifier: .gregorian)
+        let locale = Locale(identifier: "en_US_POSIX")
+        let presenter = LargeAudioPlayerPresenter(
+            resourceView: AudioPlayerViewNullObject(),
+            from: podcastDetails,
+            calendar: calendar,
+            locale: locale
+        )
+        trackForMemoryLeaks(presenter, file: file, line: line)
+        return presenter
     }
     
     private class AudioPlayerControlsSpy: AudioPlayerControlsDelegate {

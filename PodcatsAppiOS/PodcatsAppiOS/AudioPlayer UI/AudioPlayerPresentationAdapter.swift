@@ -41,7 +41,8 @@ extension AudioPlayerPresentationAdapter: AudioPlayerObserver {
 }
 
 extension AudioPlayerPresentationAdapter: AudioPlayerControlsDelegate {
+    func seekToSeconds(_ seconds: Int) {}
     func togglePlay() {}
-    func onVolumeChange(value: Float) {}
-    func onSeek(value: Float) {}
+    func changeVolumeTo(value: Float) {}
+    func seekToProgress(_ progress: Float) {}
 }

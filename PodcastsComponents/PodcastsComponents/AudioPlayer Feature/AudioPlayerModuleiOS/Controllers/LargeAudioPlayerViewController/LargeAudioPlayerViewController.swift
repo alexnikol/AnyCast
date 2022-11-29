@@ -73,7 +73,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     }
     
     @IBAction public func volumeDidChange(_ sender: UISlider) {
-        controlsDelegate?.onVolumeChange(value: sender.value)
+        controlsDelegate?.changeVolumeTo(value: sender.value)
     }
 }
 

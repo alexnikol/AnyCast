@@ -7,6 +7,7 @@ public class AudioPlayerClient: AudioPlayer, AudioPlayerControlsDelegate {
     public var delegate: AudioPlayerOutputDelegate?
     
     public func togglePlay() {}
-    public func onVolumeChange(value: Float) {}
-    public func onSeek(value: Float) {}
+    public func changeVolumeTo(value: Float) {}
+    public func seekToProgress(_ progress: Float) {}
+    public func seekToSeconds(_ seconds: Int) {}
 }

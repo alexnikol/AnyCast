@@ -33,7 +33,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         
         XCTAssertEqual(controlsSpy.messages, [.volumeChange(0.5), .volumeChange(0.1)])
     }
-    
+        
     // MARK: - Helpers
     
     private typealias SUT = (sut: LargeAudioPlayerViewController,
@@ -68,11 +68,13 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             messages.append(.tooglePlaybackState)
         }
         
-        func onVolumeChange(value: Float) {
+        func changeVolumeTo(value: Float) {
             messages.append(.volumeChange(value))
         }
         
-        func onSeek(value: Float) {}
+        func seekToProgress(_ progress: Float) {}
+        
+        func seekToSeconds(_ seconds: Int) {}
     }
     
     private func makeEpisode() -> Episode {

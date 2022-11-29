@@ -48,17 +48,69 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             [.seekToProgress(0.0), .seekToProgress(0.6), .seekToSeconds(-15), .seekToSeconds(30)]
         )
     }
+    
+    
+    func test_rendersState_rendersCurrentPlayersStateAndUpdateStateOnNewReceive() {
+        let (sut, audioPlayerSpy, controlsSpy) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertEqual(sut.episodeTitleText(), nil)
+        XCTAssertEqual(sut.episodeDescriptionText(), nil)
+        XCTAssertEqual(sut.leftTimeLabelText(), nil)
+        XCTAssertEqual(sut.rightTimeLabelText(), nil)
+        XCTAssertEqual(sut.volumeLevel(), "0.0")
+        XCTAssertEqual(sut.playbackProgress(), "0.0")
+        
+        let playingItem1 = PlayingItem(
+            episode: makeEpisode(),
+            state: PlayingItem.State(
+                playbackState: .playing,
+                currentTimeInSeconds: 10,
+                totalTime: .notDefined,
+                progressTimePercentage: 0.1,
+                volumeLevel: 0.5
+            )
+        )
+        audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem1))
+        
+        XCTAssertEqual(sut.episodeTitleText(), "Any Episode Title")
+        XCTAssertEqual(sut.episodeDescriptionText(), "Any Podcast Title | Any Publisher Title")
+        XCTAssertEqual(sut.leftTimeLabelText(), "0:10")
+        XCTAssertEqual(sut.rightTimeLabelText(), "...")
+        XCTAssertEqual(sut.volumeLevel(), "0.5")
+        XCTAssertEqual(sut.playbackProgress(), "0.1")
+        
+        let playingItem2 = PlayingItem(
+            episode: makeEpisode(),
+            state: PlayingItem.State(
+                playbackState: .pause,
+                currentTimeInSeconds: 4,
+                totalTime: .valueInSeconds(423),
+                progressTimePercentage: 0.6,
+                volumeLevel: 1.0
+            )
+        )
+        audioPlayerSpy.sendNewPlayerState(.updatedPlayingItem(playingItem2))
+        
+        XCTAssertEqual(sut.episodeTitleText(), "Any Episode Title")
+        XCTAssertEqual(sut.episodeDescriptionText(), "Any Podcast Title | Any Publisher Title")
+        XCTAssertEqual(sut.leftTimeLabelText(), "0:04")
+        XCTAssertEqual(sut.rightTimeLabelText(), "7:03")
+        XCTAssertEqual(sut.volumeLevel(), "1.0")
+        XCTAssertEqual(sut.playbackProgress(), "0.6")
+    }
         
     // MARK: - Helpers
     
     private typealias SUT = (sut: LargeAudioPlayerViewController,
-                             statePublisher: AudioPlayerStatePublisher,
+                             audioPlayerSpy: AudioPlayerClientSpy,
                              controlsDelegate: AudioPlayerControlsSpy)
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> SUT {
         let episode = makeEpisode()
         let podcast = makePodcast()
         let controlsSpy = AudioPlayerControlsSpy()
+        let audioPlayer = AudioPlayerClientSpy()
         let statePublisher = AudioPlayerStatePublisher()
         let sut = AudioPlayerUIComposer.largePlayerWith(
             data: (episode, podcast),
@@ -68,7 +120,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(statePublisher, file: file, line: line)
         trackForMemoryLeaks(controlsSpy, file: file, line: line)
-        return (sut, statePublisher, controlsSpy)
+        audioPlayer.delegate = statePublisher
+        return (sut, audioPlayer, controlsSpy)
     }
     
     private class AudioPlayerControlsSpy: AudioPlayerControlsDelegate {
@@ -98,11 +151,19 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         }
     }
     
+    private class AudioPlayerClientSpy: AudioPlayer {
+        var delegate: AudioPlayerOutputDelegate?
+        
+        func sendNewPlayerState(_ state: PlayerState) {
+            delegate?.didUpdateState(with: state)
+        }
+    }
+    
     private func makeEpisode() -> Episode {
         Episode(
             id: UUID().uuidString,
-            title: "Any Title 1",
-            description: "Any Description 1",
+            title: "Any Episode Title",
+            description: "Any Episode Description",
             thumbnail: anyURL(),
             audio: anyURL(),
             audioLengthInSeconds: Int.random(in: 1...1000),
@@ -114,7 +175,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     private func makePodcast() -> PodcastDetails {
         PodcastDetails(
             id: UUID().uuidString,
-            title: "Any Episode Title",
+            title: "Any Podcast Title",
             publisher: "Any Publisher Title",
             language: "Any language",
             type: .episodic,
@@ -122,6 +183,19 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             episodes: [],
             description: "Any description",
             totalEpisodes: 100
+        )
+    }
+    
+    private func makePlayingItem() -> PlayingItem {
+        PlayingItem(
+            episode: makeEpisode(),
+            state: PlayingItem.State(
+                playbackState: .playing,
+                currentTimeInSeconds: 10,
+                totalTime: .notDefined,
+                progressTimePercentage: 0.1,
+                volumeLevel: 0.5
+            )
         )
     }
 }

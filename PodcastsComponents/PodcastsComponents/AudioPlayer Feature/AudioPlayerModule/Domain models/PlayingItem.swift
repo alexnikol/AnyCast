@@ -26,15 +26,15 @@ public extension PlayingItem {
         public let playbackState: PlaybackState
         public let currentTimeInSeconds: Int
         public let totalTime: EpisodeDuration
-        public let progressTimePercentage: Double
-        public let volumeLevel: Double
+        public let progressTimePercentage: Float
+        public let volumeLevel: Float
         
         public init(
             playbackState: PlayingItem.PlaybackState,
             currentTimeInSeconds: Int,
             totalTime: EpisodeDuration,
-            progressTimePercentage: Double,
-            volumeLevel: Double
+            progressTimePercentage: Float,
+            volumeLevel: Float
         ) {
             self.playbackState = playbackState
             self.currentTimeInSeconds = currentTimeInSeconds

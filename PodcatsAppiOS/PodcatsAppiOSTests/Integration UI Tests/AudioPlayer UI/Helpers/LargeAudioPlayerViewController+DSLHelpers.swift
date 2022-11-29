@@ -13,6 +13,22 @@ extension LargeAudioPlayerViewController {
         self.descriptionLabel.text
     }
     
+    func volumeLevel() -> String? {
+        String(volumeView.value)
+    }
+    
+    func playbackProgress() -> String {
+        String(progressView.value)
+    }
+    
+    func leftTimeLabelText() -> String? {
+        leftTimeLabel.text
+    }
+    
+    func rightTimeLabelText() -> String? {
+        rightTimeLabel.text
+    }
+    
     func simulateUserInitiatedTogglePlaybackEpisode() {
         self.playToggleTap(self)
     }

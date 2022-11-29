@@ -70,9 +70,9 @@ public final class LargeAudioPlayerPresenter {
     }
 }
 
-private extension Double {
-    func roundToDecimal(_ fractionDigits: Int) -> Double {
-        let multiplier = pow(10, Double(fractionDigits))
+private extension Float {
+    func roundToDecimal(_ fractionDigits: Int) -> Float {
+        let multiplier = pow(10, Float(fractionDigits))
         return Darwin.round(self * multiplier) / multiplier
     }
 }

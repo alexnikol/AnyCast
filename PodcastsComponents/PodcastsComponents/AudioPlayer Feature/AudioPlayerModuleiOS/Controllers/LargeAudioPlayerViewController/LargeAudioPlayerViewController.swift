@@ -7,9 +7,9 @@ import AudioPlayerModule
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
     @IBOutlet weak var thumbnailImageView: UIImageView!
-    @IBOutlet weak var progressView: UISlider!
-    @IBOutlet weak var leftTimeLabel: UILabel!
-    @IBOutlet weak var rightTimeLabel: UILabel!
+    @IBOutlet public private(set) weak var progressView: UISlider!
+    @IBOutlet public private(set) weak var leftTimeLabel: UILabel!
+    @IBOutlet public private(set) weak var rightTimeLabel: UILabel!
     @IBOutlet public private(set) weak var titleLabel: UILabel!
     @IBOutlet public private(set) weak var descriptionLabel: UILabel!
     @IBOutlet public private(set) weak var playButton: UIButton!
@@ -43,6 +43,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        updateInitialValuesOnCreate()
         configureViews()
         delegate?.onOpen()
     }
@@ -82,6 +83,15 @@ public final class LargeAudioPlayerViewController: UIViewController {
 
 // MARK: - UI setup
 private extension LargeAudioPlayerViewController {
+    
+    func updateInitialValuesOnCreate() {
+        titleLabel.text = nil
+        descriptionLabel.text = nil
+        progressView.value = 0
+        volumeView.value = 0
+        leftTimeLabel.text = nil
+        rightTimeLabel.text = nil
+    }
     
     func configureViews() {
         configureThumbnailView()

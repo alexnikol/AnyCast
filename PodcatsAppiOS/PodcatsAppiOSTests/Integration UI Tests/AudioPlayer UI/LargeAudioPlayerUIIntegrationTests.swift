@@ -109,7 +109,31 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         
         assertThat(sut2, isRendering: playingItem)
     }
+    
+    func test_rendersState_dispatchesFromBackgroundToMainThread() {
+        let (sut, audioPlayerSpy, _) = makeSUT()
+        sut.loadViewIfNeeded()
         
+        let playingItem = PlayingItem(
+            episode: makeEpisode(),
+            podcast: makePodcast(),
+            state: PlayingItem.State(
+                playbackState: .playing,
+                currentTimeInSeconds: 10,
+                totalTime: .notDefined,
+                progressTimePercentage: 0.1,
+                volumeLevel: 0.5
+            )
+        )
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem))
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private typealias SUT = (sut: LargeAudioPlayerViewController,

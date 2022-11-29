@@ -12,6 +12,10 @@ class AudioPlayerPresentationAdapter {
     init(statePublisher: AudioPlayerStatePublisher) {
         self.statePublisher = statePublisher
     }
+    
+    deinit {
+        print("deinit \(String(describing: self))")
+    }
 }
 
 extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewLifetimeDelegate {
@@ -26,23 +30,21 @@ extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewLifetimeDelegate {
 }
 
 extension AudioPlayerPresentationAdapter: AudioPlayerObserver {
+    
     func receive(_ playerState: PlayerState) {
         switch playerState {
         case .noPlayingItem:
             break
             
         case .updatedPlayingItem(let playingItem):
-            presenter?.didReceivePlayerState(with: playingItem)
+            DispatchQueue.immediateWhenOnMainQueueScheduler.schedule { [weak self] in
+                self?.presenter?.didReceivePlayerState(with: playingItem)
+            }
             
         case .startPlayingNewItem(let playingItem):
-            presenter?.didReceivePlayerState(with: playingItem)
+            DispatchQueue.immediateWhenOnMainQueueScheduler.schedule { [weak self] in
+                self?.presenter?.didReceivePlayerState(with: playingItem)
+            }
         }
     }
-}
-
-extension AudioPlayerPresentationAdapter: AudioPlayerControlsDelegate {
-    func seekToSeconds(_ seconds: Int) {}
-    func togglePlay() {}
-    func changeVolumeTo(value: Float) {}
-    func seekToProgress(_ progress: Float) {}
 }

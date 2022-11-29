@@ -10,6 +10,10 @@ class AudioPlayerViewAdapter {
     init(controller: LargeAudioPlayerViewController) {
         self.controller = controller
     }
+    
+    deinit {
+        print("deinit \(String(describing: self))")
+    }
 }
 
 extension AudioPlayerViewAdapter: AudioPlayerView {

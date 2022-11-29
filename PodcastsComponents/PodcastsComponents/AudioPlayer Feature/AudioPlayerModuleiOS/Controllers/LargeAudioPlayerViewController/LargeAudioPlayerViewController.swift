@@ -36,6 +36,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     }
     
     deinit {
+        print("deinit \(String(describing: self))")
         delegate?.onClose()
     }
     

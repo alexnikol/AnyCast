@@ -58,18 +58,21 @@ public final class LargeAudioPlayerViewController: UIViewController {
     }
     
     // MARK: - Actions
-    
-    @IBAction func goBackwardTap(_ sender: Any) {
-    }
-    
+        
     @IBAction public func playToggleTap(_ sender: Any) {
         controlsDelegate?.togglePlay()
     }
     
-    @IBAction func goForewardTap(_ sender: Any) {
+    @IBAction public func goForewardTap(_ sender: Any) {
+        controlsDelegate?.seekToSeconds(30)
     }
     
-    @IBAction func seekDidChange(_ sender: UISlider) {
+    @IBAction public func goBackwardTap(_ sender: Any) {
+        controlsDelegate?.seekToSeconds(-15)
+    }
+    
+    @IBAction public func seekDidChange(_ sender: UISlider) {
+        controlsDelegate?.seekToProgress(sender.value)
     }
     
     @IBAction public func volumeDidChange(_ sender: UISlider) {

@@ -33,6 +33,21 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         
         XCTAssertEqual(controlsSpy.messages, [.volumeChange(0.5), .volumeChange(0.1)])
     }
+    
+    func test_sendControlMessages_sendSeekStateToControlsDelegate() {
+        let (sut, _, controlsSpy) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulateUserInitiatedSeekToProgess(to: 0.0)
+        sut.simulateUserInitiatedSeekToProgess(to: 0.6)
+        sut.simulateUserInitiatedSeekBackward()
+        sut.simulateUserInitiatedSeekForeward()
+        
+        XCTAssertEqual(
+            controlsSpy.messages,
+            [.seekToProgress(0.0), .seekToProgress(0.6), .seekToSeconds(-15), .seekToSeconds(30)]
+        )
+    }
         
     // MARK: - Helpers
     
@@ -60,6 +75,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         enum Message: Equatable {
             case tooglePlaybackState
             case volumeChange(Float)
+            case seekToProgress(Float)
+            case seekToSeconds(Int)
         }
         
         private(set) var messages: [Message] = []
@@ -72,9 +89,13 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             messages.append(.volumeChange(value))
         }
         
-        func seekToProgress(_ progress: Float) {}
+        func seekToProgress(_ progress: Float) {
+            messages.append(.seekToProgress(progress))
+        }
         
-        func seekToSeconds(_ seconds: Int) {}
+        func seekToSeconds(_ seconds: Int) {
+            messages.append(.seekToSeconds(seconds))
+        }
     }
     
     private func makeEpisode() -> Episode {

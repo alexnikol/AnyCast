@@ -22,4 +22,18 @@ extension LargeAudioPlayerViewController {
         slider.value = value
         self.volumeDidChange(slider)
     }
+    
+    func simulateUserInitiatedSeekToProgess(to value: Float) {
+        let slider = UISlider()
+        slider.value = value
+        self.seekDidChange(slider)
+    }
+    
+    func simulateUserInitiatedSeekForeward() {
+        self.goForewardTap(self)
+    }
+    
+    func simulateUserInitiatedSeekBackward() {
+        self.goBackwardTap(self)
+    }
 }

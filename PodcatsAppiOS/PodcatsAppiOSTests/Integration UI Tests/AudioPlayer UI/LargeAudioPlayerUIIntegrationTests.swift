@@ -53,7 +53,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let (sut, audioPlayerSpy, _) = makeSUT()
         
         sut.loadViewIfNeeded()
-        assertThat(sut, isRendering: nil, with: makePodcast())
+        assertThat(sut, isRendering: nil)
         
         let playingItem1 = PlayingItem(
             episode: makeEpisode(),
@@ -67,7 +67,21 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             )
         )
         audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem1))
-        assertThat(sut, isRendering: playingItem1, with: makePodcast())
+        assertThat(sut, isRendering: playingItem1)
+        
+        let playingItem2 = PlayingItem(
+            episode: makeEpisode(),
+            podcast: makePodcast(title: "Another Podcast Title", publisher: "Another Publisher"),
+            state: PlayingItem.State(
+                playbackState: .playing,
+                currentTimeInSeconds: 10,
+                totalTime: .notDefined,
+                progressTimePercentage: 0.1,
+                volumeLevel: 0.5
+            )
+        )
+        audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem2))
+        assertThat(sut, isRendering: playingItem2)
     }
         
     // MARK: - Helpers
@@ -97,12 +111,9 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     private func assertThat(
         _ sut: LargeAudioPlayerViewController,
         isRendering playingItem: PlayingItem?,
-        with podcastDetails: PodcastDetails,
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let presenter = makePresenter(with: podcastDetails)
-        
         guard let playingItem = playingItem else {
             XCTAssertEqual(sut.episodeTitleText(), nil, file: file, line: line)
             XCTAssertEqual(sut.episodeDescriptionText(), nil, file: file, line: line)
@@ -113,7 +124,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             return
         }
         
-        let viewModel = presenter.map(playingItem: playingItem)
+        let viewModel = makePresenter().map(playingItem: playingItem)
         XCTAssertEqual(sut.episodeTitleText(), viewModel.titleLabel, file: file, line: line)
         XCTAssertEqual(sut.episodeDescriptionText(), viewModel.descriptionLabel, file: file, line: line)
         XCTAssertEqual(sut.leftTimeLabelText(), viewModel.currentTimeLabel, file: file, line: line)
@@ -122,11 +133,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.playbackProgress(), viewModel.progressTimePercentage, file: file, line: line)
     }
     
-    private func makePresenter(
-        with podcastDetails: PodcastDetails,
-        file: StaticString = #file,
-        line: UInt = #line
-    ) -> LargeAudioPlayerPresenter {
+    private func makePresenter(file: StaticString = #file, line: UInt = #line) -> LargeAudioPlayerPresenter {
         class AudioPlayerViewNullObject: AudioPlayerView {
             func display(viewModel: LargeAudioPlayerViewModel) {}
         }
@@ -190,31 +197,17 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         )
     }
     
-    private func makePodcast() -> PodcastDetails {
+    func makePodcast(title: String = "Any Podcast Title", publisher: String = "Any Publisher Title") -> PodcastDetails {
         PodcastDetails(
             id: UUID().uuidString,
-            title: "Any Podcast Title",
-            publisher: "Any Publisher Title",
+            title: title,
+            publisher: publisher,
             language: "Any language",
             type: .episodic,
             image: anyURL(),
             episodes: [],
             description: "Any description",
             totalEpisodes: 100
-        )
-    }
-    
-    private func makePlayingItem() -> PlayingItem {
-        PlayingItem(
-            episode: makeEpisode(),
-            podcast: makePodcast(),
-            state: PlayingItem.State(
-                playbackState: .playing,
-                currentTimeInSeconds: 10,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.1,
-                volumeLevel: 0.5
-            )
         )
     }
 }

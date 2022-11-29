@@ -80,13 +80,10 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) -> SUT {
-        let episode = makeEpisode()
-        let podcast = makePodcast()
         let controlsSpy = AudioPlayerControlsSpy()
         let audioPlayer = AudioPlayerClientSpy()
         let statePublisher = AudioPlayerStatePublisher()
         let sut = AudioPlayerUIComposer.largePlayerWith(
-            data: (episode, podcast),
             statePublisher: statePublisher,
             controlsDelegate: controlsSpy
         )
@@ -138,7 +135,6 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let locale = Locale(identifier: "en_US_POSIX")
         let presenter = LargeAudioPlayerPresenter(
             resourceView: AudioPlayerViewNullObject(),
-            from: podcastDetails,
             calendar: calendar,
             locale: locale
         )

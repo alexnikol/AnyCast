@@ -20,6 +20,7 @@ public final class EpisodeCell: UITableViewCell, Reusable {
         desciptionView.textContainer.maximumNumberOfLines = 2
         desciptionView.textContainer.lineFragmentPadding = 0
         desciptionView.textContainerInset = .zero
+        cellContainer.backgroundColor = Defaults.defaultBackground
     }
 
     public override func setSelected(_ selected: Bool, animated: Bool) {}

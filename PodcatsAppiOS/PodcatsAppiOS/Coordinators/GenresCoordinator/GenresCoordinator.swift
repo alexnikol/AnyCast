@@ -106,7 +106,6 @@ final class GenresCoordinator {
     
     private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
         AudioPlayerUIComposer.largePlayerWith(
-            data: (episode, podcast),
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayerControlsDelegate
         )

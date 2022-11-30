@@ -4,11 +4,13 @@ import Foundation
 import PodcastsModule
 
 public struct PlayingItem: Equatable {
+    public let podcast: PodcastDetails
     public let episode: Episode
     public let state: State
     
-    public init(episode: Episode, state: PlayingItem.State) {
+    public init(episode: Episode, podcast: PodcastDetails, state: PlayingItem.State) {
         self.episode = episode
+        self.podcast = podcast
         self.state = state
     }
 }
@@ -26,15 +28,15 @@ public extension PlayingItem {
         public let playbackState: PlaybackState
         public let currentTimeInSeconds: Int
         public let totalTime: EpisodeDuration
-        public let progressTimePercentage: Double
-        public let volumeLevel: Double
+        public let progressTimePercentage: Float
+        public let volumeLevel: Float
         
         public init(
             playbackState: PlayingItem.PlaybackState,
             currentTimeInSeconds: Int,
             totalTime: EpisodeDuration,
-            progressTimePercentage: Double,
-            volumeLevel: Double
+            progressTimePercentage: Float,
+            volumeLevel: Float
         ) {
             self.playbackState = playbackState
             self.currentTimeInSeconds = currentTimeInSeconds

@@ -1,5 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
+import UIKit
 import AudioPlayerModuleiOS
 
 extension LargeAudioPlayerViewController {
@@ -10,5 +11,45 @@ extension LargeAudioPlayerViewController {
     
     func episodeDescriptionText() -> String? {
         self.descriptionLabel.text
+    }
+    
+    func volumeLevel() -> Float? {
+        volumeView.value
+    }
+    
+    func playbackProgress() -> Float? {
+        progressView.value
+    }
+    
+    func leftTimeLabelText() -> String? {
+        leftTimeLabel.text
+    }
+    
+    func rightTimeLabelText() -> String? {
+        rightTimeLabel.text
+    }
+    
+    func simulateUserInitiatedTogglePlaybackEpisode() {
+        self.playToggleTap(self)
+    }
+    
+    func simulateUserInitiatedVolumeChange(to value: Float) {
+        let slider = UISlider()
+        slider.value = value
+        self.volumeDidChange(slider)
+    }
+    
+    func simulateUserInitiatedSeekToProgess(to value: Float) {
+        let slider = UISlider()
+        slider.value = value
+        self.seekDidChange(slider)
+    }
+    
+    func simulateUserInitiatedSeekForeward() {
+        self.goForewardTap(self)
+    }
+    
+    func simulateUserInitiatedSeekBackward() {
+        self.goBackwardTap(self)
     }
 }

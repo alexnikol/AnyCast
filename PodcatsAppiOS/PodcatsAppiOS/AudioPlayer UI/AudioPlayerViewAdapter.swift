@@ -15,6 +15,6 @@ class AudioPlayerViewAdapter {
 extension AudioPlayerViewAdapter: AudioPlayerView {
     
     func display(viewModel: LargeAudioPlayerViewModel) {
-        
+        controller?.display(viewModel: viewModel)
     }
 }

@@ -28,7 +28,7 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         let viewModel = sut.map(playingItem: playingItem)
         
         XCTAssertEqual(viewModel.titleLabel, "Any Episode title")
-        XCTAssertEqual(viewModel.descriptionLabel, "Any Podcast title | Any Publisher name")
+        XCTAssertEqual(viewModel.descriptionLabel, "Any Podcast Title | Any Publisher Title")
         XCTAssertEqual(viewModel.volumeLevel, 0.5)
         XCTAssertEqual(viewModel.progressTimePercentage, 0.12)
         XCTAssertEqual(viewModel.playbackState, .pause)
@@ -90,8 +90,7 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
         let view = ViewSpy()
-        let podcast = makePodcast(title: "Any Podcast title", publisher: "Any Publisher name")
-        let presenter = LargeAudioPlayerPresenter(resourceView: view, from: podcast, calendar: calendar, locale: locale)
+        let presenter = LargeAudioPlayerPresenter(resourceView: view, calendar: calendar, locale: locale)
         trackForMemoryLeaks(presenter)
         trackForMemoryLeaks(view)
         return (presenter, view)
@@ -124,23 +123,9 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
             progressTimePercentage: 0.1234,
             volumeLevel: 0.5
         )
-        return PlayingItem(episode: playingEpisode, state: playingState)
+        return PlayingItem(episode: playingEpisode, podcast: makePodcast(), state: playingState)
     }
-    
-    private func makePodcast(title: String, publisher: String) -> PodcastDetails {        
-        PodcastDetails(
-            id: UUID().uuidString,
-            title: title,
-            publisher: publisher,
-            language: "Any language",
-            type: .episodic,
-            image: anyURL(),
-            episodes: [],
-            description: "Any description",
-            totalEpisodes: 100
-        )
-    }
-    
+        
     private class ViewSpy: AudioPlayerView {
         enum Message {
             case udaptePlayerState

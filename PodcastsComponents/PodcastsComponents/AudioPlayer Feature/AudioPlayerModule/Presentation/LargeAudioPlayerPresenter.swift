@@ -11,13 +11,11 @@ public final class LargeAudioPlayerPresenter {
     private let calendar: Calendar
     private let locale: Locale
     private let resourceView: AudioPlayerView
-    private let podcast: PodcastDetails
     
-    public init(resourceView: AudioPlayerView, from podcast: PodcastDetails, calendar: Calendar = .current, locale: Locale = .current) {
+    public init(resourceView: AudioPlayerView, calendar: Calendar = .current, locale: Locale = .current) {
         self.resourceView = resourceView
         self.calendar = calendar
         self.locale = locale
-        self.podcast = podcast
     }
     
     private lazy var dateFormatter: DateComponentsFormatter = {
@@ -32,7 +30,7 @@ public final class LargeAudioPlayerPresenter {
     }()
     
     public func map(playingItem: PlayingItem) -> LargeAudioPlayerViewModel {
-        let description = "\(podcast.title) | \(podcast.publisher)"
+        let description = "\(playingItem.podcast.title) | \(playingItem.podcast.publisher)"
         return LargeAudioPlayerViewModel(
             titleLabel: playingItem.episode.title,
             descriptionLabel: description,
@@ -70,9 +68,9 @@ public final class LargeAudioPlayerPresenter {
     }
 }
 
-private extension Double {
-    func roundToDecimal(_ fractionDigits: Int) -> Double {
-        let multiplier = pow(10, Double(fractionDigits))
+private extension Float {
+    func roundToDecimal(_ fractionDigits: Int) -> Float {
+        let multiplier = pow(10, Float(fractionDigits))
         return Darwin.round(self * multiplier) / multiplier
     }
 }

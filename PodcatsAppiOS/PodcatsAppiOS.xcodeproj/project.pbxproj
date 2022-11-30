@@ -35,7 +35,6 @@
 		8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04328F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift */; };
 		8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04428F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift */; };
 		8D72D05228F813CF00C17DDC /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05028F8137E00C17DDC /* UIColor+Extensions.swift */; };
-		8D72D05528F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05428F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift */; };
 		8D72D05628F8163E00C17DDC /* GenresUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04528F8121C00C17DDC /* GenresUIIntegrationTests.swift */; };
 		8D72D05A28F826E100C17DDC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05928F826E100C17DDC /* SceneDelegate.swift */; };
 		8D72D06C28F82F2B00C17DDC /* SceneDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D06B28F82F2B00C17DDC /* SceneDelegateTests.swift */; };
@@ -61,6 +60,7 @@
 		8DCA228B2934B13300DD1EC6 /* AudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228A2934B13300DD1EC6 /* AudioPlayerViewAdapter.swift */; };
 		8DCA228E2934BA6F00DD1EC6 /* LargeAudioPlayerViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228D2934BA6F00DD1EC6 /* LargeAudioPlayerViewController+DSLHelpers.swift */; };
 		8DCA22972934DE0100DD1EC6 /* AudioPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22952934DD7B00DD1EC6 /* AudioPlayerClient.swift */; };
+		8DCA22A029352AF100DD1EC6 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05428F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DDBB723291A810F0024A37A /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; };
 		8DDBB724291A810F0024A37A /* PodcastsModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DDBB725291A810F0024A37A /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */; };
@@ -350,9 +350,9 @@
 		8D72D05328F814E900C17DDC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8DDBB77C291BD83E0024A37A /* SharedHelpers.swift */,
 				8D72D05428F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift */,
 				8D72D04128F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift */,
-				8DDBB77C291BD83E0024A37A /* SharedHelpers.swift */,
 				8DDBB780291BDB5A0024A37A /* ListViewController+DSLHelpers.swift */,
 			);
 			path = Helpers;
@@ -623,9 +623,9 @@
 				8DDBB78F291BE27F0024A37A /* EpisodeCell+DSLHelpers.swift in Sources */,
 				8DDBB77D291BD83E0024A37A /* SharedHelpers.swift in Sources */,
 				8DDBB781291BDB5A0024A37A /* ListViewController+DSLHelpers.swift in Sources */,
+				8DCA22A029352AF100DD1EC6 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				8DDBB773291BC6E20024A37A /* PodcastDetailsUIIngtegrationTests.swift in Sources */,
 				8DDBB77B291BD67F0024A37A /* PodcastDetailsLoaderSpy.swift in Sources */,
-				8D72D05528F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				8D72D05628F8163E00C17DDC /* GenresUIIntegrationTests.swift in Sources */,
 				8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */,
 				8D72D04628F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift in Sources */,

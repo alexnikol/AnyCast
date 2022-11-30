@@ -18,10 +18,6 @@ public final class LargeAudioPlayerPresenter {
         self.locale = locale
     }
     
-    deinit {
-        print("deinit \(String(describing: self))")
-    }
-    
     private lazy var dateFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]

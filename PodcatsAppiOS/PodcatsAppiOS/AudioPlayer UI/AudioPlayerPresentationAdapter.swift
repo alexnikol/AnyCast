@@ -12,10 +12,6 @@ class AudioPlayerPresentationAdapter {
     init(statePublisher: AudioPlayerStatePublisher) {
         self.statePublisher = statePublisher
     }
-    
-    deinit {
-        print("deinit \(String(describing: self))")
-    }
 }
 
 extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewLifetimeDelegate {

@@ -46,7 +46,7 @@ struct SnapshotConfiguration {
     let safeAreaInsets: UIEdgeInsets
     let layoutMargins: UIEdgeInsets
     let traitCollection: UITraitCollection
-
+    
     static func iPhone13(
         style: UIUserInterfaceStyle,
         contentSize: UIContentSizeCategory = .medium,
@@ -76,7 +76,6 @@ private final class SnapshotWindow: UIWindow {
     private var configuration: SnapshotConfiguration = .iPhone13(style: .light)
     
     convenience init(configuration: SnapshotConfiguration, root: UIViewController) {
-        print("configuration.size \(configuration.size)")
         self.init(frame: CGRect(origin: .zero, size: configuration.size))
         self.configuration = configuration
         self.layoutMargins = configuration.layoutMargins
@@ -95,10 +94,8 @@ private final class SnapshotWindow: UIWindow {
     
     func snapshot() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: bounds, format: .init(for: traitCollection))
-        
-        let data = renderer.jpegData(withCompressionQuality: 0.5) { action in
+        return renderer.image { action in
             layer.render(in: action.cgContext)
         }
-        return UIImage(data: data)!
     }
 }

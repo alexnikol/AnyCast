@@ -2,24 +2,32 @@
 
 import XCTest
 import UIKit
+import PodcastsModule
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 
 class AudioPlayerModuleiOSTests: XCTestCase {
     
-    func test_pausedPlayerPortrait() {
+    func test_playerPortrait() {
         let sut = makeSUT()
+        sut.loadViewIfNeeded()
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark")
+        sut.display(viewModel: makeViewModel())
+        
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark")
     }
     
-    func test_pausedPlayerLandscape() {
+    func test_playerLandscape() {
         let sut = makeSUT()
-        sut.viewWillTransition(to: .init(width: 667, height: 375), with: ViewControllerTransitionNullObject())
+        sut.view.frame = CGRect(origin: .zero, size: SnapshotConfiguration.Orientation.landscape.size)
+        sut.loadViewIfNeeded()
+        sut.viewDidLayoutSubviews()
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light, orientation: .landscape)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark, orientation: .landscape)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark")
+        sut.display(viewModel: makeViewModel())
+        
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light, orientation: .landscape)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark, orientation: .landscape)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark")
     }
     
     // MARK: - Helpers
@@ -30,6 +38,59 @@ class AudioPlayerModuleiOSTests: XCTestCase {
             controlsDelegate: AudioPlayerControlsDelegateNullObject()
         )
         return sut
+    }
+    
+    func makeViewModel() -> LargeAudioPlayerViewModel {
+        let plaingItem = PlayingItem(
+            episode: makeEpisode(),
+            podcast: makePodcast(),
+            state: .init(
+                playbackState: .pause,
+                currentTimeInSeconds: 0,
+                totalTime: .valueInSeconds(123123123),
+                progressTimePercentage: 0,
+                volumeLevel: 0.5)
+        )
+        let calendar = Calendar(identifier: .gregorian)
+        let locale = Locale(identifier: "en_US_POSIX")
+        let presenter = LargeAudioPlayerPresenter(resourceView: NullObject(), calendar: calendar, locale: locale)
+        
+        return presenter.map(playingItem: plaingItem)
+    }
+    
+    private func makeEpisode() -> Episode {
+        Episode(
+            id: UUID().uuidString,
+            title: "Any Episode Title".repeatTimes(10),
+            description: "Any Episode Description".repeatTimes(10),
+            thumbnail: anyURL(),
+            audio: anyURL(),
+            audioLengthInSeconds: Int.random(in: 1...1000),
+            containsExplicitContent: Bool.random(),
+            publishDateInMiliseconds: Int.random(in: 1479110301853...1479110401853)
+        )
+    }
+    
+    private func makePodcast() -> PodcastDetails {
+        PodcastDetails(
+            id: UUID().uuidString,
+            title: "Any Podcast Title",
+            publisher: "Any Publisher Title",
+            language: "Any language",
+            type: .episodic,
+            image: anyURL(),
+            episodes: [],
+            description: "Any description",
+            totalEpisodes: 100
+        )
+    }
+    
+    private func anyURL() -> URL {
+        URL(string: "http://a-url.com")!
+    }
+    
+    private class NullObject: AudioPlayerView {
+        func display(viewModel: LargeAudioPlayerViewModel) {}
     }
     
     private class LargeAudioPlayerViewDelegateNullObject: LargeAudioPlayerViewLifetimeDelegate {
@@ -44,50 +105,10 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         
         func seekToSeconds(_ seconds: Int) {}
     }
-    
-    private class ViewControllerTransitionNullObject: NSObject, UIViewControllerTransitionCoordinator {
-        func animate(alongsideTransition animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)? = nil) -> Bool {
-            return true
-        }
-        
-        func animateAlongsideTransition(in view: UIView?, animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)? = nil) -> Bool {
-            return true
-        }
-        
-        func notifyWhenInteractionEnds(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Void) {}
-        
-        func notifyWhenInteractionChanges(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Void) {}
-        
-        var isAnimated: Bool = false
-        
-        var presentationStyle: UIModalPresentationStyle = .automatic
-        
-        var initiallyInteractive: Bool = false
-        
-        var isInterruptible: Bool = false
-        
-        var isInteractive: Bool = false
-        
-        var isCancelled: Bool = false
-        
-        var transitionDuration: TimeInterval = 0.0
-        
-        var percentComplete: CGFloat = 0.0
-        
-        var completionVelocity: CGFloat = 0.0
-        
-        var completionCurve: UIView.AnimationCurve = .easeIn
-        
-        func viewController(forKey key: UITransitionContextViewControllerKey) -> UIViewController? {
-            return nil
-        }
-        
-        func view(forKey key: UITransitionContextViewKey) -> UIView? {
-            return nil
-        }
-        
-        var containerView: UIView = UIView()
-        
-        var targetTransform: CGAffineTransform = .identity
+}
+
+private extension String {
+    func repeatTimes(_ times: Int) -> String {
+        return String(repeating: self + " ", count: times)
     }
 }

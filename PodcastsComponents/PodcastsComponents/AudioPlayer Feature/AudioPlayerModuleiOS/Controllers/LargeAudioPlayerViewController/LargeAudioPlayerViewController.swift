@@ -22,7 +22,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet public private(set) weak var imageInnerContainer: UIView!
     @IBOutlet weak var thumbnailIWidthCNST: NSLayoutConstraint!
     @IBOutlet weak var thumbnailIHeightCNST: NSLayoutConstraint!
-    @IBOutlet weak var bottomSpacer: UIView!
+    @IBOutlet weak var rootStackViewTopCNST: NSLayoutConstraint!
     @IBOutlet weak var controlsStackView: UIStackView!
     private var delegate: LargeAudioPlayerViewLifetimeDelegate?
     private var controlsDelegate: AudioPlayerControlsDelegate?
@@ -47,15 +47,10 @@ public final class LargeAudioPlayerViewController: UIViewController {
         configureViews()
         delegate?.onOpen()
     }
-            
-    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        updateStacksDueToOrientation()
-    }
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        updateMainLayoutDueToOrientation()
+        updateToInterfaceOrientation()
     }
     
     // MARK: - Actions
@@ -78,6 +73,17 @@ public final class LargeAudioPlayerViewController: UIViewController {
     
     @IBAction public func volumeDidChange(_ sender: UISlider) {
         controlsDelegate?.changeVolumeTo(value: sender.value)
+    }
+    
+    // MARK: - Public methods
+    
+    public func display(viewModel: LargeAudioPlayerViewModel) {
+        titleLabel.text = viewModel.titleLabel
+        descriptionLabel.text = viewModel.descriptionLabel
+        leftTimeLabel.text = viewModel.currentTimeLabel
+        rightTimeLabel.text = viewModel.endTimeLabel
+        volumeView.value = viewModel.volumeLevel
+        progressView.value = viewModel.progressTimePercentage
     }
 }
 
@@ -127,33 +133,39 @@ private extension LargeAudioPlayerViewController {
 // MARK: - Rotation logic
 private extension LargeAudioPlayerViewController {
     
-    func updateStacksDueToOrientation() {
-        if view.frame.width < view.frame.height {
-            bottomSpacer?.isHidden = true
-            rootStackView?.axis = .horizontal
-            controlsStackView?.axis = .horizontal
-            controlsStackView?.distribution = .fill
-            controlsStackView?.alignment = .center
-            titleLabel?.textAlignment = .left
-            descriptionLabel?.textAlignment = .left
+    func updateToInterfaceOrientation() {
+        if view.frame.height < view.frame.width {
+            updateToLandscape()
         } else {
-            bottomSpacer?.isHidden = false
-            rootStackView?.axis = .vertical
-            controlsStackView?.axis = .vertical
-            controlsStackView?.distribution = .equalCentering
-            controlsStackView?.alignment = .fill
-            titleLabel?.textAlignment = .center
-            descriptionLabel?.textAlignment = .center
+            updateToPortrait()
         }
     }
     
-    func updateMainLayoutDueToOrientation() {
-        if view.frame.width > view.frame.height {
-            thumbnailIHeightCNST?.isActive = false
-            thumbnailIWidthCNST?.isActive = true
-        } else {
-            thumbnailIWidthCNST?.isActive = false
-            thumbnailIHeightCNST?.isActive = true
-        }
+    func updateToLandscape() {
+        thumbnailIWidthCNST?.isActive = true
+        thumbnailIHeightCNST?.isActive = false
+        rootStackViewTopCNST?.constant = 24
+        view.layoutIfNeeded()
+        
+        rootStackView?.axis = .horizontal
+        controlsStackView?.axis = .horizontal
+        controlsStackView?.distribution = .fill
+        controlsStackView?.alignment = .center
+        titleLabel?.textAlignment = .left
+        descriptionLabel?.textAlignment = .left
+    }
+    
+    func updateToPortrait() {
+        thumbnailIHeightCNST?.isActive = true
+        thumbnailIWidthCNST?.isActive = false
+        rootStackViewTopCNST?.constant = 0
+        view.layoutIfNeeded()
+        
+        rootStackView?.axis = .vertical
+        controlsStackView?.axis = .vertical
+        controlsStackView?.distribution = .fill
+        controlsStackView?.alignment = .fill
+        titleLabel?.textAlignment = .center
+        descriptionLabel?.textAlignment = .center
     }
 }

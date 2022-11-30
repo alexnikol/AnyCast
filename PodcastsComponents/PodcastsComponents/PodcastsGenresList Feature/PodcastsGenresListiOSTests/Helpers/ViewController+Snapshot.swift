@@ -17,27 +17,27 @@ struct SnapshotConfiguration {
         var size: CGSize {
             switch self {
             case .landscape:
-                return CGSize(width: 667, height: 375)
+                return CGSize(width: 844, height: 390)
             case .portrait:
-                return CGSize(width: 375, height: 667)
+                return CGSize(width: 390, height: 844)
             }
         }
         
         var safeAreaInsets: UIEdgeInsets {
             switch self {
             case .landscape:
-                return UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+                return UIEdgeInsets(top: 0, left: 47, bottom: 21, right: 47)
             case .portrait:
-                return UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+                return UIEdgeInsets(top: 47, left: 0, bottom: 34, right: 0)
             }
         }
         
         var layoutMargins: UIEdgeInsets {
             switch self {
             case .landscape:
-                return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+                return UIEdgeInsets(top: 8, left: 55, bottom: 29, right: 55)
             case .portrait:
-                return UIEdgeInsets(top: 20, left: 16, bottom: 0, right: 16)
+                return UIEdgeInsets(top: 55, left: 8, bottom: 42, right: 8)
             }
         }
     }
@@ -46,30 +46,37 @@ struct SnapshotConfiguration {
     let safeAreaInsets: UIEdgeInsets
     let layoutMargins: UIEdgeInsets
     let traitCollection: UITraitCollection
-    
-    static func iPhone8(style: UIUserInterfaceStyle, orientation: SnapshotConfiguration.Orientation = .portrait) -> SnapshotConfiguration {
+
+    static func iPhone13(
+        style: UIUserInterfaceStyle,
+        contentSize: UIContentSizeCategory = .medium,
+        orientation: SnapshotConfiguration.Orientation = .portrait
+    ) -> SnapshotConfiguration {
         return SnapshotConfiguration(
             size: orientation.size,
             safeAreaInsets: orientation.safeAreaInsets,
             layoutMargins: orientation.layoutMargins,
             traitCollection: UITraitCollection(traitsFrom: [
-                .init(forceTouchCapability: .available),
+                .init(forceTouchCapability: .unavailable),
                 .init(layoutDirection: .leftToRight),
-                .init(preferredContentSizeCategory: .medium),
+                .init(preferredContentSizeCategory: contentSize),
                 .init(userInterfaceIdiom: .phone),
                 .init(horizontalSizeClass: .compact),
                 .init(verticalSizeClass: .regular),
-                .init(displayScale: 2),
+                .init(displayScale: 3),
+                .init(accessibilityContrast: .normal),
                 .init(displayGamut: .P3),
                 .init(userInterfaceStyle: style)
-            ]))
+            ])
+        )
     }
 }
 
 private final class SnapshotWindow: UIWindow {
-    private var configuration: SnapshotConfiguration = .iPhone8(style: .light)
+    private var configuration: SnapshotConfiguration = .iPhone13(style: .light)
     
     convenience init(configuration: SnapshotConfiguration, root: UIViewController) {
+        print("configuration.size \(configuration.size)")
         self.init(frame: CGRect(origin: .zero, size: configuration.size))
         self.configuration = configuration
         self.layoutMargins = configuration.layoutMargins

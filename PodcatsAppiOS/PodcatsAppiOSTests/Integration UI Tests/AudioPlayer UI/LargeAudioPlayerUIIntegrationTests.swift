@@ -248,7 +248,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         )
     }
     
-    func makePodcast(title: String = "Any Podcast Title", publisher: String = "Any Publisher Title") -> PodcastDetails {
+    private func makePodcast(title: String = "Any Podcast Title", publisher: String = "Any Publisher Title") -> PodcastDetails {
         PodcastDetails(
             id: UUID().uuidString,
             title: title,

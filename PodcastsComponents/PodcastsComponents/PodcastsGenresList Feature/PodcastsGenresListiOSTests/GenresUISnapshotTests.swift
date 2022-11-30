@@ -13,8 +13,8 @@ class GenresUISnapshotTests: XCTestCase {
         
         sut.display(emptyGenres())
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "EMPTY_GENRES_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "EMPTY_GENRES_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "EMPTY_GENRES_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "EMPTY_GENRES_dark")
     }
     
     func test_genresContent() {
@@ -22,8 +22,8 @@ class GenresUISnapshotTests: XCTestCase {
         
         sut.display(genresContent())
 
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GENRES_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
     }
     
     func test_highlightedGenreViewState() {
@@ -31,18 +31,18 @@ class GenresUISnapshotTests: XCTestCase {
         
         sut.display(genresContent())
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GENRES_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
         
         sut.simulateGenreHighlightState(at: 0, isHighlight: true)
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRE_VIEW_HIGHLIGHTED_STATE_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRE_VIEW_HIGHLIGHTED_STATE_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GENRE_VIEW_HIGHLIGHTED_STATE_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GENRE_VIEW_HIGHLIGHTED_STATE_dark")
         
         sut.simulateGenreHighlightState(at: 0, isHighlight: false)
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GENRES_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GENRES_WITH_CONTENT_dark")
     }
     
     func test_genresLoadingStateWithNoContent() {
@@ -50,13 +50,13 @@ class GenresUISnapshotTests: XCTestCase {
         
         loadingView.display(.init(isLoading: true))
 
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_LOADING_STATE_NO_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_LOADING_STATE_NO_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GENRES_LOADING_STATE_NO_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GENRES_LOADING_STATE_NO_CONTENT_dark")
         
         loadingView.display(.init(isLoading: false))
         
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_NOT_LOADING_STATE_NO_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_NOT_LOADING_STATE_NO_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GENRES_NOT_LOADING_STATE_NO_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GENRES_NOT_LOADING_STATE_NO_CONTENT_dark")
     }
     
     func test_genresLoadingStateWithContent() {
@@ -65,12 +65,12 @@ class GenresUISnapshotTests: XCTestCase {
         sut.display(genresContent())
         
         loadingView.display(.init(isLoading: true))
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_LOADING_STATE_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_LOADING_STATE_WITH_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GENRES_LOADING_STATE_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GENRES_LOADING_STATE_WITH_CONTENT_dark")
         
         loadingView.display(.init(isLoading: false))
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "GENRES_NOT_LOADING_STATE_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "GENRES_NOT_LOADING_STATE_WITH_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "GENRES_NOT_LOADING_STATE_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "GENRES_NOT_LOADING_STATE_WITH_CONTENT_dark")
     }
     
     // MARK: - Helpers

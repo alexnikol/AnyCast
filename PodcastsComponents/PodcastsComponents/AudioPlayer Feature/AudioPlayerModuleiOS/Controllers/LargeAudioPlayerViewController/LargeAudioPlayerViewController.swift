@@ -134,38 +134,16 @@ private extension LargeAudioPlayerViewController {
 private extension LargeAudioPlayerViewController {
     
     func updateToInterfaceOrientation() {
-        if view.frame.height < view.frame.width {
-            updateToLandscape()
-        } else {
-            updateToPortrait()
-        }
-    }
-    
-    func updateToLandscape() {
-        thumbnailIWidthCNST?.isActive = true
-        thumbnailIHeightCNST?.isActive = false
-        rootStackViewTopCNST?.constant = 24
+        let isPortrait = view.frame.height > view.frame.width
+        thumbnailIHeightCNST?.isActive = isPortrait ? true : false
+        thumbnailIWidthCNST?.isActive = isPortrait ? false : true
+        rootStackViewTopCNST?.constant = isPortrait ? 0.0 : 24.0
         view.layoutIfNeeded()
         
-        rootStackView?.axis = .horizontal
-        controlsStackView?.axis = .horizontal
-        controlsStackView?.distribution = .fill
-        controlsStackView?.alignment = .center
-        titleLabel?.textAlignment = .left
-        descriptionLabel?.textAlignment = .left
-    }
-    
-    func updateToPortrait() {
-        thumbnailIHeightCNST?.isActive = true
-        thumbnailIWidthCNST?.isActive = false
-        rootStackViewTopCNST?.constant = 0
-        view.layoutIfNeeded()
-        
-        rootStackView?.axis = .vertical
-        controlsStackView?.axis = .vertical
-        controlsStackView?.distribution = .fill
-        controlsStackView?.alignment = .fill
-        titleLabel?.textAlignment = .center
-        descriptionLabel?.textAlignment = .center
+        rootStackView?.axis = isPortrait ? .vertical : .horizontal
+        controlsStackView?.axis = isPortrait ? .vertical : .horizontal
+        controlsStackView?.alignment = isPortrait ? .fill : .center
+        titleLabel?.textAlignment = isPortrait ? .center : .left
+        descriptionLabel?.textAlignment = isPortrait ? .center : .left
     }
 }

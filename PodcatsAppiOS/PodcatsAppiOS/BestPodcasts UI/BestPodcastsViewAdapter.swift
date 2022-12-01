@@ -29,30 +29,33 @@ final class BestPodcastsViewAdapter: ResourceView {
     
     private func adaptModelsToCellControllers(podcasts: [Podcast]) -> [SectionController] {
         let podcastCellControllers = podcasts.map { model -> PodcastCellController in
-            let podcastViewModel = BestPodcastsPresenter.map(model)
-            
-            let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastCellController>>(
-                loader: {
-                    self.imageLoader(model.image)
-                }
-            )
-            
-            let cellController = PodcastCellController(
-                model: podcastViewModel,
-                delegete: adapter,
-                selection: { [weak self] in
-                    self?.selection(model)
-                }
-            )
-            
-            adapter.presenter = makePresenterFor(cellController)
-            return cellController
+            configurePodcastCellController(for: model)
         }
-        
         return [DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastCellControllers)]
     }
     
-    private func makePresenterFor(
+    private func configurePodcastCellController(for model: Podcast) -> PodcastCellController {
+        let podcastViewModel = BestPodcastsPresenter.map(model)
+        
+        let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastCellController>>(
+            loader: {
+                self.imageLoader(model.image)
+            }
+        )
+        
+        let cellController = PodcastCellController(
+            model: podcastViewModel,
+            delegete: adapter,
+            selection: { [weak self] in
+                self?.selection(model)
+            }
+        )
+        
+        adapter.presenter = configurePresenter(cellController)
+        return cellController
+    }
+    
+    private func configurePresenter(
         _ cellController: PodcastCellController
     ) -> LoadResourcePresenter<Data, WeakRefVirtualProxy<PodcastCellController>> {
         

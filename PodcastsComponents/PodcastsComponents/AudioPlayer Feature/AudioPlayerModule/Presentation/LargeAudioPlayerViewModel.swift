@@ -11,7 +11,15 @@ public struct LargeAudioPlayerViewModel {
     public let volumeLevel: Float
     public let playbackState: PlaybackStateViewModel
     
-    public init(titleLabel: String, descriptionLabel: String, currentTimeLabel: String, endTimeLabel: String, progressTimePercentage: Float, volumeLevel: Float, playbackState: PlaybackStateViewModel) {
+    public init(
+        titleLabel: String,
+        descriptionLabel: String,
+        currentTimeLabel: String,
+        endTimeLabel: String,
+        progressTimePercentage: Float,
+        volumeLevel: Float,
+        playbackState: PlaybackStateViewModel
+    ) {
         self.titleLabel = titleLabel
         self.descriptionLabel = descriptionLabel
         self.currentTimeLabel = currentTimeLabel

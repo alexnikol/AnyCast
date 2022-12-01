@@ -27,15 +27,7 @@ final class PodcastDetailsViewAdapter: ResourceView {
     }
     
     func display(_ viewModel: PodcastDetailsViewModel) {
-        let episodeCellControllers = viewModel.episodes.map({ episode -> EpisodeCellController in
-            let episodeViewModel = episodesPresenter.map(episode)
-            return EpisodeCellController(
-                viewModel: episodeViewModel,
-                selection: { [weak self] in
-                    self?.selection(episode)
-                }
-            )
-        })
+        let episodeCellControllers = viewModel.episodes.map(configureEpisodeCellController)
         
         let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastHeaderCellController>>(
             loader: {
@@ -53,9 +45,20 @@ final class PodcastDetailsViewAdapter: ResourceView {
             resourceView: WeakRefVirtualProxy(profileSection),
             loadingView: WeakRefVirtualProxy(profileSection),
             errorView: WeakRefVirtualProxy(profileSection),
-            mapper: UIImage.trytoMake(with:))
+            mapper: UIImage.trytoMake(with:)
+        )
         
         controller?.display([profileSection])
         controller?.title = viewModel.title
+    }
+    
+    private func configureEpisodeCellController(for episode: Episode) -> EpisodeCellController {
+        let episodeViewModel = episodesPresenter.map(episode)
+        return EpisodeCellController(
+            viewModel: episodeViewModel,
+            selection: { [weak self] in
+                self?.selection(episode)
+            }
+        )
     }
 }

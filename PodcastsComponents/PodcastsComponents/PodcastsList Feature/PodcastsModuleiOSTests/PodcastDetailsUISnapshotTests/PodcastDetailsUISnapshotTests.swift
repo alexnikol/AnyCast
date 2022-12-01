@@ -13,8 +13,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
         
         sut.display(emptyPodcastDetails())
         
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "EMPTY_PODCAST_DETAILS_light")
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "EMPTY_PODCAST_DETAILS_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "EMPTY_PODCAST_DETAILS_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "EMPTY_PODCAST_DETAILS_dark")
     }
     
     func test_podcastDetailsWithContent() {
@@ -22,8 +22,8 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
         
         sut.display(podcastDetailsWithContent())
         
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "PODCAST_DETAILS_WITH_CONTENT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "PODCAST_DETAILS_WITH_CONTENT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "PODCAST_DETAILS_WITH_CONTENT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "PODCAST_DETAILS_WITH_CONTENT_dark")
     }
     
     // MARK: - Helpers

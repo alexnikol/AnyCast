@@ -7,7 +7,15 @@ import PodcastsModule
 
 class AVPlayerClient: AudioPlayer {
     
+    typealias Meta = (episode: Episode, podcast: PodcastDetails)
+    
+    private lazy var player: AVPlayer = {
+        let player = AVPlayer()
+        player.automaticallyWaitsToMinimizeStalling = false
+        return player
+    }()
     var delegate: AudioPlayerOutputDelegate?
+    
     private var systemVolume: Float {
         var systemVolume: Float
         #if os(iOS)
@@ -18,8 +26,12 @@ class AVPlayerClient: AudioPlayer {
         return systemVolume
     }
     
-    func play(_ episode: Episode, from podcast: PodcastDetails) {
-        delegate?.didUpdateState(with: .startPlayingNewItem(createStartPlayingState(episode: episode, podcast: podcast)))
+    func startPlayback(fromURL url: URL, withMeta meta: Meta) {
+        delegate?.didUpdateState(with: .startPlayingNewItem(createStartPlayingState(episode: meta.episode, podcast: meta.podcast)))
+        
+        let asset = AVAsset(url: url)
+        let playerItem = AVPlayerItem(asset: asset)
+        player.replaceCurrentItem(with: playerItem)
     }
     
     private func createStartPlayingState(episode: Episode, podcast: PodcastDetails) -> PlayingItem {
@@ -46,7 +58,8 @@ final class AVPlayerClientTests: XCTestCase {
         let player = AVPlayerClient()
         player.delegate = outputSpy
         
-        player.play(episode, from: podcast)
+        let playbackURL = makePlaybackURL()
+        player.startPlayback(fromURL: playbackURL, withMeta: (episode, podcast))
         
         let expectedPlayingItem = PlayingItem(
             episode: episode,
@@ -78,6 +91,13 @@ final class AVPlayerClientTests: XCTestCase {
         systemVolume = AVAudioSession.sharedInstance().outputVolume
         #endif
         return systemVolume
+    }
+    
+    private func makePlaybackURL(named name: String = "audio_example", file: StaticString = #file) -> URL {
+        return URL(fileURLWithPath: String(describing: file))
+            .deletingLastPathComponent()
+            .appendingPathComponent("Resources")
+            .appendingPathComponent("\(name).mp3")
     }
     
     private func makeEpisode() -> Episode {

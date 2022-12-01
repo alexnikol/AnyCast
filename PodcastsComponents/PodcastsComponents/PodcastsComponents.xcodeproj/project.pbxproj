@@ -11,6 +11,7 @@
 		8D2490BF2938DEAE009ACD36 /* AVPlayerClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2490BE2938DEAE009ACD36 /* AVPlayerClientTests.swift */; };
 		8D2490C82938DF19009ACD36 /* AVPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2490C72938DF19009ACD36 /* AVPlayerClient.swift */; };
 		8D2490C92938E117009ACD36 /* AudioPlayerModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B86C7292BC0BF003B52AB /* AudioPlayerModule.framework */; };
+		8D2490CE2938E49C009ACD36 /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
 		8D429765291D31380064F3E6 /* EpisodesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */; };
@@ -252,6 +253,13 @@
 			remoteGlobalIDString = 8D9B86C6292BC0BF003B52AB;
 			remoteInfo = AudioPlayerModule;
 		};
+		8D2490D02938E49C009ACD36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DFAEAAE28FD41730028B060;
+			remoteInfo = PodcastsModule;
+		};
 		8D4298B2292234080064F3E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -395,16 +403,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8D2490CD2938E118009ACD36 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D9B86E2292BC1BE003B52AB /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -644,6 +642,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D2490C92938E117009ACD36 /* AudioPlayerModule.framework in Frameworks */,
+				8D2490CE2938E49C009ACD36 /* PodcastsModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,10 +1157,10 @@
 				8D9B86C1292BA635003B52AB /* README.md */,
 				8D9B86C8292BC0BF003B52AB /* AudioPlayerModule */,
 				8D9B86D3292BC0CF003B52AB /* AudioPlayerModuleTests */,
-				8D9B86FA292D19E3003B52AB /* AudioPlayerModuleiOS */,
-				8D9B8716292E4901003B52AB /* AudioPlayerModuleiOSTests */,
 				8D2490B32938DEAE009ACD36 /* AVPlayerClient */,
 				8D2490BD2938DEAE009ACD36 /* AVPlayerClientTests */,
+				8D9B86FA292D19E3003B52AB /* AudioPlayerModuleiOS */,
+				8D9B8716292E4901003B52AB /* AudioPlayerModuleiOSTests */,
 			);
 			path = "AudioPlayer Feature";
 			sourceTree = "<group>";
@@ -1950,12 +1949,12 @@
 				8D2490AE2938DEAD009ACD36 /* Sources */,
 				8D2490AF2938DEAD009ACD36 /* Frameworks */,
 				8D2490B02938DEAD009ACD36 /* Resources */,
-				8D2490CD2938E118009ACD36 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				8D2490CC2938E117009ACD36 /* PBXTargetDependency */,
+				8D2490D12938E49C009ACD36 /* PBXTargetDependency */,
 			);
 			name = AVPlayerClient;
 			productName = AVPlayerClient;
@@ -3042,6 +3041,11 @@
 			isa = PBXTargetDependency;
 			target = 8D9B86C6292BC0BF003B52AB /* AudioPlayerModule */;
 			targetProxy = 8D2490CB2938E117009ACD36 /* PBXContainerItemProxy */;
+		};
+		8D2490D12938E49C009ACD36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DFAEAAE28FD41730028B060 /* PodcastsModule */;
+			targetProxy = 8D2490D02938E49C009ACD36 /* PBXContainerItemProxy */;
 		};
 		8D4298B3292234080064F3E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -44,11 +44,6 @@ final class AVPlayerClientTests: XCTestCase {
         let podcast = makePodcast()
         let outputSpy = AudioPlayerOutputSpy()
         let player = AVPlayerClient()
-        
-        var systemVolume: Float = 0
-        #if os(iOS)
-            systemVolume = AVAudioSession.sharedInstance().outputVolume
-        #endif
         player.delegate = outputSpy
         
         player.play(episode, from: podcast)
@@ -75,6 +70,14 @@ final class AVPlayerClientTests: XCTestCase {
         func didUpdateState(with state: AudioPlayerModule.PlayerState) {
             self.currentState = state
         }
+    }
+    
+    private var systemVolume: Float {
+        var systemVolume: Float = 0
+        #if os(iOS)
+        systemVolume = AVAudioSession.sharedInstance().outputVolume
+        #endif
+        return systemVolume
     }
     
     private func makeEpisode() -> Episode {

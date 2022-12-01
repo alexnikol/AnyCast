@@ -44,16 +44,6 @@ public final class GenresListViewController: UICollectionViewController {
         configureCollection(collectionView: collectionView)
         
         refreshController?.refresh()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-            
-            guard let windowScene = UIApplication.shared.connectedScenes
-                        .filter({ $0.activationState == .foregroundActive })
-                        .compactMap({$0 as? UIWindowScene})
-                        .first, let window = windowScene.windows.first else { return }
-            
-            print("window \(window.safeAreaInsets) \(window.layoutMargins)")
-        })
     }
     
     public override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -14,8 +14,8 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         
         sut.display(viewModel: makeViewModel())
         
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light")
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark")
     }
     
     func test_playerLandscape() {
@@ -26,8 +26,8 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         
         sut.display(viewModel: makeViewModel())
         
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .light, orientation: .landscape)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light")
-        assert(snapshot: sut.snapshot(for: .iPhone13(style: .dark, orientation: .landscape)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light, orientation: .landscape)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark, orientation: .landscape)), named: "LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark")
     }
     
     // MARK: - Helpers

@@ -47,7 +47,7 @@ struct SnapshotConfiguration {
     let layoutMargins: UIEdgeInsets
     let traitCollection: UITraitCollection
     
-    static func iPhone13(
+    static func iPhone14(
         style: UIUserInterfaceStyle,
         contentSize: UIContentSizeCategory = .medium,
         orientation: SnapshotConfiguration.Orientation = .portrait
@@ -73,7 +73,7 @@ struct SnapshotConfiguration {
 }
 
 private final class SnapshotWindow: UIWindow {
-    private var configuration: SnapshotConfiguration = .iPhone13(style: .light)
+    private var configuration: SnapshotConfiguration = .iPhone14(style: .light)
     
     convenience init(configuration: SnapshotConfiguration, root: UIViewController) {
         self.init(frame: CGRect(origin: .zero, size: configuration.size))

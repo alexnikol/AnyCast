@@ -199,8 +199,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         
         for update in viewModel.updates {
             switch update {
-            case let .playback(viewModel):
-                // TODO: Move UIImage to Viewmodel
+            case .playback:
                 XCTAssertEqual(sut.playButtonImage(), UIImage(systemName: "pause.fill"), file: file, line: line)
                 
             case let .progress(progressViewModel):

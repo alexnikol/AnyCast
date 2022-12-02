@@ -56,7 +56,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     // MARK: - Actions
         
     @IBAction public func playToggleTap(_ sender: Any) {
-        controlsDelegate?.togglePlay()
+        controlsDelegate?.play()
     }
     
     @IBAction public func goForewardTap(_ sender: Any) {

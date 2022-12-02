@@ -10,6 +10,7 @@ import PodcastsGenresListiOS
 import PodcastsModule
 import PodcastsModuleiOS
 import AudioPlayerModule
+import AVPlayerClient
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -37,8 +38,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         LocalGenresLoader(store: genresStore, currentDate: Date.init)
     }()
     
-    var audioPlayer: AudioPlayer & AudioPlayerControlsDelegate = {
-        AudioPlayerClient()
+    var audioPlayer: AudioPlayer = {
+        AVPlayerClient()
     }()
     
     var audioPlayerStatePublisher: AudioPlayerStatePublisher = {
@@ -71,7 +72,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             baseURL: baseURL,
             httpClient: httpClient,
             localGenresLoader: localGenresLoader,
-            audioPlayerControlsDelegate: audioPlayer,
+            audioPlayer: audioPlayer,
             audioPlayerStatePublisher: audioPlayerStatePublisher
         )
         appCoordinator?.start()

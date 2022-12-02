@@ -210,7 +210,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         
         private(set) var messages: [Message] = []
         
-        func togglePlay() {
+        func play() {
             messages.append(.tooglePlaybackState)
         }
         

@@ -99,7 +99,7 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     }
     
     private class AudioPlayerControlsDelegateNullObject: AudioPlayerControlsDelegate {
-        func togglePlay() {}
+        func play() {}
         func changeVolumeTo(value: Float) {}
         func seekToProgress(_ progress: Float) {}
         

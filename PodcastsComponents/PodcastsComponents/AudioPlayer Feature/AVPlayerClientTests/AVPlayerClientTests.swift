@@ -3,51 +3,8 @@
 import XCTest
 import AVKit
 import AudioPlayerModule
+import AVPlayerClient
 import PodcastsModule
-
-class AVPlayerClient: AudioPlayer {
-    
-    typealias Meta = (episode: Episode, podcast: PodcastDetails)
-    
-    private lazy var player: AVPlayer = {
-        let player = AVPlayer()
-        player.automaticallyWaitsToMinimizeStalling = false
-        return player
-    }()
-    var delegate: AudioPlayerOutputDelegate?
-    
-    private var systemVolume: Float {
-        var systemVolume: Float
-        #if os(iOS)
-            systemVolume = AVAudioSession.sharedInstance().outputVolume
-        #elseif os(OSX)
-            systemVolume = 0.0
-        #endif
-        return systemVolume
-    }
-    
-    func startPlayback(fromURL url: URL, withMeta meta: Meta) {
-        delegate?.didUpdateState(with: .startPlayingNewItem(createStartPlayingState(episode: meta.episode, podcast: meta.podcast)))
-        
-        let asset = AVAsset(url: url)
-        let playerItem = AVPlayerItem(asset: asset)
-        player.replaceCurrentItem(with: playerItem)
-    }
-    
-    private func createStartPlayingState(episode: Episode, podcast: PodcastDetails) -> PlayingItem {
-        PlayingItem(
-            episode: episode,
-            podcast: podcast,
-            state: .init(
-                playbackState: .playing,
-                currentTimeInSeconds: 0,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.0,
-                volumeLevel: systemVolume
-            )
-        )
-    }
-}
 
 final class AVPlayerClientTests: XCTestCase {
     
@@ -72,16 +29,33 @@ final class AVPlayerClientTests: XCTestCase {
                 volumeLevel: systemVolume
             )
         )
-        XCTAssertEqual(outputSpy.currentState, .startPlayingNewItem(expectedPlayingItem))
+        XCTAssertEqual(outputSpy.states, [.startPlayingNewItem(expectedPlayingItem)])
+    }
+    
+    func test_playingItem_playerShouldSendPlaybackUpdates() {
+        let episode = makeEpisode()
+        let podcast = makePodcast()
+        let outputSpy = AudioPlayerOutputSpy()
+        let player = AVPlayerClient()
+        player.delegate = outputSpy
+        
+        let playbackURL = makePlaybackURL()
+        player.startPlayback(fromURL: playbackURL, withMeta: (episode, podcast))
+        
+        waitForExpectations(timeout: 5.0) { _ in
+            if outputSpy.states.count <= 1 {
+                XCTFail("Player doesn't send any playback state update")
+            }
+        }
     }
     
     // MARK: - Helper
     
     private class AudioPlayerOutputSpy: AudioPlayerOutputDelegate {
-        var currentState: AudioPlayerModule.PlayerState?
+        var states: [AudioPlayerModule.PlayerState] = []
         
         func didUpdateState(with state: AudioPlayerModule.PlayerState) {
-            self.currentState = state
+            states.append(state)
         }
     }
     

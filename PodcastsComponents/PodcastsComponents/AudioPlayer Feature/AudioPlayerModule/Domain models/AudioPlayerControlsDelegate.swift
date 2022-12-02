@@ -3,7 +3,8 @@
 import Foundation
 
 public protocol AudioPlayerControlsDelegate {
-    func togglePlay()
+    func play()
+    func pause()
     
     // MARK: - Volume change from 0 to 1 percentage format
     func changeVolumeTo(value: Float)

@@ -13,7 +13,7 @@ final class GenresCoordinator {
     private let baseURL: URL
     private let httpClient: HTTPClient
     private let localGenresLoader: LocalGenresLoader
-    private let audioPlayerControlsDelegate: AudioPlayerControlsDelegate
+    private let audioPlayer: AudioPlayer
     private let audioPlayerStatePublisher: AudioPlayerStatePublisher
     
     lazy var podcastsImageDataStore: PodcastsImageDataStore = {
@@ -28,13 +28,13 @@ final class GenresCoordinator {
          baseURL: URL,
          httpClient: HTTPClient,
          localGenresLoader: LocalGenresLoader,
-         audioPlayerControlsDelegate: AudioPlayerControlsDelegate,
+         audioPlayer: AudioPlayer,
          audioPlayerStatePublisher: AudioPlayerStatePublisher) {
         self.navigationController = navigationController
         self.baseURL = baseURL
         self.httpClient = httpClient
         self.localGenresLoader = localGenresLoader
-        self.audioPlayerControlsDelegate = audioPlayerControlsDelegate
+        self.audioPlayer = audioPlayer
         self.audioPlayerStatePublisher = audioPlayerStatePublisher
     }
         
@@ -105,9 +105,11 @@ final class GenresCoordinator {
     }
     
     private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
-        AudioPlayerUIComposer.largePlayerWith(
+        audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
+        
+        return AudioPlayerUIComposer.largePlayerWith(
             statePublisher: audioPlayerStatePublisher,
-            controlsDelegate: audioPlayerControlsDelegate
+            controlsDelegate: audioPlayer
         )
     }
 }

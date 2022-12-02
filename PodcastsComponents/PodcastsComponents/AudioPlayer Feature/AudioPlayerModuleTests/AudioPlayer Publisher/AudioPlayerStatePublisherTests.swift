@@ -193,5 +193,17 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         func receiveNewPlayerState(_ state: PlayerState) {
             delegate?.didUpdateState(with: state)
         }
+        
+        func startPlayback(fromURL url: URL, withMeta meta: AudioPlayerModule.Meta) {}
+        
+        func play() {}
+        
+        func pause() {}
+        
+        func changeVolumeTo(value: Float) {}
+        
+        func seekToProgress(_ progress: Float) {}
+        
+        func seekToSeconds(_ seconds: Int) {}
     }
 }

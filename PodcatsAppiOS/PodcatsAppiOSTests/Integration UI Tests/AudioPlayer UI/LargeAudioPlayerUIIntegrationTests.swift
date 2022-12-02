@@ -54,31 +54,40 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: nil)
-        
+                
         let playingItem1 = PlayingItem(
             episode: makeEpisode(),
             podcast: makePodcast(),
-            state: PlayingItem.State(
-                playbackState: .playing,
-                currentTimeInSeconds: 10,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.1,
-                volumeLevel: 0.5
-            )
+            updates: [
+                .playback(.playing),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: 10,
+                        totalTime: .notDefined,
+                        progressTimePercentage: 0.1
+                    )
+                ),
+                .volumeLevel(0.5)
+            ]
         )
+        
         audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem1))
         assertThat(sut, isRendering: playingItem1)
         
         let playingItem2 = PlayingItem(
             episode: makeEpisode(),
             podcast: makePodcast(title: "Another Podcast Title", publisher: "Another Publisher"),
-            state: PlayingItem.State(
-                playbackState: .playing,
-                currentTimeInSeconds: 10,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.1,
-                volumeLevel: 0.5
-            )
+            updates: [
+                .playback(.playing),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: 10,
+                        totalTime: .notDefined,
+                        progressTimePercentage: 0.1
+                    )
+                ),
+                .volumeLevel(0.5)
+            ]
         )
         audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem2))
         assertThat(sut, isRendering: playingItem2)
@@ -92,13 +101,17 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let playingItem = PlayingItem(
             episode: makeEpisode(),
             podcast: makePodcast(),
-            state: PlayingItem.State(
-                playbackState: .playing,
-                currentTimeInSeconds: 10,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.1,
-                volumeLevel: 0.5
-            )
+            updates: [
+                .playback(.playing),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: 10,
+                        totalTime: .notDefined,
+                        progressTimePercentage: 0.1
+                    )
+                ),
+                .volumeLevel(0.5)
+            ]
         )
         sut1?.audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem))
         
@@ -117,13 +130,17 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let playingItem = PlayingItem(
             episode: makeEpisode(),
             podcast: makePodcast(),
-            state: PlayingItem.State(
-                playbackState: .playing,
-                currentTimeInSeconds: 10,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.1,
-                volumeLevel: 0.5
-            )
+            updates: [
+                .playback(.playing),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: 10,
+                        totalTime: .notDefined,
+                        progressTimePercentage: 0.1
+                    )
+                ),
+                .volumeLevel(0.5)
+            ]
         )
         
         let exp = expectation(description: "Wait for background queue")
@@ -178,10 +195,23 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let viewModel = makePresenter().map(playingItem: playingItem)
         XCTAssertEqual(sut.episodeTitleText(), viewModel.titleLabel, file: file, line: line)
         XCTAssertEqual(sut.episodeDescriptionText(), viewModel.descriptionLabel, file: file, line: line)
-        XCTAssertEqual(sut.leftTimeLabelText(), viewModel.currentTimeLabel, file: file, line: line)
-        XCTAssertEqual(sut.rightTimeLabelText(), viewModel.endTimeLabel, file: file, line: line)
-        XCTAssertEqual(sut.volumeLevel(), viewModel.volumeLevel, file: file, line: line)
-        XCTAssertEqual(sut.playbackProgress(), viewModel.progressTimePercentage, file: file, line: line)
+        XCTAssertEqual(viewModel.updates.count, 3, "Should have 3 state update objects")
+        
+        for update in viewModel.updates {
+            switch update {
+            case let .playback(viewModel):
+                // TODO: Move UIImage to Viewmodel
+                XCTAssertEqual(sut.playButtonImage(), UIImage(systemName: "pause.fill"), file: file, line: line)
+                
+            case let .progress(progressViewModel):
+                XCTAssertEqual(sut.leftTimeLabelText(), progressViewModel.currentTimeLabel, file: file, line: line)
+                XCTAssertEqual(sut.rightTimeLabelText(), progressViewModel.endTimeLabel, file: file, line: line)
+                XCTAssertEqual(sut.playbackProgress(), progressViewModel.progressTimePercentage, file: file, line: line)
+                
+            case let .volumeLevel(level):
+                XCTAssertEqual(sut.volumeLevel(), level, file: file, line: line)
+            }
+        }
     }
     
     private func makePresenter(file: StaticString = #file, line: UInt = #line) -> LargeAudioPlayerPresenter {
@@ -201,6 +231,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     }
     
     private class AudioPlayerControlsSpy: AudioPlayerControlsDelegate {
+        var isPlaying = false
+                
         enum Message: Equatable {
             case tooglePlaybackState
             case volumeChange(Float)
@@ -211,6 +243,10 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         private(set) var messages: [Message] = []
         
         func play() {
+            messages.append(.tooglePlaybackState)
+        }
+        
+        func pause() {
             messages.append(.tooglePlaybackState)
         }
         
@@ -228,11 +264,21 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     }
     
     private class AudioPlayerClientSpy: AudioPlayer {
+        var isPlaying = false
+        
+        func play() {}
+        func pause() {}
+        func changeVolumeTo(value: Float) {}
+        func seekToProgress(_ progress: Float) {}
+        func seekToSeconds(_ seconds: Int) {}
+        
         var delegate: AudioPlayerOutputDelegate?
         
         func sendNewPlayerState(_ state: PlayerState) {
             delegate?.didUpdateState(with: state)
         }
+        
+        func startPlayback(fromURL url: URL, withMeta meta: AudioPlayerModule.Meta) {}
     }
     
     private func makeEpisode() -> Episode {

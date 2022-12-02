@@ -29,6 +29,10 @@ extension LargeAudioPlayerViewController {
         rightTimeLabel.text
     }
     
+    func playButtonImage() -> UIImage? {
+        playButton.image(for: .normal)
+    }
+    
     func simulateUserInitiatedTogglePlaybackEpisode() {
         self.playToggleTap(self)
     }

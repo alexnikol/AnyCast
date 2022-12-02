@@ -2,11 +2,8 @@
 
 import Foundation
 
-extension LargeAudioPlayerViewModel {
-    
-    public struct ProgressViewModel {
-        public let currentTimeLabel: String
-        public let endTimeLabel: String
-        public let progressTimePercentage: Float
-    }
+public struct ProgressViewModel {
+    public let currentTimeLabel: String
+    public let endTimeLabel: String
+    public let progressTimePercentage: Float
 }

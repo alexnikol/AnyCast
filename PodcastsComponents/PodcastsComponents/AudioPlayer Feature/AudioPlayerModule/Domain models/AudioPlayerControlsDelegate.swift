@@ -3,6 +3,7 @@
 import Foundation
 
 public protocol AudioPlayerControlsDelegate {
+    var isPlaying: Bool { get }
     func play()
     func pause()
     

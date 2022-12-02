@@ -56,7 +56,8 @@ public final class LargeAudioPlayerViewController: UIViewController {
     // MARK: - Actions
         
     @IBAction public func playToggleTap(_ sender: Any) {
-        controlsDelegate?.play()
+        guard let controlsDelegate = controlsDelegate else { return }
+        controlsDelegate.isPlaying ? controlsDelegate.pause() : controlsDelegate.play()
     }
     
     @IBAction public func goForewardTap(_ sender: Any) {
@@ -80,10 +81,24 @@ public final class LargeAudioPlayerViewController: UIViewController {
     public func display(viewModel: LargeAudioPlayerViewModel) {
         titleLabel.text = viewModel.titleLabel
         descriptionLabel.text = viewModel.descriptionLabel
-        leftTimeLabel.text = viewModel.currentTimeLabel
-        rightTimeLabel.text = viewModel.endTimeLabel
-        volumeView.value = viewModel.volumeLevel
-        progressView.value = viewModel.progressTimePercentage
+        updateUIWithUpdatesList(viewModel.updates)
+    }
+    
+    private func updateUIWithUpdatesList(_ list: [LargeAudioPlayerViewModel.UpdatesViewModel]) {
+        list.forEach { updateViewModel in
+            switch updateViewModel {
+            case let .playback(state):
+                playButton.setImage(state.image, for: .normal)
+                
+            case let .volumeLevel(volumeLevel):
+                volumeView.value = volumeLevel
+                
+            case let .progress(progressViewModel):
+                progressView.value = progressViewModel.progressTimePercentage
+                leftTimeLabel.text = progressViewModel.currentTimeLabel
+                rightTimeLabel.text = progressViewModel.endTimeLabel
+            }
+        }
     }
 }
 
@@ -145,5 +160,20 @@ private extension LargeAudioPlayerViewController {
         controlsStackView?.alignment = isPortrait ? .fill : .center
         titleLabel?.textAlignment = isPortrait ? .center : .left
         descriptionLabel?.textAlignment = isPortrait ? .center : .left
+    }
+}
+
+// MARK: - PlaybackStateViewModel helpers
+private extension PlaybackStateViewModel {
+    
+    var image: UIImage {
+        switch self {
+        case .playing:
+            return UIImage(systemName: "pause.fill")!
+        case .pause:
+            return UIImage(systemName: "play.fill")!
+        case .loading:
+            return UIImage(systemName: "circle.hexagonpath.fill")!
+        }
     }
 }

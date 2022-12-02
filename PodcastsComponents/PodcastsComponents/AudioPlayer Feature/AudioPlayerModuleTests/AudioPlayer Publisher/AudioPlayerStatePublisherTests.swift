@@ -188,6 +188,7 @@ class AudioPlayerStatePublisherTests: XCTestCase {
     }
     
     private class AudioPlayerSpy: AudioPlayer {
+        var isPlaying = false
         var delegate: AudioPlayerOutputDelegate?
         
         init(delegate: AudioPlayerOutputDelegate?) {

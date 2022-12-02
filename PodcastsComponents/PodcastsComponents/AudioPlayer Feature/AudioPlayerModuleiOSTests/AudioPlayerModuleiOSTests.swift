@@ -44,12 +44,16 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         let plaingItem = PlayingItem(
             episode: makeEpisode(),
             podcast: makePodcast(),
-            state: .init(
-                playbackState: .pause,
-                currentTimeInSeconds: 0,
-                totalTime: .valueInSeconds(123123123),
-                progressTimePercentage: 0,
-                volumeLevel: 0.5)
+            updates: [
+                .playback(.pause),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: 0,
+                        totalTime: .valueInSeconds(123123123),
+                        progressTimePercentage: 0)
+                ),
+                .volumeLevel(0.5)
+            ]
         )
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
@@ -99,10 +103,11 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     }
     
     private class AudioPlayerControlsDelegateNullObject: AudioPlayerControlsDelegate {
+        var isPlaying = false
+        func pause() {}
         func play() {}
         func changeVolumeTo(value: Float) {}
         func seekToProgress(_ progress: Float) {}
-        
         func seekToSeconds(_ seconds: Int) {}
     }
 }

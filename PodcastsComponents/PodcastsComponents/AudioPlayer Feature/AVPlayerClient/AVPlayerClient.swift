@@ -6,6 +6,7 @@ import PodcastsModule
 import AudioPlayerModule
 
 public final class AVPlayerClient: NSObject, AudioPlayer {
+    public var isPlaying: Bool = false
     
     private enum Error: Swift.Error {
         case sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
@@ -170,31 +171,31 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         guard let meta = currentMeta else {
             throw Error.sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
         }
-        
-        let item = PlayingItem(
-            episode: meta.episode,
-            podcast: meta.podcast,
-            state: .init(
-                playbackState: .playing,
-                currentTimeInSeconds: 0,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.0,
-                volumeLevel: systemVolume
-            )
-        )
-        delegate?.didUpdateState(with: .startPlayingNewItem(item))
+//
+//        let item = PlayingItem(
+//            episode: meta.episode,
+//            podcast: meta.podcast,
+//            state: .init(
+//                playbackState: .playing,
+//                currentTimeInSeconds: 0,
+//                totalTime: .notDefined,
+//                progressTimePercentage: 0.0,
+//                volumeLevel: systemVolume
+//            )
+//        )
+//        delegate?.didUpdateState(with: .startPlayingNewItem(item))
     }
     
     private func sendUpdatePlayingState(state: PlayingItem.State) throws {
         guard let meta = currentMeta else {
             throw Error.sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
         }
-        
-        let item = PlayingItem(
-            episode: meta.episode,
-            podcast: meta.podcast,
-            state: state
-        )
-        delegate?.didUpdateState(with: .updatedPlayingItem(item))
+//        
+//        let item = PlayingItem(
+//            episode: meta.episode,
+//            podcast: meta.podcast,
+//            state: state
+//        )
+//        delegate?.didUpdateState(with: .updatedPlayingItem(item))
     }
 }

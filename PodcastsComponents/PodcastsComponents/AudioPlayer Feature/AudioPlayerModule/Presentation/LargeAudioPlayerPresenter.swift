@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
-import PodcastsModule
 
 public protocol AudioPlayerView {
     func display(viewModel: LargeAudioPlayerViewModel)
@@ -34,12 +33,27 @@ public final class LargeAudioPlayerPresenter {
         return LargeAudioPlayerViewModel(
             titleLabel: playingItem.episode.title,
             descriptionLabel: description,
-            currentTimeLabel: mapCurrentTimeLabel(playingItem.state.currentTimeInSeconds),
-            endTimeLabel: mapEndTimeLabel(playingItem.state.totalTime),
-            progressTimePercentage: playingItem.state.progressTimePercentage.roundToDecimal(2),
-            volumeLevel: playingItem.state.volumeLevel,
-            playbackState: PlaybackStateViewModel(playbackState: playingItem.state.playbackState)
+            updates: playingItem.updates.map(map(_:))
         )
+    }
+    
+    private func map(_ stateModel: PlayingItem.State) -> LargeAudioPlayerViewModel.UpdatesViewModel {
+        switch stateModel {
+        case let .playback(state):
+            return .playback(PlaybackStateViewModel(playbackState: state))
+            
+        case let .volumeLevel(model):
+            return .volumeLevel(model)
+            
+        case let .progress(model):
+            return .progress(
+                .init(
+                    currentTimeLabel: mapCurrentTimeLabel(model.currentTimeInSeconds),
+                    endTimeLabel: mapEndTimeLabel(model.totalTime),
+                    progressTimePercentage: model.progressTimePercentage.roundToDecimal(2)
+                )
+            )
+        }
     }
     
     public func didReceivePlayerState(with playingItem: PlayingItem) {

@@ -90,7 +90,7 @@ class AudioPlayerStatePublisherTests: XCTestCase {
             receivedStateObserver2.append(state)
             exp2.fulfill()
         }
-                
+        
         let subscription1 = sut.subscribe(observer: observer1)
         _ = sut.subscribe(observer: observer2)
         
@@ -161,13 +161,17 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         PlayingItem(
             episode: makeUniqueEpisode(),
             podcast: makePodcast(),
-            state: PlayingItem.State(
-                playbackState: .playing,
-                currentTimeInSeconds: 10,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.1,
-                volumeLevel: 0.5
-            )
+            updates: [
+                .playback(.playing),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: 10,
+                        totalTime: .notDefined,
+                        progressTimePercentage: 0.1
+                    )
+                ),
+                .volumeLevel(0.5)
+            ]
         )
     }
     

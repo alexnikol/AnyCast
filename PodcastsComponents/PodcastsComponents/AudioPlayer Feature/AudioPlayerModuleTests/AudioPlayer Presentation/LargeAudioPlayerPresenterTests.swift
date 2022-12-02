@@ -29,9 +29,22 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         
         XCTAssertEqual(viewModel.titleLabel, "Any Episode title")
         XCTAssertEqual(viewModel.descriptionLabel, "Any Podcast Title | Any Publisher Title")
-        XCTAssertEqual(viewModel.volumeLevel, 0.5)
-        XCTAssertEqual(viewModel.progressTimePercentage, 0.12)
-        XCTAssertEqual(viewModel.playbackState, .pause)
+        XCTAssertEqual(viewModel.updates.count, 3, "Should have 3 state update objects")
+        
+        for update in viewModel.updates {
+            switch update {
+            case let .progress(progressViewModel):
+                XCTAssertEqual(progressViewModel.progressTimePercentage, 0.12)
+                XCTAssertEqual(progressViewModel.currentTimeLabel, "0:00")
+                XCTAssertEqual(progressViewModel.endTimeLabel, "...")
+                
+            case let .volumeLevel(volumeViewModel):
+                XCTAssertEqual(volumeViewModel, 0.5)
+                
+            case let .playback(playbackViewModel):
+                XCTAssertEqual(playbackViewModel, .pause)
+            }
+        }
     }
     
     func test_timesViewModelConvertations() {
@@ -110,20 +123,40 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
                 totalTime: model.totalTime
             )
         )
-        XCTAssertEqual(viewModel.currentTimeLabel, expectedTime.currentTime, file: file, line: line)
-        XCTAssertEqual(viewModel.endTimeLabel, expectedTime.totalTime, file: file, line: line)
+        
+        var isProgressUpdateFoundInList = false
+        for update in viewModel.updates {
+            switch update {
+            case let .progress(progressViewModel):
+                isProgressUpdateFoundInList = true
+                XCTAssertEqual(progressViewModel.currentTimeLabel, expectedTime.currentTime, file: file, line: line)
+                XCTAssertEqual(progressViewModel.endTimeLabel, expectedTime.totalTime, file: file, line: line)
+            
+            default: break
+            }
+        }
+        
+        if !isProgressUpdateFoundInList {
+            XCTFail("Update state not found in updates list")
+        }
     }
     
     private func makePlayingItem(playbackState: PlayingItem.PlaybackState, currentTimeInSeconds: Int, totalTime: EpisodeDuration) -> PlayingItem {
-        let playingEpisode = makeUniqueEpisode()
-        let playingState = PlayingItem.State(
-            playbackState: playbackState,
-            currentTimeInSeconds: currentTimeInSeconds,
-            totalTime: totalTime,
-            progressTimePercentage: 0.1234,
-            volumeLevel: 0.5
+        PlayingItem(
+            episode: makeUniqueEpisode(),
+            podcast: makePodcast(),
+            updates: [
+                .playback(playbackState),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: currentTimeInSeconds,
+                        totalTime: totalTime,
+                        progressTimePercentage: 0.1234
+                    )
+                ),
+                .volumeLevel(0.5)
+            ]
         )
-        return PlayingItem(episode: playingEpisode, podcast: makePodcast(), state: playingState)
     }
         
     private class ViewSpy: AudioPlayerView {

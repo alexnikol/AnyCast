@@ -17,6 +17,8 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet public private(set) weak var forwardButton: UIButton!
     @IBOutlet public private(set) weak var backwardButton: UIButton!
     @IBOutlet public private(set) weak var volumeView: UISlider!
+    @IBOutlet private weak var airPlayButton: UIButton!
+    @IBOutlet private weak var speedPlaybackButton: UIButton!
     @IBOutlet weak var leftVolumeIconView: UIImageView!
     @IBOutlet weak var rightVolumeIconView: UIImageView!
     @IBOutlet public private(set) weak var imageMainContainer: UIView!
@@ -78,6 +80,14 @@ public final class LargeAudioPlayerViewController: UIViewController {
         controlsDelegate?.changeVolumeTo(value: sender.value)
     }
     
+    @IBAction public func speedPlaybackDidTap(_ sender: Any) {
+        
+    }
+    
+    @IBAction public func airPlayDidTap(_ sender: Any) {
+
+    }
+    
     // MARK: - Public methods
     
     public func display(viewModel: LargeAudioPlayerViewModel) {
@@ -121,7 +131,6 @@ private extension LargeAudioPlayerViewController {
         configureThumbnailView()
         configureVolumeViews()
         configureActionButtons()
-        configureMPVolumeView()
     }
     
     func configureThumbnailView() {
@@ -136,6 +145,7 @@ private extension LargeAudioPlayerViewController {
     func configureVolumeViews() {
         leftVolumeIconView.image = .init(systemName: "speaker.fill")
         rightVolumeIconView.image = .init(systemName: "speaker.wave.1.fill")
+        configureMPVolumeView()
     }
     
     func configureActionButtons() {
@@ -143,16 +153,20 @@ private extension LargeAudioPlayerViewController {
         playButton.tintColor = UIColor.tintColor
         playButton.setImage(.init(systemName: "play.fill"), for: .normal)
         forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
-        backwardButton.setImage(.init(systemName: "gobackward.15"), for: .normal)
         forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
+        backwardButton.setImage(.init(systemName: "gobackward.15"), for: .normal)
         backwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
+        airPlayButton.setImage(.init(systemName: "airplayaudio.circle"), for: .normal)
+        airPlayButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 24), forImageIn: .normal)
+        speedPlaybackButton.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+        speedPlaybackButton.setTitle("1x", for: .normal)
     }
     
     func configureMPVolumeView() {
         let volumeControl = MPVolumeView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         self.view.addSubview(volumeControl)
         volumeControl.isHidden = true
-        let lst = volumeControl.subviews.filter{NSStringFromClass($0.classForCoder) == "MPVolumeSlider"}
+        let lst = volumeControl.subviews.filter{ NSStringFromClass($0.classForCoder) == "MPVolumeSlider" }
         let slider = lst.first as? UISlider
         hiddenMPVolumeSliderControl = slider
     }

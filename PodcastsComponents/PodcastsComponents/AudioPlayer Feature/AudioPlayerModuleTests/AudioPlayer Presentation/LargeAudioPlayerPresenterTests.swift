@@ -52,14 +52,14 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     func test_speedPlayback_viewModelConvertations() {
         let (sut, _) = makeSUT(fullListOfPlaybackSpeed: [.x0_75, .x2])
         
-        expectSpeedConverations(sut, with: .x2, expectedViewModel: SpeedPlaybackViewModel(items: [
+        expectSpeedConverations(sut, withSelected: .x2, expectedViewModel: SpeedPlaybackViewModel(items: [
             SpeedPlaybackItemViewModel(displayTitle: "0.75x", isSelected: false),
             SpeedPlaybackItemViewModel(displayTitle: "2x", isSelected: true)
         ]))
         
         let (sut2, _) = makeSUT(fullListOfPlaybackSpeed: PlaybackSpeed.allCases)
         
-        expectSpeedConverations(sut2, with: .x1, expectedViewModel: SpeedPlaybackViewModel(items: [
+        expectSpeedConverations(sut2, withSelected: .x1, expectedViewModel: SpeedPlaybackViewModel(items: [
             SpeedPlaybackItemViewModel(displayTitle: "0.75x", isSelected: false),
             SpeedPlaybackItemViewModel(displayTitle: "1x", isSelected: true),
             SpeedPlaybackItemViewModel(displayTitle: "1.25x", isSelected: false),
@@ -165,7 +165,7 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     
     private func expectSpeedConverations(
         _ sut: LargeAudioPlayerPresenter,
-        with model: PlaybackSpeed,
+        withSelected model: PlaybackSpeed,
         expectedViewModel: SpeedPlaybackViewModel,
         file: StaticString = #file,
         line: UInt = #line

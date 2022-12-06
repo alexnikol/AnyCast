@@ -3,6 +3,7 @@
 import UIKit
 import SharedComponentsiOSModule
 import AudioPlayerModule
+import MediaPlayer
 
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
@@ -26,6 +27,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var controlsStackView: UIStackView!
     private var delegate: LargeAudioPlayerViewLifetimeDelegate?
     private var controlsDelegate: AudioPlayerControlsDelegate?
+    private var hiddenMPVolumeSliderControl: UISlider?
     
     // MARK: - Initialization
     
@@ -92,6 +94,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
                 
             case let .volumeLevel(volumeLevel):
                 volumeView.value = volumeLevel
+                hiddenMPVolumeSliderControl?.value = volumeLevel
                 
             case let .progress(progressViewModel):
                 progressView.value = progressViewModel.progressTimePercentage
@@ -118,6 +121,7 @@ private extension LargeAudioPlayerViewController {
         configureThumbnailView()
         configureVolumeViews()
         configureActionButtons()
+        configureMPVolumeView()
     }
     
     func configureThumbnailView() {
@@ -142,6 +146,15 @@ private extension LargeAudioPlayerViewController {
         backwardButton.setImage(.init(systemName: "gobackward.15"), for: .normal)
         forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
         backwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
+    }
+    
+    func configureMPVolumeView() {
+        let volumeControl = MPVolumeView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
+        self.view.addSubview(volumeControl)
+        volumeControl.isHidden = true
+        let lst = volumeControl.subviews.filter{NSStringFromClass($0.classForCoder) == "MPVolumeSlider"}
+        let slider = lst.first as? UISlider
+        hiddenMPVolumeSliderControl = slider
     }
 }
 

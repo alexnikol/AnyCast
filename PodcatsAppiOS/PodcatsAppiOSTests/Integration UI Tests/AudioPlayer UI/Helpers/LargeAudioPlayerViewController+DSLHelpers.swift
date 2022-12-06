@@ -56,4 +56,9 @@ extension LargeAudioPlayerViewController {
     func simulateUserInitiatedSeekBackward() {
         self.goBackwardTap(self)
     }
+    
+    func simulateUserInitiatedSpeedPlaybackChange() {
+        guard let menu = presentedViewController as? UIContextMenuConfiguration else { return }
+        
+    }
 }

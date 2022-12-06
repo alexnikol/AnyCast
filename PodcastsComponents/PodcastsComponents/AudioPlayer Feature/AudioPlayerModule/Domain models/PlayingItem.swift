@@ -43,29 +43,8 @@ public extension PlayingItem {
         case playback(PlaybackState)
         case volumeLevel(Float)
         case progress(Progress)
+        case speed(PlaybackSpeed)
     }
-    
-//    struct State: Equatable {
-//        public let playbackState: PlaybackState
-//        public let currentTimeInSeconds: Int
-//        public let totalTime: EpisodeDuration
-//        public let progressTimePercentage: Float
-//        public let volumeLevel: Float
-//
-//        public init(
-//            playbackState: PlayingItem.PlaybackState,
-//            currentTimeInSeconds: Int,
-//            totalTime: EpisodeDuration,
-//            progressTimePercentage: Float,
-//            volumeLevel: Float
-//        ) {
-//            self.playbackState = playbackState
-//            self.currentTimeInSeconds = currentTimeInSeconds
-//            self.totalTime = totalTime
-//            self.progressTimePercentage = progressTimePercentage
-//            self.volumeLevel = volumeLevel
-//        }
-//    }
 }
 
 public enum EpisodeDuration: Equatable {

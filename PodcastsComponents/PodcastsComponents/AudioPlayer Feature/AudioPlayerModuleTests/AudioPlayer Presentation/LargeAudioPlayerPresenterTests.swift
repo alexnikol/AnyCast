@@ -15,21 +15,21 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     func test_didReceiveNewPlayerState_displaysNewPlayerState() {
         let (sut, view) = makeSUT()
         
-        let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined)
+        let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined, playbackSpeed: .x0_75)
         sut.didReceivePlayerState(with: playingItem)
         
         XCTAssertEqual(view.messages, [.udaptePlayerState])
     }
     
     func test_createsViewModel() {
-        let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined)
+        let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined, playbackSpeed: .x1)
         
         let (sut, _) = makeSUT()
         let viewModel = sut.map(playingItem: playingItem)
         
         XCTAssertEqual(viewModel.titleLabel, "Any Episode title")
         XCTAssertEqual(viewModel.descriptionLabel, "Any Podcast Title | Any Publisher Title")
-        XCTAssertEqual(viewModel.updates.count, 3, "Should have 3 state update objects")
+        XCTAssertEqual(viewModel.updates.count, 4, "Should have 4 state update objects")
         
         for update in viewModel.updates {
             switch update {
@@ -43,54 +43,75 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
                 
             case let .playback(playbackViewModel):
                 XCTAssertEqual(playbackViewModel, .pause)
+                
+            default: break
             }
         }
     }
     
-    func test_timesViewModelConvertations() {
-        expect(
+    func test_speedPlayback_viewModelConvertations() {
+        let (sut, _) = makeSUT(fullListOfPlaybackSpeed: [.x0_75, .x2])
+        
+        expectSpeedConverations(sut, with: .x2, expectedViewModel: SpeedPlaybackViewModel(items: [
+            SpeedPlaybackItemViewModel(displayTitle: "0.75x", isSelected: false),
+            SpeedPlaybackItemViewModel(displayTitle: "2x", isSelected: true)
+        ]))
+        
+        let (sut2, _) = makeSUT(fullListOfPlaybackSpeed: PlaybackSpeed.allCases)
+        
+        expectSpeedConverations(sut2, with: .x1, expectedViewModel: SpeedPlaybackViewModel(items: [
+            SpeedPlaybackItemViewModel(displayTitle: "0.75x", isSelected: false),
+            SpeedPlaybackItemViewModel(displayTitle: "1x", isSelected: true),
+            SpeedPlaybackItemViewModel(displayTitle: "1.25x", isSelected: false),
+            SpeedPlaybackItemViewModel(displayTitle: "1.5x", isSelected: false),
+            SpeedPlaybackItemViewModel(displayTitle: "2x", isSelected: false)
+        ]))
+    }
+    
+    func test_time_viewModelConvertations() {
+        expectTimeConvertations(
             makeSUT().sut,
             with: (currentTimeInSeconds: 0, totalTime: .notDefined),
             expectedTime: (currentTime: "0:00", totalTime: "...")
         )
         
-        expect(
+        expectTimeConvertations(
             makeSUT().sut,
             with: (currentTimeInSeconds: 59, totalTime: .valueInSeconds(60)),
             expectedTime: (currentTime: "0:59", totalTime: "1:00")
         )
         
-        expect(
+        expectTimeConvertations(
             makeSUT().sut,
             with: (currentTimeInSeconds: 60, totalTime: .valueInSeconds(121)),
             expectedTime: (currentTime: "1:00", totalTime: "2:01")
         )
         
-        expect(
+        expectTimeConvertations(
             makeSUT().sut,
             with: (currentTimeInSeconds: 121, totalTime: .valueInSeconds(454545)),
             expectedTime: (currentTime: "2:01", totalTime: "126:15:45")
         )
         
-        expect(
+        expectTimeConvertations(
             makeSUT().sut,
             with: (currentTimeInSeconds: 3599, totalTime: .notDefined),
             expectedTime: (currentTime: "59:59", totalTime: "...")
         )
         
-        expect(
+        expectTimeConvertations(
             makeSUT().sut,
             with: (currentTimeInSeconds: 3600, totalTime: .notDefined),
             expectedTime: (currentTime: "1:00:00", totalTime: "...")
         )
         
-        expect(
+        expectTimeConvertations(
             makeSUT().sut,
             with: (currentTimeInSeconds: 7199, totalTime: .notDefined),
             expectedTime: (currentTime: "1:59:59", totalTime: "...")
         )
         
-        expect(
+        expectTimeConvertations(
             makeSUT().sut,
             with: (currentTimeInSeconds: 7204, totalTime: .notDefined),
             expectedTime: (currentTime: "2:00:04", totalTime: "...")
@@ -99,17 +120,17 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: LargeAudioPlayerPresenter, view: ViewSpy) {
+    private func makeSUT(fullListOfPlaybackSpeed: [PlaybackSpeed] = PlaybackSpeed.allCases) -> (sut: LargeAudioPlayerPresenter, view: ViewSpy) {
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
         let view = ViewSpy()
-        let presenter = LargeAudioPlayerPresenter(resourceView: view, calendar: calendar, locale: locale)
+        let presenter = LargeAudioPlayerPresenter(resourceView: view, calendar: calendar, locale: locale, playbackSpeedList: fullListOfPlaybackSpeed)
         trackForMemoryLeaks(presenter)
         trackForMemoryLeaks(view)
         return (presenter, view)
     }
     
-    private func expect(
+    private func expectTimeConvertations(
         _ sut: LargeAudioPlayerPresenter,
         with model: (currentTimeInSeconds: Int, totalTime: EpisodeDuration),
         expectedTime: (currentTime: String, totalTime: String),
@@ -120,7 +141,8 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
             playingItem: makePlayingItem(
                 playbackState: .pause,
                 currentTimeInSeconds: model.currentTimeInSeconds,
-                totalTime: model.totalTime
+                totalTime: model.totalTime,
+                playbackSpeed: .x0_75
             )
         )
         
@@ -141,7 +163,44 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         }
     }
     
-    private func makePlayingItem(playbackState: PlayingItem.PlaybackState, currentTimeInSeconds: Int, totalTime: EpisodeDuration) -> PlayingItem {
+    private func expectSpeedConverations(
+        _ sut: LargeAudioPlayerPresenter,
+        with model: PlaybackSpeed,
+        expectedViewModel: SpeedPlaybackViewModel,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let viewModel = sut.map(
+            playingItem: makePlayingItem(
+                playbackState: .pause,
+                currentTimeInSeconds: 0,
+                totalTime: .valueInSeconds(3),
+                playbackSpeed: model
+            )
+        )
+        
+        var isUpdateFoundInList = false
+        for update in viewModel.updates {
+            switch update {
+            case let .speed(receivedViewModel):
+                isUpdateFoundInList = true
+                XCTAssertEqual(receivedViewModel, expectedViewModel, file: file, line: line)
+            
+            default: break
+            }
+        }
+        
+        if !isUpdateFoundInList {
+            XCTFail("Update state not found in updates list")
+        }
+    }
+    
+    private func makePlayingItem(
+        playbackState: PlayingItem.PlaybackState,
+        currentTimeInSeconds: Int,
+        totalTime: EpisodeDuration,
+        playbackSpeed: PlaybackSpeed
+    ) -> PlayingItem {
         PlayingItem(
             episode: makeUniqueEpisode(),
             podcast: makePodcast(),
@@ -154,7 +213,8 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
                         progressTimePercentage: 0.1234
                     )
                 ),
-                .volumeLevel(0.5)
+                .volumeLevel(0.5),
+                .speed(playbackSpeed)
             ]
         )
     }

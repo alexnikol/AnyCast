@@ -50,6 +50,11 @@ public final class LargeAudioPlayerViewController: UIViewController {
         updateInitialValuesOnCreate()
         configureViews()
         delegate?.onOpen()
+        
+        //        let favorite = UIAction(title: "Favorite", image: UIImage(systemName: "heart.fill")) {_ in }
+        //        speedPlaybackButton.showsMenuAsPrimaryAction = true
+        //        let menu = UIMenu(title: "sdsd", children: [favorite])
+        //        speedPlaybackButton.menu = menu
     }
     
     public override func viewDidLayoutSubviews() {
@@ -58,7 +63,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     }
     
     // MARK: - Actions
-        
+    
     @IBAction public func playToggleTap(_ sender: Any) {
         guard let controlsDelegate = controlsDelegate else { return }
         controlsDelegate.isPlaying ? controlsDelegate.pause() : controlsDelegate.play()
@@ -80,12 +85,20 @@ public final class LargeAudioPlayerViewController: UIViewController {
         controlsDelegate?.changeVolumeTo(value: sender.value)
     }
     
-    @IBAction public func speedPlaybackDidTap(_ sender: Any) {
-        
-    }
+    @IBAction public func airPlayDidTap(_ sender: Any) {}
     
-    @IBAction public func airPlayDidTap(_ sender: Any) {
-
+    @IBAction public func speedPlaybackDidTap(_ sender: Any) {
+        let alert = UIAlertController(title: "Seed", message: nil, preferredStyle: .alert)
+        let speed = UIAlertAction(title: "sdsd", style: .default, handler: { _ in
+            print("SPEEED")
+        })
+        let speed2 = UIAlertAction(title: "sdsdddd", style: .default, handler: { _ in
+            print("SPEEE2")
+        })
+        
+        alert.addAction(speed)
+        alert.addAction(speed2)
+        present(alert, animated: true)
     }
     
     // MARK: - Public methods

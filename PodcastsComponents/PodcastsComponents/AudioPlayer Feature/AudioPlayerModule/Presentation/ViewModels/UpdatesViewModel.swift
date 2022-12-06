@@ -8,5 +8,6 @@ extension LargeAudioPlayerViewModel {
         case playback(PlaybackStateViewModel)
         case volumeLevel(Float)
         case progress(ProgressViewModel)
+        case speed(SpeedPlaybackViewModel)
     }
 }

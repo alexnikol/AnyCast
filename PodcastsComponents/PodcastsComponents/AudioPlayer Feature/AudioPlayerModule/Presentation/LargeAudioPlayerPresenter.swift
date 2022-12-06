@@ -10,11 +10,13 @@ public final class LargeAudioPlayerPresenter {
     private let calendar: Calendar
     private let locale: Locale
     private let resourceView: AudioPlayerView
+    private let playbackSpeedList: [PlaybackSpeed]
     
-    public init(resourceView: AudioPlayerView, calendar: Calendar = .current, locale: Locale = .current) {
+    public init(resourceView: AudioPlayerView, calendar: Calendar = .current, locale: Locale = .current, playbackSpeedList: [PlaybackSpeed] = PlaybackSpeed.allCases) {
         self.resourceView = resourceView
         self.calendar = calendar
         self.locale = locale
+        self.playbackSpeedList = playbackSpeedList
     }
     
     private lazy var dateFormatter: DateComponentsFormatter = {
@@ -53,6 +55,13 @@ public final class LargeAudioPlayerPresenter {
                     progressTimePercentage: model.progressTimePercentage.roundToDecimal(2)
                 )
             )
+            
+        case let .speed(model):
+            return .speed(SpeedPlaybackViewModel(
+                items: playbackSpeedList.map { speedValue in
+                    SpeedPlaybackItemViewModel(displayTitle: speedValue.displayTitle, isSelected: speedValue == model)
+                })
+            )
         }
     }
     
@@ -86,5 +95,23 @@ private extension Float {
     func roundToDecimal(_ fractionDigits: Int) -> Float {
         let multiplier = pow(10, Float(fractionDigits))
         return Darwin.round(self * multiplier) / multiplier
+    }
+}
+
+private extension PlaybackSpeed {
+    
+    var displayTitle: String {
+        switch self {
+        case .x0_75:
+            return "0.75x"
+        case .x1:
+            return "1x"
+        case .x1_25:
+            return "1.25x"
+        case .x1_5:
+            return "1.5x"
+        case .x2:
+            return "2x"
+        }
     }
 }

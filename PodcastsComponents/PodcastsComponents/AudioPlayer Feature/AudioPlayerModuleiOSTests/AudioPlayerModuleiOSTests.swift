@@ -52,7 +52,8 @@ class AudioPlayerModuleiOSTests: XCTestCase {
                         totalTime: .valueInSeconds(123123123),
                         progressTimePercentage: 0)
                 ),
-                .volumeLevel(0.5)
+                .volumeLevel(0.5),
+                .speed(.x1_25)
             ]
         )
         let calendar = Calendar(identifier: .gregorian)
@@ -95,6 +96,7 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     
     private class NullObject: AudioPlayerView {
         func display(viewModel: LargeAudioPlayerViewModel) {}
+        func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {}
     }
     
     private class LargeAudioPlayerViewDelegateNullObject: LargeAudioPlayerViewDelegate {
@@ -110,6 +112,7 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         func changeVolumeTo(value: Float) {}
         func seekToProgress(_ progress: Float) {}
         func seekToSeconds(_ seconds: Int) {}
+        func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {}
     }
 }
 

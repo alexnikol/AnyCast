@@ -126,9 +126,9 @@ class AudioPlayerStatePublisherTests: XCTestCase {
     private func makeSUT(
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (AudioPlayerStatePublisher, AudioPlayerSpy) {
+    ) -> (AudioPlayerStatePublisher, AudioPlayerDummy) {
         let publisher = AudioPlayerStatePublisher()
-        let audioPlayer = AudioPlayerSpy(delegate: publisher)
+        let audioPlayer = AudioPlayerDummy(delegate: publisher)
         trackForMemoryLeaks(publisher, file: file, line: line)
         return (publisher, audioPlayer)
     }
@@ -187,7 +187,7 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         }
     }
     
-    private class AudioPlayerSpy: AudioPlayer {
+    private class AudioPlayerDummy: AudioPlayer {
         var isPlaying = false
         var delegate: AudioPlayerOutputDelegate?
         
@@ -210,5 +210,7 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         func seekToProgress(_ progress: Float) {}
         
         func seekToSeconds(_ seconds: Int) {}
+        
+        func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {}
     }
 }

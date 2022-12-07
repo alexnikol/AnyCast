@@ -235,7 +235,7 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
             messages.append(.udaptePlayerState)
         }
         
-        func displaySpeedPlaybackSelection(viewModel: AudioPlayerModule.SpeedPlaybackViewModel) {
+        func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {
             messages.append(.displaySpeedSelection)
         }
     }

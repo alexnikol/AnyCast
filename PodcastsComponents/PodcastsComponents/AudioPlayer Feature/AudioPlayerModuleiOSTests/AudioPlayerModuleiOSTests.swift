@@ -97,9 +97,10 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         func display(viewModel: LargeAudioPlayerViewModel) {}
     }
     
-    private class LargeAudioPlayerViewDelegateNullObject: LargeAudioPlayerViewLifetimeDelegate {
+    private class LargeAudioPlayerViewDelegateNullObject: LargeAudioPlayerViewDelegate {
         func onOpen() {}
         func onClose() {}
+        func onSelectSpeedPlayback() {}
     }
     
     private class AudioPlayerControlsDelegateNullObject: AudioPlayerControlsDelegate {

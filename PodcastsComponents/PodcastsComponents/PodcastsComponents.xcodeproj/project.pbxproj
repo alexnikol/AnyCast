@@ -153,7 +153,7 @@
 		8DCA22802931413800DD1EC6 /* LargeAudioPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */; };
 		8DCA22822931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */; };
 		8DCA22842931416700DD1EC6 /* PlaybackStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */; };
-		8DCA22912934CB3A00DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift */; };
+		8DCA22912934CB3A00DD1EC6 /* LargeAudioPlayerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewDelegate.swift */; };
 		8DCA22942934CB7C00DD1EC6 /* AudioPlayerControlsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22922934CB6700DD1EC6 /* AudioPlayerControlsDelegate.swift */; };
 		8DCA229A2934E45E00DD1EC6 /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DCA22982934E45E00DD1EC6 /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png */; };
 		8DCA229B2934E45E00DD1EC6 /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DCA22992934E45E00DD1EC6 /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png */; };
@@ -560,7 +560,7 @@
 		8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerPresenter.swift; sourceTree = "<group>"; };
 		8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewModel.swift; sourceTree = "<group>"; };
 		8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackStateViewModel.swift; sourceTree = "<group>"; };
-		8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewLifetimeDelegate.swift; sourceTree = "<group>"; };
+		8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewDelegate.swift; sourceTree = "<group>"; };
 		8DCA22922934CB6700DD1EC6 /* AudioPlayerControlsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerControlsDelegate.swift; sourceTree = "<group>"; };
 		8DCA22982934E45E00DD1EC6 /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png; sourceTree = "<group>"; };
 		8DCA22992934E45E00DD1EC6 /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png; sourceTree = "<group>"; };
@@ -1267,7 +1267,7 @@
 		8D9B8725292E4952003B52AB /* LargeAudioPlayerViewController */ = {
 			isa = PBXGroup;
 			children = (
-				8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift */,
+				8DCA228F2934CB3500DD1EC6 /* LargeAudioPlayerViewDelegate.swift */,
 				8D9B8721292E4936003B52AB /* LargeAudioPlayerViewController.swift */,
 				8D9B8723292E4949003B52AB /* LargeAudioPlayerViewController.xib */,
 			);
@@ -2847,7 +2847,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DCA22912934CB3A00DD1EC6 /* LargeAudioPlayerViewLifetimeDelegate.swift in Sources */,
+				8DCA22912934CB3A00DD1EC6 /* LargeAudioPlayerViewDelegate.swift in Sources */,
 				8D9B8726292E6737003B52AB /* LargeAudioPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

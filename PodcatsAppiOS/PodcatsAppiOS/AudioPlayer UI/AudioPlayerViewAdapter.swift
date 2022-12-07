@@ -17,4 +17,8 @@ extension AudioPlayerViewAdapter: AudioPlayerView {
     func display(viewModel: LargeAudioPlayerViewModel) {
         controller?.display(viewModel: viewModel)
     }
+    
+    func displaySpeedPlaybackSelection(viewModel: SpeedPlaybackViewModel) {
+        
+    }
 }

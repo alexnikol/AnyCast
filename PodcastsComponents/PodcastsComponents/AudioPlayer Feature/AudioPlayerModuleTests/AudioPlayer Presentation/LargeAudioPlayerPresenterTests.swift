@@ -21,6 +21,14 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         XCTAssertEqual(view.messages, [.udaptePlayerState])
     }
     
+    func test_didReceiveSelectSpeedPlayback_displaysSelectSpeedPlaybackFlow() {
+        let (sut, view) = makeSUT(fullListOfPlaybackSpeed: [.x1, .x1_25])
+        
+        sut.onSelectSpeedPlayback()
+        
+        XCTAssertEqual(view.messages, [.displaySpeedSelection])
+    }
+    
     func test_createsViewModel() {
         let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 0, totalTime: .notDefined, playbackSpeed: .x1)
         
@@ -219,11 +227,16 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
     private class ViewSpy: AudioPlayerView {
         enum Message {
             case udaptePlayerState
+            case displaySpeedSelection
         }
         private(set) var messages: [Message] = []
         
         func display(viewModel: LargeAudioPlayerViewModel) {
             messages.append(.udaptePlayerState)
+        }
+        
+        func displaySpeedPlaybackSelection(viewModel: AudioPlayerModule.SpeedPlaybackViewModel) {
+            messages.append(.displaySpeedSelection)
         }
     }
 }

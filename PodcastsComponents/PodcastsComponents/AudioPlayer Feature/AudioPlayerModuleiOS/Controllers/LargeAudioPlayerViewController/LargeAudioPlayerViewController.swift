@@ -27,13 +27,13 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var thumbnailIHeightCNST: NSLayoutConstraint!
     @IBOutlet weak var rootStackViewTopCNST: NSLayoutConstraint!
     @IBOutlet weak var controlsStackView: UIStackView!
-    private var delegate: LargeAudioPlayerViewLifetimeDelegate?
+    private var delegate: LargeAudioPlayerViewDelegate?
     private var controlsDelegate: AudioPlayerControlsDelegate?
     private var hiddenMPVolumeSliderControl: UISlider?
     
     // MARK: - Initialization
     
-    public convenience init(delegate: LargeAudioPlayerViewLifetimeDelegate, controlsDelegate: AudioPlayerControlsDelegate) {
+    public convenience init(delegate: LargeAudioPlayerViewDelegate, controlsDelegate: AudioPlayerControlsDelegate) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
         self.delegate = delegate
         self.controlsDelegate = controlsDelegate
@@ -50,11 +50,6 @@ public final class LargeAudioPlayerViewController: UIViewController {
         updateInitialValuesOnCreate()
         configureViews()
         delegate?.onOpen()
-        
-        //        let favorite = UIAction(title: "Favorite", image: UIImage(systemName: "heart.fill")) {_ in }
-        //        speedPlaybackButton.showsMenuAsPrimaryAction = true
-        //        let menu = UIMenu(title: "sdsd", children: [favorite])
-        //        speedPlaybackButton.menu = menu
     }
     
     public override func viewDidLayoutSubviews() {
@@ -88,17 +83,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBAction public func airPlayDidTap(_ sender: Any) {}
     
     @IBAction public func speedPlaybackDidTap(_ sender: Any) {
-        let alert = UIAlertController(title: "Seed", message: nil, preferredStyle: .alert)
-        let speed = UIAlertAction(title: "sdsd", style: .default, handler: { _ in
-            print("SPEEED")
-        })
-        let speed2 = UIAlertAction(title: "sdsdddd", style: .default, handler: { _ in
-            print("SPEEE2")
-        })
         
-        alert.addAction(speed)
-        alert.addAction(speed2)
-        present(alert, animated: true)
     }
     
     // MARK: - Public methods

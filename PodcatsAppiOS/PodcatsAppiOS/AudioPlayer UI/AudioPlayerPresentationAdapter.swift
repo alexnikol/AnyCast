@@ -14,7 +14,7 @@ class AudioPlayerPresentationAdapter {
     }
 }
 
-extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewLifetimeDelegate {
+extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewDelegate {
     
     func onOpen() {
         subscription = statePublisher.subscribe(observer: self)
@@ -22,6 +22,10 @@ extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewLifetimeDelegate {
     
     func onClose() {
         subscription?.unsubscribe()
+    }
+    
+    func onSelectSpeedPlayback() {
+        presenter?.onSelectSpeedPlayback()
     }
 }
 

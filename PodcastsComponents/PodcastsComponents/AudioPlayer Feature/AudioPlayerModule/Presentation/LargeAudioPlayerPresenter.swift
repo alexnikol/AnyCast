@@ -4,6 +4,7 @@ import Foundation
 
 public protocol AudioPlayerView {
     func display(viewModel: LargeAudioPlayerViewModel)
+    func displaySpeedPlaybackSelection(viewModel: SpeedPlaybackViewModel)
 }
 
 public final class LargeAudioPlayerPresenter {
@@ -31,7 +32,7 @@ public final class LargeAudioPlayerPresenter {
         return formatter
     }()
     
-    public func speedPlaybackList() -> [PlaybackStateViewModel] {
+    private func speedPlaybackList() -> [PlaybackStateViewModel] {
         return []
     }
     
@@ -90,6 +91,16 @@ public final class LargeAudioPlayerPresenter {
         [.minute, .second]
         let fullTimeString = dateFormatter.string(from: timeInSeconds) ?? ""
         return fullTimeString.hasPrefix("0") ? String(fullTimeString.dropFirst()) : fullTimeString
+    }
+    
+    public func onSelectSpeedPlayback() {
+        resourceView.displaySpeedPlaybackSelection(
+            viewModel: SpeedPlaybackViewModel(
+                items: playbackSpeedList.map { speedItem in
+                    SpeedPlaybackItemViewModel(displayTitle: speedItem.displayTitle, isSelected: speedItem == selectedSpeed)
+                }
+            )
+        )
     }
 }
 

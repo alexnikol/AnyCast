@@ -223,6 +223,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     private func makePresenter(file: StaticString = #file, line: UInt = #line) -> LargeAudioPlayerPresenter {
         class AudioPlayerViewNullObject: AudioPlayerView {
             func display(viewModel: LargeAudioPlayerViewModel) {}
+            func displaySpeedPlaybackSelection(viewModel: AudioPlayerModule.SpeedPlaybackViewModel) {}
         }
         
         let calendar = Calendar(identifier: .gregorian)

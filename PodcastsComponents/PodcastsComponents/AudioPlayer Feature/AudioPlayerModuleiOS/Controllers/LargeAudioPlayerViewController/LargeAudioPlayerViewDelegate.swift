@@ -2,7 +2,8 @@
 
 import Foundation
 
-public protocol LargeAudioPlayerViewLifetimeDelegate {
+public protocol LargeAudioPlayerViewDelegate {
     func onOpen()
     func onClose()
+    func onSelectSpeedPlayback()
 }

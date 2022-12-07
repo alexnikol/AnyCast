@@ -33,6 +33,10 @@ extension LargeAudioPlayerViewController {
         playButton.image(for: .normal)
     }
     
+    func speedPlaybackValue() -> String? {
+        speedPlaybackButton.title(for: .normal)
+    }
+    
     func simulateUserInitiatedTogglePlaybackEpisode() {
         self.playToggleTap(self)
     }

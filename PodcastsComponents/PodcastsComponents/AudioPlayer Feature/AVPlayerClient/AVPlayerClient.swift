@@ -51,6 +51,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     private var lastPlaybackState: PlayingItem.PlaybackState?
     private var lastProgressState: PlayingItem.Progress?
     private var lastVolumeState: Float?
+    private var lastSpeedPlaybackState: PlaybackSpeed?
     
     private var systemVolume: Float {
         var systemVolume: Float
@@ -231,10 +232,12 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             totalTime: .notDefined,
             progressTimePercentage: 0
         )
+        let speedPlayback = PlaybackSpeed.x1
         
         lastPlaybackState = playback
         lastProgressState = progress
         lastVolumeState = volume
+        lastSpeedPlaybackState = speedPlayback
         
         let playingItem = PlayingItem(
             episode: meta.episode,
@@ -242,7 +245,8 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             updates: [
                 .playback(playback),
                 .progress(progress),
-                .volumeLevel(volume)
+                .volumeLevel(volume),
+                .speed(speedPlayback)
             ]
         )
         delegate?.didUpdateState(with: .startPlayingNewItem(playingItem))
@@ -302,6 +306,10 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         
         if let progressState = lastProgressState {
             updates.append(.progress(progressState))
+        }
+        
+        if let speedPlaybackState = lastSpeedPlaybackState {
+            updates.append(.speed(speedPlaybackState))
         }
         return updates
     }

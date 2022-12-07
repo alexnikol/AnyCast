@@ -11,6 +11,7 @@ public final class LargeAudioPlayerPresenter {
     private let locale: Locale
     private let resourceView: AudioPlayerView
     private let playbackSpeedList: [PlaybackSpeed]
+    private var selectedSpeed: PlaybackSpeed?
     
     public init(resourceView: AudioPlayerView, calendar: Calendar = .current, locale: Locale = .current, playbackSpeedList: [PlaybackSpeed] = PlaybackSpeed.allCases) {
         self.resourceView = resourceView
@@ -29,6 +30,10 @@ public final class LargeAudioPlayerPresenter {
         formatter.zeroFormattingBehavior = [.pad]
         return formatter
     }()
+    
+    public func speedPlaybackList() -> [PlaybackStateViewModel] {
+        return []
+    }
     
     public func map(playingItem: PlayingItem) -> LargeAudioPlayerViewModel {
         let description = "\(playingItem.podcast.title) | \(playingItem.podcast.publisher)"
@@ -57,11 +62,8 @@ public final class LargeAudioPlayerPresenter {
             )
             
         case let .speed(model):
-            return .speed(SpeedPlaybackViewModel(
-                items: playbackSpeedList.map { speedValue in
-                    SpeedPlaybackItemViewModel(displayTitle: speedValue.displayTitle, isSelected: speedValue == model)
-                })
-            )
+            selectedSpeed = model
+            return .speed(SpeedPlaybackItemViewModel(displayTitle: model.displayTitle, isSelected: true))
         }
     }
     

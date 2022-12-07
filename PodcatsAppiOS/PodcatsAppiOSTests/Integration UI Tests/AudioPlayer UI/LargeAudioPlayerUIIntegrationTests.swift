@@ -67,7 +67,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
                         progressTimePercentage: 0.1
                     )
                 ),
-                .volumeLevel(0.5)
+                .volumeLevel(0.5),
+                .speed(.x1)
             ]
         )
         
@@ -86,7 +87,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
                         progressTimePercentage: 0.1
                     )
                 ),
-                .volumeLevel(0.5)
+                .volumeLevel(0.5),
+                .speed(.x1)
             ]
         )
         audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem2))
@@ -110,7 +112,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
                         progressTimePercentage: 0.1
                     )
                 ),
-                .volumeLevel(0.5)
+                .volumeLevel(0.5),
+                .speed(.x2)
             ]
         )
         sut1?.audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem))
@@ -139,7 +142,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
                         progressTimePercentage: 0.1
                     )
                 ),
-                .volumeLevel(0.5)
+                .volumeLevel(0.5),
+                .speed(.x0_75)
             ]
         )
         
@@ -195,7 +199,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let viewModel = makePresenter().map(playingItem: playingItem)
         XCTAssertEqual(sut.episodeTitleText(), viewModel.titleLabel, file: file, line: line)
         XCTAssertEqual(sut.episodeDescriptionText(), viewModel.descriptionLabel, file: file, line: line)
-        XCTAssertEqual(viewModel.updates.count, 3, "Should have 3 state update objects")
+        XCTAssertEqual(viewModel.updates.count, 4, "Should have 4 state update objects")
         
         for update in viewModel.updates {
             switch update {
@@ -209,6 +213,9 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
                 
             case let .volumeLevel(level):
                 XCTAssertEqual(sut.volumeLevel(), level, file: file, line: line)
+                
+            case let .speed(speedPlayback):
+                XCTAssertEqual(sut.speedPlaybackValue(), speedPlayback.displayTitle, file: file, line: line)
             }
         }
     }

@@ -17,8 +17,8 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet public private(set) weak var forwardButton: UIButton!
     @IBOutlet public private(set) weak var backwardButton: UIButton!
     @IBOutlet public private(set) weak var volumeView: UISlider!
-    @IBOutlet private weak var airPlayButton: UIButton!
-    @IBOutlet private weak var speedPlaybackButton: UIButton!
+    @IBOutlet public private(set) weak var airPlayButton: UIButton!
+    @IBOutlet public private(set) weak var speedPlaybackButton: UIButton!
     @IBOutlet weak var leftVolumeIconView: UIImageView!
     @IBOutlet weak var rightVolumeIconView: UIImageView!
     @IBOutlet public private(set) weak var imageMainContainer: UIView!
@@ -124,9 +124,8 @@ public final class LargeAudioPlayerViewController: UIViewController {
                 leftTimeLabel.text = progressViewModel.currentTimeLabel
                 rightTimeLabel.text = progressViewModel.endTimeLabel
                 
-            case let .speed(list):
-                let selectedItem = list.items.first(where: { $0.isSelected })
-                speedPlaybackButton.setTitle(selectedItem?.displayTitle, for: .normal)
+            case let .speed(selectedSpeedViewModel):
+                speedPlaybackButton.setTitle(selectedSpeedViewModel.displayTitle, for: .normal)
             }
         }
     }
@@ -176,7 +175,6 @@ private extension LargeAudioPlayerViewController {
         airPlayButton.setImage(.init(systemName: "airplayaudio.circle"), for: .normal)
         airPlayButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 24), forImageIn: .normal)
         speedPlaybackButton.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
-        speedPlaybackButton.setTitle("1x", for: .normal)
     }
     
     func configureMPVolumeView() {

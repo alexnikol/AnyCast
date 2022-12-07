@@ -137,7 +137,6 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     }
     
     public func changeSpeedPlaybackTo(value: PlaybackSpeed) {
-        player.rate = value.rawValue
         updateSpeedPlayback(playbackSpeed: value)
     }
     
@@ -183,7 +182,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             if let reasonForWaitingToPlay = player.reasonForWaitingToPlay, bufferingCases.contains(reasonForWaitingToPlay) {
                 updatePlayback(playback: .loading)
             } else {
-                updatePlayback(playback: isPlaying ? .playing : .pause)
+                startPlaybackIfNeeded()
             }
             print("OKP__reasonForWaitingToPlay: \(player.reasonForWaitingToPlay?.rawValue ?? "NO reason")")
             
@@ -193,7 +192,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             guard newValue != oldValue else {
                 return
             }
-            updatePlayback(playback: isPlaying ? .playing : .pause)
+            startPlaybackIfNeeded()
             
         case .playbackBufferEmpty:
             let newValue = change?[.newKey] as? Bool
@@ -209,7 +208,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             guard newValue != oldValue else {
                 return
             }
-            updatePlayback(playback: isPlaying ? .playing : .pause)
+            startPlaybackIfNeeded()
             
         case .status:
             guard let currentItem = player.currentItem else {
@@ -219,7 +218,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             print("OKP__STATUS___\(currentItem.status)")
             if currentItem.status == .readyToPlay {
                 let assets = currentItem.asset
-                updatePlayback(playback: isPlaying ? .playing : .pause)
+                startPlaybackIfNeeded()
                 print("OKP__isREADYTO_plau__ - \(assets)")
             }
         }
@@ -264,6 +263,15 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     
     private func updatePlayback(playback: PlayingItem.PlaybackState) {
         lastPlaybackState = playback
+        try? sendUpdatePlayingState(states: currentStatesList())
+    }
+    
+    private func startPlaybackIfNeeded() {
+        let currentPlayback: PlayingItem.PlaybackState = isPlaying ? .playing : .pause
+        if let lastSpeedPlaybackState = lastSpeedPlaybackState, currentPlayback == .playing {
+            self.player.rate = lastSpeedPlaybackState.rawValue
+        }
+        lastPlaybackState = currentPlayback
         try? sendUpdatePlayingState(states: currentStatesList())
     }
     

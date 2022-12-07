@@ -15,8 +15,14 @@ public final class AudioPlayerUIComposer {
     ) -> LargeAudioPlayerViewController {
         let presentationAdapter = AudioPlayerPresentationAdapter(statePublisher: statePublisher)
         let controller = LargeAudioPlayerViewController(delegate: presentationAdapter, controlsDelegate: controlsDelegate)
-        let viewAdapter = AudioPlayerViewAdapter(controller: controller)
+        let viewAdapter = AudioPlayerViewAdapter(
+            controller: controller,
+            onSpeedPlaybackChange: { selectedSpeed in
+                controlsDelegate.changeSpeedPlaybackTo(value: selectedSpeed)
+            }
+        )
         let presenter = LargeAudioPlayerPresenter(resourceView: viewAdapter)
+        viewAdapter.presenter = presenter
         presentationAdapter.presenter = presenter
         return controller
     }

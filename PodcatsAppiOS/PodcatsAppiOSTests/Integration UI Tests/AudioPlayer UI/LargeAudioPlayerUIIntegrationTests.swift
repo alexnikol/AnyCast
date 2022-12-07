@@ -105,6 +105,27 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
+//    func test_playbackSpeedSelection_showPlaybackStateSelectionOnCall() {
+//        let (sut, _, controlsSpy) = makeSUT()
+//
+//        let window = UIWindow()
+//        window.rootViewController = sut
+//        window.makeKeyAndVisible()
+//
+//        sut.simulateUserInitiatedShowSpeedPlayback()
+//        RunLoop.current.run(until: Date())
+//
+//        let alert = sut.presentedViewController as? UIAlertController
+//        XCTAssertNotNil(alert, "Should be visible speed selection view")
+//
+//        alert?.tapButtonAtIndex(index: 0)
+//
+//        XCTAssertEqual(controlsSpy.messages, [.speedPlaybackChange(.x1)])
+//
+//        window.rootViewController = nil
+//        RunLoop.current.run(until: Date())
+//    }
+    
     // MARK: - Helpers
     
     private typealias SUT = (sut: LargeAudioPlayerViewController,
@@ -172,6 +193,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     
     private func makePresenter(file: StaticString = #file, line: UInt = #line) -> LargeAudioPlayerPresenter {
         class AudioPlayerViewNullObject: AudioPlayerView {
+            func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {}
             func display(viewModel: LargeAudioPlayerViewModel) {}
             func displaySpeedPlaybackSelection(viewModel: AudioPlayerModule.SpeedPlaybackViewModel) {}
         }

@@ -4,7 +4,7 @@ import Foundation
 
 public protocol AudioPlayerView {
     func display(viewModel: LargeAudioPlayerViewModel)
-    func displaySpeedPlaybackSelection(viewModel: SpeedPlaybackViewModel)
+    func displaySpeedPlaybackSelection(with list: [PlaybackSpeed])
 }
 
 public final class LargeAudioPlayerPresenter {
@@ -20,7 +20,7 @@ public final class LargeAudioPlayerPresenter {
         self.locale = locale
         self.playbackSpeedList = playbackSpeedList
     }
-    
+        
     private lazy var dateFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
@@ -31,11 +31,7 @@ public final class LargeAudioPlayerPresenter {
         formatter.zeroFormattingBehavior = [.pad]
         return formatter
     }()
-    
-    private func speedPlaybackList() -> [PlaybackStateViewModel] {
-        return []
-    }
-    
+        
     public func map(playingItem: PlayingItem) -> LargeAudioPlayerViewModel {
         let description = "\(playingItem.podcast.title) | \(playingItem.podcast.publisher)"
         return LargeAudioPlayerViewModel(
@@ -94,12 +90,13 @@ public final class LargeAudioPlayerPresenter {
     }
     
     public func onSelectSpeedPlayback() {
-        resourceView.displaySpeedPlaybackSelection(
-            viewModel: SpeedPlaybackViewModel(
-                items: playbackSpeedList.map { speedItem in
-                    SpeedPlaybackItemViewModel(displayTitle: speedItem.displayTitle, isSelected: speedItem == selectedSpeed)
-                }
-            )
+        resourceView.displaySpeedPlaybackSelection(with: playbackSpeedList)
+    }
+    
+    public func map(playbackSpeed: PlaybackSpeed) -> SpeedPlaybackItemViewModel {
+        SpeedPlaybackItemViewModel(
+            displayTitle: playbackSpeed.displayTitle,
+            isSelected: playbackSpeed == selectedSpeed
         )
     }
 }

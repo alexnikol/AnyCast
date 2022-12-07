@@ -60,4 +60,8 @@ extension LargeAudioPlayerViewController {
     func simulateUserInitiatedSeekBackward() {
         self.goBackwardTap(self)
     }
+    
+    func simulateUserInitiatedShowSpeedPlayback() {
+        self.speedPlaybackDidTap(self)
+    }
 }

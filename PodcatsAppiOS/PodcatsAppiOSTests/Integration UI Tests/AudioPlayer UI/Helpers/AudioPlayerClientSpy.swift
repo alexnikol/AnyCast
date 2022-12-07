@@ -19,4 +19,5 @@ class AudioPlayerClientSpy: AudioPlayer {
     }
     
     func startPlayback(fromURL url: URL, withMeta meta: AudioPlayerModule.Meta) {}
+    func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {}
 }

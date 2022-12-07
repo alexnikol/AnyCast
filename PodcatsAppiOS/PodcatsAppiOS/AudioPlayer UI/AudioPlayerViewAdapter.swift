@@ -1,14 +1,19 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import Foundation
+import UIKit
 import AudioPlayerModule
+import SharedComponentsiOSModule
 import AudioPlayerModuleiOS
 
 class AudioPlayerViewAdapter {
     private weak var controller: LargeAudioPlayerViewController?
+    private var onSpeedPlaybackChange: ((PlaybackSpeed) -> Void)?
+    weak var presenter: LargeAudioPlayerPresenter?
     
-    init(controller: LargeAudioPlayerViewController) {
+    init(controller: LargeAudioPlayerViewController,
+         onSpeedPlaybackChange: @escaping (PlaybackSpeed) -> Void) {
         self.controller = controller
+        self.onSpeedPlaybackChange = onSpeedPlaybackChange
     }
 }
 
@@ -18,7 +23,25 @@ extension AudioPlayerViewAdapter: AudioPlayerView {
         controller?.display(viewModel: viewModel)
     }
     
-    func displaySpeedPlaybackSelection(viewModel: SpeedPlaybackViewModel) {
+    func displaySpeedPlaybackSelection(with list: [PlaybackSpeed]) {
+        guard let mapper = presenter?.map(playbackSpeed:) else { return }
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.view.tintColor = UIColor.accentColor
+        let selectedColor = UIColor.accentColor
+        let defaultColor = UIColor.label
         
+        list.forEach { model in
+            let viewModel = mapper(model)
+            let action = UIAlertAction(title: viewModel.displayTitle, style: .default, handler: { [weak self] _ in
+                self?.onSpeedPlaybackChange?(model)
+            })
+            let color = viewModel.isSelected ? selectedColor : defaultColor
+            action.setValue(color, forKey: "titleTextColor")
+            alert.addAction(action)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        cancelAction.setValue(defaultColor, forKey: "titleTextColor")
+        alert.addAction(cancelAction)
+        self.controller?.present(alert, animated: true)
     }
 }

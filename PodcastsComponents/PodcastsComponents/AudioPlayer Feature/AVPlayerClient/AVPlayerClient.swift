@@ -6,7 +6,7 @@ import PodcastsModule
 import AudioPlayerModule
 
 public final class AVPlayerClient: NSObject, AudioPlayer {
-    
+
     private enum Error: Swift.Error {
         case sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
     }
@@ -134,6 +134,11 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     
     public func changeVolumeTo(value: Float) {
         updateVolume(volume: value)
+    }
+    
+    public func changeSpeedPlaybackTo(value: PlaybackSpeed) {
+        player.rate = value.rawValue
+        updateSpeedPlayback(playbackSpeed: value)
     }
     
     public func seekToProgress(_ progress: Float) {
@@ -264,6 +269,11 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     
     private func updateVolume(volume: Float) {
         lastVolumeState = volume
+        try? sendUpdatePlayingState(states: currentStatesList())
+    }
+    
+    private func updateSpeedPlayback(playbackSpeed: PlaybackSpeed) {
+        lastSpeedPlaybackState = playbackSpeed
         try? sendUpdatePlayingState(states: currentStatesList())
     }
     

@@ -17,4 +17,6 @@ public protocol AudioPlayerControlsDelegate {
     /// Use negative seconds value for backward seeking
     /// Use positive seconds value for foreward seeking
     func seekToSeconds(_ seconds: Int)
+    
+    func changeSpeedPlaybackTo(value: PlaybackSpeed)
 }

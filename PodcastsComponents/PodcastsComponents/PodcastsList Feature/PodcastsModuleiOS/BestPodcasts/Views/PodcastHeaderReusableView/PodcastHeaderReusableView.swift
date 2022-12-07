@@ -21,7 +21,7 @@ public final class PodcastHeaderReusableView: UITableViewHeaderFooterView, Reusa
         mainContainer.layer.cornerRadius = 4.0
         imageInnerContainer.layer.cornerRadius = 4.0
         imageMainContainer.layer.cornerRadius = 4.0
-        imageMainContainer.layer.shadowColor = UIColor.tintColor.cgColor
+        imageMainContainer.layer.shadowColor = UIColor.accentColor.cgColor
         imageMainContainer.layer.shadowOpacity = 0.5
         imageMainContainer.layer.shadowOffset = .zero
         imageMainContainer.layer.shadowRadius = 10.0

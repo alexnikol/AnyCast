@@ -11,6 +11,7 @@ class AudioPlayerControlsSpy: AudioPlayerControlsDelegate {
         case volumeChange(Float)
         case seekToProgress(Float)
         case seekToSeconds(Int)
+        case speedPlaybackChange(PlaybackSpeed)
     }
     
     private(set) var messages: [Message] = []
@@ -33,5 +34,9 @@ class AudioPlayerControlsSpy: AudioPlayerControlsDelegate {
     
     func seekToSeconds(_ seconds: Int) {
         messages.append(.seekToSeconds(seconds))
+    }
+    
+    func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {
+        messages.append(.speedPlaybackChange(value))
     }
 }

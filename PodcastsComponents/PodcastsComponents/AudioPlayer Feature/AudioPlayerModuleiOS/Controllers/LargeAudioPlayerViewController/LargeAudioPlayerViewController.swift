@@ -83,7 +83,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBAction public func airPlayDidTap(_ sender: Any) {}
     
     @IBAction public func speedPlaybackDidTap(_ sender: Any) {
-        
+        delegate?.onSelectSpeedPlayback()
     }
     
     // MARK: - Public methods
@@ -137,7 +137,7 @@ private extension LargeAudioPlayerViewController {
     func configureThumbnailView() {
         imageInnerContainer.layer.cornerRadius = 4.0
         imageMainContainer.layer.cornerRadius = 4.0
-        imageMainContainer.layer.shadowColor = UIColor.tintColor.cgColor
+        imageMainContainer.layer.shadowColor = UIColor.accentColor.cgColor
         imageMainContainer.layer.shadowOpacity = 0.5
         imageMainContainer.layer.shadowOffset = .zero
         imageMainContainer.layer.shadowRadius = 10.0
@@ -151,7 +151,7 @@ private extension LargeAudioPlayerViewController {
     
     func configureActionButtons() {
         playButton.layer.cornerRadius = 4.0
-        playButton.tintColor = UIColor.tintColor
+        playButton.tintColor = UIColor.accentColor
         playButton.setImage(.init(systemName: "play.fill"), for: .normal)
         forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
         forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)

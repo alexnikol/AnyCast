@@ -110,6 +110,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
                 rightTimeLabel.text = progressViewModel.endTimeLabel
                 
             case let .speed(selectedSpeedViewModel):
+                speedPlaybackButton.titleLabel?.text = selectedSpeedViewModel.displayTitle
                 speedPlaybackButton.setTitle(selectedSpeedViewModel.displayTitle, for: .normal)
             }
         }

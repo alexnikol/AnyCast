@@ -275,7 +275,7 @@
                                                                     <rect key="frame" x="0.0" y="229.66666666666663" width="358" height="40"/>
                                                                     <subviews>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="v5g-1I-L2X">
-                                                                            <rect key="frame" x="131" y="0.0" width="96" height="40"/>
+                                                                            <rect key="frame" x="121" y="0.0" width="116" height="40"/>
                                                                             <subviews>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-dU-xGl">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -291,9 +291,9 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SPu-vL-aHe">
-                                                                                    <rect key="frame" x="56" y="0.0" width="40" height="40"/>
+                                                                                    <rect key="frame" x="56" y="0.0" width="60" height="40"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="40" id="bHj-xJ-qgq"/>
+                                                                                        <constraint firstAttribute="width" constant="60" id="bHj-xJ-qgq"/>
                                                                                     </constraints>
                                                                                     <color key="tintColor" systemColor="secondaryLabelColor"/>
                                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>

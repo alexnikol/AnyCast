@@ -55,42 +55,21 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: nil)
                 
-        let playingItem1 = PlayingItem(
-            episode: makeEpisode(),
-            podcast: makePodcast(),
-            updates: [
-                .playback(.playing),
-                .progress(
-                    .init(
-                        currentTimeInSeconds: 10,
-                        totalTime: .notDefined,
-                        progressTimePercentage: 0.1
-                    )
-                ),
-                .volumeLevel(0.5),
-                .speed(.x1)
-            ]
-        )
+        let playingItem1 = makePlayingItem()
         
         audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem1))
         assertThat(sut, isRendering: playingItem1)
         
-        let playingItem2 = PlayingItem(
-            episode: makeEpisode(),
-            podcast: makePodcast(title: "Another Podcast Title", publisher: "Another Publisher"),
-            updates: [
-                .playback(.playing),
-                .progress(
-                    .init(
-                        currentTimeInSeconds: 10,
-                        totalTime: .notDefined,
-                        progressTimePercentage: 0.1
-                    )
-                ),
-                .volumeLevel(0.5),
-                .speed(.x1)
-            ]
+        let playingItem2 = makePlayingItem(
+            title: "Another Podcast Title",
+            publisher: "Another Publisher",
+            currentTimeInSeconds: 10,
+            totalTime: .valueInSeconds(200),
+            progressTimePercentage: 0.4,
+            volumeLevel: 0.6,
+            speedPlayback: .x2
         )
+        
         audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem2))
         assertThat(sut, isRendering: playingItem2)
     }
@@ -100,22 +79,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         var sut1: SUT? = makeSUT(statePublisher: sharedPublisher)
         sut1?.sut.loadViewIfNeeded()
         
-        let playingItem = PlayingItem(
-            episode: makeEpisode(),
-            podcast: makePodcast(),
-            updates: [
-                .playback(.playing),
-                .progress(
-                    .init(
-                        currentTimeInSeconds: 10,
-                        totalTime: .notDefined,
-                        progressTimePercentage: 0.1
-                    )
-                ),
-                .volumeLevel(0.5),
-                .speed(.x2)
-            ]
-        )
+        let playingItem = makePlayingItem()
+        
         sut1?.audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem))
         
         sut1 = nil
@@ -130,22 +95,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let (sut, audioPlayerSpy, _) = makeSUT()
         sut.loadViewIfNeeded()
         
-        let playingItem = PlayingItem(
-            episode: makeEpisode(),
-            podcast: makePodcast(),
-            updates: [
-                .playback(.playing),
-                .progress(
-                    .init(
-                        currentTimeInSeconds: 10,
-                        totalTime: .notDefined,
-                        progressTimePercentage: 0.1
-                    )
-                ),
-                .volumeLevel(0.5),
-                .speed(.x0_75)
-            ]
-        )
+        let playingItem = makePlayingItem()
         
         let exp = expectation(description: "Wait for background queue")
         DispatchQueue.global().async {
@@ -261,6 +211,34 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
             episodes: [],
             description: "Any description",
             totalEpisodes: 100
+        )
+    }
+    
+    private func makePlayingItem(
+        title: String = "Any Podcast Title",
+        publisher: String = "Any Publisher Title",
+        currentTimeInSeconds: Int = 10,
+        totalTime: EpisodeDuration = .notDefined,
+        playback: PlayingItem.PlaybackState = .playing,
+        progressTimePercentage: Float = 0.1,
+        volumeLevel: Float = 0.5,
+        speedPlayback: PlaybackSpeed = .x0_75
+    ) -> PlayingItem {
+        PlayingItem(
+            episode: makeEpisode(),
+            podcast: makePodcast(title: title, publisher: publisher),
+            updates: [
+                .playback(playback),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: currentTimeInSeconds,
+                        totalTime: totalTime,
+                        progressTimePercentage: progressTimePercentage
+                    )
+                ),
+                .volumeLevel(volumeLevel),
+                .speed(speedPlayback)
+            ]
         )
     }
 }

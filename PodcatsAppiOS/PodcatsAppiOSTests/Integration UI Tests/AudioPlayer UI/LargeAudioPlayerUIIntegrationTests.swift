@@ -236,58 +236,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(presenter, file: file, line: line)
         return presenter
     }
-    
-    private class AudioPlayerControlsSpy: AudioPlayerControlsDelegate {
-        var isPlaying = false
-                
-        enum Message: Equatable {
-            case tooglePlaybackState
-            case volumeChange(Float)
-            case seekToProgress(Float)
-            case seekToSeconds(Int)
-        }
         
-        private(set) var messages: [Message] = []
-        
-        func play() {
-            messages.append(.tooglePlaybackState)
-        }
-        
-        func pause() {
-            messages.append(.tooglePlaybackState)
-        }
-        
-        func changeVolumeTo(value: Float) {
-            messages.append(.volumeChange(value))
-        }
-        
-        func seekToProgress(_ progress: Float) {
-            messages.append(.seekToProgress(progress))
-        }
-        
-        func seekToSeconds(_ seconds: Int) {
-            messages.append(.seekToSeconds(seconds))
-        }
-    }
-    
-    private class AudioPlayerClientSpy: AudioPlayer {
-        var isPlaying = false
-        
-        func play() {}
-        func pause() {}
-        func changeVolumeTo(value: Float) {}
-        func seekToProgress(_ progress: Float) {}
-        func seekToSeconds(_ seconds: Int) {}
-        
-        var delegate: AudioPlayerOutputDelegate?
-        
-        func sendNewPlayerState(_ state: PlayerState) {
-            delegate?.didUpdateState(with: state)
-        }
-        
-        func startPlayback(fromURL url: URL, withMeta meta: AudioPlayerModule.Meta) {}
-    }
-    
     private func makeEpisode() -> Episode {
         Episode(
             id: UUID().uuidString,

@@ -123,6 +123,10 @@ public final class LargeAudioPlayerViewController: UIViewController {
                 progressView.value = progressViewModel.progressTimePercentage
                 leftTimeLabel.text = progressViewModel.currentTimeLabel
                 rightTimeLabel.text = progressViewModel.endTimeLabel
+                
+            case let .speed(list):
+                let selectedItem = list.items.first(where: { $0.isSelected })
+                speedPlaybackButton.setTitle(selectedItem?.displayTitle, for: .normal)
             }
         }
     }

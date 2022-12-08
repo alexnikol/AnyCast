@@ -228,6 +228,7 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         enum Message {
             case udaptePlayerState
             case displaySpeedSelection
+            case prepareForSeek
         }
         private(set) var messages: [Message] = []
         
@@ -237,6 +238,10 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         
         func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {
             messages.append(.displaySpeedSelection)
+        }
+        
+        func diplayFuturePrepareForSeekProgress(with progress: ProgressViewModel) {
+            messages.append(.prepareForSeek)
         }
     }
 }

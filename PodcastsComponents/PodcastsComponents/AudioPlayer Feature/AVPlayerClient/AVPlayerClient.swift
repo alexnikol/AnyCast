@@ -132,6 +132,11 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         player.pause()
     }
     
+    public func prepareForSeek(_ progress: Float) {
+        guard let progress = calculateFutureProgressMetaByNeededProgress(progress) else { return }
+        delegate?.prepareForProgressAfterSeekApply(futureProgress: progress)
+    }
+    
     public func changeVolumeTo(value: Float) {
         updateVolume(volume: value)
     }
@@ -145,8 +150,8 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             return
         }
         let newTime = Float64(Float(CMTimeGetSeconds(duration)) * progress)
-        
         if newTime > 0 && newTime < (CMTimeGetSeconds(duration)) {
+            print("UPDATE__PROGRESS___\(progress)")
             let newTime: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
             player.seek(to: newTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
         }
@@ -192,6 +197,8 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             guard newValue != oldValue else {
                 return
             }
+            print("OKP__playbackLikelyToKeepUp")
+            updateDurationIfNeeded()
             startPlaybackIfNeeded()
             
         case .playbackBufferEmpty:
@@ -257,6 +264,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     }
     
     private func updateProgress(progress: PlayingItem.Progress) {
+        print("UPDATE__PROGRESS \(progress.progressTimePercentage)")
         lastProgressState = progress
         try? sendUpdatePlayingState(states: currentStatesList())
     }
@@ -273,6 +281,55 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         }
         lastPlaybackState = currentPlayback
         try? sendUpdatePlayingState(states: currentStatesList())
+    }
+    
+    private func gatherCurrentProgress() -> PlayingItem.Progress? {
+        guard !isPlaying, let lastProgressState = lastProgressState else { return nil }
+        guard lastProgressState.totalTime == .notDefined else { return nil }
+        guard let currentItem = player.currentItem else { return nil }
+        
+        let currentTime = Float(CMTimeGetSeconds(player.currentTime()))
+        let totalTime = Float(CMTimeGetSeconds(currentItem.duration))
+        
+        var currentTimeValue = 0
+        var totalTimeValue: EpisodeDuration = .notDefined
+        var progressPercentage: Float = 0.0
+        if !currentTime.isNaN, currentTime >= 0, !totalTime.isNaN {
+            progressPercentage = currentTime / totalTime
+            let totalTimeInSeconds = Int(totalTime)
+            totalTimeValue = .valueInSeconds(totalTimeInSeconds)
+            currentTimeValue = Int(currentTime)
+        }
+        
+        let progress = PlayingItem.Progress(
+            currentTimeInSeconds: currentTimeValue,
+            totalTime: totalTimeValue,
+            progressTimePercentage: progressPercentage
+        )
+        return progress
+    }
+    
+    private func calculateFutureProgressMetaByNeededProgress(_ progress: Float) -> PlayingItem.Progress? {
+        guard let lastProgressState = lastProgressState else { return nil }
+        
+        switch lastProgressState.totalTime {
+        case let .valueInSeconds(seconds):
+            let calculatedCurrentTime = Int(Float(seconds) * progress)
+            let progress = PlayingItem.Progress(
+                currentTimeInSeconds: calculatedCurrentTime,
+                totalTime: lastProgressState.totalTime,
+                progressTimePercentage: progress
+            )
+            return progress
+            
+        case .notDefined:
+            return nil
+        }
+    }
+    
+    private func updateDurationIfNeeded() {
+        guard let progress = gatherCurrentProgress() else { return }
+        self.updateProgress(progress: progress)
     }
     
     private func updateVolume(volume: Float) {

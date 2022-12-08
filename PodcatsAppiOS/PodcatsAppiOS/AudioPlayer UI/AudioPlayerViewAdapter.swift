@@ -18,9 +18,13 @@ class AudioPlayerViewAdapter {
 }
 
 extension AudioPlayerViewAdapter: AudioPlayerView {
-    
+
     func display(viewModel: LargeAudioPlayerViewModel) {
         controller?.display(viewModel: viewModel)
+    }
+    
+    func diplayFuturePrepareForSeekProgress(with progress: ProgressViewModel) {
+        controller?.displayProgressOnPrepareForSeek(viewModel: progress)
     }
     
     func displaySpeedPlaybackSelection(with list: [PlaybackSpeed]) {

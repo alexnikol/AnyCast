@@ -103,7 +103,6 @@
                                                     <subviews>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pqe-B9-Xey">
                                                             <rect key="frame" x="-2" y="0.0" width="362" height="32"/>
-                                                            <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="31" id="gff-ra-dt3"/>
                                                             </constraints>
@@ -111,7 +110,10 @@
                                                             <color key="maximumTrackTintColor" systemColor="secondarySystemFillColor"/>
                                                             <color key="thumbTintColor" systemColor="systemGrayColor"/>
                                                             <connections>
-                                                                <action selector="seekDidChange:" destination="-1" eventType="valueChanged" id="RIN-l8-dwe"/>
+                                                                <action selector="progressSliderTouchDown:" destination="-1" eventType="touchDown" id="Wmu-L6-JnO"/>
+                                                                <action selector="progressSliderTouchUpInside:" destination="-1" eventType="touchUpInside" id="BE9-fs-gDn"/>
+                                                                <action selector="progressSliderTouchUpOutside:" destination="-1" eventType="touchUpOutside" id="AaX-8c-vuR"/>
+                                                                <action selector="seekDidChange:" destination="-1" eventType="valueChanged" id="8T2-GC-u1i"/>
                                                             </connections>
                                                         </slider>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="U6k-vv-Y5x">
@@ -368,9 +370,6 @@
         </systemColor>
         <systemColor name="secondarySystemFillColor">
             <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -185,6 +185,8 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         func receive(_ playerState: PlayerState) {
             onReceiveUpdates(playerState)
         }
+        
+        func prepareForSeek(_ progress: AudioPlayerModule.PlayingItem.Progress) {}
     }
     
     private class AudioPlayerDummy: AudioPlayer {
@@ -212,5 +214,7 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         func seekToSeconds(_ seconds: Int) {}
         
         func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {}
+        
+        func prepareForSeek(_ progress: Float) {}
     }
 }

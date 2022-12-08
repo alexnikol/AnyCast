@@ -4,4 +4,5 @@ import Foundation
 
 public protocol AudioPlayerObserver {
     func receive(_ playerState: PlayerState)
+    func prepareForSeek(_ progress: PlayingItem.Progress)
 }

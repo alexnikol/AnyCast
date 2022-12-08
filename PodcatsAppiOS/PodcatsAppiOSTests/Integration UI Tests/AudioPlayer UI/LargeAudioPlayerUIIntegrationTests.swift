@@ -38,8 +38,8 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let (sut, _, controlsSpy) = makeSUT()
         sut.loadViewIfNeeded()
         
-        sut.simulateUserInitiatedSeekToProgess(to: 0.0)
-        sut.simulateUserInitiatedSeekToProgess(to: 0.6)
+        sut.simulateUserInitiatedSeekToProgessFirstWay(to: 0.0)
+        sut.simulateUserInitiatedSeekToProgessSecondWay(to: 0.6)
         sut.simulateUserInitiatedSeekBackward()
         sut.simulateUserInitiatedSeekForeward()
         
@@ -129,7 +129,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     // MARK: - Helpers
     
     private typealias SUT = (sut: LargeAudioPlayerViewController,
-                             audioPlayerSpy: AudioPlayerClientSpy,
+                             audioPlayerSpy: AudioPlayerClientDummy,
                              controlsDelegate: AudioPlayerControlsSpy)
     
     private func makeSUT(
@@ -138,7 +138,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         line: UInt = #line
     ) -> SUT {
         let controlsSpy = AudioPlayerControlsSpy()
-        let audioPlayer = AudioPlayerClientSpy()
+        let audioPlayer = AudioPlayerClientDummy()
         let sut = AudioPlayerUIComposer.largePlayerWith(
             statePublisher: statePublisher,
             controlsDelegate: controlsSpy
@@ -193,6 +193,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     
     private func makePresenter(file: StaticString = #file, line: UInt = #line) -> LargeAudioPlayerPresenter {
         class AudioPlayerViewNullObject: AudioPlayerView {
+            func diplayFuturePrepareForSeekProgress(with progress: AudioPlayerModule.ProgressViewModel) {}
             func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {}
             func display(viewModel: LargeAudioPlayerViewModel) {}
             func displaySpeedPlaybackSelection(viewModel: AudioPlayerModule.SpeedPlaybackViewModel) {}

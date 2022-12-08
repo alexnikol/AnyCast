@@ -32,6 +32,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     private var controlsDelegate: AudioPlayerControlsDelegate?
     private var hiddenMPVolumeSliderControl: UISlider?
     private var hiddenRoutePickerButton: UIButton?
+    private var isProgressViewEditing = false
     
     // MARK: - Initialization
     
@@ -74,8 +75,22 @@ public final class LargeAudioPlayerViewController: UIViewController {
         controlsDelegate?.seekToSeconds(-15)
     }
     
-    @IBAction public func seekDidChange(_ sender: UISlider) {
+    @IBAction public func progressSliderDidChange(_ sender: UISlider) {
+        controlsDelegate?.prepareForSeek(sender.value)
+    }
+    
+    @IBAction public func progressSliderTouchUpInside(_ sender: UISlider) {
+        updateUIWithProgressEditMode(isEditing: false)
         controlsDelegate?.seekToProgress(sender.value)
+    }
+
+    @IBAction public func progressSliderTouchUpOutside(_ sender: UISlider) {
+        updateUIWithProgressEditMode(isEditing: false)
+        controlsDelegate?.seekToProgress(sender.value)
+    }
+    
+    @IBAction public func progressSliderTouchDown(_ sender: UISlider) {
+        updateUIWithProgressEditMode(isEditing: true)
     }
     
     @IBAction public func volumeDidChange(_ sender: UISlider) {
@@ -98,6 +113,11 @@ public final class LargeAudioPlayerViewController: UIViewController {
         updateUIWithUpdatesList(viewModel.updates)
     }
     
+    public func displayProgressOnPrepareForSeek(viewModel: ProgressViewModel) {
+        guard isProgressViewEditing else { return }
+        leftTimeLabel.text = viewModel.currentTimeLabel
+    }
+    
     private func updateUIWithUpdatesList(_ list: [LargeAudioPlayerViewModel.UpdatesViewModel]) {
         list.forEach { updateViewModel in
             switch updateViewModel {
@@ -109,8 +129,10 @@ public final class LargeAudioPlayerViewController: UIViewController {
                 hiddenMPVolumeSliderControl?.value = volumeLevel
                 
             case let .progress(progressViewModel):
-                progressView.value = progressViewModel.progressTimePercentage
-                leftTimeLabel.text = progressViewModel.currentTimeLabel
+                if !isProgressViewEditing {
+                    progressView.value = progressViewModel.progressTimePercentage
+                    leftTimeLabel.text = progressViewModel.currentTimeLabel
+                }
                 rightTimeLabel.text = progressViewModel.endTimeLabel
                 
             case let .speed(selectedSpeedViewModel):
@@ -118,6 +140,12 @@ public final class LargeAudioPlayerViewController: UIViewController {
                 speedPlaybackButton.setTitle(selectedSpeedViewModel.displayTitle, for: .normal)
             }
         }
+    }
+    
+    private func updateUIWithProgressEditMode(isEditing: Bool) {
+        isProgressViewEditing = isEditing
+        progressView.minimumTrackTintColor = isEditing ? .accentColor : .systemGray
+        leftTimeLabel.textColor = isEditing ? .accentColor : .secondaryLabel
     }
 }
 

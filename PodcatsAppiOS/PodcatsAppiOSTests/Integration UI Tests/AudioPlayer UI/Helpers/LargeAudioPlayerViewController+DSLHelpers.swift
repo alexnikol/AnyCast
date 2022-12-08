@@ -47,10 +47,16 @@ extension LargeAudioPlayerViewController {
         self.volumeDidChange(slider)
     }
     
-    func simulateUserInitiatedSeekToProgess(to value: Float) {
+    func simulateUserInitiatedSeekToProgessFirstWay(to value: Float) {
         let slider = UISlider()
         slider.value = value
-        self.seekDidChange(slider)
+        self.progressSliderTouchUpInside(slider)
+    }
+    
+    func simulateUserInitiatedSeekToProgessSecondWay(to value: Float) {
+        let slider = UISlider()
+        slider.value = value
+        self.progressSliderTouchUpOutside(slider)
     }
     
     func simulateUserInitiatedSeekForeward() {

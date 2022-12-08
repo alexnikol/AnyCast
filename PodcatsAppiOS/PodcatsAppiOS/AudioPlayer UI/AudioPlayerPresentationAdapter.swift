@@ -30,7 +30,7 @@ extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewDelegate {
 }
 
 extension AudioPlayerPresentationAdapter: AudioPlayerObserver {
-    
+
     func receive(_ playerState: PlayerState) {
         switch playerState {
         case .noPlayingItem:
@@ -45,6 +45,12 @@ extension AudioPlayerPresentationAdapter: AudioPlayerObserver {
             DispatchQueue.immediateWhenOnMainQueueScheduler.schedule { [weak self] in
                 self?.presenter?.didReceivePlayerState(with: playingItem)
             }
+        }
+    }
+    
+    func prepareForSeek(_ progress: AudioPlayerModule.PlayingItem.Progress) {
+        DispatchQueue.immediateWhenOnMainQueueScheduler.schedule { [weak self] in
+            self?.presenter?.didReceiveFutureProgressAfterSeek(with: progress)
         }
     }
 }

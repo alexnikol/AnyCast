@@ -5,6 +5,7 @@ import Foundation
 public protocol AudioPlayerView {
     func display(viewModel: LargeAudioPlayerViewModel)
     func displaySpeedPlaybackSelection(with list: [PlaybackSpeed])
+    func diplayFuturePrepareForSeekProgress(with progress: ProgressViewModel)
 }
 
 public final class LargeAudioPlayerPresenter {
@@ -50,13 +51,7 @@ public final class LargeAudioPlayerPresenter {
             return .volumeLevel(model)
             
         case let .progress(model):
-            return .progress(
-                .init(
-                    currentTimeLabel: mapCurrentTimeLabel(model.currentTimeInSeconds),
-                    endTimeLabel: mapEndTimeLabel(model.totalTime),
-                    progressTimePercentage: model.progressTimePercentage.roundToDecimal(2)
-                )
-            )
+            return .progress(mapProgress(model: model))
             
         case let .speed(model):
             selectedSpeed = model
@@ -64,8 +59,20 @@ public final class LargeAudioPlayerPresenter {
         }
     }
     
+    private func mapProgress(model: PlayingItem.Progress) -> ProgressViewModel {
+        .init(
+            currentTimeLabel: mapCurrentTimeLabel(model.currentTimeInSeconds),
+            endTimeLabel: mapEndTimeLabel(model.totalTime),
+            progressTimePercentage: model.progressTimePercentage.roundToDecimal(2)
+        )
+    }
+    
     public func didReceivePlayerState(with playingItem: PlayingItem) {
         resourceView.display(viewModel: map(playingItem: playingItem))
+    }
+    
+    public func didReceiveFutureProgressAfterSeek(with progress: PlayingItem.Progress) {
+        resourceView.diplayFuturePrepareForSeekProgress(with: mapProgress(model: progress))
     }
     
     private func mapCurrentTimeLabel(_ timeInSeconds: Int) -> String {

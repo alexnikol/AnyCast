@@ -95,6 +95,7 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     }
     
     private class NullObject: AudioPlayerView {
+        func diplayFuturePrepareForSeekProgress(with progress: AudioPlayerModule.ProgressViewModel) {}
         func display(viewModel: LargeAudioPlayerViewModel) {}
         func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {}
     }
@@ -113,6 +114,7 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         func seekToProgress(_ progress: Float) {}
         func seekToSeconds(_ seconds: Int) {}
         func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {}
+        func prepareForSeek(_ progress: Float) {}
     }
 }
 

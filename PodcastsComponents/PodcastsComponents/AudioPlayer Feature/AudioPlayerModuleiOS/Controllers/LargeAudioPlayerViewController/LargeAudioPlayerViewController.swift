@@ -4,6 +4,7 @@ import UIKit
 import SharedComponentsiOSModule
 import AudioPlayerModule
 import MediaPlayer
+import AVKit
 
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
@@ -30,6 +31,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     private var delegate: LargeAudioPlayerViewDelegate?
     private var controlsDelegate: AudioPlayerControlsDelegate?
     private var hiddenMPVolumeSliderControl: UISlider?
+    private var hiddenRoutePickerButton: UIButton?
     
     // MARK: - Initialization
     
@@ -80,7 +82,9 @@ public final class LargeAudioPlayerViewController: UIViewController {
         controlsDelegate?.changeVolumeTo(value: sender.value)
     }
     
-    @IBAction public func airPlayDidTap(_ sender: Any) {}
+    @IBAction public func airPlayDidTap(_ sender: Any) {
+        hiddenRoutePickerButton?.sendActions(for: .touchUpInside)
+    }
     
     @IBAction public func speedPlaybackDidTap(_ sender: Any) {
         delegate?.onSelectSpeedPlayback()
@@ -133,6 +137,7 @@ private extension LargeAudioPlayerViewController {
         configureThumbnailView()
         configureVolumeViews()
         configureActionButtons()
+        configureAVRoutePickerView()
     }
     
     func configureThumbnailView() {
@@ -170,6 +175,13 @@ private extension LargeAudioPlayerViewController {
         let lst = volumeControl.subviews.filter{ NSStringFromClass($0.classForCoder) == "MPVolumeSlider" }
         let slider = lst.first as? UISlider
         hiddenMPVolumeSliderControl = slider
+    }
+    
+    func configureAVRoutePickerView() {
+        let routePickerView = AVRoutePickerView()
+        view.addSubview(routePickerView)
+        routePickerView.isHidden = true
+        hiddenRoutePickerButton = routePickerView.subviews.first(where: { $0 is UIButton }) as? UIButton
     }
 }
 

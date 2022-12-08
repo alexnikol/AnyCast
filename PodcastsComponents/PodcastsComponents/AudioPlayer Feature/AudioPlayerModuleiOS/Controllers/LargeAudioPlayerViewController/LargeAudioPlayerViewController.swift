@@ -5,6 +5,7 @@ import SharedComponentsiOSModule
 import AudioPlayerModule
 import MediaPlayer
 import AVKit
+import LoadResourcePresenter
 
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
@@ -33,17 +34,25 @@ public final class LargeAudioPlayerViewController: UIViewController {
     private var hiddenMPVolumeSliderControl: UISlider?
     private var hiddenRoutePickerButton: UIButton?
     private var isProgressViewEditing = false
+    private var isViewWillApearedOnce = false
+    private var imageLoaderDelegate: RefreshViewControllerDelegate?
     
     // MARK: - Initialization
     
-    public convenience init(delegate: LargeAudioPlayerViewDelegate, controlsDelegate: AudioPlayerControlsDelegate) {
+    public convenience init(
+        delegate: LargeAudioPlayerViewDelegate,
+        controlsDelegate: AudioPlayerControlsDelegate,
+        imageLoaderDelegate: RefreshViewControllerDelegate
+    ) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
         self.delegate = delegate
         self.controlsDelegate = controlsDelegate
+        self.imageLoaderDelegate = imageLoaderDelegate
     }
     
     deinit {
         delegate?.onClose()
+        imageLoaderDelegate?.didRequestCancel()
     }
     
     // MARK: - Lifecycle
@@ -53,6 +62,15 @@ public final class LargeAudioPlayerViewController: UIViewController {
         updateInitialValuesOnCreate()
         configureViews()
         delegate?.onOpen()
+    }
+    
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if !isViewWillApearedOnce {
+            imageLoaderDelegate?.didRequestLoading()
+        }
+        isViewWillApearedOnce = true
     }
     
     public override func viewDidLayoutSubviews() {
@@ -83,7 +101,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
         updateUIWithProgressEditMode(isEditing: false)
         controlsDelegate?.seekToProgress(sender.value)
     }
-
+    
     @IBAction public func progressSliderTouchUpOutside(_ sender: UISlider) {
         updateUIWithProgressEditMode(isEditing: false)
         controlsDelegate?.seekToProgress(sender.value)
@@ -243,5 +261,21 @@ private extension PlaybackStateViewModel {
         case .loading:
             return UIImage(systemName: "circle.hexagonpath.fill")!
         }
+    }
+}
+
+extension LargeAudioPlayerViewController: ResourceView, ResourceLoadingView, ResourceErrorView {
+    public typealias ResourceViewModel = UIImage
+    
+    public func display(_ viewModel: UIImage) {
+        thumbnailImageView.image = viewModel
+    }
+    
+    public func display(_ viewModel: ResourceLoadingViewModel) {
+        imageInnerContainer.isShimmering = viewModel.isLoading
+    }
+    
+    public func display(_ viewModel: ResourceErrorViewModel) {
+        thumbnailImageView.image = nil
     }
 }

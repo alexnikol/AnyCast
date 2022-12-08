@@ -107,9 +107,15 @@ final class GenresCoordinator {
     private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
         audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
         
+        let service = LargeAudioPlayerService(
+            httpClient: httpClient,
+            podcastsImageDataStore: podcastsImageDataStore
+        )
         return AudioPlayerUIComposer.largePlayerWith(
+            thumbnailURL: episode.thumbnail,
             statePublisher: audioPlayerStatePublisher,
-            controlsDelegate: audioPlayer
+            controlsDelegate: audioPlayer,
+            imageLoader: service.makeRemotePodcastImageDataLoader(for:)
         )
     }
 }

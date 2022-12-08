@@ -17,7 +17,7 @@
                 <outlet property="controlsStackView" destination="mIL-5N-NEz" id="LWU-FR-lHc"/>
                 <outlet property="descriptionLabel" destination="gH1-Fb-Obp" id="r4A-1N-RWb"/>
                 <outlet property="forwardButton" destination="WiT-k4-vtq" id="pUW-qg-ayB"/>
-                <outlet property="imageInnerContainer" destination="BLJ-5k-eBS" id="Dbc-5V-OSk"/>
+                <outlet property="imageInnerContainer" destination="BLJ-5k-eBS" id="MFk-NM-eZN"/>
                 <outlet property="imageMainContainer" destination="6Jz-Xy-m4f" id="skL-vq-FPC"/>
                 <outlet property="leftTimeLabel" destination="m9u-Ny-JDm" id="dnh-vJ-VCI"/>
                 <outlet property="leftVolumeIconView" destination="Atq-7J-XXX" id="I4I-8X-ctk"/>
@@ -60,6 +60,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                                         </imageView>
                                                     </subviews>
+                                                    <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="aHm-5h-wfq" secondAttribute="bottom" id="BJx-LA-aaj"/>
                                                         <constraint firstItem="aHm-5h-wfq" firstAttribute="leading" secondItem="BLJ-5k-eBS" secondAttribute="leading" id="LFu-7G-1wP"/>
@@ -68,7 +69,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                            <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="BLJ-5k-eBS" firstAttribute="leading" secondItem="6Jz-Xy-m4f" secondAttribute="leading" id="EYo-kd-USQ"/>
                                                 <constraint firstItem="BLJ-5k-eBS" firstAttribute="top" secondItem="6Jz-Xy-m4f" secondAttribute="top" id="NwA-7n-5nT"/>

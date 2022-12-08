@@ -110,10 +110,10 @@
                                                             <color key="maximumTrackTintColor" systemColor="secondarySystemFillColor"/>
                                                             <color key="thumbTintColor" systemColor="systemGrayColor"/>
                                                             <connections>
+                                                                <action selector="progressSliderDidChange:" destination="-1" eventType="valueChanged" id="Vud-q9-dai"/>
                                                                 <action selector="progressSliderTouchDown:" destination="-1" eventType="touchDown" id="Wmu-L6-JnO"/>
                                                                 <action selector="progressSliderTouchUpInside:" destination="-1" eventType="touchUpInside" id="BE9-fs-gDn"/>
                                                                 <action selector="progressSliderTouchUpOutside:" destination="-1" eventType="touchUpOutside" id="AaX-8c-vuR"/>
-                                                                <action selector="seekDidChange:" destination="-1" eventType="valueChanged" id="8T2-GC-u1i"/>
                                                             </connections>
                                                         </slider>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="U6k-vv-Y5x">

@@ -52,7 +52,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     private var lastProgressState: PlayingItem.Progress?
     private var lastVolumeState: Float?
     private var lastSpeedPlaybackState: PlaybackSpeed?
-    
+    private var isSeekingProccess = false
     private var systemVolume: Float {
         var systemVolume: Float
 #if os(iOS)
@@ -86,6 +86,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
                 
                 switch self.player.status {
                 case .readyToPlay:
+                    guard !self.isSeekingProccess else { return }
                     let currentTime = Float(CMTimeGetSeconds(self.player.currentTime()))
                     let totalTime = Float(CMTimeGetSeconds(item.duration))
                     var progress: PlayingItem.Progress
@@ -151,9 +152,19 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         }
         let newTime = Float64(Float(CMTimeGetSeconds(duration)) * progress)
         if newTime > 0 && newTime < (CMTimeGetSeconds(duration)) {
-            print("UPDATE__PROGRESS___\(progress)")
             let newTime: CMTime = CMTimeMake(value: Int64(newTime * 1000 as Float64), timescale: 1000)
-            player.seek(to: newTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+            let isPlayedBeforeSeek = isPlaying
+            isSeekingProccess = true
+            player.pause()
+            player.seek(to: newTime, toleranceBefore: .positiveInfinity, toleranceAfter: .positiveInfinity) { [weak self] _ in
+                guard let self = self else { return }
+                isPlayedBeforeSeek ? self.play() : self.pause()
+                self.isSeekingProccess = false
+            }
+            
+            if let expectedProgressAfterSeek = calculateFutureProgressMetaByNeededProgress(progress) {
+                updateProgress(progress: expectedProgressAfterSeek)
+            }
         }
     }
     
@@ -264,7 +275,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     }
     
     private func updateProgress(progress: PlayingItem.Progress) {
-        print("UPDATE__PROGRESS \(progress.progressTimePercentage)")
+        print("SEEK__UPDATE__PROGRESS \(progress.progressTimePercentage)")
         lastProgressState = progress
         try? sendUpdatePlayingState(states: currentStatesList())
     }
@@ -323,7 +334,12 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             return progress
             
         case .notDefined:
-            return nil
+            let progress = PlayingItem.Progress(
+                currentTimeInSeconds: lastProgressState.currentTimeInSeconds,
+                totalTime: lastProgressState.totalTime,
+                progressTimePercentage: progress
+            )
+            return progress
         }
     }
     
@@ -339,6 +355,9 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     
     private func updateSpeedPlayback(playbackSpeed: PlaybackSpeed) {
         lastSpeedPlaybackState = playbackSpeed
+        if isPlaying {
+            player.rate = playbackSpeed.rawValue
+        }
         try? sendUpdatePlayingState(states: currentStatesList())
     }
     

@@ -77,7 +77,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         
         periodicTimer = player.addPeriodicTimeObserver(
             forInterval: progressPeriodicTimer,
-            queue: .global(),
+            queue: .main,
             using: { [weak self] _ in
                 guard let self = self,
                       let item = self.player.currentItem else {
@@ -268,7 +268,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     
     private func startPlaybackIfNeeded() {
         let currentPlayback: PlayingItem.PlaybackState = isPlaying ? .playing : .pause
-        if let lastSpeedPlaybackState = lastSpeedPlaybackState, currentPlayback == .playing {
+        if let lastSpeedPlaybackState = lastSpeedPlaybackState, currentPlayback == .playing, player.rate != lastSpeedPlaybackState.rawValue {
             self.player.rate = lastSpeedPlaybackState.rawValue
         }
         lastPlaybackState = currentPlayback

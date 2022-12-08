@@ -5,6 +5,7 @@ import UIKit
 import PodcastsModule
 import AudioPlayerModule
 import AudioPlayerModuleiOS
+import SharedComponentsiOSModule
 
 class AudioPlayerModuleiOSTests: XCTestCase {
     
@@ -35,7 +36,8 @@ class AudioPlayerModuleiOSTests: XCTestCase {
     private func makeSUT() -> LargeAudioPlayerViewController {
         let sut = LargeAudioPlayerViewController(
             delegate: LargeAudioPlayerViewDelegateNullObject(),
-            controlsDelegate: AudioPlayerControlsDelegateNullObject()
+            controlsDelegate: AudioPlayerControlsDelegateNullObject(),
+            imageLoaderDelegate: NullObjectRefreshViewControllerDelegate()
         )
         return sut
     }
@@ -115,6 +117,11 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         func seekToSeconds(_ seconds: Int) {}
         func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {}
         func prepareForSeek(_ progress: Float) {}
+    }
+    
+    private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
+        func didRequestLoading() {}
+        func didRequestCancel() {}
     }
 }
 

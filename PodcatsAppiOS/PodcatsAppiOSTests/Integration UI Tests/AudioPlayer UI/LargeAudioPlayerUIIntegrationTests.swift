@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import Combine
 import PodcastsModule
 import AudioPlayerModule
 import AudioPlayerModuleiOS
@@ -119,8 +120,12 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let controlsSpy = AudioPlayerControlsSpy()
         let audioPlayer = AudioPlayerClientDummy()
         let sut = AudioPlayerUIComposer.largePlayerWith(
+            thumbnailURL: anyURL(),
             statePublisher: statePublisher,
-            controlsDelegate: controlsSpy
+            controlsDelegate: controlsSpy,
+            imageLoader: { _ in
+                Empty().eraseToAnyPublisher()
+            }
         )
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(statePublisher, file: file, line: line)

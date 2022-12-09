@@ -18,21 +18,11 @@ public final class AudioPlayerUIComposer {
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>
     ) -> LargeAudioPlayerViewController {
         let presentationAdapter = AudioPlayerPresentationAdapter(statePublisher: statePublisher)
-        
-        let imageAdapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<ThumbnailViewController>>(
-            loader: {
-                imageLoader(thumbnailURL)
-            }
+                
+        let thumbnailViewController = ThumbnailUIComposer.composeThumbnailWithImageLoader(
+            thumbnailURL: thumbnailURL,
+            imageLoader: imageLoader
         )
-        
-        let thumbnailViewController = ThumbnailViewController(loaderDelegate: imageAdapter)
-        let imagePresenter = LoadResourcePresenter(
-            resourceView: WeakRefVirtualProxy(thumbnailViewController),
-            loadingView: WeakRefVirtualProxy(thumbnailViewController),
-            errorView: WeakRefVirtualProxy(thumbnailViewController),
-            mapper: UIImage.trytoMake(with:)
-        )
-        imageAdapter.presenter = imagePresenter
         
         let controller = LargeAudioPlayerViewController(
             delegate: presentationAdapter,
@@ -41,8 +31,7 @@ public final class AudioPlayerUIComposer {
         )
         let viewAdapter = AudioPlayerViewAdapter(
             controller: controller,
-            onSpeedPlaybackChange: controlsDelegate.changeSpeedPlaybackTo,
-            imageLoader: imageLoader
+            onSpeedPlaybackChange: controlsDelegate.changeSpeedPlaybackTo
         )
         let presenter = LargeAudioPlayerPresenter(resourceView: viewAdapter)
         viewAdapter.presenter = presenter

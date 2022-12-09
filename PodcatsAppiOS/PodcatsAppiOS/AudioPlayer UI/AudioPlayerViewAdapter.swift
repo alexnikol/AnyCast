@@ -7,17 +7,14 @@ import SharedComponentsiOSModule
 import AudioPlayerModuleiOS
 
 class AudioPlayerViewAdapter {
-    private let imageLoader: (URL) -> AnyPublisher<Data, Error>
     private weak var controller: LargeAudioPlayerViewController?
     private var onSpeedPlaybackChange: ((PlaybackSpeed) -> Void)?
     weak var presenter: LargeAudioPlayerPresenter?
     
     init(controller: LargeAudioPlayerViewController,
-         onSpeedPlaybackChange: @escaping (PlaybackSpeed) -> Void,
-         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>) {
+         onSpeedPlaybackChange: @escaping (PlaybackSpeed) -> Void) {
         self.controller = controller
         self.onSpeedPlaybackChange = onSpeedPlaybackChange
-        self.imageLoader = imageLoader
     }
 }
 

@@ -28,26 +28,18 @@ final class PodcastDetailsViewAdapter: ResourceView {
     
     func display(_ viewModel: PodcastDetailsViewModel) {
         let episodeCellControllers = viewModel.episodes.map(configureEpisodeCellController)
-        
-        let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastHeaderCellController>>(
-            loader: {
-                self.imageLoader(viewModel.image)
-            }
+                
+        let thumbnailViewController = ThumbnailUIComposer.composeThumbnailWithImageLoader(
+            thumbnailURL: viewModel.image,
+            imageLoader: imageLoader
         )
         
         let profileSection = PodcastHeaderCellController(
             cellControllers: episodeCellControllers,
             viewModel: viewModel,
-            imageLoaderDelegate: adapter
+            thumbnailViewController: thumbnailViewController
         )
-        
-        adapter.presenter = LoadResourcePresenter(
-            resourceView: WeakRefVirtualProxy(profileSection),
-            loadingView: WeakRefVirtualProxy(profileSection),
-            errorView: WeakRefVirtualProxy(profileSection),
-            mapper: UIImage.trytoMake(with:)
-        )
-        
+                
         controller?.display([profileSection])
         controller?.title = viewModel.title
     }

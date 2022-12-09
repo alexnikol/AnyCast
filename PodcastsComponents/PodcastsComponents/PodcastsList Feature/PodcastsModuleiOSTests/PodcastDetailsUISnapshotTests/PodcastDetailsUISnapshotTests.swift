@@ -90,7 +90,7 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                     episodes: [],
                     description: "Any Podcast title",
                     totalEpisodes: "20"),
-                imageLoaderDelegate: NullObjectRefreshViewControllerDelegate()
+                thumbnailViewController: ThumbnailViewController(loaderDelegate: NullObjectRefreshViewControllerDelegate())
             )
         ]
     }

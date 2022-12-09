@@ -3,9 +3,9 @@
 import UIKit
 
 public class ThumbnailView: NibView {
-    @IBOutlet private(set) weak var imageMainContainer: UIView!
-    @IBOutlet private(set) weak var imageInnerContainer: UIView!
-    @IBOutlet private(set) weak var imageView: UIImageView!
+    @IBOutlet public private(set) weak var imageMainContainer: UIView!
+    @IBOutlet public private(set) weak var imageInnerContainer: UIView!
+    @IBOutlet public private(set) weak var imageView: UIImageView!
     
     public override func setupView() {
         imageInnerContainer.layer.cornerRadius = 4.0

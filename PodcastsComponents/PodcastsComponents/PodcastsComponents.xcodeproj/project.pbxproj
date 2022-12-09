@@ -88,6 +88,11 @@
 		8D745E3628C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E3528C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift */; };
 		8D745E3D28C635F3005DC3F8 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745E2B28C60DCE005DC3F8 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8D7509F229421EAF004500D9 /* UIView+Shimmering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7509F129421EAF004500D9 /* UIView+Shimmering.swift */; };
+		8D7509F529432B19004500D9 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7509F429432B19004500D9 /* ThumbnailView.swift */; };
+		8D7509F729432B29004500D9 /* ThumbnailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D7509F629432B29004500D9 /* ThumbnailView.xib */; };
+		8D750B2529432C9F004500D9 /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750B2429432C9F004500D9 /* NibView.swift */; };
+		8D750B2829432DAB004500D9 /* UIView+XibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750B2729432DAB004500D9 /* UIView+XibLoading.swift */; };
+		8D750B2B29433012004500D9 /* ThumbnailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750B2A29433012004500D9 /* ThumbnailViewController.swift */; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
@@ -501,6 +506,11 @@
 		8D745E3328C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcastsGenresListAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D745E3528C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsGenresListAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		8D7509F129421EAF004500D9 /* UIView+Shimmering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shimmering.swift"; sourceTree = "<group>"; };
+		8D7509F429432B19004500D9 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
+		8D7509F629432B29004500D9 /* ThumbnailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThumbnailView.xib; sourceTree = "<group>"; };
+		8D750B2429432C9F004500D9 /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		8D750B2729432DAB004500D9 /* UIView+XibLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+XibLoading.swift"; sourceTree = "<group>"; };
+		8D750B2A29433012004500D9 /* ThumbnailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailViewController.swift; sourceTree = "<group>"; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
@@ -880,12 +890,13 @@
 		8D4298AA292233F30064F3E6 /* SharedHelpersiOSModule */ = {
 			isa = PBXGroup;
 			children = (
+				8D750B2629432D88004500D9 /* UIView+Extensions */,
+				8D750B2929432DE1004500D9 /* ReusableViews */,
 				8D4298B5292234510064F3E6 /* RefreshViewController.swift */,
 				8D65FF0D2922BC7D0017F199 /* UITableView+Extensions.swift */,
 				8D65FF122922BCE40017F199 /* UICollectionView+Extensions.swift */,
 				8DB25F0F2924E4B300CA156E /* UIColor+Extensions.swift */,
 				8D65FF102922BCB30017F199 /* Reusable.swift */,
-				8D7509F129421EAF004500D9 /* UIView+Shimmering.swift */,
 			);
 			path = SharedHelpersiOSModule;
 			sourceTree = "<group>";
@@ -1165,6 +1176,42 @@
 				8D745E3528C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests.swift */,
 			);
 			path = PodcastsGenresListAPIEndToEndTests;
+			sourceTree = "<group>";
+		};
+		8D7509F329432AE9004500D9 /* ThumbnailView */ = {
+			isa = PBXGroup;
+			children = (
+				8D750B2C2943302D004500D9 /* View */,
+				8D750B2A29433012004500D9 /* ThumbnailViewController.swift */,
+			);
+			path = ThumbnailView;
+			sourceTree = "<group>";
+		};
+		8D750B2629432D88004500D9 /* UIView+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D750B2429432C9F004500D9 /* NibView.swift */,
+				8D7509F129421EAF004500D9 /* UIView+Shimmering.swift */,
+				8D750B2729432DAB004500D9 /* UIView+XibLoading.swift */,
+			);
+			path = "UIView+Extensions";
+			sourceTree = "<group>";
+		};
+		8D750B2929432DE1004500D9 /* ReusableViews */ = {
+			isa = PBXGroup;
+			children = (
+				8D7509F329432AE9004500D9 /* ThumbnailView */,
+			);
+			path = ReusableViews;
+			sourceTree = "<group>";
+		};
+		8D750B2C2943302D004500D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D7509F429432B19004500D9 /* ThumbnailView.swift */,
+				8D7509F629432B29004500D9 /* ThumbnailView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		8D75814928D09E6500751261 /* Helpers */ = {
@@ -2546,6 +2593,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D7509F729432B29004500D9 /* ThumbnailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2749,9 +2797,13 @@
 				8D65FF1B2922BE010017F199 /* Reusable.swift in Sources */,
 				8DB25F112924E4C800CA156E /* UIColor+Extensions.swift in Sources */,
 				8D65FF1A2922BE010017F199 /* UITableView+Extensions.swift in Sources */,
+				8D750B2B29433012004500D9 /* ThumbnailViewController.swift in Sources */,
 				8D7509F229421EAF004500D9 /* UIView+Shimmering.swift in Sources */,
 				8D65FF192922BE010017F199 /* RefreshViewController.swift in Sources */,
+				8D7509F529432B19004500D9 /* ThumbnailView.swift in Sources */,
 				8D65FF182922BE010017F199 /* UICollectionView+Extensions.swift in Sources */,
+				8D750B2829432DAB004500D9 /* UIView+XibLoading.swift in Sources */,
+				8D750B2529432C9F004500D9 /* NibView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

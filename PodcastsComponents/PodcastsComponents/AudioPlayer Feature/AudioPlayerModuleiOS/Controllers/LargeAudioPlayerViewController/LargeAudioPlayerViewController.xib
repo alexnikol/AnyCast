@@ -17,8 +17,6 @@
                 <outlet property="controlsStackView" destination="mIL-5N-NEz" id="LWU-FR-lHc"/>
                 <outlet property="descriptionLabel" destination="gH1-Fb-Obp" id="r4A-1N-RWb"/>
                 <outlet property="forwardButton" destination="WiT-k4-vtq" id="pUW-qg-ayB"/>
-                <outlet property="imageInnerContainer" destination="BLJ-5k-eBS" id="MFk-NM-eZN"/>
-                <outlet property="imageMainContainer" destination="6Jz-Xy-m4f" id="skL-vq-FPC"/>
                 <outlet property="leftTimeLabel" destination="m9u-Ny-JDm" id="dnh-vJ-VCI"/>
                 <outlet property="leftVolumeIconView" destination="Atq-7J-XXX" id="I4I-8X-ctk"/>
                 <outlet property="playButton" destination="rZJ-TR-Oxu" id="EGG-my-FEr"/>
@@ -30,7 +28,7 @@
                 <outlet property="speedPlaybackButton" destination="SPu-vL-aHe" id="435-QD-g1r"/>
                 <outlet property="thumbnailIHeightCNST" destination="SqA-q5-zfT" id="sBw-nj-QYv"/>
                 <outlet property="thumbnailIWidthCNST" destination="rB0-25-yls" id="MQv-cj-N20"/>
-                <outlet property="thumbnailImageView" destination="aHm-5h-wfq" id="z44-vJ-TVB"/>
+                <outlet property="thumbnailView" destination="6Jz-Xy-m4f" id="WbO-Za-10q"/>
                 <outlet property="titleLabel" destination="Puh-PI-ksR" id="VZo-bU-Xff"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kOw-a3-Glb"/>
                 <outlet property="volumeView" destination="Sy5-tl-7MF" id="QqX-ye-JtH"/>
@@ -50,33 +48,11 @@
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="390" placeholderIntrinsicHeight="240" translatesAutoresizingMaskIntoConstraints="NO" id="bTd-6o-Mak" userLabel="Thumbnail View">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="240"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Jz-Xy-m4f">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Jz-Xy-m4f" customClass="ThumbnailView" customModule="SharedComponentsiOSModule">
                                             <rect key="frame" x="115" y="40" width="160" height="160"/>
-                                            <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLJ-5k-eBS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aHm-5h-wfq">
-                                                            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="aHm-5h-wfq" secondAttribute="bottom" id="BJx-LA-aaj"/>
-                                                        <constraint firstItem="aHm-5h-wfq" firstAttribute="leading" secondItem="BLJ-5k-eBS" secondAttribute="leading" id="LFu-7G-1wP"/>
-                                                        <constraint firstItem="aHm-5h-wfq" firstAttribute="top" secondItem="BLJ-5k-eBS" secondAttribute="top" id="Pqt-i6-WCo"/>
-                                                        <constraint firstAttribute="trailing" secondItem="aHm-5h-wfq" secondAttribute="trailing" id="hWL-lD-Rsz"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstItem="BLJ-5k-eBS" firstAttribute="leading" secondItem="6Jz-Xy-m4f" secondAttribute="leading" id="EYo-kd-USQ"/>
-                                                <constraint firstItem="BLJ-5k-eBS" firstAttribute="top" secondItem="6Jz-Xy-m4f" secondAttribute="top" id="NwA-7n-5nT"/>
                                                 <constraint firstAttribute="width" constant="160" id="d4Y-p9-kBl"/>
                                                 <constraint firstAttribute="width" secondItem="6Jz-Xy-m4f" secondAttribute="height" multiplier="1:1" id="eDY-Mu-uNm"/>
-                                                <constraint firstAttribute="bottom" secondItem="BLJ-5k-eBS" secondAttribute="bottom" id="jBh-sX-5Cu"/>
-                                                <constraint firstAttribute="trailing" secondItem="BLJ-5k-eBS" secondAttribute="trailing" id="kN5-ps-t3t"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -371,9 +347,6 @@
         </systemColor>
         <systemColor name="secondarySystemFillColor">
             <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

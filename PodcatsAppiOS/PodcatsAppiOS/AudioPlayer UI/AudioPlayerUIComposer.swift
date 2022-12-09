@@ -5,6 +5,7 @@ import Combine
 import PodcastsModule
 import LoadResourcePresenter
 import AudioPlayerModule
+import SharedComponentsiOSModule
 import AudioPlayerModuleiOS
 
 public final class AudioPlayerUIComposer {
@@ -18,16 +19,25 @@ public final class AudioPlayerUIComposer {
     ) -> LargeAudioPlayerViewController {
         let presentationAdapter = AudioPlayerPresentationAdapter(statePublisher: statePublisher)
         
-        let imageAdapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<LargeAudioPlayerViewController>>(
+        let imageAdapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<ThumbnailViewController>>(
             loader: {
                 imageLoader(thumbnailURL)
             }
         )
         
+        let thumbnailViewController = ThumbnailViewController(loaderDelegate: imageAdapter)
+        let imagePresenter = LoadResourcePresenter(
+            resourceView: WeakRefVirtualProxy(thumbnailViewController),
+            loadingView: WeakRefVirtualProxy(thumbnailViewController),
+            errorView: WeakRefVirtualProxy(thumbnailViewController),
+            mapper: UIImage.trytoMake(with:)
+        )
+        imageAdapter.presenter = imagePresenter
+        
         let controller = LargeAudioPlayerViewController(
             delegate: presentationAdapter,
             controlsDelegate: controlsDelegate,
-            imageLoaderDelegate: imageAdapter
+            thumbnailViewController: thumbnailViewController
         )
         let viewAdapter = AudioPlayerViewAdapter(
             controller: controller,
@@ -37,14 +47,6 @@ public final class AudioPlayerUIComposer {
         let presenter = LargeAudioPlayerPresenter(resourceView: viewAdapter)
         viewAdapter.presenter = presenter
         presentationAdapter.presenter = presenter
-        
-        let imagePresenter = LoadResourcePresenter(
-            resourceView: WeakRefVirtualProxy(controller),
-            loadingView: WeakRefVirtualProxy(controller),
-            errorView: WeakRefVirtualProxy(controller),
-            mapper: UIImage.trytoMake(with:)
-        )
-        imageAdapter.presenter = imagePresenter
         return controller
     }
 }

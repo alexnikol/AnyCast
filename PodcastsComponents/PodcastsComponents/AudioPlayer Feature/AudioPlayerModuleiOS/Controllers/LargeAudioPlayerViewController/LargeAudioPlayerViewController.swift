@@ -9,7 +9,7 @@ import LoadResourcePresenter
 
 public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rootStackView: UIStackView!
-    @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var thumbnailView: ThumbnailView!
     @IBOutlet public private(set) weak var progressView: UISlider!
     @IBOutlet public private(set) weak var leftTimeLabel: UILabel!
     @IBOutlet public private(set) weak var rightTimeLabel: UILabel!
@@ -23,8 +23,6 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet public private(set) weak var speedPlaybackButton: UIButton!
     @IBOutlet weak var leftVolumeIconView: UIImageView!
     @IBOutlet weak var rightVolumeIconView: UIImageView!
-    @IBOutlet public private(set) weak var imageMainContainer: UIView!
-    @IBOutlet public private(set) weak var imageInnerContainer: UIView!
     @IBOutlet weak var thumbnailIWidthCNST: NSLayoutConstraint!
     @IBOutlet weak var thumbnailIHeightCNST: NSLayoutConstraint!
     @IBOutlet weak var rootStackViewTopCNST: NSLayoutConstraint!
@@ -35,24 +33,24 @@ public final class LargeAudioPlayerViewController: UIViewController {
     private var hiddenRoutePickerButton: UIButton?
     private var isProgressViewEditing = false
     private var isViewWillApearedOnce = false
-    private var imageLoaderDelegate: RefreshViewControllerDelegate?
+    private var thumbnailViewController: ThumbnailViewController?
     
     // MARK: - Initialization
     
     public convenience init(
         delegate: LargeAudioPlayerViewDelegate,
         controlsDelegate: AudioPlayerControlsDelegate,
-        imageLoaderDelegate: RefreshViewControllerDelegate
+        thumbnailViewController: ThumbnailViewController
     ) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
         self.delegate = delegate
         self.controlsDelegate = controlsDelegate
-        self.imageLoaderDelegate = imageLoaderDelegate
+        self.thumbnailViewController = thumbnailViewController
     }
     
     deinit {
         delegate?.onClose()
-        imageLoaderDelegate?.didRequestCancel()
+        thumbnailViewController?.didRequestCancel()
     }
     
     // MARK: - Lifecycle
@@ -68,7 +66,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if !isViewWillApearedOnce {
-            imageLoaderDelegate?.didRequestLoading()
+            thumbnailViewController?.didRequestLoading()
         }
         isViewWillApearedOnce = true
     }
@@ -187,12 +185,7 @@ private extension LargeAudioPlayerViewController {
     }
     
     func configureThumbnailView() {
-        imageInnerContainer.layer.cornerRadius = 4.0
-        imageMainContainer.layer.cornerRadius = 4.0
-        imageMainContainer.layer.shadowColor = UIColor.accentColor.cgColor
-        imageMainContainer.layer.shadowOpacity = 0.5
-        imageMainContainer.layer.shadowOffset = .zero
-        imageMainContainer.layer.shadowRadius = 10.0
+        thumbnailViewController?.view = thumbnailView
     }
     
     func configureVolumeViews() {
@@ -261,21 +254,5 @@ private extension PlaybackStateViewModel {
         case .loading:
             return UIImage(systemName: "circle.hexagonpath.fill")!
         }
-    }
-}
-
-extension LargeAudioPlayerViewController: ResourceView, ResourceLoadingView, ResourceErrorView {
-    public typealias ResourceViewModel = UIImage
-    
-    public func display(_ viewModel: UIImage) {
-        thumbnailImageView.image = viewModel
-    }
-    
-    public func display(_ viewModel: ResourceLoadingViewModel) {
-        imageInnerContainer.isShimmering = viewModel.isLoading
-    }
-    
-    public func display(_ viewModel: ResourceErrorViewModel) {
-        thumbnailImageView.image = nil
     }
 }

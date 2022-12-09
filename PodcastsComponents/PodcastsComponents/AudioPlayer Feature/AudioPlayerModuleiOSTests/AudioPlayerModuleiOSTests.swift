@@ -37,7 +37,7 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         let sut = LargeAudioPlayerViewController(
             delegate: LargeAudioPlayerViewDelegateNullObject(),
             controlsDelegate: AudioPlayerControlsDelegateNullObject(),
-            imageLoaderDelegate: NullObjectRefreshViewControllerDelegate()
+            thumbnailViewController: ThumbnailViewController(loaderDelegate: NullObjectRefreshViewControllerDelegate())
         )
         return sut
     }

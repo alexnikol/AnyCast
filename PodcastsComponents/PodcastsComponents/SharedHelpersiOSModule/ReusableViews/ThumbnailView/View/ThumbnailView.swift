@@ -5,7 +5,7 @@ import UIKit
 public class ThumbnailView: NibView {
     @IBOutlet public private(set) weak var imageMainContainer: UIView!
     @IBOutlet public private(set) weak var imageInnerContainer: UIView!
-    @IBOutlet public private(set) weak var imageView: UIImageView!
+    @IBOutlet public weak var imageView: UIImageView!
     
     public override func setupView() {
         imageInnerContainer.layer.cornerRadius = 4.0
@@ -14,5 +14,16 @@ public class ThumbnailView: NibView {
         imageMainContainer.layer.shadowOpacity = 0.5
         imageMainContainer.layer.shadowOffset = .zero
         imageMainContainer.layer.shadowRadius = 10.0
+    }
+}
+
+extension ThumbnailView: AsyncImageView {
+
+    public var rootImage: UIImageView? {
+        imageView
+    }
+    
+    public var shimmeringContainer: UIView? {
+        imageInnerContainer
     }
 }

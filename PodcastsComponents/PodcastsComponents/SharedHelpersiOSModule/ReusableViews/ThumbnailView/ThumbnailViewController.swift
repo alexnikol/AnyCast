@@ -3,9 +3,14 @@
 import UIKit
 import LoadResourcePresenter
 
+public protocol AsyncImageView: AnyObject {
+    var rootImage: UIImageView? { get }
+    var shimmeringContainer: UIView? { get }
+}
+
 public class ThumbnailViewController: NSObject, RefreshViewControllerDelegate {
     private let loaderDelegate: RefreshViewControllerDelegate
-    public weak var view: ThumbnailView?
+    public weak var view: AsyncImageView?
     
     public init(loaderDelegate: RefreshViewControllerDelegate) {
         self.loaderDelegate = loaderDelegate
@@ -24,14 +29,14 @@ extension ThumbnailViewController: ResourceView, ResourceLoadingView, ResourceEr
     public typealias ResourceViewModel = UIImage
     
     public func display(_ viewModel: UIImage) {
-        view?.imageView.image = viewModel
+        view?.rootImage?.image = viewModel
     }
     
     public func display(_ viewModel: ResourceLoadingViewModel) {
-        view?.imageInnerContainer.isShimmering = viewModel.isLoading
+        view?.shimmeringContainer?.isShimmering = viewModel.isLoading
     }
     
     public func display(_ viewModel: ResourceErrorViewModel) {
-        view?.imageView.image = nil
+        view?.rootImage?.image = nil
     }
 }

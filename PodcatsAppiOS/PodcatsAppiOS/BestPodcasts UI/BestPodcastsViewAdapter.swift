@@ -36,34 +36,17 @@ final class BestPodcastsViewAdapter: ResourceView {
     
     private func configurePodcastCellController(for model: Podcast) -> PodcastCellController {
         let podcastViewModel = BestPodcastsPresenter.map(model)
-        
-        let adapter = GenericLoaderPresentationAdapter<Data, WeakRefVirtualProxy<PodcastCellController>>(
-            loader: {
-                self.imageLoader(model.image)
-            }
-        )
-        
+
         let cellController = PodcastCellController(
             model: podcastViewModel,
-            delegete: adapter,
+            thumbnailViewController: ThumbnailUIComposer.composeThumbnailWithImageLoader(
+                thumbnailURL: model.image,
+                imageLoader: imageLoader
+            ),
             selection: { [weak self] in
                 self?.selection(model)
             }
         )
-        
-        adapter.presenter = configurePresenter(cellController)
         return cellController
-    }
-    
-    private func configurePresenter(
-        _ cellController: PodcastCellController
-    ) -> LoadResourcePresenter<Data, WeakRefVirtualProxy<PodcastCellController>> {
-        
-        return LoadResourcePresenter(
-            resourceView: WeakRefVirtualProxy(cellController),
-            loadingView: WeakRefVirtualProxy(cellController),
-            errorView: WeakRefVirtualProxy(cellController),
-            mapper: UIImage.trytoMake(with:)
-        )
     }
 }

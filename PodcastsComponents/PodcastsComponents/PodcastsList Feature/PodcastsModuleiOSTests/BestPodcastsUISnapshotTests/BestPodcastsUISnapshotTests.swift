@@ -73,12 +73,13 @@ class BestPodcastsUISnapshotTests: XCTestCase {
         
         let cellControllers = models.enumerated().map { (index, viewModel) -> PodcastCellController in
             let imageStub = ImageStub(image: stubbedImages[index])
+            let thumbnailViewController = ThumbnailViewController(loaderDelegate: imageStub)
             let cellController = PodcastCellController(
                 model: viewModel,
-                delegete: imageStub,
+                thumbnailViewController: thumbnailViewController,
                 selection: {}
             )
-            imageStub.imageDataResourceView = cellController
+            imageStub.thumbnailViewController = thumbnailViewController
             return cellController
         }
         
@@ -97,13 +98,13 @@ class BestPodcastsUISnapshotTests: XCTestCase {
             self.image = image
         }
         
-        weak var imageDataResourceView: PodcastCellController?
+        weak var thumbnailViewController: ThumbnailViewController?
         
         func didRequestLoading() {
             if let image = image {
-                imageDataResourceView?.display(image)
+                thumbnailViewController?.display(image)
             } else {
-                imageDataResourceView?.display(ResourceErrorViewModel(message: "ERROR_MESSAGE"))
+                thumbnailViewController?.display(ResourceErrorViewModel(message: "ERROR_MESSAGE"))
             }
         }
         

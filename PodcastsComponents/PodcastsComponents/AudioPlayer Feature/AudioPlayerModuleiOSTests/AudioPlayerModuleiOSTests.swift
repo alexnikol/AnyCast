@@ -96,7 +96,7 @@ class AudioPlayerModuleiOSTests: XCTestCase {
         URL(string: "http://a-url.com")!
     }
     
-    private class NullObject: AudioPlayerView {
+    private class NullObject: LargeAudioPlayerView {
         func diplayFuturePrepareForSeekProgress(with progress: AudioPlayerModule.ProgressViewModel) {}
         func display(viewModel: LargeAudioPlayerViewModel) {}
         func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {}

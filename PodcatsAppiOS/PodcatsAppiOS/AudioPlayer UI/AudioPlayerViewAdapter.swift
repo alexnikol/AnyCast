@@ -18,7 +18,7 @@ class AudioPlayerViewAdapter {
     }
 }
 
-extension AudioPlayerViewAdapter: AudioPlayerView {
+extension AudioPlayerViewAdapter: LargeAudioPlayerView {
 
     func display(viewModel: LargeAudioPlayerViewModel) {
         controller?.display(viewModel: viewModel)

@@ -2,7 +2,7 @@
 
 import Foundation
 
-public protocol AudioPlayerView {
+public protocol LargeAudioPlayerView {
     func display(viewModel: LargeAudioPlayerViewModel)
     func displaySpeedPlaybackSelection(with list: [PlaybackSpeed])
     func diplayFuturePrepareForSeekProgress(with progress: ProgressViewModel)
@@ -11,11 +11,11 @@ public protocol AudioPlayerView {
 public final class LargeAudioPlayerPresenter {
     private let calendar: Calendar
     private let locale: Locale
-    private let resourceView: AudioPlayerView
+    private let resourceView: LargeAudioPlayerView
     private let playbackSpeedList: [PlaybackSpeed]
     private var selectedSpeed: PlaybackSpeed?
     
-    public init(resourceView: AudioPlayerView, calendar: Calendar = .current, locale: Locale = .current, playbackSpeedList: [PlaybackSpeed] = PlaybackSpeed.allCases) {
+    public init(resourceView: LargeAudioPlayerView, calendar: Calendar = .current, locale: Locale = .current, playbackSpeedList: [PlaybackSpeed] = PlaybackSpeed.allCases) {
         self.resourceView = resourceView
         self.calendar = calendar
         self.locale = locale

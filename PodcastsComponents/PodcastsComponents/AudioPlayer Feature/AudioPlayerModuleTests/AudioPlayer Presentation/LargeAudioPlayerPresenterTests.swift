@@ -224,7 +224,7 @@ class LargeAudioPlayerPresenterTests: XCTestCase {
         )
     }
         
-    private class ViewSpy: AudioPlayerView {
+    private class ViewSpy: LargeAudioPlayerView {
         enum Message {
             case update
             case displaySpeedSelection

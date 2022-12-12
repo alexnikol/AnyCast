@@ -176,7 +176,7 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     }
     
     private func makePresenter(file: StaticString = #file, line: UInt = #line) -> LargeAudioPlayerPresenter {
-        class AudioPlayerViewNullObject: AudioPlayerView {
+        class AudioPlayerViewNullObject: LargeAudioPlayerView {
             func diplayFuturePrepareForSeekProgress(with progress: AudioPlayerModule.ProgressViewModel) {}
             func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {}
             func display(viewModel: LargeAudioPlayerViewModel) {}

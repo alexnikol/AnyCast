@@ -19,7 +19,7 @@ class StickyAudioPlayeriOSTests: XCTestCase {
                           height: 60)
         )
         
-        sut.display(viewModel: makeViewModel())
+        sut.display(viewModel: makeViewModel(playback: .pause))
         
         assert(snapshot: root.snapshot(for: .iPhone14(style: .light)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light")
         assert(snapshot: root.snapshot(for: .iPhone14(style: .dark)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark")
@@ -35,10 +35,10 @@ class StickyAudioPlayeriOSTests: XCTestCase {
                           height: 60)
         )
         
-        sut.display(viewModel: makeViewModel())
+        sut.display(viewModel: makeViewModel(playback: .playing))
         
-        record(snapshot: root.snapshot(for: .iPhone14(style: .light, orientation: .landscape)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light")
-        record(snapshot: root.snapshot(for: .iPhone14(style: .dark, orientation: .landscape)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark")
+        assert(snapshot: root.snapshot(for: .iPhone14(style: .light, orientation: .landscape)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light")
+        assert(snapshot: root.snapshot(for: .iPhone14(style: .dark, orientation: .landscape)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark")
     }
     
     // MARK: - Helpers
@@ -53,12 +53,12 @@ class StickyAudioPlayeriOSTests: XCTestCase {
         return (sut, rootController)
     }
     
-    func makeViewModel() -> StickyAudioPlayerViewModel {
+    func makeViewModel(playback: PlayingItem.PlaybackState) -> StickyAudioPlayerViewModel {
         let plaingItem = PlayingItem(
             episode: makeEpisode(),
             podcast: makePodcast(),
             updates: [
-                .playback(.pause),
+                .playback(playback),
                 .progress(
                     .init(
                         currentTimeInSeconds: 0,

@@ -111,7 +111,7 @@ final class GenresCoordinator {
             httpClient: httpClient,
             podcastsImageDataStore: podcastsImageDataStore
         )
-        return AudioPlayerUIComposer.largePlayerWith(
+        return LargeAudioPlayerUIComposer.largePlayerWith(
             thumbnailURL: episode.thumbnail,
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,

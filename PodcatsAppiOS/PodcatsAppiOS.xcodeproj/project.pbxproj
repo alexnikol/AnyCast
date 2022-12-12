@@ -47,6 +47,7 @@
 		8D75079629409FA9004500D9 /* UIAlertController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75079529409FA9004500D9 /* UIAlertController+Helpers.swift */; };
 		8D7509F029420921004500D9 /* LargeAudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7509EF29420921004500D9 /* LargeAudioPlayerService.swift */; };
 		8D750B3029433862004500D9 /* ThumbnailUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750B2F29433862004500D9 /* ThumbnailUIComposer.swift */; };
+		8D750C912947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C902947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift */; };
 		8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B87328D4A2540014A211 /* AppDelegate.swift */; };
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
@@ -62,9 +63,9 @@
 		8D9B87402930C454003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; };
 		8D9B87412930C454003B52AB /* AudioPlayerModuleiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */; };
-		8DCA227929313B4800DD1EC6 /* AudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */; };
-		8DCA22892934AED800DD1EC6 /* AudioPlayerPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22882934AED800DD1EC6 /* AudioPlayerPresentationAdapter.swift */; };
-		8DCA228B2934B13300DD1EC6 /* AudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228A2934B13300DD1EC6 /* AudioPlayerViewAdapter.swift */; };
+		8DCA227929313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */; };
+		8DCA22892934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */; };
+		8DCA228B2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */; };
 		8DCA228E2934BA6F00DD1EC6 /* LargeAudioPlayerViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228D2934BA6F00DD1EC6 /* LargeAudioPlayerViewController+DSLHelpers.swift */; };
 		8DCA22A029352AF100DD1EC6 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05428F814FF00C17DDC /* XCTestCase+MemoryLeakTracking.swift */; };
 		8DDBB723291A810F0024A37A /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DDBB721291A810F0024A37A /* PodcastsModule.framework */; };
@@ -161,6 +162,7 @@
 		8D75079529409FA9004500D9 /* UIAlertController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Helpers.swift"; sourceTree = "<group>"; };
 		8D7509EF29420921004500D9 /* LargeAudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerService.swift; sourceTree = "<group>"; };
 		8D750B2F29433862004500D9 /* ThumbnailUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailUIComposer.swift; sourceTree = "<group>"; };
+		8D750C902947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerUIIntegrationTests.swift; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -175,9 +177,9 @@
 		8D9B873C2930C454003B52AB /* AudioPlayerModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastHeaderReusableView+DSLHelpers.swift"; sourceTree = "<group>"; };
-		8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerUIComposer.swift; sourceTree = "<group>"; };
-		8DCA22882934AED800DD1EC6 /* AudioPlayerPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerPresentationAdapter.swift; sourceTree = "<group>"; };
-		8DCA228A2934B13300DD1EC6 /* AudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
+		8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerUIComposer.swift; sourceTree = "<group>"; };
+		8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerPresentationAdapter.swift; sourceTree = "<group>"; };
+		8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
 		8DCA228D2934BA6F00DD1EC6 /* LargeAudioPlayerViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LargeAudioPlayerViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DDBB721291A810F0024A37A /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBB722291A810F0024A37A /* PodcastsModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -263,7 +265,6 @@
 		8D4C3B22291CF2F7002AD459 /* Integration UI Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8D750C6929472693004500D9 /* Navigation UI */,
 				8D72D03E28F8121C00C17DDC /* Genres UI */,
 				8D5FA24E2913C4CD002BB874 /* BestPodcasts UI */,
 				8DDBB76C291BC5740024A37A /* PodcastDetails UI */,
@@ -382,11 +383,14 @@
 			path = "Shared UI";
 			sourceTree = "<group>";
 		};
-		8D750C6929472693004500D9 /* Navigation UI */ = {
+		8D750C922947A381004500D9 /* LargeAudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */,
+				8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */,
+				8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */,
 			);
-			path = "Navigation UI";
+			path = LargeAudioPlayer;
 			sourceTree = "<group>";
 		};
 		8D76B86728D4A2540014A211 = {
@@ -465,6 +469,7 @@
 			children = (
 				8DCA228C2934BA5700DD1EC6 /* Helpers */,
 				8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */,
+				8D750C902947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift */,
 			);
 			path = "AudioPlayer UI";
 			sourceTree = "<group>";
@@ -472,9 +477,7 @@
 		8DCA227729313B2600DD1EC6 /* AudioPlayer UI */ = {
 			isa = PBXGroup;
 			children = (
-				8DCA227829313B4800DD1EC6 /* AudioPlayerUIComposer.swift */,
-				8DCA22882934AED800DD1EC6 /* AudioPlayerPresentationAdapter.swift */,
-				8DCA228A2934B13300DD1EC6 /* AudioPlayerViewAdapter.swift */,
+				8D750C922947A381004500D9 /* LargeAudioPlayer */,
 			);
 			path = "AudioPlayer UI";
 			sourceTree = "<group>";
@@ -624,7 +627,7 @@
 				8D72D03928F8118900C17DDC /* GenresViewAdapter.swift in Sources */,
 				8D750B3029433862004500D9 /* ThumbnailUIComposer.swift in Sources */,
 				8DDBB772291BC68A0024A37A /* PodcastDetailsUIComposer.swift in Sources */,
-				8DCA227929313B4800DD1EC6 /* AudioPlayerUIComposer.swift in Sources */,
+				8DCA227929313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift in Sources */,
 				8D72D07428F85C3B00C17DDC /* PodcastsGenresList+CombineHelpers.swift in Sources */,
 				8D4298DA29227A140064F3E6 /* PodcastDetailsService.swift in Sources */,
 				8D4298D8292278470064F3E6 /* BestPodcastsService.swift in Sources */,
@@ -632,14 +635,14 @@
 				8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */,
 				8D4298D32922740F0064F3E6 /* GenresCoordinator.swift in Sources */,
 				8D4298D5292277AC0064F3E6 /* GenresLoaderService.swift in Sources */,
-				8DCA22892934AED800DD1EC6 /* AudioPlayerPresentationAdapter.swift in Sources */,
+				8DCA22892934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift in Sources */,
 				8D5FA2772913CBE5002BB874 /* HTTPClient+CombineHelpers.swift in Sources */,
 				8D72D05228F813CF00C17DDC /* UIColor+Extensions.swift in Sources */,
 				8D5FA27A2913CC43002BB874 /* AnyPublisher+FallbackHelper.swift in Sources */,
 				8D5FA24D2913C4C1002BB874 /* WeakRefVirtualProxy.swift in Sources */,
 				8DDBB777291BD2F80024A37A /* PodcastDetailsViewAdapter.swift in Sources */,
 				8D5FA2492913C4C1002BB874 /* BestPodcastsViewAdapter.swift in Sources */,
-				8DCA228B2934B13300DD1EC6 /* AudioPlayerViewAdapter.swift in Sources */,
+				8DCA228B2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift in Sources */,
 				8D5FA27D2913F869002BB874 /* BestPodcastsList+CombineHelpers.swift in Sources */,
 				8D72D03A28F8118900C17DDC /* ImmediateWhenOnMainQueueScheduler.swift in Sources */,
 				8D4298C3292242E70064F3E6 /* UIImage+Extensions.swift in Sources */,
@@ -680,6 +683,7 @@
 				8D91860628F9976300DE19D1 /* HTTPClientStub.swift in Sources */,
 				8D72D06C28F82F2B00C17DDC /* SceneDelegateTests.swift in Sources */,
 				8D75079629409FA9004500D9 /* UIAlertController+Helpers.swift in Sources */,
+				8D750C912947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,7 @@ import AudioPlayerModule
 import SharedComponentsiOSModule
 import AudioPlayerModuleiOS
 
-class AudioPlayerViewAdapter {
+class LargeAudioPlayerViewAdapter {
     private weak var controller: LargeAudioPlayerViewController?
     private var onSpeedPlaybackChange: ((PlaybackSpeed) -> Void)?
     weak var presenter: LargeAudioPlayerPresenter?
@@ -18,7 +18,7 @@ class AudioPlayerViewAdapter {
     }
 }
 
-extension AudioPlayerViewAdapter: LargeAudioPlayerView {
+extension LargeAudioPlayerViewAdapter: LargeAudioPlayerView {
 
     func display(viewModel: LargeAudioPlayerViewModel) {
         controller?.display(viewModel: viewModel)

@@ -4,7 +4,7 @@ import Foundation
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 
-class AudioPlayerPresentationAdapter {
+class LargeAudioPlayerPresentationAdapter {
     private let statePublisher: AudioPlayerStatePublisher
     private var subscription: AudioPlayerStateSubscription?
     var presenter: LargeAudioPlayerPresenter?
@@ -14,7 +14,7 @@ class AudioPlayerPresentationAdapter {
     }
 }
 
-extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewDelegate {
+extension LargeAudioPlayerPresentationAdapter: LargeAudioPlayerViewDelegate {
     
     func onOpen() {
         subscription = statePublisher.subscribe(observer: self)
@@ -29,7 +29,7 @@ extension AudioPlayerPresentationAdapter: LargeAudioPlayerViewDelegate {
     }
 }
 
-extension AudioPlayerPresentationAdapter: AudioPlayerObserver {
+extension LargeAudioPlayerPresentationAdapter: AudioPlayerObserver {
 
     func receive(_ playerState: PlayerState) {
         switch playerState {

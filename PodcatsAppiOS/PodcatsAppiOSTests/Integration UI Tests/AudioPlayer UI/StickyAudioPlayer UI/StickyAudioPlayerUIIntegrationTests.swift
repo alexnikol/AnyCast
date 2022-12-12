@@ -59,6 +59,23 @@ class StickyAudioPlayerUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: playingItem2)
     }
     
+    func test_rendersState_receiveCurrentPlayingStateWhenPlayerCreatedWhenCurrentPlayerItemAlreadyPlaying() {
+        let sharedPublisher = AudioPlayerStatePublisher()
+        var sut1: SUT? = makeSUT(statePublisher: sharedPublisher)
+        sut1?.sut.loadViewIfNeeded()
+        
+        let playingItem = makePlayingItem()
+        
+        sut1?.audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem))
+        
+        sut1 = nil
+        
+        let (sut2, _, _) = makeSUT(statePublisher: sharedPublisher)
+        sut2.loadViewIfNeeded()
+        
+        assertThat(sut2, isRendering: playingItem)
+    }
+    
     // MARK: - Helpers
     
     private typealias SUT = (sut: StickyAudioPlayerViewController,

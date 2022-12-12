@@ -34,6 +34,31 @@ class StickyAudioPlayerUIIntegrationTests: XCTestCase {
         XCTAssertEqual(controlsSpy.messages, [.seekToSeconds(30)])
     }
     
+    func test_rendersState_rendersCurrentPlayersStateAndUpdateStateOnNewReceive() {
+        let (sut, audioPlayerSpy, _) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        assertThat(sut, isRendering: nil)
+
+        let playingItem1 = makePlayingItem()
+
+        audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem1))
+        assertThat(sut, isRendering: playingItem1)
+
+        let playingItem2 = makePlayingItem(
+            title: "Another Podcast Title",
+            publisher: "Another Publisher",
+            currentTimeInSeconds: 10,
+            totalTime: .valueInSeconds(200),
+            progressTimePercentage: 0.4,
+            volumeLevel: 0.6,
+            speedPlayback: .x2
+        )
+
+        audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem2))
+        assertThat(sut, isRendering: playingItem2)
+    }
+    
     // MARK: - Helpers
     
     private typealias SUT = (sut: StickyAudioPlayerViewController,
@@ -61,5 +86,39 @@ class StickyAudioPlayerUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(audioPlayer, file: file, line: line)
         audioPlayer.delegate = statePublisher
         return (sut, audioPlayer, controlsSpy)
+    }
+    
+    private func assertThat(
+        _ sut: StickyAudioPlayerViewController,
+        isRendering playingItem: PlayingItem?,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        guard let playingItem = playingItem else {
+            XCTAssertEqual(sut.episodeTitleText(), nil, file: file, line: line)
+            XCTAssertEqual(sut.episodeDescriptionText(), nil, file: file, line: line)
+            return
+        }
+        
+        let viewModel = makePresenter().map(playingItem: playingItem)
+        XCTAssertEqual(sut.episodeTitleText(), viewModel.titleLabel, file: file, line: line)
+        XCTAssertEqual(sut.episodeDescriptionText(), viewModel.descriptionLabel, file: file, line: line)
+        XCTAssertEqual(sut.playButtonImage(), UIImage(systemName: "pause.fill"), file: file, line: line)
+    }
+    
+    private func makePresenter(file: StaticString = #file, line: UInt = #line) -> StickyPlayerPresenter {
+        class AudioPlayerViewNullObject: StickyAudioPlayerView {
+            func display(viewModel: AudioPlayerModule.StickyAudioPlayerViewModel) {}
+        }
+        
+        let calendar = Calendar(identifier: .gregorian)
+        let locale = Locale(identifier: "en_US_POSIX")
+        let presenter = StickyPlayerPresenter(
+            resourceView: AudioPlayerViewNullObject(),
+            calendar: calendar,
+            locale: locale
+        )
+        trackForMemoryLeaks(presenter, file: file, line: line)
+        return presenter
     }
 }

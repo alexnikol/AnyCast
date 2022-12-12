@@ -35,6 +35,10 @@ public class StickyAudioPlayerViewController: UIViewController {
         controlsDelegate.isPlaying ? controlsDelegate.pause() : controlsDelegate.play()
     }
     
+    @IBAction public func goForewardTap(_ sender: Any) {
+        controlsDelegate?.seekToSeconds(30)
+    }
+    
     public func display(viewModel: StickyAudioPlayerViewModel) {
         titleLabel.text = viewModel.titleLabel
         descriptionLabel.text = viewModel.descriptionLabel

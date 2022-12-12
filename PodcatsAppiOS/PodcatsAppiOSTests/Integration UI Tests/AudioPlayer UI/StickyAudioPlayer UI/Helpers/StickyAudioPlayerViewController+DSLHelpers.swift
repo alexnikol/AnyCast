@@ -8,4 +8,8 @@ extension StickyAudioPlayerViewController {
     func simulateUserInitiatedTogglePlaybackEpisode() {
         self.playToggleTap(self)
     }
+    
+    func simulateUserInitiatedSeekForeward() {
+        self.goForewardTap(self)
+    }
 }

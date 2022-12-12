@@ -9,5 +9,39 @@ import AudioPlayerModuleiOS
 
 class StickyAudioPlayerUIIntegrationTests: XCTestCase {
     
+    func test_onLoad_doesNotSendsControlSignals() {
+        let (sut, _, controlsSpy) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        XCTAssertTrue(controlsSpy.messages.isEmpty)
+    }
     
+    // MARK: - Helpers
+    
+    private typealias SUT = (sut: StickyAudioPlayerViewController,
+                             audioPlayerSpy: AudioPlayerClientDummy,
+                             controlsDelegate: AudioPlayerControlsSpy)
+    
+    private func makeSUT(
+        statePublisher: AudioPlayerStatePublisher = AudioPlayerStatePublisher(),
+        file: StaticString = #file,
+        line: UInt = #line
+    ) -> SUT {
+        let controlsSpy = AudioPlayerControlsSpy()
+        let audioPlayer = AudioPlayerClientDummy()
+        let sut = StickyAudioPlayerUIComposer.playerWith(
+            thumbnailURL: anyURL(),
+            statePublisher: statePublisher,
+            controlsDelegate: controlsSpy,
+            imageLoader: { _ in
+                Empty().eraseToAnyPublisher()
+            }
+        )
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(statePublisher, file: file, line: line)
+        trackForMemoryLeaks(controlsSpy, file: file, line: line)
+        trackForMemoryLeaks(audioPlayer, file: file, line: line)
+        audioPlayer.delegate = statePublisher
+        return (sut, audioPlayer, controlsSpy)
+    }
 }

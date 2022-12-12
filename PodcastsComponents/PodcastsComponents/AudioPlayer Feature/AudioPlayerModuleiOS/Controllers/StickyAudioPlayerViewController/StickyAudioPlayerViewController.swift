@@ -5,14 +5,24 @@ import SharedComponentsiOSModule
 import AudioPlayerModule
 
 public class StickyAudioPlayerViewController: UIViewController {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var thumbnailView: DefaultImageView!
-    @IBOutlet weak var forwardButton: UIButton!
-    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet private(set) weak var titleLabel: UILabel!
+    @IBOutlet private(set) weak var descriptionLabel: UILabel!
+    @IBOutlet private(set) weak var thumbnailView: DefaultImageView!
+    @IBOutlet private(set) weak var forwardButton: UIButton!
+    @IBOutlet private(set) weak var playButton: UIButton!
+    private var delegate: StickyAudioPlayerViewDelegate?
+    private var controlsDelegate: AudioPlayerControlsDelegate?
+    private var thumbnailViewController: ThumbnailViewController?
     
-    public convenience init() {
+    public convenience init(
+        delegate: StickyAudioPlayerViewDelegate,
+        controlsDelegate: AudioPlayerControlsDelegate,
+        thumbnailViewController: ThumbnailViewController
+    ) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
+        self.delegate = delegate
+        self.controlsDelegate = controlsDelegate
+        self.thumbnailViewController = thumbnailViewController
     }
     
     public override func viewDidLoad() {

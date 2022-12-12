@@ -8,7 +8,7 @@ import AudioPlayerModule
 import SharedComponentsiOSModule
 import AudioPlayerModuleiOS
 
-public final class LargeAudioPlayerUIComposer {
+public final class StickyAudioPlayerUIComposer {
     private init() {}
     
     public static func playerWith(
@@ -16,25 +16,23 @@ public final class LargeAudioPlayerUIComposer {
         statePublisher: AudioPlayerStatePublisher,
         controlsDelegate: AudioPlayerControlsDelegate,
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>
-    ) -> LargeAudioPlayerViewController {
-        let presentationAdapter = LargeAudioPlayerPresentationAdapter(statePublisher: statePublisher)
+    ) -> StickyAudioPlayerViewController {
+        let presentationAdapter = StickyAudioPlayerPresentationAdapter(statePublisher: statePublisher)
                 
         let thumbnailViewController = ThumbnailUIComposer.composeThumbnailWithImageLoader(
             thumbnailURL: thumbnailURL,
             imageLoader: imageLoader
         )
         
-        let controller = LargeAudioPlayerViewController(
+        let controller = StickyAudioPlayerViewController(
             delegate: presentationAdapter,
             controlsDelegate: controlsDelegate,
             thumbnailViewController: thumbnailViewController
         )
-        let viewAdapter = LargeAudioPlayerViewAdapter(
-            controller: controller,
-            onSpeedPlaybackChange: controlsDelegate.changeSpeedPlaybackTo
+        let viewAdapter = StickyAudioPlayerViewAdapter(
+            controller: controller
         )
-        let presenter = LargeAudioPlayerPresenter(resourceView: viewAdapter)
-        viewAdapter.presenter = presenter
+        let presenter = StickyPlayerPresenter(resourceView: viewAdapter)
         presentationAdapter.presenter = presenter
         return controller
     }

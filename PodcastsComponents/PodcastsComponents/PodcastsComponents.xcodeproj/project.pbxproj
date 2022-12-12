@@ -125,7 +125,7 @@
 		8D9B8707292E2489003B52AB /* LargeAudioPlayerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8705292E23ED003B52AB /* LargeAudioPlayerPresenterTests.swift */; };
 		8D9B870B292E2555003B52AB /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8709292E2517003B52AB /* SharedHelpers.swift */; };
 		8D9B870C292E48DD003B52AB /* AudioPlayerModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B86C7292BC0BF003B52AB /* AudioPlayerModule.framework */; platformFilter = ios; };
-		8D9B8718292E4901003B52AB /* AudioPlayerModuleiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8717292E4901003B52AB /* AudioPlayerModuleiOSTests.swift */; };
+		8D9B8718292E4901003B52AB /* LargeAudioPlayeriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8717292E4901003B52AB /* LargeAudioPlayeriOSTests.swift */; };
 		8D9B8719292E4901003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B86F9292D19E3003B52AB /* AudioPlayerModuleiOS.framework */; };
 		8D9B8726292E6737003B52AB /* LargeAudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8721292E4936003B52AB /* LargeAudioPlayerViewController.swift */; };
 		8D9B8727292E6737003B52AB /* LargeAudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9B8723292E4949003B52AB /* LargeAudioPlayerViewController.xib */; };
@@ -549,7 +549,7 @@
 		8D9B8705292E23ED003B52AB /* LargeAudioPlayerPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerPresenterTests.swift; sourceTree = "<group>"; };
 		8D9B8709292E2517003B52AB /* SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelpers.swift; sourceTree = "<group>"; };
 		8D9B8715292E4901003B52AB /* AudioPlayerModuleiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioPlayerModuleiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D9B8717292E4901003B52AB /* AudioPlayerModuleiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerModuleiOSTests.swift; sourceTree = "<group>"; };
+		8D9B8717292E4901003B52AB /* LargeAudioPlayeriOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayeriOSTests.swift; sourceTree = "<group>"; };
 		8D9B8721292E4936003B52AB /* LargeAudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewController.swift; sourceTree = "<group>"; };
 		8D9B8723292E4949003B52AB /* LargeAudioPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LargeAudioPlayerViewController.xib; sourceTree = "<group>"; };
 		8D9B87342930C2A1003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png; sourceTree = "<group>"; };
@@ -1361,7 +1361,7 @@
 			isa = PBXGroup;
 			children = (
 				8D9B872B292E6B35003B52AB /* snapshots */,
-				8D9B8717292E4901003B52AB /* AudioPlayerModuleiOSTests.swift */,
+				8D9B8717292E4901003B52AB /* LargeAudioPlayeriOSTests.swift */,
 			);
 			path = AudioPlayerModuleiOSTests;
 			sourceTree = "<group>";
@@ -2974,7 +2974,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9B8728292E6AB2003B52AB /* XCTestCase+Snapshot.swift in Sources */,
-				8D9B8718292E4901003B52AB /* AudioPlayerModuleiOSTests.swift in Sources */,
+				8D9B8718292E4901003B52AB /* LargeAudioPlayeriOSTests.swift in Sources */,
 				8D9B872A292E6AB2003B52AB /* ViewController+Snapshot.swift in Sources */,
 				8D9B8729292E6AB2003B52AB /* UIImage+TestHelpers.swift in Sources */,
 			);

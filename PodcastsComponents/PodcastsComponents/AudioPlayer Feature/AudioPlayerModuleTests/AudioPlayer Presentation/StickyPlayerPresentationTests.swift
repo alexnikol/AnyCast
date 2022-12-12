@@ -28,7 +28,7 @@ class StickyPlayerPresentationTests: XCTestCase {
         let viewModel = sut.map(playingItem: playingItem)
         
         XCTAssertEqual(viewModel.titleLabel, "Any Episode title")
-        XCTAssertEqual(viewModel.descriptionLabel, "12 Dec 2022")
+        XCTAssertEqual(viewModel.descriptionLabel, "Dec 12, 2022")
         XCTAssertEqual(viewModel.thumbnailURL, playingItem.episode.thumbnail)
         XCTAssertEqual(viewModel.playbackViewModel, PlaybackStateViewModel(playbackState: .pause))
     }
@@ -37,7 +37,9 @@ class StickyPlayerPresentationTests: XCTestCase {
     
     private func makeSUT() -> (sut: StickyPlayerPresenter, view: ViewSpy) {
         let view = ViewSpy()
-        let presenter = StickyPlayerPresenter(resourceView: view)
+        let calendar = Calendar(identifier: .gregorian)
+        let locale = Locale(identifier: "en_US_POSIX")
+        let presenter = StickyPlayerPresenter(resourceView: view, calendar: calendar, locale: locale)
         trackForMemoryLeaks(presenter)
         trackForMemoryLeaks(view)
         return (presenter, view)

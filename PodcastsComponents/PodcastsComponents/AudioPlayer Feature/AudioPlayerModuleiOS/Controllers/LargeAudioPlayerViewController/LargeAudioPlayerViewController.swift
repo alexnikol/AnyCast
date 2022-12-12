@@ -134,7 +134,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
         leftTimeLabel.text = viewModel.currentTimeLabel
     }
     
-    private func updateUIWithUpdatesList(_ list: [LargeAudioPlayerViewModel.UpdatesViewModel]) {
+    private func updateUIWithUpdatesList(_ list: [UpdatesViewModel]) {
         list.forEach { updateViewModel in
             switch updateViewModel {
             case let .playback(state):

@@ -20,9 +20,10 @@ public class StickyPlayerPresenter {
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
+        formatter.locale = locale
         var newCalendar = calendar
         newCalendar.locale = locale
-        formatter.calendar = newCalendar
+        formatter.calendar = calendar
         return formatter
     }()
     

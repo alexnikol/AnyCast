@@ -885,17 +885,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		8D249204293A046D009ACD36 /* ViewModels */ = {
+		8D249204293A046D009ACD36 /* SharedViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */,
-				8D249205293A048F009ACD36 /* UpdatesViewModel.swift */,
-				8D249207293A04DC009ACD36 /* ProgressViewModel.swift */,
 				8DCA22832931416700DD1EC6 /* PlaybackStateViewModel.swift */,
-				8DC218D3293F888800A8EA86 /* SpeedPlaybackViewModel.swift */,
-				8D750C6C29473AE2004500D9 /* StickyAudioPlayerViewModel.swift */,
 			);
-			path = ViewModels;
+			path = SharedViewModels;
 			sourceTree = "<group>";
 		};
 		8D4298AA292233F30064F3E6 /* SharedHelpersiOSModule */ = {
@@ -1235,6 +1230,27 @@
 			path = DefaultImageView;
 			sourceTree = "<group>";
 		};
+		8D750C7129473C04004500D9 /* LargeAudioPlayerPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */,
+				8D249205293A048F009ACD36 /* UpdatesViewModel.swift */,
+				8D249207293A04DC009ACD36 /* ProgressViewModel.swift */,
+				8DC218D3293F888800A8EA86 /* SpeedPlaybackViewModel.swift */,
+				8DCA22812931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift */,
+			);
+			path = LargeAudioPlayerPresenter;
+			sourceTree = "<group>";
+		};
+		8D750C7229473C0F004500D9 /* StickyPlayerPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				8D750C6F29473B28004500D9 /* StickyPlayerPresenter.swift */,
+				8D750C6C29473AE2004500D9 /* StickyAudioPlayerViewModel.swift */,
+			);
+			path = StickyPlayerPresenter;
+			sourceTree = "<group>";
+		};
 		8D75814928D09E6500751261 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1526,9 +1542,9 @@
 		8DCA227E2931412800DD1EC6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				8D249204293A046D009ACD36 /* ViewModels */,
-				8DCA227F2931413800DD1EC6 /* LargeAudioPlayerPresenter.swift */,
-				8D750C6F29473B28004500D9 /* StickyPlayerPresenter.swift */,
+				8D249204293A046D009ACD36 /* SharedViewModels */,
+				8D750C7229473C0F004500D9 /* StickyPlayerPresenter */,
+				8D750C7129473C04004500D9 /* LargeAudioPlayerPresenter */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";

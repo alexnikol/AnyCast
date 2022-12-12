@@ -42,7 +42,7 @@ public final class LargeAudioPlayerPresenter {
         )
     }
     
-    private func map(_ stateModel: PlayingItem.State) -> LargeAudioPlayerViewModel.UpdatesViewModel {
+    private func map(_ stateModel: PlayingItem.State) -> UpdatesViewModel {
         switch stateModel {
         case let .playback(state):
             return .playback(PlaybackStateViewModel(playbackState: state))

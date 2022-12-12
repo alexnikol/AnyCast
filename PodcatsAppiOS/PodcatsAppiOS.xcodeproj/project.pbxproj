@@ -263,6 +263,7 @@
 		8D4C3B22291CF2F7002AD459 /* Integration UI Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8D750C6929472693004500D9 /* Navigation UI */,
 				8D72D03E28F8121C00C17DDC /* Genres UI */,
 				8D5FA24E2913C4CD002BB874 /* BestPodcasts UI */,
 				8DDBB76C291BC5740024A37A /* PodcastDetails UI */,
@@ -379,6 +380,13 @@
 				8D750B2F29433862004500D9 /* ThumbnailUIComposer.swift */,
 			);
 			path = "Shared UI";
+			sourceTree = "<group>";
+		};
+		8D750C6929472693004500D9 /* Navigation UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Navigation UI";
 			sourceTree = "<group>";
 		};
 		8D76B86728D4A2540014A211 = {

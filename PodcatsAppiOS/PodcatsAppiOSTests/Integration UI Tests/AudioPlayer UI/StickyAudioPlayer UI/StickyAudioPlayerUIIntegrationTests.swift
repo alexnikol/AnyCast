@@ -16,6 +16,15 @@ class StickyAudioPlayerUIIntegrationTests: XCTestCase {
         XCTAssertTrue(controlsSpy.messages.isEmpty)
     }
     
+    func test_sendControlMessages_sendTogglePlaybackStateToControlsDelegate() {
+        let (sut, _, controlsSpy) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sut.simulateUserInitiatedTogglePlaybackEpisode()
+        
+        XCTAssertEqual(controlsSpy.messages, [.tooglePlaybackState])
+    }
+    
     // MARK: - Helpers
     
     private typealias SUT = (sut: StickyAudioPlayerViewController,

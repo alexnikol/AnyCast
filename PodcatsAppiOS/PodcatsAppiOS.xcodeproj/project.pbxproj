@@ -51,6 +51,7 @@
 		8D750C952947A662004500D9 /* StickyAudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C942947A662004500D9 /* StickyAudioPlayerUIComposer.swift */; };
 		8D750C972947A6B6004500D9 /* StickyAudioPlayerPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C962947A6B6004500D9 /* StickyAudioPlayerPresentationAdapter.swift */; };
 		8D750C9B2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C9A2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift */; };
+		8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */; };
 		8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B87328D4A2540014A211 /* AppDelegate.swift */; };
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
@@ -169,6 +170,7 @@
 		8D750C942947A662004500D9 /* StickyAudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerUIComposer.swift; sourceTree = "<group>"; };
 		8D750C962947A6B6004500D9 /* StickyAudioPlayerPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerPresentationAdapter.swift; sourceTree = "<group>"; };
 		8D750C9A2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
+		8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StickyAudioPlayerViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -409,6 +411,41 @@
 			path = StickyAudioPlayer;
 			sourceTree = "<group>";
 		};
+		8D750C9C2947AFFE004500D9 /* LargeAudioPlayer UI */ = {
+			isa = PBXGroup;
+			children = (
+				8DCA228C2934BA5700DD1EC6 /* Helpers */,
+				8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */,
+			);
+			path = "LargeAudioPlayer UI";
+			sourceTree = "<group>";
+		};
+		8D750C9D2947B010004500D9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D75079129409BC6004500D9 /* AudioPlayerControlsSpy.swift */,
+				8D75079329409BE2004500D9 /* AudioPlayerClientDummy.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8D750C9E2947B02D004500D9 /* StickyAudioPlayer UI */ = {
+			isa = PBXGroup;
+			children = (
+				8D750CA12947B044004500D9 /* Helpers */,
+				8D750C902947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift */,
+			);
+			path = "StickyAudioPlayer UI";
+			sourceTree = "<group>";
+		};
+		8D750CA12947B044004500D9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8D76B86728D4A2540014A211 = {
 			isa = PBXGroup;
 			children = (
@@ -483,9 +520,9 @@
 		8D9B8700292D1CBF003B52AB /* AudioPlayer UI */ = {
 			isa = PBXGroup;
 			children = (
-				8DCA228C2934BA5700DD1EC6 /* Helpers */,
-				8D9B8701292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift */,
-				8D750C902947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift */,
+				8D750C9D2947B010004500D9 /* Helpers */,
+				8D750C9C2947AFFE004500D9 /* LargeAudioPlayer UI */,
+				8D750C9E2947B02D004500D9 /* StickyAudioPlayer UI */,
 			);
 			path = "AudioPlayer UI";
 			sourceTree = "<group>";
@@ -503,8 +540,6 @@
 			isa = PBXGroup;
 			children = (
 				8DCA228D2934BA6F00DD1EC6 /* LargeAudioPlayerViewController+DSLHelpers.swift */,
-				8D75079129409BC6004500D9 /* AudioPlayerControlsSpy.swift */,
-				8D75079329409BE2004500D9 /* AudioPlayerClientDummy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -695,6 +730,7 @@
 				8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
 				8D9B8702292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift in Sources */,
 				8D5FA2562913C539002BB874 /* PodcastCell+DSLHelpers.swift in Sources */,
+				8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */,
 				8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */,
 				8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */,
 				8D5FA25B2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift in Sources */,

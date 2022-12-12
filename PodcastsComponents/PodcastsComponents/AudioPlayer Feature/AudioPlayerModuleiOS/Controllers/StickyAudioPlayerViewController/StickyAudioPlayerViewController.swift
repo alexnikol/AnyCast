@@ -30,6 +30,11 @@ public class StickyAudioPlayerViewController: UIViewController {
         configureViews()
     }
     
+    @IBAction public func playToggleTap(_ sender: Any) {
+        guard let controlsDelegate = controlsDelegate else { return }
+        controlsDelegate.isPlaying ? controlsDelegate.pause() : controlsDelegate.play()
+    }
+    
     public func display(viewModel: StickyAudioPlayerViewModel) {
         titleLabel.text = viewModel.titleLabel
         descriptionLabel.text = viewModel.descriptionLabel

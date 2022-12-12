@@ -7,6 +7,14 @@ extension UIViewController {
     func snapshot(for configuration: SnapshotConfiguration) -> UIImage {
         return SnapshotWindow(configuration: configuration, root: self).snapshot()
     }
+    
+    func updateFrameWith(orientation: SnapshotConfiguration.Orientation) {
+        self.view.frame = CGRect(origin: .zero, size: orientation.size)
+    }
+    
+    func updateFrameWith(frame: CGRect) {
+        self.view.frame = frame
+    }
 }
 
 struct SnapshotConfiguration {

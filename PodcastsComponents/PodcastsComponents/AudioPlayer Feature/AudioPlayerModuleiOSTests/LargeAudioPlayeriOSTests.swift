@@ -21,9 +21,8 @@ class LargeAudioPlayeriOSTests: XCTestCase {
     
     func test_playerLandscape() {
         let sut = makeSUT()
-        sut.view.frame = CGRect(origin: .zero, size: SnapshotConfiguration.Orientation.landscape.size)
+        sut.updateFrameWith(orientation: .landscape)
         sut.loadViewIfNeeded()
-        sut.viewDidLayoutSubviews()
         
         sut.display(viewModel: makeViewModel())
         
@@ -64,38 +63,7 @@ class LargeAudioPlayeriOSTests: XCTestCase {
         
         return presenter.map(playingItem: plaingItem)
     }
-    
-    private func makeEpisode() -> Episode {
-        Episode(
-            id: UUID().uuidString,
-            title: "Any Episode Title".repeatTimes(10),
-            description: "Any Episode Description".repeatTimes(10),
-            thumbnail: anyURL(),
-            audio: anyURL(),
-            audioLengthInSeconds: Int.random(in: 1...1000),
-            containsExplicitContent: Bool.random(),
-            publishDateInMiliseconds: Int.random(in: 1479110301853...1479110401853)
-        )
-    }
-    
-    private func makePodcast() -> PodcastDetails {
-        PodcastDetails(
-            id: UUID().uuidString,
-            title: "Any Podcast Title",
-            publisher: "Any Publisher Title",
-            language: "Any language",
-            type: .episodic,
-            image: anyURL(),
-            episodes: [],
-            description: "Any description",
-            totalEpisodes: 100
-        )
-    }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
-    }
-    
+        
     private class NullObject: LargeAudioPlayerView {
         func diplayFuturePrepareForSeekProgress(with progress: AudioPlayerModule.ProgressViewModel) {}
         func display(viewModel: LargeAudioPlayerViewModel) {}
@@ -122,11 +90,5 @@ class LargeAudioPlayeriOSTests: XCTestCase {
     private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
         func didRequestLoading() {}
         func didRequestCancel() {}
-    }
-}
-
-private extension String {
-    func repeatTimes(_ times: Int) -> String {
-        return String(repeating: self + " ", count: times)
     }
 }

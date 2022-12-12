@@ -8,9 +8,12 @@ public class DefaultImageView: NibView {
     @IBOutlet public weak var imageView: UIImageView!
     
     public override func setupView() {
-        imageInnerContainer.layer.cornerRadius = 4.0
-        imageMainContainer.layer.cornerRadius = 4.0
         imageView.clipsToBounds = true
+    }
+    
+    public func setCornerRadius(_ value: CGFloat) {
+        imageInnerContainer.layer.cornerRadius = value
+        imageMainContainer.layer.cornerRadius = value
     }
 }
 

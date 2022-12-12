@@ -101,6 +101,11 @@
 		8D750C782947581D004500D9 /* StickyAudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C762947581D004500D9 /* StickyAudioPlayerViewController.swift */; };
 		8D750C792947581D004500D9 /* StickyAudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D750C772947581D004500D9 /* StickyAudioPlayerViewController.xib */; };
 		8D750C7B29475CB7004500D9 /* PlaybackStateViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C7A29475CB7004500D9 /* PlaybackStateViewModel+Extension.swift */; };
+		8D750C7F29475F16004500D9 /* StickyAudioPlayeriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C7D29475EDA004500D9 /* StickyAudioPlayeriOSTests.swift */; };
+		8D750C8329476023004500D9 /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C8129476005004500D9 /* SharedHelpers.swift */; };
+		8D750C8629476107004500D9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C84294760F5004500D9 /* String+Extensions.swift */; };
+		8D750C892947618E004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D750C872947618D004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */; };
+		8D750C8A2947618E004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D750C882947618D004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png */; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
@@ -527,6 +532,11 @@
 		8D750C762947581D004500D9 /* StickyAudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewController.swift; sourceTree = "<group>"; };
 		8D750C772947581D004500D9 /* StickyAudioPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StickyAudioPlayerViewController.xib; sourceTree = "<group>"; };
 		8D750C7A29475CB7004500D9 /* PlaybackStateViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaybackStateViewModel+Extension.swift"; sourceTree = "<group>"; };
+		8D750C7D29475EDA004500D9 /* StickyAudioPlayeriOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayeriOSTests.swift; sourceTree = "<group>"; };
+		8D750C8129476005004500D9 /* SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelpers.swift; sourceTree = "<group>"; };
+		8D750C84294760F5004500D9 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		8D750C872947618D004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png; sourceTree = "<group>"; };
+		8D750C882947618D004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png; sourceTree = "<group>"; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
@@ -1274,6 +1284,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		8D750C8029475FF9004500D9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D750C8129476005004500D9 /* SharedHelpers.swift */,
+				8D750C84294760F5004500D9 /* String+Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8D75814928D09E6500751261 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1360,8 +1379,10 @@
 		8D9B8716292E4901003B52AB /* AudioPlayerModuleiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				8D750C8029475FF9004500D9 /* Helpers */,
 				8D9B872B292E6B35003B52AB /* snapshots */,
 				8D9B8717292E4901003B52AB /* LargeAudioPlayeriOSTests.swift */,
+				8D750C7D29475EDA004500D9 /* StickyAudioPlayeriOSTests.swift */,
 			);
 			path = AudioPlayerModuleiOSTests;
 			sourceTree = "<group>";
@@ -1392,6 +1413,8 @@
 				8DCA22982934E45E00DD1EC6 /* LARGE_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png */,
 				8D9B87342930C2A1003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */,
 				8D9B87362930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png */,
+				8D750C872947618D004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */,
+				8D750C882947618D004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png */,
 			);
 			path = snapshots;
 			sourceTree = "<group>";
@@ -2715,7 +2738,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750C8A2947618E004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png in Resources */,
 				8D9B8727292E6737003B52AB /* LargeAudioPlayerViewController.xib in Resources */,
+				8D750C892947618E004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png in Resources */,
 				8D750C792947581D004500D9 /* StickyAudioPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2974,9 +2999,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9B8728292E6AB2003B52AB /* XCTestCase+Snapshot.swift in Sources */,
+				8D750C8629476107004500D9 /* String+Extensions.swift in Sources */,
 				8D9B8718292E4901003B52AB /* LargeAudioPlayeriOSTests.swift in Sources */,
+				8D750C8329476023004500D9 /* SharedHelpers.swift in Sources */,
 				8D9B872A292E6AB2003B52AB /* ViewController+Snapshot.swift in Sources */,
 				8D9B8729292E6AB2003B52AB /* UIImage+TestHelpers.swift in Sources */,
+				8D750C7F29475F16004500D9 /* StickyAudioPlayeriOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

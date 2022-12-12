@@ -76,6 +76,20 @@ class StickyAudioPlayerUIIntegrationTests: XCTestCase {
         assertThat(sut2, isRendering: playingItem)
     }
     
+    func test_rendersState_dispatchesFromBackgroundToMainThread() {
+        let (sut, audioPlayerSpy, _) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        let playingItem = makePlayingItem()
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            audioPlayerSpy.sendNewPlayerState(.startPlayingNewItem(playingItem))
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private typealias SUT = (sut: StickyAudioPlayerViewController,

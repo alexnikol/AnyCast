@@ -98,6 +98,9 @@
 		8D750C6B29472840004500D9 /* StickyPlayerPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C6A29472840004500D9 /* StickyPlayerPresentationTests.swift */; };
 		8D750C6E29473B05004500D9 /* StickyAudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C6C29473AE2004500D9 /* StickyAudioPlayerViewModel.swift */; };
 		8D750C7029473B28004500D9 /* StickyPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C6F29473B28004500D9 /* StickyPlayerPresenter.swift */; };
+		8D750C782947581D004500D9 /* StickyAudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C762947581D004500D9 /* StickyAudioPlayerViewController.swift */; };
+		8D750C792947581D004500D9 /* StickyAudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D750C772947581D004500D9 /* StickyAudioPlayerViewController.xib */; };
+		8D750C7B29475CB7004500D9 /* PlaybackStateViewModel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C7A29475CB7004500D9 /* PlaybackStateViewModel+Extension.swift */; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
@@ -521,6 +524,9 @@
 		8D750C6A29472840004500D9 /* StickyPlayerPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyPlayerPresentationTests.swift; sourceTree = "<group>"; };
 		8D750C6C29473AE2004500D9 /* StickyAudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewModel.swift; sourceTree = "<group>"; };
 		8D750C6F29473B28004500D9 /* StickyPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyPlayerPresenter.swift; sourceTree = "<group>"; };
+		8D750C762947581D004500D9 /* StickyAudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewController.swift; sourceTree = "<group>"; };
+		8D750C772947581D004500D9 /* StickyAudioPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StickyAudioPlayerViewController.xib; sourceTree = "<group>"; };
+		8D750C7A29475CB7004500D9 /* PlaybackStateViewModel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaybackStateViewModel+Extension.swift"; sourceTree = "<group>"; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
@@ -1251,6 +1257,23 @@
 			path = StickyPlayerPresenter;
 			sourceTree = "<group>";
 		};
+		8D750C75294757FD004500D9 /* StickyAudioPlayerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8D750C762947581D004500D9 /* StickyAudioPlayerViewController.swift */,
+				8D750C772947581D004500D9 /* StickyAudioPlayerViewController.xib */,
+			);
+			path = StickyAudioPlayerViewController;
+			sourceTree = "<group>";
+		};
+		8D750C7C29475CBB004500D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D750C7A29475CB7004500D9 /* PlaybackStateViewModel+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8D75814928D09E6500751261 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1303,6 +1326,7 @@
 		8D9B86FA292D19E3003B52AB /* AudioPlayerModuleiOS */ = {
 			isa = PBXGroup;
 			children = (
+				8D750C7C29475CBB004500D9 /* Extensions */,
 				8D9B871F292E491B003B52AB /* Controllers */,
 			);
 			path = AudioPlayerModuleiOS;
@@ -1345,6 +1369,7 @@
 		8D9B871F292E491B003B52AB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8D750C75294757FD004500D9 /* StickyAudioPlayerViewController */,
 				8D9B8725292E4952003B52AB /* LargeAudioPlayerViewController */,
 			);
 			path = Controllers;
@@ -2691,6 +2716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D9B8727292E6737003B52AB /* LargeAudioPlayerViewController.xib in Resources */,
+				8D750C792947581D004500D9 /* StickyAudioPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2936,6 +2962,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750C782947581D004500D9 /* StickyAudioPlayerViewController.swift in Sources */,
+				8D750C7B29475CB7004500D9 /* PlaybackStateViewModel+Extension.swift in Sources */,
 				8DCA22912934CB3A00DD1EC6 /* LargeAudioPlayerViewDelegate.swift in Sources */,
 				8D9B8726292E6737003B52AB /* LargeAudioPlayerViewController.swift in Sources */,
 			);

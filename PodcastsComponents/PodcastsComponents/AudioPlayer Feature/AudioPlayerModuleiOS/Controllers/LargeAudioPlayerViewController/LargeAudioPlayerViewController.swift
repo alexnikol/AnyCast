@@ -241,18 +241,3 @@ private extension LargeAudioPlayerViewController {
         descriptionLabel?.textAlignment = isPortrait ? .center : .left
     }
 }
-
-// MARK: - PlaybackStateViewModel helpers
-private extension PlaybackStateViewModel {
-    
-    var image: UIImage {
-        switch self {
-        case .playing:
-            return UIImage(systemName: "pause.fill")!
-        case .pause:
-            return UIImage(systemName: "play.fill")!
-        case .loading:
-            return UIImage(systemName: "circle.hexagonpath.fill")!
-        }
-    }
-}

@@ -106,14 +106,14 @@ class StickyAudioPlayerUIIntegrationTests: XCTestCase {
         XCTAssertEqual(sut.playButtonImage(), UIImage(systemName: "pause.fill"), file: file, line: line)
     }
     
-    private func makePresenter(file: StaticString = #file, line: UInt = #line) -> StickyPlayerPresenter {
+    private func makePresenter(file: StaticString = #file, line: UInt = #line) -> StickyAudioPlayerPresenter {
         class AudioPlayerViewNullObject: StickyAudioPlayerView {
             func display(viewModel: AudioPlayerModule.StickyAudioPlayerViewModel) {}
         }
         
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
-        let presenter = StickyPlayerPresenter(
+        let presenter = StickyAudioPlayerPresenter(
             resourceView: AudioPlayerViewNullObject(),
             calendar: calendar,
             locale: locale

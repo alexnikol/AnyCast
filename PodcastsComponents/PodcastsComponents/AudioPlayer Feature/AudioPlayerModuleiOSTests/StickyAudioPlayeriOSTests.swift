@@ -71,7 +71,7 @@ class StickyAudioPlayeriOSTests: XCTestCase {
         )
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
-        let presenter = StickyPlayerPresenter(resourceView: DummyStickyAudioPlayerView(), calendar: calendar, locale: locale)
+        let presenter = StickyAudioPlayerPresenter(resourceView: DummyStickyAudioPlayerView(), calendar: calendar, locale: locale)
         return presenter.map(playingItem: plaingItem)
     }
     

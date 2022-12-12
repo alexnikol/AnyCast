@@ -32,7 +32,7 @@ public final class StickyAudioPlayerUIComposer {
         let viewAdapter = StickyAudioPlayerViewAdapter(
             controller: controller
         )
-        let presenter = StickyPlayerPresenter(resourceView: viewAdapter)
+        let presenter = StickyAudioPlayerPresenter(resourceView: viewAdapter)
         presentationAdapter.presenter = presenter
         return controller
     }

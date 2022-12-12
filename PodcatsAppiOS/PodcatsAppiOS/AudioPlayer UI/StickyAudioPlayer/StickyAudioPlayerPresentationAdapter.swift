@@ -7,7 +7,7 @@ import AudioPlayerModuleiOS
 class StickyAudioPlayerPresentationAdapter {
     private let statePublisher: AudioPlayerStatePublisher
     private var subscription: AudioPlayerStateSubscription?
-    var presenter: StickyPlayerPresenter?
+    var presenter: StickyAudioPlayerPresenter?
     
     init(statePublisher: AudioPlayerStatePublisher) {
         self.statePublisher = statePublisher

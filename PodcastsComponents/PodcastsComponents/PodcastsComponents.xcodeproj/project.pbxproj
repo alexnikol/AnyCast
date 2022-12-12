@@ -95,7 +95,7 @@
 		8D750B2B29433012004500D9 /* ThumbnailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750B2A29433012004500D9 /* ThumbnailViewController.swift */; };
 		8D750B3729434139004500D9 /* DefaultImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D750B3529434111004500D9 /* DefaultImageView.xib */; };
 		8D750B3829434139004500D9 /* DefaultImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750B3329434107004500D9 /* DefaultImageView.swift */; };
-		8D750C6B29472840004500D9 /* StickyPlayerPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C6A29472840004500D9 /* StickyPlayerPresentationTests.swift */; };
+		8D750C6B29472840004500D9 /* StickyAudioPlayerPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C6A29472840004500D9 /* StickyAudioPlayerPresentationTests.swift */; };
 		8D750C6E29473B05004500D9 /* StickyAudioPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C6C29473AE2004500D9 /* StickyAudioPlayerViewModel.swift */; };
 		8D750C7029473B28004500D9 /* StickyPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C6F29473B28004500D9 /* StickyPlayerPresenter.swift */; };
 		8D750C782947581D004500D9 /* StickyAudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C762947581D004500D9 /* StickyAudioPlayerViewController.swift */; };
@@ -529,7 +529,7 @@
 		8D750B2A29433012004500D9 /* ThumbnailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailViewController.swift; sourceTree = "<group>"; };
 		8D750B3329434107004500D9 /* DefaultImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageView.swift; sourceTree = "<group>"; };
 		8D750B3529434111004500D9 /* DefaultImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultImageView.xib; sourceTree = "<group>"; };
-		8D750C6A29472840004500D9 /* StickyPlayerPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyPlayerPresentationTests.swift; sourceTree = "<group>"; };
+		8D750C6A29472840004500D9 /* StickyAudioPlayerPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerPresentationTests.swift; sourceTree = "<group>"; };
 		8D750C6C29473AE2004500D9 /* StickyAudioPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewModel.swift; sourceTree = "<group>"; };
 		8D750C6F29473B28004500D9 /* StickyPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyPlayerPresenter.swift; sourceTree = "<group>"; };
 		8D750C762947581D004500D9 /* StickyAudioPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewController.swift; sourceTree = "<group>"; };
@@ -1362,7 +1362,7 @@
 			isa = PBXGroup;
 			children = (
 				8D9B8705292E23ED003B52AB /* LargeAudioPlayerPresenterTests.swift */,
-				8D750C6A29472840004500D9 /* StickyPlayerPresentationTests.swift */,
+				8D750C6A29472840004500D9 /* StickyAudioPlayerPresentationTests.swift */,
 			);
 			path = "AudioPlayer Presentation";
 			sourceTree = "<group>";
@@ -2986,7 +2986,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D750C6B29472840004500D9 /* StickyPlayerPresentationTests.swift in Sources */,
+				8D750C6B29472840004500D9 /* StickyAudioPlayerPresentationTests.swift in Sources */,
 				8D9B870B292E2555003B52AB /* SharedHelpers.swift in Sources */,
 				8D9B8707292E2489003B52AB /* LargeAudioPlayerPresenterTests.swift in Sources */,
 				8D9B86E7292C08F0003B52AB /* AudioPlayerStatePublisherTests.swift in Sources */,

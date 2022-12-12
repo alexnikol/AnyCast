@@ -6,7 +6,7 @@ public protocol StickyAudioPlayerView {
     func display(viewModel: StickyAudioPlayerViewModel)
 }
 
-public class StickyPlayerPresenter {
+public class StickyAudioPlayerPresenter {
     private let resourceView: StickyAudioPlayerView
     private let calendar: Calendar
     private let locale: Locale

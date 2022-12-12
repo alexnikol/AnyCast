@@ -4,7 +4,7 @@ import XCTest
 import AudioPlayerModule
 import PodcastsModule
 
-class StickyPlayerPresentationTests: XCTestCase {
+class StickyAudioPlayerPresentationTests: XCTestCase {
     
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()
@@ -35,11 +35,11 @@ class StickyPlayerPresentationTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> (sut: StickyPlayerPresenter, view: ViewSpy) {
+    private func makeSUT() -> (sut: StickyAudioPlayerPresenter, view: ViewSpy) {
         let view = ViewSpy()
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
-        let presenter = StickyPlayerPresenter(resourceView: view, calendar: calendar, locale: locale)
+        let presenter = StickyAudioPlayerPresenter(resourceView: view, calendar: calendar, locale: locale)
         trackForMemoryLeaks(presenter)
         trackForMemoryLeaks(view)
         return (presenter, view)

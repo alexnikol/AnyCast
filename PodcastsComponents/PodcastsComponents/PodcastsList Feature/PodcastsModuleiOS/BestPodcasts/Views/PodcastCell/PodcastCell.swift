@@ -20,6 +20,7 @@ public final class PodcastCell: UITableViewCell, Reusable {
     public override func awakeFromNib() {
         super.awakeFromNib()
         cellContainer.layer.cornerRadius = 4.0
+        thumbnailImageView.setCornerRadius(4.0)
     }
     
     public override func prepareForReuse() {

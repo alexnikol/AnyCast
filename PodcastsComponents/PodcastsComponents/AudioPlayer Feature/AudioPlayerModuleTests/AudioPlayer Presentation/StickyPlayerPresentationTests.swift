@@ -65,28 +65,4 @@ class StickyPlayerPresentationTests: XCTestCase {
             messages.append(.update)
         }
     }
-    
-    private func makePlayingItem(
-        playbackState: PlayingItem.PlaybackState,
-        currentTimeInSeconds: Int,
-        totalTime: EpisodeDuration,
-        playbackSpeed: PlaybackSpeed
-    ) -> PlayingItem {
-        PlayingItem(
-            episode: makeUniqueEpisode(),
-            podcast: makePodcast(),
-            updates: [
-                .playback(playbackState),
-                .progress(
-                    .init(
-                        currentTimeInSeconds: currentTimeInSeconds,
-                        totalTime: totalTime,
-                        progressTimePercentage: 0.1234
-                    )
-                ),
-                .volumeLevel(0.5),
-                .speed(playbackSpeed)
-            ]
-        )
-    }
 }

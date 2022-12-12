@@ -12,13 +12,33 @@ class StickyAudioPlayeriOSTests: XCTestCase {
     func test_player_portrait() {
         let (sut, root) = makeSUT()
         root.updateFrameWith(orientation: .portrait)
-        let sutFrame = CGRect(x: 0, y: SnapshotConfiguration.Orientation.portrait.size.height - 60, width: SnapshotConfiguration.Orientation.portrait.size.width, height: 60)
-        sut.updateFrameWith(frame: sutFrame)
+        sut.updateFrameWith(
+            frame: CGRect(x: 0,
+                          y: SnapshotConfiguration.Orientation.portrait.size.height - 60,
+                          width: SnapshotConfiguration.Orientation.portrait.size.width,
+                          height: 60)
+        )
         
         sut.display(viewModel: makeViewModel())
         
         assert(snapshot: root.snapshot(for: .iPhone14(style: .light)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light")
         assert(snapshot: root.snapshot(for: .iPhone14(style: .dark)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark")
+    }
+    
+    func test_player_landscape() {
+        let (sut, root) = makeSUT()
+        root.updateFrameWith(orientation: .landscape)
+        sut.updateFrameWith(
+            frame: CGRect(x: 0,
+                          y: SnapshotConfiguration.Orientation.landscape.size.height - 60,
+                          width: SnapshotConfiguration.Orientation.landscape.size.width,
+                          height: 60)
+        )
+        
+        sut.display(viewModel: makeViewModel())
+        
+        record(snapshot: root.snapshot(for: .iPhone14(style: .light, orientation: .landscape)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light")
+        record(snapshot: root.snapshot(for: .iPhone14(style: .dark, orientation: .landscape)), named: "STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark")
     }
     
     // MARK: - Helpers

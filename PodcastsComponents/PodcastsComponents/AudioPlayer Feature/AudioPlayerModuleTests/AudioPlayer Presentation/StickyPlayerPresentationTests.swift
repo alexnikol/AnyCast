@@ -8,15 +8,18 @@ struct StickyAudioPlayerViewModel {
     let titleLabel: String
     let descriptionLabel: String
     let thumbnailURL: URL
+    let playbackViewModel: PlaybackStateViewModel
     
     init(
         titleLabel: String,
         descriptionLabel: String,
-        thumbnailURL: URL
+        thumbnailURL: URL,
+        playbackViewModel: PlaybackStateViewModel
     ) {
         self.titleLabel = titleLabel
         self.descriptionLabel = descriptionLabel
         self.thumbnailURL = thumbnailURL
+        self.playbackViewModel = playbackViewModel
     }
 }
 
@@ -47,10 +50,23 @@ class StickyPlayerPresenter {
     func map(playingItem: PlayingItem) -> StickyAudioPlayerViewModel {
         let publishDate = Date(timeIntervalSince1970: TimeInterval(playingItem.episode.publishDateInMiliseconds / 1000))
         let displayPublishDate = dateFormatter.string(from: publishDate)
+        
+        var playBackStateViewModel: PlaybackStateViewModel = .init(playbackState: .pause)
+        
+        for update in playingItem.updates {
+            switch update {
+            case .playback(let playbackState):
+                playBackStateViewModel = PlaybackStateViewModel(playbackState: playbackState)
+                
+            default: ()
+            }
+        }
+        
         return StickyAudioPlayerViewModel(
             titleLabel: playingItem.episode.title,
             descriptionLabel: displayPublishDate,
-            thumbnailURL: playingItem.episode.thumbnail
+            thumbnailURL: playingItem.episode.thumbnail,
+            playbackViewModel: playBackStateViewModel
         )
     }
     
@@ -85,6 +101,7 @@ class StickyPlayerPresentationTests: XCTestCase {
         XCTAssertEqual(viewModel.titleLabel, "Any Episode title")
         XCTAssertEqual(viewModel.descriptionLabel, "12 Dec 2022")
         XCTAssertEqual(viewModel.thumbnailURL, playingItem.episode.thumbnail)
+        XCTAssertEqual(viewModel.playbackViewModel, PlaybackStateViewModel(playbackState: .pause))
     }
     
     // MARK: - Helpers

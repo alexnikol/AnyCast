@@ -291,7 +291,7 @@
 				8D5FA24E2913C4CD002BB874 /* BestPodcasts UI */,
 				8DDBB76C291BC5740024A37A /* PodcastDetails UI */,
 				8D9B8700292D1CBF003B52AB /* AudioPlayer UI */,
-				8D750CBB29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift */,
+				8D750CF229488D2F004500D9 /* RootTabBar UI */,
 			);
 			path = "Integration UI Tests";
 			sourceTree = "<group>";
@@ -468,6 +468,14 @@
 				8D750CB829487D16004500D9 /* RootTabBarController.swift */,
 			);
 			path = RootUITabBarController;
+			sourceTree = "<group>";
+		};
+		8D750CF229488D2F004500D9 /* RootTabBar UI */ = {
+			isa = PBXGroup;
+			children = (
+				8D750CBB29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift */,
+			);
+			path = "RootTabBar UI";
 			sourceTree = "<group>";
 		};
 		8D76B86728D4A2540014A211 = {

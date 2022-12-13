@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import SharedTestHelpersLibrary
 import LoadResourcePresenter
 import SharedComponentsiOSModule
 import PodcastsModule

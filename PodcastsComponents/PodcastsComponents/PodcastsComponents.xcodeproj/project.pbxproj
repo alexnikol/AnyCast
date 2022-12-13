@@ -76,8 +76,6 @@
 		8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */; };
 		8D72CFE128F8093800C17DDC /* GenresActiveColorProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */; };
 		8D72D05C28F8287E00C17DDC /* GenresUISnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05B28F8287E00C17DDC /* GenresUISnapshotTests.swift */; };
-		8D72D05F28F82A2100C17DDC /* ViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */; };
-		8D72D06128F82A3400C17DDC /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D06028F82A3400C17DDC /* XCTestCase+Snapshot.swift */; };
 		8D72D07028F85A5000C17DDC /* GenresCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D06F28F85A5000C17DDC /* GenresCache.swift */; };
 		8D745DCC28BF98F7005DC3F8 /* FeedItemsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DCB28BF98F7005DC3F8 /* FeedItemsMapperTests.swift */; };
 		8D745DD128BFA728005DC3F8 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D745DD028BFA728005DC3F8 /* Genre.swift */; };
@@ -107,7 +105,6 @@
 		8D750C992947A842004500D9 /* StickyAudioPlayerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C982947A842004500D9 /* StickyAudioPlayerViewDelegate.swift */; };
 		8D750CA529485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA429485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift */; };
 		8D750CA729485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA629485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift */; };
-		8D750CB129487BCF004500D9 /* LocalizationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CAF29487BB5004500D9 /* LocalizationTestCase.swift */; };
 		8D750CD529488218004500D9 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CD429488218004500D9 /* XCTestCase+MemoryLeakTracking.swift */; };
 		8D750CD729488336004500D9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CD629488336004500D9 /* XCTest.framework */; };
 		8D750CD8294883ED004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
@@ -118,6 +115,14 @@
 		8D750CDD29488524004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D750CDE29488537004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D750CDF29488554004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
+		8D750CE1294886AB004500D9 /* LocalizationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CE0294886AB004500D9 /* LocalizationTestCase.swift */; };
+		8D750CE9294887DC004500D9 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CE6294887DC004500D9 /* XCTestCase+Snapshot.swift */; };
+		8D750CEA294887DC004500D9 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CE7294887DC004500D9 /* UIImage+TestHelpers.swift */; };
+		8D750CEB294887DC004500D9 /* ViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CE8294887DC004500D9 /* ViewController+Snapshot.swift */; };
+		8D750CEC2948888D004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
+		8D750CED294888B6004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
+		8D750CEE294888BD004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
+		8D750CEF294888D9004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
@@ -144,9 +149,6 @@
 		8D9B8719292E4901003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B86F9292D19E3003B52AB /* AudioPlayerModuleiOS.framework */; };
 		8D9B8726292E6737003B52AB /* LargeAudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8721292E4936003B52AB /* LargeAudioPlayerViewController.swift */; };
 		8D9B8727292E6737003B52AB /* LargeAudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9B8723292E4949003B52AB /* LargeAudioPlayerViewController.xib */; };
-		8D9B8728292E6AB2003B52AB /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D06028F82A3400C17DDC /* XCTestCase+Snapshot.swift */; };
-		8D9B8729292E6AB2003B52AB /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A8C2912611400830695 /* UIImage+TestHelpers.swift */; };
-		8D9B872A292E6AB2003B52AB /* ViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */; };
 		8D9B8730292E72BD003B52AB /* SharedComponentsiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */; platformFilter = ios; };
 		8D9B87382930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D9B87342930C2A1003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_dark.png */; };
 		8D9B873A2930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D9B87362930C2A2003B52AB /* LARGE_PLAYER_WITH_PAUSED_ITEM_PORTRAIT_light.png */; };
@@ -241,14 +243,10 @@
 		8DE32A7D2912563200830695 /* GENRES_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A712912563200830695 /* GENRES_WITH_CONTENT_dark.png */; };
 		8DE32A7E2912563200830695 /* EMPTY_GENRES_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A722912563200830695 /* EMPTY_GENRES_light.png */; };
 		8DE32A8029125C1A00830695 /* BestPodcastsUISnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A7F29125C1A00830695 /* BestPodcastsUISnapshotTests.swift */; };
-		8DE32A8129125D3600830695 /* ViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */; };
-		8DE32A8229125D3600830695 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D06028F82A3400C17DDC /* XCTestCase+Snapshot.swift */; };
 		8DE32A8629125EDC00830695 /* EMPTY_BEST_PODCASTS_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A8429125EDC00830695 /* EMPTY_BEST_PODCASTS_light.png */; };
 		8DE32A8729125EDC00830695 /* EMPTY_BEST_PODCASTS_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A8529125EDC00830695 /* EMPTY_BEST_PODCASTS_dark.png */; };
 		8DE32A8A291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A88291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_light.png */; };
 		8DE32A8B291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A89291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_dark.png */; };
-		8DE32A8D2912611400830695 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A8C2912611400830695 /* UIImage+TestHelpers.swift */; };
-		8DE32A8E2912612500830695 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A8C2912611400830695 /* UIImage+TestHelpers.swift */; };
 		8DE32A9729128BC700830695 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A9529128BC700830695 /* PodcastCell.swift */; };
 		8DE32A9829128BC700830695 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A9629128BC700830695 /* PodcastCell.xib */; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
@@ -515,8 +513,6 @@
 		8D696737292413C800719D90 /* ListTableViewConfiguratior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewConfiguratior.swift; sourceTree = "<group>"; };
 		8D72CFDB28F7FCE000C17DDC /* GenresActiveColorProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresActiveColorProvider.swift; sourceTree = "<group>"; };
 		8D72D05B28F8287E00C17DDC /* GenresUISnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresUISnapshotTests.swift; sourceTree = "<group>"; };
-		8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Snapshot.swift"; sourceTree = "<group>"; };
-		8D72D06028F82A3400C17DDC /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		8D72D06F28F85A5000C17DDC /* GenresCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCache.swift; sourceTree = "<group>"; };
 		8D745DCB28BF98F7005DC3F8 /* FeedItemsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapperTests.swift; sourceTree = "<group>"; };
 		8D745DD028BFA728005DC3F8 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -547,10 +543,13 @@
 		8D750C982947A842004500D9 /* StickyAudioPlayerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewDelegate.swift; sourceTree = "<group>"; };
 		8D750CA429485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerControlsDelegateNullObject.swift; sourceTree = "<group>"; };
 		8D750CA629485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewControllerDelegateNullObject.swift; sourceTree = "<group>"; };
-		8D750CAF29487BB5004500D9 /* LocalizationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTestCase.swift; sourceTree = "<group>"; };
 		8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSharedTestHelpersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750CD429488218004500D9 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		8D750CD629488336004500D9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		8D750CE0294886AB004500D9 /* LocalizationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTestCase.swift; sourceTree = "<group>"; };
+		8D750CE6294887DC004500D9 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
+		8D750CE7294887DC004500D9 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
+		8D750CE8294887DC004500D9 /* ViewController+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
@@ -675,7 +674,6 @@
 		8DE32A8529125EDC00830695 /* EMPTY_BEST_PODCASTS_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_BEST_PODCASTS_dark.png; sourceTree = "<group>"; };
 		8DE32A88291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BEST_PODCASTS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
 		8DE32A89291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BEST_PODCASTS_WITH_CONTENT_dark.png; sourceTree = "<group>"; };
-		8DE32A8C2912611400830695 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		8DE32A9529128BC700830695 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		8DE32A9629128BC700830695 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
@@ -710,6 +708,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750CEF294888D9004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8D2490BA2938DEAE009ACD36 /* AVPlayerClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,6 +806,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750CEE294888BD004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8D9B8719292E4901003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -841,6 +841,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750CEC2948888D004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8DC3520228D1DB1E00F12FD9 /* PodcastsGenresListiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -859,6 +860,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750CED294888B6004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8DE329F529100E9B00830695 /* PodcastsModuleiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1155,9 +1157,6 @@
 		8D72D05D28F82A1B00C17DDC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8D72D05E28F82A2100C17DDC /* ViewController+Snapshot.swift */,
-				8D72D06028F82A3400C17DDC /* XCTestCase+Snapshot.swift */,
-				8DE32A8C2912611400830695 /* UIImage+TestHelpers.swift */,
 				8D4298DF292297700064F3E6 /* GenresViewController+DSLHelpers.swift */,
 			);
 			path = Helpers;
@@ -1325,18 +1324,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		8D750CAE29487BA9004500D9 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				8D750CAF29487BB5004500D9 /* LocalizationTestCase.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		8D750CCC294881FB004500D9 /* SharedTestHelpersLibrary */ = {
 			isa = PBXGroup;
 			children = (
 				8D750CD429488218004500D9 /* XCTestCase+MemoryLeakTracking.swift */,
+				8D750CE6294887DC004500D9 /* XCTestCase+Snapshot.swift */,
+				8D750CE0294886AB004500D9 /* LocalizationTestCase.swift */,
+				8D750CE7294887DC004500D9 /* UIImage+TestHelpers.swift */,
+				8D750CE8294887DC004500D9 /* ViewController+Snapshot.swift */,
 			);
 			path = SharedTestHelpersLibrary;
 			sourceTree = "<group>";
@@ -1633,7 +1628,6 @@
 		8DC354B528D47F2100F12FD9 /* Genres Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				8D750CAE29487BA9004500D9 /* Helpers */,
 				8DC354A828D46F7200F12FD9 /* GenresLocalizationTests.swift */,
 				8DC354B628D47F3B00F12FD9 /* GenresPresenterTests.swift */,
 				8DB7F1E628D4BE5400D131F0 /* GenresActiveColorProviderTests.swift */,
@@ -3023,7 +3017,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750CEB294887DC004500D9 /* ViewController+Snapshot.swift in Sources */,
+				8D750CE9294887DC004500D9 /* XCTestCase+Snapshot.swift in Sources */,
+				8D750CE1294886AB004500D9 /* LocalizationTestCase.swift in Sources */,
 				8D750CD529488218004500D9 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				8D750CEA294887DC004500D9 /* UIImage+TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3086,13 +3084,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D9B8728292E6AB2003B52AB /* XCTestCase+Snapshot.swift in Sources */,
 				8D750C8629476107004500D9 /* String+Extensions.swift in Sources */,
 				8D750CA729485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift in Sources */,
 				8D9B8718292E4901003B52AB /* LargeAudioPlayeriOSTests.swift in Sources */,
 				8D750C8329476023004500D9 /* SharedHelpers.swift in Sources */,
-				8D9B872A292E6AB2003B52AB /* ViewController+Snapshot.swift in Sources */,
-				8D9B8729292E6AB2003B52AB /* UIImage+TestHelpers.swift in Sources */,
 				8D750CA529485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift in Sources */,
 				8D750C7F29475F16004500D9 /* StickyAudioPlayeriOSTests.swift in Sources */,
 			);
@@ -3136,7 +3131,6 @@
 				8DA0544C28CB611300418F3E /* GenresCacheTestHeplers.swift in Sources */,
 				8DA0544828CB328800418F3E /* GenresStoreSpy.swift in Sources */,
 				8DBA843A28D06E890021781B /* XCTestCase+FailableInsertGenresStoreSpecs.swift in Sources */,
-				8D750CB129487BCF004500D9 /* LocalizationTestCase.swift in Sources */,
 				8D4D494228CF80BF00D8EBEB /* XCTestCase+GenresStoreSpecs.swift in Sources */,
 				8D72CFE128F8093800C17DDC /* GenresActiveColorProviderTests.swift in Sources */,
 				8DA0544E28CB61D400418F3E /* SharedTestHelpers.swift in Sources */,
@@ -3163,10 +3157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D72D05F28F82A2100C17DDC /* ViewController+Snapshot.swift in Sources */,
 				8D4298E1292297D00064F3E6 /* GenresViewController+DSLHelpers.swift in Sources */,
-				8D72D06128F82A3400C17DDC /* XCTestCase+Snapshot.swift in Sources */,
-				8DE32A8D2912611400830695 /* UIImage+TestHelpers.swift in Sources */,
 				8D72D05C28F8287E00C17DDC /* GenresUISnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3192,12 +3183,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DE32A8229125D3600830695 /* XCTestCase+Snapshot.swift in Sources */,
 				8DDBB7A0291BF4DB0024A37A /* SharedHelpers.swift in Sources */,
 				8DDBB796291BF26F0024A37A /* PodcastDetailsUISnapshotTests.swift in Sources */,
-				8DE32A8E2912612500830695 /* UIImage+TestHelpers.swift in Sources */,
 				8DDBB7A2291BF5840024A37A /* String+Extensions.swift in Sources */,
-				8DE32A8129125D3600830695 /* ViewController+Snapshot.swift in Sources */,
 				8DE32A8029125C1A00830695 /* BestPodcastsUISnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

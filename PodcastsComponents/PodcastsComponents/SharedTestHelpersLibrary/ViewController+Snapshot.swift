@@ -1,9 +1,8 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
-import PodcastsModuleiOS
 
-extension UIViewController {
+public extension UIViewController {
     func snapshot(for configuration: SnapshotConfiguration) -> UIImage {
         return SnapshotWindow(configuration: configuration, root: self).snapshot()
     }
@@ -17,12 +16,12 @@ extension UIViewController {
     }
 }
 
-struct SnapshotConfiguration {
-    enum Orientation {
+public struct SnapshotConfiguration {
+    public enum Orientation {
         case landscape
         case portrait
         
-        var size: CGSize {
+        public var size: CGSize {
             switch self {
             case .landscape:
                 return CGSize(width: 844, height: 390)
@@ -31,7 +30,7 @@ struct SnapshotConfiguration {
             }
         }
         
-        var safeAreaInsets: UIEdgeInsets {
+        public var safeAreaInsets: UIEdgeInsets {
             switch self {
             case .landscape:
                 return UIEdgeInsets(top: 0, left: 47, bottom: 21, right: 47)
@@ -40,7 +39,7 @@ struct SnapshotConfiguration {
             }
         }
         
-        var layoutMargins: UIEdgeInsets {
+        public var layoutMargins: UIEdgeInsets {
             switch self {
             case .landscape:
                 return UIEdgeInsets(top: 8, left: 55, bottom: 29, right: 55)
@@ -55,7 +54,7 @@ struct SnapshotConfiguration {
     let layoutMargins: UIEdgeInsets
     let traitCollection: UITraitCollection
     
-    static func iPhone14(
+    public static func iPhone14(
         style: UIUserInterfaceStyle,
         contentSize: UIContentSizeCategory = .medium,
         orientation: SnapshotConfiguration.Orientation = .portrait

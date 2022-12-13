@@ -2,9 +2,9 @@
 
 import XCTest
 
-protocol LocalizationTestCase {}
+public protocol LocalizationTestCase {}
 
-extension LocalizationTestCase where Self: XCTestCase {
+public extension LocalizationTestCase where Self: XCTestCase {
     
     typealias LocalizedBundle = (bundle: Bundle, localization: String)
     

@@ -31,13 +31,13 @@ final class RootComposer {
             audioPlayerStatePublisher: audioPlayerStatePublisher
         )
         exploreNavigation.tabBarItem = UITabBarItem(
-            title: "Explore",
+            title: RootTabBarControllerPresenter.exploreTabBarItemTitle,
             image: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.defaultColor),
             selectedImage: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.selectedColor)
         )
         
         exploreCoordinator.start()
-        let rootTabBarController = UITabBarController()
+        let rootTabBarController = RootTabBarController()
         rootTabBarController.setViewControllers([exploreNavigation], animated: false)
         return rootTabBarController
     }

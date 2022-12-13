@@ -54,6 +54,11 @@
 		8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */; };
 		8D750CA32947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA22947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift */; };
 		8D750CAA29486F66004500D9 /* RootComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA929486F66004500D9 /* RootComposer.swift */; };
+		8D750CB729487CE9004500D9 /* RootTabBarControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CB329487C5C004500D9 /* RootTabBarControllerPresenter.swift */; };
+		8D750CB929487D16004500D9 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CB829487D16004500D9 /* RootTabBarController.swift */; };
+		8D750CBC29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CBB29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift */; };
+		8D750CBF29487E40004500D9 /* LocalizationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CBE29487E40004500D9 /* LocalizationTestCase.swift */; };
+		8D750CC029487E64004500D9 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D750CC229487E64004500D9 /* Main.strings */; };
 		8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B87328D4A2540014A211 /* AppDelegate.swift */; };
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
@@ -175,6 +180,12 @@
 		8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StickyAudioPlayerViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8D750CA22947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerUI+SharedHelpers.swift"; sourceTree = "<group>"; };
 		8D750CA929486F66004500D9 /* RootComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComposer.swift; sourceTree = "<group>"; };
+		8D750CB329487C5C004500D9 /* RootTabBarControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarControllerPresenter.swift; sourceTree = "<group>"; };
+		8D750CB829487D16004500D9 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
+		8D750CBB29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarControllerLocalizationTests.swift; sourceTree = "<group>"; };
+		8D750CBE29487E40004500D9 /* LocalizationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTestCase.swift; sourceTree = "<group>"; };
+		8D750CC129487E64004500D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		8D750CC429487E9B004500D9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -277,10 +288,12 @@
 		8D4C3B22291CF2F7002AD459 /* Integration UI Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8D750CBD29487E34004500D9 /* Helpers */,
 				8D72D03E28F8121C00C17DDC /* Genres UI */,
 				8D5FA24E2913C4CD002BB874 /* BestPodcasts UI */,
 				8DDBB76C291BC5740024A37A /* PodcastDetails UI */,
 				8D9B8700292D1CBF003B52AB /* AudioPlayer UI */,
+				8D750CBB29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift */,
 			);
 			path = "Integration UI Tests";
 			sourceTree = "<group>";
@@ -451,6 +464,24 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		8D750CB229487C3A004500D9 /* RootUITabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				8D750CA929486F66004500D9 /* RootComposer.swift */,
+				8D750CB329487C5C004500D9 /* RootTabBarControllerPresenter.swift */,
+				8D750CB829487D16004500D9 /* RootTabBarController.swift */,
+			);
+			path = RootUITabBarController;
+			sourceTree = "<group>";
+		};
+		8D750CBD29487E34004500D9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D750CBE29487E40004500D9 /* LocalizationTestCase.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8D76B86728D4A2540014A211 = {
 			isa = PBXGroup;
 			children = (
@@ -475,15 +506,16 @@
 			children = (
 				8D5FA2622913C6C6002BB874 /* SharedHelpers */,
 				8D750B2E29433859004500D9 /* Shared UI */,
+				8D750CB229487C3A004500D9 /* RootUITabBarController */,
 				8D72D03228F8118900C17DDC /* Genres UI */,
 				8D5FA23D2913C44A002BB874 /* BestPodcasts UI */,
 				8DDBB76F291BC5FD0024A37A /* PodcastDetails UI */,
 				8DCA227729313B2600DD1EC6 /* AudioPlayer UI */,
 				8D4298D1292273FA0064F3E6 /* Coordinators */,
 				8D72D04F28F8137E00C17DDC /* Extensions */,
-				8D750CA929486F66004500D9 /* RootComposer.swift */,
 				8D76B87328D4A2540014A211 /* AppDelegate.swift */,
 				8D72D05928F826E100C17DDC /* SceneDelegate.swift */,
+				8D750CC229487E64004500D9 /* Main.strings */,
 				8D76B87C28D4A2550014A211 /* Assets.xcassets */,
 				8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */,
 				8D76B88128D4A2550014A211 /* Info.plist */,
@@ -645,6 +677,7 @@
 			knownRegions = (
 				en,
 				Base,
+				uk,
 			);
 			mainGroup = 8D76B86728D4A2540014A211;
 			productRefGroup = 8D76B87128D4A2540014A211 /* Products */;
@@ -662,6 +695,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750CC029487E64004500D9 /* Main.strings in Resources */,
 				8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */,
 				8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */,
 			);
@@ -690,11 +724,13 @@
 				8D72D07428F85C3B00C17DDC /* PodcastsGenresList+CombineHelpers.swift in Sources */,
 				8D4298DA29227A140064F3E6 /* PodcastDetailsService.swift in Sources */,
 				8D4298D8292278470064F3E6 /* BestPodcastsService.swift in Sources */,
+				8D750CB929487D16004500D9 /* RootTabBarController.swift in Sources */,
 				8D750CAA29486F66004500D9 /* RootComposer.swift in Sources */,
 				8DDBB778291BD2FD0024A37A /* GenericLoaderPresentationAdapter.swift in Sources */,
 				8D750C9B2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift in Sources */,
 				8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */,
 				8D4298D32922740F0064F3E6 /* ExploreCoordinator.swift in Sources */,
+				8D750CB729487CE9004500D9 /* RootTabBarControllerPresenter.swift in Sources */,
 				8D4298D5292277AC0064F3E6 /* GenresLoaderService.swift in Sources */,
 				8DCA22892934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift in Sources */,
 				8D5FA2772913CBE5002BB874 /* HTTPClient+CombineHelpers.swift in Sources */,
@@ -733,6 +769,7 @@
 				8D72D04628F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift in Sources */,
 				8D5FA2572913C539002BB874 /* BestPodcasts+ListViewController+DSLHelpers.swift in Sources */,
 				8DCA228E2934BA6F00DD1EC6 /* LargeAudioPlayerViewController+DSLHelpers.swift in Sources */,
+				8D750CBC29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift in Sources */,
 				8D5FA2592913C539002BB874 /* BestPodcastsLoaderSpy.swift in Sources */,
 				8D75079429409BE2004500D9 /* AudioPlayerClientDummy.swift in Sources */,
 				8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
@@ -743,6 +780,7 @@
 				8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */,
 				8D5FA25B2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift in Sources */,
 				8DDBB783291BDEC70024A37A /* PodcastDetails+ListViewController+DSLHelpers.swift in Sources */,
+				8D750CBF29487E40004500D9 /* LocalizationTestCase.swift in Sources */,
 				8D91860828F9978300DE19D1 /* InMemoryGenresStore.swift in Sources */,
 				8D91860628F9976300DE19D1 /* HTTPClientStub.swift in Sources */,
 				8D72D06C28F82F2B00C17DDC /* SceneDelegateTests.swift in Sources */,
@@ -762,6 +800,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8D750CC229487E64004500D9 /* Main.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8D750CC129487E64004500D9 /* en */,
+				8D750CC429487E9B004500D9 /* uk */,
+			);
+			name = Main.strings;
+			sourceTree = "<group>";
+		};
 		8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -777,6 +824,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -837,6 +885,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

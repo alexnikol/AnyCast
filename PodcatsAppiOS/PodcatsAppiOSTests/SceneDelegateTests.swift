@@ -25,7 +25,7 @@ class SceneDelegateTests: XCTestCase {
         sut.configureWindow()
         
         let root = sut.window?.rootViewController
-        let rootNavigation = root as? UITabBarController
+        let rootNavigation = root as? RootTabBarController
         let rootFirstTabNavigation = rootNavigation?.viewControllers?.first as? UINavigationController
         let topFirstTabController = rootFirstTabNavigation?.topViewController
         
@@ -40,7 +40,7 @@ class SceneDelegateTests: XCTestCase {
         sut.configureWindow()
         
         let root = sut.window?.rootViewController
-        let rootNavigation = root as? UITabBarController
+        let rootNavigation = root as? RootTabBarController
         let rootFirstTabNavigation = rootNavigation?.viewControllers?.first as? UINavigationController
         let rootFirstTabNavigationTabBarTitle = rootFirstTabNavigation?.tabBarItem.title
         

@@ -53,6 +53,7 @@
 		8D750C9B2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C9A2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift */; };
 		8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */; };
 		8D750CA32947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA22947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift */; };
+		8D750CAA29486F66004500D9 /* RootComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA929486F66004500D9 /* RootComposer.swift */; };
 		8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B87328D4A2540014A211 /* AppDelegate.swift */; };
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
@@ -173,6 +174,7 @@
 		8D750C9A2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
 		8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StickyAudioPlayerViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8D750CA22947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerUI+SharedHelpers.swift"; sourceTree = "<group>"; };
+		8D750CA929486F66004500D9 /* RootComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComposer.swift; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				8DCA227729313B2600DD1EC6 /* AudioPlayer UI */,
 				8D4298D1292273FA0064F3E6 /* Coordinators */,
 				8D72D04F28F8137E00C17DDC /* Extensions */,
+				8D750CA929486F66004500D9 /* RootComposer.swift */,
 				8D76B87328D4A2540014A211 /* AppDelegate.swift */,
 				8D72D05928F826E100C17DDC /* SceneDelegate.swift */,
 				8D76B87C28D4A2550014A211 /* Assets.xcassets */,
@@ -687,6 +690,7 @@
 				8D72D07428F85C3B00C17DDC /* PodcastsGenresList+CombineHelpers.swift in Sources */,
 				8D4298DA29227A140064F3E6 /* PodcastDetailsService.swift in Sources */,
 				8D4298D8292278470064F3E6 /* BestPodcastsService.swift in Sources */,
+				8D750CAA29486F66004500D9 /* RootComposer.swift in Sources */,
 				8DDBB778291BD2FD0024A37A /* GenericLoaderPresentationAdapter.swift in Sources */,
 				8D750C9B2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift in Sources */,
 				8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */,

@@ -64,30 +64,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureWindow() {
         globalAppearanceSetup()
         composeAudioPlayerWithStatePublisher()
-        let (exploreRoot, exploreCoordinator) = configureExploreCoodrinator()
-        exploreCoordinator.start()
-        
-        let rootTabBarController = UITabBarController()
-        rootTabBarController.setViewControllers([
-            exploreRoot
-        ], animated: false)
-        window?.rootViewController = rootTabBarController
+        let rootController = configureRootController()
+        window?.rootViewController = rootController
         window?.makeKeyAndVisible()
     }
     
-    private func configureExploreCoodrinator() -> (root: UIViewController, coordinator: ExploreCoordinator) {
-        let rootNavigation = UINavigationController()
-        let exploreCoordinator = ExploreCoordinator(
-            navigationController: rootNavigation,
+    private func configureRootController() -> UIViewController {
+        let root = RootComposer.compose(
             baseURL: baseURL,
             httpClient: httpClient,
             localGenresLoader: localGenresLoader,
             audioPlayer: audioPlayer,
             audioPlayerStatePublisher: audioPlayerStatePublisher
         )
-        return (rootNavigation, exploreCoordinator)
+        return root
     }
-    
+        
     private func globalAppearanceSetup() {
         if #available(iOS 15.0, *) {
             UITableView.appearance().isPrefetchingEnabled = false

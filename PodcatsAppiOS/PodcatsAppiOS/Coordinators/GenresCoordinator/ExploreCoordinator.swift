@@ -130,7 +130,6 @@ final class ExploreCoordinator {
         )
         
         let largePlayerController = LargeAudioPlayerUIComposer.playerWith(
-            thumbnailURL: URL(string: "https://sddds.com")!,
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,
             imageLoader: service.makeRemotePodcastImageDataLoader(for:)

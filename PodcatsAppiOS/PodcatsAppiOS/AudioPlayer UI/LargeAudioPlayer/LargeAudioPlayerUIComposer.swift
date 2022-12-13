@@ -12,7 +12,6 @@ public final class LargeAudioPlayerUIComposer {
     private init() {}
     
     public static func playerWith(
-        thumbnailURL: URL,
         statePublisher: AudioPlayerStatePublisher,
         controlsDelegate: AudioPlayerControlsDelegate,
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>
@@ -20,7 +19,7 @@ public final class LargeAudioPlayerUIComposer {
         let presentationAdapter = LargeAudioPlayerPresentationAdapter(statePublisher: statePublisher)
                 
         let thumbnailViewController = ThumbnailUIComposer.composeThumbnailWithImageLoader(
-            thumbnailURL: thumbnailURL,
+            thumbnailURL: URL(string: "https://asdasd.com")!,
             imageLoader: imageLoader
         )
         

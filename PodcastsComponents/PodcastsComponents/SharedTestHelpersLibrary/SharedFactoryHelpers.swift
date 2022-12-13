@@ -3,7 +3,7 @@
 import Foundation
 
 public func anyURL() -> URL {
-    URL(string: "http://a-url.com")!
+    URL(string: "https://a-url.com")!
 }
 
 public func anyNSError() -> NSError {

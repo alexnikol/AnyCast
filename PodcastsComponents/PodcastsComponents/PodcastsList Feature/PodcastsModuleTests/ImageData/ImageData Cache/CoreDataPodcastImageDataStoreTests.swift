@@ -14,8 +14,8 @@ class CoreDataPodcastImageDataStoreTests: XCTestCase {
     
     func test_retrieveImageData_deliversNotFoundWhenStoredDataURLDoesNotMatch() {
         let sut = makeSUT()
-        let url = URL(string: "http://a-url.com")!
-        let nonMatchingURL = URL(string: "http://another-url.com")!
+        let url = URL(string: "https://a-url.com")!
+        let nonMatchingURL = URL(string: "https://another-url.com")!
         
         insert(anyData(), for: url, with: now, into: sut)
         
@@ -25,7 +25,7 @@ class CoreDataPodcastImageDataStoreTests: XCTestCase {
     func test_retrieveImageData_deliversFoundDataWhenThereIsAStoredImageDataMatchingURL() {
         let cacheDate = now
         let sut = makeSUT()
-        let url = URL(string: "http://a-url.com")!
+        let url = URL(string: "https://a-url.com")!
         let storedData = anyData()
         
         insert(storedData, for: url, with: cacheDate, into: sut)
@@ -39,7 +39,7 @@ class CoreDataPodcastImageDataStoreTests: XCTestCase {
         let firstCacheDate = now
         let lastStoredData = Data("last".utf8)
         let lastCacheDate = now
-        let url = URL(string: "http://a-url.com")!
+        let url = URL(string: "https://a-url.com")!
         
         insert(firstStoredData, for: url, with: firstCacheDate, into: sut)
         insert(lastStoredData, for: url, with: lastCacheDate, into: sut)

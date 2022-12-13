@@ -46,7 +46,6 @@ public class StickyAudioPlayerViewController: UIViewController {
     }
     
     public func display(viewModel: StickyAudioPlayerViewModel) {
-        print("DSATA \(viewModel)")
         titleLabel.text = viewModel.titleLabel
         descriptionLabel.text = viewModel.descriptionLabel
         playButton.setImage(viewModel.playbackViewModel.image, for: .normal)

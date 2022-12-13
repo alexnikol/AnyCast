@@ -36,7 +36,7 @@ class LargeAudioPlayeriOSTests: XCTestCase {
         let sut = LargeAudioPlayerViewController(
             delegate: LargeAudioPlayerViewDelegateNullObject(),
             controlsDelegate: AudioPlayerControlsDelegateNullObject(),
-            thumbnailViewController: ThumbnailViewController(loaderDelegate: NullObjectRefreshViewControllerDelegate())
+            thumbnailViewController: ThumbnailViewController(loaderDelegate: RefreshViewControllerDelegateNullObject())
         )
         return sut
     }
@@ -59,12 +59,12 @@ class LargeAudioPlayeriOSTests: XCTestCase {
         )
         let calendar = Calendar(identifier: .gregorian)
         let locale = Locale(identifier: "en_US_POSIX")
-        let presenter = LargeAudioPlayerPresenter(resourceView: NullObject(), calendar: calendar, locale: locale)
+        let presenter = LargeAudioPlayerPresenter(resourceView: DummyLargeAudioPlayerView(), calendar: calendar, locale: locale)
         
         return presenter.map(playingItem: plaingItem)
     }
         
-    private class NullObject: LargeAudioPlayerView {
+    private class DummyLargeAudioPlayerView: LargeAudioPlayerView {
         func diplayFuturePrepareForSeekProgress(with progress: AudioPlayerModule.ProgressViewModel) {}
         func display(viewModel: LargeAudioPlayerViewModel) {}
         func displaySpeedPlaybackSelection(with list: [AudioPlayerModule.PlaybackSpeed]) {}
@@ -74,21 +74,5 @@ class LargeAudioPlayeriOSTests: XCTestCase {
         func onOpen() {}
         func onClose() {}
         func onSelectSpeedPlayback() {}
-    }
-    
-    private class AudioPlayerControlsDelegateNullObject: AudioPlayerControlsDelegate {
-        var isPlaying = false
-        func pause() {}
-        func play() {}
-        func changeVolumeTo(value: Float) {}
-        func seekToProgress(_ progress: Float) {}
-        func seekToSeconds(_ seconds: Int) {}
-        func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {}
-        func prepareForSeek(_ progress: Float) {}
-    }
-    
-    private class NullObjectRefreshViewControllerDelegate: RefreshViewControllerDelegate {
-        func didRequestLoading() {}
-        func didRequestCancel() {}
     }
 }

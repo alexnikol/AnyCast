@@ -28,7 +28,7 @@ class StickyAudioPlayerPresentationTests: XCTestCase {
         let viewModel = sut.map(playingItem: playingItem)
         
         XCTAssertEqual(viewModel.titleLabel, "Any Episode title")
-        XCTAssertEqual(viewModel.descriptionLabel, "Dec 12, 2022")
+        XCTAssertEqual(viewModel.descriptionLabel, "Dec 13, 2022")
         XCTAssertEqual(viewModel.thumbnailURL, playingItem.episode.thumbnail)
         XCTAssertEqual(viewModel.playbackViewModel, PlaybackStateViewModel(playbackState: .pause))
     }

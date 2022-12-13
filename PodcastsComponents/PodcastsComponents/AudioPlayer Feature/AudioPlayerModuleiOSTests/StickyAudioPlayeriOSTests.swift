@@ -44,12 +44,17 @@ class StickyAudioPlayeriOSTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT() -> (sut: StickyAudioPlayerViewController, rootController: UIViewController) {
-        let sut = StickyAudioPlayerViewController()
+        let sut = StickyAudioPlayerViewController(
+            delegate: DummyStickyAudioPlayerViewDelegate(),
+            controlsDelegate: AudioPlayerControlsDelegateNullObject(),
+            thumbnailViewController: ThumbnailViewController(loaderDelegate: RefreshViewControllerDelegateNullObject())
+        )
         let rootController = UIViewController()
         rootController.loadViewIfNeeded()
         rootController.view.backgroundColor = .gray
         rootController.addChild(sut)
         rootController.view.addSubview(sut.view)
+        sut.loadViewIfNeeded()
         return (sut, rootController)
     }
     
@@ -77,5 +82,10 @@ class StickyAudioPlayeriOSTests: XCTestCase {
     
     private class DummyStickyAudioPlayerView: StickyAudioPlayerView {
         func display(viewModel: AudioPlayerModule.StickyAudioPlayerViewModel) {}
+    }
+    
+    private class DummyStickyAudioPlayerViewDelegate: StickyAudioPlayerViewDelegate {
+        func onOpen() {}
+        func onClose() {}
     }
 }

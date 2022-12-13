@@ -109,6 +109,8 @@
 		8D750C8E2947A053004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D750C8C2947A053004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png */; };
 		8D750C8F2947A053004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D750C8D2947A053004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png */; };
 		8D750C992947A842004500D9 /* StickyAudioPlayerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C982947A842004500D9 /* StickyAudioPlayerViewDelegate.swift */; };
+		8D750CA529485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA429485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift */; };
+		8D750CA729485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA629485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift */; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
@@ -543,6 +545,8 @@
 		8D750C8C2947A053004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_dark.png; sourceTree = "<group>"; };
 		8D750C8D2947A053004500D9 /* STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = STICKY_PLAYER_WITH_PAUSED_ITEM_LANDSCAPE_light.png; sourceTree = "<group>"; };
 		8D750C982947A842004500D9 /* StickyAudioPlayerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerViewDelegate.swift; sourceTree = "<group>"; };
+		8D750CA429485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerControlsDelegateNullObject.swift; sourceTree = "<group>"; };
+		8D750CA629485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshViewControllerDelegateNullObject.swift; sourceTree = "<group>"; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
@@ -1296,6 +1300,8 @@
 			children = (
 				8D750C8129476005004500D9 /* SharedHelpers.swift */,
 				8D750C84294760F5004500D9 /* String+Extensions.swift */,
+				8D750CA429485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift */,
+				8D750CA629485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -3012,10 +3018,12 @@
 			files = (
 				8D9B8728292E6AB2003B52AB /* XCTestCase+Snapshot.swift in Sources */,
 				8D750C8629476107004500D9 /* String+Extensions.swift in Sources */,
+				8D750CA729485C76004500D9 /* RefreshViewControllerDelegateNullObject.swift in Sources */,
 				8D9B8718292E4901003B52AB /* LargeAudioPlayeriOSTests.swift in Sources */,
 				8D750C8329476023004500D9 /* SharedHelpers.swift in Sources */,
 				8D9B872A292E6AB2003B52AB /* ViewController+Snapshot.swift in Sources */,
 				8D9B8729292E6AB2003B52AB /* UIImage+TestHelpers.swift in Sources */,
+				8D750CA529485C1C004500D9 /* AudioPlayerControlsDelegateNullObject.swift in Sources */,
 				8D750C7F29475F16004500D9 /* StickyAudioPlayeriOSTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

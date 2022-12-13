@@ -66,7 +66,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         composeAudioPlayerWithStatePublisher()
         let (exploreRoot, exploreCoordinator) = configureExploreCoodrinator()
         exploreCoordinator.start()
-        window?.rootViewController = exploreRoot
+        
+        let rootTabBarController = UITabBarController()
+        rootTabBarController.setViewControllers([
+            exploreRoot
+        ], animated: false)
+        window?.rootViewController = rootTabBarController
         window?.makeKeyAndVisible()
     }
     

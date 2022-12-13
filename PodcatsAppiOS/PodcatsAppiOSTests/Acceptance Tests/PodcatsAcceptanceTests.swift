@@ -83,7 +83,8 @@ class PodcatsAcceptanceTests: XCTestCase {
         sut.window = UIWindow()
         sut.configureWindow()
         
-        let nav = sut.window?.rootViewController as? UINavigationController
+        let tabBar = sut.window?.rootViewController as? UITabBarController
+        let nav = tabBar?.viewControllers?.first as? UINavigationController
         let genres = nav?.topViewController as! GenresListViewController
         return genres
     }

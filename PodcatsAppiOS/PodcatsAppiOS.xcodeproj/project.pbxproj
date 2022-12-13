@@ -186,10 +186,11 @@
 		8D750CBE29487E40004500D9 /* LocalizationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTestCase.swift; sourceTree = "<group>"; };
 		8D750CC129487E64004500D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		8D750CC429487E9B004500D9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
+		8D750CC529487FBC004500D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8D750CC629487FC8004500D9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = uk; path = uk.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8D76B87F28D4A2550014A211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D76B88128D4A2550014A211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D76B88628D4A2560014A211 /* PodcatsAppiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodcatsAppiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B8A428D4A2B00014A211 /* PodcastsGenresList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PodcastsGenresList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -676,7 +677,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				uk,
 			);
 			mainGroup = 8D76B86728D4A2540014A211;
@@ -812,7 +812,8 @@
 		8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8D76B87F28D4A2550014A211 /* Base */,
+				8D750CC529487FBC004500D9 /* en */,
+				8D750CC629487FC8004500D9 /* uk */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

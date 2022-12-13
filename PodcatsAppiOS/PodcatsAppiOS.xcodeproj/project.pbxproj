@@ -87,7 +87,6 @@
 		8DDBB777291BD2F80024A37A /* PodcastDetailsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB776291BD2F80024A37A /* PodcastDetailsViewAdapter.swift */; };
 		8DDBB778291BD2FD0024A37A /* GenericLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB774291BD2A80024A37A /* GenericLoaderPresentationAdapter.swift */; };
 		8DDBB77B291BD67F0024A37A /* PodcastDetailsLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB77A291BD67F0024A37A /* PodcastDetailsLoaderSpy.swift */; };
-		8DDBB77D291BD83E0024A37A /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB77C291BD83E0024A37A /* SharedHelpers.swift */; };
 		8DDBB781291BDB5A0024A37A /* ListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB780291BDB5A0024A37A /* ListViewController+DSLHelpers.swift */; };
 		8DDBB783291BDEC70024A37A /* PodcastDetails+ListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB782291BDEC70024A37A /* PodcastDetails+ListViewController+DSLHelpers.swift */; };
 		8DDBB78F291BE27F0024A37A /* EpisodeCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB78E291BE27F0024A37A /* EpisodeCell+DSLHelpers.swift */; };
@@ -211,7 +210,6 @@
 		8DDBB774291BD2A80024A37A /* GenericLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		8DDBB776291BD2F80024A37A /* PodcastDetailsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsViewAdapter.swift; sourceTree = "<group>"; };
 		8DDBB77A291BD67F0024A37A /* PodcastDetailsLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsLoaderSpy.swift; sourceTree = "<group>"; };
-		8DDBB77C291BD83E0024A37A /* SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelpers.swift; sourceTree = "<group>"; };
 		8DDBB780291BDB5A0024A37A /* ListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DDBB782291BDEC70024A37A /* PodcastDetails+ListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastDetails+ListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DDBB78E291BE27F0024A37A /* EpisodeCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EpisodeCell+DSLHelpers.swift"; sourceTree = "<group>"; };
@@ -391,7 +389,6 @@
 		8D72D05328F814E900C17DDC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8DDBB77C291BD83E0024A37A /* SharedHelpers.swift */,
 				8D72D04128F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift */,
 				8DDBB780291BDB5A0024A37A /* ListViewController+DSLHelpers.swift */,
 				8D75079529409FA9004500D9 /* UIAlertController+Helpers.swift */,
@@ -751,7 +748,6 @@
 				8D750CA32947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift in Sources */,
 				8D72D04728F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift in Sources */,
 				8DDBB78F291BE27F0024A37A /* EpisodeCell+DSLHelpers.swift in Sources */,
-				8DDBB77D291BD83E0024A37A /* SharedHelpers.swift in Sources */,
 				8DDBB781291BDB5A0024A37A /* ListViewController+DSLHelpers.swift in Sources */,
 				8DDBB773291BC6E20024A37A /* PodcastDetailsUIIngtegrationTests.swift in Sources */,
 				8DDBB77B291BD67F0024A37A /* PodcastDetailsLoaderSpy.swift in Sources */,

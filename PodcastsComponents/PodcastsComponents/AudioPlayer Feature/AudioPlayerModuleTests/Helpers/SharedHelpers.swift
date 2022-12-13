@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import SharedTestHelpersLibrary
 import PodcastsModule
 import AudioPlayerModule
 
@@ -57,9 +58,5 @@ extension XCTestCase {
                 .speed(playbackSpeed)
             ]
         )
-    }
-    
-    func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
     }
 }

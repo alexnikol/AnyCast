@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import SharedTestHelpersLibrary
 import AVKit
 import AudioPlayerModule
 import AVPlayerClient
@@ -99,9 +100,5 @@ final class AVPlayerClientTests: XCTestCase {
             description: "Any description",
             totalEpisodes: 100
         )
-    }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
     }
 }

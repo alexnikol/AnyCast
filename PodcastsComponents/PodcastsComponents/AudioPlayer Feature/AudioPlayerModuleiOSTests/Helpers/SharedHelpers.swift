@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import SharedTestHelpersLibrary
 import AudioPlayerModule
 import PodcastsModule
 
@@ -29,8 +30,4 @@ func makePodcast() -> PodcastDetails {
         description: "Any description",
         totalEpisodes: 100
     )
-}
-
-func anyURL() -> URL {
-    URL(string: "http://a-url.com")!
 }

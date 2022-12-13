@@ -7,6 +7,11 @@ import AudioPlayerModule
 
 final class RootComposer {
     
+    enum TabbarColors {
+        static let selectedColor = UIColor.accentColor
+        static let defaultColor = UIColor.label
+    }
+    
     private init() {}
     
     static func compose(
@@ -25,12 +30,15 @@ final class RootComposer {
             audioPlayer: audioPlayer,
             audioPlayerStatePublisher: audioPlayerStatePublisher
         )
-        exploreCoordinator.start()
+        exploreNavigation.tabBarItem = UITabBarItem(
+            title: "Explore",
+            image: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.defaultColor),
+            selectedImage: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.selectedColor)
+        )
         
+        exploreCoordinator.start()
         let rootTabBarController = UITabBarController()
-        rootTabBarController.setViewControllers([
-            exploreNavigation
-        ], animated: false)
+        rootTabBarController.setViewControllers([exploreNavigation], animated: false)
         return rootTabBarController
     }
 }

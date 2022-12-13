@@ -27,6 +27,7 @@ final class ExploreCoordinator {
     private let localGenresLoader: LocalGenresLoader
     private let audioPlayer: AudioPlayer
     private let audioPlayerStatePublisher: AudioPlayerStatePublisher
+    private var largePlayerController: LargeAudioPlayerViewController?
         
     init(navigationController: UINavigationController,
          baseURL: URL,
@@ -111,15 +112,22 @@ final class ExploreCoordinator {
     private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
         audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
         
+        guard largePlayerController == nil else {
+            return largePlayerController!
+        }
+        
         let service = EpisodeThumbnailLoaderService(
             httpClient: httpClient,
             podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
         )
-        return LargeAudioPlayerUIComposer.playerWith(
+        
+        let largePlayerController = LargeAudioPlayerUIComposer.playerWith(
             thumbnailURL: episode.thumbnail,
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,
             imageLoader: service.makeRemotePodcastImageDataLoader(for:)
         )
+        self.largePlayerController = largePlayerController
+        return largePlayerController
     }
 }

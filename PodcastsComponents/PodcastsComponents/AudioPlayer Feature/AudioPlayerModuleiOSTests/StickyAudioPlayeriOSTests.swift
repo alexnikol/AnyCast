@@ -86,6 +86,7 @@ class StickyAudioPlayeriOSTests: XCTestCase {
     }
     
     private class DummyStickyAudioPlayerViewDelegate: StickyAudioPlayerViewDelegate {
+        func onPlayerOpen() {}
         func onOpen() {}
         func onClose() {}
     }

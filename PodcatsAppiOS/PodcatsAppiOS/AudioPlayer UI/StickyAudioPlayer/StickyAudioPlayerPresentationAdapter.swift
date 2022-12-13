@@ -8,13 +8,19 @@ class StickyAudioPlayerPresentationAdapter {
     private let statePublisher: AudioPlayerStatePublisher
     private var subscription: AudioPlayerStateSubscription?
     var presenter: StickyAudioPlayerPresenter?
+    var onPlayerOpenAction: () -> Void
     
-    init(statePublisher: AudioPlayerStatePublisher) {
+    init(statePublisher: AudioPlayerStatePublisher, onPlayerOpen: @escaping () -> Void) {
         self.statePublisher = statePublisher
+        self.onPlayerOpenAction = onPlayerOpen
     }
 }
 
 extension StickyAudioPlayerPresentationAdapter: StickyAudioPlayerViewDelegate {
+    
+    func onPlayerOpen() {
+        onPlayerOpenAction()
+    }
     
     func onOpen() {
         subscription = statePublisher.subscribe(observer: self)

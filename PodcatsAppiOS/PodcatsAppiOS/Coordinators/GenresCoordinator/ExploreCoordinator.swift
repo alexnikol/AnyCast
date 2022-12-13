@@ -86,8 +86,8 @@ final class ExploreCoordinator {
                     selection: { [weak self] episode, podcast in
                         guard let self = self else { return }
                         
-                        let player = self.openPlayerFor(episode: episode, podcast: podcast)
-                        self.present(screen: player)
+                        self.startPlayback(episode: episode, podcast: podcast)
+                        self.openPlayer()
                     }
                 )
                 self.show(screen: podcastDetails)
@@ -109,25 +109,32 @@ final class ExploreCoordinator {
         )
     }
     
-    private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
+    private func startPlayback(episode: Episode, podcast: PodcastDetails) {
         audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
-        
-        guard largePlayerController == nil else {
-            return largePlayerController!
+    }
+    
+    func openPlayer() {
+        guard let largePlayerController = largePlayerController else {
+            let newlyCreatedPlayer = createPlayer()
+            self.largePlayerController = newlyCreatedPlayer
+            present(screen: newlyCreatedPlayer)
+            return
         }
-        
+        present(screen: largePlayerController)
+    }
+    
+    private func createPlayer() -> LargeAudioPlayerViewController {
         let service = EpisodeThumbnailLoaderService(
             httpClient: httpClient,
             podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
         )
         
         let largePlayerController = LargeAudioPlayerUIComposer.playerWith(
-            thumbnailURL: episode.thumbnail,
+            thumbnailURL: URL(string: "https://sddds.com")!,
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,
             imageLoader: service.makeRemotePodcastImageDataLoader(for:)
         )
-        self.largePlayerController = largePlayerController
         return largePlayerController
     }
 }

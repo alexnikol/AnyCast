@@ -52,7 +52,8 @@ final class RootComposer {
             thumbnailURL: URL(string: "https://123123123")!,
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,
-            imageLoader: episodeThumbnailLoaderService.makeRemotePodcastImageDataLoader(for:)
+            imageLoader: episodeThumbnailLoaderService.makeRemotePodcastImageDataLoader(for:),
+            onPlayerOpen: exploreCoordinator.openPlayer
         )
         
         let rootTabBarController = RootTabBarController(

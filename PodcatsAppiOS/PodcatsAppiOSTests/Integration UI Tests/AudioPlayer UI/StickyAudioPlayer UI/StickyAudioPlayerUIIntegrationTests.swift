@@ -110,7 +110,8 @@ class StickyAudioPlayerUIIntegrationTests: XCTestCase {
             controlsDelegate: controlsSpy,
             imageLoader: { _ in
                 Empty().eraseToAnyPublisher()
-            }
+            },
+            onPlayerOpen: {}
         )
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(statePublisher, file: file, line: line)

@@ -5,4 +5,5 @@ import Foundation
 public protocol StickyAudioPlayerViewDelegate {
     func onOpen()
     func onClose()
+    func onPlayerOpen()
 }

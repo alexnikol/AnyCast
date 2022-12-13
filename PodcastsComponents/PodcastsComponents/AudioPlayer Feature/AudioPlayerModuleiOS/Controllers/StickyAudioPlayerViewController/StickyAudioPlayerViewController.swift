@@ -56,6 +56,7 @@ public class StickyAudioPlayerViewController: UIViewController {
 private extension StickyAudioPlayerViewController {
     
     func configureViews() {
+        addOnOpenActions()
         configureThumbnailView()
         configureBlurView()
         configureActionButtons()
@@ -87,6 +88,20 @@ private extension StickyAudioPlayerViewController {
             blurEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0),
             blurEffectView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0)
         ])
+    }
+    
+    func addOnOpenActions() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onPlayerOpen))
+        view.addGestureRecognizer(tap)
+        
+        let topSwipe = UISwipeGestureRecognizer(target: self, action: #selector(onPlayerOpen))
+        topSwipe.direction = .up
+        view.addGestureRecognizer(topSwipe)
+    }
+    
+    @objc
+    func onPlayerOpen() {
+        delegate?.onPlayerOpen()
     }
     
     func configureThumbnailView() {

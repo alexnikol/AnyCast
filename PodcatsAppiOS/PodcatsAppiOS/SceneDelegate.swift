@@ -64,8 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureWindow() {
         globalAppearanceSetup()
         composeAudioPlayerWithStatePublisher()
-        let rootController = configureRootController()
-        window?.rootViewController = rootController
+        window?.rootViewController = configureRootController()
         window?.makeKeyAndVisible()
     }
     

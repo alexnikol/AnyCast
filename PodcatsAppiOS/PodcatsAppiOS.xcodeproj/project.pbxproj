@@ -45,7 +45,7 @@
 		8D75079229409BC6004500D9 /* AudioPlayerControlsSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75079129409BC6004500D9 /* AudioPlayerControlsSpy.swift */; };
 		8D75079429409BE2004500D9 /* AudioPlayerClientDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75079329409BE2004500D9 /* AudioPlayerClientDummy.swift */; };
 		8D75079629409FA9004500D9 /* UIAlertController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75079529409FA9004500D9 /* UIAlertController+Helpers.swift */; };
-		8D7509F029420921004500D9 /* LargeAudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7509EF29420921004500D9 /* LargeAudioPlayerService.swift */; };
+		8D7509F029420921004500D9 /* EpisodeThumbnailLoaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7509EF29420921004500D9 /* EpisodeThumbnailLoaderService.swift */; };
 		8D750B3029433862004500D9 /* ThumbnailUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750B2F29433862004500D9 /* ThumbnailUIComposer.swift */; };
 		8D750C912947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C902947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift */; };
 		8D750C952947A662004500D9 /* StickyAudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C942947A662004500D9 /* StickyAudioPlayerUIComposer.swift */; };
@@ -54,11 +54,12 @@
 		8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */; };
 		8D750CA32947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA22947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift */; };
 		8D750CAA29486F66004500D9 /* RootComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CA929486F66004500D9 /* RootComposer.swift */; };
-		8D750CB729487CE9004500D9 /* RootTabBarControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CB329487C5C004500D9 /* RootTabBarControllerPresenter.swift */; };
+		8D750CB729487CE9004500D9 /* RootTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CB329487C5C004500D9 /* RootTabBarPresenter.swift */; };
 		8D750CB929487D16004500D9 /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CB829487D16004500D9 /* RootTabBarController.swift */; };
 		8D750CBC29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CBB29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift */; };
 		8D750CC029487E64004500D9 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D750CC229487E64004500D9 /* Main.strings */; };
 		8D750CE529488740004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CE429488740004500D9 /* libSharedTestHelpersLibrary.a */; };
+		8D750CF629489F41004500D9 /* RootTabBarPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CF529489F41004500D9 /* RootTabBarPresentationAdapter.swift */; };
 		8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B87328D4A2540014A211 /* AppDelegate.swift */; };
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
@@ -168,7 +169,7 @@
 		8D75079129409BC6004500D9 /* AudioPlayerControlsSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerControlsSpy.swift; sourceTree = "<group>"; };
 		8D75079329409BE2004500D9 /* AudioPlayerClientDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerClientDummy.swift; sourceTree = "<group>"; };
 		8D75079529409FA9004500D9 /* UIAlertController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Helpers.swift"; sourceTree = "<group>"; };
-		8D7509EF29420921004500D9 /* LargeAudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerService.swift; sourceTree = "<group>"; };
+		8D7509EF29420921004500D9 /* EpisodeThumbnailLoaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeThumbnailLoaderService.swift; sourceTree = "<group>"; };
 		8D750B2F29433862004500D9 /* ThumbnailUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailUIComposer.swift; sourceTree = "<group>"; };
 		8D750C902947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerUIIntegrationTests.swift; sourceTree = "<group>"; };
 		8D750C942947A662004500D9 /* StickyAudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyAudioPlayerUIComposer.swift; sourceTree = "<group>"; };
@@ -177,7 +178,7 @@
 		8D750C9F2947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StickyAudioPlayerViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8D750CA22947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioPlayerUI+SharedHelpers.swift"; sourceTree = "<group>"; };
 		8D750CA929486F66004500D9 /* RootComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComposer.swift; sourceTree = "<group>"; };
-		8D750CB329487C5C004500D9 /* RootTabBarControllerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarControllerPresenter.swift; sourceTree = "<group>"; };
+		8D750CB329487C5C004500D9 /* RootTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarPresenter.swift; sourceTree = "<group>"; };
 		8D750CB829487D16004500D9 /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		8D750CBB29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarControllerLocalizationTests.swift; sourceTree = "<group>"; };
 		8D750CC129487E64004500D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 		8D750CC629487FC8004500D9 /* uk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = uk; path = uk.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D750CE22948872A004500D9 /* libSharedTestHelpersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSharedTestHelpersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750CE429488740004500D9 /* libSharedTestHelpersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSharedTestHelpersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D750CF529489F41004500D9 /* RootTabBarPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarPresentationAdapter.swift; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -270,7 +272,7 @@
 				8D4298D4292277AC0064F3E6 /* GenresLoaderService.swift */,
 				8D4298D7292278470064F3E6 /* BestPodcastsService.swift */,
 				8D4298D929227A140064F3E6 /* PodcastDetailsService.swift */,
-				8D7509EF29420921004500D9 /* LargeAudioPlayerService.swift */,
+				8D7509EF29420921004500D9 /* EpisodeThumbnailLoaderService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -464,8 +466,9 @@
 			isa = PBXGroup;
 			children = (
 				8D750CA929486F66004500D9 /* RootComposer.swift */,
-				8D750CB329487C5C004500D9 /* RootTabBarControllerPresenter.swift */,
+				8D750CB329487C5C004500D9 /* RootTabBarPresenter.swift */,
 				8D750CB829487D16004500D9 /* RootTabBarController.swift */,
+				8D750CF529489F41004500D9 /* RootTabBarPresentationAdapter.swift */,
 			);
 			path = RootUITabBarController;
 			sourceTree = "<group>";
@@ -727,7 +730,7 @@
 				8D750C9B2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift in Sources */,
 				8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */,
 				8D4298D32922740F0064F3E6 /* ExploreCoordinator.swift in Sources */,
-				8D750CB729487CE9004500D9 /* RootTabBarControllerPresenter.swift in Sources */,
+				8D750CB729487CE9004500D9 /* RootTabBarPresenter.swift in Sources */,
 				8D4298D5292277AC0064F3E6 /* GenresLoaderService.swift in Sources */,
 				8DCA22892934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift in Sources */,
 				8D5FA2772913CBE5002BB874 /* HTTPClient+CombineHelpers.swift in Sources */,
@@ -741,7 +744,8 @@
 				8D72D03A28F8118900C17DDC /* ImmediateWhenOnMainQueueScheduler.swift in Sources */,
 				8D750C952947A662004500D9 /* StickyAudioPlayerUIComposer.swift in Sources */,
 				8D4298C3292242E70064F3E6 /* UIImage+Extensions.swift in Sources */,
-				8D7509F029420921004500D9 /* LargeAudioPlayerService.swift in Sources */,
+				8D7509F029420921004500D9 /* EpisodeThumbnailLoaderService.swift in Sources */,
+				8D750CF629489F41004500D9 /* RootTabBarPresentationAdapter.swift in Sources */,
 				8D72D03D28F8118900C17DDC /* GenresUIComposer.swift in Sources */,
 				8D72D05A28F826E100C17DDC /* SceneDelegate.swift in Sources */,
 			);

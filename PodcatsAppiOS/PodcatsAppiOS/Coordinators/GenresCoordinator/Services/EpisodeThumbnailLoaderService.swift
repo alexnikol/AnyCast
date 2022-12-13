@@ -6,7 +6,7 @@ import Combine
 import HTTPClient
 import PodcastsModule
 
-class LargeAudioPlayerService {
+class EpisodeThumbnailLoaderService {
     private let httpClient: HTTPClient
     private let podcastsImageDataStore: PodcastsImageDataStore
     

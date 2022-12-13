@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import Combine
 import HTTPClient
 import PodcastsGenresList
 import AudioPlayerModule
@@ -21,6 +22,10 @@ final class RootComposer {
         audioPlayer: AudioPlayer,
         audioPlayerStatePublisher: AudioPlayerStatePublisher
     ) -> UIViewController {
+        let tabBarPresenter = RootTabBarPresenter()
+        let tabBarPresentationAdapter = RootTabBarPresentationAdapter(statePublisher: audioPlayerStatePublisher)
+        tabBarPresentationAdapter.presenter = tabBarPresenter
+        
         let exploreNavigation = UINavigationController()
         let exploreCoordinator = ExploreCoordinator(
             navigationController: exploreNavigation,
@@ -31,13 +36,30 @@ final class RootComposer {
             audioPlayerStatePublisher: audioPlayerStatePublisher
         )
         exploreNavigation.tabBarItem = UITabBarItem(
-            title: RootTabBarControllerPresenter.exploreTabBarItemTitle,
+            title: tabBarPresenter.exploreTabBarItemTitle,
             image: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.defaultColor),
             selectedImage: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.selectedColor)
         )
         
         exploreCoordinator.start()
-        let rootTabBarController = RootTabBarController()
+        
+        
+        let episodeThumbnailLoaderService = EpisodeThumbnailLoaderService(
+            httpClient: httpClient,
+            podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
+        )
+        let stickyPlayer = StickyAudioPlayerUIComposer.playerWith(
+            thumbnailURL: URL(string: "https://123123123")!,
+            statePublisher: audioPlayerStatePublisher,
+            controlsDelegate: audioPlayer,
+            imageLoader: episodeThumbnailLoaderService.makeRemotePodcastImageDataLoader(for:)
+        )
+        
+        let rootTabBarController = RootTabBarController(
+            stickyAudioPlayerController: stickyPlayer,
+            viewDelegate: tabBarPresentationAdapter
+        )
+        tabBarPresenter.view = rootTabBarController
         rootTabBarController.setViewControllers([exploreNavigation], animated: false)
         return rootTabBarController
     }

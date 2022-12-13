@@ -8,13 +8,8 @@ import PodcastsGenresList
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 
-final class ExploreCoordinator {
-    private let navigationController: UINavigationController
-    private let baseURL: URL
-    private let httpClient: HTTPClient
-    private let localGenresLoader: LocalGenresLoader
-    private let audioPlayer: AudioPlayer
-    private let audioPlayerStatePublisher: AudioPlayerStatePublisher
+class PodcastsImageDataStoreContainer {
+    static let shared = PodcastsImageDataStoreContainer()
     
     lazy var podcastsImageDataStore: PodcastsImageDataStore = {
         try! CoreDataPodcastsImageDataStore(
@@ -23,7 +18,16 @@ final class ExploreCoordinator {
                 .appendingPathComponent("best-podcasts-image-data-store.sqlite")
         )
     }()
-    
+}
+
+final class ExploreCoordinator {
+    private let navigationController: UINavigationController
+    private let baseURL: URL
+    private let httpClient: HTTPClient
+    private let localGenresLoader: LocalGenresLoader
+    private let audioPlayer: AudioPlayer
+    private let audioPlayerStatePublisher: AudioPlayerStatePublisher
+        
     init(navigationController: UINavigationController,
          baseURL: URL,
          httpClient: HTTPClient,
@@ -69,7 +73,7 @@ final class ExploreCoordinator {
         let bestPodcastsService = BestPodcastsService(
             baseURL: baseURL,
             httpClient: httpClient,
-            podcastsImageDataStore: podcastsImageDataStore
+            podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
         )
         return BestPodcastsUIComposer.bestPodcastComposed(
             genreID: genre.id,
@@ -94,7 +98,7 @@ final class ExploreCoordinator {
         let podcastDetailsService = PodcastDetailsService(
             baseURL: baseURL,
             httpClient: httpClient,
-            podcastsImageDataStore: podcastsImageDataStore
+            podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
         )
         return PodcastDetailsUIComposer.podcastDetailsComposedWith(
             podcastID: podcast.id,
@@ -107,9 +111,9 @@ final class ExploreCoordinator {
     private func openPlayerFor(episode: Episode, podcast: PodcastDetails) -> LargeAudioPlayerViewController {
         audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
         
-        let service = LargeAudioPlayerService(
+        let service = EpisodeThumbnailLoaderService(
             httpClient: httpClient,
-            podcastsImageDataStore: podcastsImageDataStore
+            podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
         )
         return LargeAudioPlayerUIComposer.playerWith(
             thumbnailURL: episode.thumbnail,

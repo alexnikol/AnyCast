@@ -8,7 +8,7 @@ class RootTabBarControllerLocalizationTests: XCTestCase, LocalizationTestCase {
     
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Main"
-        let presentationBundle = Bundle(for: RootTabBarControllerPresenter.self)
+        let presentationBundle = Bundle(for: RootTabBarPresenter.self)
 
         checkForMissingLocalizationInAllSupportedLanguages(bundle: presentationBundle, table: table)
     }

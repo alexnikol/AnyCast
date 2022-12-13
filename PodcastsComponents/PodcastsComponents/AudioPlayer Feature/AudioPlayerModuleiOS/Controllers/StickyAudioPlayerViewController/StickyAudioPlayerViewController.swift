@@ -56,20 +56,40 @@ public class StickyAudioPlayerViewController: UIViewController {
 private extension StickyAudioPlayerViewController {
     
     func configureViews() {
+        configureThumbnailView()
+        configureBlurView()
         configureActionButtons()
     }
     
     func configureActionButtons() {
         playButton.tintColor = UIColor.accentColor
         playButton.setImage(.init(systemName: "play.fill"), for: .normal)
-        playButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 28), forImageIn: .normal)
+        playButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 24), forImageIn: .normal)
         forwardButton.tintColor = UIColor.accentColor
         forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
-        forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 24), forImageIn: .normal)
+        forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 20), forImageIn: .normal)
     }
     
     func updateInitialValuesOnCreate() {
         titleLabel.text = nil
         descriptionLabel.text = nil
+    }
+    
+    func configureBlurView() {
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, at: 0)
+        NSLayoutConstraint.activate([
+            blurEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0.0),
+            blurEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0.0),
+            blurEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0),
+            blurEffectView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0)
+        ])
+    }
+    
+    func configureThumbnailView() {
+        thumbnailView.setCornerRadius(4.0)
     }
 }

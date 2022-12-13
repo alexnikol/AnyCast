@@ -15,9 +15,7 @@ import AVPlayerClient
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-    
-    private var appCoordinator: GenresCoordinator?
-    
+        
     private lazy var baseURL: URL = {
         URL(string: "https://listen-api-test.listennotes.com")!
     }()
@@ -66,8 +64,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureWindow() {
         globalAppearanceSetup()
         composeAudioPlayerWithStatePublisher()
+        let (exploreRoot, exploreCoordinator) = configureExploreCoodrinator()
+        exploreCoordinator.start()
+        window?.rootViewController = exploreRoot
+        window?.makeKeyAndVisible()
+    }
+    
+    private func configureExploreCoodrinator() -> (root: UIViewController, coordinator: ExploreCoordinator) {
         let rootNavigation = UINavigationController()
-        appCoordinator = GenresCoordinator(
+        let exploreCoordinator = ExploreCoordinator(
             navigationController: rootNavigation,
             baseURL: baseURL,
             httpClient: httpClient,
@@ -75,9 +80,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             audioPlayer: audioPlayer,
             audioPlayerStatePublisher: audioPlayerStatePublisher
         )
-        appCoordinator?.start()
-        window?.rootViewController = rootNavigation
-        window?.makeKeyAndVisible()
+        return (rootNavigation, exploreCoordinator)
     }
     
     private func globalAppearanceSetup() {

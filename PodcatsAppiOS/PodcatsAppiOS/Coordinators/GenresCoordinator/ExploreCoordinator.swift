@@ -8,7 +8,7 @@ import PodcastsGenresList
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 
-final class GenresCoordinator {
+final class ExploreCoordinator {
     private let navigationController: UINavigationController
     private let baseURL: URL
     private let httpClient: HTTPClient

@@ -16,11 +16,10 @@ public final class LargeAudioPlayerUIComposer {
         controlsDelegate: AudioPlayerControlsDelegate,
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>
     ) -> LargeAudioPlayerViewController {
-        let presentationAdapter = LargeAudioPlayerPresentationAdapter(statePublisher: statePublisher)
-                
-        let thumbnailViewController = ThumbnailUIComposer.composeThumbnailWithImageLoader(
-            thumbnailURL: URL(string: "https://asdasd.com")!,
-            imageLoader: imageLoader
+        let (thumbnailViewController, thumbnailSourceDelegate) = ThumbnailUIComposer.composeThumbnailWithDynamicImageLoader(imageLoader: imageLoader)
+        let presentationAdapter = LargeAudioPlayerPresentationAdapter(
+            statePublisher: statePublisher,
+            thumbnaiSourceDelegate: thumbnailSourceDelegate
         )
         
         let controller = LargeAudioPlayerViewController(

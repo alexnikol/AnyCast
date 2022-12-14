@@ -32,15 +32,14 @@ public final class LargeAudioPlayerViewController: UIViewController {
     private var hiddenMPVolumeSliderControl: UISlider?
     private var hiddenRoutePickerButton: UIButton?
     private var isProgressViewEditing = false
-    private var isViewWillApearedOnce = false
-    private var thumbnailViewController: ThumbnailViewController?
+    private var thumbnailViewController: ThumbnailDynamicViewController?
     
     // MARK: - Initialization
     
     public convenience init(
         delegate: LargeAudioPlayerViewDelegate,
         controlsDelegate: AudioPlayerControlsDelegate,
-        thumbnailViewController: ThumbnailViewController
+        thumbnailViewController: ThumbnailDynamicViewController
     ) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
         self.delegate = delegate
@@ -50,7 +49,6 @@ public final class LargeAudioPlayerViewController: UIViewController {
     
     deinit {
         delegate?.onClose()
-        thumbnailViewController?.didRequestCancel()
     }
     
     // MARK: - Lifecycle
@@ -60,15 +58,6 @@ public final class LargeAudioPlayerViewController: UIViewController {
         updateInitialValuesOnCreate()
         configureViews()
         delegate?.onOpen()
-    }
-    
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if !isViewWillApearedOnce {
-            thumbnailViewController?.didRequestLoading()
-        }
-        isViewWillApearedOnce = true
     }
     
     public override func viewDidLayoutSubviews() {

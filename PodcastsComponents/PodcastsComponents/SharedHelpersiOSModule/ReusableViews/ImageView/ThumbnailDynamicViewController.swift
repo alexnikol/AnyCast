@@ -5,10 +5,6 @@ import LoadResourcePresenter
 
 public class ThumbnailDynamicViewController: NSObject {
     public weak var view: AsyncImageView?
-    
-    deinit {
-        print("DENIT ThumbnailDynamicViewController")
-    }
 }
 
 extension ThumbnailDynamicViewController: ResourceView, ResourceLoadingView, ResourceErrorView {

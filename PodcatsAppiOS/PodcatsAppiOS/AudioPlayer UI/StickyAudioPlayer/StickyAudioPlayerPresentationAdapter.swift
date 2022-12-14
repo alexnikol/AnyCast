@@ -1,18 +1,21 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import SharedComponentsiOSModule
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 
 class StickyAudioPlayerPresentationAdapter {
     private let statePublisher: AudioPlayerStatePublisher
     private var subscription: AudioPlayerStateSubscription?
+    private var thumbnaiSourceDelegate: ThumbnailSourceDelegate?
     var presenter: StickyAudioPlayerPresenter?
     var onPlayerOpenAction: () -> Void
     
-    init(statePublisher: AudioPlayerStatePublisher, onPlayerOpen: @escaping () -> Void) {
+    init(statePublisher: AudioPlayerStatePublisher, thumbnaiSourceDelegate: ThumbnailSourceDelegate, onPlayerOpen: @escaping () -> Void) {
         self.statePublisher = statePublisher
         self.onPlayerOpenAction = onPlayerOpen
+        self.thumbnaiSourceDelegate = thumbnaiSourceDelegate
     }
 }
 
@@ -39,16 +42,19 @@ extension StickyAudioPlayerPresentationAdapter: AudioPlayerObserver {
             break
             
         case .updatedPlayingItem(let playingItem):
-            DispatchQueue.immediateWhenOnMainQueueScheduler.schedule { [weak self] in
-                self?.presenter?.didReceivePlayerState(with: playingItem)
-            }
+            handleReceivedData(playingItem: playingItem)
             
         case .startPlayingNewItem(let playingItem):
-            DispatchQueue.immediateWhenOnMainQueueScheduler.schedule { [weak self] in
-                self?.presenter?.didReceivePlayerState(with: playingItem)
-            }
+            handleReceivedData(playingItem: playingItem)
         }
     }
     
     func prepareForSeek(_ progress: AudioPlayerModule.PlayingItem.Progress) {}
+    
+    private func handleReceivedData(playingItem: PlayingItem) {
+        DispatchQueue.immediateWhenOnMainQueueScheduler.schedule { [weak self] in
+            self?.presenter?.didReceivePlayerState(with: playingItem)
+            self?.thumbnaiSourceDelegate?.didUpdateSourceURL(playingItem.episode.thumbnail)
+        }
+    }
 }

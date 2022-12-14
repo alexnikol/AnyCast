@@ -25,4 +25,19 @@ public final class ThumbnailUIComposer {
         imageAdapter.presenter = imagePresenter
         return thumbnailViewController
     }
+    
+    public static func composeThumbnailWithDynamicImageLoader(
+        imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>
+    ) -> (controller: ThumbnailDynamicViewController, source: ThumbnailSourceDelegate) {
+        let imageAdapter = ThumbnailDynamicPresentationAdapter<Data, WeakRefVirtualProxy<ThumbnailDynamicViewController>>(loader: imageLoader)
+        let thumbnailViewController = ThumbnailDynamicViewController()
+        let imagePresenter = LoadResourcePresenter(
+            resourceView: WeakRefVirtualProxy(thumbnailViewController),
+            loadingView: WeakRefVirtualProxy(thumbnailViewController),
+            errorView: WeakRefVirtualProxy(thumbnailViewController),
+            mapper: UIImage.trytoMake(with:)
+        )
+        imageAdapter.presenter = imagePresenter
+        return (thumbnailViewController, imageAdapter)
+    }
 }

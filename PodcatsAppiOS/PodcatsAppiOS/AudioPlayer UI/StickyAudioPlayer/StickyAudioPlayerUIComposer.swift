@@ -18,13 +18,14 @@ public final class StickyAudioPlayerUIComposer {
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>,
         onPlayerOpen: @escaping () -> Void
     ) -> StickyAudioPlayerViewController {
-        let presentationAdapter = StickyAudioPlayerPresentationAdapter(statePublisher: statePublisher, onPlayerOpen: onPlayerOpen)
-                
-        let thumbnailViewController = ThumbnailUIComposer.composeThumbnailWithImageLoader(
-            thumbnailURL: thumbnailURL,
-            imageLoader: imageLoader
-        )
+        let (thumbnailViewController, thumbnailSourceDelegate) = ThumbnailUIComposer.composeThumbnailWithDynamicImageLoader(imageLoader: imageLoader)
         
+        let presentationAdapter = StickyAudioPlayerPresentationAdapter(
+            statePublisher: statePublisher,
+            thumbnaiSourceDelegate: thumbnailSourceDelegate,
+            onPlayerOpen: onPlayerOpen
+        )
+                    
         let controller = StickyAudioPlayerViewController(
             delegate: presentationAdapter,
             controlsDelegate: controlsDelegate,

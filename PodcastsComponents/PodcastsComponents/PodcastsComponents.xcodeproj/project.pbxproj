@@ -124,6 +124,8 @@
 		8D750CEE294888BD004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D750CEF294888D9004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D750CF129488A53004500D9 /* SharedFactoryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CF029488A53004500D9 /* SharedFactoryHelpers.swift */; };
+		8D750CFE2949C5E1004500D9 /* ThumbnailDynamicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CFD2949C5E1004500D9 /* ThumbnailDynamicViewController.swift */; };
+		8D750D002949CB63004500D9 /* ThumbnailSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CFF2949CB63004500D9 /* ThumbnailSourceDelegate.swift */; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
@@ -549,6 +551,8 @@
 		8D750CE7294887DC004500D9 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 		8D750CE8294887DC004500D9 /* ViewController+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		8D750CF029488A53004500D9 /* SharedFactoryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFactoryHelpers.swift; sourceTree = "<group>"; };
+		8D750CFD2949C5E1004500D9 /* ThumbnailDynamicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailDynamicViewController.swift; sourceTree = "<group>"; };
+		8D750CFF2949CB63004500D9 /* ThumbnailSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailSourceDelegate.swift; sourceTree = "<group>"; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
@@ -1229,6 +1233,8 @@
 				8D750B32294340E6004500D9 /* DefaultImageView */,
 				8D750B2C2943302D004500D9 /* ThumbnailView */,
 				8D750B2A29433012004500D9 /* ThumbnailViewController.swift */,
+				8D750CFD2949C5E1004500D9 /* ThumbnailDynamicViewController.swift */,
+				8D750CFF2949CB63004500D9 /* ThumbnailSourceDelegate.swift */,
 			);
 			path = ImageView;
 			sourceTree = "<group>";
@@ -2964,7 +2970,9 @@
 				8D7509F229421EAF004500D9 /* UIView+Shimmering.swift in Sources */,
 				8D750B3829434139004500D9 /* DefaultImageView.swift in Sources */,
 				8D65FF192922BE010017F199 /* RefreshViewController.swift in Sources */,
+				8D750CFE2949C5E1004500D9 /* ThumbnailDynamicViewController.swift in Sources */,
 				8D7509F529432B19004500D9 /* ThumbnailView.swift in Sources */,
+				8D750D002949CB63004500D9 /* ThumbnailSourceDelegate.swift in Sources */,
 				8D65FF182922BE010017F199 /* UICollectionView+Extensions.swift in Sources */,
 				8D750B2829432DAB004500D9 /* UIView+XibLoading.swift in Sources */,
 				8D750B2529432C9F004500D9 /* NibView.swift in Sources */,

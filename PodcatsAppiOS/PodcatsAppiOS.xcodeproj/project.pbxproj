@@ -60,6 +60,7 @@
 		8D750CC029487E64004500D9 /* Main.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D750CC229487E64004500D9 /* Main.strings */; };
 		8D750CE529488740004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CE429488740004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D750CF629489F41004500D9 /* RootTabBarPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CF529489F41004500D9 /* RootTabBarPresentationAdapter.swift */; };
+		8D750D022949D0FB004500D9 /* ThumbnailDynamicPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D012949D0FB004500D9 /* ThumbnailDynamicPresentationAdapter.swift */; };
 		8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D76B87328D4A2540014A211 /* AppDelegate.swift */; };
 		8D76B87D28D4A2550014A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87C28D4A2550014A211 /* Assets.xcassets */; };
 		8D76B88028D4A2550014A211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D76B87E28D4A2550014A211 /* LaunchScreen.storyboard */; };
@@ -188,6 +189,7 @@
 		8D750CE22948872A004500D9 /* libSharedTestHelpersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSharedTestHelpersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750CE429488740004500D9 /* libSharedTestHelpersLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSharedTestHelpersLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750CF529489F41004500D9 /* RootTabBarPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarPresentationAdapter.swift; sourceTree = "<group>"; };
+		8D750D012949D0FB004500D9 /* ThumbnailDynamicPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailDynamicPresentationAdapter.swift; sourceTree = "<group>"; };
 		8D76B87028D4A2540014A211 /* Podcats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Podcats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D76B87328D4A2540014A211 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D76B87C28D4A2550014A211 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				8D750B2F29433862004500D9 /* ThumbnailUIComposer.swift */,
+				8D750D012949D0FB004500D9 /* ThumbnailDynamicPresentationAdapter.swift */,
 			);
 			path = "Shared UI";
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				8D750CB929487D16004500D9 /* RootTabBarController.swift in Sources */,
 				8D750CAA29486F66004500D9 /* RootComposer.swift in Sources */,
 				8DDBB778291BD2FD0024A37A /* GenericLoaderPresentationAdapter.swift in Sources */,
+				8D750D022949D0FB004500D9 /* ThumbnailDynamicPresentationAdapter.swift in Sources */,
 				8D750C9B2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift in Sources */,
 				8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */,
 				8D4298D32922740F0064F3E6 /* ExploreCoordinator.swift in Sources */,

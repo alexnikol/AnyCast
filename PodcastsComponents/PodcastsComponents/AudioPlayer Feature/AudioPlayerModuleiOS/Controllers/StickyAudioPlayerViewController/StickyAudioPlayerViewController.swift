@@ -12,12 +12,12 @@ public class StickyAudioPlayerViewController: UIViewController {
     @IBOutlet public private(set) weak var playButton: UIButton!
     private var delegate: StickyAudioPlayerViewDelegate?
     private var controlsDelegate: AudioPlayerControlsDelegate?
-    private var thumbnailViewController: ThumbnailViewController?
+    private var thumbnailViewController: ThumbnailDynamicViewController?
     
     public convenience init(
         delegate: StickyAudioPlayerViewDelegate,
         controlsDelegate: AudioPlayerControlsDelegate,
-        thumbnailViewController: ThumbnailViewController
+        thumbnailViewController: ThumbnailDynamicViewController
     ) {
         self.init(nibName: String(describing: Self.self), bundle: Bundle(for: Self.self))
         self.delegate = delegate
@@ -29,6 +29,7 @@ public class StickyAudioPlayerViewController: UIViewController {
         super.viewDidLoad()
         updateInitialValuesOnCreate()
         configureViews()
+        thumbnailViewController?.view = thumbnailView
         delegate?.onOpen()
     }
     

@@ -11,17 +11,17 @@ public final class PodcastHeaderCellController: NSObject, SectionController {
     public var dataSource: UITableViewDataSource { self }
     public var delegate: UITableViewDelegate? { self }
     public var prefetchingDataSource: UITableViewDataSourcePrefetching?
-    private let imageLoaderDelegate: RefreshViewControllerDelegate
     public var cellControllers: [CellController]
     public let viewModel: PodcastDetailsViewModel
     private var podcastHeader: PodcastHeaderReusableView?
+    private var thumbnailViewController: ThumbnailViewController?
     
     public init(cellControllers: [CellController],
                 viewModel: PodcastDetailsViewModel,
-                imageLoaderDelegate: RefreshViewControllerDelegate) {
+                thumbnailViewController: ThumbnailViewController) {
         self.cellControllers = cellControllers
         self.viewModel = viewModel
-        self.imageLoaderDelegate = imageLoaderDelegate
+        self.thumbnailViewController = thumbnailViewController
     }
 }
 
@@ -37,11 +37,12 @@ extension PodcastHeaderCellController: UITableViewDataSource, UITableViewDelegat
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: PodcastHeaderReusableView = tableView.dequeueAndRegisterReusableView()
+        thumbnailViewController?.view = header.imageView
         podcastHeader = header
         podcastHeader?.titleLabel.text = viewModel.title
         podcastHeader?.authorLabel.text = viewModel.publisher
         
-        imageLoaderDelegate.didRequestLoading()
+        thumbnailViewController?.didRequestLoading()
         return header
     }
     
@@ -54,32 +55,11 @@ extension PodcastHeaderCellController: UITableViewDataSource, UITableViewDelegat
     }
     
     private func cancelLoadImage() {
-        imageLoaderDelegate.didRequestCancel()
+        thumbnailViewController?.didRequestCancel()
         releaseReusableViewForResuse()
     }
     
     private func releaseReusableViewForResuse() {
         podcastHeader = nil
-    }
-}
-
-extension PodcastHeaderCellController: ResourceView {
-    
-    public func display(_ viewModel: ResourceViewModel) {
-        podcastHeader?.imageView.image = viewModel
-    }
-}
-
-extension PodcastHeaderCellController: ResourceLoadingView {
-    
-    public func display(_ viewModel: ResourceLoadingViewModel) {
-        podcastHeader?.imageInnerContainer.isShimmering = viewModel.isLoading
-    }
-}
-
-extension PodcastHeaderCellController: ResourceErrorView {
-    
-    public func display(_ viewModel: ResourceErrorViewModel) {
-        podcastHeader?.imageView.image = nil
     }
 }

@@ -3,9 +3,13 @@
 import UIKit
 
 public extension UIColor {
-    static var tintColor: UIColor {
+    static var accentColor: UIColor {
         get {
-            return UIApplication.shared.windows.first?.rootViewController?.view.tintColor ?? .clear
+            if #available(iOS 15.0, *) {
+                return UIColor.tintColor
+            } else {
+                return UIApplication.shared.windows.first?.rootViewController?.view.tintColor ?? .clear
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import SharedTestHelpersLibrary
 import LoadResourcePresenter
 import SharedComponentsiOSModule
 import PodcastsModule
@@ -90,7 +91,7 @@ class PodcastDetailsUISnapshotTests: XCTestCase {
                     episodes: [],
                     description: "Any Podcast title",
                     totalEpisodes: "20"),
-                imageLoaderDelegate: NullObjectRefreshViewControllerDelegate()
+                thumbnailViewController: ThumbnailViewController(loaderDelegate: NullObjectRefreshViewControllerDelegate())
             )
         ]
     }

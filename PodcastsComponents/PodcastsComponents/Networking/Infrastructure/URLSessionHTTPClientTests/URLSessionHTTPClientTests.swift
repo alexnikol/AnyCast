@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import SharedTestHelpersLibrary
 import HTTPClient
 import URLSessionHTTPClient
 
@@ -138,18 +139,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
         return receivedResult
-    }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
-    }
-    
-    private func anyData() -> Data {
-        Data("anyData".utf8)
-    }
-    
-    private func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 0)
     }
     
     private func nonHTTPURLResponse() -> URLResponse {

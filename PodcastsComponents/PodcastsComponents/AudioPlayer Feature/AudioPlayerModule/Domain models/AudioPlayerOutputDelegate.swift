@@ -4,4 +4,5 @@ import Foundation
 
 public protocol AudioPlayerOutputDelegate {
     func didUpdateState(with state: PlayerState)
+    func prepareForProgressAfterSeekApply(futureProgress: PlayingItem.Progress)
 }

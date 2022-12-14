@@ -3,7 +3,9 @@
 import Foundation
 
 public protocol AudioPlayerControlsDelegate {
-    func togglePlay()
+    var isPlaying: Bool { get }
+    func play()
+    func pause()
     
     // MARK: - Volume change from 0 to 1 percentage format
     func changeVolumeTo(value: Float)
@@ -11,8 +13,13 @@ public protocol AudioPlayerControlsDelegate {
     // MARK: - Seek change from 0 to 1 percentage format
     func seekToProgress(_ progress: Float)
     
+    // MARK: - Ask progress for future seek before actual seeking
+    func prepareForSeek(_ progress: Float)
+    
     // MARK: - Seek change in seconds for foreward and backward convenience
     /// Use negative seconds value for backward seeking
     /// Use positive seconds value for foreward seeking
     func seekToSeconds(_ seconds: Int)
+    
+    func changeSpeedPlaybackTo(value: PlaybackSpeed)
 }

@@ -14,19 +14,18 @@ public final class PodcastCell: UITableViewCell, Reusable {
     @IBOutlet public private(set) weak var languageValueLabel: UILabel!
     @IBOutlet public private(set) weak var typeStaticLabel: UILabel!
     @IBOutlet public private(set) weak var typeValueLabel: UILabel!
-    @IBOutlet public private(set) weak var thumbnailImageView: UIImageView!
-    @IBOutlet public private(set) weak var imageContainer: UIView!
+    @IBOutlet public private(set) weak var thumbnailImageView: DefaultImageView!
     @IBOutlet private(set) weak var cellContainer: UIView!
             
     public override func awakeFromNib() {
         super.awakeFromNib()
         cellContainer.layer.cornerRadius = 4.0
-        imageContainer.layer.cornerRadius = 4.0
-        thumbnailImageView.clipsToBounds = true
+        thumbnailImageView.setCornerRadius(4.0)
     }
     
     public override func prepareForReuse() {
         super.prepareForReuse()
+        thumbnailImageView.imageView.image = nil
     }
     
     public override func setSelected(_ selected: Bool, animated: Bool) {}

@@ -6,12 +6,12 @@ import PodcastsModule
 public struct PlayingItem: Equatable {
     public let podcast: PodcastDetails
     public let episode: Episode
-    public let state: State
+    public let updates: [State]
     
-    public init(episode: Episode, podcast: PodcastDetails, state: PlayingItem.State) {
+    public init(episode: Episode, podcast: PodcastDetails, updates: [State]) {
         self.episode = episode
         self.podcast = podcast
-        self.state = state
+        self.updates = updates
     }
 }
 
@@ -24,26 +24,26 @@ public extension PlayingItem {
 }
 
 public extension PlayingItem {
-    struct State: Equatable {
-        public let playbackState: PlaybackState
+    struct Progress: Equatable {
         public let currentTimeInSeconds: Int
         public let totalTime: EpisodeDuration
         public let progressTimePercentage: Float
-        public let volumeLevel: Float
         
-        public init(
-            playbackState: PlayingItem.PlaybackState,
-            currentTimeInSeconds: Int,
-            totalTime: EpisodeDuration,
-            progressTimePercentage: Float,
-            volumeLevel: Float
-        ) {
-            self.playbackState = playbackState
+        public init(currentTimeInSeconds: Int, totalTime: EpisodeDuration, progressTimePercentage: Float) {
             self.currentTimeInSeconds = currentTimeInSeconds
             self.totalTime = totalTime
             self.progressTimePercentage = progressTimePercentage
-            self.volumeLevel = volumeLevel
         }
+    }
+}
+
+public extension PlayingItem {
+    
+    enum State: Equatable {
+        case playback(PlaybackState)
+        case volumeLevel(Float)
+        case progress(Progress)
+        case speed(PlaybackSpeed)
     }
 }
 

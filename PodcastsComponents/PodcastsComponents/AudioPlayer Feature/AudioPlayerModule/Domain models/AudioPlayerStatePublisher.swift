@@ -22,9 +22,15 @@ public class AudioPlayerStatePublisher {
         return subscription
     }
         
-    private func updateObservers(with state: PlayerState) {
+    private func updateObserversWithStateUpdate(with state: PlayerState) {
         observers.forEach { (key, observer) in
             observer.receive(state)
+        }
+    }
+    
+    private func updateObserversWithFutureSeekProgress(with progress: PlayingItem.Progress) {
+        observers.forEach { (key, observer) in
+            observer.prepareForSeek(progress)
         }
     }
     
@@ -32,14 +38,19 @@ public class AudioPlayerStatePublisher {
         guard let previosState = previosState else {
             return
         }
-        updateObservers(with: previosState)
+        updateObserversWithStateUpdate(with: previosState)
     }
 }
 
 extension AudioPlayerStatePublisher: AudioPlayerOutputDelegate {
+    
     public func didUpdateState(with state: PlayerState) {
         previosState = state
-        updateObservers(with: state)
+        updateObserversWithStateUpdate(with: state)
+    }
+    
+    public func prepareForProgressAfterSeekApply(futureProgress: PlayingItem.Progress) {
+        updateObserversWithFutureSeekProgress(with: futureProgress)
     }
 }
 

@@ -4,7 +4,7 @@ import Foundation
 
 extension HTTPURLResponse {
     convenience init(statusCode: Int) {
-        let anyURL = URL(string: "http://a-url.com")!
+        let anyURL = URL(string: "https://a-url.com")!
         self.init(url: anyURL, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
 }

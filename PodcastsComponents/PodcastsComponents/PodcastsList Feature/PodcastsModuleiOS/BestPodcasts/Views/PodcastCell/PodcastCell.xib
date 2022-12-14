@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,21 +21,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbZ-E0-ofk">
                         <rect key="frame" x="8" y="4" width="444" height="120"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAt-77-hXH">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qAt-77-hXH" customClass="DefaultImageView" customModule="SharedComponentsiOSModule">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="blE-jC-soS">
-                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                                        <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                    </imageView>
-                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="blE-jC-soS" secondAttribute="bottom" id="81d-eN-UBa"/>
                                     <constraint firstAttribute="width" secondItem="qAt-77-hXH" secondAttribute="height" multiplier="1:1" id="CR0-PC-dOm"/>
                                     <constraint firstAttribute="height" constant="120" id="FC8-2t-LZn"/>
-                                    <constraint firstAttribute="trailing" secondItem="blE-jC-soS" secondAttribute="trailing" id="G3b-Vh-dph"/>
-                                    <constraint firstItem="blE-jC-soS" firstAttribute="top" secondItem="qAt-77-hXH" secondAttribute="top" id="Vw7-C2-XxT"/>
-                                    <constraint firstItem="blE-jC-soS" firstAttribute="leading" secondItem="qAt-77-hXH" secondAttribute="leading" id="noU-ch-Fox"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9W-gW-Yqm">
@@ -129,11 +119,10 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cellContainer" destination="gbZ-E0-ofk" id="Mz8-6H-c7x"/>
-                <outlet property="imageContainer" destination="qAt-77-hXH" id="ytg-xD-EQ7"/>
                 <outlet property="languageStaticLabel" destination="Eyt-fv-v7V" id="Hhp-Rc-8Ch"/>
                 <outlet property="languageValueLabel" destination="dSZ-Em-T6K" id="tzB-uR-mma"/>
                 <outlet property="publisherLabel" destination="7Zi-ZT-1Cy" id="CIh-7P-aFj"/>
-                <outlet property="thumbnailImageView" destination="blE-jC-soS" id="DmO-b0-f2p"/>
+                <outlet property="thumbnailImageView" destination="qAt-77-hXH" id="FvP-5b-yOT"/>
                 <outlet property="titleLabel" destination="JeU-Mt-Hqf" id="YCw-Z2-LXP"/>
                 <outlet property="typeStaticLabel" destination="nK8-lJ-68h" id="Jkm-s4-2Ka"/>
                 <outlet property="typeValueLabel" destination="JRX-mt-M3F" id="6oG-sY-fpw"/>
@@ -150,9 +139,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

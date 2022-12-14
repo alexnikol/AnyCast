@@ -13,6 +13,6 @@ extension PodcastHeaderReusableView {
     }
     
     var isShowingImageLoadingIndicator: Bool {
-        imageInnerContainer.isShimmering
+        imageView.imageInnerContainer.isShimmering
     }
 }

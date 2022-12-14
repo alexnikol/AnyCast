@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import SharedTestHelpersLibrary
 import PodcastsModule
 import PodcastsModuleiOS
 @testable import Podcats
@@ -275,10 +276,6 @@ class BestPodcastsListUIIngtegrationTests: XCTestCase {
         
     private func makeBestPodcastsList(genreId: Int = 1, genreName: String = "Any genre name", podcasts: [Podcast]) -> BestPodcastsList {
         BestPodcastsList(genreId: genreId, genreName: genreName, podcasts: podcasts)
-    }
-    
-    private func anyURL() -> URL {
-        URL(string: "http://a-url.com")!
     }
     
     private func anyImageData() -> Data {

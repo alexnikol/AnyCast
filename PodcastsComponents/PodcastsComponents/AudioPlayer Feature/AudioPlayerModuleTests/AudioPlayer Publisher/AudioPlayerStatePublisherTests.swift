@@ -90,7 +90,7 @@ class AudioPlayerStatePublisherTests: XCTestCase {
             receivedStateObserver2.append(state)
             exp2.fulfill()
         }
-                
+        
         let subscription1 = sut.subscribe(observer: observer1)
         _ = sut.subscribe(observer: observer2)
         
@@ -126,9 +126,9 @@ class AudioPlayerStatePublisherTests: XCTestCase {
     private func makeSUT(
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (AudioPlayerStatePublisher, AudioPlayerSpy) {
+    ) -> (AudioPlayerStatePublisher, AudioPlayerDummy) {
         let publisher = AudioPlayerStatePublisher()
-        let audioPlayer = AudioPlayerSpy(delegate: publisher)
+        let audioPlayer = AudioPlayerDummy(delegate: publisher)
         trackForMemoryLeaks(publisher, file: file, line: line)
         return (publisher, audioPlayer)
     }
@@ -161,13 +161,17 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         PlayingItem(
             episode: makeUniqueEpisode(),
             podcast: makePodcast(),
-            state: PlayingItem.State(
-                playbackState: .playing,
-                currentTimeInSeconds: 10,
-                totalTime: .notDefined,
-                progressTimePercentage: 0.1,
-                volumeLevel: 0.5
-            )
+            updates: [
+                .playback(.playing),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: 10,
+                        totalTime: .notDefined,
+                        progressTimePercentage: 0.1
+                    )
+                ),
+                .volumeLevel(0.5)
+            ]
         )
     }
     
@@ -181,9 +185,12 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         func receive(_ playerState: PlayerState) {
             onReceiveUpdates(playerState)
         }
+        
+        func prepareForSeek(_ progress: AudioPlayerModule.PlayingItem.Progress) {}
     }
     
-    private class AudioPlayerSpy: AudioPlayer {
+    private class AudioPlayerDummy: AudioPlayer {
+        var isPlaying = false
         var delegate: AudioPlayerOutputDelegate?
         
         init(delegate: AudioPlayerOutputDelegate?) {
@@ -193,5 +200,21 @@ class AudioPlayerStatePublisherTests: XCTestCase {
         func receiveNewPlayerState(_ state: PlayerState) {
             delegate?.didUpdateState(with: state)
         }
+        
+        func startPlayback(fromURL url: URL, withMeta meta: AudioPlayerModule.Meta) {}
+        
+        func play() {}
+        
+        func pause() {}
+        
+        func changeVolumeTo(value: Float) {}
+        
+        func seekToProgress(_ progress: Float) {}
+        
+        func seekToSeconds(_ seconds: Int) {}
+        
+        func changeSpeedPlaybackTo(value: AudioPlayerModule.PlaybackSpeed) {}
+        
+        func prepareForSeek(_ progress: Float) {}
     }
 }

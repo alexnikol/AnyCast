@@ -9,49 +9,29 @@ public final class PodcastCellController: NSObject {
     public typealias ResourceViewModel = UIImage
     
     private let model: PodcastImageViewModel
-    private let imageLoaderDelegate: RefreshViewControllerDelegate
     private var cell: PodcastCell?
     private let selection: () -> Void
+    private var thumbnailViewController: ThumbnailViewController?
     
     public init(model: PodcastImageViewModel,
-                delegete: RefreshViewControllerDelegate,
+                thumbnailViewController: ThumbnailViewController,
                 selection: @escaping () -> Void) {
         self.model = model
-        self.imageLoaderDelegate = delegete
+        self.thumbnailViewController = thumbnailViewController
         self.selection = selection
-    }
-
-    func cancelLoad() {
-        imageLoaderDelegate.didRequestCancel()
-        releaseCellForResuse()
     }
     
     func preload() {
-        imageLoaderDelegate.didRequestLoading()
+        thumbnailViewController?.didRequestLoading()
+    }
+    
+    func cancelLoad() {
+        thumbnailViewController?.didRequestCancel()
+        releaseCellForResuse()
     }
     
     private func releaseCellForResuse() {
         cell = nil
-    }
-}
-
-extension PodcastCellController: ResourceView {
-    
-    public func display(_ viewModel: ResourceViewModel) {
-        cell?.thumbnailImageView.image = viewModel
-    }
-}
-
-extension PodcastCellController: ResourceLoadingView {
-    
-    public func display(_ viewModel: ResourceLoadingViewModel) {
-        cell?.imageContainer.isShimmering = viewModel.isLoading
-    }
-}
-
-extension PodcastCellController: ResourceErrorView {
-    public func display(_ viewModel: ResourceErrorViewModel) {
-        cell?.thumbnailImageView.image = nil
     }
 }
 
@@ -94,9 +74,9 @@ extension PodcastCellController: UITableViewDataSource {
         cell?.languageValueLabel.text = model.languageValueLabel
         cell?.typeValueLabel.text = model.typeValueLabel
         cell?.typeStaticLabel.text = model.typeStaticLabel
-        cell?.thumbnailImageView.image = nil
+        thumbnailViewController?.view = cell?.thumbnailImageView
 
-        imageLoaderDelegate.didRequestLoading()
+        thumbnailViewController?.didRequestLoading()
         return cell!
     }
 }

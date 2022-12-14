@@ -125,6 +125,7 @@
 		8D750CEF294888D9004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D750CF129488A53004500D9 /* SharedFactoryHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CF029488A53004500D9 /* SharedFactoryHelpers.swift */; };
 		8D750CFE2949C5E1004500D9 /* ThumbnailDynamicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CFD2949C5E1004500D9 /* ThumbnailDynamicViewController.swift */; };
+		8D750D082949EEEB004500D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D072949EEEB004500D9 /* UIKit.framework */; platformFilter = ios; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
@@ -551,6 +552,7 @@
 		8D750CE8294887DC004500D9 /* ViewController+Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		8D750CF029488A53004500D9 /* SharedFactoryHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFactoryHelpers.swift; sourceTree = "<group>"; };
 		8D750CFD2949C5E1004500D9 /* ThumbnailDynamicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailDynamicViewController.swift; sourceTree = "<group>"; };
+		8D750D072949EEEB004500D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
@@ -760,6 +762,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750D082949EEEB004500D9 /* UIKit.framework in Frameworks */,
 				8D750CD729488336004500D9 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1601,6 +1604,7 @@
 		8DC3521128D1E48700F12FD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D750D072949EEEB004500D9 /* UIKit.framework */,
 				8D750CD629488336004500D9 /* XCTest.framework */,
 			);
 			name = Frameworks;
@@ -1943,17 +1947,9 @@
 		8DE32A2D29110AAC00830695 /* LoadResourcePresenterTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DE32A3D29110BA000830695 /* Helpers */,
 				8DE32A2E29110AAC00830695 /* LoadResourcePresenterTests.swift */,
 			);
 			path = LoadResourcePresenterTests;
-			sourceTree = "<group>";
-		};
-		8DE32A3D29110BA000830695 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8DE32A8329125EDC00830695 /* snapshots */ = {
@@ -3849,7 +3845,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
@@ -3871,7 +3867,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";

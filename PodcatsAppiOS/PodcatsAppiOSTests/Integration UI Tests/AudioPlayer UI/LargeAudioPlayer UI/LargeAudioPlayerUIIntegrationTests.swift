@@ -121,7 +121,6 @@ class LargeAudioPlayerUIIntegrationTests: XCTestCase {
         let controlsSpy = AudioPlayerControlsSpy()
         let audioPlayer = AudioPlayerClientDummy()
         let sut = LargeAudioPlayerUIComposer.playerWith(
-            thumbnailURL: anyURL(),
             statePublisher: statePublisher,
             controlsDelegate: controlsSpy,
             imageLoader: { _ in

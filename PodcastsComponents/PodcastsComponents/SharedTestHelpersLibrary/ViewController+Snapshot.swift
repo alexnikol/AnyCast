@@ -1,5 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
+#if os(iOS)
 import UIKit
 
 public extension UIViewController {
@@ -106,3 +107,4 @@ private final class SnapshotWindow: UIWindow {
         }
     }
 }
+#endif

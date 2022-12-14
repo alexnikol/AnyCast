@@ -48,7 +48,7 @@ class StickyAudioPlayeriOSTests: XCTestCase {
         let sut = StickyAudioPlayerViewController(
             delegate: DummyStickyAudioPlayerViewDelegate(),
             controlsDelegate: AudioPlayerControlsDelegateNullObject(),
-            thumbnailViewController: ThumbnailViewController(loaderDelegate: RefreshViewControllerDelegateNullObject())
+            thumbnailViewController: ThumbnailDynamicViewController()
         )
         let rootController = UIViewController()
         rootController.loadViewIfNeeded()

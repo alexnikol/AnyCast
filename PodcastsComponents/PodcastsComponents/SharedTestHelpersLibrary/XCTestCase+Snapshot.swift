@@ -1,5 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
+#if os(iOS)
+import UIKit
 import XCTest
 
 public extension XCTestCase {
@@ -68,3 +70,4 @@ public extension XCTestCase {
         return data
     }
 }
+#endif

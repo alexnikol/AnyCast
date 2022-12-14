@@ -35,7 +35,9 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     public var delegate: AudioPlayerOutputDelegate?
     
     public override init() {
+#if os(iOS)
         try! AVAudioSession.sharedInstance().setCategory(.playback)
+#endif
         super.init()
         subscribeOnVolumeChange()
     }

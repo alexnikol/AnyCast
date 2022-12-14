@@ -37,7 +37,7 @@ class LargeAudioPlayeriOSTests: XCTestCase {
         let sut = LargeAudioPlayerViewController(
             delegate: LargeAudioPlayerViewDelegateNullObject(),
             controlsDelegate: AudioPlayerControlsDelegateNullObject(),
-            thumbnailViewController: ThumbnailViewController(loaderDelegate: RefreshViewControllerDelegateNullObject())
+            thumbnailViewController: ThumbnailDynamicViewController()
         )
         return sut
     }

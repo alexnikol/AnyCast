@@ -4,25 +4,7 @@ import XCTest
 import PodcastsGenresList
 
 class GenresItemsMapperTests: XCTestCase {
-    
-    func test_map_throwsErrorOnNon200HTTPResponse() throws {
-        let json = makeGenresJSON([])
         
-        try [199, 201, 400, 500].forEach { code in
-            XCTAssertThrowsError(
-                try GenresItemsMapper.map(json, from: HTTPURLResponse(statusCode: code))
-            )
-        }
-    }
-    
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
-        let invalidJSON = Data("invalid json".utf8)
-        
-        XCTAssertThrowsError(
-            try GenresItemsMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
-        )
-    }
-    
     func test_map_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() throws {
         let emptyListJSON = makeGenresJSON([])
         

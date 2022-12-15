@@ -256,6 +256,8 @@
 		8DE32A8B291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A89291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_dark.png */; };
 		8DE32A9729128BC700830695 /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE32A9529128BC700830695 /* PodcastCell.swift */; };
 		8DE32A9829128BC700830695 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A9629128BC700830695 /* PodcastCell.xib */; };
+		8DE46ABF294B40E0007B204C /* libMapperLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D2E294B373B004500D9 /* libMapperLibrary.a */; };
+		8DE46AC3294B4108007B204C /* RemoteGenresList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AC2294B4108007B204C /* RemoteGenresList.swift */; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
@@ -447,6 +449,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DE32A2129110AAC00830695;
 			remoteInfo = LoadResourcePresenter;
+		};
+		8DE46AC0294B40E0007B204C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D750D2D294B373B004500D9;
+			remoteInfo = MapperLibrary;
 		};
 		8DFAEAB828FD41740028B060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -713,6 +722,7 @@
 		8DE32A89291260CE00830695 /* BEST_PODCASTS_WITH_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BEST_PODCASTS_WITH_CONTENT_dark.png; sourceTree = "<group>"; };
 		8DE32A9529128BC700830695 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		8DE32A9629128BC700830695 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
+		8DE46AC2294B4108007B204C /* RemoteGenresList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenresList.swift; sourceTree = "<group>"; };
 		8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
@@ -883,6 +893,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE46ABF294B40E0007B204C /* libMapperLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1258,6 +1269,7 @@
 			isa = PBXGroup;
 			children = (
 				8D745E1E28C1E8A6005DC3F8 /* GenresItemsMapper.swift */,
+				8DE46AC2294B4108007B204C /* RemoteGenresList.swift */,
 				8DA0544228CA106F00418F3E /* RemoteGenre.swift */,
 				8D4298CC292264580064F3E6 /* GenresEndpoint.swift */,
 			);
@@ -2598,6 +2610,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8DE46AC1294B40E0007B204C /* PBXTargetDependency */,
 			);
 			name = PodcastsGenresList;
 			productName = PodcastsGenresList;
@@ -3373,6 +3386,7 @@
 				8D4298CE292264890064F3E6 /* GenresEndpoint.swift in Sources */,
 				8DA0544328CA106F00418F3E /* RemoteGenre.swift in Sources */,
 				8DA0544128CA105400418F3E /* LocalGenre.swift in Sources */,
+				8DE46AC3294B4108007B204C /* RemoteGenresList.swift in Sources */,
 				8D72CFE028F8079200C17DDC /* GenresActiveColorProvider.swift in Sources */,
 				8DA0543F28C9F00700418F3E /* GenresStore.swift in Sources */,
 				8DD2FA5528D4987E0031AAEA /* GenresViewModel.swift in Sources */,
@@ -3683,6 +3697,11 @@
 			platformFilter = ios;
 			target = 8DE32A2129110AAC00830695 /* LoadResourcePresenter */;
 			targetProxy = 8DE32A4329110CB300830695 /* PBXContainerItemProxy */;
+		};
+		8DE46AC1294B40E0007B204C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D750D2D294B373B004500D9 /* MapperLibrary */;
+			targetProxy = 8DE46AC0294B40E0007B204C /* PBXContainerItemProxy */;
 		};
 		8DFAEAB928FD41740028B060 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

@@ -567,6 +567,7 @@
 		8D750D15294B19AF004500D9 /* SearchContentModuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchContentModuleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750D1A294B19B0004500D9 /* SearchContentModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchContentModuleTests.swift; sourceTree = "<group>"; };
 		8D750D23294B1A3F004500D9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		8D750D25294B1AC7004500D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8D75814A28D09E7100751261 /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenresStoreCache.swift; sourceTree = "<group>"; };
 		8D75814E28D09FFD00751261 /* ManagedGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedGenre.swift; sourceTree = "<group>"; };
@@ -1370,6 +1371,7 @@
 		8D750D0F294B19AE004500D9 /* SearchContentModule */ = {
 			isa = PBXGroup;
 			children = (
+				8D750D25294B1AC7004500D9 /* README.md */,
 				8D750D23294B1A3F004500D9 /* Core.swift */,
 			);
 			path = SearchContentModule;

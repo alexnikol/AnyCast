@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import SharedTestHelpersLibrary
 import MapperLibrary
 
 class GenericAPIMapperTests: XCTestCase {
@@ -37,12 +38,5 @@ class GenericAPIMapperTests: XCTestCase {
         init(remoteModel: RemoteModel) {
             self.string = remoteModel.string
         }
-    }
-}
-
-private extension HTTPURLResponse {
-    convenience init(statusCode: Int) {
-        let anyURL = URL(string: "https://a-url.com")!
-        self.init(url: anyURL, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
     }
 }

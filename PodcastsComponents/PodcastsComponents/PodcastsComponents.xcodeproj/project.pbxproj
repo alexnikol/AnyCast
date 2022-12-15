@@ -266,8 +266,8 @@
 		8DE46ADD294B492E007B204C /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8DE46AE0294B49F3007B204C /* RemoteGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46ADE294B49E9007B204C /* RemoteGenre.swift */; };
 		8DE46AE3294B4A21007B204C /* RemotePodcastSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AE1294B4A1D007B204C /* RemotePodcastSearchResult.swift */; };
-		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
-		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
+		8DE46AE5294B4CD7007B204C /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AE4294B4CD7007B204C /* HTTPURLResponse+Extensions.swift */; };
+		8DE46AE6294B4D73007B204C /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 		8DFAEAB728FD41740028B060 /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
@@ -750,8 +750,7 @@
 		8DE46AD5294B45A4007B204C /* PodcastSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchResult.swift; sourceTree = "<group>"; };
 		8DE46ADE294B49E9007B204C /* RemoteGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenre.swift; sourceTree = "<group>"; };
 		8DE46AE1294B4A1D007B204C /* RemotePodcastSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePodcastSearchResult.swift; sourceTree = "<group>"; };
-		8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
-		8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
+		8DE46AE4294B4CD7007B204C /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 		8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -870,6 +869,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE46AE6294B4D73007B204C /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8D750D3F294B375D004500D9 /* libMapperLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1324,14 +1324,6 @@
 			path = "Genres API";
 			sourceTree = "<group>";
 		};
-		8D745E2A28C60D97005DC3F8 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		8D745E3428C6259C005DC3F8 /* PodcastsGenresListAPIEndToEndTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1446,6 +1438,7 @@
 				8D750CE7294887DC004500D9 /* UIImage+TestHelpers.swift */,
 				8D750CE8294887DC004500D9 /* ViewController+Snapshot.swift */,
 				8D750CF029488A53004500D9 /* SharedFactoryHelpers.swift */,
+				8DE46AE4294B4CD7007B204C /* HTTPURLResponse+Extensions.swift */,
 			);
 			path = SharedTestHelpersLibrary;
 			sourceTree = "<group>";
@@ -1722,7 +1715,6 @@
 		8DA0931B28BF5A0200C4C68D /* PodcastsGenresListTests */ = {
 			isa = PBXGroup;
 			children = (
-				8D745E2A28C60D97005DC3F8 /* Helpers */,
 				8D745E2728C1F134005DC3F8 /* Genres API */,
 				8DA0543828C8D53F00418F3E /* Genres Cache */,
 				8DC354B528D47F2100F12FD9 /* Genres Presentation */,
@@ -2163,7 +2155,6 @@
 		8DEB7E0C28FDD5A5003AF72F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */,
 				8D5C209D290021DA006CD42F /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
@@ -3333,6 +3324,7 @@
 				8D750CD529488218004500D9 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				8D750CF129488A53004500D9 /* SharedFactoryHelpers.swift in Sources */,
 				8D750CEA294887DC004500D9 /* UIImage+TestHelpers.swift in Sources */,
+				8DE46AE5294B4CD7007B204C /* HTTPURLResponse+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3485,7 +3477,6 @@
 				8DA0544528CB317A00418F3E /* LoadGenresFromCacheUseCaseTests.swift in Sources */,
 				8DA0544A28CB5C8300418F3E /* ValidateGenresCacheUseCaseTests.swift in Sources */,
 				8D4298D02922650D0064F3E6 /* GenresEndpointTests.swift in Sources */,
-				8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */,
 				8D76B81628D49BC80014A211 /* GenresLocalizationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3615,7 +3606,6 @@
 				8D429765291D31380064F3E6 /* EpisodesPresenterTests.swift in Sources */,
 				8D5C21EB29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift in Sources */,
 				8D4298C5292256C50064F3E6 /* PodcastDetailsEndpointTests.swift in Sources */,
-				8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */,
 				8D5C20B129004595006CD42F /* LoadPodcastImageDataFromCacheUse.swift in Sources */,
 				8D5C209E290021DA006CD42F /* HTTPClientSpy.swift in Sources */,
 			);

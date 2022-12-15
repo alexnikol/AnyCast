@@ -1371,7 +1371,6 @@
 		8D750D0F294B19AE004500D9 /* SearchContentModule */ = {
 			isa = PBXGroup;
 			children = (
-				8D750D25294B1AC7004500D9 /* README.md */,
 				8D750D23294B1A3F004500D9 /* Core.swift */,
 			);
 			path = SearchContentModule;
@@ -1383,6 +1382,16 @@
 				8D750D1A294B19B0004500D9 /* SearchContentModuleTests.swift */,
 			);
 			path = SearchContentModuleTests;
+			sourceTree = "<group>";
+		};
+		8D750D26294B2156004500D9 /* SearchContent Feature */ = {
+			isa = PBXGroup;
+			children = (
+				8D750D25294B1AC7004500D9 /* README.md */,
+				8D750D0F294B19AE004500D9 /* SearchContentModule */,
+				8D750D19294B19B0004500D9 /* SearchContentModuleTests */,
+			);
+			path = "SearchContent Feature";
 			sourceTree = "<group>";
 		};
 		8D75814928D09E6500751261 /* Helpers */ = {
@@ -1551,6 +1560,7 @@
 			isa = PBXGroup;
 			children = (
 				8DA0932A28BF5E3700C4C68D /* README.md */,
+				8D750CCC294881FB004500D9 /* SharedTestHelpersLibrary */,
 				8D5FA2802914F6CE002BB874 /* Networking */,
 				8DE32A2329110AAC00830695 /* LoadResourcePresenter */,
 				8DE32A2D29110AAC00830695 /* LoadResourcePresenterTests */,
@@ -1558,9 +1568,7 @@
 				8D5FA2822914F760002BB874 /* PodcastsGenresList Feature */,
 				8D5FA2832914F7A9002BB874 /* PodcastsList Feature */,
 				8D9B86A4292BA565003B52AB /* AudioPlayer Feature */,
-				8D750CCC294881FB004500D9 /* SharedTestHelpersLibrary */,
-				8D750D0F294B19AE004500D9 /* SearchContentModule */,
-				8D750D19294B19B0004500D9 /* SearchContentModuleTests */,
+				8D750D26294B2156004500D9 /* SearchContent Feature */,
 				8DA0930D28BF59C900C4C68D /* Products */,
 				8DC3521128D1E48700F12FD9 /* Frameworks */,
 			);

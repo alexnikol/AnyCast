@@ -2,4 +2,7 @@
 
 import Foundation
 
-class Core {}
+struct RemoteGenre: Decodable {
+    let id: Int
+    let name: String
+}

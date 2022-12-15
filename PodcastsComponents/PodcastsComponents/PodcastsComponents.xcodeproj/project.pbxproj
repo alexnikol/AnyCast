@@ -127,8 +127,7 @@
 		8D750CFE2949C5E1004500D9 /* ThumbnailDynamicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750CFD2949C5E1004500D9 /* ThumbnailDynamicViewController.swift */; };
 		8D750D082949EEEB004500D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D072949EEEB004500D9 /* UIKit.framework */; platformFilter = ios; };
 		8D750D16294B19B0004500D9 /* SearchContentModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D0E294B19AE004500D9 /* SearchContentModule.framework */; };
-		8D750D1B294B19B0004500D9 /* SearchContentMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D1A294B19B0004500D9 /* SearchContentMapperTests.swift */; };
-		8D750D24294B1A3F004500D9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D23294B1A3F004500D9 /* Core.swift */; };
+		8D750D1B294B19B0004500D9 /* TypeheadSearchContentMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D1A294B19B0004500D9 /* TypeheadSearchContentMapperTests.swift */; };
 		8D750D3E294B375D004500D9 /* GenericAPIMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D3D294B375D004500D9 /* GenericAPIMapperTests.swift */; };
 		8D750D3F294B375D004500D9 /* libMapperLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D2E294B373B004500D9 /* libMapperLibrary.a */; };
 		8D750D46294B3B6E004500D9 /* GenericAPIMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D45294B3B6E004500D9 /* GenericAPIMapper.swift */; };
@@ -258,6 +257,15 @@
 		8DE32A9829128BC700830695 /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE32A9629128BC700830695 /* PodcastCell.xib */; };
 		8DE46ABF294B40E0007B204C /* libMapperLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D2E294B373B004500D9 /* libMapperLibrary.a */; };
 		8DE46AC3294B4108007B204C /* RemoteGenresList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AC2294B4108007B204C /* RemoteGenresList.swift */; };
+		8DE46AC4294B4296007B204C /* libMapperLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D2E294B373B004500D9 /* libMapperLibrary.a */; };
+		8DE46ACE294B43E9007B204C /* RemoteTypeheadSearchContentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46ACA294B43B4007B204C /* RemoteTypeheadSearchContentResult.swift */; };
+		8DE46ACF294B43E9007B204C /* TypeheadSearchContentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D23294B1A3F004500D9 /* TypeheadSearchContentMapper.swift */; };
+		8DE46AD3294B440A007B204C /* TypeheadSearchContentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AD1294B4405007B204C /* TypeheadSearchContentResult.swift */; };
+		8DE46AD7294B45C2007B204C /* PodcastSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AD5294B45A4007B204C /* PodcastSearchResult.swift */; };
+		8DE46AD8294B45DE007B204C /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
+		8DE46ADD294B492E007B204C /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
+		8DE46AE0294B49F3007B204C /* RemoteGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46ADE294B49E9007B204C /* RemoteGenre.swift */; };
+		8DE46AE3294B4A21007B204C /* RemotePodcastSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AE1294B4A1D007B204C /* RemotePodcastSearchResult.swift */; };
 		8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DEB7E1028FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
@@ -457,6 +465,20 @@
 			remoteGlobalIDString = 8D750D2D294B373B004500D9;
 			remoteInfo = MapperLibrary;
 		};
+		8DE46AC5294B4296007B204C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D750D2D294B373B004500D9;
+			remoteInfo = MapperLibrary;
+		};
+		8DE46ADA294B45DE007B204C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DA0930B28BF59C900C4C68D;
+			remoteInfo = PodcastsGenresList;
+		};
 		8DFAEAB828FD41740028B060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -592,8 +614,8 @@
 		8D750D072949EEEB004500D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		8D750D0E294B19AE004500D9 /* SearchContentModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SearchContentModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750D15294B19AF004500D9 /* SearchContentModuleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchContentModuleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D750D1A294B19B0004500D9 /* SearchContentMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchContentMapperTests.swift; sourceTree = "<group>"; };
-		8D750D23294B1A3F004500D9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		8D750D1A294B19B0004500D9 /* TypeheadSearchContentMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchContentMapperTests.swift; sourceTree = "<group>"; };
+		8D750D23294B1A3F004500D9 /* TypeheadSearchContentMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchContentMapper.swift; sourceTree = "<group>"; };
 		8D750D25294B1AC7004500D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8D750D2E294B373B004500D9 /* libMapperLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMapperLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750D3B294B375C004500D9 /* MapperLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapperLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -723,6 +745,11 @@
 		8DE32A9529128BC700830695 /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 		8DE32A9629128BC700830695 /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		8DE46AC2294B4108007B204C /* RemoteGenresList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenresList.swift; sourceTree = "<group>"; };
+		8DE46ACA294B43B4007B204C /* RemoteTypeheadSearchContentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTypeheadSearchContentResult.swift; sourceTree = "<group>"; };
+		8DE46AD1294B4405007B204C /* TypeheadSearchContentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchContentResult.swift; sourceTree = "<group>"; };
+		8DE46AD5294B45A4007B204C /* PodcastSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchResult.swift; sourceTree = "<group>"; };
+		8DE46ADE294B49E9007B204C /* RemoteGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteGenre.swift; sourceTree = "<group>"; };
+		8DE46AE1294B4A1D007B204C /* RemotePodcastSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemotePodcastSearchResult.swift; sourceTree = "<group>"; };
 		8DEB7E0D28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DEB7E0F28FDD5F2003AF72F /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
@@ -818,6 +845,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE46AC4294B4296007B204C /* libMapperLibrary.a in Frameworks */,
+				8DE46AD8294B45DE007B204C /* PodcastsGenresList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,6 +854,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE46ADD294B492E007B204C /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8D750D16294B19B0004500D9 /* SearchContentModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1423,7 +1453,8 @@
 		8D750D0F294B19AE004500D9 /* SearchContentModule */ = {
 			isa = PBXGroup;
 			children = (
-				8D750D23294B1A3F004500D9 /* Core.swift */,
+				8DE46AD0294B43F7007B204C /* TypeheadSearchContent Domain */,
+				8DE46AC9294B4305007B204C /* TypeheadSearchContent API */,
 			);
 			path = SearchContentModule;
 			sourceTree = "<group>";
@@ -1431,7 +1462,7 @@
 		8D750D19294B19B0004500D9 /* SearchContentModuleTests */ = {
 			isa = PBXGroup;
 			children = (
-				8D750D1A294B19B0004500D9 /* SearchContentMapperTests.swift */,
+				8DE46AD4294B44BD007B204C /* TypeheadSearchContent API */,
 			);
 			path = SearchContentModuleTests;
 			sourceTree = "<group>";
@@ -2101,6 +2132,34 @@
 			path = PodcastCell;
 			sourceTree = "<group>";
 		};
+		8DE46AC9294B4305007B204C /* TypeheadSearchContent API */ = {
+			isa = PBXGroup;
+			children = (
+				8D750D23294B1A3F004500D9 /* TypeheadSearchContentMapper.swift */,
+				8DE46ACA294B43B4007B204C /* RemoteTypeheadSearchContentResult.swift */,
+				8DE46ADE294B49E9007B204C /* RemoteGenre.swift */,
+				8DE46AE1294B4A1D007B204C /* RemotePodcastSearchResult.swift */,
+			);
+			path = "TypeheadSearchContent API";
+			sourceTree = "<group>";
+		};
+		8DE46AD0294B43F7007B204C /* TypeheadSearchContent Domain */ = {
+			isa = PBXGroup;
+			children = (
+				8DE46AD1294B4405007B204C /* TypeheadSearchContentResult.swift */,
+				8DE46AD5294B45A4007B204C /* PodcastSearchResult.swift */,
+			);
+			path = "TypeheadSearchContent Domain";
+			sourceTree = "<group>";
+		};
+		8DE46AD4294B44BD007B204C /* TypeheadSearchContent API */ = {
+			isa = PBXGroup;
+			children = (
+				8D750D1A294B19B0004500D9 /* TypeheadSearchContentMapperTests.swift */,
+			);
+			path = "TypeheadSearchContent API";
+			sourceTree = "<group>";
+		};
 		8DEB7E0C28FDD5A5003AF72F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2446,6 +2505,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				8DE46AC6294B4296007B204C /* PBXTargetDependency */,
+				8DE46ADB294B45DE007B204C /* PBXTargetDependency */,
 			);
 			name = SearchContentModule;
 			productName = SearchContentModule;
@@ -3279,7 +3340,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D750D24294B1A3F004500D9 /* Core.swift in Sources */,
+				8DE46AE0294B49F3007B204C /* RemoteGenre.swift in Sources */,
+				8DE46ACF294B43E9007B204C /* TypeheadSearchContentMapper.swift in Sources */,
+				8DE46AD3294B440A007B204C /* TypeheadSearchContentResult.swift in Sources */,
+				8DE46ACE294B43E9007B204C /* RemoteTypeheadSearchContentResult.swift in Sources */,
+				8DE46AD7294B45C2007B204C /* PodcastSearchResult.swift in Sources */,
+				8DE46AE3294B4A21007B204C /* RemotePodcastSearchResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3287,7 +3353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D750D1B294B19B0004500D9 /* SearchContentMapperTests.swift in Sources */,
+				8D750D1B294B19B0004500D9 /* TypeheadSearchContentMapperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3702,6 +3768,16 @@
 			isa = PBXTargetDependency;
 			target = 8D750D2D294B373B004500D9 /* MapperLibrary */;
 			targetProxy = 8DE46AC0294B40E0007B204C /* PBXContainerItemProxy */;
+		};
+		8DE46AC6294B4296007B204C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D750D2D294B373B004500D9 /* MapperLibrary */;
+			targetProxy = 8DE46AC5294B4296007B204C /* PBXContainerItemProxy */;
+		};
+		8DE46ADB294B45DE007B204C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DA0930B28BF59C900C4C68D /* PodcastsGenresList */;
+			targetProxy = 8DE46ADA294B45DE007B204C /* PBXContainerItemProxy */;
 		};
 		8DFAEAB928FD41740028B060 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

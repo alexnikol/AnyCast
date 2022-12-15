@@ -129,10 +129,10 @@
 		8D750D16294B19B0004500D9 /* SearchContentModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D0E294B19AE004500D9 /* SearchContentModule.framework */; };
 		8D750D1B294B19B0004500D9 /* SearchContentMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D1A294B19B0004500D9 /* SearchContentMapperTests.swift */; };
 		8D750D24294B1A3F004500D9 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D23294B1A3F004500D9 /* Core.swift */; };
-		8D750D28294B3383004500D9 /* GenericAPIMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D27294B3383004500D9 /* GenericAPIMapperTests.swift */; };
 		8D750D3E294B375D004500D9 /* GenericAPIMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D3D294B375D004500D9 /* GenericAPIMapperTests.swift */; };
 		8D750D3F294B375D004500D9 /* libMapperLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D2E294B373B004500D9 /* libMapperLibrary.a */; };
 		8D750D46294B3B6E004500D9 /* GenericAPIMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D750D45294B3B6E004500D9 /* GenericAPIMapper.swift */; };
+		8D750D47294B3CD8004500D9 /* libMapperLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D2E294B373B004500D9 /* libMapperLibrary.a */; };
 		8D75814B28D09E7100751261 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
 		8D75814D28D09FDD00751261 /* ManagedGenresStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814C28D09FDD00751261 /* ManagedGenresStoreCache.swift */; };
 		8D75814F28D09FFD00751261 /* ManagedGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814E28D09FFD00751261 /* ManagedGenre.swift */; };
@@ -344,6 +344,13 @@
 			remoteInfo = SearchContentModule;
 		};
 		8D750D40294B375D004500D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D750D2D294B373B004500D9;
+			remoteInfo = MapperLibrary;
+		};
+		8D750D48294B3CD8004500D9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
 			proxyType = 1;
@@ -579,7 +586,6 @@
 		8D750D1A294B19B0004500D9 /* SearchContentMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchContentMapperTests.swift; sourceTree = "<group>"; };
 		8D750D23294B1A3F004500D9 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		8D750D25294B1AC7004500D9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		8D750D27294B3383004500D9 /* GenericAPIMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAPIMapperTests.swift; sourceTree = "<group>"; };
 		8D750D2E294B373B004500D9 /* libMapperLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMapperLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750D3B294B375C004500D9 /* MapperLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapperLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D750D3D294B375D004500D9 /* GenericAPIMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAPIMapperTests.swift; sourceTree = "<group>"; };
@@ -947,6 +953,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D750D47294B3CD8004500D9 /* libMapperLibrary.a in Frameworks */,
 				8DB835032919587600969996 /* HTTPClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1084,7 +1091,6 @@
 			children = (
 				8DFAEACB28FD46680028B060 /* BestPodcastsMapperTests.swift */,
 				8D4298CA292260F70064F3E6 /* BestPodcastsEndpointTests.swift */,
-				8D750D27294B3383004500D9 /* GenericAPIMapperTests.swift */,
 			);
 			path = "BestPodcasts API";
 			sourceTree = "<group>";
@@ -2744,6 +2750,7 @@
 			);
 			dependencies = (
 				8DB835012919585200969996 /* PBXTargetDependency */,
+				8D750D49294B3CD8004500D9 /* PBXTargetDependency */,
 			);
 			name = PodcastsModule;
 			productName = BestPodcastsList;
@@ -3528,7 +3535,6 @@
 				8D429765291D31380064F3E6 /* EpisodesPresenterTests.swift in Sources */,
 				8D5C21EB29013A92006CD42F /* CachePodcastImageDataUseCaseTests.swift in Sources */,
 				8D4298C5292256C50064F3E6 /* PodcastDetailsEndpointTests.swift in Sources */,
-				8D750D28294B3383004500D9 /* GenericAPIMapperTests.swift in Sources */,
 				8DEB7E0E28FDD5B6003AF72F /* HTTPURLResponse+Extensions.swift in Sources */,
 				8D5C20B129004595006CD42F /* LoadPodcastImageDataFromCacheUse.swift in Sources */,
 				8D5C209E290021DA006CD42F /* HTTPClientSpy.swift in Sources */,
@@ -3604,6 +3610,11 @@
 			isa = PBXTargetDependency;
 			target = 8D750D2D294B373B004500D9 /* MapperLibrary */;
 			targetProxy = 8D750D40294B375D004500D9 /* PBXContainerItemProxy */;
+		};
+		8D750D49294B3CD8004500D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D750D2D294B373B004500D9 /* MapperLibrary */;
+			targetProxy = 8D750D48294B3CD8004500D9 /* PBXContainerItemProxy */;
 		};
 		8D9B86D8292BC0CF003B52AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

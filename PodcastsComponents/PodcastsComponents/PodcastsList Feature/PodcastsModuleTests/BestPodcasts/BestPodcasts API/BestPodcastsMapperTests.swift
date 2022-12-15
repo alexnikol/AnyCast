@@ -4,25 +4,7 @@ import XCTest
 import PodcastsModule
 
 class BestPodcastsMapperTests: XCTestCase {
-    
-    func test_map_throwsErrorOnNon200HTTPURLResponse() throws {
-        let validJSON = makePodcastsListJSON(podcasts: [])
-        
-        try [199, 201, 400, 500].forEach { code in
-            XCTAssertThrowsError(
-                try BestPodastsItemsMapper.map(validJSON, from: HTTPURLResponse(statusCode: code))
-            )
-        }
-    }
-    
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
-        let invalidJSON = Data("invalid json".utf8)
-        
-        XCTAssertThrowsError(
-            try BestPodastsItemsMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
-        )
-    }
-        
+            
     func test_map_deliversPodcastsItemsOn200HTTPResponseWithJSONItems() throws {
         let anyGenreId = 1
         let anyGenreName = "Any Genre"

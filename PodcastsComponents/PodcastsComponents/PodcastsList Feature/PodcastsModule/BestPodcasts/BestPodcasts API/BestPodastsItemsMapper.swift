@@ -3,6 +3,31 @@
 import Foundation
 
 public final class BestPodastsItemsMapper {
+    typealias Mapper = GenericAPIMapper<RemoteBestPodcastsList, BestPodcastsList>
+    
+    private init() {}
+    
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> BestPodcastsList {
+        return try Mapper.map(data, from: response, domainMapper: RemoteBestPodcastsList.toDomainModel)
+    }
+}
+
+private extension RemoteBestPodcastsList {
+    static func toDomainModel(remoteModel: RemoteBestPodcastsList) -> BestPodcastsList {
+        return BestPodcastsList(genreId: remoteModel.genreId, genreName: remoteModel.genreName, podcasts: remoteModel.podcasts.toDomainModels())
+    }
+}
+
+private extension Array where Element == RemotePodcast {
+    func toDomainModels() -> [Podcast] {
+        return map {
+            Podcast(id: $0.id, title: $0.title, publisher: $0.publisher, language: $0.language, type: $0.type.toModel(), image: $0.image)
+        }
+    }
+}
+
+public final class GenericAPIMapper<RemoteAPIModel: Decodable, DomainModel> {
+    private init() {}
     
     public enum Error: Swift.Error {
         case invalidData
@@ -10,26 +35,11 @@ public final class BestPodastsItemsMapper {
     
     private static var OK_200: Int { return 200 }
     
-    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> BestPodcastsList {
+    public static func map(_ data: Data, from response: HTTPURLResponse, domainMapper: (RemoteAPIModel) -> DomainModel) throws -> DomainModel {
         guard response.statusCode == OK_200,
-              let remoteBestPocdastsList = try? JSONDecoder().decode(RemoteBestPodcastsList.self, from: data) else {
+              let remoteModel = try? JSONDecoder().decode(RemoteAPIModel.self, from: data) else {
             throw Error.invalidData
         }
-
-        return remoteBestPocdastsList.toModel()
-    }
-}
-
-private extension RemoteBestPodcastsList {
-    func toModel() -> BestPodcastsList {
-        return BestPodcastsList(genreId: genreId, genreName: genreName, podcasts: podcasts.toModels())
-    }
-}
-
-private extension Array where Element == RemotePodcast {
-    func toModels() -> [Podcast] {
-        return map {
-            Podcast(id: $0.id, title: $0.title, publisher: $0.publisher, language: $0.language, type: $0.type.toModel(), image: $0.image)
-        }
+        return domainMapper(remoteModel)
     }
 }

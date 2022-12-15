@@ -2,4 +2,6 @@
 
 import XCTest
 
-final class SearchContentModuleTests: XCTestCase {}
+final class SearchContentMapperTests: XCTestCase {
+    
+}

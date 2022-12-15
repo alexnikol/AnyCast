@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresList
 
-class FeedItemsMapperTests: XCTestCase {
+class GenresItemsMapperTests: XCTestCase {
     
     func test_map_throwsErrorOnNon200HTTPResponse() throws {
         let json = makeGenresJSON([])

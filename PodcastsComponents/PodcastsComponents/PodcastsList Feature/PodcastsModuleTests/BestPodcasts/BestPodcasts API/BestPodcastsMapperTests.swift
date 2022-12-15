@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-import HTTPClient
 import PodcastsModule
 
 class BestPodcastsMapperTests: XCTestCase {

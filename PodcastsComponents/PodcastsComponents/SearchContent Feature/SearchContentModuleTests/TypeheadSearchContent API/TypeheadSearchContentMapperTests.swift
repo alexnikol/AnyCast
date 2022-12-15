@@ -8,25 +8,9 @@ import PodcastsGenresList
 final class TypeheadSearchContentMapperTests: XCTestCase {
     
     func test_map_deliversTypeheadSearchContentResultOn200HTTPResponseWithJSONItems() throws {
-        let terms = ["Any term 1", "Any term 2"]
-        let genres = [Genre(id: 1, name: "Any genre 1"), Genre(id: 2, name: "Any genre 2")]
-        let podcasts = [
-            PodcastSearchResult(
-                id: UUID().uuidString,
-                titleOriginal: "Title",
-                publisherOriginal: "Publisher",
-                image: anyURL(),
-                thumbnail: anyURL()
-            ),
-            PodcastSearchResult(
-                id: UUID().uuidString,
-                titleOriginal: "Another Title",
-                publisherOriginal: "Another Publisher",
-                image: anyURL(),
-                thumbnail: anyURL()
-            )
-        ]
-        
+        let terms = uniqueTerms()
+        let genres = uniqueGenres()
+        let podcasts = uniquePodcastSearchResults()
         let validJSON = makeValidJSON(terms: terms, genres: genres, podcasts: podcasts)
         
         let result = try TypeheadSearchContentMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))

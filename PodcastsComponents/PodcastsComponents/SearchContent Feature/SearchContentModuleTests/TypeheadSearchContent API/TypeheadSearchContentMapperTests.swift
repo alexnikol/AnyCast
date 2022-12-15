@@ -19,6 +19,7 @@ final class TypeheadSearchContentMapperTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
     private func makeValidJSON(
         terms: [String],
         genres: [Genre],

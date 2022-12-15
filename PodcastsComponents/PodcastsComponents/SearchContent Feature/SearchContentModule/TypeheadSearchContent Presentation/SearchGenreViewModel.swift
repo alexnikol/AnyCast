@@ -2,4 +2,4 @@
 
 import Foundation
 
-public struct TypeheadSearchContentViewModel {}
+public typealias SearchGenreViewModel = String

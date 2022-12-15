@@ -274,6 +274,10 @@
 		8DE46AF5294B58C0007B204C /* SearchTermViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AF3294B589C007B204C /* SearchTermViewModel.swift */; };
 		8DE46AF7294B5922007B204C /* PodcastSearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AF6294B5922007B204C /* PodcastSearchResultViewModel.swift */; };
 		8DE46AF9294B5B0A007B204C /* SearchGenreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AF8294B5B0A007B204C /* SearchGenreViewModel.swift */; };
+		8DE46B0C294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46B0B294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift */; };
+		8DE46B14294B6E9A007B204C /* SearchContentModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D0E294B19AE004500D9 /* SearchContentModule.framework */; };
+		8DE46B15294B6EB8007B204C /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */; };
+		8DE46B16294B6EBD007B204C /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 		8DFAEAB728FD41740028B060 /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
@@ -763,6 +767,8 @@
 		8DE46AF3294B589C007B204C /* SearchTermViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTermViewModel.swift; sourceTree = "<group>"; };
 		8DE46AF6294B5922007B204C /* PodcastSearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchResultViewModel.swift; sourceTree = "<group>"; };
 		8DE46AF8294B5B0A007B204C /* SearchGenreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGenreViewModel.swift; sourceTree = "<group>"; };
+		8DE46B06294B6E1E007B204C /* SearchContentAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchContentAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DE46B0B294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchContentAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 		8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -999,6 +1005,16 @@
 			files = (
 				8D750CD929488498004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8DE32A2A29110AAC00830695 /* LoadResourcePresenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DE46B03294B6E1E007B204C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DE46B16294B6EBD007B204C /* libSharedTestHelpersLibrary.a in Frameworks */,
+				8DE46B15294B6EB8007B204C /* URLSessionHTTPClient.framework in Frameworks */,
+				8DE46B14294B6E9A007B204C /* SearchContentModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,6 +1497,7 @@
 				8D750D25294B1AC7004500D9 /* README.md */,
 				8D750D0F294B19AE004500D9 /* SearchContentModule */,
 				8D750D19294B19B0004500D9 /* SearchContentModuleTests */,
+				8DE46B0A294B6E1E007B204C /* SearchContentAPIEndToEndTests */,
 			);
 			path = "SearchContent Feature";
 			sourceTree = "<group>";
@@ -1712,6 +1729,7 @@
 				8D750D15294B19AF004500D9 /* SearchContentModuleTests.xctest */,
 				8D750D2E294B373B004500D9 /* libMapperLibrary.a */,
 				8D750D3B294B375C004500D9 /* MapperLibraryTests.xctest */,
+				8DE46B06294B6E1E007B204C /* SearchContentAPIEndToEndTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2192,6 +2210,14 @@
 				8DE46AF1294B5625007B204C /* SharedHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8DE46B0A294B6E1E007B204C /* SearchContentAPIEndToEndTests */ = {
+			isa = PBXGroup;
+			children = (
+				8DE46B0B294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift */,
+			);
+			path = SearchContentAPIEndToEndTests;
 			sourceTree = "<group>";
 		};
 		8DEB7E0C28FDD5A5003AF72F /* Helpers */ = {
@@ -2843,6 +2869,23 @@
 			productReference = 8DE32A2929110AAC00830695 /* LoadResourcePresenterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8DE46B05294B6E1E007B204C /* SearchContentAPIEndToEndTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DE46B13294B6E1F007B204C /* Build configuration list for PBXNativeTarget "SearchContentAPIEndToEndTests" */;
+			buildPhases = (
+				8DE46B02294B6E1E007B204C /* Sources */,
+				8DE46B03294B6E1E007B204C /* Frameworks */,
+				8DE46B04294B6E1E007B204C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SearchContentAPIEndToEndTests;
+			productName = SearchContentAPIEndToEndTestsTests;
+			productReference = 8DE46B06294B6E1E007B204C /* SearchContentAPIEndToEndTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8DFAEAAE28FD41730028B060 /* PodcastsModule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DFAEABE28FD41740028B060 /* Build configuration list for PBXNativeTarget "PodcastsModule" */;
@@ -2998,6 +3041,9 @@
 					8DE32A2829110AAC00830695 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
+					8DE46B05294B6E1E007B204C = {
+						CreatedOnToolsVersion = 14.1;
+					};
 					8DFAEAAE28FD41730028B060 = {
 						CreatedOnToolsVersion = 13.4.1;
 						LastSwiftMigration = 1340;
@@ -3051,6 +3097,7 @@
 				8D750CCA294881FA004500D9 /* SharedTestHelpersLibrary */,
 				8D750D0D294B19AE004500D9 /* SearchContentModule */,
 				8D750D14294B19AF004500D9 /* SearchContentModuleTests */,
+				8DE46B05294B6E1E007B204C /* SearchContentAPIEndToEndTests */,
 				8D750D2D294B373B004500D9 /* MapperLibrary */,
 				8D750D3A294B375C004500D9 /* MapperLibraryTests */,
 			);
@@ -3250,6 +3297,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8DE32A2729110AAC00830695 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DE46B04294B6E1E007B204C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3592,6 +3646,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE32A2F29110AAC00830695 /* LoadResourcePresenterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DE46B02294B6E1E007B204C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DE46B0C294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4302,11 +4364,12 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = WUJDW64U79;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -4322,6 +4385,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SearchContentModule";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -4338,11 +4402,12 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = WUJDW64U79;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -4358,6 +4423,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SearchContentModule";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -4373,14 +4439,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WUJDW64U79;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = WUJDW64U79;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SearchContentModuleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -4395,14 +4464,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WUJDW64U79;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = WUJDW64U79;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SearchContentModuleTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -5390,6 +5462,54 @@
 			};
 			name = Release;
 		};
+		8DE46B10294B6E1F007B204C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SearchContentAPIEndToEndTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8DE46B11294B6E1F007B204C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.SearchContentAPIEndToEndTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		8DFAEABF28FD41740028B060 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -5838,6 +5958,15 @@
 			buildConfigurations = (
 				8DE32A3529110AAC00830695 /* Debug */,
 				8DE32A3629110AAC00830695 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DE46B13294B6E1F007B204C /* Build configuration list for PBXNativeTarget "SearchContentAPIEndToEndTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DE46B10294B6E1F007B204C /* Debug */,
+				8DE46B11294B6E1F007B204C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

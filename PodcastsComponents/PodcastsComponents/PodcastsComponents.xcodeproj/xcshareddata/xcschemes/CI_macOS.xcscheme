@@ -76,6 +76,20 @@
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DE46B05294B6E1E007B204C"
+               BuildableName = "SearchContentAPIEndToEndTests.xctest"
+               BlueprintName = "SearchContentAPIEndToEndTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -244,6 +258,17 @@
                BlueprintIdentifier = "8D750D14294B19AF004500D9"
                BuildableName = "SearchContentModuleTests.xctest"
                BlueprintName = "SearchContentModuleTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DE46B05294B6E1E007B204C"
+               BuildableName = "SearchContentAPIEndToEndTests.xctest"
+               BlueprintName = "SearchContentAPIEndToEndTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>

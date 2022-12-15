@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8DE46AFE294B6E1E007B204C"
-               BuildableName = "SearchContentAPIEndToEndTests.framework"
+               BlueprintIdentifier = "8DE46B05294B6E1E007B204C"
+               BuildableName = "SearchContentAPIEndToEndTests.xctest"
                BlueprintName = "SearchContentAPIEndToEndTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
@@ -61,8 +61,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8DE46AFE294B6E1E007B204C"
-            BuildableName = "SearchContentAPIEndToEndTests.framework"
+            BlueprintIdentifier = "8DE46B05294B6E1E007B204C"
+            BuildableName = "SearchContentAPIEndToEndTests.xctest"
             BlueprintName = "SearchContentAPIEndToEndTests"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>

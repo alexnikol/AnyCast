@@ -274,10 +274,12 @@
 		8DE46AF5294B58C0007B204C /* SearchTermViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AF3294B589C007B204C /* SearchTermViewModel.swift */; };
 		8DE46AF7294B5922007B204C /* PodcastSearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AF6294B5922007B204C /* PodcastSearchResultViewModel.swift */; };
 		8DE46AF9294B5B0A007B204C /* SearchGenreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46AF8294B5B0A007B204C /* SearchGenreViewModel.swift */; };
-		8DE46B0C294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46B0B294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift */; };
+		8DE46B0C294B6E1E007B204C /* TypeheadSearchContentAPIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE46B0B294B6E1E007B204C /* TypeheadSearchContentAPIEndToEndTests.swift */; };
 		8DE46B14294B6E9A007B204C /* SearchContentModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D0E294B19AE004500D9 /* SearchContentModule.framework */; };
 		8DE46B15294B6EB8007B204C /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C204128FE8EC4006CD42F /* URLSessionHTTPClient.framework */; };
 		8DE46B16294B6EBD007B204C /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
+		8DE46B17294B70A2007B204C /* EphemeralClientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB750291A9CF70024A37A /* EphemeralClientHelper.swift */; };
+		8DE46B18294B7185007B204C /* PodcastsGenresList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DA0930C28BF59C900C4C68D /* PodcastsGenresList.framework */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 		8DFAEAB728FD41740028B060 /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
@@ -768,7 +770,7 @@
 		8DE46AF6294B5922007B204C /* PodcastSearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchResultViewModel.swift; sourceTree = "<group>"; };
 		8DE46AF8294B5B0A007B204C /* SearchGenreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGenreViewModel.swift; sourceTree = "<group>"; };
 		8DE46B06294B6E1E007B204C /* SearchContentAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchContentAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DE46B0B294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchContentAPIEndToEndTests.swift; sourceTree = "<group>"; };
+		8DE46B0B294B6E1E007B204C /* TypeheadSearchContentAPIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchContentAPIEndToEndTests.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 		8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -871,6 +873,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE46B18294B7185007B204C /* PodcastsGenresList.framework in Frameworks */,
 				8DE46ADD294B492E007B204C /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8D750D16294B19B0004500D9 /* SearchContentModule.framework in Frameworks */,
 			);
@@ -2215,7 +2218,7 @@
 		8DE46B0A294B6E1E007B204C /* SearchContentAPIEndToEndTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DE46B0B294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift */,
+				8DE46B0B294B6E1E007B204C /* TypeheadSearchContentAPIEndToEndTests.swift */,
 			);
 			path = SearchContentAPIEndToEndTests;
 			sourceTree = "<group>";
@@ -3653,7 +3656,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DE46B0C294B6E1E007B204C /* SearchContentAPIEndToEndTests.swift in Sources */,
+				8DE46B17294B70A2007B204C /* EphemeralClientHelper.swift in Sources */,
+				8DE46B0C294B6E1E007B204C /* TypeheadSearchContentAPIEndToEndTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

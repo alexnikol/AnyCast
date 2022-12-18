@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct RemotePodcastSearchResult: Decodable {
+struct RemoteSearchResultPodcast: Decodable {
     let id: String
     let image: URL
     let thumbnail: URL

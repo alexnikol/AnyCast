@@ -5,5 +5,5 @@ import Foundation
 class RemoteTypeheadSearchContentResult: Decodable {
     let terms: [String]
     let genres: [RemoteGenre]
-    let podcasts: [RemotePodcastSearchResult]
+    let podcasts: [RemoteSearchResultPodcast]
 }

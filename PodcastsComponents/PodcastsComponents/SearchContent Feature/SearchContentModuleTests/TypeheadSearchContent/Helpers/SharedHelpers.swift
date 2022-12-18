@@ -13,16 +13,16 @@ func uniqueGenres() -> [Genre] {
     [Genre(id: 1, name: "Any genre 1"), Genre(id: 2, name: "Any genre 2")]
 }
 
-func uniquePodcastSearchResults() -> [PodcastSearchResult] {
+func uniquePodcastSearchResults() -> [SearchResultPodcast] {
     [
-        PodcastSearchResult(
+        SearchResultPodcast(
             id: UUID().uuidString,
             titleOriginal: "Title",
             publisherOriginal: "Publisher",
             image: anyURL(),
             thumbnail: anyURL()
         ),
-        PodcastSearchResult(
+        SearchResultPodcast(
             id: UUID().uuidString,
             titleOriginal: "Another Title",
             publisherOriginal: "Another Publisher",

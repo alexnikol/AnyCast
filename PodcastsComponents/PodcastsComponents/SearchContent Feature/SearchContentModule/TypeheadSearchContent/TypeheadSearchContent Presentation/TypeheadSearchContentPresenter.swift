@@ -14,7 +14,7 @@ public final class TypeheadSearchContentPresenter {
         return terms
     }
     
-    public static func map(_ podcasts: [PodcastSearchResult]) -> [PodcastSearchResultViewModel] {
+    public static func map(_ podcasts: [SearchResultPodcast]) -> [PodcastSearchResultViewModel] {
         return podcasts.map {
             PodcastSearchResultViewModel(
                 titleOriginal: $0.titleOriginal,

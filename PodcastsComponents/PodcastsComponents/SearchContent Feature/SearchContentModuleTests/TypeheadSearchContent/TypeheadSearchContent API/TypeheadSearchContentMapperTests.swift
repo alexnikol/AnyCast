@@ -23,7 +23,7 @@ final class TypeheadSearchContentMapperTests: XCTestCase {
     private func makeValidJSON(
         terms: [String],
         genres: [Genre],
-        podcasts: [PodcastSearchResult]
+        podcasts: [SearchResultPodcast]
     ) -> Data {
         let json = [
             "terms": terms,
@@ -48,7 +48,7 @@ private extension Array where Element == Genre {
     }
 }
 
-private extension Array where Element == PodcastSearchResult {
+private extension Array where Element == SearchResultPodcast {
     func toJson() -> [[String: Any]] {
         map { podcast in
             let json = [

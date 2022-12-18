@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct PodcastSearchResult: Equatable {
+public struct SearchResultPodcast: Equatable {
     public let id: String
     public let titleOriginal: String
     public let publisherOriginal: String

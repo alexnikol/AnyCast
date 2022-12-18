@@ -102,7 +102,7 @@ final class TypeheadSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {
             ][index]
         }
         
-        return PodcastSearchResult(
+        return SearchResultPodcast(
             id: id(at: index),
             titleOriginal: titleOriginal(at: index),
             publisherOriginal: publisherOriginal(at: index),

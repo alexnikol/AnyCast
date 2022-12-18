@@ -6,9 +6,9 @@ import PodcastsGenresList
 public struct TypeheadSearchContentResult: Equatable {
     public let terms: [String]
     public let genres: [Genre]
-    public let podcasts: [PodcastSearchResult]
+    public let podcasts: [SearchResultPodcast]
     
-    public init(terms: [String], genres: [Genre], podcasts: [PodcastSearchResult]) {
+    public init(terms: [String], genres: [Genre], podcasts: [SearchResultPodcast]) {
         self.terms = terms
         self.genres = genres
         self.podcasts = podcasts

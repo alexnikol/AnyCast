@@ -144,9 +144,9 @@
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D750CCA294881FA004500D9"
-            BuildableName = "libSharedTestHelpersLibrary.a"
-            BlueprintName = "SharedTestHelpersLibrary"
+            BlueprintIdentifier = "8D750D2D294B373B004500D9"
+            BuildableName = "libMapperLibrary.a"
+            BlueprintName = "MapperLibrary"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

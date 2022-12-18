@@ -19,7 +19,7 @@ private extension RemoteTypeheadSearchContentResult {
         TypeheadSearchContentResult(
             terms: remoteModel.terms,
             genres: remoteModel.genres.map(RemoteGenre.toDomainModel),
-            podcasts: remoteModel.podcasts.map(RemoteSearchResultPodcast.toDomainModel)
+            podcasts: remoteModel.podcasts.map { $0.toDomainModel() }
         )
     }
 }
@@ -29,18 +29,6 @@ private extension RemoteGenre {
         Genre(
             id: remoteModel.id,
             name: remoteModel.name
-        )
-    }
-}
-
-private extension RemoteSearchResultPodcast {
-    static func toDomainModel(remoteModel: RemoteSearchResultPodcast) -> SearchResultPodcast {
-        SearchResultPodcast(
-            id: remoteModel.id,
-            titleOriginal: remoteModel.titleOriginal,
-            publisherOriginal: remoteModel.publisherOriginal,
-            image: remoteModel.image,
-            thumbnail: remoteModel.thumbnail
         )
     }
 }

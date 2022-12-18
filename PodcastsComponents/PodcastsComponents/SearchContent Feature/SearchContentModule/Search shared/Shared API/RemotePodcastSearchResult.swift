@@ -15,3 +15,15 @@ struct RemoteSearchResultPodcast: Decodable {
         case publisherOriginal = "publisher_original"
     }
 }
+
+extension RemoteSearchResultPodcast {
+    func toDomainModel() -> SearchResultPodcast {
+        SearchResultPodcast(
+            id: self.id,
+            titleOriginal: self.titleOriginal,
+            publisherOriginal: self.publisherOriginal,
+            image: self.image,
+            thumbnail: self.thumbnail
+        )
+    }
+}

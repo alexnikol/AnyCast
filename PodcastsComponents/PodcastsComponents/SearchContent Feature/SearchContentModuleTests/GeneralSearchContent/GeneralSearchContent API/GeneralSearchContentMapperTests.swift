@@ -5,30 +5,34 @@ import SearchContentModule
 
 final class GeneralSearchContentMapperTests: XCTestCase {
     
-//    func test_map_deliversTypeheadSearchContentResultOn200HTTPResponseWithJSONItems() throws {
-//        let terms = uniqueTerms()
-//        let genres = uniqueGenres()
-//        let podcasts = uniquePodcastSearchResults()
-//        let validJSON = makeValidJSON(terms: terms, genres: genres, podcasts: podcasts)
-//        
-//        let result = try TypeheadSearchContentMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
-//        
-//        XCTAssertEqual(result, TypeheadSearchContentResult(terms: terms, genres: genres, podcasts: podcasts))
-//    }
-//    
-//    // MARK: - Helpers
-//    
-//    private func makeValidJSON(
-//        terms: [String],
-//        genres: [String],
-//        podcasts: [String]
-//    ) -> Data {
-//        let json = [
-//            "terms": terms,
-//            "genres": genres.toJson(),
-//            "podcasts": podcasts.toJson()
-//        ] as [String: Any]
-//        
-//        return try! JSONSerialization.data(withJSONObject: json)
-//    }
+    func test_map_deliversGeneralSearchContentResultOn200HTTPResponseWithJSONItems() throws {
+        let episodes = uniqueEpisodeSearchResults()
+        let podcasts = uniquePodcastSearchResults()
+        let curatedLists = uniqueCuratedListsSearchResults()
+        let validJSON = makeValidJSON(episodes: episodes, podcasts: podcasts, curatedLists: curatedLists)
+        
+        let result = try GeneralSearchContentMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
+        
+        let resultEpisodes = episodes.map { GeneralSearchContentResultItem.episode($0) }
+        let resultPodcasts = podcasts.map { GeneralSearchContentResultItem.podcast($0) }
+        let resultCuratedLists = curatedLists.map { GeneralSearchContentResultItem.curatedList($0) }
+        XCTAssertEqual(result, GeneralSearchContentResult(result: resultEpisodes + resultPodcasts + resultCuratedLists))
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeValidJSON(
+        episodes: [SearchResultEpisode],
+        podcasts: [SearchResultPodcast],
+        curatedLists: [SearchResultCuratedList]
+    ) -> Data {
+        let episodes = episodes.toJson()
+        let podcasts = podcasts.toJson()
+        let curatedList = curatedLists.toJson()
+        
+        let json = [
+            "results": episodes + podcasts + curatedList
+        ] as [String: Any]
+        return try! JSONSerialization.data(withJSONObject: json)
+    }
 }

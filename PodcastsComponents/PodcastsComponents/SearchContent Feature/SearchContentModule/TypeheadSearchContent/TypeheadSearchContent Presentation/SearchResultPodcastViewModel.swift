@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct PodcastSearchResultViewModel {
+public struct SearchResultPodcastViewModel {
     public let titleOriginal: String
     public let publisherOriginal: String
     public let thumbnail: URL

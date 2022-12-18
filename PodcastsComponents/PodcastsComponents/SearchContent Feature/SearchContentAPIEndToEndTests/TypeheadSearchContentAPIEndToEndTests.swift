@@ -64,7 +64,7 @@ final class TypeheadSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {
         )
     }
     
-    private func expectedSearchPodcast(at index: Int) -> PodcastSearchResult {
+    private func expectedSearchPodcast(at index: Int) -> SearchResultPodcast {
         func id(at index: Int) -> String {
             return [
                 "ca3b35271db04291ba56fab8a4f731e4",

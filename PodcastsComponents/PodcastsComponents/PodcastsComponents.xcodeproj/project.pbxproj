@@ -1477,9 +1477,7 @@
 		8D750D0F294B19AE004500D9 /* SearchContentModule */ = {
 			isa = PBXGroup;
 			children = (
-				8DE46AD0294B43F7007B204C /* TypeheadSearchContent Domain */,
-				8DE46AC9294B4305007B204C /* TypeheadSearchContent API */,
-				8DE46AE7294B513B007B204C /* TypeheadSearchContent Presentation */,
+				8DE46E9F294F3070007B204C /* TypeheadSearchContent */,
 			);
 			path = SearchContentModule;
 			sourceTree = "<group>";
@@ -1487,9 +1485,7 @@
 		8D750D19294B19B0004500D9 /* SearchContentModuleTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DE46AF0294B5600007B204C /* Helpers */,
-				8DE46AD4294B44BD007B204C /* TypeheadSearchContent API */,
-				8DE46AE8294B5203007B204C /* TypeheadSearchContent Presentation */,
+				8DE46EA0294F308E007B204C /* TypeheadSearchContent */,
 			);
 			path = SearchContentModuleTests;
 			sourceTree = "<group>";
@@ -2221,6 +2217,26 @@
 				8DE46B0B294B6E1E007B204C /* TypeheadSearchContentAPIEndToEndTests.swift */,
 			);
 			path = SearchContentAPIEndToEndTests;
+			sourceTree = "<group>";
+		};
+		8DE46E9F294F3070007B204C /* TypeheadSearchContent */ = {
+			isa = PBXGroup;
+			children = (
+				8DE46AD0294B43F7007B204C /* TypeheadSearchContent Domain */,
+				8DE46AC9294B4305007B204C /* TypeheadSearchContent API */,
+				8DE46AE7294B513B007B204C /* TypeheadSearchContent Presentation */,
+			);
+			path = TypeheadSearchContent;
+			sourceTree = "<group>";
+		};
+		8DE46EA0294F308E007B204C /* TypeheadSearchContent */ = {
+			isa = PBXGroup;
+			children = (
+				8DE46AF0294B5600007B204C /* Helpers */,
+				8DE46AD4294B44BD007B204C /* TypeheadSearchContent API */,
+				8DE46AE8294B5203007B204C /* TypeheadSearchContent Presentation */,
+			);
+			path = TypeheadSearchContent;
 			sourceTree = "<group>";
 		};
 		8DEB7E0C28FDD5A5003AF72F /* Helpers */ = {

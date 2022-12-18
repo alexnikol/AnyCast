@@ -76,6 +76,20 @@
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DE46B05294B6E1E007B204C"
+               BuildableName = "SearchContentAPIEndToEndTests.xctest"
+               BlueprintName = "SearchContentAPIEndToEndTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -119,6 +133,20 @@
             BlueprintIdentifier = "8D9B86C6292BC0BF003B52AB"
             BuildableName = "AudioPlayerModule.framework"
             BlueprintName = "AudioPlayerModule"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D750D0D294B19AE004500D9"
+            BuildableName = "SearchContentModule.framework"
+            BlueprintName = "SearchContentModule"
+            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D750CCA294881FA004500D9"
+            BuildableName = "libSharedTestHelpersLibrary.a"
+            BlueprintName = "SharedTestHelpersLibrary"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -208,6 +236,39 @@
                BlueprintIdentifier = "8D9B86D1292BC0CF003B52AB"
                BuildableName = "AudioPlayerModuleTests.xctest"
                BlueprintName = "AudioPlayerModuleTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D750D3A294B375C004500D9"
+               BuildableName = "MapperLibraryTests.xctest"
+               BlueprintName = "MapperLibraryTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8D750D14294B19AF004500D9"
+               BuildableName = "SearchContentModuleTests.xctest"
+               BlueprintName = "SearchContentModuleTests"
+               ReferencedContainer = "container:PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DE46B05294B6E1E007B204C"
+               BuildableName = "SearchContentAPIEndToEndTests.xctest"
+               BlueprintName = "SearchContentAPIEndToEndTests"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>

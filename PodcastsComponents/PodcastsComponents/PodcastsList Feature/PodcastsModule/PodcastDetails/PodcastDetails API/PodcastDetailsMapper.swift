@@ -1,36 +1,30 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import MapperLibrary
 
 public final class PodcastDetailsMapper {
+    typealias Mapper = GenericAPIMapper<RemotePodcastDetails, PodcastDetails>
     
-    public enum Error: Swift.Error {
-        case invalidData
-    }
-    
-    private static var OK_200: Int { return 200 }
+    private init() {}
     
     public static func map(_ data: Data, from response: HTTPURLResponse) throws -> PodcastDetails {
-        guard response.statusCode == OK_200,
-              let remotePodcastDetails = try? JSONDecoder().decode(RemotePodcastDetails.self, from: data) else {
-            throw Error.invalidData
-        }
-        return remotePodcastDetails.toModel()
+        return try Mapper.map(data, from: response, domainMapper: RemotePodcastDetails.toDomainModel)
     }
 }
 
 private extension RemotePodcastDetails {
-    func toModel() -> PodcastDetails {
+    static func toDomainModel(remoteModel: RemotePodcastDetails) -> PodcastDetails {
         return PodcastDetails(
-            id: id,
-            title: title,
-            publisher: publisher,
-            language: language,
-            type: type.toModel(),
-            image: image,
-            episodes: episodes.toModels(),
-            description: description,
-            totalEpisodes: totalEpisodes
+            id: remoteModel.id,
+            title: remoteModel.title,
+            publisher: remoteModel.publisher,
+            language: remoteModel.language,
+            type: remoteModel.type.toModel(),
+            image: remoteModel.image,
+            episodes: remoteModel.episodes.toModels(),
+            description: remoteModel.description,
+            totalEpisodes: remoteModel.totalEpisodes
         )
     }
 }

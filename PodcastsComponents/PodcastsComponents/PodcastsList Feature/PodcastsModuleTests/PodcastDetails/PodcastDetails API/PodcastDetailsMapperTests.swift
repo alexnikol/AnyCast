@@ -5,24 +5,6 @@ import SharedTestHelpersLibrary
 import PodcastsModule
 
 class PodcastDetailsMapperTests: XCTestCase {
-    
-    func test_map_throwsErrorOnNon200HTTPURLResponse() throws {
-        let validJSON = makePodcastDetails(episodes: []).data
-        
-        try [199, 201, 400, 500].forEach { code in
-            XCTAssertThrowsError(
-                try PodcastDetailsMapper.map(validJSON, from: HTTPURLResponse(statusCode: code))
-            )
-        }
-    }
-    
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
-        let invalidJSON = Data("invalid json".utf8)
-        
-        XCTAssertThrowsError(
-            try PodcastDetailsMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
-        )
-    }
         
     func test_map_deliversPodcastsDetailsOn200HTTPResponse() throws {
         let episodes = makeUniqueEpisodes()

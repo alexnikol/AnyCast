@@ -4,10 +4,6 @@ import Foundation
 
 public struct SpeedPlaybackViewModel: Equatable {
     public let items: [SpeedPlaybackItemViewModel]
-    
-    public init(items: [SpeedPlaybackItemViewModel]) {
-        self.items = items
-    }
 }
 
 public struct SpeedPlaybackItemViewModel: Equatable {

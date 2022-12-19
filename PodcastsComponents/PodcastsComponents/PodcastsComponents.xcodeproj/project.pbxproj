@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D0BE4832950969800B4171A /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D2490BA2938DEAE009ACD36 /* AVPlayerClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490B22938DEAD009ACD36 /* AVPlayerClient.framework */; };
 		8D2490BF2938DEAE009ACD36 /* AVPlayerClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2490BE2938DEAE009ACD36 /* AVPlayerClientTests.swift */; };
 		8D2490C82938DF19009ACD36 /* AVPlayerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2490C72938DF19009ACD36 /* AVPlayerClient.swift */; };
@@ -1104,6 +1105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D0BE4832950969800B4171A /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8DE47133295093ED007B204C /* SearchContentModuleiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

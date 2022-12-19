@@ -38,10 +38,18 @@ final class RootComposer {
         )
         exploreNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.exploreTabBarItemTitle,
+            image: UIImage(systemName: "rectangle.grid.2x2.fill")?.withTintColor(TabbarColors.defaultColor),
+            selectedImage: UIImage(systemName: "rectangle.grid.2x2.fill")?.withTintColor(TabbarColors.selectedColor)
+        )
+        exploreCoordinator.start()
+        
+        let generalSearch = GeneralSearchUIComposer.searchComposedWith()
+        let searchNavigation = UINavigationController(rootViewController: generalSearch)
+        searchNavigation.tabBarItem = UITabBarItem(
+            title: tabBarPresenter.searchTabBarItemTitle,
             image: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.defaultColor),
             selectedImage: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.selectedColor)
         )
-        exploreCoordinator.start()
         
         let episodeThumbnailLoaderService = EpisodeThumbnailLoaderService(
             httpClient: httpClient,
@@ -60,7 +68,7 @@ final class RootComposer {
             viewDelegate: tabBarPresentationAdapter
         )
         tabBarPresenter.view = rootTabBarController
-        rootTabBarController.setViewControllers([exploreNavigation], animated: false)
+        rootTabBarController.setViewControllers([exploreNavigation, searchNavigation], animated: false)
         return rootTabBarController
     }
 }

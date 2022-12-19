@@ -24,6 +24,13 @@ class GenericAPIMapperTests: XCTestCase {
         )
     }
     
+    func test_map_deliversResultOn200HTTPURLResponseAndValidData() throws {
+        let validJSON = Data("{ \"string\": \"any-string\" }".utf8)
+        
+        let result = try SUT.map(validJSON, from: HTTPURLResponse(statusCode: 200), domainMapper: DomainModel.init)
+        XCTAssertEqual(result.string, "any-string")
+    }
+    
     // MARK: - Helpers
     
     private typealias SUT = GenericAPIMapper<RemoteModel, DomainModel>

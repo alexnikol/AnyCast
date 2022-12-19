@@ -84,9 +84,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D750D2D294B373B004500D9"
-               BuildableName = "libMapperLibrary.a"
-               BlueprintName = "MapperLibrary"
+               BlueprintIdentifier = "8D750D0D294B19AE004500D9"
+               BuildableName = "SearchContentModule.framework"
+               BlueprintName = "SearchContentModule"
                ReferencedContainer = "container:PodcastsComponents.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -154,13 +154,6 @@
             BlueprintIdentifier = "8D750D0D294B19AE004500D9"
             BuildableName = "SearchContentModule.framework"
             BlueprintName = "SearchContentModule"
-            ReferencedContainer = "container:PodcastsComponents.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D750D2D294B373B004500D9"
-            BuildableName = "libMapperLibrary.a"
-            BlueprintName = "MapperLibrary"
             ReferencedContainer = "container:PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

@@ -26,7 +26,7 @@ public enum TypeheadSearchUIComposer {
             mapper: TypeheadSearchContentPresenter.map
         )
         
-        let newPresentationAdapter = TypeSearchPresentationAdapter()
+        let newPresentationAdapter = TypeheadSearchPresentationAdapter()
         
         return (controller, newPresentationAdapter)
     }

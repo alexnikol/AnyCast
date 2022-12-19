@@ -8,11 +8,12 @@ import SearchContentModule
 
 public enum GeneralSearchUIComposer {
     
-    public static func searchComposedWith() -> ListViewController {
-        let presentationAdapter = GenericLoaderPresentationAdapter<GeneralSearchContentResult, GeneralSearchViewAdapter>(
+    public static func searchComposedWith() -> (controller: ListViewController, sourceDelegate: GeneralSearchSourceDelegate) {
+        let presentationAdapter = GeneralSearchPresentationAdapter()
+        let presentationAdapter2 = GenericLoaderPresentationAdapter<GeneralSearchContentResult, GeneralSearchViewAdapter>(
             loader: { Empty().eraseToAnyPublisher() }
         )
-        let refreshController = RefreshViewController(delegate: presentationAdapter)
+        let refreshController = RefreshViewController(delegate: presentationAdapter2)
         let controller = ListViewController(refreshController: nil)
         controller.title = "Search"
         
@@ -20,7 +21,7 @@ public enum GeneralSearchUIComposer {
         searchController.view.backgroundColor = .red
         controller.navigationItem.searchController = UISearchController(searchResultsController: searchController)
         
-        presentationAdapter.presenter = LoadResourcePresenter(
+        presentationAdapter2.presenter = LoadResourcePresenter(
             resourceView: GeneralSearchViewAdapter(
                 controller: controller
             ),
@@ -28,8 +29,6 @@ public enum GeneralSearchUIComposer {
             errorView: WeakRefVirtualProxy(refreshController),
             mapper: { _ in "" }
         )
-        
-        let newPresentationAdapter = TypeSearchPresentationAdapter()
-        return controller
+        return (controller, presentationAdapter)
     }
 }

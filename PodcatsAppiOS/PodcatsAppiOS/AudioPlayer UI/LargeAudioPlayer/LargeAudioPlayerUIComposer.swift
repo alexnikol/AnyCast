@@ -8,8 +8,7 @@ import AudioPlayerModule
 import SharedComponentsiOSModule
 import AudioPlayerModuleiOS
 
-public final class LargeAudioPlayerUIComposer {
-    private init() {}
+public enum LargeAudioPlayerUIComposer {
     
     public static func playerWith(
         statePublisher: AudioPlayerStatePublisher,

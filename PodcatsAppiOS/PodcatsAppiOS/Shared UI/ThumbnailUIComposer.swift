@@ -5,7 +5,8 @@ import Combine
 import SharedComponentsiOSModule
 import LoadResourcePresenter
 
-public final class ThumbnailUIComposer {
+public enum ThumbnailUIComposer {
+    
     public static func composeThumbnailWithImageLoader(
         thumbnailURL: URL,
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>

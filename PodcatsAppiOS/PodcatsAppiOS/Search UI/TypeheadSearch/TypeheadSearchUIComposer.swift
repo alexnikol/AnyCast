@@ -3,32 +3,31 @@
 import UIKit
 import Combine
 import LoadResourcePresenter
-import SharedComponentsiOSModule
-import PodcastsModule
-import PodcastsModuleiOS
 import SearchContentModule
+import SharedComponentsiOSModule
 
 public enum TypeheadSearchUIComposer {
     
     public static func searchComposedWith(
         searchLoader: @escaping (String) -> AnyPublisher<TypeheadSearchContentResult, Error>
-    ) -> ListViewController {
-        let presentationAdapter = GenericLoaderPresentationAdapter<TypeheadSearchContentResult, BestPodcastsViewAdapter>(
-            loader: { searchLoader("") }
+    ) -> (controller: ListViewController, sourceDelegate: TypeheadSearchSourceDelegate) {
+        let presentationAdapter = GenericLoaderPresentationAdapter<TypeheadSearchContentResult, TypeheadSearchViewAdapter>(
+            loader: { searchLoader("star wars") }
         )
         let refreshController = RefreshViewController(delegate: presentationAdapter)
         let controller = ListViewController(refreshController: refreshController)
         
-//        presentationAdapter.presenter = LoadResourcePresenter(
-//            resourceView: BestPodcastsViewAdapter(
-//                controller: controller,
-//                imageLoader: imageLoader,
-//                selection: selection
-//            ),
-//            loadingView: WeakRefVirtualProxy(refreshController),
-//            errorView: WeakRefVirtualProxy(refreshController),
-//            mapper: BestPodcastsPresenter.map
-//        )
-        return controller
+        presentationAdapter.presenter = LoadResourcePresenter(
+            resourceView: TypeheadSearchViewAdapter(
+                controller: controller
+            ),
+            loadingView: WeakRefVirtualProxy(refreshController),
+            errorView: WeakRefVirtualProxy(refreshController),
+            mapper: TypeheadSearchContentPresenter.map
+        )
+        
+        let newPresentationAdapter = TypeSearchPresentationAdapter()
+        
+        return (controller, newPresentationAdapter)
     }
 }

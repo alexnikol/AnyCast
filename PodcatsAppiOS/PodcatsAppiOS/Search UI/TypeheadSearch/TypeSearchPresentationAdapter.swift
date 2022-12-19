@@ -2,6 +2,9 @@
 
 import Foundation
 
-final class TypeSearchPresentationAdapter {
+final class TypeSearchPresentationAdapter: TypeheadSearchSourceDelegate {
     
+    func didUpdateSearchTerm(_ term: String) {
+        print("didUpdateSearchTerm \(term)")
+    }
 }

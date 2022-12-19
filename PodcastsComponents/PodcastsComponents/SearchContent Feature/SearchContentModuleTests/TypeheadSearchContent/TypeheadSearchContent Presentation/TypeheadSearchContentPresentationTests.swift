@@ -13,10 +13,14 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
         let podcasts = uniquePodcastSearchResults()
         let domainModel = TypeheadSearchContentResult(terms: terms, genres: genres, podcasts: podcasts)
         
+        let generalViewModel = TypeheadSearchContentPresenter.map(domainModel)
         let termsViewModels = TypeheadSearchContentPresenter.map(domainModel.terms)
         let genresViewModels = TypeheadSearchContentPresenter.map(domainModel.genres)
         let podcastsViewModels = TypeheadSearchContentPresenter.map(domainModel.podcasts)
         
+        XCTAssertEqual(generalViewModel.terms, domainModel.terms)
+        XCTAssertEqual(generalViewModel.podcasts, domainModel.podcasts)
+        XCTAssertEqual(generalViewModel.genres, domainModel.genres)
         XCTAssertEqual(termsViewModels, terms)
         XCTAssertEqual(genresViewModels, ["Any genre 1", "Any genre 2"])
         assert(

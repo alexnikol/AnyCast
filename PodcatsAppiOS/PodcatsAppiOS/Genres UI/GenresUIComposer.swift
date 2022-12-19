@@ -7,9 +7,7 @@ import PodcastsGenresListiOS
 import LoadResourcePresenter
 import SharedComponentsiOSModule
 
-final class GenresUIComposer {
-    
-    private init() {}
+public enum GenresUIComposer {
     
     static func genresComposedWith(
         loader: @escaping () -> AnyPublisher<[Genre], Error>,

@@ -6,6 +6,14 @@ import PodcastsGenresList
 public final class TypeheadSearchContentPresenter {
     private init() {}
     
+    public static func map(_ model: TypeheadSearchContentResult) -> TypeheadSearchContentResultViewModel {
+        TypeheadSearchContentResultViewModel(
+            terms: model.terms,
+            genres: model.genres,
+            podcasts: model.podcasts
+        )
+    }
+    
     public static func map(_ genres: [Genre]) -> [TypeheadSearchGenreViewModel] {
         return genres.map { $0.name }
     }

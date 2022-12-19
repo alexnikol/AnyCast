@@ -8,8 +8,7 @@ import AudioPlayerModule
 import SharedComponentsiOSModule
 import AudioPlayerModuleiOS
 
-public final class StickyAudioPlayerUIComposer {
-    private init() {}
+public enum StickyAudioPlayerUIComposer {
     
     public static func playerWith(
         thumbnailURL: URL,

@@ -10,6 +10,12 @@
 		8D0BE4862950996400B4171A /* TypeheadSearchUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0BE4852950996400B4171A /* TypeheadSearchUIComposer.swift */; };
 		8D0BE48929509B3C00B4171A /* TypeheadSearchViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0BE48829509B3C00B4171A /* TypeheadSearchViewAdapter.swift */; };
 		8D0BE48B29509B7700B4171A /* TypeSearchPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0BE48A29509B7700B4171A /* TypeSearchPresentationAdapter.swift */; };
+		8D0BE4952950A02A00B4171A /* SearchContentModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0BE4932950A02A00B4171A /* SearchContentModule.framework */; };
+		8D0BE4962950A02A00B4171A /* SearchContentModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0BE4932950A02A00B4171A /* SearchContentModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D0BE4972950A02A00B4171A /* SearchContentModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0BE4942950A02A00B4171A /* SearchContentModuleiOS.framework */; };
+		8D0BE4982950A02A00B4171A /* SearchContentModuleiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0BE4942950A02A00B4171A /* SearchContentModuleiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D0BE49D2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0BE49C2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift */; };
+		8D0BE4A32950B01C00B4171A /* SearchSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0BE4A12950B01900B4171A /* SearchSourceDelegate.swift */; };
 		8D2490D62938FAA1009ACD36 /* AVPlayerClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; };
 		8D2490D72938FAA1009ACD36 /* AVPlayerClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D4298C3292242E70064F3E6 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298C2292242E70064F3E6 /* UIImage+Extensions.swift */; };
@@ -122,11 +128,13 @@
 				8DDBB726291A810F0024A37A /* PodcastsModuleiOS.framework in Embed Frameworks */,
 				8D76B8A728D4A2B00014A211 /* PodcastsGenresList.framework in Embed Frameworks */,
 				8D76B8A928D4A2B00014A211 /* PodcastsGenresListiOS.framework in Embed Frameworks */,
+				8D0BE4982950A02A00B4171A /* SearchContentModuleiOS.framework in Embed Frameworks */,
 				8DE32A4729110CF800830695 /* LoadResourcePresenter.framework in Embed Frameworks */,
 				8DDBB724291A810F0024A37A /* PodcastsModule.framework in Embed Frameworks */,
 				8D4298DE29227CB60064F3E6 /* SharedComponentsiOSModule.framework in Embed Frameworks */,
 				8D5C206628FE925E006CD42F /* URLSessionHTTPClient.framework in Embed Frameworks */,
 				8D2490D72938FAA1009ACD36 /* AVPlayerClient.framework in Embed Frameworks */,
+				8D0BE4962950A02A00B4171A /* SearchContentModule.framework in Embed Frameworks */,
 				8D9B873F2930C454003B52AB /* AudioPlayerModule.framework in Embed Frameworks */,
 				8D9B87412930C454003B52AB /* AudioPlayerModuleiOS.framework in Embed Frameworks */,
 				8DEB7E1628FDDA9F003AF72F /* HTTPClient.framework in Embed Frameworks */,
@@ -140,6 +148,10 @@
 		8D0BE4852950996400B4171A /* TypeheadSearchUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchUIComposer.swift; sourceTree = "<group>"; };
 		8D0BE48829509B3C00B4171A /* TypeheadSearchViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchViewAdapter.swift; sourceTree = "<group>"; };
 		8D0BE48A29509B7700B4171A /* TypeSearchPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSearchPresentationAdapter.swift; sourceTree = "<group>"; };
+		8D0BE4932950A02A00B4171A /* SearchContentModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SearchContentModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0BE4942950A02A00B4171A /* SearchContentModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SearchContentModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0BE49C2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchUIIntegrationTests.swift; sourceTree = "<group>"; };
+		8D0BE4A12950B01900B4171A /* SearchSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSourceDelegate.swift; sourceTree = "<group>"; };
 		8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AVPlayerClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4298C2292242E70064F3E6 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		8D4298D22922740F0064F3E6 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
@@ -238,11 +250,13 @@
 				8DDBB725291A810F0024A37A /* PodcastsModuleiOS.framework in Frameworks */,
 				8D76B8A628D4A2B00014A211 /* PodcastsGenresList.framework in Frameworks */,
 				8D76B8A828D4A2B00014A211 /* PodcastsGenresListiOS.framework in Frameworks */,
+				8D0BE4972950A02A00B4171A /* SearchContentModuleiOS.framework in Frameworks */,
 				8DE32A4629110CF800830695 /* LoadResourcePresenter.framework in Frameworks */,
 				8DDBB723291A810F0024A37A /* PodcastsModule.framework in Frameworks */,
 				8D4298DD29227CB60064F3E6 /* SharedComponentsiOSModule.framework in Frameworks */,
 				8D5C206528FE925E006CD42F /* URLSessionHTTPClient.framework in Frameworks */,
 				8D2490D62938FAA1009ACD36 /* AVPlayerClient.framework in Frameworks */,
+				8D0BE4952950A02A00B4171A /* SearchContentModule.framework in Frameworks */,
 				8D9B873E2930C454003B52AB /* AudioPlayerModule.framework in Frameworks */,
 				8D9B87402930C454003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */,
 				8DEB7E1528FDDA9F003AF72F /* HTTPClient.framework in Frameworks */,
@@ -274,8 +288,17 @@
 				8D0BE4852950996400B4171A /* TypeheadSearchUIComposer.swift */,
 				8D0BE48829509B3C00B4171A /* TypeheadSearchViewAdapter.swift */,
 				8D0BE48A29509B7700B4171A /* TypeSearchPresentationAdapter.swift */,
+				8D0BE4A12950B01900B4171A /* SearchSourceDelegate.swift */,
 			);
 			path = TypeheadSearch;
+			sourceTree = "<group>";
+		};
+		8D0BE49B2950A5A800B4171A /* Search UI */ = {
+			isa = PBXGroup;
+			children = (
+				8D0BE49C2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift */,
+			);
+			path = "Search UI";
 			sourceTree = "<group>";
 		};
 		8D4298C1292242D90064F3E6 /* Shared */ = {
@@ -322,6 +345,7 @@
 				8DDBB76C291BC5740024A37A /* PodcastDetails UI */,
 				8D9B8700292D1CBF003B52AB /* AudioPlayer UI */,
 				8D750CF229488D2F004500D9 /* RootTabBar UI */,
+				8D0BE49B2950A5A800B4171A /* Search UI */,
 			);
 			path = "Integration UI Tests";
 			sourceTree = "<group>";
@@ -567,6 +591,8 @@
 		8D76B8A328D4A2B00014A211 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8D0BE4932950A02A00B4171A /* SearchContentModule.framework */,
+				8D0BE4942950A02A00B4171A /* SearchContentModuleiOS.framework */,
 				8D750CE429488740004500D9 /* libSharedTestHelpersLibrary.a */,
 				8D750CE22948872A004500D9 /* libSharedTestHelpersLibrary.a */,
 				8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */,
@@ -749,6 +775,7 @@
 				8D750C972947A6B6004500D9 /* StickyAudioPlayerPresentationAdapter.swift in Sources */,
 				8D5FA24A2913C4C1002BB874 /* BestPodcastsUIComposer.swift in Sources */,
 				8D72D03928F8118900C17DDC /* GenresViewAdapter.swift in Sources */,
+				8D0BE4A32950B01C00B4171A /* SearchSourceDelegate.swift in Sources */,
 				8D750B3029433862004500D9 /* ThumbnailUIComposer.swift in Sources */,
 				8DDBB772291BC68A0024A37A /* PodcastDetailsUIComposer.swift in Sources */,
 				8D0BE48B29509B7700B4171A /* TypeSearchPresentationAdapter.swift in Sources */,
@@ -811,6 +838,7 @@
 				8D9B8702292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift in Sources */,
 				8D5FA2562913C539002BB874 /* PodcastCell+DSLHelpers.swift in Sources */,
 				8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */,
+				8D0BE49D2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift in Sources */,
 				8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */,
 				8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */,
 				8D5FA25B2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift in Sources */,

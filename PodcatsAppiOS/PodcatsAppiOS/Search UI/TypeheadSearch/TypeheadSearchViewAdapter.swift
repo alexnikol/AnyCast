@@ -1,51 +1,30 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import SharedComponentsiOSModule
 import Combine
 import LoadResourcePresenter
 import SearchContentModule
+import SearchContentModuleiOS
 
-//final class TypeheadSearchViewAdapter: ResourceView {
-//    typealias ResourceViewModel = TypeheadSearchResultPodcastViewModel
-//    
-//    private let imageLoader: (URL) -> AnyPublisher<Data, Error>
-//    private var cancellable: AnyCancellable?
-//    private var selection: (Podcast) -> Void
-//    weak var controller: ListViewController?
-//    
-//    init(controller: ListViewController,
-//         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>,
-//         selection: @escaping (Podcast) -> Void) {
-//        self.controller = controller
-//        self.imageLoader = imageLoader
-//        self.selection = selection
-//    }
-//    
-//    func display(_ viewModel: BestPodcastsListViewModel) {
-//        controller?.display(adaptModelsToCellControllers(podcasts: viewModel.podcasts))
-//        controller?.title = viewModel.title
-//    }
-//    
-//    private func adaptModelsToCellControllers(podcasts: [Podcast]) -> [SectionController] {
-//        let podcastCellControllers = podcasts.map { model -> PodcastCellController in
-//            configurePodcastCellController(for: model)
-//        }
-//        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastCellControllers)]
-//    }
-//    
-//    private func configurePodcastCellController(for model: Podcast) -> PodcastCellController {
-//        let podcastViewModel = BestPodcastsPresenter.map(model)
-//
-//        let cellController = PodcastCellController(
-//            model: podcastViewModel,
-//            thumbnailViewController: ThumbnailUIComposer.composeThumbnailWithImageLoader(
-//                thumbnailURL: model.image,
-//                imageLoader: imageLoader
-//            ),
-//            selection: { [weak self] in
-//                self?.selection(model)
-//            }
-//        )
-//        return cellController
-//    }
-//}
+final class TypeheadSearchViewAdapter: ResourceView {
+    typealias ResourceViewModel = TypeheadSearchContentResultViewModel
+    
+    weak var controller: ListViewController?
+    
+    init(controller: ListViewController) {
+        self.controller = controller
+    }
+    
+    func display(_ viewModel: ResourceViewModel) {
+        let termsViewModels = TypeheadSearchContentPresenter.map(viewModel.terms)
+        let termControllers = termsViewModels.map { termViewModel -> TermCellController in
+            TermCellController(model: termViewModel, selection: {
+                print("SELECTION \(termViewModel)")
+            })
+        }
+        
+        let section = DefaultSectionWithNoHeaderAndFooter(cellControllers: termControllers)
+        controller?.display([section])
+    }
+}

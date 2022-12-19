@@ -5,6 +5,7 @@ import Combine
 import HTTPClient
 import PodcastsGenresList
 import AudioPlayerModule
+import SearchContentModule
 
 final class RootComposer {
     
@@ -40,9 +41,7 @@ final class RootComposer {
             image: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.defaultColor),
             selectedImage: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.selectedColor)
         )
-        
         exploreCoordinator.start()
-        
         
         let episodeThumbnailLoaderService = EpisodeThumbnailLoaderService(
             httpClient: httpClient,

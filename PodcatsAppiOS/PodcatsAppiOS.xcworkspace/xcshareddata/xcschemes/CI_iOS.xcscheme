@@ -84,20 +84,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D750D2D294B373B004500D9"
-               BuildableName = "libMapperLibrary.a"
-               BlueprintName = "MapperLibrary"
-               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8DA0930B28BF59C900C4C68D"
                BuildableName = "PodcastsGenresList.framework"
                BlueprintName = "PodcastsGenresList"
@@ -266,13 +252,6 @@
             BlueprintIdentifier = "8D750D0D294B19AE004500D9"
             BuildableName = "SearchContentModule.framework"
             BlueprintName = "SearchContentModule"
-            ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8D750D2D294B373B004500D9"
-            BuildableName = "libMapperLibrary.a"
-            BlueprintName = "MapperLibrary"
             ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>

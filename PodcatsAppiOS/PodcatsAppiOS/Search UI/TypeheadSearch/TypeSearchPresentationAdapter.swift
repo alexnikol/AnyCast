@@ -2,4 +2,6 @@
 
 import Foundation
 
-public typealias SearchTermViewModel = String
+final class TypeSearchPresentationAdapter {
+    
+}

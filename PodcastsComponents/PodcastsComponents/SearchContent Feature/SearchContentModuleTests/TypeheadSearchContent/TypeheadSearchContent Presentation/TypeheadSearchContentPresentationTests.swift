@@ -21,7 +21,7 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
         XCTAssertEqual(genresViewModels, ["Any genre 1", "Any genre 2"])
         assert(
             receivedViewModel: podcastsViewModels[0],
-            expectedViewModel: SearchResultPodcastViewModel(
+            expectedViewModel: TypeheadSearchResultPodcastViewModel(
                 titleOriginal: "Title",
                 publisherOriginal: "Publisher",
                 thumbnail: anyURL()
@@ -29,7 +29,7 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
         )
         assert(
             receivedViewModel: podcastsViewModels[1],
-            expectedViewModel: SearchResultPodcastViewModel(
+            expectedViewModel: TypeheadSearchResultPodcastViewModel(
                 titleOriginal: "Another Title",
                 publisherOriginal: "Another Publisher",
                 thumbnail: anyURL()
@@ -40,8 +40,8 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
     // MARK: - Helpers
     
     private func assert(
-        receivedViewModel: SearchResultPodcastViewModel,
-        expectedViewModel: SearchResultPodcastViewModel,
+        receivedViewModel: TypeheadSearchResultPodcastViewModel,
+        expectedViewModel: TypeheadSearchResultPodcastViewModel,
         file: StaticString = #file,
         line: UInt = #line
     ) {

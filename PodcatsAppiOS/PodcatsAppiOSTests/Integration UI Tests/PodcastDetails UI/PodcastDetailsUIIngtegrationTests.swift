@@ -2,6 +2,7 @@
 
 import XCTest
 import SharedTestHelpersLibrary
+import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 @testable import Podcats

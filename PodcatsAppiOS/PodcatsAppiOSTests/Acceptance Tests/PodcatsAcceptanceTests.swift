@@ -3,6 +3,7 @@
 import XCTest
 import UIKit
 import HTTPClient
+import SharedComponentsiOSModule
 import PodcastsGenresList
 import PodcastsGenresListiOS
 import PodcastsModuleiOS

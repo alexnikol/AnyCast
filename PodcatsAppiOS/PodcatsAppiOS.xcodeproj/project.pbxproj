@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D0BE4862950996400B4171A /* TypeheadSearchUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0BE4852950996400B4171A /* TypeheadSearchUIComposer.swift */; };
+		8D0BE48929509B3C00B4171A /* TypeheadSearchViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0BE48829509B3C00B4171A /* TypeheadSearchViewAdapter.swift */; };
+		8D0BE48B29509B7700B4171A /* TypeSearchPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0BE48A29509B7700B4171A /* TypeSearchPresentationAdapter.swift */; };
 		8D2490D62938FAA1009ACD36 /* AVPlayerClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; };
 		8D2490D72938FAA1009ACD36 /* AVPlayerClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D4298C3292242E70064F3E6 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298C2292242E70064F3E6 /* UIImage+Extensions.swift */; };
@@ -134,6 +137,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8D0BE4852950996400B4171A /* TypeheadSearchUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchUIComposer.swift; sourceTree = "<group>"; };
+		8D0BE48829509B3C00B4171A /* TypeheadSearchViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchViewAdapter.swift; sourceTree = "<group>"; };
+		8D0BE48A29509B7700B4171A /* TypeSearchPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSearchPresentationAdapter.swift; sourceTree = "<group>"; };
 		8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AVPlayerClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4298C2292242E70064F3E6 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		8D4298D22922740F0064F3E6 /* ExploreCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoordinator.swift; sourceTree = "<group>"; };
@@ -254,6 +260,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D0BE4842950994800B4171A /* Search UI */ = {
+			isa = PBXGroup;
+			children = (
+				8D0BE48729509B2000B4171A /* TypeheadSearch */,
+			);
+			path = "Search UI";
+			sourceTree = "<group>";
+		};
+		8D0BE48729509B2000B4171A /* TypeheadSearch */ = {
+			isa = PBXGroup;
+			children = (
+				8D0BE4852950996400B4171A /* TypeheadSearchUIComposer.swift */,
+				8D0BE48829509B3C00B4171A /* TypeheadSearchViewAdapter.swift */,
+				8D0BE48A29509B7700B4171A /* TypeSearchPresentationAdapter.swift */,
+			);
+			path = TypeheadSearch;
+			sourceTree = "<group>";
+		};
 		8D4298C1292242D90064F3E6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +540,7 @@
 				8D5FA23D2913C44A002BB874 /* BestPodcasts UI */,
 				8DDBB76F291BC5FD0024A37A /* PodcastDetails UI */,
 				8DCA227729313B2600DD1EC6 /* AudioPlayer UI */,
+				8D0BE4842950994800B4171A /* Search UI */,
 				8D4298D1292273FA0064F3E6 /* Coordinators */,
 				8D72D04F28F8137E00C17DDC /* Extensions */,
 				8D76B87328D4A2540014A211 /* AppDelegate.swift */,
@@ -726,6 +751,7 @@
 				8D72D03928F8118900C17DDC /* GenresViewAdapter.swift in Sources */,
 				8D750B3029433862004500D9 /* ThumbnailUIComposer.swift in Sources */,
 				8DDBB772291BC68A0024A37A /* PodcastDetailsUIComposer.swift in Sources */,
+				8D0BE48B29509B7700B4171A /* TypeSearchPresentationAdapter.swift in Sources */,
 				8DCA227929313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift in Sources */,
 				8D72D07428F85C3B00C17DDC /* PodcastsGenresList+CombineHelpers.swift in Sources */,
 				8D4298DA29227A140064F3E6 /* PodcastDetailsService.swift in Sources */,
@@ -734,9 +760,11 @@
 				8D750CAA29486F66004500D9 /* RootComposer.swift in Sources */,
 				8DDBB778291BD2FD0024A37A /* GenericLoaderPresentationAdapter.swift in Sources */,
 				8D750D042949D707004500D9 /* ThumbnailSourceDelegate.swift in Sources */,
+				8D0BE4862950996400B4171A /* TypeheadSearchUIComposer.swift in Sources */,
 				8D750D022949D0FB004500D9 /* ThumbnailDynamicPresentationAdapter.swift in Sources */,
 				8D750C9B2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift in Sources */,
 				8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */,
+				8D0BE48929509B3C00B4171A /* TypeheadSearchViewAdapter.swift in Sources */,
 				8D4298D32922740F0064F3E6 /* ExploreCoordinator.swift in Sources */,
 				8D750CB729487CE9004500D9 /* RootTabBarPresenter.swift in Sources */,
 				8D4298D5292277AC0064F3E6 /* GenresLoaderService.swift in Sources */,

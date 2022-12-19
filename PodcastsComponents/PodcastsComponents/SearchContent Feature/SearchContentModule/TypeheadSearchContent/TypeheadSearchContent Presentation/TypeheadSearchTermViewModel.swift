@@ -2,4 +2,4 @@
 
 import Foundation
 
-public typealias SearchGenreViewModel = String
+public typealias TypeheadSearchTermViewModel = String

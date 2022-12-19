@@ -4,6 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsModule
 import PodcastsModuleiOS
+import SharedComponentsiOSModule
 @testable import Podcats
 
 class BestPodcastsListUIIngtegrationTests: XCTestCase {

@@ -298,6 +298,8 @@
 		8DE47138295093ED007B204C /* SearchContentModuleiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE47137295093ED007B204C /* SearchContentModuleiOSTests.swift */; };
 		8DE4714229509544007B204C /* TypeheadSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE4714029509544007B204C /* TypeheadSearchController.swift */; };
 		8DE4714329509544007B204C /* TypeheadSearchController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE4714129509544007B204C /* TypeheadSearchController.xib */; };
+		8DE471462950964E007B204C /* SearchContentModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D0E294B19AE004500D9 /* SearchContentModule.framework */; };
+		8DE4714A2950964E007B204C /* SharedComponentsiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 		8DFAEAB728FD41740028B060 /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
@@ -516,6 +518,20 @@
 			remoteGlobalIDString = 8DE4712A295093EC007B204C;
 			remoteInfo = SearchContentModuleiOS;
 		};
+		8DE471482950964E007B204C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D750D0D294B19AE004500D9;
+			remoteInfo = SearchContentModule;
+		};
+		8DE4714C2950964E007B204C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D4298A8292233F30064F3E6;
+			remoteInfo = SharedComponentsiOSModule;
+		};
 		8DFAEAB828FD41740028B060 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -537,6 +553,16 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8DB835022919585200969996 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DE4714E2950964E007B204C /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -1069,6 +1095,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DE471462950964E007B204C /* SearchContentModule.framework in Frameworks */,
+				8DE4714A2950964E007B204C /* SharedComponentsiOSModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3094,10 +3122,13 @@
 				8DE47127295093EC007B204C /* Sources */,
 				8DE47128295093EC007B204C /* Frameworks */,
 				8DE47129295093EC007B204C /* Resources */,
+				8DE4714E2950964E007B204C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8DE471492950964E007B204C /* PBXTargetDependency */,
+				8DE4714D2950964E007B204C /* PBXTargetDependency */,
 			);
 			name = SearchContentModuleiOS;
 			productName = SearchContentModuleiOS;
@@ -4174,6 +4205,16 @@
 			isa = PBXTargetDependency;
 			target = 8DE4712A295093EC007B204C /* SearchContentModuleiOS */;
 			targetProxy = 8DE47134295093ED007B204C /* PBXContainerItemProxy */;
+		};
+		8DE471492950964E007B204C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D750D0D294B19AE004500D9 /* SearchContentModule */;
+			targetProxy = 8DE471482950964E007B204C /* PBXContainerItemProxy */;
+		};
+		8DE4714D2950964E007B204C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D4298A8292233F30064F3E6 /* SharedComponentsiOSModule */;
+			targetProxy = 8DE4714C2950964E007B204C /* PBXContainerItemProxy */;
 		};
 		8DFAEAB928FD41740028B060 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

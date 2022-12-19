@@ -2,33 +2,33 @@
 
 import UIKit
 import Combine
+import SharedComponentsiOSModule
 import LoadResourcePresenter
 import SearchContentModule
-import SharedComponentsiOSModule
+import SearchContentModuleiOS
 
 public enum TypeheadSearchUIComposer {
     
     public static func searchComposedWith(
         searchLoader: @escaping (String) -> AnyPublisher<TypeheadSearchContentResult, Error>
-    ) -> (controller: ListViewController, sourceDelegate: TypeheadSearchSourceDelegate) {
-        let presentationAdapter = GenericLoaderPresentationAdapter<TypeheadSearchContentResult, TypeheadSearchViewAdapter>(
-            loader: { searchLoader("star wars") }
-        )
-        let refreshController = RefreshViewController(delegate: presentationAdapter)
-        let controller = ListViewController(refreshController: nil)
-        controller.view.backgroundColor = .gray
+    ) -> TypeheadListViewController {
+        let presentationAdapter = TypeheadSearchPresentationAdapter(loader: searchLoader)
+        let controller = TypeheadListViewController(searchDelegate: presentationAdapter)
+        let nullObjectPresenterStateView = NullObjectStateResourceView()
         
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: TypeheadSearchViewAdapter(
                 controller: controller
             ),
-            loadingView: WeakRefVirtualProxy(refreshController),
-            errorView: WeakRefVirtualProxy(refreshController),
+            loadingView: WeakRefVirtualProxy(nullObjectPresenterStateView),
+            errorView: WeakRefVirtualProxy(nullObjectPresenterStateView),
             mapper: TypeheadSearchContentPresenter.map
         )
-        
-        let newPresentationAdapter = TypeheadSearchPresentationAdapter()
-        
-        return (controller, newPresentationAdapter)
+        return controller
+    }
+    
+    private class NullObjectStateResourceView: ResourceLoadingView, ResourceErrorView {
+        func display(_ viewModel: ResourceLoadingViewModel) {}
+        func display(_ viewModel: ResourceErrorViewModel) {}
     }
 }

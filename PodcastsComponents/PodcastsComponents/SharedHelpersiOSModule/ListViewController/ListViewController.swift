@@ -12,7 +12,7 @@ public protocol CellController {
     var prefetchingDataSource: UITableViewDataSourcePrefetching? { get }
 }
 
-public final class ListViewController: UITableViewController, UITableViewDataSourcePrefetching {
+open class ListViewController: UITableViewController, UITableViewDataSourcePrefetching {
     private var sectionsController: [SectionController] = []
     private var refreshController: RefreshViewController?
     private var sections: [SectionController] = [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
@@ -29,11 +29,11 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
         tableView.reloadData()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
                 
         tableView.prefetchDataSource = self

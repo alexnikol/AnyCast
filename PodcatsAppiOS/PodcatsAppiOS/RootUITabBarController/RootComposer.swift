@@ -43,8 +43,24 @@ final class RootComposer {
         )
         exploreCoordinator.start()
         
-        let (typeheadController, typeheadSourceDelegate) = TypeheadSearchUIComposer.searchComposedWith(searchLoader: { _ in Empty().eraseToAnyPublisher() })
+        let typeheadController = TypeheadSearchUIComposer
+            .searchComposedWith(searchLoader: { term in
+                Deferred {
+                    Future { completion in
+                        let aray = ["\(term) 1", "\(term) 2", "\(term) 2" ,"\(term) 2" ,"\(term) 2"]
+                        let result = TypeheadSearchContentResult(
+                            terms: aray + aray + aray + aray + aray,
+                            genres: [],
+                            podcasts: []
+                        )
+                        completion(.success(result))
+                    }
+                }
+                .delay(for: 0.5, scheduler: DispatchQueue.main)
+                .eraseToAnyPublisher()
+            })
         let searchController = UISearchController(searchResultsController: typeheadController)
+        searchController.searchBar.delegate = typeheadController
         
         let (generalSearch, generalSourceDelegate) = GeneralSearchUIComposer.searchComposedWith(searchController: searchController)
         let searchNavigation = UINavigationController(rootViewController: generalSearch)

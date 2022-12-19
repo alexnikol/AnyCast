@@ -2,7 +2,7 @@
 
 import Foundation
 
-public final class PodcastDetailsPresenter {
+public enum PodcastDetailsPresenter {
     
     public static func map(_ model: PodcastDetails) -> PodcastDetailsViewModel {
         .init(
@@ -16,15 +16,4 @@ public final class PodcastDetailsPresenter {
             totalEpisodes: String(model.totalEpisodes)
         )
     }
-    
-    private static var relativeDateTimeFormatter: RelativeDateTimeFormatter = {
-        RelativeDateTimeFormatter()
-    }()
-    
-    private static var dateFormatter: DateComponentsFormatter = {
-        let dateFormatter = DateComponentsFormatter()
-        dateFormatter.allowedUnits = [.hour, .minute, .second]
-        dateFormatter.unitsStyle = .brief
-        return dateFormatter
-    }()
 }

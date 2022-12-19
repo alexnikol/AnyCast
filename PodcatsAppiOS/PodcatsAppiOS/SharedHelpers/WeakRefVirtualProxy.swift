@@ -24,16 +24,6 @@ extension WeakRefVirtualProxy: ResourceLoadingView where T: ResourceLoadingView 
     }
 }
 
-extension WeakRefVirtualProxy: PodcastImageDataLoader where T: PodcastImageDataLoader {
-    class NullObjectTask: PodcastImageDataLoaderTask {
-        func cancel() {}
-    }
-    
-    func loadImageData(from url: URL, completion: @escaping (PodcastImageDataLoader.Result) -> Void) -> PodcastImageDataLoaderTask {
-        return object?.loadImageData(from: url, completion: completion) ?? NullObjectTask()
-    }
-}
-
 extension WeakRefVirtualProxy: ResourceErrorView where T: ResourceErrorView {
     func display(_ viewModel: ResourceErrorViewModel) {
         object?.display(viewModel)

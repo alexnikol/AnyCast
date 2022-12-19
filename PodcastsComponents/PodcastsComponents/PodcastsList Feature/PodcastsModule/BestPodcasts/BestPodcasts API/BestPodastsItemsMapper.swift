@@ -3,10 +3,8 @@
 import Foundation
 import MapperLibrary
 
-public final class BestPodastsItemsMapper {
+public enum BestPodastsItemsMapper {
     typealias Mapper = GenericAPIMapper<RemoteBestPodcastsList, BestPodcastsList>
-    
-    private init() {}
     
     public static func map(_ data: Data, from response: HTTPURLResponse) throws -> BestPodcastsList {
         return try Mapper.map(data, from: response, domainMapper: RemoteBestPodcastsList.toDomainModel)

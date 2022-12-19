@@ -3,11 +3,8 @@
 import Foundation
 import MapperLibrary
 
-public final class GenresItemsMapper {
-    
+public enum GenresItemsMapper {
     typealias Mapper = GenericAPIMapper<RemoteGenresList, [Genre]>
-    
-    private init() {}
     
     public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [Genre] {
         return try Mapper.map(data, from: response, domainMapper: RemoteGenresList.toDomainModels)

@@ -4,10 +4,8 @@ import Foundation
 import MapperLibrary
 import PodcastsGenresList
 
-public final class TypeheadSearchContentMapper {
+public enum TypeheadSearchContentMapper {
     typealias Mapper = GenericAPIMapper<RemoteTypeheadSearchContentResult, TypeheadSearchContentResult>
-    
-    private init() {}
     
     public static func map(_ data: Data, from response: HTTPURLResponse) throws -> TypeheadSearchContentResult {
         return try Mapper.map(data, from: response, domainMapper: RemoteTypeheadSearchContentResult.toDomainModel)

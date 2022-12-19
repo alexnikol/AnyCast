@@ -3,10 +3,8 @@
 import Foundation
 import MapperLibrary
 
-public final class PodcastDetailsMapper {
+public enum PodcastDetailsMapper {
     typealias Mapper = GenericAPIMapper<RemotePodcastDetails, PodcastDetails>
-    
-    private init() {}
     
     public static func map(_ data: Data, from response: HTTPURLResponse) throws -> PodcastDetails {
         return try Mapper.map(data, from: response, domainMapper: RemotePodcastDetails.toDomainModel)

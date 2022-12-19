@@ -3,10 +3,8 @@
 import Foundation
 import MapperLibrary
 
-public final class GeneralSearchContentMapper {
+public enum GeneralSearchContentMapper {
     typealias Mapper = GenericAPIMapper<RemoteGeneralSearchContentResult, GeneralSearchContentResult>
-    
-    private init() {}
     
     public static func map(_ data: Data, from response: HTTPURLResponse) throws -> GeneralSearchContentResult {
         return try Mapper.map(data, from: response, domainMapper: RemoteGeneralSearchContentResult.toDomainModel)

@@ -2,9 +2,7 @@
 
 import Foundation
 
-public final class GenericAPIMapper<RemoteAPIModel: Decodable, DomainModel> {
-    private init() {}
-    
+public enum GenericAPIMapper<RemoteAPIModel: Decodable, DomainModel> {
     public enum Error: Swift.Error {
         case invalidData
     }

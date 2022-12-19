@@ -18,7 +18,7 @@ public final class ListViewController: UITableViewController, UITableViewDataSou
     private var sections: [SectionController] = [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
     private let tableConfig: ListTableViewConfiguratior
     
-    public init(refreshController: RefreshViewController, tableConfig: ListTableViewConfiguratior = .default) {
+    public init(refreshController: RefreshViewController?, tableConfig: ListTableViewConfiguratior = .default) {
         self.refreshController = refreshController
         self.tableConfig = tableConfig
         super.init(style: tableConfig.tableStyle)

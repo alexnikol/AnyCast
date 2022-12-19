@@ -13,7 +13,7 @@ public enum GeneralSearchUIComposer {
             loader: { Empty().eraseToAnyPublisher() }
         )
         let refreshController = RefreshViewController(delegate: presentationAdapter)
-        let controller = ListViewController(refreshController: refreshController)
+        let controller = ListViewController(refreshController: nil)
         controller.title = "Search"
         
         let searchController = UIViewController()

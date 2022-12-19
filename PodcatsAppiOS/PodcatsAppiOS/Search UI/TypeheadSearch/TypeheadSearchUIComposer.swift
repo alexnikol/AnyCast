@@ -15,7 +15,8 @@ public enum TypeheadSearchUIComposer {
             loader: { searchLoader("star wars") }
         )
         let refreshController = RefreshViewController(delegate: presentationAdapter)
-        let controller = ListViewController(refreshController: refreshController)
+        let controller = ListViewController(refreshController: nil)
+        controller.view.backgroundColor = .gray
         
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: TypeheadSearchViewAdapter(

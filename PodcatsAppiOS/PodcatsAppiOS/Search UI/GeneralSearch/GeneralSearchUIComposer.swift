@@ -8,7 +8,7 @@ import SearchContentModule
 
 public enum GeneralSearchUIComposer {
     
-    public static func searchComposedWith() -> (controller: ListViewController, sourceDelegate: GeneralSearchSourceDelegate) {
+    public static func searchComposedWith(searchController: UISearchController) -> (controller: ListViewController, sourceDelegate: GeneralSearchSourceDelegate) {
         let presentationAdapter = GeneralSearchPresentationAdapter()
         let presentationAdapter2 = GenericLoaderPresentationAdapter<GeneralSearchContentResult, GeneralSearchViewAdapter>(
             loader: { Empty().eraseToAnyPublisher() }
@@ -17,9 +17,7 @@ public enum GeneralSearchUIComposer {
         let controller = ListViewController(refreshController: nil)
         controller.title = "Search"
         
-        let searchController = UIViewController()
-        searchController.view.backgroundColor = .red
-        controller.navigationItem.searchController = UISearchController(searchResultsController: searchController)
+        controller.navigationItem.searchController = searchController
         
         presentationAdapter2.presenter = LoadResourcePresenter(
             resourceView: GeneralSearchViewAdapter(

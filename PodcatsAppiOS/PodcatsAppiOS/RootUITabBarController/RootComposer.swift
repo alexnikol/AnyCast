@@ -43,7 +43,10 @@ final class RootComposer {
         )
         exploreCoordinator.start()
         
-        let (generalSearch, sourceDelegate) = GeneralSearchUIComposer.searchComposedWith()
+        let (typeheadController, typeheadSourceDelegate) = TypeheadSearchUIComposer.searchComposedWith(searchLoader: { _ in Empty().eraseToAnyPublisher() })
+        let searchController = UISearchController(searchResultsController: typeheadController)
+        
+        let (generalSearch, generalSourceDelegate) = GeneralSearchUIComposer.searchComposedWith(searchController: searchController)
         let searchNavigation = UINavigationController(rootViewController: generalSearch)
         searchNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.searchTabBarItemTitle,

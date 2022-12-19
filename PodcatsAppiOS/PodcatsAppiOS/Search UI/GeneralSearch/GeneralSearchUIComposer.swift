@@ -1,6 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import Foundation
+import UIKit
 import Combine
 import LoadResourcePresenter
 import SharedComponentsiOSModule
@@ -14,6 +14,11 @@ public enum GeneralSearchUIComposer {
         )
         let refreshController = RefreshViewController(delegate: presentationAdapter)
         let controller = ListViewController(refreshController: refreshController)
+        controller.title = "Search"
+        
+        let searchController = UIViewController()
+        searchController.view.backgroundColor = .red
+        controller.navigationItem.searchController = UISearchController(searchResultsController: searchController)
         
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: GeneralSearchViewAdapter(

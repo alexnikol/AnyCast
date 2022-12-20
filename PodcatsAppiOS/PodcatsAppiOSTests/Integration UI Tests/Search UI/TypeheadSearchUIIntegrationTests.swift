@@ -24,6 +24,18 @@ class TypeheadSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 2, "Expected 2 loading requests on text change")
     }
     
+    func test_loadTypeheadSearchResultCompletion_rendersSuccessfullyLoadedTerms() {
+        let (sut, searchController, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        assertThat(sut, isRendering: [])
+        
+        searchController.simulateUserInitiatedTyping(with: "any search term")
+        assertThat(sut, isRendering: [])
+        
+        loader.completeRequest(with: .init(terms: ["result 1"], genres: [], podcasts: []), atIndex: 0)
+        assertThat(sut, isRendering: ["result 1"])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -44,6 +56,29 @@ class TypeheadSearchUIIntegrationTests: XCTestCase {
         return (sut, searchController, loader)
     }
     
+    private func assertThat(_ sut: TypeheadListViewController, isRendering terms: [String], file: StaticString = #file, line: UInt = #line) {
+        guard sut.numberOfRenderedSearchTermViews() == terms.count else {
+            return XCTFail("Expected \(terms.count) rendered terms, got \(sut.numberOfRenderedSearchTermViews()) rendered views instead")
+        }
+        
+        terms.enumerated().forEach { index, term in
+            assertThat(sut, hasViewConfiguredFor: term, at: index, file: file, line: line)
+        }
+    }
+    
+    private func assertThat(
+        _ sut: TypeheadListViewController,
+        hasViewConfiguredFor term: String,
+        at index: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let termViewModel = TypeheadSearchContentPresenter.map(term)
+        let view = sut.searchTermView(at: index)
+        XCTAssertNotNil(view, file: file, line: line)
+        XCTAssertEqual(view?.termText, termViewModel, "Wrong title at index \(index)", file: file, line: line)
+    }
+    
     private class LoaderSpy {
         private var requests = [PassthroughSubject<TypeheadSearchContentResult, Error>]()
         
@@ -55,6 +90,11 @@ class TypeheadSearchUIIntegrationTests: XCTestCase {
             let publisher = PassthroughSubject<TypeheadSearchContentResult, Error>()
             requests.append(publisher)
             return publisher.eraseToAnyPublisher()
+        }
+        
+        func completeRequest(with result: TypeheadSearchContentResult, atIndex index: Int) {
+            let request = requests[index]
+            request.send(result)
         }
     }
 }

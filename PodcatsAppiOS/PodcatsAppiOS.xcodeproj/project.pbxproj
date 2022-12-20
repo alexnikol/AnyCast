@@ -91,6 +91,8 @@
 		8D9B87412930C454003B52AB /* AudioPlayerModuleiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */; };
 		8DB9ADCC2951AF3800A6F1DF /* UISearchController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9ADCB2951AF3800A6F1DF /* UISearchController+Helpers.swift */; };
+		8DB9ADCE2951B2A500A6F1DF /* TypeheadListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9ADCD2951B2A500A6F1DF /* TypeheadListViewController+DSLHelpers.swift */; };
+		8DB9ADD02951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9ADCF2951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift */; };
 		8DCA227929313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */; };
 		8DCA22892934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */; };
 		8DCA228B2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */; };
@@ -233,6 +235,8 @@
 		8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastHeaderReusableView+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DB9ADCB2951AF3800A6F1DF /* UISearchController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchController+Helpers.swift"; sourceTree = "<group>"; };
+		8DB9ADCD2951B2A500A6F1DF /* TypeheadListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TypeheadListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8DB9ADCF2951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerUIComposer.swift; sourceTree = "<group>"; };
 		8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerPresentationAdapter.swift; sourceTree = "<group>"; };
 		8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
@@ -307,7 +311,7 @@
 		8D0BE49B2950A5A800B4171A /* Search UI */ = {
 			isa = PBXGroup;
 			children = (
-				8DB9ADCA2951AF1D00A6F1DF /* UISearchController+Helpers */,
+				8DB9ADCA2951AF1D00A6F1DF /* Helpers */,
 				8D0BE49C2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift */,
 			);
 			path = "Search UI";
@@ -646,12 +650,14 @@
 			path = "AudioPlayer UI";
 			sourceTree = "<group>";
 		};
-		8DB9ADCA2951AF1D00A6F1DF /* UISearchController+Helpers */ = {
+		8DB9ADCA2951AF1D00A6F1DF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				8DB9ADCB2951AF3800A6F1DF /* UISearchController+Helpers.swift */,
+				8DB9ADCD2951B2A500A6F1DF /* TypeheadListViewController+DSLHelpers.swift */,
+				8DB9ADCF2951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift */,
 			);
-			path = "UISearchController+Helpers";
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8DCA227729313B2600DD1EC6 /* AudioPlayer UI */ = {
@@ -857,6 +863,7 @@
 				8D72D06E28F82FAA00C17DDC /* PodcatsAcceptanceTests.swift in Sources */,
 				8D750CA32947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift in Sources */,
 				8D72D04728F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift in Sources */,
+				8DB9ADD02951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift in Sources */,
 				8DDBB78F291BE27F0024A37A /* EpisodeCell+DSLHelpers.swift in Sources */,
 				8DDBB781291BDB5A0024A37A /* ListViewController+DSLHelpers.swift in Sources */,
 				8DDBB773291BC6E20024A37A /* PodcastDetailsUIIngtegrationTests.swift in Sources */,
@@ -883,6 +890,7 @@
 				8D91860628F9976300DE19D1 /* HTTPClientStub.swift in Sources */,
 				8D72D06C28F82F2B00C17DDC /* SceneDelegateTests.swift in Sources */,
 				8D75079629409FA9004500D9 /* UIAlertController+Helpers.swift in Sources */,
+				8DB9ADCE2951B2A500A6F1DF /* TypeheadListViewController+DSLHelpers.swift in Sources */,
 				8D750C912947A2BF004500D9 /* StickyAudioPlayerUIIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

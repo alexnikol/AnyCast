@@ -58,11 +58,11 @@ final class RootComposer {
                 }
                 .delay(for: 0.5, scheduler: DispatchQueue.main)
                 .eraseToAnyPublisher()
-            })
+            }, onTermSelect: { _ in })
         let searchController = UISearchController(searchResultsController: typeheadController)
         searchController.searchBar.delegate = typeheadController
         
-        let (generalSearch, generalSourceDelegate) = GeneralSearchUIComposer.searchComposedWith(searchController: searchController)
+        let (generalSearch, _) = GeneralSearchUIComposer.searchComposedWith(searchController: searchController)
         let searchNavigation = UINavigationController(rootViewController: generalSearch)
         searchNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.searchTabBarItemTitle,

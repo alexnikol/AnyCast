@@ -90,6 +90,7 @@
 		8D9B87402930C454003B52AB /* AudioPlayerModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; };
 		8D9B87412930C454003B52AB /* AudioPlayerModuleiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */; };
+		8DB9ADCC2951AF3800A6F1DF /* UISearchController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9ADCB2951AF3800A6F1DF /* UISearchController+Helpers.swift */; };
 		8DCA227929313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */; };
 		8DCA22892934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */; };
 		8DCA228B2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */; };
@@ -231,6 +232,7 @@
 		8D9B873C2930C454003B52AB /* AudioPlayerModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D9B873D2930C454003B52AB /* AudioPlayerModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DB25F122924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PodcastHeaderReusableView+DSLHelpers.swift"; sourceTree = "<group>"; };
+		8DB9ADCB2951AF3800A6F1DF /* UISearchController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchController+Helpers.swift"; sourceTree = "<group>"; };
 		8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerUIComposer.swift; sourceTree = "<group>"; };
 		8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerPresentationAdapter.swift; sourceTree = "<group>"; };
 		8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 		8D0BE49B2950A5A800B4171A /* Search UI */ = {
 			isa = PBXGroup;
 			children = (
+				8DB9ADCA2951AF1D00A6F1DF /* UISearchController+Helpers */,
 				8D0BE49C2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift */,
 			);
 			path = "Search UI";
@@ -643,6 +646,14 @@
 			path = "AudioPlayer UI";
 			sourceTree = "<group>";
 		};
+		8DB9ADCA2951AF1D00A6F1DF /* UISearchController+Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8DB9ADCB2951AF3800A6F1DF /* UISearchController+Helpers.swift */,
+			);
+			path = "UISearchController+Helpers";
+			sourceTree = "<group>";
+		};
 		8DCA227729313B2600DD1EC6 /* AudioPlayer UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -860,6 +871,7 @@
 				8D75079429409BE2004500D9 /* AudioPlayerClientDummy.swift in Sources */,
 				8D72D04A28F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift in Sources */,
 				8D9B8702292D1CE5003B52AB /* LargeAudioPlayerUIIntegrationTests.swift in Sources */,
+				8DB9ADCC2951AF3800A6F1DF /* UISearchController+Helpers.swift in Sources */,
 				8D5FA2562913C539002BB874 /* PodcastCell+DSLHelpers.swift in Sources */,
 				8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */,
 				8D0BE49D2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift in Sources */,

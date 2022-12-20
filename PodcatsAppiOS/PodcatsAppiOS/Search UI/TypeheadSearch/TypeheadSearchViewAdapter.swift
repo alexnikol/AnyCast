@@ -11,16 +11,18 @@ final class TypeheadSearchViewAdapter: ResourceView {
     typealias ResourceViewModel = TypeheadSearchContentResultViewModel
     
     weak var controller: ListViewController?
+    private let onTermSelect: (String) -> Void
     
-    init(controller: ListViewController) {
+    init(controller: ListViewController, onTermSelect: @escaping (String) -> Void) {
         self.controller = controller
+        self.onTermSelect = onTermSelect
     }
     
     func display(_ viewModel: ResourceViewModel) {
-        let termsViewModels = TypeheadSearchContentPresenter.map(viewModel.terms)
-        let termControllers = termsViewModels.map { termViewModel -> TermCellController in
-            TermCellController(model: termViewModel, selection: {
-                print("SELECTION \(termViewModel)")
+        let termControllers = viewModel.terms.map { term -> TermCellController in
+            let termViewModel = TypeheadSearchContentPresenter.map(term)
+            return TermCellController(model: termViewModel, selection: { [weak self] in
+                self?.onTermSelect(term)
             })
         }
         

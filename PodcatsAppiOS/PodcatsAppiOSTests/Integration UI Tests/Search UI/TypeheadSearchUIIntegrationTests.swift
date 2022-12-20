@@ -55,6 +55,23 @@ class TypeheadSearchUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: ["result 1"])
     }
     
+    func test_loadTypeheadSearchResultCancel_cancelsPreviousRequestBeforeNewRequest() {
+        let (sut, searchController, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        let searchTerm0 = "any search term"
+        searchController.simulateUserInitiatedTyping(with: searchTerm0)
+        XCTAssertEqual(loader.cancelledTerms, [])
+        
+        let searchTerm1 = "any search term 2"
+        searchController.simulateUserInitiatedTyping(with: searchTerm1)
+        XCTAssertEqual(loader.cancelledTerms, [searchTerm0])
+        
+        let searchTerm2 = "any search term 3"
+        searchController.simulateUserInitiatedTyping(with: searchTerm2)
+        XCTAssertEqual(loader.cancelledTerms, [searchTerm0, searchTerm1])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -99,26 +116,32 @@ class TypeheadSearchUIIntegrationTests: XCTestCase {
     }
     
     private class LoaderSpy {
+        typealias Publsiher = AnyPublisher<TypeheadSearchContentResult, Error>
+        
         private var requests = [PassthroughSubject<TypeheadSearchContentResult, Error>]()
+        private(set) var cancelledTerms = [String]()
         
         var loadCallCount: Int {
             return requests.count
         }
         
-        func loadPublisher(for searchTerm: String) -> AnyPublisher<TypeheadSearchContentResult, Error> {
+        func loadPublisher(for searchTerm: String) -> Publsiher {
             let publisher = PassthroughSubject<TypeheadSearchContentResult, Error>()
+            
+            let cancelPublisher = publisher.handleEvents(receiveCancel: { [weak self] in
+                self?.cancelledTerms.append(searchTerm)
+            })
+            
             requests.append(publisher)
-            return publisher.eraseToAnyPublisher()
+            return cancelPublisher.eraseToAnyPublisher()
         }
         
         func completeRequest(with result: TypeheadSearchContentResult, atIndex index: Int) {
-            let request = requests[index]
-            request.send(result)
+            requests[index].send(result)
         }
         
         func completeRequestWitError(atIndex index: Int) {
-            let request = requests[index]
-            request.send(completion: .failure(anyNSError()))
+            requests[index].send(completion: .failure(anyNSError()))
         }
     }
 }

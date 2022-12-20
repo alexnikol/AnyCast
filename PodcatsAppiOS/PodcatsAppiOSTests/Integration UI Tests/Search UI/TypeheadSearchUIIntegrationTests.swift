@@ -72,17 +72,36 @@ class TypeheadSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.cancelledTerms, [searchTerm0, searchTerm1])
     }
     
+    func test_onTermSelection_deliversSelectedTerm() {
+        var receivedResult: [String] = []
+        let exp = expectation(description: "Wait on term selection")
+        let (sut, searchController, loader) = makeSUT(onTermSelect: {
+            exp.fulfill()
+            receivedResult.append($0)
+        })
+        sut.loadViewIfNeeded()
+        let result = ["any search 1", "any search 2"]
+        searchController.simulateUserInitiatedTyping(with: "any search term")
+        loader.completeRequest(with: .init(terms: result, genres: [], podcasts: []), atIndex: 0)
+        
+        sut.simulateUserInitiatedTermSelection(at: 1)
+        
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedResult, ["any search 2"])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
-        podcastID: String = UUID().uuidString,
+        onTermSelect: @escaping (String) -> Void = { _ in },
         file: StaticString = #file,
         line: UInt = #line
     ) -> (sut: TypeheadListViewController, searchController: UISearchController, loader: LoaderSpy) {
         let loader = LoaderSpy()
         let sut = TypeheadSearchUIComposer.searchComposedWith(
             searchLoader: loader.loadPublisher,
-            onTermSelect: { _ in }
+            onTermSelect: onTermSelect
         )
         let searchController = UISearchController(searchResultsController: sut)
         searchController.searchBar.delegate = sut

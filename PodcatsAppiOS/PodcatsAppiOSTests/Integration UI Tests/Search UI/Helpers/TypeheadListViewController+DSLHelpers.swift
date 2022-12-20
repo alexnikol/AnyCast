@@ -16,4 +16,8 @@ extension TypeheadListViewController {
     func numberOfRenderedSearchTermViews() -> Int {
         return tableView.numberOfRows(inSection: searchTermsSection)
     }
+    
+    func simulateUserInitiatedTermSelection(at row: Int) {
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: searchTermsSection))
+    }
 }

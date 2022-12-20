@@ -18,11 +18,11 @@ final class TypeheadSearchPresentationAdapter: TypeheadListViewControllerDelegat
     }
     
     func searchTextDidChange(term: String) {
-        print("searchTextDidChange \(term)")
+        didRequestCancel()
         didRequestLoading(term: term)
     }
     
-    func didRequestLoading(term: String) {
+    private func didRequestLoading(term: String) {
         presenter?.didStartLoading()
         cancellable = loader(term)
             .dispatchOnMainQueue()
@@ -41,7 +41,7 @@ final class TypeheadSearchPresentationAdapter: TypeheadListViewControllerDelegat
             )
     }
     
-    func didRequestCancel() {
+    private func didRequestCancel() {
         cancellable?.cancel()
     }
 }

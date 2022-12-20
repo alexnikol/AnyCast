@@ -14,9 +14,9 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
         let domainModel = TypeheadSearchContentResult(terms: terms, genres: genres, podcasts: podcasts)
         
         let generalViewModel = TypeheadSearchContentPresenter.map(domainModel)
-        let termsViewModels = TypeheadSearchContentPresenter.map(domainModel.terms)
-        let genresViewModels = TypeheadSearchContentPresenter.map(domainModel.genres)
-        let podcastsViewModels = TypeheadSearchContentPresenter.map(domainModel.podcasts)
+        let termsViewModels = domainModel.terms.map(TypeheadSearchContentPresenter.map)
+        let genresViewModels = domainModel.genres.map(TypeheadSearchContentPresenter.map)
+        let podcastsViewModels = domainModel.podcasts.map(TypeheadSearchContentPresenter.map)
         
         XCTAssertEqual(generalViewModel.terms, domainModel.terms)
         XCTAssertEqual(generalViewModel.podcasts, domainModel.podcasts)

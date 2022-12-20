@@ -14,21 +14,19 @@ public final class TypeheadSearchContentPresenter {
         )
     }
     
-    public static func map(_ genres: [Genre]) -> [TypeheadSearchGenreViewModel] {
-        return genres.map { $0.name }
+    public static func map(_ genre: Genre) -> TypeheadSearchGenreViewModel {
+        genre.name
     }
     
-    public static func map(_ terms: [String]) -> [TypeheadSearchTermViewModel] {
-        return terms
+    public static func map(_ term: String) -> TypeheadSearchTermViewModel {
+        return term
     }
     
-    public static func map(_ podcasts: [SearchResultPodcast]) -> [TypeheadSearchResultPodcastViewModel] {
-        return podcasts.map {
-            TypeheadSearchResultPodcastViewModel(
-                titleOriginal: $0.titleOriginal,
-                publisherOriginal: $0.publisherOriginal,
-                thumbnail: $0.thumbnail
-            )
-        }
+    public static func map(_ podcast: SearchResultPodcast) -> TypeheadSearchResultPodcastViewModel {
+        TypeheadSearchResultPodcastViewModel(
+            titleOriginal: podcast.titleOriginal,
+            publisherOriginal: podcast.publisherOriginal,
+            thumbnail: podcast.thumbnail
+        )
     }
 }

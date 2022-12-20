@@ -34,6 +34,12 @@ class TypeheadSearchUIIntegrationTests: XCTestCase {
         
         loader.completeRequest(with: .init(terms: ["result 1"], genres: [], podcasts: []), atIndex: 0)
         assertThat(sut, isRendering: ["result 1"])
+        
+        searchController.simulateUserInitiatedTyping(with: "any search term")
+        assertThat(sut, isRendering: ["result 1"])
+        
+        loader.completeRequest(with: .init(terms: ["result 2", "result 3"], genres: [], podcasts: []), atIndex: 1)
+        assertThat(sut, isRendering: ["result 2", "result 3"])
     }
     
     // MARK: - Helpers

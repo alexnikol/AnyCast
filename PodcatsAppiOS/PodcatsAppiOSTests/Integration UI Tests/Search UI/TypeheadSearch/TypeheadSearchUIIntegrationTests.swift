@@ -7,7 +7,7 @@ import SearchContentModule
 import SearchContentModuleiOS
 @testable import Podcats
 
-class TypeheadSearchUIIntegrationTests: XCTestCase {
+final class TypeheadSearchUIIntegrationTests: XCTestCase {
     
     func test_loadTypeheadSearchResultActions_requestTypeheadSearchOnTextChange() {
         let (sut, searchController, loader) = makeSUT()

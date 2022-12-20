@@ -310,8 +310,7 @@
 		8D0BE49B2950A5A800B4171A /* Search UI */ = {
 			isa = PBXGroup;
 			children = (
-				8DB9ADCA2951AF1D00A6F1DF /* Helpers */,
-				8D0BE49C2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift */,
+				8DB9ADD32952042F00A6F1DF /* TypeheadSearch */,
 			);
 			path = "Search UI";
 			sourceTree = "<group>";
@@ -658,6 +657,15 @@
 				8DB9ADCF2951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8DB9ADD32952042F00A6F1DF /* TypeheadSearch */ = {
+			isa = PBXGroup;
+			children = (
+				8DB9ADCA2951AF1D00A6F1DF /* Helpers */,
+				8D0BE49C2950A5D000B4171A /* TypeheadSearchUIIntegrationTests.swift */,
+			);
+			path = TypeheadSearch;
 			sourceTree = "<group>";
 		};
 		8DCA227729313B2600DD1EC6 /* AudioPlayer UI */ = {

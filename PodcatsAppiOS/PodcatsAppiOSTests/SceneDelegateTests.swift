@@ -5,7 +5,7 @@ import PodcastsModule
 import PodcastsGenresListiOS
 @testable import Podcats
 
-class SceneDelegateTests: XCTestCase {
+final class SceneDelegateTests: XCTestCase {
     
     func test_configureWindow_setsWindowAsKeyAndVisible() {
         let window = UIWindow()

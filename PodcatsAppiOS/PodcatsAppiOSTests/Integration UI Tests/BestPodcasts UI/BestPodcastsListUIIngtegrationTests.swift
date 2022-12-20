@@ -7,7 +7,7 @@ import PodcastsModuleiOS
 import SharedComponentsiOSModule
 @testable import Podcats
 
-class BestPodcastsListUIIngtegrationTests: XCTestCase {
+final class BestPodcastsListUIIngtegrationTests: XCTestCase {
     
     func test_loadPodcastsActions_requestPodcastsByGenreFromLoader() {
         let (sut, loader) = makeSUT()

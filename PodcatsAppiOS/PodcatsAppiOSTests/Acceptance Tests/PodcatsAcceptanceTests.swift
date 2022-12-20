@@ -10,7 +10,7 @@ import PodcastsModuleiOS
 import AudioPlayerModuleiOS
 @testable import Podcats
 
-class PodcatsAcceptanceTests: XCTestCase {
+final class PodcatsAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
         let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))

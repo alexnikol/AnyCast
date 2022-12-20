@@ -28,9 +28,4 @@ public enum TypeheadSearchUIComposer {
         )
         return controller
     }
-    
-    private class NullObjectStateResourceView: ResourceLoadingView, ResourceErrorView {
-        func display(_ viewModel: ResourceLoadingViewModel) {}
-        func display(_ viewModel: ResourceErrorViewModel) {}
-    }
 }

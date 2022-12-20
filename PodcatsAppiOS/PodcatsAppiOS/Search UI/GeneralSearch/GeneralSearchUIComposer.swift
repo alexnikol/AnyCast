@@ -13,18 +13,17 @@ public enum GeneralSearchUIComposer {
         let presentationAdapter2 = GenericLoaderPresentationAdapter<GeneralSearchContentResult, GeneralSearchViewAdapter>(
             loader: { Empty().eraseToAnyPublisher() }
         )
-        let refreshController = RefreshViewController(delegate: presentationAdapter2)
         let controller = ListViewController(refreshController: nil)
         controller.title = "Search"
-        
         controller.navigationItem.searchController = searchController
+        let nullObjectPresenterStateView = NullObjectStateResourceView()
         
         presentationAdapter2.presenter = LoadResourcePresenter(
             resourceView: GeneralSearchViewAdapter(
                 controller: controller
             ),
-            loadingView: WeakRefVirtualProxy(refreshController),
-            errorView: WeakRefVirtualProxy(refreshController),
+            loadingView: nullObjectPresenterStateView,
+            errorView: nullObjectPresenterStateView,
             mapper: { _ in "" }
         )
         return (controller, presentationAdapter)

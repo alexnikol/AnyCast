@@ -91,6 +91,19 @@ class TypeheadSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(receivedResult, ["any search 2"])
     }
     
+    func test_loadTypeheadSearchResultCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, searchController, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        searchController.simulateUserInitiatedTyping(with: "any search term")
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completeRequest(with: .init(terms: ["any term"], genres: [], podcasts: []), atIndex: 0)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

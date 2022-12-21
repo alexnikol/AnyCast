@@ -6,7 +6,7 @@ import SearchContentModule
 
 final class TypeheadSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {
     
-    func test_endToEndTestServerGETTypeHeadSearchContentResult_matchesFixedTestGenresData() {
+    func test_endToEndTestServerGETTypeHeadSearchContentResult_matchesFixedTestSearchData() {
         switch fetchResult(from: testServerURL, withMapper: TypeheadSearchContentMapper.map) {
         case let .success(searchResult):
             XCTAssertEqual(searchResult.terms.count, 3, "Expected 3 searched terms in search result")
@@ -24,9 +24,9 @@ final class TypeheadSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {
             XCTAssertEqual(searchResult.podcasts[1], expectedSearchPodcast(at: 1))
             
         case let .failure(error):
-            XCTFail("Expected successful genres list, but got \(error) instead")
+            XCTFail("Expected successful search result, but got \(error) instead")
         default:
-            XCTFail("Expected successful genres list, but got no result instead")
+            XCTFail("Expected successful search result, but got no result instead")
         }
     }
     

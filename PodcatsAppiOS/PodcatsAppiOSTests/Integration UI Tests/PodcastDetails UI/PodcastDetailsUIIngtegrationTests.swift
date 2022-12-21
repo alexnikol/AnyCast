@@ -186,7 +186,7 @@ final class PodcastDetailsUIIngtegrationTests: XCTestCase {
     
     private func assertThat(_ sut: ListViewController, isRendering episodes: [Episode], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedEpisodesViews() == episodes.count else {
-            return XCTFail("Expected \(episodes.count) rendered episodes, got \(sut.numberOfRenderedEpisodesViews()) rendered views instead")
+            return XCTFail("Expected \(episodes.count) rendered episodes, got \(sut.numberOfRenderedEpisodesViews()) rendered views instead", file: file, line: line)
         }
         
         episodes.enumerated().forEach { index, episode in

@@ -2,6 +2,7 @@
 
 import UIKit
 import SharedComponentsiOSModule
+import PodcastsModuleiOS
 
 extension ListViewController {
         
@@ -11,5 +12,9 @@ extension ListViewController {
         
     func numberOfRenderedSearchedEpisodesViews() -> Int {
         return tableView.numberOfRows(inSection: searchTermsSection)
+    }
+    
+    func searchEpisodeView(at row: Int) -> EpisodeCell? {
+        return view(at: row, section: searchTermsSection) as? EpisodeCell
     }
 }

@@ -104,7 +104,7 @@ final class GenresUIIntegrationTests: XCTestCase {
     
     private func assertThat(_ sut: GenresListViewController, isRendering genres: [Genre], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedGenresViews() == genres.count else {
-            return XCTFail("Expected \(genres.count) rendered genres, got \(sut.numberOfRenderedGenresViews()) rendered views instead")
+            return XCTFail("Expected \(genres.count) rendered genres, got \(sut.numberOfRenderedGenresViews()) rendered views instead", file: file, line: line)
         }
         
         genres.enumerated().forEach { index, genre in

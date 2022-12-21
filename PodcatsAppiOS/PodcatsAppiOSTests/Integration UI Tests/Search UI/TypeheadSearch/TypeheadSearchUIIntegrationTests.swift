@@ -126,7 +126,7 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
     
     private func assertThat(_ sut: TypeheadListViewController, isRendering terms: [String], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedSearchTermViews() == terms.count else {
-            return XCTFail("Expected \(terms.count) rendered terms, got \(sut.numberOfRenderedSearchTermViews()) rendered views instead")
+            return XCTFail("Expected \(terms.count) rendered terms, got \(sut.numberOfRenderedSearchTermViews()) rendered views instead", file: file, line: line)
         }
         
         terms.enumerated().forEach { index, term in

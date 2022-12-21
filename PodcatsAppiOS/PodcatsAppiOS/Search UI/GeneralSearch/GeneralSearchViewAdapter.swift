@@ -6,9 +6,10 @@ import Combine
 import LoadResourcePresenter
 import SearchContentModule
 import SearchContentModuleiOS
+import PodcastsModuleiOS
 
 final class GeneralSearchViewAdapter: ResourceView {
-    typealias ResourceViewModel = String
+    typealias ResourceViewModel = GeneralSearchContentResultViewModel
     
     weak var controller: ListViewController?
     
@@ -16,5 +17,14 @@ final class GeneralSearchViewAdapter: ResourceView {
         self.controller = controller
     }
     
-    func display(_ viewModel: ResourceViewModel) {}
+    func display(_ viewModel: ResourceViewModel) {
+        let episodesCells = viewModel.episodes.map { episode in
+            let episodeViewModel = GeneralSearchContentPresenter.map(episode)
+            return EpisodeCellController(viewModel: episodeViewModel, selection: {})
+        }
+        let section = DefaultSectionWithNoHeaderAndFooter(cellControllers: episodesCells)
+        let sections: [SectionController] = [section]
+        
+        controller?.display(sections)
+    }
 }

@@ -28,7 +28,7 @@ public enum GeneralSearchUIComposer {
             ),
             loadingView: nullObjectPresenterStateView,
             errorView: nullObjectPresenterStateView,
-            mapper: { _ in "" }
+            mapper: GeneralSearchContentPresenter.map
         )
         return (controller, presentationAdapter)
     }

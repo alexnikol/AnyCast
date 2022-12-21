@@ -28,7 +28,7 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
             expectedViewModel: TypeheadSearchResultPodcastViewModel(
                 titleOriginal: "Title",
                 publisherOriginal: "Publisher",
-                thumbnail: anyURL()
+                thumbnail: anotherURL()
             )
         )
         assert(
@@ -36,7 +36,7 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
             expectedViewModel: TypeheadSearchResultPodcastViewModel(
                 titleOriginal: "Another Title",
                 publisherOriginal: "Another Publisher",
-                thumbnail: anyURL()
+                thumbnail: anotherURL()
             )
         )
     }

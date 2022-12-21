@@ -20,14 +20,14 @@ func uniquePodcastSearchResults() -> [SearchResultPodcast] {
             titleOriginal: "Title",
             publisherOriginal: "Publisher",
             image: anyURL(),
-            thumbnail: anyURL()
+            thumbnail: anotherURL()
         ),
         SearchResultPodcast(
             id: UUID().uuidString,
             titleOriginal: "Another Title",
             publisherOriginal: "Another Publisher",
             image: anyURL(),
-            thumbnail: anyURL()
+            thumbnail: anotherURL()
         )
     ]
 }
@@ -39,14 +39,14 @@ func uniqueEpisodeSearchResults() -> [SearchResultEpisode] {
             titleOriginal: "Title",
             descriptionOriginal: "Description",
             image: anyURL(),
-            thumbnail: anyURL()
+            thumbnail: anotherURL()
         ),
         SearchResultEpisode(
             id: UUID().uuidString,
             titleOriginal: "Another Title",
             descriptionOriginal: "Another Description",
             image: anyURL(),
-            thumbnail: anyURL()
+            thumbnail: anotherURL()
         )
     ]
 }

@@ -94,6 +94,7 @@
 		8DB9ADD02951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9ADCF2951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift */; };
 		8DB9ADD22951E1E800A6F1DF /* NullObjectStateResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9ADD12951E1E800A6F1DF /* NullObjectStateResourceView.swift */; };
 		8DB9ADD62952056200A6F1DF /* GeneralSearchUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9ADD52952056200A6F1DF /* GeneralSearchUIIntegrationTests.swift */; };
+		8DB9ADD929532A4C00A6F1DF /* GeneralSearch+ListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9ADD829532A4C00A6F1DF /* GeneralSearch+ListViewController+DSLHelpers.swift */; };
 		8DCA227929313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */; };
 		8DCA22892934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */; };
 		8DCA228B2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */; };
@@ -239,6 +240,7 @@
 		8DB9ADCF2951B3EE00A6F1DF /* UITableViewCell+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DB9ADD12951E1E800A6F1DF /* NullObjectStateResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullObjectStateResourceView.swift; sourceTree = "<group>"; };
 		8DB9ADD52952056200A6F1DF /* GeneralSearchUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchUIIntegrationTests.swift; sourceTree = "<group>"; };
+		8DB9ADD829532A4C00A6F1DF /* GeneralSearch+ListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralSearch+ListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerUIComposer.swift; sourceTree = "<group>"; };
 		8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerPresentationAdapter.swift; sourceTree = "<group>"; };
 		8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeAudioPlayerViewAdapter.swift; sourceTree = "<group>"; };
@@ -674,9 +676,18 @@
 		8DB9ADD42952055300A6F1DF /* GeneralSearch */ = {
 			isa = PBXGroup;
 			children = (
+				8DB9ADD729532A2E00A6F1DF /* Helpers */,
 				8DB9ADD52952056200A6F1DF /* GeneralSearchUIIntegrationTests.swift */,
 			);
 			path = GeneralSearch;
+			sourceTree = "<group>";
+		};
+		8DB9ADD729532A2E00A6F1DF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8DB9ADD829532A4C00A6F1DF /* GeneralSearch+ListViewController+DSLHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8DCA227729313B2600DD1EC6 /* AudioPlayer UI */ = {
@@ -878,6 +889,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DB9ADD929532A4C00A6F1DF /* GeneralSearch+ListViewController+DSLHelpers.swift in Sources */,
 				8D75079229409BC6004500D9 /* AudioPlayerControlsSpy.swift in Sources */,
 				8D72D06E28F82FAA00C17DDC /* PodcatsAcceptanceTests.swift in Sources */,
 				8D750CA32947B32C004500D9 /* AudioPlayerUI+SharedHelpers.swift in Sources */,

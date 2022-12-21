@@ -42,7 +42,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         trackForMemoryLeaks(loader, file: file, line: line)
         return (sut, sourceDelegate, loader)
     }
-    
+        
     private class LoaderSpy {
         typealias Publsiher = AnyPublisher<GeneralSearchContentResult, Error>
         

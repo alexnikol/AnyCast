@@ -24,7 +24,7 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     }
     
     func test_createsSearchResultEpisodeViewModel() {
-        let episode = uniqueGeneralSearchEpisodes()[0]
+        let episode = uniqueEpisodeSearchResults()[0]
         
         let episodeViewModel = GeneralSearchContentPresenter.map(episode)
         XCTAssertEqual(episodeViewModel.title, episode.titleOriginal)
@@ -33,7 +33,7 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     }
     
     func test_createsSearchResultPodcastViewModel() {
-        let podcast = uniqueGeneralSearchPodcasts()[0]
+        let podcast = uniquePodcastSearchResults()[0]
         
         let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
         XCTAssertEqual(podcastViewModel.title, podcast.titleOriginal)
@@ -42,7 +42,7 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     }
     
     func test_createsSearchResultCuratedListViewModel() {
-        let curatedList = uniqueGeneralSearchCuratedLists()[0]
+        let curatedList = uniqueCuratedListsSearchResults()[0]
         
         let curatedListViewModel = GeneralSearchContentPresenter.map(curatedList)
         XCTAssertEqual(curatedListViewModel.title, curatedList.titleOriginal)
@@ -92,89 +92,11 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     }
     
     private func uniqueGeneralSearchContentResult() -> GeneralSearchContentResult {
-        let episodes = uniqueGeneralSearchEpisodes().map(GeneralSearchContentResultItem.episode)
-        let podcasts = uniqueGeneralSearchPodcasts().map(GeneralSearchContentResultItem.podcast)
-        let curatedLists = uniqueGeneralSearchCuratedLists().map(GeneralSearchContentResultItem.curatedList)
+        let episodes = uniqueEpisodeSearchResults().map(GeneralSearchContentResultItem.episode)
+        let podcasts = uniquePodcastSearchResults().map(GeneralSearchContentResultItem.podcast)
+        let curatedLists = uniqueCuratedListsSearchResults().map(GeneralSearchContentResultItem.curatedList)
         
         let domainItems = episodes + podcasts + curatedLists
         return GeneralSearchContentResult(result: domainItems)
-    }
-    
-    private func uniqueGeneralSearchEpisodes() -> [SearchResultEpisode] {
-        [
-            SearchResultEpisode(
-                id: UUID().uuidString,
-                titleOriginal: "Episode title",
-                descriptionOriginal: "Description",
-                image: anyURL(),
-                thumbnail: anotherURL()
-            ),
-            SearchResultEpisode(
-                id: UUID().uuidString,
-                titleOriginal: "Another Episode Title",
-                descriptionOriginal: "Another Description",
-                image: anyURL(),
-                thumbnail: anotherURL()
-            )
-        ]
-    }
-    
-    private func uniqueGeneralSearchPodcasts() -> [SearchResultPodcast] {
-        [
-            SearchResultPodcast(
-                id: UUID().uuidString,
-                titleOriginal: "Podcast Title",
-                publisherOriginal: "Publisher",
-                image: anyURL(),
-                thumbnail: anotherURL()
-            ),
-            SearchResultPodcast(
-                id: UUID().uuidString,
-                titleOriginal: "Another Podcast Title",
-                publisherOriginal: "Another Publisher",
-                image: anyURL(),
-                thumbnail: anotherURL()
-            )
-        ]
-    }
-    
-    private func uniqueGeneralSearchCuratedLists() -> [SearchResultCuratedList] {
-        [
-            SearchResultCuratedList(
-                id: UUID().uuidString,
-                titleOriginal: "Curated Title",
-                descriptionOriginal: "Curated Description",
-                podcasts: [
-                    SearchResultPodcast(
-                        id: UUID().uuidString,
-                        titleOriginal: "Curated Podcast Title",
-                        publisherOriginal: "Curated Publisher",
-                        image: anyURL(),
-                        thumbnail: anotherURL()
-                    ),
-                    SearchResultPodcast(
-                        id: UUID().uuidString,
-                        titleOriginal: "Another Curated Podcast title",
-                        publisherOriginal: "Another Curated Publisher",
-                        image: anyURL(),
-                        thumbnail: anotherURL()
-                    )
-                ]
-            ),
-            SearchResultCuratedList(
-                id: UUID().uuidString,
-                titleOriginal: "Another Curated Title",
-                descriptionOriginal: "Another Curated Description",
-                podcasts: [
-                    SearchResultPodcast(
-                        id: UUID().uuidString,
-                        titleOriginal: "One More Curated Podcast Title",
-                        publisherOriginal: "One More Curated Publisher",
-                        image: anyURL(),
-                        thumbnail: anotherURL()
-                    )
-                ]
-            )
-        ]
     }
 }

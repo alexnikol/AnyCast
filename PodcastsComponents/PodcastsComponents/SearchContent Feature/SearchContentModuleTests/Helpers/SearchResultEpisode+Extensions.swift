@@ -13,7 +13,12 @@ extension Array where Element == SearchResultEpisode {
                 "thumbnail": episode.thumbnail.absoluteString,
                 "title_original": episode.titleOriginal,
                 "description_original": episode.descriptionOriginal,
-                "podcast": podcast
+                "podcast": podcast,
+                "audio": episode.audio.absoluteString,
+                "audio_length_sec": episode.audioLengthInSeconds,
+                "explicit_content": episode.containsExplicitContent,
+                "pub_date_ms": episode.publishDateInMiliseconds,
+                
             ] as [String: Any]
             
             return json

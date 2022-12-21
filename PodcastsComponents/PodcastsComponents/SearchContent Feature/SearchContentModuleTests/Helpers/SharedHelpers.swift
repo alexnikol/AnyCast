@@ -39,14 +39,22 @@ func uniqueEpisodeSearchResults() -> [SearchResultEpisode] {
             titleOriginal: "Title",
             descriptionOriginal: "Description",
             image: anyURL(),
-            thumbnail: anotherURL()
+            thumbnail: anotherURL(),
+            audio: anyURL(),
+            audioLengthInSeconds: 200,
+            containsExplicitContent: true,
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
         ),
         SearchResultEpisode(
             id: UUID().uuidString,
             titleOriginal: "Another Title",
             descriptionOriginal: "Another Description",
             image: anyURL(),
-            thumbnail: anotherURL()
+            thumbnail: anotherURL(),
+            audio: anotherURL(),
+            audioLengthInSeconds: 320,
+            containsExplicitContent: false,
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
         )
     ]
 }

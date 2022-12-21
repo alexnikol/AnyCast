@@ -2349,8 +2349,8 @@
 		8DE46EA1294F328B007B204C /* GeneralSearchContent */ = {
 			isa = PBXGroup;
 			children = (
-				8DB9ADDA29532EDF00A6F1DF /* GeneralSearchContent Presentation */,
 				8DE46EA2294F32AC007B204C /* GeneralSearchContent API */,
+				8DB9ADDA29532EDF00A6F1DF /* GeneralSearchContent Presentation */,
 			);
 			path = GeneralSearchContent;
 			sourceTree = "<group>";

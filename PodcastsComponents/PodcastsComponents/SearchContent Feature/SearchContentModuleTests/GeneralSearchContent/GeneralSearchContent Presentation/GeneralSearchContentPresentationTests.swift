@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import PodcastsModule
 import SharedTestHelpersLibrary
 import SearchContentModule
 
@@ -27,8 +28,8 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
         let episode = uniqueEpisodeSearchResults()[0]
         
         let episodeViewModel = GeneralSearchContentPresenter.map(episode)
-        XCTAssertEqual(episodeViewModel.title, episode.titleOriginal)
-        XCTAssertEqual(episodeViewModel.description, episode.descriptionOriginal)
+        XCTAssertEqual(episodeViewModel.title, episode.title)
+        XCTAssertEqual(episodeViewModel.description, episode.description)
         XCTAssertEqual(episodeViewModel.thumbnail, episode.thumbnail)
     }
     
@@ -66,7 +67,7 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     }
     
     private func assert(
-        receivedEpisode: SearchResultEpisode,
+        receivedEpisode: Episode,
         domainItem: GeneralSearchContentResultItem,
         file: StaticString = #file,
         line: UInt = #line

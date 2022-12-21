@@ -1,12 +1,13 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
+import PodcastsModule
 
 public final class GeneralSearchContentPresenter {
     private init() {}
     
     public static func map(_ model: GeneralSearchContentResult) -> GeneralSearchContentResultViewModel {
-        var episodes: [SearchResultEpisode] = []
+        var episodes: [Episode] = []
         var podcasts: [SearchResultPodcast] = []
         var curatedLists: [SearchResultCuratedList] = []
         
@@ -30,12 +31,8 @@ public final class GeneralSearchContentPresenter {
         )
     }
     
-    public static func map(_ model: SearchResultEpisode) -> SearchResultEpisodeViewModel {
-        SearchResultEpisodeViewModel(
-            title: model.titleOriginal,
-            description: model.descriptionOriginal,
-            thumbnail: model.thumbnail
-        )
+    public static func map(_ model: Episode, calendar: Calendar = .current, locale: Locale = .current) -> EpisodeViewModel {
+        return EpisodesPresenter(calendar: calendar, locale: locale).map(model)
     }
     
     public static func map(_ model: SearchResultPodcast) -> SearchResultPodcastViewModel {

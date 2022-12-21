@@ -57,7 +57,7 @@ final class PodcatsAcceptanceTests: XCTestCase {
     func test_onPodcastSelection_displaysPodcastDetails() {
         let bestPodcasts = showBestPodcasts()
         let podcastDetails = showPodcastDetails(from: bestPodcasts)
-
+        
         XCTAssertEqual(podcastDetails.numberOfRenderedEpisodesViews(), 1)
     }
     
@@ -69,7 +69,6 @@ final class PodcatsAcceptanceTests: XCTestCase {
         
         XCTAssertEqual(audioPlayer.episodeTitleText(), "Episode title")
         XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Podcast  title")
-        
     }
     
     // MARK: - Helpers

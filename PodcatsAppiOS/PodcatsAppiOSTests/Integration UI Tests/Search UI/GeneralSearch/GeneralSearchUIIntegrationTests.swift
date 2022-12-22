@@ -30,14 +30,26 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         let (sut, sourceDelegate, loader) = makeSUT()
         sut.loadViewIfNeeded()
         assertThat(sut, isRenderingEpisodes: [])
+        assertThat(sut, isRenderingPodcasts: [])
+        assertThat(sut, isRenderingCuratedLists: [])
         
         sourceDelegate.simulateSearchTermReceiving(term: "term 1")
         assertThat(sut, isRenderingEpisodes: [])
-    
-        let episode1 = makeEpisode()
-        let episode2 = makeEpisode()
-        loader.completeRequest(with: .init(result: [.episode(episode1), .episode(episode2)]), atIndex: 0)
-        assertThat(sut, isRenderingEpisodes: [episode1, episode2])
+        assertThat(sut, isRenderingPodcasts: [])
+        assertThat(sut, isRenderingCuratedLists: [])
+        
+        let episodes = makeEpisodes()
+        let episodesModels = episodes.map(GeneralSearchContentResultItem.episode)
+        let podcasts = makePodcasts()
+        let podcastsModels = podcasts.map(GeneralSearchContentResultItem.podcast)
+        let curatedList = makeCuratedLists()
+        let curatedListModels = curatedList.map(GeneralSearchContentResultItem.curatedList)
+        let result = GeneralSearchContentResult(result: curatedListModels + podcastsModels + episodesModels)
+        loader.completeRequest(with: result, atIndex: 0)
+        
+        assertThat(sut, isRenderingEpisodes: episodes)
+        assertThat(sut, isRenderingPodcasts: podcasts)
+        assertThat(sut, isRenderingCuratedLists: curatedList)
     }
     
     // MARK: - Helpers
@@ -75,6 +87,55 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
     
     private func assertThat(
         _ sut: ListViewController,
+        isRenderingPodcasts podcasts: [SearchResultPodcast],
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        guard sut.numberOfRenderedSearchedPodcastsViews() == podcasts.count else {
+            return XCTFail("Expected \(podcasts.count) rendered podcasts, got \(sut.numberOfRenderedSearchedPodcastsViews()) rendered views instead", file: file, line: line)
+        }
+        
+        podcasts.enumerated().forEach { index, podcast in
+            assertThat(sut, hasViewConfiguredFor: podcast, at: index, file: file, line: line)
+        }
+    }
+    
+    private func assertThat(
+        _ sut: ListViewController,
+        isRenderingCuratedLists curatedLists: [SearchResultCuratedList],
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        guard sut.numberOfCuratedList() == curatedLists.count else {
+            return XCTFail("Expected \(curatedLists.count) rendered curated lists, got \(sut.numberOfCuratedList()) rendered views instead", file: file, line: line)
+        }
+        
+        print("curatedLists \(curatedLists)")
+        guard !curatedLists.isEmpty else { return }
+        
+        curatedLists[0].podcasts.enumerated().forEach { index, podcast in
+            assertThat(
+                sut,
+                hasViewConfiguredForPodcastInCuratedList: podcast,
+                at: IndexPath(row: index, section: 2),
+                file: file,
+                line: line
+            )
+        }
+        
+        curatedLists[1].podcasts.enumerated().forEach { index, podcast in
+            assertThat(
+                sut,
+                hasViewConfiguredForPodcastInCuratedList: podcast,
+                at: IndexPath(row: index, section: 3),
+                file: file,
+                line: line
+            )
+        }
+    }
+    
+    private func assertThat(
+        _ sut: ListViewController,
         hasViewConfiguredFor episode: Episode,
         at index: Int,
         file: StaticString = #file,
@@ -89,6 +150,82 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(view?.descriptionText, episodeViewModel.description, "Wrong description at index \(index)", file: file, line: line)
         XCTAssertEqual(view?.audioLengthText, episodeViewModel.displayAudioLengthInSeconds, "Wrong audio length at index \(index)", file: file, line: line)
         XCTAssertEqual(view?.publishDateText, episodeViewModel.displayPublishDate, "Wrong publish date at index \(index)", file: file, line: line)
+    }
+    
+    private func assertThat(
+        _ sut: ListViewController,
+        hasViewConfiguredFor podcast: SearchResultPodcast,
+        at index: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+        let view = sut.searchPodcastView(at: index)
+        XCTAssertNotNil(view, file: file, line: line)
+        XCTAssertEqual(view?.titleText, podcastViewModel.title, "Wrong title at index \(index)", file: file, line: line)
+        XCTAssertEqual(view?.publisherText, podcastViewModel.publisher, "Wrong publisher at index \(index)", file: file, line: line)
+    }
+    
+    private func assertThat(
+        _ sut: ListViewController,
+        hasViewConfiguredForPodcastInCuratedList podcast: SearchResultPodcast,
+        at indexPath: IndexPath,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+        let view = sut.searchPodcastCuratedListView(at: indexPath.row, curatedListSection: indexPath.section)
+        XCTAssertNotNil(view, file: file, line: line)
+        XCTAssertEqual(view?.titleText, podcastViewModel.title, "Wrong title at indexPath \(indexPath)", file: file, line: line)
+        XCTAssertEqual(view?.publisherText, podcastViewModel.publisher, "Wrong publisher at indexPath \(indexPath)", file: file, line: line)
+    }
+    
+    private func makeEpisodes() -> [Episode] {
+        [
+            makeEpisode(),
+            makeEpisode()
+        ]
+    }
+    
+    private func makePodcasts() -> [SearchResultPodcast] {
+        [
+            makeSearchPodcast(title: "Any Podcast title", publisher: "Any Publisher title"),
+            makeSearchPodcast(title: "Another Podcast title", publisher: "Another Podcast title")
+        ]
+    }
+    
+    private func makeCuratedLists() -> [SearchResultCuratedList] {
+        [
+            makeSearchCuratedList(
+                title: "Curated list 1",
+                description: "Description 1",
+                podcasts: makePodcasts()
+            ),
+            makeSearchCuratedList(
+                title: "Curated list 2",
+                description: "Description 2",
+                podcasts: makePodcasts()
+            )
+        ]
+    }
+    
+    private func makeSearchPodcast(title: String, publisher: String) -> SearchResultPodcast {
+        SearchResultPodcast(
+            id: UUID().uuidString,
+            titleOriginal: title,
+            publisherOriginal: publisher,
+            image: anyURL(),
+            thumbnail: anotherURL()
+        )
+    }
+    
+    private func makeSearchCuratedList(title: String, description: String, podcasts: [SearchResultPodcast]) -> SearchResultCuratedList {
+        SearchResultCuratedList(
+            id: UUID().uuidString,
+            titleOriginal: title,
+            descriptionOriginal: description,
+            podcasts: podcasts
+        )
     }
     
     private class LoaderSpy {

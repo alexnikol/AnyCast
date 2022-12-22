@@ -22,9 +22,39 @@ final class GeneralSearchViewAdapter: ResourceView {
             let episodeViewModel = GeneralSearchContentPresenter.map(episode)
             return EpisodeCellController(viewModel: episodeViewModel, selection: {})
         }
-        let section = DefaultSectionWithNoHeaderAndFooter(cellControllers: episodesCells)
-        let sections: [SectionController] = [section]
+        let episodesSection = DefaultSectionWithNoHeaderAndFooter(cellControllers: episodesCells)
         
+        let podcastsCells = viewModel.podcasts.map { podcast in
+            let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+            return SearchResultPodcastCellController(
+                model: podcastViewModel,
+                thumbnailViewController: ThumbnailUIComposer
+                    .composeThumbnailWithImageLoader(
+                        thumbnailURL: podcast.image,
+                        imageLoader: { _ in Empty().eraseToAnyPublisher() }
+                    ),
+                selection: {}
+            )
+        }
+        let podcastsSection = DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastsCells)
+        
+        let curatedListsSections: [SectionController] = viewModel.curatedLists.map { curatedList in
+            let podcastsCells = curatedList.podcasts.map { podcast in
+                let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+                return SearchResultPodcastCellController(
+                    model: podcastViewModel,
+                    thumbnailViewController: ThumbnailUIComposer
+                        .composeThumbnailWithImageLoader(
+                            thumbnailURL: podcast.image,
+                            imageLoader: { _ in Empty().eraseToAnyPublisher() }
+                        ),
+                    selection: {}
+                )
+            }
+            return DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastsCells)
+        }
+        
+        let sections: [SectionController] = [episodesSection, podcastsSection] + curatedListsSections
         controller?.display(sections)
     }
 }

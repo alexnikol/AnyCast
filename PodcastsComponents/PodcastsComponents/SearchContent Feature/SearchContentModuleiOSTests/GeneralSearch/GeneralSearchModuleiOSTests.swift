@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import LoadResourcePresenter
 import SharedTestHelpersLibrary
 import SharedComponentsiOSModule
 import SearchContentModule
@@ -22,10 +23,10 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
     func test_episodesSearchDetails() {
         let sut = makeSUT()
         
-        sut.display(episodesSearchResult())
+        sut.display(episodesSearchResult() + podcastsSearchResult())
         
-        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_light")
-        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_dark")
+        record(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_light")
+        record(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_dark")
     }
     
     // MARK: - Helpers
@@ -67,7 +68,59 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
                 selection: {}
             )
         ]
-        
         return [DefaultSectionWithNoHeaderAndFooter(cellControllers: cellControllers)]
+    }
+    
+    private func podcastsSearchResult() -> [SectionController] {
+        let viewModels: [SearchResultPodcastViewModel] = [
+            SearchResultPodcastViewModel(
+                title: "Podcast",
+                publisher: "Publisher",
+                thumbnail: anyURL()
+            ),
+            SearchResultPodcastViewModel(
+                title: "Podcast " + "long ".repeatTimes(20),
+                publisher: "Publisher " + "long ".repeatTimes(20),
+                thumbnail: anotherURL()
+            ),
+            SearchResultPodcastViewModel(
+                title: "Podcast short",
+                publisher: "Publisher " + "long ".repeatTimes(20),
+                thumbnail: anotherURL()
+            )
+        ]
+        let colors: [UIColor] = [.red, .yellow, .green]
+        let cellControllers = viewModels.enumerated().map { (index, model) -> SearchResultPodcastCellController in
+            let refreshDelegate = ImageStub(image: UIImage.make(withColor: colors[index]))
+            let thumbnailViewController = ThumbnailViewController(loaderDelegate: refreshDelegate)
+            refreshDelegate.thumbnailViewController = thumbnailViewController
+            
+            return SearchResultPodcastCellController(
+                model: model,
+                thumbnailViewController: thumbnailViewController,
+                selection: {}
+            )
+        }
+        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: cellControllers)]
+    }
+        
+    private class ImageStub: RefreshViewControllerDelegate {
+        private let image: UIImage?
+        
+        init(image: UIImage?) {
+            self.image = image
+        }
+        
+        weak var thumbnailViewController: ThumbnailViewController?
+        
+        func didRequestLoading() {
+            if let image = image {
+                thumbnailViewController?.display(image)
+            } else {
+                thumbnailViewController?.display(ResourceErrorViewModel(message: "ERROR_MESSAGE"))
+            }
+        }
+        
+        func didRequestCancel() {}
     }
 }

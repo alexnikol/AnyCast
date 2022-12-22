@@ -27,8 +27,21 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
         let curatedList1 = curatedListSearchResult(title: "Curated list 1 long" + "long ".repeatTimes(20), description: "Curated description " + "long ".repeatTimes(20))
         sut.display(episodesSearchResult() + podcastsSearchResult() + curatedList0 + curatedList1)
         
-        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_light")
-        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_PORTRAIT_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_PORTRAIT_dark")
+    }
+    
+    func test_mixedSearchResultsLandscape() {
+        let sut = makeSUT()
+        sut.updateFrameWith(orientation: .landscape)
+        sut.loadViewIfNeeded()
+        
+        let curatedList0 = curatedListSearchResult(title: "Curated list 1", description: "Curated description")
+        let curatedList1 = curatedListSearchResult(title: "Curated list 1 long" + "long ".repeatTimes(20), description: "Curated description " + "long ".repeatTimes(20))
+        sut.display(episodesSearchResult() + podcastsSearchResult() + curatedList0 + curatedList1)
+        
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light, orientation: .landscape)), named: "LIST_GENERAL_SEARCH_LANDSCAPE_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark, orientation: .landscape)), named: "LIST_GENERAL_SEARCH_LANDSCAPE_dark")
     }
     
     // MARK: - Helpers

@@ -20,13 +20,15 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
         assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "EMPTY_GENERAL_SEARCH_dark")
     }
     
-    func test_episodesSearchDetails() {
+    func test_mixedSearchResultsPortrait() {
         let sut = makeSUT()
         
-        sut.display(episodesSearchResult() + podcastsSearchResult())
+        let curatedList0 = curatedListSearchResult(title: "Curated list 1", description: "Curated description")
+        let curatedList1 = curatedListSearchResult(title: "Curated list 1 long" + "long ".repeatTimes(20), description: "Curated description " + "long ".repeatTimes(20))
+        sut.display(episodesSearchResult() + podcastsSearchResult() + curatedList0 + curatedList1)
         
-        record(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_light")
-        record(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_dark")
     }
     
     // MARK: - Helpers
@@ -42,20 +44,9 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
     private func emptySearchResult() -> [SectionController] {
         return [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
     }
-        
+    
     private func episodesSearchResult() -> [SectionController] {
         let cellControllers = [
-            EpisodeCellController(
-                viewModel: EpisodeViewModel(
-                    title: "Any Episode title",
-                    description: "Any Description",
-                    thumbnail: anyURL(),
-                    audio: anyURL(),
-                    displayAudioLengthInSeconds: "44 hours 22 min",
-                    displayPublishDate: "5 years ago"
-                ),
-                selection: {}
-            ),
             EpisodeCellController(
                 viewModel: EpisodeViewModel(
                     title: "Any Episode title".repeatTimes(10),
@@ -68,7 +59,12 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
                 selection: {}
             )
         ]
-        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: cellControllers)]
+        return [
+            TitleHeaderViewCellController(
+                cellControllers: cellControllers,
+                viewModel: .init(title: "Found episodes")
+            )
+        ]
     }
     
     private func podcastsSearchResult() -> [SectionController] {
@@ -82,14 +78,9 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
                 title: "Podcast " + "long ".repeatTimes(20),
                 publisher: "Publisher " + "long ".repeatTimes(20),
                 thumbnail: anotherURL()
-            ),
-            SearchResultPodcastViewModel(
-                title: "Podcast short",
-                publisher: "Publisher " + "long ".repeatTimes(20),
-                thumbnail: anotherURL()
             )
         ]
-        let colors: [UIColor] = [.red, .yellow, .green]
+        let colors: [UIColor] = [.red, .yellow]
         let cellControllers = viewModels.enumerated().map { (index, model) -> SearchResultPodcastCellController in
             let refreshDelegate = ImageStub(image: UIImage.make(withColor: colors[index]))
             let thumbnailViewController = ThumbnailViewController(loaderDelegate: refreshDelegate)
@@ -101,9 +92,25 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
                 selection: {}
             )
         }
-        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: cellControllers)]
+        return [
+            TitleHeaderViewCellController(
+                cellControllers: cellControllers,
+                viewModel: .init(title: "Found podcasts")
+            )
+        ]
     }
+    
+    private func curatedListSearchResult(title: String, description: String) -> [SectionController] {
+        let podcastsCellControllers = podcastsSearchResult()[0].cellControllers
         
+        return [
+            TitleHeaderViewCellController(
+                cellControllers: podcastsCellControllers,
+                viewModel: .init(title: title, description: description)
+            )
+        ]
+    }
+    
     private class ImageStub: RefreshViewControllerDelegate {
         private let image: UIImage?
         

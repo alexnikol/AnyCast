@@ -2,7 +2,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     func repeatTimes(_ times: Int) -> String {
         return String(repeating: self + " ", count: times)
     }

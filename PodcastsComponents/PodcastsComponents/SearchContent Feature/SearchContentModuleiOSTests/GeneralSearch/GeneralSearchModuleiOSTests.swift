@@ -5,16 +5,27 @@ import SharedTestHelpersLibrary
 import SharedComponentsiOSModule
 import SearchContentModule
 import SearchContentModuleiOS
+import PodcastsModule
+import PodcastsModuleiOS
 
 final class GeneralSearchModuleiOSTests: XCTestCase {
     
-    func test_emptyPodcastDetails() {
+    func test_emptySearchDetails() {
         let sut = makeSUT()
         
         sut.display(emptySearchResult())
         
-        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "EMPTY_PODCAST_DETAILS_light")
-        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "EMPTY_PODCAST_DETAILS_dark")
+        record(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "EMPTY_GENERAL_SEARCH_light")
+        record(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "EMPTY_GENERAL_SEARCH_dark")
+    }
+    
+    func test_episodesSearchDetails() {
+        let sut = makeSUT()
+        
+        sut.display(episodesSearchResult())
+        
+        record(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_light")
+        record(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_dark")
     }
     
     // MARK: - Helpers
@@ -29,5 +40,34 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
     
     private func emptySearchResult() -> [SectionController] {
         return [DefaultSectionWithNoHeaderAndFooter(cellControllers: [])]
+    }
+        
+    private func episodesSearchResult() -> [SectionController] {
+        let cellControllers = [
+            EpisodeCellController(
+                viewModel: EpisodeViewModel(
+                    title: "Any Episode title",
+                    description: "Any Description",
+                    thumbnail: anyURL(),
+                    audio: anyURL(),
+                    displayAudioLengthInSeconds: "44 hours 22 min",
+                    displayPublishDate: "5 years ago"
+                ),
+                selection: {}
+            ),
+            EpisodeCellController(
+                viewModel: EpisodeViewModel(
+                    title: "Any Episode title".repeatTimes(10),
+                    description: "Any Description",
+                    thumbnail: anyURL(),
+                    audio: anyURL(),
+                    displayAudioLengthInSeconds: "44 hours 22 min".repeatTimes(10),
+                    displayPublishDate: "5 days ago"
+                ),
+                selection: {}
+            )
+        ]
+        
+        return [DefaultSectionWithNoHeaderAndFooter(cellControllers: cellControllers)]
     }
 }

@@ -15,8 +15,8 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
         
         sut.display(emptySearchResult())
         
-        record(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "EMPTY_GENERAL_SEARCH_light")
-        record(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "EMPTY_GENERAL_SEARCH_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "EMPTY_GENERAL_SEARCH_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "EMPTY_GENERAL_SEARCH_dark")
     }
     
     func test_episodesSearchDetails() {
@@ -24,8 +24,8 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
         
         sut.display(episodesSearchResult())
         
-        record(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_light")
-        record(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_dark")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .light)), named: "LIST_GENERAL_SEARCH_light")
+        assert(snapshot: sut.snapshot(for: .iPhone14(style: .dark)), named: "LIST_GENERAL_SEARCH_dark")
     }
     
     // MARK: - Helpers

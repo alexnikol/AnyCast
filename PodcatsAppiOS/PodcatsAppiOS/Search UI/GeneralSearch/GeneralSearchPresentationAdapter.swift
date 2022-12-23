@@ -21,6 +21,7 @@ final class GeneralSearchPresentationAdapter: GeneralSearchSourceDelegate {
     }
     
     private func didRequestLoading(term: String) {
+        cancellable?.cancel()
         presenter?.didStartLoading()
         cancellable = loader(term)
             .dispatchOnMainQueue()

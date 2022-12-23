@@ -55,6 +55,23 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         assertThat(sut, isRenderingSearchResult: models)
     }
     
+    func test_loadGeneralSearchResultCancel_cancelsPreviousRequestBeforeNewRequest() {
+        let (sut, sourceDelegate, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        let searchTerm0 = "any search term"
+        sourceDelegate.simulateSearchTermReceiving(term: searchTerm0)
+        XCTAssertEqual(loader.cancelledTerms, [])
+        
+        let searchTerm1 = "any search term 2"
+        sourceDelegate.simulateSearchTermReceiving(term: searchTerm1)
+        XCTAssertEqual(loader.cancelledTerms, [searchTerm0])
+        
+        let searchTerm2 = "any search term 3"
+        sourceDelegate.simulateSearchTermReceiving(term: searchTerm2)
+        XCTAssertEqual(loader.cancelledTerms, [searchTerm0, searchTerm1])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

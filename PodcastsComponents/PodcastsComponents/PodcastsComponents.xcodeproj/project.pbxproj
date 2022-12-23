@@ -24,6 +24,8 @@
 		8D1A4B252954880500825E60 /* LIST_GENERAL_SEARCH_LANDSCAPE_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D1A4B212954880400825E60 /* LIST_GENERAL_SEARCH_LANDSCAPE_dark.png */; };
 		8D1A4B262954880500825E60 /* LIST_GENERAL_SEARCH_PORTRAIT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D1A4B222954880400825E60 /* LIST_GENERAL_SEARCH_PORTRAIT_light.png */; };
 		8D1A4B272954880500825E60 /* LIST_GENERAL_SEARCH_LANDSCAPE_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D1A4B232954880400825E60 /* LIST_GENERAL_SEARCH_LANDSCAPE_light.png */; };
+		8D1A4B342955D2FA00825E60 /* SearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A4B332955D2FA00825E60 /* SearchEndpoint.swift */; };
+		8D1A4B372955D4A600825E60 /* GeneralSearchEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A4B352955D45B00825E60 /* GeneralSearchEndpointTests.swift */; };
 		8D1C0E5329545F1D00C5E1EB /* PodcastsModuleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DE329ED29100E9B00830695 /* PodcastsModuleiOS.framework */; };
 		8D1C0E5429545F2500C5E1EB /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
 		8D1C0E5629545F8000C5E1EB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C0E5529545F8000C5E1EB /* String+Extensions.swift */; };
@@ -612,6 +614,8 @@
 		8D1A4B212954880400825E60 /* LIST_GENERAL_SEARCH_LANDSCAPE_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LIST_GENERAL_SEARCH_LANDSCAPE_dark.png; sourceTree = "<group>"; };
 		8D1A4B222954880400825E60 /* LIST_GENERAL_SEARCH_PORTRAIT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LIST_GENERAL_SEARCH_PORTRAIT_light.png; sourceTree = "<group>"; };
 		8D1A4B232954880400825E60 /* LIST_GENERAL_SEARCH_LANDSCAPE_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LIST_GENERAL_SEARCH_LANDSCAPE_light.png; sourceTree = "<group>"; };
+		8D1A4B332955D2FA00825E60 /* SearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEndpoint.swift; sourceTree = "<group>"; };
+		8D1A4B352955D45B00825E60 /* GeneralSearchEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchEndpointTests.swift; sourceTree = "<group>"; };
 		8D1C0E5529545F8000C5E1EB /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		8D1C0E5A2954615900C5E1EB /* EMPTY_GENERAL_SEARCH_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_GENERAL_SEARCH_dark.png; sourceTree = "<group>"; };
 		8D1C0E5C2954615900C5E1EB /* EMPTY_GENERAL_SEARCH_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EMPTY_GENERAL_SEARCH_light.png; sourceTree = "<group>"; };
@@ -2466,6 +2470,7 @@
 			isa = PBXGroup;
 			children = (
 				8DE46EA3294F32CB007B204C /* GeneralSearchContentMapperTests.swift */,
+				8D1A4B352955D45B00825E60 /* GeneralSearchEndpointTests.swift */,
 			);
 			path = "GeneralSearchContent API";
 			sourceTree = "<group>";
@@ -2486,6 +2491,7 @@
 				8DE46FE8294F56B9007B204C /* GeneralSearchContentMapper.swift */,
 				8DE46EAF294F50DF007B204C /* RemoteGeneralSearchContentResultItem.swift */,
 				8DE46EBA294F54E6007B204C /* RemoteGeneralSearchContentResult.swift */,
+				8D1A4B332955D2FA00825E60 /* SearchEndpoint.swift */,
 			);
 			path = "GeneralSearchContent API";
 			sourceTree = "<group>";
@@ -3867,6 +3873,7 @@
 				8D0BE49A2950A22F00B4171A /* TypeheadSearchContentResultViewModel.swift in Sources */,
 				8DE46EB0294F50DF007B204C /* RemoteGeneralSearchContentResultItem.swift in Sources */,
 				8DE46AD7294B45C2007B204C /* SearchResultPodcast.swift in Sources */,
+				8D1A4B342955D2FA00825E60 /* SearchEndpoint.swift in Sources */,
 				8DE46EAC294F3904007B204C /* SearchResultCuratedList.swift in Sources */,
 				8DE46EB6294F5249007B204C /* RemoteSearchResultCuratedList.swift in Sources */,
 				8DE46AF7294B5922007B204C /* TypeheadSearchResultPodcastViewModel.swift in Sources */,
@@ -3884,6 +3891,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DE46FF2294F5EB5007B204C /* SearchResultEpisode+Extensions.swift in Sources */,
+				8D1A4B372955D4A600825E60 /* GeneralSearchEndpointTests.swift in Sources */,
 				8D750D1B294B19B0004500D9 /* TypeheadSearchContentMapperTests.swift in Sources */,
 				8DE46AEB294B521D007B204C /* TypeheadSearchContentPresentationTests.swift in Sources */,
 				8DE46AF2294B5625007B204C /* SharedHelpers.swift in Sources */,

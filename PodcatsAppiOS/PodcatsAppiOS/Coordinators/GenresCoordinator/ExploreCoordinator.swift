@@ -8,7 +8,7 @@ import PodcastsGenresList
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 
-class PodcastsImageDataStoreContainer {
+final class PodcastsImageDataStoreContainer {
     static let shared = PodcastsImageDataStoreContainer()
     
     lazy var podcastsImageDataStore: PodcastsImageDataStore = {

@@ -38,18 +38,12 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         assertThat(sut, isRenderingPodcasts: [])
         assertThat(sut, isRenderingCuratedLists: [])
         
-        let episodes = makeEpisodes()
-        let episodesModels = episodes.map(GeneralSearchContentResultItem.episode)
-        let podcasts = makePodcasts()
-        let podcastsModels = podcasts.map(GeneralSearchContentResultItem.podcast)
-        let curatedList = makeCuratedLists()
-        let curatedListModels = curatedList.map(GeneralSearchContentResultItem.curatedList)
-        let result = GeneralSearchContentResult(result: curatedListModels + podcastsModels + episodesModels)
+        let (models, result) = makeGeneralSearchContentResult()
         loader.completeRequest(with: result, atIndex: 0)
         
-        assertThat(sut, isRenderingEpisodes: episodes)
-        assertThat(sut, isRenderingPodcasts: podcasts)
-        assertThat(sut, isRenderingCuratedLists: curatedList)
+        assertThat(sut, isRenderingEpisodes: models.episodes)
+        assertThat(sut, isRenderingPodcasts: models.podcasts)
+        assertThat(sut, isRenderingCuratedLists: models.curatedLists)
     }
     
     // MARK: - Helpers
@@ -179,55 +173,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(view?.titleText, podcastViewModel.title, "Wrong title at indexPath \(indexPath)", file: file, line: line)
         XCTAssertEqual(view?.publisherText, podcastViewModel.publisher, "Wrong publisher at indexPath \(indexPath)", file: file, line: line)
     }
-    
-    private func makeEpisodes() -> [Episode] {
-        [
-            makeEpisode(),
-            makeEpisode()
-        ]
-    }
-    
-    private func makePodcasts() -> [SearchResultPodcast] {
-        [
-            makeSearchPodcast(title: "Any Podcast title", publisher: "Any Publisher title"),
-            makeSearchPodcast(title: "Another Podcast title", publisher: "Another Podcast title")
-        ]
-    }
-    
-    private func makeCuratedLists() -> [SearchResultCuratedList] {
-        [
-            makeSearchCuratedList(
-                title: "Curated list 1",
-                description: "Description 1",
-                podcasts: makePodcasts()
-            ),
-            makeSearchCuratedList(
-                title: "Curated list 2",
-                description: "Description 2",
-                podcasts: makePodcasts()
-            )
-        ]
-    }
-    
-    private func makeSearchPodcast(title: String, publisher: String) -> SearchResultPodcast {
-        SearchResultPodcast(
-            id: UUID().uuidString,
-            titleOriginal: title,
-            publisherOriginal: publisher,
-            image: anyURL(),
-            thumbnail: anotherURL()
-        )
-    }
-    
-    private func makeSearchCuratedList(title: String, description: String, podcasts: [SearchResultPodcast]) -> SearchResultCuratedList {
-        SearchResultCuratedList(
-            id: UUID().uuidString,
-            titleOriginal: title,
-            descriptionOriginal: description,
-            podcasts: podcasts
-        )
-    }
-    
+        
     private class LoaderSpy {
         typealias Publsiher = AnyPublisher<GeneralSearchContentResult, Error>
         

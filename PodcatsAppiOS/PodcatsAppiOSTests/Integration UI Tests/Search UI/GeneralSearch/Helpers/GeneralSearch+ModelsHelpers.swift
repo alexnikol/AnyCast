@@ -5,11 +5,13 @@ import SharedTestHelpersLibrary
 import PodcastsModule
 import SearchContentModule
 
-typealias ResultModels = (episodes: [Episode],
-                          podcasts: [SearchResultPodcast],
-                          curatedLists: [SearchResultCuratedList])
+struct GeneralSearchResult {
+    let episodes: [Episode]
+    let podcasts: [SearchResultPodcast]
+    let curatedLists: [SearchResultCuratedList]
+}
 
-func makeGeneralSearchContentResult() -> (models: ResultModels, renderModels: GeneralSearchContentResult) {
+func makeGeneralSearchContentResult() -> (models: GeneralSearchResult, renderModels: GeneralSearchContentResult) {
     let episodes = makeEpisodes()
     let episodesModels = episodes.map(GeneralSearchContentResultItem.episode)
     let podcasts = makePodcasts()
@@ -17,7 +19,7 @@ func makeGeneralSearchContentResult() -> (models: ResultModels, renderModels: Ge
     let curatedLists = makeCuratedLists()
     let curatedListModels = curatedLists.map(GeneralSearchContentResultItem.curatedList)
     let result = GeneralSearchContentResult(result: curatedListModels + podcastsModels + episodesModels)
-    return ((episodes, podcasts, curatedLists), result)
+    return (GeneralSearchResult(episodes: episodes, podcasts: podcasts, curatedLists: curatedLists), result)
 }
 
 func makeEpisodes() -> [Episode] {

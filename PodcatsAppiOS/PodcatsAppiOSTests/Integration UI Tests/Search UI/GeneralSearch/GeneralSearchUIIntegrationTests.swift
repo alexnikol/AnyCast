@@ -29,21 +29,16 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
     func test_loadGeneralSearchResultCompletion_rendersSuccessfullyLoadedTerms() {
         let (sut, sourceDelegate, loader) = makeSUT()
         sut.loadViewIfNeeded()
-        assertThat(sut, isRenderingEpisodes: [])
-        assertThat(sut, isRenderingPodcasts: [])
-        assertThat(sut, isRenderingCuratedLists: [])
+        
+        assertThat(sut, isRenderingSearchResult: .init(episodes: [], podcasts: [], curatedLists: []))
         
         sourceDelegate.simulateSearchTermReceiving(term: "term 1")
-        assertThat(sut, isRenderingEpisodes: [])
-        assertThat(sut, isRenderingPodcasts: [])
-        assertThat(sut, isRenderingCuratedLists: [])
+        assertThat(sut, isRenderingSearchResult: .init(episodes: [], podcasts: [], curatedLists: []))
         
         let (models, result) = makeGeneralSearchContentResult()
         loader.completeRequest(with: result, atIndex: 0)
         
-        assertThat(sut, isRenderingEpisodes: models.episodes)
-        assertThat(sut, isRenderingPodcasts: models.podcasts)
-        assertThat(sut, isRenderingCuratedLists: models.curatedLists)
+        assertThat(sut, isRenderingSearchResult: models)
     }
     
     // MARK: - Helpers
@@ -92,6 +87,17 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         podcasts.enumerated().forEach { index, podcast in
             assertThat(sut, hasViewConfiguredFor: podcast, at: index, file: file, line: line)
         }
+    }
+    
+    private func assertThat(
+        _ sut: ListViewController,
+        isRenderingSearchResult searchResult: GeneralSearchResult,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        assertThat(sut, isRenderingEpisodes: searchResult.episodes, file: file, line: line)
+        assertThat(sut, isRenderingPodcasts: searchResult.podcasts, file: file, line: line)
+        assertThat(sut, isRenderingCuratedLists: searchResult.curatedLists, file: file, line: line)
     }
     
     private func assertThat(

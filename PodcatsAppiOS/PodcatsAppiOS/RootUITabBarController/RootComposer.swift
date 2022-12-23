@@ -43,6 +43,7 @@ final class RootComposer {
         )
         exploreCoordinator.start()
         
+        var searchSourceDelegate: GeneralSearchSourceDelegate?
         let typeheadController = TypeheadSearchUIComposer
             .searchComposedWith(searchLoader: { term in
                 Deferred {
@@ -58,14 +59,19 @@ final class RootComposer {
                 }
                 .delay(for: 0.5, scheduler: DispatchQueue.main)
                 .eraseToAnyPublisher()
-            }, onTermSelect: { _ in })
-        let (generalSearch, _) = GeneralSearchUIComposer
+            }, onTermSelect: { selectedTerm in
+                searchSourceDelegate?.didUpdateSearchTerm(selectedTerm)
+            })
+        let (generalSearch, generalSearchSourceDelegate) = GeneralSearchUIComposer
             .searchComposedWith(
                 searchResultController: typeheadController,
-                searchLoader: { _ in Empty().eraseToAnyPublisher() },
+                searchLoader: { term in
+                    Empty().eraseToAnyPublisher()
+                },
                 onEpisodeSelect: { _ in },
                 onPodcastSelect: { _ in }
             )
+        searchSourceDelegate = generalSearchSourceDelegate
         let searchNavigation = UINavigationController(rootViewController: generalSearch)
         searchNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.searchTabBarItemTitle,

@@ -22,6 +22,7 @@ final class TypeheadSearchViewAdapter: ResourceView {
         let termControllers = viewModel.terms.map { term -> TermCellController in
             let termViewModel = TypeheadSearchContentPresenter.map(term)
             return TermCellController(model: termViewModel, selection: { [weak self] in
+                self?.controller?.dismiss(animated: true)
                 self?.onTermSelect(term)
             })
         }

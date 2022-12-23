@@ -191,7 +191,6 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
             return XCTFail("Expected \(curatedLists.count) rendered curated lists, got \(sut.numberOfCuratedList()) rendered views instead", file: file, line: line)
         }
         
-        print("curatedLists \(curatedLists)")
         guard !curatedLists.isEmpty else { return }
         
         curatedLists[0].podcasts.enumerated().forEach { index, podcast in

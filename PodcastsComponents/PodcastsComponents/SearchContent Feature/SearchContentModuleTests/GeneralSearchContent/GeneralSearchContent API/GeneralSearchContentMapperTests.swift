@@ -11,9 +11,6 @@ final class GeneralSearchContentMapperTests: XCTestCase {
         let podcasts = uniquePodcastSearchResults()
         let curatedLists = uniqueCuratedListsSearchResults()
         let validJSON = makeValidJSON(episodes: episodes, podcasts: podcasts, curatedLists: curatedLists)
-        if let JSONString = String(data: validJSON, encoding: String.Encoding.utf8) {
-           print(JSONString)
-        }
         let result = try GeneralSearchContentMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
         
         let resultEpisodes = episodes.map { GeneralSearchContentResultItem.episode($0) }

@@ -10,10 +10,16 @@ public enum GenericAPIMapper<RemoteAPIModel: Decodable, DomainModel> {
     private static var OK_200: Int { return 200 }
     
     public static func map(_ data: Data, from response: HTTPURLResponse, domainMapper: (RemoteAPIModel) -> DomainModel) throws -> DomainModel {
-        guard response.statusCode == OK_200,
-              let remoteModel = try? JSONDecoder().decode(RemoteAPIModel.self, from: data) else {
+        guard response.statusCode == OK_200 else {
             throw Error.invalidData
         }
-        return domainMapper(remoteModel)
+        
+        do {
+            let remoteModel = try JSONDecoder().decode(RemoteAPIModel.self, from: data)
+            return domainMapper(remoteModel)
+        } catch {
+            NSLog("MAPPER__DECODING__ISSUE \(RemoteAPIModel.self), \(error), \(error.localizedDescription)")
+            throw Error.invalidData
+        }
     }
 }

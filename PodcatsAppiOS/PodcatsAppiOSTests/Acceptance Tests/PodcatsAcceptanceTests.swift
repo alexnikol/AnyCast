@@ -8,6 +8,7 @@ import PodcastsGenresList
 import PodcastsGenresListiOS
 import PodcastsModuleiOS
 import AudioPlayerModuleiOS
+import SearchContentModuleiOS
 @testable import Podcats
 
 final class PodcatsAcceptanceTests: XCTestCase {
@@ -76,11 +77,39 @@ final class PodcatsAcceptanceTests: XCTestCase {
     
     func test_onLaunchSearch_displaysSearchScreen() {
         let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
-        let search = search(from: rootTabBar)
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
         
-        XCTAssertEqual(search.numberOfRenderedSearchedEpisodesViews(), 0)
-        XCTAssertEqual(search.numberOfRenderedSearchedPodcastsViews(), 0)
-        XCTAssertEqual(search.numberOfCuratedList(), 0)
+        XCTAssertEqual(generalSearch.numberOfRenderedSearchedEpisodesViews(), 0)
+        XCTAssertEqual(generalSearch.numberOfRenderedSearchedPodcastsViews(), 0)
+        XCTAssertEqual(generalSearch.numberOfCuratedList(), 0)
+        XCTAssertEqual(typeaheadSearch.numberOfRenderedSearchTermViews(), 0)
+    }
+    
+    func test_onLaunchSearch_displaysTypeheadSearchResultOnTyping() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertEqual(typeaheadSearch.numberOfRenderedSearchTermViews(), 2)
+    }
+    
+    func test_onLaunchSearch_displaysGeneralSearchResultOnTermSelection() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        RunLoop.current.run(until: Date())
+        
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertEqual(generalSearch.numberOfRenderedSearchedEpisodesViews(), 1)
+        XCTAssertEqual(generalSearch.numberOfRenderedSearchedPodcastsViews(), 1)
+        XCTAssertEqual(generalSearch.numberOfRenderedPodcastsInCuratedList(in: 2), 2)
     }
     
     // MARK: - Helpers
@@ -104,7 +133,7 @@ final class PodcatsAcceptanceTests: XCTestCase {
         let genres = nav?.topViewController as! GenresListViewController
         return genres
     }
-
+    
     private func enterBackground(with store: InMemoryGenresStore) {
         let sut = SceneDelegate(httpClient: HTTPClientStub.offline, genresStore: store)
         sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
@@ -142,10 +171,14 @@ final class PodcatsAcceptanceTests: XCTestCase {
         return nav?.presentedViewController as! LargeAudioPlayerViewController
     }
     
-    private func search(from tabBar: RootTabBarController) -> ListViewController {
+    private func search(
+        from tabBar: RootTabBarController
+    ) -> (generalSearch: ListViewController, typeaheadSearch: TypeheadListViewController) {
         let nav = tabBar.viewControllers?[1] as? UINavigationController
-        let search = nav?.topViewController as! ListViewController
-        return search
+        let generalSearch = nav?.topViewController as! ListViewController
+        let searchController = generalSearch.navigationItem.searchController
+        let typeaheadSearch = searchController?.searchResultsController as! TypeheadListViewController
+        return (generalSearch, typeaheadSearch)
     }
     
     private func makeData(for url: URL) -> Data {
@@ -159,6 +192,12 @@ final class PodcatsAcceptanceTests: XCTestCase {
             
         case "\(baseURL)/api/v2/podcasts/unique_podcast_id":
             return makePodcastDetailsData()
+            
+        case "\(baseURL)/api/v2/typeahead?q=any%20term":
+            return makeTypeheadSearchData()
+            
+        case "\(baseURL)/api/v2/search?q=Any%20term%201":
+            return makeGeneralSearchData()
             
         default:
             return Data()
@@ -218,6 +257,69 @@ final class PodcatsAcceptanceTests: XCTestCase {
             ],
             "description": "Any Description",
             "total_episodes": 200
+        ])
+    }
+    
+    private func makeTypeheadSearchData() -> Data {
+        return try! JSONSerialization.data(withJSONObject: [
+            "terms": [
+                "Any term 1",
+                "Any term 2"
+            ],
+            "genres": [],
+            "podcasts": []
+        ])
+    }
+    
+    private func makeGeneralSearchData() -> Data {
+        return try! JSONSerialization.data(withJSONObject: [
+            "results": [
+                [
+                    "id": UUID().uuidString,
+                    "title_original": "Any Episode Title",
+                    "description_original": "Any Description",
+                    "thumbnail": "https://any-url.com/thumbnail",
+                    "audio": "https://any-url.com/audio",
+                    "audio_length_sec": 300,
+                    "explicit_content": true,
+                    "pub_date_ms": 12312312332,
+                    "podcast": [
+                        "id": "unique_podcast_id",
+                        "title_original": "Any Podcast name",
+                        "publisher_original": "Any Publisher name",
+                        "image": "https://any-url.com/image1",
+                        "thumbnail": "https://another-url.com/image1"
+                    ]
+                ],
+                [
+                    "id": "unique_podcast_id",
+                    "title_original": "Any Podcast name",
+                    "publisher_original": "Any Publisher name",
+                    "image": "https://any-url.com/image1",
+                    "thumbnail": "https://another-url.com/image1"
+                ],
+                [
+                    "id": UUID().uuidString,
+                    "title_original": "Curated list 1",
+                    "description_original": "Curated description 1",
+                    "podcasts": [
+                        [
+                            "id": "unique_podcast_id2",
+                            "title_original": "Any Podcast name",
+                            "publisher_original": "Any Publisher name",
+                            "image": "https://any-url.com/image1",
+                            "thumbnail": "https://another-url.com/image1"
+                        ],
+                        [
+                            "id": "unique_podcast_id2",
+                            "title_original": "Any Podcast name",
+                            "publisher_original": "Any Publisher name",
+                            "image": "https://any-url.com/image1",
+                            "thumbnail": "https://another-url.com/image1"
+                        ]
+                    ]
+                ]
+            ]
         ])
     }
 }

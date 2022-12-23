@@ -41,6 +41,20 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         assertThat(sut, isRenderingSearchResult: models)
     }
     
+    func test_loadGeneralSearchResultCompletion_doesNotAlterCurrentRenderingStateOnError() {
+        let (sut, sourceDelegate, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        
+        sourceDelegate.simulateSearchTermReceiving(term: "term 1")
+        let (models, result) = makeGeneralSearchContentResult()
+        loader.completeRequest(with: result, atIndex: 0)
+        assertThat(sut, isRenderingSearchResult: models)
+        
+        sourceDelegate.simulateSearchTermReceiving(term: "term 2")
+        loader.completeRequestWitError(atIndex: 1)
+        assertThat(sut, isRenderingSearchResult: models)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

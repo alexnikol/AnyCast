@@ -13,20 +13,23 @@ import AudioPlayerModuleiOS
 final class PodcatsAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
-        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let genres = genres(from: rootTabBar)
         
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 2)
     }
     
     func test_onLaunch_displaysNoGenresWhenCustomersHasNoConnectivityAndEmptyCache() {
-        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.offline)
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.offline)
+        let genres = genres(from: rootTabBar)
         
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 0)
     }
     
     func test_onLaunch_displaysCachedGenresWhenCustomerHasConnectivityAndNonExpiredCache() {
         let sharedStore = InMemoryGenresStore.withNonExpiredFeedCache
-        let genres = launch(store: sharedStore, httpClient: HTTPClientStub.offline)
+        let rootTabBar = launch(store: sharedStore, httpClient: HTTPClientStub.offline)
+        let genres = genres(from: rootTabBar)
         
         XCTAssertNotNil(sharedStore.cache)
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 1)
@@ -71,6 +74,13 @@ final class PodcatsAcceptanceTests: XCTestCase {
         XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Podcast  title")
     }
     
+    func test_onLaunchSearch_displaysGeneralSearchScreen() {
+        let bestPodcasts = showBestPodcasts()
+        let podcastDetails = showPodcastDetails(from: bestPodcasts)
+        
+        XCTAssertEqual(podcastDetails.numberOfRenderedEpisodesViews(), 1)
+    }
+    
     // MARK: - Helpers
     
     private func launch(
@@ -78,17 +88,21 @@ final class PodcatsAcceptanceTests: XCTestCase {
         httpClient: HTTPClient,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> GenresListViewController {
+    ) -> RootTabBarController {
         let sut = SceneDelegate(httpClient: httpClient, genresStore: store)
         sut.window = UIWindow()
         sut.configureWindow()
         
-        let tabBar = sut.window?.rootViewController as? RootTabBarController
-        let nav = tabBar?.viewControllers?.first as? UINavigationController
+        let tabBar = sut.window?.rootViewController as! RootTabBarController
+        return tabBar
+    }
+    
+    private func genres(from tabBar: RootTabBarController) -> GenresListViewController {
+        let nav = tabBar.viewControllers?.first as? UINavigationController
         let genres = nav?.topViewController as! GenresListViewController
         return genres
     }
-    
+
     private func enterBackground(with store: InMemoryGenresStore) {
         let sut = SceneDelegate(httpClient: HTTPClientStub.offline, genresStore: store)
         sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
@@ -100,7 +114,8 @@ final class PodcatsAcceptanceTests: XCTestCase {
     }
     
     private func showBestPodcasts() -> ListViewController {
-        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let genres = genres(from: rootTabBar)
         
         genres.simulateTapOnGenre(at: 0)
         RunLoop.current.run(until: Date())

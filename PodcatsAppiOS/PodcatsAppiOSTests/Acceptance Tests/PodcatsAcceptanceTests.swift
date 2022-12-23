@@ -74,11 +74,13 @@ final class PodcatsAcceptanceTests: XCTestCase {
         XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Podcast  title")
     }
     
-    func test_onLaunchSearch_displaysGeneralSearchScreen() {
-        let bestPodcasts = showBestPodcasts()
-        let podcastDetails = showPodcastDetails(from: bestPodcasts)
+    func test_onLaunchSearch_displaysSearchScreen() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let search = search(from: rootTabBar)
         
-        XCTAssertEqual(podcastDetails.numberOfRenderedEpisodesViews(), 1)
+        XCTAssertEqual(search.numberOfRenderedSearchedEpisodesViews(), 0)
+        XCTAssertEqual(search.numberOfRenderedSearchedPodcastsViews(), 0)
+        XCTAssertEqual(search.numberOfCuratedList(), 0)
     }
     
     // MARK: - Helpers
@@ -138,6 +140,12 @@ final class PodcatsAcceptanceTests: XCTestCase {
         
         let nav = podcastDetailsScreen.navigationController
         return nav?.presentedViewController as! LargeAudioPlayerViewController
+    }
+    
+    private func search(from tabBar: RootTabBarController) -> ListViewController {
+        let nav = tabBar.viewControllers?[1] as? UINavigationController
+        let search = nav?.topViewController as! ListViewController
+        return search
     }
     
     private func makeData(for url: URL) -> Data {

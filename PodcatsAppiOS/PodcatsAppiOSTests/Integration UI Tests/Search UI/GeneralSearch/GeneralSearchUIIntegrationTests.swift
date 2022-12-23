@@ -104,6 +104,20 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(receivedPodcasts, [models.podcasts[1]] + [models.curatedLists[0].podcasts[1]])
     }
     
+    func test_loadGeneralSearchResultCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, searchController, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+        searchController.simulateSearchTermReceiving(term: "any search term")
+        let (_, result) = makeGeneralSearchContentResult()
+        
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completeRequest(with: result, atIndex: 0)
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

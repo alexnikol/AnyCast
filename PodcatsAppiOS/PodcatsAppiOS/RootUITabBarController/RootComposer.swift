@@ -47,9 +47,9 @@ final class RootComposer {
             .searchComposedWith(searchLoader: { term in
                 Deferred {
                     Future { completion in
-                        let aray = ["\(term) 1", "\(term) 2", "\(term) 2" ,"\(term) 2" ,"\(term) 2"]
+                        let array = ["\(term) 1", "\(term) 2", "\(term) 2" ,"\(term) 2" ,"\(term) 2"]
                         let result = TypeheadSearchContentResult(
-                            terms: aray + aray + aray + aray + aray,
+                            terms: array + array + array + array + array,
                             genres: [],
                             podcasts: []
                         )

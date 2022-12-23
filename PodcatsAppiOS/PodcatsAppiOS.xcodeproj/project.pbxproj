@@ -21,6 +21,7 @@
 		8D1A4B2B2955B5D900825E60 /* GeneralSearch+ModelsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A4B2A2955B5D900825E60 /* GeneralSearch+ModelsHelpers.swift */; };
 		8D1A4B2F2955C8FF00825E60 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A4B2D2955C8FB00825E60 /* SearchCoordinator.swift */; };
 		8D1A4B322955C96F00825E60 /* GeneralSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A4B312955C96F00825E60 /* GeneralSearchService.swift */; };
+		8D1A4B3C2955DA0800825E60 /* TypeheadSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A4B3B2955DA0800825E60 /* TypeheadSearchService.swift */; };
 		8D2490D62938FAA1009ACD36 /* AVPlayerClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; };
 		8D2490D72938FAA1009ACD36 /* AVPlayerClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D3C22312950B82A007D158E /* GeneralSearchSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22302950B82A007D158E /* GeneralSearchSourceDelegate.swift */; };
@@ -170,6 +171,7 @@
 		8D1A4B2A2955B5D900825E60 /* GeneralSearch+ModelsHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GeneralSearch+ModelsHelpers.swift"; sourceTree = "<group>"; };
 		8D1A4B2D2955C8FB00825E60 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		8D1A4B312955C96F00825E60 /* GeneralSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchService.swift; sourceTree = "<group>"; };
+		8D1A4B3B2955DA0800825E60 /* TypeheadSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeheadSearchService.swift; sourceTree = "<group>"; };
 		8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AVPlayerClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3C22302950B82A007D158E /* GeneralSearchSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchSourceDelegate.swift; sourceTree = "<group>"; };
 		8D3C22322950B882007D158E /* GeneralSearchPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchPresentationAdapter.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1A4B312955C96F00825E60 /* GeneralSearchService.swift */,
+				8D1A4B3B2955DA0800825E60 /* TypeheadSearchService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 				8DB9ADD22951E1E800A6F1DF /* NullObjectStateResourceView.swift in Sources */,
 				8D3C22312950B82A007D158E /* GeneralSearchSourceDelegate.swift in Sources */,
 				8D3C22372950C872007D158E /* ThumbnailSourceDelegate.swift in Sources */,
+				8D1A4B3C2955DA0800825E60 /* TypeheadSearchService.swift in Sources */,
 				8DDBB772291BC68A0024A37A /* PodcastDetailsUIComposer.swift in Sources */,
 				8D0BE48B29509B7700B4171A /* TypeSearchPresentationAdapter.swift in Sources */,
 				8DCA227929313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift in Sources */,

@@ -5,7 +5,7 @@ import Combine
 import HTTPClient
 import SearchContentModule
 
-final class GeneralSearchService {
+final class TypeheadSearchService {
     private let baseURL: URL
     private let httpClient: HTTPClient
     
@@ -14,11 +14,11 @@ final class GeneralSearchService {
         self.httpClient = httpClient
     }
     
-    func makeRemoteGeneralSearchLoader(term: String) -> AnyPublisher<GeneralSearchContentResult, Error> {
-        let requestURL = SearchEndpoint.getGeneralSearch(term: term).url(baseURL: baseURL)
+    func makeRemoteTypeheadSearchLoader(term: String) -> AnyPublisher<TypeheadSearchContentResult, Error> {
+        let requestURL = SearchEndpoint.getTypeheadSearch(term: term).url(baseURL: baseURL)
         return httpClient
             .loadPublisher(from: requestURL)
-            .tryMap(GeneralSearchContentMapper.map)
+            .tryMap(TypeheadSearchContentMapper.map)
             .eraseToAnyPublisher()
     }
 }

@@ -11,7 +11,6 @@ import AudioPlayerModuleiOS
 public enum StickyAudioPlayerUIComposer {
     
     public static func playerWith(
-        thumbnailURL: URL,
         statePublisher: AudioPlayerStatePublisher,
         controlsDelegate: AudioPlayerControlsDelegate,
         imageLoader: @escaping (URL) -> AnyPublisher<Data, Error>,

@@ -105,7 +105,6 @@ final class StickyAudioPlayerUIIntegrationTests: XCTestCase {
         let controlsSpy = AudioPlayerControlsSpy()
         let audioPlayer = AudioPlayerClientDummy()
         let sut = StickyAudioPlayerUIComposer.playerWith(
-            thumbnailURL: anyURL(),
             statePublisher: statePublisher,
             controlsDelegate: controlsSpy,
             imageLoader: { _ in

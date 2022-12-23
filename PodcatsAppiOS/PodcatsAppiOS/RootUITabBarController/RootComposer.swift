@@ -43,48 +43,24 @@ final class RootComposer {
         )
         exploreCoordinator.start()
         
-        var searchSourceDelegate: GeneralSearchSourceDelegate?
-        let typeheadController = TypeheadSearchUIComposer
-            .searchComposedWith(searchLoader: { term in
-                Deferred {
-                    Future { completion in
-                        let array = ["\(term) 1", "\(term) 2", "\(term) 2" ,"\(term) 2" ,"\(term) 2"]
-                        let result = TypeheadSearchContentResult(
-                            terms: array + array + array + array + array,
-                            genres: [],
-                            podcasts: []
-                        )
-                        completion(.success(result))
-                    }
-                }
-                .delay(for: 0.5, scheduler: DispatchQueue.main)
-                .eraseToAnyPublisher()
-            }, onTermSelect: { selectedTerm in
-                searchSourceDelegate?.didUpdateSearchTerm(selectedTerm)
-            })
-        let (generalSearch, generalSearchSourceDelegate) = GeneralSearchUIComposer
-            .searchComposedWith(
-                searchResultController: typeheadController,
-                searchLoader: { term in
-                    Empty().eraseToAnyPublisher()
-                },
-                onEpisodeSelect: { _ in },
-                onPodcastSelect: { _ in }
-            )
-        searchSourceDelegate = generalSearchSourceDelegate
-        let searchNavigation = UINavigationController(rootViewController: generalSearch)
+        let searchNavigation = UINavigationController()
+        let searchCoordinator = SearchCoordinator(
+            navigationController: searchNavigation,
+            baseURL: baseURL,
+            httpClient: httpClient
+        )
         searchNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.searchTabBarItemTitle,
             image: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.defaultColor),
             selectedImage: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.selectedColor)
         )
+        searchCoordinator.start()
         
         let episodeThumbnailLoaderService = EpisodeThumbnailLoaderService(
             httpClient: httpClient,
             podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
         )
         let stickyPlayer = StickyAudioPlayerUIComposer.playerWith(
-            thumbnailURL: URL(string: "https://123123123")!,
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,
             imageLoader: episodeThumbnailLoaderService.makeRemotePodcastImageDataLoader(for:),

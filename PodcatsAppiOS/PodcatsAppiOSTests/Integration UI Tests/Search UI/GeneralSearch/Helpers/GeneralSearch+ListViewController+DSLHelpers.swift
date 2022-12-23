@@ -24,6 +24,10 @@ extension ListViewController {
         return view(at: row, section: searchEpisodesSection) as? EpisodeCell
     }
     
+    func simulateUserInitiatedSearchedEpisodeSelection(at row: Int) {
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: searchEpisodesSection))
+    }
+    
     // MARK: - Podcasts
     
     private var searchPodcastsSection: Int {
@@ -39,6 +43,10 @@ extension ListViewController {
     
     func searchPodcastView(at row: Int) -> SearchPodcastCell? {
         return view(at: row, section: searchPodcastsSection) as? SearchPodcastCell
+    }
+    
+    func simulateUserInitiatedSearchedPodcastSelection(at row: Int) {
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: searchPodcastsSection))
     }
     
     // MARK: - Curated lists
@@ -60,5 +68,9 @@ extension ListViewController {
         
     func searchPodcastCuratedListView(at row: Int, curatedListSection section: Int) -> SearchPodcastCell? {
         return view(at: row, section: section) as? SearchPodcastCell
+    }
+    
+    func simulateUserInitiatedSearchedPodcastFromCuratedListSelection(at row: Int) {
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: searchCuratedListSection))
     }
 }

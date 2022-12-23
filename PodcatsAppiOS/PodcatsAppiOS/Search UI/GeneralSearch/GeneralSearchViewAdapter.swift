@@ -6,21 +6,33 @@ import Combine
 import LoadResourcePresenter
 import SearchContentModule
 import SearchContentModuleiOS
+import PodcastsModule
 import PodcastsModuleiOS
 
 final class GeneralSearchViewAdapter: ResourceView {
     typealias ResourceViewModel = GeneralSearchContentResultViewModel
     
     weak var controller: ListViewController?
+    private let onEpisodeSelect: (Episode) -> Void
+    private let onPodcastSelect: (SearchResultPodcast) -> Void
     
-    init(controller: ListViewController) {
+    init(controller: ListViewController,
+         onEpisodeSelect: @escaping (Episode) -> Void,
+         onPodcastSelect: @escaping (SearchResultPodcast) -> Void) {
         self.controller = controller
+        self.onEpisodeSelect = onEpisodeSelect
+        self.onPodcastSelect = onPodcastSelect
     }
     
     func display(_ viewModel: ResourceViewModel) {
         let episodesCells = viewModel.episodes.map { episode in
             let episodeViewModel = GeneralSearchContentPresenter.map(episode)
-            return EpisodeCellController(viewModel: episodeViewModel, selection: {})
+            return EpisodeCellController(
+                viewModel: episodeViewModel,
+                selection: { [weak self] in
+                    self?.onEpisodeSelect(episode)
+                }
+            )
         }
         let episodesSection = DefaultSectionWithNoHeaderAndFooter(cellControllers: episodesCells)
         
@@ -33,7 +45,9 @@ final class GeneralSearchViewAdapter: ResourceView {
                         thumbnailURL: podcast.image,
                         imageLoader: { _ in Empty().eraseToAnyPublisher() }
                     ),
-                selection: {}
+                selection: { [weak self] in
+                    self?.onPodcastSelect(podcast)
+                }
             )
         }
         let podcastsSection = DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastsCells)
@@ -48,7 +62,9 @@ final class GeneralSearchViewAdapter: ResourceView {
                             thumbnailURL: podcast.image,
                             imageLoader: { _ in Empty().eraseToAnyPublisher() }
                         ),
-                    selection: {}
+                    selection: { [weak self] in
+                        self?.onPodcastSelect(podcast)
+                    }
                 )
             }
             return DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastsCells)

@@ -76,8 +76,8 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
         var receivedResult: [String] = []
         let exp = expectation(description: "Wait on term selection")
         let (sut, searchController, loader) = makeSUT(onTermSelect: {
-            exp.fulfill()
             receivedResult.append($0)
+            exp.fulfill()
         })
         sut.loadViewIfNeeded()
         let result = ["any search 1", "any search 2"]

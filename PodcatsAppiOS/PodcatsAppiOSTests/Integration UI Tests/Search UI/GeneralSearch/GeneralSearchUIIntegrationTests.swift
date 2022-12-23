@@ -72,9 +72,43 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.cancelledTerms, [searchTerm0, searchTerm1])
     }
     
+    func test_onTermSelection_deliversSelectedTerm() {
+        var receivedEpisodes: [Episode] = []
+        var receivedPodcasts: [SearchResultPodcast] = []
+        let expEpisode = expectation(description: "Wait on episode selection")
+        let expPodcast = expectation(description: "Wait on podcast selection")
+        expPodcast.assertForOverFulfill = false
+        
+        let (sut, searchController, loader) = makeSUT(
+            onEpisodeSelect: { episode in
+                receivedEpisodes.append(episode)
+                expEpisode.fulfill()
+            }, onPodcastSelect: { podcast in
+                receivedPodcasts.append(podcast)
+                expPodcast.fulfill()
+            }
+        )
+        sut.loadViewIfNeeded()
+        
+        searchController.simulateSearchTermReceiving(term: "any search term")
+        let (models, result) = makeGeneralSearchContentResult()
+        loader.completeRequest(with: result, atIndex: 0)
+        
+        sut.simulateUserInitiatedSearchedEpisodeSelection(at: 0)
+        sut.simulateUserInitiatedSearchedPodcastSelection(at: 1)
+        sut.simulateUserInitiatedSearchedPodcastFromCuratedListSelection(at: 1)
+        
+        wait(for: [expEpisode, expPodcast], timeout: 1.0)
+        
+        XCTAssertEqual(receivedEpisodes, [models.episodes[0]])
+        XCTAssertEqual(receivedPodcasts, [models.podcasts[1]] + [models.curatedLists[0].podcasts[1]])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
+        onEpisodeSelect: @escaping (Episode) -> Void = { _ in },
+        onPodcastSelect: @escaping (SearchResultPodcast) -> Void = { _ in },
         file: StaticString = #file,
         line: UInt = #line
     ) -> (sut: ListViewController, sourceDelegate: GeneralSearchSourceDelegate, loader: LoaderSpy) {
@@ -83,7 +117,9 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         let (sut, sourceDelegate) = GeneralSearchUIComposer
             .searchComposedWith(
                 searchResultController: searchResultController,
-                searchLoader: loader.loadPublisher
+                searchLoader: loader.loadPublisher,
+                onEpisodeSelect: onEpisodeSelect,
+                onPodcastSelect: onPodcastSelect
             )
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(loader, file: file, line: line)
@@ -210,7 +246,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(view?.titleText, podcastViewModel.title, "Wrong title at indexPath \(indexPath)", file: file, line: line)
         XCTAssertEqual(view?.publisherText, podcastViewModel.publisher, "Wrong publisher at indexPath \(indexPath)", file: file, line: line)
     }
-        
+    
     private class LoaderSpy {
         typealias Publsiher = AnyPublisher<GeneralSearchContentResult, Error>
         

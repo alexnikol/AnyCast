@@ -62,7 +62,10 @@ final class RootComposer {
         let (generalSearch, _) = GeneralSearchUIComposer
             .searchComposedWith(
                 searchResultController: typeheadController,
-                searchLoader: { _ in Empty().eraseToAnyPublisher() })
+                searchLoader: { _ in Empty().eraseToAnyPublisher() },
+                onEpisodeSelect: { _ in },
+                onPodcastSelect: { _ in }
+            )
         let searchNavigation = UINavigationController(rootViewController: generalSearch)
         searchNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.searchTabBarItemTitle,

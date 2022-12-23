@@ -5,6 +5,7 @@ import Combine
 import LoadResourcePresenter
 import SharedComponentsiOSModule
 import SearchContentModule
+import PodcastsModule
 
 public enum GeneralSearchUIComposer {
     
@@ -12,7 +13,9 @@ public enum GeneralSearchUIComposer {
     
     public static func searchComposedWith(
         searchResultController: SearchResultController,
-        searchLoader: @escaping (String) -> AnyPublisher<GeneralSearchContentResult, Error>
+        searchLoader: @escaping (String) -> AnyPublisher<GeneralSearchContentResult, Error>,
+        onEpisodeSelect: @escaping (Episode) -> Void,
+        onPodcastSelect: @escaping (SearchResultPodcast) -> Void
     ) -> (controller: ListViewController, sourceDelegate: GeneralSearchSourceDelegate) {
         let presentationAdapter = GeneralSearchPresentationAdapter(loader: searchLoader)
         let controller = ListViewController(refreshController: nil)
@@ -24,7 +27,9 @@ public enum GeneralSearchUIComposer {
         
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: GeneralSearchViewAdapter(
-                controller: controller
+                controller: controller,
+                onEpisodeSelect: onEpisodeSelect,
+                onPodcastSelect: onPodcastSelect
             ),
             loadingView: nullObjectPresenterStateView,
             errorView: nullObjectPresenterStateView,

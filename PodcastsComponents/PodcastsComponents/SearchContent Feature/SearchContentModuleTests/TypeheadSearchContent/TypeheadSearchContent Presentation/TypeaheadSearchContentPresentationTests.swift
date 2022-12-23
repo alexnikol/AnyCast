@@ -5,18 +5,18 @@ import SharedTestHelpersLibrary
 import SearchContentModule
 import PodcastsGenresList
 
-final class TypeheadSearchContentPresentationTests: XCTestCase {
+final class TypeaheadSearchContentPresentationTests: XCTestCase {
     
     func test_createsViewModel() {
         let terms = uniqueTerms()
         let genres = uniqueGenres()
         let podcasts = uniquePodcastSearchResults()
-        let domainModel = TypeheadSearchContentResult(terms: terms, genres: genres, podcasts: podcasts)
+        let domainModel = TypeaheadSearchContentResult(terms: terms, genres: genres, podcasts: podcasts)
         
-        let generalViewModel = TypeheadSearchContentPresenter.map(domainModel)
-        let termsViewModels = domainModel.terms.map(TypeheadSearchContentPresenter.map)
-        let genresViewModels = domainModel.genres.map(TypeheadSearchContentPresenter.map)
-        let podcastsViewModels = domainModel.podcasts.map(TypeheadSearchContentPresenter.map)
+        let generalViewModel = TypeaheadSearchContentPresenter.map(domainModel)
+        let termsViewModels = domainModel.terms.map(TypeaheadSearchContentPresenter.map)
+        let genresViewModels = domainModel.genres.map(TypeaheadSearchContentPresenter.map)
+        let podcastsViewModels = domainModel.podcasts.map(TypeaheadSearchContentPresenter.map)
         
         XCTAssertEqual(generalViewModel.terms, domainModel.terms)
         XCTAssertEqual(generalViewModel.podcasts, domainModel.podcasts)
@@ -25,7 +25,7 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
         XCTAssertEqual(genresViewModels, ["Any genre 1", "Any genre 2"])
         assert(
             receivedViewModel: podcastsViewModels[0],
-            expectedViewModel: TypeheadSearchResultPodcastViewModel(
+            expectedViewModel: TypeaheadSearchResultPodcastViewModel(
                 titleOriginal: "Title",
                 publisherOriginal: "Publisher",
                 thumbnail: anotherURL()
@@ -33,7 +33,7 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
         )
         assert(
             receivedViewModel: podcastsViewModels[1],
-            expectedViewModel: TypeheadSearchResultPodcastViewModel(
+            expectedViewModel: TypeaheadSearchResultPodcastViewModel(
                 titleOriginal: "Another Title",
                 publisherOriginal: "Another Publisher",
                 thumbnail: anotherURL()
@@ -44,8 +44,8 @@ final class TypeheadSearchContentPresentationTests: XCTestCase {
     // MARK: - Helpers
     
     private func assert(
-        receivedViewModel: TypeheadSearchResultPodcastViewModel,
-        expectedViewModel: TypeheadSearchResultPodcastViewModel,
+        receivedViewModel: TypeaheadSearchResultPodcastViewModel,
+        expectedViewModel: TypeaheadSearchResultPodcastViewModel,
         file: StaticString = #file,
         line: UInt = #line
     ) {

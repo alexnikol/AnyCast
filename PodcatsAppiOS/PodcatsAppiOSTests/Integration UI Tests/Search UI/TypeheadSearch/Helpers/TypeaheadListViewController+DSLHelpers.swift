@@ -3,7 +3,7 @@
 import UIKit
 import SearchContentModuleiOS
 
-extension TypeheadListViewController {
+extension TypeaheadListViewController {
     
     private var searchTermsSection: Int {
         return 0

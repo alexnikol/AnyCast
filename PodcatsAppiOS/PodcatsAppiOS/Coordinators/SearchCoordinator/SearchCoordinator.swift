@@ -33,18 +33,18 @@ final class SearchCoordinator {
     
     private func createSearchScreen() -> UIViewController {
         var searchSourceDelegate: GeneralSearchSourceDelegate?
-        let typeheadSearch = createTypeheadSearch { selectedTerm in
+        let typeaheadSearch = createTypeaheadSearch { selectedTerm in
             searchSourceDelegate?.didUpdateSearchTerm(selectedTerm)
         }
-        let (generalSearch, generalSearchSourceDelegate) = createGeneralSearch(typeheadController: typeheadSearch)
+        let (generalSearch, generalSearchSourceDelegate) = createGeneralSearch(typeaheadController: typeaheadSearch)
         searchSourceDelegate = generalSearchSourceDelegate
         return generalSearch
     }
     
-    private func createGeneralSearch(typeheadController: GeneralSearchUIComposer.SearchResultController) -> (UIViewController, GeneralSearchSourceDelegate) {
+    private func createGeneralSearch(typeaheadController: GeneralSearchUIComposer.SearchResultController) -> (UIViewController, GeneralSearchSourceDelegate) {
         let service = GeneralSearchService(baseURL: baseURL, httpClient: httpClient)
         let (generalSearch, generalSearchSourceDelegate) = GeneralSearchUIComposer.searchComposedWith(
-            searchResultController: typeheadController,
+            searchResultController: typeaheadController,
             searchLoader: service.makeRemoteGeneralSearchLoader,
             onEpisodeSelect: { _ in },
             onPodcastSelect: { _ in }
@@ -52,10 +52,10 @@ final class SearchCoordinator {
         return (generalSearch, generalSearchSourceDelegate)
     }
     
-    private func createTypeheadSearch(onTermSelect: @escaping (String) -> Void) -> TypeheadListViewController {
-        let service = TypeheadSearchService(baseURL: baseURL, httpClient: httpClient)
-        return TypeheadSearchUIComposer.searchComposedWith(
-            searchLoader: service.makeRemoteTypeheadSearchLoader,
+    private func createTypeaheadSearch(onTermSelect: @escaping (String) -> Void) -> TypeaheadListViewController {
+        let service = TypeaheadSearchService(baseURL: baseURL, httpClient: httpClient)
+        return TypeaheadSearchUIComposer.searchComposedWith(
+            searchLoader: service.makeRemoteTypeaheadSearchLoader,
             onTermSelect: onTermSelect
         )
     }

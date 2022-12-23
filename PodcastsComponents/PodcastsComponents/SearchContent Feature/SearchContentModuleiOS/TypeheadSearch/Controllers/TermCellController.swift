@@ -6,11 +6,11 @@ import LoadResourcePresenter
 import SharedComponentsiOSModule
 
 public final class TermCellController: NSObject {
-    private let model: TypeheadSearchTermViewModel
+    private let model: TypeaheadSearchTermViewModel
     private var cell: UITableViewCell?
     private let selection: () -> Void
     
-    public init(model: TypeheadSearchTermViewModel,
+    public init(model: TypeaheadSearchTermViewModel,
                 selection: @escaping () -> Void) {
         self.model = model
         self.selection = selection

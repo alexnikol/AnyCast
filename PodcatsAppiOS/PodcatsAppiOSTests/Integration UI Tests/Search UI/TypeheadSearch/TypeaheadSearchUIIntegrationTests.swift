@@ -7,9 +7,9 @@ import SearchContentModule
 import SearchContentModuleiOS
 @testable import Podcats
 
-final class TypeheadSearchUIIntegrationTests: XCTestCase {
+final class TypeaheadSearchUIIntegrationTests: XCTestCase {
     
-    func test_loadTypeheadSearchResultActions_requestTypeheadSearchOnTextChange() {
+    func test_loadTypeaheadSearchResultActions_requestTypeaheadSearchOnTextChange() {
         let (sut, searchController, loader) = makeSUT()
         
         XCTAssertEqual(loader.loadCallCount, 0, "Expected no loading requests before view is loaded")
@@ -24,7 +24,7 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 2, "Expected 2 loading requests on text change")
     }
     
-    func test_loadTypeheadSearchResultCompletion_rendersSuccessfullyLoadedTerms() {
+    func test_loadTypeaheadSearchResultCompletion_rendersSuccessfullyLoadedTerms() {
         let (sut, searchController, loader) = makeSUT()
         sut.loadViewIfNeeded()
         assertThat(sut, isRendering: [])
@@ -42,7 +42,7 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: ["result 2", "result 3"])
     }
     
-    func test_loadTypeheadSearchResultCompletion_doesNotAlterCurrentRenderingStateOnError() {
+    func test_loadTypeaheadSearchResultCompletion_doesNotAlterCurrentRenderingStateOnError() {
         let (sut, searchController, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
@@ -55,7 +55,7 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
         assertThat(sut, isRendering: ["result 1"])
     }
     
-    func test_loadTypeheadSearchResultCancel_cancelsPreviousRequestBeforeNewRequest() {
+    func test_loadTypeaheadSearchResultCancel_cancelsPreviousRequestBeforeNewRequest() {
         let (sut, searchController, loader) = makeSUT()
         sut.loadViewIfNeeded()
         
@@ -91,7 +91,7 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
         XCTAssertEqual(receivedResult, ["any search 2"])
     }
     
-    func test_loadTypeheadSearchResultCompletion_dispatchesFromBackgroundToMainThread() {
+    func test_loadTypeaheadSearchResultCompletion_dispatchesFromBackgroundToMainThread() {
         let (sut, searchController, loader) = makeSUT()
         sut.loadViewIfNeeded()
         searchController.simulateUserInitiatedTyping(with: "any search term")
@@ -110,9 +110,9 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
         onTermSelect: @escaping (String) -> Void = { _ in },
         file: StaticString = #file,
         line: UInt = #line
-    ) -> (sut: TypeheadListViewController, searchController: UISearchController, loader: LoaderSpy) {
+    ) -> (sut: TypeaheadListViewController, searchController: UISearchController, loader: LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = TypeheadSearchUIComposer.searchComposedWith(
+        let sut = TypeaheadSearchUIComposer.searchComposedWith(
             searchLoader: loader.loadPublisher,
             onTermSelect: onTermSelect
         )
@@ -124,7 +124,7 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
         return (sut, searchController, loader)
     }
     
-    private func assertThat(_ sut: TypeheadListViewController, isRendering terms: [String], file: StaticString = #file, line: UInt = #line) {
+    private func assertThat(_ sut: TypeaheadListViewController, isRendering terms: [String], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedSearchTermViews() == terms.count else {
             return XCTFail("Expected \(terms.count) rendered terms, got \(sut.numberOfRenderedSearchTermViews()) rendered views instead", file: file, line: line)
         }
@@ -135,22 +135,22 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
     }
     
     private func assertThat(
-        _ sut: TypeheadListViewController,
+        _ sut: TypeaheadListViewController,
         hasViewConfiguredFor term: String,
         at index: Int,
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let termViewModel = TypeheadSearchContentPresenter.map(term)
+        let termViewModel = TypeaheadSearchContentPresenter.map(term)
         let view = sut.searchTermView(at: index)
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.termText, termViewModel, "Wrong title at index \(index)", file: file, line: line)
     }
     
     private class LoaderSpy {
-        typealias Publsiher = AnyPublisher<TypeheadSearchContentResult, Error>
+        typealias Publsiher = AnyPublisher<TypeaheadSearchContentResult, Error>
         
-        private var requests = [PassthroughSubject<TypeheadSearchContentResult, Error>]()
+        private var requests = [PassthroughSubject<TypeaheadSearchContentResult, Error>]()
         private(set) var cancelledTerms = [String]()
         
         var loadCallCount: Int {
@@ -158,7 +158,7 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
         }
         
         func loadPublisher(for searchTerm: String) -> Publsiher {
-            let publisher = PassthroughSubject<TypeheadSearchContentResult, Error>()
+            let publisher = PassthroughSubject<TypeaheadSearchContentResult, Error>()
             
             let cancelPublisher = publisher.handleEvents(receiveCancel: { [weak self] in
                 self?.cancelledTerms.append(searchTerm)
@@ -168,7 +168,7 @@ final class TypeheadSearchUIIntegrationTests: XCTestCase {
             return cancelPublisher.eraseToAnyPublisher()
         }
         
-        func completeRequest(with result: TypeheadSearchContentResult, atIndex index: Int) {
+        func completeRequest(with result: TypeaheadSearchContentResult, atIndex index: Int) {
             requests[index].send(result)
         }
         

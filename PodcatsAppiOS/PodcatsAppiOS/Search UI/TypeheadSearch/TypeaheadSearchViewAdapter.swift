@@ -7,8 +7,8 @@ import LoadResourcePresenter
 import SearchContentModule
 import SearchContentModuleiOS
 
-final class TypeheadSearchViewAdapter: ResourceView {
-    typealias ResourceViewModel = TypeheadSearchContentResultViewModel
+final class TypeaheadSearchViewAdapter: ResourceView {
+    typealias ResourceViewModel = TypeaheadSearchContentResultViewModel
     
     weak var controller: ListViewController?
     private let onTermSelect: (String) -> Void
@@ -20,7 +20,7 @@ final class TypeheadSearchViewAdapter: ResourceView {
     
     func display(_ viewModel: ResourceViewModel) {
         let termControllers = viewModel.terms.map { term -> TermCellController in
-            let termViewModel = TypeheadSearchContentPresenter.map(term)
+            let termViewModel = TypeaheadSearchContentPresenter.map(term)
             return TermCellController(model: termViewModel, selection: { [weak self] in
                 self?.controller?.dismiss(animated: true)
                 self?.onTermSelect(term)

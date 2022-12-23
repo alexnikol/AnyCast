@@ -3,7 +3,7 @@
 import Foundation
 import PodcastsGenresList
 
-public struct TypeheadSearchContentResultViewModel {
+public struct TypeaheadSearchContentResultViewModel {
     public let terms: [String]
     public let genres: [Genre]
     public let podcasts: [SearchResultPodcast]

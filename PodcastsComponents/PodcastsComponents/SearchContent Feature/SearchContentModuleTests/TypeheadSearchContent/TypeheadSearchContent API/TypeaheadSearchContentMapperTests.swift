@@ -5,17 +5,17 @@ import SharedTestHelpersLibrary
 import SearchContentModule
 import PodcastsGenresList
 
-final class TypeheadSearchContentMapperTests: XCTestCase {
+final class TypeaheadSearchContentMapperTests: XCTestCase {
     
-    func test_map_deliversTypeheadSearchContentResultOn200HTTPResponseWithJSONItems() throws {
+    func test_map_deliversTypeaheadSearchContentResultOn200HTTPResponseWithJSONItems() throws {
         let terms = uniqueTerms()
         let genres = uniqueGenres()
         let podcasts = uniquePodcastSearchResults()
         let validJSON = makeValidJSON(terms: terms, genres: genres, podcasts: podcasts)
         
-        let result = try TypeheadSearchContentMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
+        let result = try TypeaheadSearchContentMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
         
-        XCTAssertEqual(result, TypeheadSearchContentResult(terms: terms, genres: genres, podcasts: podcasts))
+        XCTAssertEqual(result, TypeaheadSearchContentResult(terms: terms, genres: genres, podcasts: podcasts))
     }
     
     // MARK: - Helpers

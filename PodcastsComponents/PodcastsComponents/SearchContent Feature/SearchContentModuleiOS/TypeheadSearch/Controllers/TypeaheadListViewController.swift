@@ -3,15 +3,15 @@
 import UIKit
 import SharedComponentsiOSModule
 
-public protocol TypeheadListViewControllerDelegate {
+public protocol TypeaheadListViewControllerDelegate {
     func searchTextDidChange(term: String)
 }
 
-public class TypeheadListViewController: ListViewController {
+public class TypeaheadListViewController: ListViewController {
     
-    private var searchDelegate: TypeheadListViewControllerDelegate?
+    private var searchDelegate: TypeaheadListViewControllerDelegate?
     
-    public init(searchDelegate: TypeheadListViewControllerDelegate, tableConfig: ListTableViewConfiguratior = .default) {
+    public init(searchDelegate: TypeaheadListViewControllerDelegate, tableConfig: ListTableViewConfiguratior = .default) {
         self.searchDelegate = searchDelegate
         super.init(refreshController: nil)
     }
@@ -57,7 +57,7 @@ public class TypeheadListViewController: ListViewController {
     }
 }
 
-extension TypeheadListViewController: UISearchBarDelegate {
+extension TypeaheadListViewController: UISearchBarDelegate {
     
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchDelegate?.searchTextDidChange(term: searchText)

@@ -5,7 +5,7 @@ import Combine
 import HTTPClient
 import SearchContentModule
 
-final class TypeheadSearchService {
+final class TypeaheadSearchService {
     private let baseURL: URL
     private let httpClient: HTTPClient
     
@@ -14,11 +14,11 @@ final class TypeheadSearchService {
         self.httpClient = httpClient
     }
     
-    func makeRemoteTypeheadSearchLoader(term: String) -> AnyPublisher<TypeheadSearchContentResult, Error> {
-        let requestURL = SearchEndpoint.getTypeheadSearch(term: term).url(baseURL: baseURL)
+    func makeRemoteTypeaheadSearchLoader(term: String) -> AnyPublisher<TypeaheadSearchContentResult, Error> {
+        let requestURL = SearchEndpoint.getTypeaheadSearch(term: term).url(baseURL: baseURL)
         return httpClient
             .loadPublisher(from: requestURL)
-            .tryMap(TypeheadSearchContentMapper.map)
+            .tryMap(TypeaheadSearchContentMapper.map)
             .eraseToAnyPublisher()
     }
 }

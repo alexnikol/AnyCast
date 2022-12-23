@@ -4,7 +4,7 @@ import Foundation
 
 public enum SearchEndpoint {
     case getGeneralSearch(term: String)
-    case getTypeheadSearch(term: String)
+    case getTypeaheadSearch(term: String)
         
     public func url(baseURL: URL) -> URL {
         switch self {
@@ -13,7 +13,7 @@ public enum SearchEndpoint {
             urlBuilder.queryItems = [URLQueryItem(name: "q", value: term)]
             return urlBuilder.url!
             
-        case .getTypeheadSearch(let term):
+        case .getTypeaheadSearch(let term):
             var urlBuilder = build(fromBaseURL: baseURL, path: "/api/v2/typeahead")
             urlBuilder.queryItems = [URLQueryItem(name: "q", value: term)]
             return urlBuilder.url!

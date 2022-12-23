@@ -85,7 +85,7 @@ final class PodcatsAcceptanceTests: XCTestCase {
         XCTAssertEqual(typeaheadSearch.numberOfRenderedSearchTermViews(), 0)
     }
     
-    func test_onLaunchSearch_displaysTypeheadSearchResultOnTyping() {
+    func test_onLaunchSearch_displaysTypeaheadSearchResultOnTyping() {
         let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
         let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
         let searchController = generalSearch.navigationItem.searchController
@@ -173,11 +173,11 @@ final class PodcatsAcceptanceTests: XCTestCase {
     
     private func search(
         from tabBar: RootTabBarController
-    ) -> (generalSearch: ListViewController, typeaheadSearch: TypeheadListViewController) {
+    ) -> (generalSearch: ListViewController, typeaheadSearch: TypeaheadListViewController) {
         let nav = tabBar.viewControllers?[1] as? UINavigationController
         let generalSearch = nav?.topViewController as! ListViewController
         let searchController = generalSearch.navigationItem.searchController
-        let typeaheadSearch = searchController?.searchResultsController as! TypeheadListViewController
+        let typeaheadSearch = searchController?.searchResultsController as! TypeaheadListViewController
         return (generalSearch, typeaheadSearch)
     }
     
@@ -194,7 +194,7 @@ final class PodcatsAcceptanceTests: XCTestCase {
             return makePodcastDetailsData()
             
         case "\(baseURL)/api/v2/typeahead?q=any%20term":
-            return makeTypeheadSearchData()
+            return makeTypeaheadSearchData()
             
         case "\(baseURL)/api/v2/search?q=Any%20term%201":
             return makeGeneralSearchData()
@@ -260,7 +260,7 @@ final class PodcatsAcceptanceTests: XCTestCase {
         ])
     }
     
-    private func makeTypeheadSearchData() -> Data {
+    private func makeTypeaheadSearchData() -> Data {
         return try! JSONSerialization.data(withJSONObject: [
             "terms": [
                 "Any term 1",

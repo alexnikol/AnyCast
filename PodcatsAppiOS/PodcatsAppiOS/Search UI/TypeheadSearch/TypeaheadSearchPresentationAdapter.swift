@@ -6,12 +6,12 @@ import LoadResourcePresenter
 import SearchContentModule
 import SearchContentModuleiOS
 
-final class TypeheadSearchPresentationAdapter: TypeheadListViewControllerDelegate {
-    typealias Resource = TypeheadSearchContentResult
+final class TypeaheadSearchPresentationAdapter: TypeaheadListViewControllerDelegate {
+    typealias Resource = TypeaheadSearchContentResult
     
     private let loader: (String) -> AnyPublisher<Resource, Error>
     private var cancellable: AnyCancellable?
-    var presenter: LoadResourcePresenter<Resource, TypeheadSearchViewAdapter>?
+    var presenter: LoadResourcePresenter<Resource, TypeaheadSearchViewAdapter>?
     
     init(loader: @escaping (String) -> AnyPublisher<Resource, Error>) {
         self.loader = loader

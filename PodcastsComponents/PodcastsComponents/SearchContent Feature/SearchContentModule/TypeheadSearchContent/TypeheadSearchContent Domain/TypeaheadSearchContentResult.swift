@@ -3,7 +3,7 @@
 import Foundation
 import PodcastsGenresList
 
-public struct TypeheadSearchContentResult: Equatable {
+public struct TypeaheadSearchContentResult: Equatable {
     public let terms: [String]
     public let genres: [Genre]
     public let podcasts: [SearchResultPodcast]

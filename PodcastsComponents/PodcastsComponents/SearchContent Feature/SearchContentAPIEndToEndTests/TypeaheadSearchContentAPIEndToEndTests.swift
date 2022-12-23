@@ -4,10 +4,10 @@ import XCTest
 import PodcastsGenresList
 import SearchContentModule
 
-final class TypeheadSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {
+final class TypeaheadSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {
     
-    func test_endToEndTestServerGETTypeHeadSearchContentResult_matchesFixedTestSearchData() {
-        switch fetchResult(from: testServerURL, withMapper: TypeheadSearchContentMapper.map) {
+    func test_endToEndTestServerGETTypeaheadSearchContentResult_matchesFixedTestSearchData() {
+        switch fetchResult(from: testServerURL, withMapper: TypeaheadSearchContentMapper.map) {
         case let .success(searchResult):
             XCTAssertEqual(searchResult.terms.count, 3, "Expected 3 searched terms in search result")
             XCTAssertEqual(searchResult.genres.count, 2, "Expected 2 searched genres in search result")

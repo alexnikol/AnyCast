@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct TypeheadSearchResultPodcastViewModel {
+public struct TypeaheadSearchResultPodcastViewModel {
     public let titleOriginal: String
     public let publisherOriginal: String
     public let thumbnail: URL

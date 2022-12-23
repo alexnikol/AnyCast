@@ -2,7 +2,7 @@
 
 import Foundation
 
-class RemoteTypeheadSearchContentResult: Decodable {
+class RemoteTypeaheadSearchContentResult: Decodable {
     let terms: [String]
     let genres: [RemoteGenre]
     let podcasts: [RemoteSearchResultPodcast]

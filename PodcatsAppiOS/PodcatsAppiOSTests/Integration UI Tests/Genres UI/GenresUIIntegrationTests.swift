@@ -5,14 +5,14 @@ import PodcastsGenresList
 import PodcastsGenresListiOS
 @testable import Podcats
 
-final class GenresUIIntegrationTests: XCTestCase {
-        
+final class GenresUIIntegrationTests: XCTestCase, LocalizationUITestCase {
+
     func test_genresView_hasTitle() {
         let (sut, _) = makeSUT()
         
         sut.loadViewIfNeeded()
         
-        XCTAssertEqual(sut.title, localized("GENRES_VIEW_TITLE"))
+        XCTAssertEqual(sut.title, localized("GENRES_VIEW_TITLE", bundle: bundle, table: tableName))
     }
         
     func test_loadGenresActions_requestGenresFromLoader() {
@@ -126,5 +126,13 @@ final class GenresUIIntegrationTests: XCTestCase {
     
     private func makeGenre(id: Int, name: String) -> Genre {
         return Genre(id: id, name: name)
+    }
+    
+    private var tableName: String {
+        "Genres"
+    }
+    
+    private var bundle: Bundle {
+        Bundle(for: GenresPresenter.self)
     }
 }

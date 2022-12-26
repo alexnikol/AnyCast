@@ -24,6 +24,7 @@
 		8D1A4B3C2955DA0800825E60 /* TypeaheadSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1A4B3B2955DA0800825E60 /* TypeaheadSearchService.swift */; };
 		8D2490D62938FAA1009ACD36 /* AVPlayerClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; };
 		8D2490D72938FAA1009ACD36 /* AVPlayerClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D3621F32959C43200967634 /* LocalizationTestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F22959C43200967634 /* LocalizationTestsHelper.swift */; };
 		8D3C22312950B82A007D158E /* GeneralSearchSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22302950B82A007D158E /* GeneralSearchSourceDelegate.swift */; };
 		8D3C22332950B882007D158E /* GeneralSearchPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22322950B882007D158E /* GeneralSearchPresentationAdapter.swift */; };
 		8D3C22372950C872007D158E /* ThumbnailSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22362950C872007D158E /* ThumbnailSourceDelegate.swift */; };
@@ -49,7 +50,6 @@
 		8D72D03928F8118900C17DDC /* GenresViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D03428F8118900C17DDC /* GenresViewAdapter.swift */; };
 		8D72D03A28F8118900C17DDC /* ImmediateWhenOnMainQueueScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D03528F8118900C17DDC /* ImmediateWhenOnMainQueueScheduler.swift */; };
 		8D72D03D28F8118900C17DDC /* GenresUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D03828F8118900C17DDC /* GenresUIComposer.swift */; };
-		8D72D04628F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04028F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift */; };
 		8D72D04728F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04128F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift */; };
 		8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04228F8121C00C17DDC /* GenreCell+DSLHelpers.swift */; };
 		8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D72D04328F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift */; };
@@ -173,6 +173,7 @@
 		8D1A4B312955C96F00825E60 /* GeneralSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchService.swift; sourceTree = "<group>"; };
 		8D1A4B3B2955DA0800825E60 /* TypeaheadSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadSearchService.swift; sourceTree = "<group>"; };
 		8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AVPlayerClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D3621F22959C43200967634 /* LocalizationTestsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTestsHelper.swift; sourceTree = "<group>"; };
 		8D3C22302950B82A007D158E /* GeneralSearchSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchSourceDelegate.swift; sourceTree = "<group>"; };
 		8D3C22322950B882007D158E /* GeneralSearchPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchPresentationAdapter.swift; sourceTree = "<group>"; };
 		8D3C22362950C872007D158E /* ThumbnailSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailSourceDelegate.swift; sourceTree = "<group>"; };
@@ -198,7 +199,6 @@
 		8D72D03428F8118900C17DDC /* GenresViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresViewAdapter.swift; sourceTree = "<group>"; };
 		8D72D03528F8118900C17DDC /* ImmediateWhenOnMainQueueScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmediateWhenOnMainQueueScheduler.swift; sourceTree = "<group>"; };
 		8D72D03828F8118900C17DDC /* GenresUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresUIComposer.swift; sourceTree = "<group>"; };
-		8D72D04028F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GenresListViewControllerTests+Localization.swift"; sourceTree = "<group>"; };
 		8D72D04128F8121C00C17DDC /* UIRefreshControl+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8D72D04228F8121C00C17DDC /* GenreCell+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GenreCell+DSLHelpers.swift"; sourceTree = "<group>"; };
 		8D72D04328F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GenresListViewController+DSLHelpers.swift"; sourceTree = "<group>"; };
@@ -359,6 +359,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		8D3621F12959C41C00967634 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D3621F22959C43200967634 /* LocalizationTestsHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8D4298C1292242D90064F3E6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +407,7 @@
 		8D4C3B22291CF2F7002AD459 /* Integration UI Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8D3621F12959C41C00967634 /* Helpers */,
 				8D72D03E28F8121C00C17DDC /* Genres UI */,
 				8D5FA24E2913C4CD002BB874 /* BestPodcasts UI */,
 				8DDBB76C291BC5740024A37A /* PodcastDetails UI */,
@@ -482,7 +491,6 @@
 		8D72D03F28F8121C00C17DDC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8D72D04028F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift */,
 				8D72D04228F8121C00C17DDC /* GenreCell+DSLHelpers.swift */,
 				8D72D04328F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift */,
 				8D72D04428F8121C00C17DDC /* GenresListViewControllerTests+LoaderSpy.swift */,
@@ -938,7 +946,6 @@
 				8DB9ADD62952056200A6F1DF /* GeneralSearchUIIntegrationTests.swift in Sources */,
 				8D72D05628F8163E00C17DDC /* GenresUIIntegrationTests.swift in Sources */,
 				8D72D04928F8121C00C17DDC /* GenresListViewController+DSLHelpers.swift in Sources */,
-				8D72D04628F8121C00C17DDC /* GenresListViewControllerTests+Localization.swift in Sources */,
 				8D5FA2572913C539002BB874 /* BestPodcasts+ListViewController+DSLHelpers.swift in Sources */,
 				8DCA228E2934BA6F00DD1EC6 /* LargeAudioPlayerViewController+DSLHelpers.swift in Sources */,
 				8D750CBC29487DB9004500D9 /* RootTabBarControllerLocalizationTests.swift in Sources */,
@@ -951,6 +958,7 @@
 				8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */,
 				8D0BE49D2950A5D000B4171A /* TypeaheadSearchUIIntegrationTests.swift in Sources */,
 				8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */,
+				8D3621F32959C43200967634 /* LocalizationTestsHelper.swift in Sources */,
 				8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */,
 				8D5FA25B2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift in Sources */,
 				8DDBB783291BDEC70024A37A /* PodcastDetails+ListViewController+DSLHelpers.swift in Sources */,

@@ -5,57 +5,28 @@ import CoreData
 import HTTPClient
 import PodcastsModule
 import PodcastsGenresList
-import AudioPlayerModule
-import AudioPlayerModuleiOS
-
-final class PodcastsImageDataStoreContainer {
-    static let shared = PodcastsImageDataStoreContainer()
-    
-    lazy var podcastsImageDataStore: PodcastsImageDataStore = {
-        try! CoreDataPodcastsImageDataStore(
-            storeURL: NSPersistentContainer
-                .defaultDirectoryURL()
-                .appendingPathComponent("best-podcasts-image-data-store.sqlite")
-        )
-    }()
-}
 
 final class ExploreCoordinator {
     private let navigationController: UINavigationController
     private let baseURL: URL
     private let httpClient: HTTPClient
     private let localGenresLoader: LocalGenresLoader
-    private let audioPlayer: AudioPlayer
-    private let audioPlayerStatePublisher: AudioPlayerStatePublisher
-    private var largePlayerController: LargeAudioPlayerViewController?
+    var largePlayerControlDelegate: LargePlayerControlDelegate?
         
     init(navigationController: UINavigationController,
          baseURL: URL,
          httpClient: HTTPClient,
-         localGenresLoader: LocalGenresLoader,
-         audioPlayer: AudioPlayer,
-         audioPlayerStatePublisher: AudioPlayerStatePublisher) {
+         localGenresLoader: LocalGenresLoader) {
         self.navigationController = navigationController
         self.baseURL = baseURL
         self.httpClient = httpClient
         self.localGenresLoader = localGenresLoader
-        self.audioPlayer = audioPlayer
-        self.audioPlayerStatePublisher = audioPlayerStatePublisher
     }
         
     func start() {
         navigationController.setViewControllers([createGenres()], animated: false)
     }
-    
-    func openPlayer() {
-        guard let largePlayerController = largePlayerController else {
-            largePlayerController = createPlayer()
-            openPlayer()
-            return
-        }
-        present(screen: largePlayerController)
-    }
-    
+        
     private func show(screen: UIViewController) {
         self.navigationController.pushViewController(screen, animated: true)
     }
@@ -94,9 +65,8 @@ final class ExploreCoordinator {
                     byPodcast: podcast,
                     selection: { [weak self] episode, podcast in
                         guard let self = self else { return }
-                        
-                        self.startPlayback(episode: episode, podcast: podcast)
-                        self.openPlayer()
+                        self.largePlayerControlDelegate?
+                            .startPlaybackAndOpenPlayer(episode: episode, podcast: podcast)
                     }
                 )
                 self.show(screen: podcastDetails)
@@ -116,23 +86,5 @@ final class ExploreCoordinator {
             imageLoader: podcastDetailsService.makeRemotePodcastImageDataLoader(for:),
             selection: selection
         )
-    }
-    
-    private func startPlayback(episode: Episode, podcast: PodcastDetails) {
-        audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
-    }
-        
-    private func createPlayer() -> LargeAudioPlayerViewController {
-        let service = EpisodeThumbnailLoaderService(
-            httpClient: httpClient,
-            podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
-        )
-        
-        let largePlayerController = LargeAudioPlayerUIComposer.playerWith(
-            statePublisher: audioPlayerStatePublisher,
-            controlsDelegate: audioPlayer,
-            imageLoader: service.makeRemotePodcastImageDataLoader(for:)
-        )
-        return largePlayerController
     }
 }

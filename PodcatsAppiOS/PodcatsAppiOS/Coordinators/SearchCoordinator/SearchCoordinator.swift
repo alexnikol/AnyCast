@@ -5,47 +5,28 @@ import Combine
 import HTTPClient
 import SearchContentModule
 import SearchContentModuleiOS
-import AudioPlayerModule
-import AudioPlayerModuleiOS
 import PodcastsModule
-import PodcastsModuleiOS
 
 final class SearchCoordinator {
     private let navigationController: UINavigationController
     private let baseURL: URL
     private let httpClient: HTTPClient
-    private let audioPlayer: AudioPlayer
-    private let audioPlayerStatePublisher: AudioPlayerStatePublisher
-    private var largePlayerController: LargeAudioPlayerViewController?
+    var largePlayerControlDelegate: LargePlayerControlDelegate?
     
     init(navigationController: UINavigationController,
          baseURL: URL,
-         httpClient: HTTPClient,
-         audioPlayer: AudioPlayer,
-         audioPlayerStatePublisher: AudioPlayerStatePublisher) {
+         httpClient: HTTPClient) {
         self.navigationController = navigationController
         self.baseURL = baseURL
         self.httpClient = httpClient
-        self.audioPlayer = audioPlayer
-        self.audioPlayerStatePublisher = audioPlayerStatePublisher
     }
     
     func start() {
         navigationController.setViewControllers([createSearchScreen()], animated: false)
     }
     
-    func openPlayer() {
-        guard let largePlayerController = largePlayerController else {
-            largePlayerController = createPlayer()
-            openPlayer()
-            
-            return
-        }
-        present(screen: largePlayerController)
-    }
-    
     private func show(screen: UIViewController) {
-        self.navigationController.pushViewController(screen, animated: true)
+        self.navigationController.tabBarController?.showDetailViewController(screen, sender: self)
     }
     
     private func present(screen: UIViewController) {
@@ -69,7 +50,6 @@ final class SearchCoordinator {
             searchLoader: service.makeRemoteGeneralSearchLoader,
             onEpisodeSelect: { episode in
                 self.startPlayback(episode: episode)
-                self.openPlayer()
             },
             onPodcastSelect: { _ in }
         )
@@ -94,20 +74,6 @@ final class SearchCoordinator {
             image: URL(string: "https://any-url.com")!,
             episodes: [], description: "Descrption", totalEpisodes: 1
         )
-        audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
-    }
-    
-    private func createPlayer() -> LargeAudioPlayerViewController {
-        let service = EpisodeThumbnailLoaderService(
-            httpClient: httpClient,
-            podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
-        )
-        
-        let largePlayerController = LargeAudioPlayerUIComposer.playerWith(
-            statePublisher: audioPlayerStatePublisher,
-            controlsDelegate: audioPlayer,
-            imageLoader: service.makeRemotePodcastImageDataLoader(for:)
-        )
-        return largePlayerController
+        largePlayerControlDelegate?.startPlaybackAndOpenPlayer(episode: episode, podcast: podcast)
     }
 }

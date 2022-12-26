@@ -32,9 +32,7 @@ final class RootComposer {
             navigationController: exploreNavigation,
             baseURL: baseURL,
             httpClient: httpClient,
-            localGenresLoader: localGenresLoader,
-            audioPlayer: audioPlayer,
-            audioPlayerStatePublisher: audioPlayerStatePublisher
+            localGenresLoader: localGenresLoader
         )
         exploreNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.exploreTabBarItemTitle,
@@ -47,9 +45,7 @@ final class RootComposer {
         let searchCoordinator = SearchCoordinator(
             navigationController: searchNavigation,
             baseURL: baseURL,
-            httpClient: httpClient,
-            audioPlayer: audioPlayer,
-            audioPlayerStatePublisher: audioPlayerStatePublisher
+            httpClient: httpClient
         )
         searchNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.searchTabBarItemTitle,
@@ -62,11 +58,15 @@ final class RootComposer {
             httpClient: httpClient,
             podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
         )
+        
+        var largePlayerControlDelegate: LargePlayerControlDelegate?
         let stickyPlayer = StickyAudioPlayerUIComposer.playerWith(
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,
             imageLoader: episodeThumbnailLoaderService.makeRemotePodcastImageDataLoader(for:),
-            onPlayerOpen: exploreCoordinator.openPlayer
+            onPlayerOpen: {
+                largePlayerControlDelegate?.openPlayer()
+            }
         )
         
         let rootTabBarController = RootTabBarController(
@@ -74,7 +74,18 @@ final class RootComposer {
             viewDelegate: tabBarPresentationAdapter
         )
         tabBarPresenter.view = rootTabBarController
-        rootTabBarController.setViewControllers([exploreNavigation, searchNavigation], animated: false)
+        
+        let rootCoordinator = RootTabBarCoordinator(
+            httpClient: httpClient,
+            tabbarController: rootTabBarController,
+            audioPlayer: audioPlayer,
+            audioPlayerStatePublisher: audioPlayerStatePublisher
+        )
+        largePlayerControlDelegate = rootCoordinator
+        exploreCoordinator.largePlayerControlDelegate = largePlayerControlDelegate
+        searchCoordinator.largePlayerControlDelegate = largePlayerControlDelegate
+        
+        rootCoordinator.start(controllers: [exploreNavigation, searchNavigation])
         return rootTabBarController
     }
 }

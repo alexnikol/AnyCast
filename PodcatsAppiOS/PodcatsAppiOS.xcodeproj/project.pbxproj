@@ -25,6 +25,9 @@
 		8D2490D62938FAA1009ACD36 /* AVPlayerClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; };
 		8D2490D72938FAA1009ACD36 /* AVPlayerClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D3621F32959C43200967634 /* LocalizationTestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F22959C43200967634 /* LocalizationTestsHelper.swift */; };
+		8D3621F62959CF7500967634 /* RootTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F42959CF5600967634 /* RootTabBarCoordinator.swift */; };
+		8D3621F82959D1E300967634 /* PodcastsImageDataStoreContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F72959D1E300967634 /* PodcastsImageDataStoreContainer.swift */; };
+		8D3621FA2959D64700967634 /* LargePlayerControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F92959D64700967634 /* LargePlayerControlDelegate.swift */; };
 		8D3C22312950B82A007D158E /* GeneralSearchSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22302950B82A007D158E /* GeneralSearchSourceDelegate.swift */; };
 		8D3C22332950B882007D158E /* GeneralSearchPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22322950B882007D158E /* GeneralSearchPresentationAdapter.swift */; };
 		8D3C22372950C872007D158E /* ThumbnailSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22362950C872007D158E /* ThumbnailSourceDelegate.swift */; };
@@ -174,6 +177,9 @@
 		8D1A4B3B2955DA0800825E60 /* TypeaheadSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadSearchService.swift; sourceTree = "<group>"; };
 		8D2490D52938FAA1009ACD36 /* AVPlayerClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AVPlayerClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3621F22959C43200967634 /* LocalizationTestsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTestsHelper.swift; sourceTree = "<group>"; };
+		8D3621F42959CF5600967634 /* RootTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarCoordinator.swift; sourceTree = "<group>"; };
+		8D3621F72959D1E300967634 /* PodcastsImageDataStoreContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsImageDataStoreContainer.swift; sourceTree = "<group>"; };
+		8D3621F92959D64700967634 /* LargePlayerControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePlayerControlDelegate.swift; sourceTree = "<group>"; };
 		8D3C22302950B82A007D158E /* GeneralSearchSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchSourceDelegate.swift; sourceTree = "<group>"; };
 		8D3C22322950B882007D158E /* GeneralSearchPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchPresentationAdapter.swift; sourceTree = "<group>"; };
 		8D3C22362950C872007D158E /* ThumbnailSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailSourceDelegate.swift; sourceTree = "<group>"; };
@@ -391,6 +397,7 @@
 				8D4298D7292278470064F3E6 /* BestPodcastsService.swift */,
 				8D4298D929227A140064F3E6 /* PodcastDetailsService.swift */,
 				8D7509EF29420921004500D9 /* EpisodeThumbnailLoaderService.swift */,
+				8D3621F72959D1E300967634 /* PodcastsImageDataStoreContainer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -534,6 +541,7 @@
 				8DCA227829313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift */,
 				8DCA22882934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift */,
 				8DCA228A2934B13300DD1EC6 /* LargeAudioPlayerViewAdapter.swift */,
+				8D3621F92959D64700967634 /* LargePlayerControlDelegate.swift */,
 			);
 			path = LargeAudioPlayer;
 			sourceTree = "<group>";
@@ -591,6 +599,7 @@
 				8D750CB329487C5C004500D9 /* RootTabBarPresenter.swift */,
 				8D750CB829487D16004500D9 /* RootTabBarController.swift */,
 				8D750CF529489F41004500D9 /* RootTabBarPresentationAdapter.swift */,
+				8D3621F42959CF5600967634 /* RootTabBarCoordinator.swift */,
 			);
 			path = RootUITabBarController;
 			sourceTree = "<group>";
@@ -891,7 +900,9 @@
 				8DDBB772291BC68A0024A37A /* PodcastDetailsUIComposer.swift in Sources */,
 				8D0BE48B29509B7700B4171A /* TypeaheadSearchPresentationAdapter.swift in Sources */,
 				8DCA227929313B4800DD1EC6 /* LargeAudioPlayerUIComposer.swift in Sources */,
+				8D3621FA2959D64700967634 /* LargePlayerControlDelegate.swift in Sources */,
 				8D72D07428F85C3B00C17DDC /* PodcastsGenresList+CombineHelpers.swift in Sources */,
+				8D3621F62959CF7500967634 /* RootTabBarCoordinator.swift in Sources */,
 				8D4298DA29227A140064F3E6 /* PodcastDetailsService.swift in Sources */,
 				8D4298D8292278470064F3E6 /* BestPodcastsService.swift in Sources */,
 				8D750CB929487D16004500D9 /* RootTabBarController.swift in Sources */,
@@ -907,6 +918,7 @@
 				8D1A4B2F2955C8FF00825E60 /* SearchCoordinator.swift in Sources */,
 				8D750CB729487CE9004500D9 /* RootTabBarPresenter.swift in Sources */,
 				8D4298D5292277AC0064F3E6 /* GenresLoaderService.swift in Sources */,
+				8D3621F82959D1E300967634 /* PodcastsImageDataStoreContainer.swift in Sources */,
 				8DCA22892934AED800DD1EC6 /* LargeAudioPlayerPresentationAdapter.swift in Sources */,
 				8D5FA2772913CBE5002BB874 /* HTTPClient+CombineHelpers.swift in Sources */,
 				8D72D05228F813CF00C17DDC /* UIColor+Extensions.swift in Sources */,

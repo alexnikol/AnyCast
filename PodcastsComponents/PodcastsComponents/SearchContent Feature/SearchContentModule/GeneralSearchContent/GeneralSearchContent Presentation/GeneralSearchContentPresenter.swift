@@ -51,3 +51,24 @@ public final class GeneralSearchContentPresenter {
         )
     }
 }
+
+public extension GeneralSearchContentPresenter {
+    
+    static var episodesTitle: String {
+        return NSLocalizedString(
+            "GENERAL_SEARCH_SECTION_EPISODES",
+             tableName: "GeneralSearch",
+             bundle: .init(for: Self.self),
+             comment: "Title for the found episodes section view"
+        )
+    }
+    
+    static var podcastsTitle: String {
+        return NSLocalizedString(
+            "GENERAL_SEARCH_SECTION_PODCASTS",
+             tableName: "GeneralSearch",
+             bundle: .init(for: Self.self),
+             comment: "Title for the found podcasts section view"
+        )
+    }
+}

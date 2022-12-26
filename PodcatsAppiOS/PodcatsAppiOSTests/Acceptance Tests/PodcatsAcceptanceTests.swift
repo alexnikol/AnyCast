@@ -141,6 +141,24 @@ final class PodcatsAcceptanceTests: XCTestCase {
         XCTAssertNotNil(podcastHeader)
     }
     
+    func test_onSearchedPodcastDetailsEpisodeSelection_displaysLargePlayerFromEpisodeInsideSearchedPodcast() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let podcastDetails = showPodcastDetails(fromGeneralSearchResult: generalSearch)
+        
+        let audioPlayer = showAudioPlayer(fromPodcastDetailsScreen: podcastDetails)
+        audioPlayer.loadViewIfNeeded()
+        
+        XCTAssertEqual(audioPlayer.episodeTitleText(), "Any Episode Title")
+        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Any Podcast Details Title | Any Publisher")
+    }
+    
     // MARK: - Helpers
     
     private func launch(

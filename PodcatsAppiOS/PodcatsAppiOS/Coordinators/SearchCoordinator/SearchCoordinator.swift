@@ -50,8 +50,8 @@ final class SearchCoordinator {
             onPodcastSelect: { podcast in
                 let podcastDetails = self.createPodcastDetails(
                     byPodcast: podcast,
-                    selection: { episode, podcast in
-                        print("EEE \(episode) \(podcast)")
+                    selection: { [weak self] episode, podcast in
+                        self?.largePlayerControlDelegate?.startPlaybackAndOpenPlayer(episode: episode, podcast: podcast)
                     })
                 self.show(screen: podcastDetails)
             }

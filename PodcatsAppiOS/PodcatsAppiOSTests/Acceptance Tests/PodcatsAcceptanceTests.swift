@@ -60,14 +60,14 @@ final class PodcatsAcceptanceTests: XCTestCase {
     
     func test_onPodcastSelection_displaysPodcastDetails() {
         let bestPodcasts = showBestPodcasts()
-        let podcastDetails = showPodcastDetails(from: bestPodcasts)
+        let podcastDetails = showPodcastDetails(fromBestPodcastsListScreen: bestPodcasts)
         
         XCTAssertEqual(podcastDetails.numberOfRenderedEpisodesViews(), 1)
     }
     
     func test_onEpisodeSelection_displaysAudioPlayer() {
         let bestPodcasts = showBestPodcasts()
-        let podcastDetails = showPodcastDetails(from: bestPodcasts)
+        let podcastDetails = showPodcastDetails(fromBestPodcastsListScreen: bestPodcasts)
         let audioPlayer = showAudioPlayer(fromPodcastDetailsScreen: podcastDetails)
         audioPlayer.loadView()
         
@@ -126,6 +126,21 @@ final class PodcatsAcceptanceTests: XCTestCase {
         XCTAssertEqual(audioPlayer.episodeDescriptionText(), "TITLE | PUBLISHER")
     }
     
+    func test_onSearchedPodcastSelection_displaysPodcastDetails() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let podcastDetails = showPodcastDetails(fromGeneralSearchResult: generalSearch)
+        let podcastHeader = podcastDetails.podcastHeader()
+        
+        XCTAssertNotNil(podcastHeader)
+    }
+    
     // MARK: - Helpers
     
     private func launch(
@@ -169,11 +184,19 @@ final class PodcatsAcceptanceTests: XCTestCase {
         return nav?.topViewController as! ListViewController
     }
     
-    private func showPodcastDetails(from bestPodcastsListScreen: ListViewController) -> ListViewController {
+    private func showPodcastDetails(fromBestPodcastsListScreen bestPodcastsListScreen: ListViewController) -> ListViewController {
         bestPodcastsListScreen.simulateTapOnPodcast(at: 0)
         RunLoop.current.run(until: Date())
         
         let nav = bestPodcastsListScreen.navigationController
+        return nav?.topViewController as! ListViewController
+    }
+    
+    private func showPodcastDetails(fromGeneralSearchResult generalSearchResult: ListViewController) -> ListViewController {
+        generalSearchResult.simulateUserInitiatedSearchedPodcastSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let nav = generalSearchResult.navigationController
         return nav?.topViewController as! ListViewController
     }
     

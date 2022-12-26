@@ -30,11 +30,7 @@ final class ExploreCoordinator {
     private func show(screen: UIViewController) {
         self.navigationController.pushViewController(screen, animated: true)
     }
-    
-    private func present(screen: UIViewController) {
-        self.navigationController.tabBarController?.showDetailViewController(screen, sender: self)
-    }
-    
+        
     private func createGenres() -> UIViewController {
         let genresLoaderService = GenresLoaderService(
             baseURL: baseURL,

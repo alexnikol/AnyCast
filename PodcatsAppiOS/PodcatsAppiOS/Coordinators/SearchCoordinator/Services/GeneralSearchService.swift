@@ -5,6 +5,8 @@ import Combine
 import HTTPClient
 import SearchContentModule
 
+import PodcastsModule
+
 final class GeneralSearchService {
     private let baseURL: URL
     private let httpClient: HTTPClient

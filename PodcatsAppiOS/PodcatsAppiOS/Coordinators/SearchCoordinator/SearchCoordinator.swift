@@ -26,11 +26,7 @@ final class SearchCoordinator {
     }
     
     private func show(screen: UIViewController) {
-        self.navigationController.tabBarController?.showDetailViewController(screen, sender: self)
-    }
-    
-    private func present(screen: UIViewController) {
-        self.navigationController.showDetailViewController(screen, sender: self)
+        self.navigationController.pushViewController(screen, animated: true)
     }
     
     private func createSearchScreen() -> UIViewController {
@@ -51,7 +47,14 @@ final class SearchCoordinator {
             onEpisodeSelect: { episode in
                 self.startPlayback(episode: episode)
             },
-            onPodcastSelect: { _ in }
+            onPodcastSelect: { podcast in
+                let podcastDetails = self.createPodcastDetails(
+                    byPodcast: podcast,
+                    selection: { episode, podcast in
+                        print("EEE \(episode) \(podcast)")
+                    })
+                self.show(screen: podcastDetails)
+            }
         )
         return (generalSearch, generalSearchSourceDelegate)
     }
@@ -75,5 +78,22 @@ final class SearchCoordinator {
             episodes: [], description: "Descrption", totalEpisodes: 1
         )
         largePlayerControlDelegate?.startPlaybackAndOpenPlayer(episode: episode, podcast: podcast)
+    }
+    
+    private func createPodcastDetails(
+        byPodcast podcast: SearchResultPodcast,
+        selection: @escaping (_ episode: Episode, _ podcast: PodcastDetails) -> Void
+    ) -> UIViewController {
+        let podcastDetailsService = PodcastDetailsService(
+            baseURL: baseURL,
+            httpClient: httpClient,
+            podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
+        )
+        return PodcastDetailsUIComposer.podcastDetailsComposedWith(
+            podcastID: podcast.id,
+            podcastsLoader: podcastDetailsService.makeRemotePodcastDetailsLoader,
+            imageLoader: podcastDetailsService.makeRemotePodcastImageDataLoader(for:),
+            selection: selection
+        )
     }
 }

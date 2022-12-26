@@ -68,7 +68,7 @@ final class PodcatsAcceptanceTests: XCTestCase {
     func test_onEpisodeSelection_displaysAudioPlayer() {
         let bestPodcasts = showBestPodcasts()
         let podcastDetails = showPodcastDetails(from: bestPodcasts)
-        let audioPlayer = showAudioPlayer(from: podcastDetails)
+        let audioPlayer = showAudioPlayer(fromPodcastDetailsScreen: podcastDetails)
         audioPlayer.loadView()
         
         XCTAssertEqual(audioPlayer.episodeTitleText(), "Episode title")
@@ -102,14 +102,28 @@ final class PodcatsAcceptanceTests: XCTestCase {
         let searchController = generalSearch.navigationItem.searchController
         
         searchController?.simulateUserInitiatedTyping(with: "any term")
-        RunLoop.current.run(until: Date())
-        
         typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
         RunLoop.current.run(until: Date())
         
         XCTAssertEqual(generalSearch.numberOfRenderedSearchedEpisodesViews(), 1)
         XCTAssertEqual(generalSearch.numberOfRenderedSearchedPodcastsViews(), 1)
         XCTAssertEqual(generalSearch.numberOfRenderedPodcastsInCuratedList(in: 2), 2)
+    }
+    
+    func test_onSearchedEpisodeSelection_displaysAudioPlayer() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let audioPlayer = showAudioPlayer(fromGeneralSearchResult: generalSearch)
+        audioPlayer.loadViewIfNeeded()
+        
+        XCTAssertEqual(audioPlayer.episodeTitleText(), "Any Found Episode Title")
+        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "TITLE | PUBLISHER")
     }
     
     // MARK: - Helpers
@@ -163,11 +177,19 @@ final class PodcatsAcceptanceTests: XCTestCase {
         return nav?.topViewController as! ListViewController
     }
     
-    private func showAudioPlayer(from podcastDetailsScreen: ListViewController) -> LargeAudioPlayerViewController {
+    private func showAudioPlayer(fromPodcastDetailsScreen podcastDetailsScreen: ListViewController) -> LargeAudioPlayerViewController {
         podcastDetailsScreen.simulateTapOnEpisode(at: 0)
         RunLoop.current.run(until: Date())
         
         let nav = podcastDetailsScreen.navigationController
+        return nav?.presentedViewController as! LargeAudioPlayerViewController
+    }
+    
+    private func showAudioPlayer(fromGeneralSearchResult generalSearchResult: ListViewController) -> LargeAudioPlayerViewController {
+        generalSearchResult.simulateUserInitiatedSearchedEpisodeSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let nav = generalSearchResult.navigationController
         return nav?.presentedViewController as! LargeAudioPlayerViewController
     }
     
@@ -276,8 +298,8 @@ final class PodcatsAcceptanceTests: XCTestCase {
             "results": [
                 [
                     "id": UUID().uuidString,
-                    "title_original": "Any Episode Title",
-                    "description_original": "Any Description",
+                    "title_original": "Any Found Episode Title",
+                    "description_original": "Any Found Description",
                     "thumbnail": "https://any-url.com/thumbnail",
                     "audio": "https://any-url.com/audio",
                     "audio_length_sec": 300,

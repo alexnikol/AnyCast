@@ -3,29 +3,34 @@
 import XCTest
 import UIKit
 import HTTPClient
+import SharedComponentsiOSModule
 import PodcastsGenresList
 import PodcastsGenresListiOS
 import PodcastsModuleiOS
 import AudioPlayerModuleiOS
+import SearchContentModuleiOS
 @testable import Podcats
 
-class PodcatsAcceptanceTests: XCTestCase {
+final class PodcatsAcceptanceTests: XCTestCase {
     
     func test_onLaunch_displaysRemoteGenresWhenCustomerHasConnectivityAndEmptyCache() {
-        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let genres = genres(from: rootTabBar)
         
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 2)
     }
     
     func test_onLaunch_displaysNoGenresWhenCustomersHasNoConnectivityAndEmptyCache() {
-        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.offline)
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.offline)
+        let genres = genres(from: rootTabBar)
         
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 0)
     }
     
     func test_onLaunch_displaysCachedGenresWhenCustomerHasConnectivityAndNonExpiredCache() {
         let sharedStore = InMemoryGenresStore.withNonExpiredFeedCache
-        let genres = launch(store: sharedStore, httpClient: HTTPClientStub.offline)
+        let rootTabBar = launch(store: sharedStore, httpClient: HTTPClientStub.offline)
+        let genres = genres(from: rootTabBar)
         
         XCTAssertNotNil(sharedStore.cache)
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 1)
@@ -55,20 +60,103 @@ class PodcatsAcceptanceTests: XCTestCase {
     
     func test_onPodcastSelection_displaysPodcastDetails() {
         let bestPodcasts = showBestPodcasts()
-        let podcastDetails = showPodcastDetails(from: bestPodcasts)
-
+        let podcastDetails = showPodcastDetails(fromBestPodcastsListScreen: bestPodcasts)
+        
         XCTAssertEqual(podcastDetails.numberOfRenderedEpisodesViews(), 1)
     }
     
     func test_onEpisodeSelection_displaysAudioPlayer() {
         let bestPodcasts = showBestPodcasts()
-        let podcastDetails = showPodcastDetails(from: bestPodcasts)
-        let audioPlayer = showAudioPlayer(from: podcastDetails)
+        let podcastDetails = showPodcastDetails(fromBestPodcastsListScreen: bestPodcasts)
+        let audioPlayer = showAudioPlayer(fromPodcastDetailsScreen: podcastDetails)
         audioPlayer.loadView()
         
         XCTAssertEqual(audioPlayer.episodeTitleText(), "Episode title")
         XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Podcast  title")
+    }
+    
+    func test_onLaunchSearch_displaysSearchScreen() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
         
+        XCTAssertEqual(generalSearch.numberOfRenderedSearchedEpisodesViews(), 0)
+        XCTAssertEqual(generalSearch.numberOfRenderedSearchedPodcastsViews(), 0)
+        XCTAssertEqual(generalSearch.numberOfCuratedList(), 0)
+        XCTAssertEqual(typeaheadSearch.numberOfRenderedSearchTermViews(), 0)
+    }
+    
+    func test_onLaunchSearch_displaysTypeaheadSearchResultOnTyping() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertEqual(typeaheadSearch.numberOfRenderedSearchTermViews(), 2)
+    }
+    
+    func test_onLaunchSearch_displaysGeneralSearchResultOnTermSelection() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        XCTAssertEqual(generalSearch.numberOfRenderedSearchedEpisodesViews(), 1)
+        XCTAssertEqual(generalSearch.numberOfRenderedSearchedPodcastsViews(), 1)
+        XCTAssertEqual(generalSearch.numberOfRenderedPodcastsInCuratedList(in: 2), 2)
+    }
+    
+    func test_onSearchedEpisodeSelection_displaysAudioPlayer() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let audioPlayer = showAudioPlayer(fromGeneralSearchResult: generalSearch)
+        audioPlayer.loadViewIfNeeded()
+        
+        XCTAssertEqual(audioPlayer.episodeTitleText(), "Any Found Episode Title")
+        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "TITLE | PUBLISHER")
+    }
+    
+    func test_onSearchedPodcastSelection_displaysPodcastDetails() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let podcastDetails = showPodcastDetails(fromGeneralSearchResult: generalSearch)
+        let podcastHeader = podcastDetails.podcastHeader()
+        
+        XCTAssertNotNil(podcastHeader)
+    }
+    
+    func test_onSearchedPodcastDetailsEpisodeSelection_displaysLargePlayerFromEpisodeInsideSearchedPodcast() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let podcastDetails = showPodcastDetails(fromGeneralSearchResult: generalSearch)
+        
+        let audioPlayer = showAudioPlayer(fromPodcastDetailsScreen: podcastDetails)
+        audioPlayer.loadViewIfNeeded()
+        
+        XCTAssertEqual(audioPlayer.episodeTitleText(), "Any Episode Title")
+        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Any Podcast Details Title | Any Publisher")
     }
     
     // MARK: - Helpers
@@ -78,13 +166,17 @@ class PodcatsAcceptanceTests: XCTestCase {
         httpClient: HTTPClient,
         file: StaticString = #file,
         line: UInt = #line
-    ) -> GenresListViewController {
+    ) -> RootTabBarController {
         let sut = SceneDelegate(httpClient: httpClient, genresStore: store)
         sut.window = UIWindow()
         sut.configureWindow()
         
-        let tabBar = sut.window?.rootViewController as? RootTabBarController
-        let nav = tabBar?.viewControllers?.first as? UINavigationController
+        let tabBar = sut.window?.rootViewController as! RootTabBarController
+        return tabBar
+    }
+    
+    private func genres(from tabBar: RootTabBarController) -> GenresListViewController {
+        let nav = tabBar.viewControllers?.first as? UINavigationController
         let genres = nav?.topViewController as! GenresListViewController
         return genres
     }
@@ -100,7 +192,8 @@ class PodcatsAcceptanceTests: XCTestCase {
     }
     
     private func showBestPodcasts() -> ListViewController {
-        let genres = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let genres = genres(from: rootTabBar)
         
         genres.simulateTapOnGenre(at: 0)
         RunLoop.current.run(until: Date())
@@ -109,7 +202,7 @@ class PodcatsAcceptanceTests: XCTestCase {
         return nav?.topViewController as! ListViewController
     }
     
-    private func showPodcastDetails(from bestPodcastsListScreen: ListViewController) -> ListViewController {
+    private func showPodcastDetails(fromBestPodcastsListScreen bestPodcastsListScreen: ListViewController) -> ListViewController {
         bestPodcastsListScreen.simulateTapOnPodcast(at: 0)
         RunLoop.current.run(until: Date())
         
@@ -117,12 +210,38 @@ class PodcatsAcceptanceTests: XCTestCase {
         return nav?.topViewController as! ListViewController
     }
     
-    private func showAudioPlayer(from podcastDetailsScreen: ListViewController) -> LargeAudioPlayerViewController {
+    private func showPodcastDetails(fromGeneralSearchResult generalSearchResult: ListViewController) -> ListViewController {
+        generalSearchResult.simulateUserInitiatedSearchedPodcastSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let nav = generalSearchResult.navigationController
+        return nav?.topViewController as! ListViewController
+    }
+    
+    private func showAudioPlayer(fromPodcastDetailsScreen podcastDetailsScreen: ListViewController) -> LargeAudioPlayerViewController {
         podcastDetailsScreen.simulateTapOnEpisode(at: 0)
         RunLoop.current.run(until: Date())
         
         let nav = podcastDetailsScreen.navigationController
         return nav?.presentedViewController as! LargeAudioPlayerViewController
+    }
+    
+    private func showAudioPlayer(fromGeneralSearchResult generalSearchResult: ListViewController) -> LargeAudioPlayerViewController {
+        generalSearchResult.simulateUserInitiatedSearchedEpisodeSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let nav = generalSearchResult.navigationController
+        return nav?.presentedViewController as! LargeAudioPlayerViewController
+    }
+    
+    private func search(
+        from tabBar: RootTabBarController
+    ) -> (generalSearch: ListViewController, typeaheadSearch: TypeaheadListViewController) {
+        let nav = tabBar.viewControllers?[1] as? UINavigationController
+        let generalSearch = nav?.topViewController as! ListViewController
+        let searchController = generalSearch.navigationItem.searchController
+        let typeaheadSearch = searchController?.searchResultsController as! TypeaheadListViewController
+        return (generalSearch, typeaheadSearch)
     }
     
     private func makeData(for url: URL) -> Data {
@@ -136,6 +255,12 @@ class PodcatsAcceptanceTests: XCTestCase {
             
         case "\(baseURL)/api/v2/podcasts/unique_podcast_id":
             return makePodcastDetailsData()
+            
+        case "\(baseURL)/api/v2/typeahead?q=any%20term":
+            return makeTypeaheadSearchData()
+            
+        case "\(baseURL)/api/v2/search?q=Any%20term%201":
+            return makeGeneralSearchData()
             
         default:
             return Data()
@@ -195,6 +320,69 @@ class PodcatsAcceptanceTests: XCTestCase {
             ],
             "description": "Any Description",
             "total_episodes": 200
+        ])
+    }
+    
+    private func makeTypeaheadSearchData() -> Data {
+        return try! JSONSerialization.data(withJSONObject: [
+            "terms": [
+                "Any term 1",
+                "Any term 2"
+            ],
+            "genres": [],
+            "podcasts": []
+        ])
+    }
+    
+    private func makeGeneralSearchData() -> Data {
+        return try! JSONSerialization.data(withJSONObject: [
+            "results": [
+                [
+                    "id": UUID().uuidString,
+                    "title_original": "Any Found Episode Title",
+                    "description_original": "Any Found Description",
+                    "thumbnail": "https://any-url.com/thumbnail",
+                    "audio": "https://any-url.com/audio",
+                    "audio_length_sec": 300,
+                    "explicit_content": true,
+                    "pub_date_ms": 12312312332,
+                    "podcast": [
+                        "id": "unique_podcast_id",
+                        "title_original": "Any Podcast name",
+                        "publisher_original": "Any Publisher name",
+                        "image": "https://any-url.com/image1",
+                        "thumbnail": "https://another-url.com/image1"
+                    ]
+                ],
+                [
+                    "id": "unique_podcast_id",
+                    "title_original": "Any Podcast name",
+                    "publisher_original": "Any Publisher name",
+                    "image": "https://any-url.com/image1",
+                    "thumbnail": "https://another-url.com/image1"
+                ],
+                [
+                    "id": UUID().uuidString,
+                    "title_original": "Curated list 1",
+                    "description_original": "Curated description 1",
+                    "podcasts": [
+                        [
+                            "id": "unique_podcast_id2",
+                            "title_original": "Any Podcast name",
+                            "publisher_original": "Any Publisher name",
+                            "image": "https://any-url.com/image1",
+                            "thumbnail": "https://another-url.com/image1"
+                        ],
+                        [
+                            "id": "unique_podcast_id2",
+                            "title_original": "Any Podcast name",
+                            "publisher_original": "Any Publisher name",
+                            "image": "https://any-url.com/image1",
+                            "thumbnail": "https://another-url.com/image1"
+                        ]
+                    ]
+                ]
+            ]
         ])
     }
 }

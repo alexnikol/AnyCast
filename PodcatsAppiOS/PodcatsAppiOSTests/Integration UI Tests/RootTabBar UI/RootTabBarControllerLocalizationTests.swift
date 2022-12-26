@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 @testable import Podcats
 
-class RootTabBarControllerLocalizationTests: XCTestCase, LocalizationTestCase {
+final class RootTabBarControllerLocalizationTests: XCTestCase, LocalizationTestCase {
     
     func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
         let table = "Main"

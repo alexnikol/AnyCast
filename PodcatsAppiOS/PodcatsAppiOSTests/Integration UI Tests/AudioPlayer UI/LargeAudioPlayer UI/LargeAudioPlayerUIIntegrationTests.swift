@@ -8,7 +8,7 @@ import AudioPlayerModule
 import AudioPlayerModuleiOS
 @testable import Podcats
 
-class LargeAudioPlayerUIIntegrationTests: XCTestCase {
+final class LargeAudioPlayerUIIntegrationTests: XCTestCase {
     
     func test_onLoad_doesNotSendsControlSignals() {
         let (sut, _, controlsSpy) = makeSUT()

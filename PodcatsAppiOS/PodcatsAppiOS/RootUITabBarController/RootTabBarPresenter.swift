@@ -19,6 +19,15 @@ class RootTabBarPresenter {
         )
     }
     
+    var searchTabBarItemTitle: String {
+        return NSLocalizedString(
+            "SEARCH_TABBAR_ITEM_TITLE",
+             tableName: "Main",
+             bundle: .init(for: Self.self),
+             comment: "Title for the search tab bar item"
+        )
+    }
+    
     func showStickyPlayer() {
         view?.showStickyPlayer()
     }

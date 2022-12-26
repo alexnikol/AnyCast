@@ -6,7 +6,7 @@ import Combine
 import HTTPClient
 import PodcastsModule
 
-class PodcastDetailsService {
+final class PodcastDetailsService {
     private let baseURL: URL
     private let httpClient: HTTPClient
     private let podcastsImageDataStore: PodcastsImageDataStore

@@ -8,7 +8,7 @@ import AudioPlayerModule
 import AudioPlayerModuleiOS
 @testable import Podcats
 
-class StickyAudioPlayerUIIntegrationTests: XCTestCase {
+final class StickyAudioPlayerUIIntegrationTests: XCTestCase {
     
     func test_onLoad_doesNotSendsControlSignals() {
         let (sut, _, controlsSpy) = makeSUT()
@@ -105,7 +105,6 @@ class StickyAudioPlayerUIIntegrationTests: XCTestCase {
         let controlsSpy = AudioPlayerControlsSpy()
         let audioPlayer = AudioPlayerClientDummy()
         let sut = StickyAudioPlayerUIComposer.playerWith(
-            thumbnailURL: anyURL(),
             statePublisher: statePublisher,
             controlsDelegate: controlsSpy,
             imageLoader: { _ in

@@ -5,6 +5,7 @@ import Combine
 import HTTPClient
 import PodcastsGenresList
 import AudioPlayerModule
+import SearchContentModule
 
 final class RootComposer {
     
@@ -31,29 +32,41 @@ final class RootComposer {
             navigationController: exploreNavigation,
             baseURL: baseURL,
             httpClient: httpClient,
-            localGenresLoader: localGenresLoader,
-            audioPlayer: audioPlayer,
-            audioPlayerStatePublisher: audioPlayerStatePublisher
+            localGenresLoader: localGenresLoader
         )
         exploreNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.exploreTabBarItemTitle,
+            image: UIImage(systemName: "rectangle.grid.2x2.fill")?.withTintColor(TabbarColors.defaultColor),
+            selectedImage: UIImage(systemName: "rectangle.grid.2x2.fill")?.withTintColor(TabbarColors.selectedColor)
+        )
+        exploreCoordinator.start()
+        
+        let searchNavigation = UINavigationController()
+        let searchCoordinator = SearchCoordinator(
+            navigationController: searchNavigation,
+            baseURL: baseURL,
+            httpClient: httpClient
+        )
+        searchNavigation.tabBarItem = UITabBarItem(
+            title: tabBarPresenter.searchTabBarItemTitle,
             image: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.defaultColor),
             selectedImage: UIImage(systemName: "waveform.and.magnifyingglass")?.withTintColor(TabbarColors.selectedColor)
         )
-        
-        exploreCoordinator.start()
-        
+        searchCoordinator.start()
         
         let episodeThumbnailLoaderService = EpisodeThumbnailLoaderService(
             httpClient: httpClient,
             podcastsImageDataStore: PodcastsImageDataStoreContainer.shared.podcastsImageDataStore
         )
+        
+        var largePlayerControlDelegate: LargePlayerControlDelegate?
         let stickyPlayer = StickyAudioPlayerUIComposer.playerWith(
-            thumbnailURL: URL(string: "https://123123123")!,
             statePublisher: audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,
             imageLoader: episodeThumbnailLoaderService.makeRemotePodcastImageDataLoader(for:),
-            onPlayerOpen: exploreCoordinator.openPlayer
+            onPlayerOpen: {
+                largePlayerControlDelegate?.openPlayer()
+            }
         )
         
         let rootTabBarController = RootTabBarController(
@@ -61,7 +74,18 @@ final class RootComposer {
             viewDelegate: tabBarPresentationAdapter
         )
         tabBarPresenter.view = rootTabBarController
-        rootTabBarController.setViewControllers([exploreNavigation], animated: false)
+        
+        let rootCoordinator = RootTabBarCoordinator(
+            httpClient: httpClient,
+            tabbarController: rootTabBarController,
+            audioPlayer: audioPlayer,
+            audioPlayerStatePublisher: audioPlayerStatePublisher
+        )
+        largePlayerControlDelegate = rootCoordinator
+        exploreCoordinator.largePlayerControlDelegate = largePlayerControlDelegate
+        searchCoordinator.largePlayerControlDelegate = largePlayerControlDelegate
+        
+        rootCoordinator.start(controllers: [exploreNavigation, searchNavigation])
         return rootTabBarController
     }
 }

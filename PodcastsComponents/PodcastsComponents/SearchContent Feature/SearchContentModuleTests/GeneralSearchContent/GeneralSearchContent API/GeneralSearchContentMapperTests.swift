@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import PodcastsModule
 import SearchContentModule
 
 final class GeneralSearchContentMapperTests: XCTestCase {
@@ -10,9 +11,6 @@ final class GeneralSearchContentMapperTests: XCTestCase {
         let podcasts = uniquePodcastSearchResults()
         let curatedLists = uniqueCuratedListsSearchResults()
         let validJSON = makeValidJSON(episodes: episodes, podcasts: podcasts, curatedLists: curatedLists)
-        if let JSONString = String(data: validJSON, encoding: String.Encoding.utf8) {
-           print(JSONString)
-        }
         let result = try GeneralSearchContentMapper.map(validJSON, from: HTTPURLResponse(statusCode: 200))
         
         let resultEpisodes = episodes.map { GeneralSearchContentResultItem.episode($0) }
@@ -24,7 +22,7 @@ final class GeneralSearchContentMapperTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeValidJSON(
-        episodes: [SearchResultEpisode],
+        episodes: [Episode],
         podcasts: [SearchResultPodcast],
         curatedLists: [SearchResultCuratedList]
     ) -> Data {

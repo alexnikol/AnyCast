@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import SharedComponentsiOSModule
 import PodcastsModule
 
 public final class EpisodeCellController: NSObject, UITableViewDataSource, UITableViewDelegate {
@@ -18,7 +19,7 @@ public final class EpisodeCellController: NSObject, UITableViewDataSource, UITab
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cell = tableView.dequeueAndRegisterCell(indexPath: indexPath) as EpisodeCell
+        cell = tableView.dequeueAndRegisterNibCell(indexPath: indexPath) as EpisodeCell
         cell?.titleLabel.text = viewModel.title
         cell?.updateDescription(viewModel.descriptionWithHTMLMarkup)
         cell?.audioLengthLabel.text = viewModel.displayAudioLengthInSeconds

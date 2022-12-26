@@ -2,11 +2,12 @@
 
 import XCTest
 import SharedTestHelpersLibrary
+import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 @testable import Podcats
 
-class PodcastDetailsUIIngtegrationTests: XCTestCase {
+final class PodcastDetailsUIIngtegrationTests: XCTestCase {
     
     func test_loadPodcastDetailsActions_requestPodcastDetails() {
         let (sut, loader) = makeSUT()
@@ -185,7 +186,7 @@ class PodcastDetailsUIIngtegrationTests: XCTestCase {
     
     private func assertThat(_ sut: ListViewController, isRendering episodes: [Episode], file: StaticString = #file, line: UInt = #line) {
         guard sut.numberOfRenderedEpisodesViews() == episodes.count else {
-            return XCTFail("Expected \(episodes.count) rendered episodes, got \(sut.numberOfRenderedEpisodesViews()) rendered views instead")
+            return XCTFail("Expected \(episodes.count) rendered episodes, got \(sut.numberOfRenderedEpisodesViews()) rendered views instead", file: file, line: line)
         }
         
         episodes.enumerated().forEach { index, episode in

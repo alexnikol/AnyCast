@@ -2,8 +2,9 @@
 
 import Foundation
 import SharedTestHelpersLibrary
-import SearchContentModule
+import PodcastsModule
 import PodcastsGenresList
+import SearchContentModule
 
 func uniqueTerms() -> [String] {
     ["Any term 1", "Any term 2"]
@@ -20,33 +21,39 @@ func uniquePodcastSearchResults() -> [SearchResultPodcast] {
             titleOriginal: "Title",
             publisherOriginal: "Publisher",
             image: anyURL(),
-            thumbnail: anyURL()
+            thumbnail: anotherURL()
         ),
         SearchResultPodcast(
             id: UUID().uuidString,
             titleOriginal: "Another Title",
             publisherOriginal: "Another Publisher",
             image: anyURL(),
-            thumbnail: anyURL()
+            thumbnail: anotherURL()
         )
     ]
 }
 
-func uniqueEpisodeSearchResults() -> [SearchResultEpisode] {
+func uniqueEpisodeSearchResults() -> [Episode] {
     [
-        SearchResultEpisode(
+        Episode(
             id: UUID().uuidString,
-            titleOriginal: "Title",
-            descriptionOriginal: "Description",
-            image: anyURL(),
-            thumbnail: anyURL()
+            title: "Title",
+            description: "Description",
+            thumbnail: anotherURL(),
+            audio: anyURL(),
+            audioLengthInSeconds: 200,
+            containsExplicitContent: true,
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
         ),
-        SearchResultEpisode(
+        Episode(
             id: UUID().uuidString,
-            titleOriginal: "Another Title",
-            descriptionOriginal: "Another Description",
-            image: anyURL(),
-            thumbnail: anyURL()
+            title: "Another Title",
+            description: "Another Description",
+            thumbnail: anotherURL(),
+            audio: anotherURL(),
+            audioLengthInSeconds: 320,
+            containsExplicitContent: false,
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
         )
     ]
 }

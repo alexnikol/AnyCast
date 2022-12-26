@@ -2,11 +2,12 @@
 
 import XCTest
 import PodcastsGenresList
+import PodcastsModule
 import SearchContentModule
 
 final class GeneralSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {
     
-    func test_endToEndTestServerGETGeneralSearchContentResult_matchesFixedTestGenresData() {
+    func test_endToEndTestServerGETGeneralSearchContentResult_matchesFixedTestSearchData() {
         switch fetchResult(from: testServerURL, withMapper: GeneralSearchContentMapper.map) {
         case let .success(searchResult):
             XCTAssertEqual(searchResult.result[0], .episode(expectedEpisodeObject()))
@@ -14,25 +15,28 @@ final class GeneralSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {
             XCTAssertEqual(searchResult.result[2], .curatedList(expectedCuratedObject()))
             
         case let .failure(error):
-            XCTFail("Expected successful genres list, but got \(error) instead")
+            XCTFail("Expected successful search result, but got \(error) instead")
         default:
-            XCTFail("Expected successful genres list, but got no result instead")
+            XCTFail("Expected successful search result, but got no result instead")
         }
     }
     
     // MARK: - Heplers
     
     private var testServerURL: URL {
-        URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Search%2FGET-general-search-content.json?alt=media&token=8c1fce58-10b4-449d-9138-c419b640fe52")!
+        URL(string: "https://firebasestorage.googleapis.com/v0/b/anycast-ae.appspot.com/o/Search%2FGET-general-search-content.json?alt=media&token=a69e3045-e600-41ba-8b97-5f60de8d2ea6")!
     }
     
-    private func expectedEpisodeObject() -> SearchResultEpisode {
-        SearchResultEpisode(
-            id: "5D948FFD-83C2-4898-86E1-42BC93E2102A",
-            titleOriginal: "Episode Title",
-            descriptionOriginal: "Episode  Description",
-            image: URL(string: "https://a-url.com")!,
-            thumbnail: URL(string: "https://a-url.com")!
+    private func expectedEpisodeObject() -> Episode {
+        Episode(
+            id: "c877bf360bda4c74adea2ba066df6929",
+            title: "Star Wars Theory: The Great Star Wars Ice Cream Conspiracy",
+            description: "Description of Star Wars Theory: The Great Star Wars Ice Cream Conspiracy",
+            thumbnail: URL(string: "https://production.listennotes.com/podcasts/super-carlin-brothers-j-and-ben-carlin-TSfxiBaqOwK-BodDr7iIAR3.300x300.jpg")!,
+            audio: URL(string: "https://www.listennotes.com/e/p/c877bf360bda4c74adea2ba066df6929/")!,
+            audioLengthInSeconds: 638,
+            containsExplicitContent: false,
+            publishDateInMiliseconds: 1574355600265
         )
     }
     

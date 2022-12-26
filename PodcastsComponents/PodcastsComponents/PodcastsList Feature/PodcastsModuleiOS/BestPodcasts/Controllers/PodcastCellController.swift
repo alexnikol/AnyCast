@@ -67,7 +67,7 @@ extension PodcastCellController: UITableViewDataSource {
     }
         
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        cell = tableView.dequeueAndRegisterCell(indexPath: indexPath) as PodcastCell
+        cell = tableView.dequeueAndRegisterNibCell(indexPath: indexPath) as PodcastCell
         cell?.titleLabel.text = model.title
         cell?.publisherLabel.text = model.publisher
         cell?.languageStaticLabel.text = model.languageStaticLabel

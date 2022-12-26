@@ -7,8 +7,7 @@ import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 
-public final class PodcastDetailsUIComposer {
-    private init() {}
+public enum PodcastDetailsUIComposer {
     
     public static func podcastDetailsComposedWith(
         podcastID: String,

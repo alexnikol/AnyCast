@@ -254,6 +254,13 @@
             BlueprintName = "SearchContentModule"
             ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8D4298A8292233F30064F3E6"
+            BuildableName = "SharedComponentsiOSModule.framework"
+            BlueprintName = "SharedComponentsiOSModule"
+            ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
@@ -418,6 +425,17 @@
                BlueprintIdentifier = "8D750D3A294B375C004500D9"
                BuildableName = "MapperLibraryTests.xctest"
                BlueprintName = "MapperLibraryTests"
+               ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8DE47131295093ED007B204C"
+               BuildableName = "SearchContentModuleiOSTests.xctest"
+               BlueprintName = "SearchContentModuleiOSTests"
                ReferencedContainer = "container:../PodcastsComponents/PodcastsComponents/PodcastsComponents.xcodeproj">
             </BuildableReference>
          </TestableReference>

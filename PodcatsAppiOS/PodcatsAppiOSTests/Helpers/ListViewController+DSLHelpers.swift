@@ -1,6 +1,7 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import UIKit
+import SharedComponentsiOSModule
 import PodcastsModuleiOS
 
 extension ListViewController {
@@ -21,6 +22,9 @@ extension ListViewController {
     
     func headerView(at section: Int) -> UITableViewHeaderFooterView? {
         let delegate = tableView.delegate
-        return delegate?.tableView?(tableView, viewForHeaderInSection: section) as? UITableViewHeaderFooterView
+        if tableView.numberOfSections > section {
+            return delegate?.tableView?(tableView, viewForHeaderInSection: section) as? UITableViewHeaderFooterView
+        }
+        return nil
     }
 }

@@ -7,8 +7,7 @@ import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 
-public final class BestPodcastsUIComposer {
-    private init() {}
+public enum BestPodcastsUIComposer {
     
     public static func bestPodcastComposed(
         genreID: Int,

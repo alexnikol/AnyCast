@@ -211,6 +211,10 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
         
         guard !curatedLists.isEmpty else { return }
         
+        let curatedList0Titles = sut.sectionTitleAndDescription(section: 2)
+        XCTAssertEqual(curatedList0Titles.title, curatedLists[0].titleOriginal)
+        XCTAssertEqual(curatedList0Titles.decription, curatedLists[0].descriptionOriginal)
+        
         curatedLists[0].podcasts.enumerated().forEach { index, podcast in
             assertThat(
                 sut,
@@ -220,6 +224,10 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
                 line: line
             )
         }
+        
+        let curatedList1Titles = sut.sectionTitleAndDescription(section: 3)
+        XCTAssertEqual(curatedList1Titles.title, curatedLists[1].titleOriginal)
+        XCTAssertEqual(curatedList1Titles.decription, curatedLists[1].descriptionOriginal)
         
         curatedLists[1].podcasts.enumerated().forEach { index, podcast in
             assertThat(

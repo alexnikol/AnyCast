@@ -61,7 +61,7 @@ final class ExploreCoordinator {
     }
     
     private func present(screen: UIViewController) {
-        self.navigationController.showDetailViewController(screen, sender: self)
+        self.navigationController.tabBarController?.showDetailViewController(screen, sender: self)
     }
     
     private func createGenres() -> UIViewController {

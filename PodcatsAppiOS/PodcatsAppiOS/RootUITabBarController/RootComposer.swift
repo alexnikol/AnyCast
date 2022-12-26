@@ -47,7 +47,9 @@ final class RootComposer {
         let searchCoordinator = SearchCoordinator(
             navigationController: searchNavigation,
             baseURL: baseURL,
-            httpClient: httpClient
+            httpClient: httpClient,
+            audioPlayer: audioPlayer,
+            audioPlayerStatePublisher: audioPlayerStatePublisher
         )
         searchNavigation.tabBarItem = UITabBarItem(
             title: tabBarPresenter.searchTabBarItemTitle,

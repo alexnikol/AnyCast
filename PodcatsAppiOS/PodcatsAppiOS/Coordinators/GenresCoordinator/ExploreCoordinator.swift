@@ -47,6 +47,15 @@ final class ExploreCoordinator {
         navigationController.setViewControllers([createGenres()], animated: false)
     }
     
+    func openPlayer() {
+        guard let largePlayerController = largePlayerController else {
+            largePlayerController = createPlayer()
+            openPlayer()
+            return
+        }
+        present(screen: largePlayerController)
+    }
+    
     private func show(screen: UIViewController) {
         self.navigationController.pushViewController(screen, animated: true)
     }
@@ -112,17 +121,7 @@ final class ExploreCoordinator {
     private func startPlayback(episode: Episode, podcast: PodcastDetails) {
         audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
     }
-    
-    func openPlayer() {
-        guard let largePlayerController = largePlayerController else {
-            let newlyCreatedPlayer = createPlayer()
-            self.largePlayerController = newlyCreatedPlayer
-            present(screen: newlyCreatedPlayer)
-            return
-        }
-        present(screen: largePlayerController)
-    }
-    
+        
     private func createPlayer() -> LargeAudioPlayerViewController {
         let service = EpisodeThumbnailLoaderService(
             httpClient: httpClient,

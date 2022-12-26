@@ -150,12 +150,14 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
             return XCTFail("Expected \(episodes.count) rendered episodes, got \(sut.numberOfRenderedSearchedEpisodesViews()) rendered views instead", file: file, line: line)
         }
         
-        let (title, _) = sut.episodesSectionTitle()
+        let (title, description) = sut.episodesSectionTitle()
         
         if !episodes.isEmpty {
             XCTAssertEqual(title, GeneralSearchContentPresenter.episodesTitle)
+            XCTAssertEqual(description, nil)
         } else {
             XCTAssertEqual(title, nil)
+            XCTAssertEqual(description, nil)
         }
         
         episodes.enumerated().forEach { index, episode in

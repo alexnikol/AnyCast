@@ -25,7 +25,23 @@ final class GeneralSearchViewAdapter: ResourceView {
     }
     
     func display(_ viewModel: ResourceViewModel) {
-        let episodesCells = viewModel.episodes.map { episode in
+        let episodesSection = makeEpisodesSection(viewModel.episodes)
+        let podcastsSection = makePodcastsSection(viewModel.podcasts)
+        let curatedListsSections: [SectionController] = viewModel.curatedLists.map(makeCuratedListSection)
+        
+        var sections: [SectionController] = []
+        if !episodesSection.cellControllers.isEmpty {
+            sections.append(episodesSection)
+        }
+        if !podcastsSection.cellControllers.isEmpty {
+            sections.append(podcastsSection)
+        }
+        sections.append(contentsOf: curatedListsSections)
+        controller?.display(sections)
+    }
+    
+    private func makeEpisodesSection(_ episodes: [Episode]) -> SectionController {
+        let episodesCells = episodes.map { episode in
             let episodeViewModel = GeneralSearchContentPresenter.map(episode)
             return EpisodeCellController(
                 viewModel: episodeViewModel,
@@ -34,9 +50,16 @@ final class GeneralSearchViewAdapter: ResourceView {
                 }
             )
         }
-        let episodesSection = DefaultSectionWithNoHeaderAndFooter(cellControllers: episodesCells)
-        
-        let podcastsCells = viewModel.podcasts.map { podcast in
+        return TitleHeaderViewCellController(
+            cellControllers: episodesCells,
+            viewModel: TitleHeaderViewModel(
+                title: "Found episodes"
+            )
+        )
+    }
+    
+    private func makePodcastsSection(_ podcasts: [SearchResultPodcast]) -> SectionController {
+        let podcastsCells = podcasts.map { podcast in
             let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
             return SearchResultPodcastCellController(
                 model: podcastViewModel,
@@ -50,27 +73,35 @@ final class GeneralSearchViewAdapter: ResourceView {
                 }
             )
         }
-        let podcastsSection = DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastsCells)
-        
-        let curatedListsSections: [SectionController] = viewModel.curatedLists.map { curatedList in
-            let podcastsCells = curatedList.podcasts.map { podcast in
-                let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
-                return SearchResultPodcastCellController(
-                    model: podcastViewModel,
-                    thumbnailViewController: ThumbnailUIComposer
-                        .composeThumbnailWithImageLoader(
-                            thumbnailURL: podcast.image,
-                            imageLoader: { _ in Empty().eraseToAnyPublisher() }
-                        ),
-                    selection: { [weak self] in
-                        self?.onPodcastSelect(podcast)
-                    }
-                )
-            }
-            return DefaultSectionWithNoHeaderAndFooter(cellControllers: podcastsCells)
+        return TitleHeaderViewCellController(
+            cellControllers: podcastsCells,
+            viewModel: TitleHeaderViewModel(
+                title: "Found podcasts"
+            )
+        )
+    }
+    
+    private func makeCuratedListSection(_ curatedList: SearchResultCuratedList) -> SectionController {
+        let podcastsCells = curatedList.podcasts.map { podcast in
+            let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+            return SearchResultPodcastCellController(
+                model: podcastViewModel,
+                thumbnailViewController: ThumbnailUIComposer
+                    .composeThumbnailWithImageLoader(
+                        thumbnailURL: podcast.image,
+                        imageLoader: { _ in Empty().eraseToAnyPublisher() }
+                    ),
+                selection: { [weak self] in
+                    self?.onPodcastSelect(podcast)
+                }
+            )
         }
-        
-        let sections: [SectionController] = [episodesSection, podcastsSection] + curatedListsSections
-        controller?.display(sections)
+        return TitleHeaderViewCellController(
+            cellControllers: podcastsCells,
+            viewModel: TitleHeaderViewModel(
+                title: curatedList.titleOriginal,
+                description: curatedList.descriptionOriginal
+            )
+        )
     }
 }

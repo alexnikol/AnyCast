@@ -9,7 +9,7 @@ import SearchContentModuleiOS
 import PodcastsModule
 @testable import Podcats
 
-final class GeneralSearchUIIntegrationTests: XCTestCase {
+final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase {
     
     func test_loadGeneralSearchResultActions_requestGeneralSearchOnTermChange() {
         let (sut, sourceDelegate, loader) = makeSUT()
@@ -153,7 +153,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         let (title, description) = sut.episodesSectionTitle()
         
         if !episodes.isEmpty {
-            XCTAssertEqual(title, GeneralSearchContentPresenter.episodesTitle)
+            XCTAssertEqual(title, localized("GENERAL_SEARCH_SECTION_EPISODES", bundle: bundle, table: tableName))
             XCTAssertEqual(description, nil)
         } else {
             XCTAssertEqual(title, nil)
@@ -268,6 +268,14 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, podcastViewModel.title, "Wrong title at indexPath \(indexPath)", file: file, line: line)
         XCTAssertEqual(view?.publisherText, podcastViewModel.publisher, "Wrong publisher at indexPath \(indexPath)", file: file, line: line)
+    }
+    
+    private var tableName: String {
+        "GeneralSearch"
+    }
+    
+    private var bundle: Bundle {
+        Bundle(for: GeneralSearchContentPresenter.self)
     }
     
     private class LoaderSpy {

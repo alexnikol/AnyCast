@@ -53,7 +53,7 @@ final class GeneralSearchViewAdapter: ResourceView {
         return TitleHeaderViewCellController(
             cellControllers: episodesCells,
             viewModel: TitleHeaderViewModel(
-                title: "Found episodes"
+                title: GeneralSearchContentPresenter.episodesTitle
             )
         )
     }

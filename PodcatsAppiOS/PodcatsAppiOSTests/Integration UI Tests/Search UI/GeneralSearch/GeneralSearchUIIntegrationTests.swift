@@ -150,6 +150,14 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
             return XCTFail("Expected \(episodes.count) rendered episodes, got \(sut.numberOfRenderedSearchedEpisodesViews()) rendered views instead", file: file, line: line)
         }
         
+        let (title, _) = sut.episodesSectionTitle()
+        
+        if !episodes.isEmpty {
+            XCTAssertEqual(title, GeneralSearchContentPresenter.episodesTitle)
+        } else {
+            XCTAssertEqual(title, nil)
+        }
+        
         episodes.enumerated().forEach { index, episode in
             assertThat(sut, hasViewConfiguredFor: episode, at: index, file: file, line: line)
         }
@@ -289,9 +297,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase {
         }
     }
     
-    private final class SearchResultViewControllerNullObject: UIViewController, UISearchBarDelegate {
-        
-    }
+    private final class SearchResultViewControllerNullObject: UIViewController, UISearchBarDelegate {}
 }
 
 private extension GeneralSearchSourceDelegate {

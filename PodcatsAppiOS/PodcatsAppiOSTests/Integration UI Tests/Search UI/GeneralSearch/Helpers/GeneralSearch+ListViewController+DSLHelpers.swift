@@ -28,6 +28,10 @@ extension ListViewController {
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: searchEpisodesSection))
     }
     
+    func episodesSectionTitle() -> (title: String?, decription: String?) {
+        return sectionTitleAndDescription(section: searchEpisodesSection)
+    }
+        
     // MARK: - Podcasts
     
     private var searchPodcastsSection: Int {
@@ -47,6 +51,10 @@ extension ListViewController {
     
     func simulateUserInitiatedSearchedPodcastSelection(at row: Int) {
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: searchPodcastsSection))
+    }
+    
+    func podcastsSectionTitle() -> (title: String?, decription: String?) {
+        return sectionTitleAndDescription(section: searchPodcastsSection)
     }
     
     // MARK: - Curated lists
@@ -72,5 +80,12 @@ extension ListViewController {
     
     func simulateUserInitiatedSearchedPodcastFromCuratedListSelection(at row: Int) {
         tableView.delegate?.tableView?(tableView, didSelectRowAt: IndexPath(row: row, section: searchCuratedListSection))
+    }
+        
+    // MARK: - Helpers
+    
+    func sectionTitleAndDescription(section: Int) -> (title: String?, decription: String?) {
+        let headerView = headerView(at: section) as? TitleHeaderReusableView
+        return (headerView?.titleLabel.text, headerView?.descriptionLabel.text)
     }
 }

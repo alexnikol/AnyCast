@@ -151,7 +151,6 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
         }
         
         let (title, description) = sut.episodesSectionTitle()
-        
         if !episodes.isEmpty {
             XCTAssertEqual(title, localized("GENERAL_SEARCH_SECTION_EPISODES", bundle: bundle, table: tableName))
             XCTAssertEqual(description, nil)
@@ -173,6 +172,15 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
     ) {
         guard sut.numberOfRenderedSearchedPodcastsViews() == podcasts.count else {
             return XCTFail("Expected \(podcasts.count) rendered podcasts, got \(sut.numberOfRenderedSearchedPodcastsViews()) rendered views instead", file: file, line: line)
+        }
+        
+        let (title, description) = sut.podcastsSectionTitle()
+        if !podcasts.isEmpty {
+            XCTAssertEqual(title, localized("GENERAL_SEARCH_SECTION_PODCASTS", bundle: bundle, table: tableName))
+            XCTAssertEqual(description, nil)
+        } else {
+            XCTAssertEqual(title, nil)
+            XCTAssertEqual(description, nil)
         }
         
         podcasts.enumerated().forEach { index, podcast in

@@ -76,7 +76,7 @@ final class GeneralSearchViewAdapter: ResourceView {
         return TitleHeaderViewCellController(
             cellControllers: podcastsCells,
             viewModel: TitleHeaderViewModel(
-                title: "Found podcasts"
+                title: GeneralSearchContentPresenter.podcastsTitle
             )
         )
     }

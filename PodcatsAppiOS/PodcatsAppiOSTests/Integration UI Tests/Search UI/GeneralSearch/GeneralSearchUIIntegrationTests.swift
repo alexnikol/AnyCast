@@ -255,8 +255,6 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let calendar = Calendar(identifier: .gregorian)
-        let locale = Locale(identifier: "en_US_POSIX")
         let episodeViewModel = makeGeneralSearchPresenter().map(episode)
         let view = sut.searchEpisodeView(at: index)
         XCTAssertNotNil(view, file: file, line: line)

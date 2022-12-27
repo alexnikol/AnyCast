@@ -1,9 +1,16 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
-import PodcastsModule
 
-public typealias Meta = (episode: Episode, podcast: PodcastDetails)
+public class Meta {
+    public let episode: any PlayingEpisode
+    public let podcast: any PlayingPodcast
+    
+    public init(episode: any PlayingEpisode, podcast: any PlayingPodcast) {
+        self.episode = episode
+        self.podcast = podcast
+    }
+}
 
 public protocol AudioPlayer: AudioPlayerControlsDelegate {
     var delegate: AudioPlayerOutputDelegate? { get set }

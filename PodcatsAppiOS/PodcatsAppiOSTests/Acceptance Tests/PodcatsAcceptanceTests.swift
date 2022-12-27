@@ -114,14 +114,14 @@ final class PodcatsAcceptanceTests: XCTestCase {
 //        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
 //        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
 //        let searchController = generalSearch.navigationItem.searchController
-//        
+//
 //        searchController?.simulateUserInitiatedTyping(with: "any term")
 //        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
 //        RunLoop.current.run(until: Date())
-//        
+//
 //        let audioPlayer = showAudioPlayer(fromGeneralSearchResult: generalSearch)
 //        audioPlayer.loadViewIfNeeded()
-//        
+//
 //        XCTAssertEqual(audioPlayer.episodeTitleText(), "Any Found Episode Title")
 //        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "TITLE | PUBLISHER")
 //    }

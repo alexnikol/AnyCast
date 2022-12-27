@@ -37,7 +37,7 @@ final class RootTabBarCoordinator {
     }
     
     private func startPlayback(episode: Episode, podcast: PodcastDetails) {
-        audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
+        audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode: episode, podcast: podcast))
         openPlayingPlayer()
     }
         

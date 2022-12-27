@@ -36,8 +36,8 @@ final class RootTabBarCoordinator {
         present(screen: largePlayerController)
     }
     
-    private func startPlayback(episode: Episode, podcast: PodcastDetails) {
-        audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode, podcast))
+    private func startPlayback(episode: PlayingEpisode, podcast: PlayingPodcast) {
+        audioPlayer.startPlayback(fromURL: episode.audio, withMeta: Meta(episode: episode, podcast: podcast))
         openPlayingPlayer()
     }
         
@@ -61,12 +61,12 @@ final class RootTabBarCoordinator {
 }
 
 extension RootTabBarCoordinator: LargePlayerControlDelegate {
-    
+
     func openPlayer() {
         openPlayingPlayer()
     }
     
-    func startPlaybackAndOpenPlayer(episode: PodcastsModule.Episode, podcast: PodcastsModule.PodcastDetails) {
+    func startPlaybackAndOpenPlayer(episode: PlayingEpisode, podcast: PlayingPodcast) {
         startPlayback(episode: episode, podcast: podcast)
     }
 }

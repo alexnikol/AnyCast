@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-import PodcastsModule
 import SearchContentModule
 
 final class GeneralSearchContentMapperTests: XCTestCase {
@@ -22,7 +21,7 @@ final class GeneralSearchContentMapperTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeValidJSON(
-        episodes: [Episode],
+        episodes: [SearchResultEpisode],
         podcasts: [SearchResultPodcast],
         curatedLists: [SearchResultCuratedList]
     ) -> Data {

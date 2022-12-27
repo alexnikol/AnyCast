@@ -73,7 +73,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
     }
     
     func test_onTermSelection_deliversSelectedTerm() {
-        var receivedEpisodes: [Episode] = []
+        var receivedEpisodes: [SearchResultEpisode] = []
         var receivedPodcasts: [SearchResultPodcast] = []
         let expEpisode = expectation(description: "Wait on episode selection")
         let expPodcast = expectation(description: "Wait on podcast selection")
@@ -121,7 +121,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
     // MARK: - Helpers
     
     private func makeSUT(
-        onEpisodeSelect: @escaping (Episode) -> Void = { _ in },
+        onEpisodeSelect: @escaping (SearchResultEpisode) -> Void = { _ in },
         onPodcastSelect: @escaping (SearchResultPodcast) -> Void = { _ in },
         file: StaticString = #file,
         line: UInt = #line
@@ -140,9 +140,17 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
         return (sut, sourceDelegate, loader)
     }
     
+    private func makeGeneralSearchPresenter(file: StaticString = #file, line: UInt = #line) -> GeneralSearchContentPresenter {
+        let calendar = Calendar(identifier: .gregorian)
+        let locale = Locale(identifier: "en_US_POSIX")
+        let episodesPresenter = GeneralSearchContentPresenter(calendar: calendar, locale: locale)
+        trackForMemoryLeaks(episodesPresenter)
+        return episodesPresenter
+    }
+    
     private func assertThat(
         _ sut: ListViewController,
-        isRenderingEpisodes episodes: [Episode],
+        isRenderingEpisodes episodes: [SearchResultEpisode],
         file: StaticString = #file,
         line: UInt = #line
     ) {
@@ -242,14 +250,12 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
     
     private func assertThat(
         _ sut: ListViewController,
-        hasViewConfiguredFor episode: Episode,
+        hasViewConfiguredFor episode: SearchResultEpisode,
         at index: Int,
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let calendar = Calendar(identifier: .gregorian)
-        let locale = Locale(identifier: "en_US_POSIX")
-        let episodeViewModel = GeneralSearchContentPresenter.map(episode, calendar: calendar, locale: locale)
+        let episodeViewModel = makeGeneralSearchPresenter().map(episode)
         let view = sut.searchEpisodeView(at: index)
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, episodeViewModel.title, "Wrong title at index \(index)", file: file, line: line)
@@ -265,7 +271,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+        let podcastViewModel = makeGeneralSearchPresenter().map(podcast)
         let view = sut.searchPodcastView(at: index)
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, podcastViewModel.title, "Wrong title at index \(index)", file: file, line: line)
@@ -279,7 +285,7 @@ final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase 
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+        let podcastViewModel = makeGeneralSearchPresenter().map(podcast)
         let view = sut.searchPodcastCuratedListView(at: indexPath.row, curatedListSection: indexPath.section)
         XCTAssertNotNil(view, file: file, line: line)
         XCTAssertEqual(view?.titleText, podcastViewModel.title, "Wrong title at indexPath \(indexPath)", file: file, line: line)

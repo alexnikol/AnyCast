@@ -60,3 +60,7 @@ extension XCTestCase {
         )
     }
 }
+
+extension Episode: PlayingEpisode {}
+
+extension PodcastDetails: PlayingPodcast {}

@@ -123,7 +123,7 @@ final class PodcatsAcceptanceTests: XCTestCase {
         audioPlayer.loadViewIfNeeded()
         
         XCTAssertEqual(audioPlayer.episodeTitleText(), "Any Found Episode Title")
-        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "TITLE | PUBLISHER")
+        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Any Podcast name | Any Publisher name")
     }
     
     func test_onSearchedPodcastSelection_displaysPodcastDetails() {

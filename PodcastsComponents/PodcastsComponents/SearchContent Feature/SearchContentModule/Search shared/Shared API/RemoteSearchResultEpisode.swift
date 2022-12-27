@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
-import PodcastsModule
 
 struct RemoteSearchResultEpisode: Decodable {
     let id: String
@@ -12,6 +11,7 @@ struct RemoteSearchResultEpisode: Decodable {
     let audioLengthInSeconds: Int
     let containsExplicitContent: Bool
     let publishDateInMiliseconds: Int
+    let podcast: RemoteSearchResultPodcast
     
     private enum CodingKeys: String, CodingKey {
         case id, thumbnail, audio
@@ -20,12 +20,13 @@ struct RemoteSearchResultEpisode: Decodable {
         case audioLengthInSeconds = "audio_length_sec"
         case containsExplicitContent = "explicit_content"
         case publishDateInMiliseconds = "pub_date_ms"
+        case podcast
     }
 }
 
 extension RemoteSearchResultEpisode {
-    func toDomainModel() -> Episode {
-        Episode(
+    func toDomainModel() -> SearchResultEpisode {
+        SearchResultEpisode(
             id: id,
             title: titleOriginal,
             description: descriptionOriginal,
@@ -33,7 +34,8 @@ extension RemoteSearchResultEpisode {
             audio: audio,
             audioLengthInSeconds: audioLengthInSeconds,
             containsExplicitContent: containsExplicitContent,
-            publishDateInMiliseconds: publishDateInMiliseconds
+            publishDateInMiliseconds: publishDateInMiliseconds,
+            podcast: podcast.toDomainModel()
         )
     }
 }

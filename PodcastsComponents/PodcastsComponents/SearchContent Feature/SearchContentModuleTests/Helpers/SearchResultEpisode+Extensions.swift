@@ -1,19 +1,17 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
-import PodcastsModule
 import SearchContentModule
 
-extension Array where Element == Episode {
+extension Array where Element == SearchResultEpisode {
     func toJson() -> [[String: Any]] {
-        let podcast = uniquePodcastSearchResults().toJson()[0]
         return map { episode in
             let json = [
                 "id": episode.id,
                 "thumbnail": episode.thumbnail.absoluteString,
                 "title_original": episode.title,
                 "description_original": episode.description,
-                "podcast": podcast,
+                "podcast": [episode.podcast].toJson().first!,
                 "audio": episode.audio.absoluteString,
                 "audio_length_sec": episode.audioLengthInSeconds,
                 "explicit_content": episode.containsExplicitContent,

@@ -77,3 +77,7 @@ class LargeAudioPlayeriOSTests: XCTestCase {
         func onSelectSpeedPlayback() {}
     }
 }
+
+extension Episode: PlayingEpisode {}
+
+extension PodcastDetails: PlayingPodcast {}

@@ -4,5 +4,5 @@ import AudioPlayerModule
 
 protocol LargePlayerControlDelegate {
     func openPlayer()
-    func startPlaybackAndOpenPlayer(episode: any PlayingEpisode, podcast: any PlayingPodcast)
+    func startPlaybackAndOpenPlayer(episode: PlayingEpisode, podcast: PlayingPodcast)
 }

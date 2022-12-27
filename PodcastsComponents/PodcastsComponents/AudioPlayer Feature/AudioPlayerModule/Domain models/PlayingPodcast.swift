@@ -2,7 +2,7 @@
 
 import Foundation
 
-public protocol PlayingPodcast: Equatable {
+public protocol PlayingPodcast {
     var title: String { get }
     var publisher: String { get }
 }

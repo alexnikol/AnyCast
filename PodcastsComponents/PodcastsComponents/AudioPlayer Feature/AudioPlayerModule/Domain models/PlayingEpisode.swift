@@ -2,7 +2,7 @@
 
 import Foundation
 
-public protocol PlayingEpisode: Equatable {
+public protocol PlayingEpisode {
     var id: String { get }
     var title: String { get }
     var thumbnail: URL { get }

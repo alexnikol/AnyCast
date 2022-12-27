@@ -3,10 +3,10 @@
 import Foundation
 
 public class Meta {
-    public let episode: any PlayingEpisode
-    public let podcast: any PlayingPodcast
+    public let episode: PlayingEpisode
+    public let podcast: PlayingPodcast
     
-    public init(episode: any PlayingEpisode, podcast: any PlayingPodcast) {
+    public init(episode: PlayingEpisode, podcast: PlayingPodcast) {
         self.episode = episode
         self.podcast = podcast
     }

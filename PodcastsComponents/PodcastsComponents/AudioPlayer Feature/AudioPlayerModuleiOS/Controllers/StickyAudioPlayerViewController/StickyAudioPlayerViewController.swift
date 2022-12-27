@@ -10,6 +10,7 @@ public class StickyAudioPlayerViewController: UIViewController {
     @IBOutlet public private(set) weak var thumbnailView: DefaultImageView!
     @IBOutlet private(set) weak var forwardButton: UIButton!
     @IBOutlet public private(set) weak var playButton: UIButton!
+    @IBOutlet public private(set) weak var bufferLoader: UIActivityIndicatorView!
     private var delegate: StickyAudioPlayerViewDelegate?
     private var controlsDelegate: AudioPlayerControlsDelegate?
     private var thumbnailViewController: ThumbnailDynamicViewController?
@@ -49,7 +50,7 @@ public class StickyAudioPlayerViewController: UIViewController {
     public func display(viewModel: StickyAudioPlayerViewModel) {
         titleLabel.text = viewModel.titleLabel
         descriptionLabel.text = viewModel.descriptionLabel
-        playButton.setImage(viewModel.playbackViewModel.image, for: .normal)
+        updatePlayButtonWith(state: viewModel.playbackViewModel)
     }
 }
 
@@ -65,8 +66,6 @@ private extension StickyAudioPlayerViewController {
     
     func configureActionButtons() {
         playButton.tintColor = UIColor.accentColor
-        playButton.setImage(.init(systemName: "play.fill"), for: .normal)
-        playButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 24), forImageIn: .normal)
         forwardButton.tintColor = UIColor.accentColor
         forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
         forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 20), forImageIn: .normal)
@@ -75,6 +74,22 @@ private extension StickyAudioPlayerViewController {
     func updateInitialValuesOnCreate() {
         titleLabel.text = nil
         descriptionLabel.text = nil
+    }
+    
+    func updatePlayButtonWith(state: PlaybackStateViewModel) {
+        switch state {
+        case .pause, .playing:
+            playButton.setImage(state.image, for: .normal)
+            playButton.isHidden = false
+            bufferLoader.isHidden = true
+            bufferLoader.stopAnimating()
+            
+        case .loading:
+            playButton.setImage(nil, for: .normal)
+            playButton.isHidden = true
+            bufferLoader.isHidden = false
+            bufferLoader.startAnimating()
+        }
     }
     
     func configureBlurView() {

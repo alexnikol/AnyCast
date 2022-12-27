@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -42,11 +43,12 @@
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="ZJy-Lg-buL"/>
             <constraints>
-                <constraint firstItem="Usj-uY-iVk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="KOc-sx-aqu"/>
+                <constraint firstItem="Usj-uY-iVk" firstAttribute="leading" secondItem="ZJy-Lg-buL" secondAttribute="leading" constant="8" id="KOc-sx-aqu"/>
                 <constraint firstItem="Usj-uY-iVk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LHy-d6-Tiz"/>
                 <constraint firstAttribute="bottom" secondItem="Usj-uY-iVk" secondAttribute="bottom" constant="4" id="b0n-IU-4ja"/>
-                <constraint firstAttribute="trailing" secondItem="Usj-uY-iVk" secondAttribute="trailing" constant="8" id="gJc-sV-64N"/>
+                <constraint firstItem="ZJy-Lg-buL" firstAttribute="trailing" secondItem="Usj-uY-iVk" secondAttribute="trailing" constant="8" id="gJc-sV-64N"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

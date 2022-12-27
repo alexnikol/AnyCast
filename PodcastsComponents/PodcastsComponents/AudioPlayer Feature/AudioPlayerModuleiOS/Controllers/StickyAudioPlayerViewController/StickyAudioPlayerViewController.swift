@@ -66,6 +66,7 @@ private extension StickyAudioPlayerViewController {
     
     func configureActionButtons() {
         playButton.tintColor = UIColor.accentColor
+        playButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 24), forImageIn: .normal)
         forwardButton.tintColor = UIColor.accentColor
         forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
         forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 20), forImageIn: .normal)

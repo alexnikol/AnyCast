@@ -58,8 +58,8 @@ final class GeneralSearchModuleiOSTests: XCTestCase {
     
     private func episodesSearchResult() -> [SectionController] {
         let cellControllers = [
-            EpisodeCellController(
-                viewModel: EpisodeViewModel(
+            SearchEpisodeCellController(
+                viewModel: SearchResultEpisodeViewModel(
                     title: "Any Episode title".repeatTimes(10),
                     description: "Any Description",
                     thumbnail: anyURL(),

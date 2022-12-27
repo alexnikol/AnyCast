@@ -44,6 +44,8 @@
 		8D3621ED2959B8D000967634 /* GeneralSearch.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D3621EF2959B8D000967634 /* GeneralSearch.strings */; };
 		8D3621FE295AE6B300967634 /* SearchResultEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621FC295AE5AA00967634 /* SearchResultEpisode.swift */; };
 		8D362201295AEA3E00967634 /* SearchResultEpisodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621FF295AE94400967634 /* SearchResultEpisodeViewModel.swift */; };
+		8D362203295AEE1C00967634 /* SearchResultEpisodeCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362202295AEE1C00967634 /* SearchResultEpisodeCellController.swift */; };
+		8D362205295AEE9900967634 /* SearchViewModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362204295AEE9900967634 /* SearchViewModel+Extensions.swift */; };
 		8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
@@ -636,6 +638,8 @@
 		8D3621F02959B8D300967634 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/GeneralSearch.strings; sourceTree = "<group>"; };
 		8D3621FC295AE5AA00967634 /* SearchResultEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEpisode.swift; sourceTree = "<group>"; };
 		8D3621FF295AE94400967634 /* SearchResultEpisodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEpisodeViewModel.swift; sourceTree = "<group>"; };
+		8D362202295AEE1C00967634 /* SearchResultEpisodeCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultEpisodeCellController.swift; sourceTree = "<group>"; };
+		8D362204295AEE9900967634 /* SearchViewModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewModel+Extensions.swift"; sourceTree = "<group>"; };
 		8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadListViewController.swift; sourceTree = "<group>"; };
 		8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenter.swift; sourceTree = "<group>"; };
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
@@ -1214,8 +1218,10 @@
 			isa = PBXGroup;
 			children = (
 				8D1A4B0E2954666000825E60 /* SearchResultPodcastCellController.swift */,
+				8D362202295AEE1C00967634 /* SearchResultEpisodeCellController.swift */,
 				8D1A4B1C295481CC00825E60 /* TitleHeaderViewCellController.swift */,
 				8D1A4B1E2954839400825E60 /* TitleHeaderViewModel.swift */,
+				8D362204295AEE9900967634 /* SearchViewModel+Extensions.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -4138,8 +4144,10 @@
 			files = (
 				8D1A4B0F2954666000825E60 /* SearchResultPodcastCellController.swift in Sources */,
 				8D1A4B1B2954801A00825E60 /* TitleHeaderReusableView.swift in Sources */,
+				8D362205295AEE9900967634 /* SearchViewModel+Extensions.swift in Sources */,
 				8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */,
 				8D1A4B142954689900825E60 /* SearchPodcastCell.swift in Sources */,
+				8D362203295AEE1C00967634 /* SearchResultEpisodeCellController.swift in Sources */,
 				8D0BE4A02950A75100B4171A /* TermCellController.swift in Sources */,
 				8D1A4B1F2954839400825E60 /* TitleHeaderViewModel.swift in Sources */,
 				8D1A4B1D295481CC00825E60 /* TitleHeaderViewCellController.swift in Sources */,

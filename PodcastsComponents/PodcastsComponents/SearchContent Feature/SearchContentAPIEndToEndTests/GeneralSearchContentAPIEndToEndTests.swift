@@ -2,7 +2,6 @@
 
 import XCTest
 import PodcastsGenresList
-import PodcastsModule
 import SearchContentModule
 
 final class GeneralSearchContentAPIEndToEndTests: XCTestCase, EphemeralClient {

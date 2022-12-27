@@ -2,7 +2,6 @@
 
 import Foundation
 import SharedTestHelpersLibrary
-import PodcastsModule
 import PodcastsGenresList
 import SearchContentModule
 
@@ -33,9 +32,9 @@ func uniquePodcastSearchResults() -> [SearchResultPodcast] {
     ]
 }
 
-func uniqueEpisodeSearchResults() -> [Episode] {
+func uniqueEpisodeSearchResults() -> [SearchResultEpisode] {
     [
-        Episode(
+        SearchResultEpisode(
             id: UUID().uuidString,
             title: "Title",
             description: "Description",
@@ -43,9 +42,10 @@ func uniqueEpisodeSearchResults() -> [Episode] {
             audio: anyURL(),
             audioLengthInSeconds: 200,
             containsExplicitContent: true,
-            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015),
+            podcast: uniquePodcastSearchResults()[0]
         ),
-        Episode(
+        SearchResultEpisode(
             id: UUID().uuidString,
             title: "Another Title",
             description: "Another Description",
@@ -53,7 +53,8 @@ func uniqueEpisodeSearchResults() -> [Episode] {
             audio: anotherURL(),
             audioLengthInSeconds: 320,
             containsExplicitContent: false,
-            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015)
+            publishDateInMiliseconds: Int.random(in: 1479110302015...1479110402015),
+            podcast: uniquePodcastSearchResults()[1]
         )
     ]
 }

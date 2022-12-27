@@ -6,8 +6,6 @@ import SharedTestHelpersLibrary
 import SharedComponentsiOSModule
 import SearchContentModule
 import SearchContentModuleiOS
-import PodcastsModule
-import PodcastsModuleiOS
 
 final class GeneralSearchModuleiOSTests: XCTestCase {
     

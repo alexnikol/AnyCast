@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-import PodcastsModule
 import SharedTestHelpersLibrary
 import SearchContentModule
 
@@ -9,7 +8,7 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     
     func test_createsViewModel() {
         let domainModel = uniqueGeneralSearchContentResult()
-        let viewModel = GeneralSearchContentPresenter.map(domainModel)
+        let viewModel = makeSUT().map(domainModel)
         
         XCTAssertEqual(viewModel.episodes.count, 2)
         assert(receivedEpisode: viewModel.episodes[0], domainItem: domainModel.result[0])
@@ -27,7 +26,7 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     func test_createsSearchResultEpisodeViewModel() {
         let episode = uniqueEpisodeSearchResults()[0]
         
-        let episodeViewModel = GeneralSearchContentPresenter.map(episode)
+        let episodeViewModel = makeSUT().map(episode)
         XCTAssertEqual(episodeViewModel.title, episode.title)
         XCTAssertEqual(episodeViewModel.description, episode.description)
         XCTAssertEqual(episodeViewModel.thumbnail, episode.thumbnail)
@@ -36,7 +35,7 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     func test_createsSearchResultPodcastViewModel() {
         let podcast = uniquePodcastSearchResults()[0]
         
-        let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+        let podcastViewModel = makeSUT().map(podcast)
         XCTAssertEqual(podcastViewModel.title, podcast.titleOriginal)
         XCTAssertEqual(podcastViewModel.publisher, podcast.publisherOriginal)
         XCTAssertEqual(podcastViewModel.thumbnail, podcast.thumbnail)
@@ -45,13 +44,21 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     func test_createsSearchResultCuratedListViewModel() {
         let curatedList = uniqueCuratedListsSearchResults()[0]
         
-        let curatedListViewModel = GeneralSearchContentPresenter.map(curatedList)
+        let curatedListViewModel = makeSUT().map(curatedList)
         XCTAssertEqual(curatedListViewModel.title, curatedList.titleOriginal)
         XCTAssertEqual(curatedListViewModel.description, curatedList.descriptionOriginal)
         XCTAssertEqual(curatedListViewModel.podcasts, curatedList.podcasts)
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> GeneralSearchContentPresenter {
+        let calendar = Calendar(identifier: .gregorian)
+        let locale = Locale(identifier: "en_US_POSIX")
+        let episodesPresenter = GeneralSearchContentPresenter(calendar: calendar, locale: locale)
+        trackForMemoryLeaks(episodesPresenter)
+        return episodesPresenter
+    }
     
     private func assert(
         receivedPodcast: SearchResultPodcast,
@@ -67,7 +74,7 @@ final class GeneralSearchContentPresentationTests: XCTestCase {
     }
     
     private func assert(
-        receivedEpisode: Episode,
+        receivedEpisode: SearchResultEpisode,
         domainItem: GeneralSearchContentResultItem,
         file: StaticString = #file,
         line: UInt = #line

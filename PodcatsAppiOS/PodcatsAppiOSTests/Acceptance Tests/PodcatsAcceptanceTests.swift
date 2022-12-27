@@ -110,21 +110,21 @@ final class PodcatsAcceptanceTests: XCTestCase {
         XCTAssertEqual(generalSearch.numberOfRenderedPodcastsInCuratedList(in: 2), 2)
     }
     
-//    func test_onSearchedEpisodeSelection_displaysAudioPlayer() {
-//        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
-//        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
-//        let searchController = generalSearch.navigationItem.searchController
-//
-//        searchController?.simulateUserInitiatedTyping(with: "any term")
-//        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
-//        RunLoop.current.run(until: Date())
-//
-//        let audioPlayer = showAudioPlayer(fromGeneralSearchResult: generalSearch)
-//        audioPlayer.loadViewIfNeeded()
-//
-//        XCTAssertEqual(audioPlayer.episodeTitleText(), "Any Found Episode Title")
-//        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "TITLE | PUBLISHER")
-//    }
+    func test_onSearchedEpisodeSelection_displaysAudioPlayer() {
+        let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))
+        let (generalSearch, typeaheadSearch) = search(from: rootTabBar)
+        let searchController = generalSearch.navigationItem.searchController
+        
+        searchController?.simulateUserInitiatedTyping(with: "any term")
+        typeaheadSearch.simulateUserInitiatedTermSelection(at: 0)
+        RunLoop.current.run(until: Date())
+        
+        let audioPlayer = showAudioPlayer(fromGeneralSearchResult: generalSearch)
+        audioPlayer.loadViewIfNeeded()
+        
+        XCTAssertEqual(audioPlayer.episodeTitleText(), "Any Found Episode Title")
+        XCTAssertEqual(audioPlayer.episodeDescriptionText(), "Any Podcast name | Any Publisher name")
+    }
     
     func test_onSearchedPodcastSelection_displaysPodcastDetails() {
         let rootTabBar = launch(store: InMemoryGenresStore.empty, httpClient: HTTPClientStub.online(response))

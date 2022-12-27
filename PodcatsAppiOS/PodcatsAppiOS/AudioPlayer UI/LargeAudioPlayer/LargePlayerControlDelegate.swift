@@ -1,8 +1,8 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
-import PodcastsModule
+import AudioPlayerModule
 
 protocol LargePlayerControlDelegate {
     func openPlayer()
-    func startPlaybackAndOpenPlayer(episode: Episode, podcast: PodcastDetails)
+    func startPlaybackAndOpenPlayer(episode: any PlayingEpisode, podcast: any PlayingPodcast)
 }

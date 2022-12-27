@@ -45,7 +45,7 @@ final class SearchCoordinator {
             searchResultController: typeaheadController,
             searchLoader: service.makeRemoteGeneralSearchLoader,
             onEpisodeSelect: { episode in
-//                self.startPlayback(episode: episode)
+                self.largePlayerControlDelegate?.startPlaybackAndOpenPlayer(episode: episode, podcast: episode.podcast)
             },
             onPodcastSelect: { podcast in
                 let podcastDetails = self.createPodcastDetails(
@@ -66,20 +66,7 @@ final class SearchCoordinator {
             onTermSelect: onTermSelect
         )
     }
-    
-    private func startPlayback(episode: Episode) {
-        let podcast = PodcastDetails(
-            id: UUID().uuidString,
-            title: "TITLE",
-            publisher: "PUBLISHER",
-            language: "English",
-            type: .episodic,
-            image: URL(string: "https://any-url.com")!,
-            episodes: [], description: "Descrption", totalEpisodes: 1
-        )
-        largePlayerControlDelegate?.startPlaybackAndOpenPlayer(episode: episode, podcast: podcast)
-    }
-    
+        
     private func createPodcastDetails(
         byPodcast podcast: SearchResultPodcast,
         selection: @escaping (_ episode: Episode, _ podcast: PodcastDetails) -> Void

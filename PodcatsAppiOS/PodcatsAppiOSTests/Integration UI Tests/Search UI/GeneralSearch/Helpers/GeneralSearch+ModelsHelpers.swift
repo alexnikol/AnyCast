@@ -2,17 +2,16 @@
 
 import Foundation
 import SharedTestHelpersLibrary
-import PodcastsModule
 import SearchContentModule
 
 struct GeneralSearchResult {
-    let episodes: [Episode]
+    let episodes: [SearchResultEpisode]
     let podcasts: [SearchResultPodcast]
     let curatedLists: [SearchResultCuratedList]
 }
 
 func makeGeneralSearchContentResult() -> (models: GeneralSearchResult, renderModels: GeneralSearchContentResult) {
-    let episodes = makeEpisodes()
+    let episodes = makeSearchEpisodes()
     let episodesModels = episodes.map(GeneralSearchContentResultItem.episode)
     let podcasts = makePodcasts()
     let podcastsModels = podcasts.map(GeneralSearchContentResultItem.podcast)
@@ -22,10 +21,10 @@ func makeGeneralSearchContentResult() -> (models: GeneralSearchResult, renderMod
     return (GeneralSearchResult(episodes: episodes, podcasts: podcasts, curatedLists: curatedLists), result)
 }
 
-func makeEpisodes() -> [Episode] {
+func makeSearchEpisodes() -> [SearchResultEpisode] {
     [
-        makeEpisode(),
-        makeEpisode()
+        makeSearchEpisode(),
+        makeSearchEpisode()
     ]
 }
 
@@ -49,6 +48,20 @@ func makeCuratedLists() -> [SearchResultCuratedList] {
             podcasts: makePodcasts()
         )
     ]
+}
+
+func makeSearchEpisode() -> SearchResultEpisode {
+    SearchResultEpisode(
+        id: UUID().uuidString,
+        title: "Any Episode Title",
+        description: "Any Episode Description",
+        thumbnail: anyURL(),
+        audio: anyURL(),
+        audioLengthInSeconds: Int.random(in: 1...1000),
+        containsExplicitContent: Bool.random(),
+        publishDateInMiliseconds: Int.random(in: 1479110301853...1479110401853),
+        podcast: makeSearchPodcast(title: "Any title", publisher: "Any publisher")
+    )
 }
 
 func makeSearchPodcast(title: String, publisher: String) -> SearchResultPodcast {

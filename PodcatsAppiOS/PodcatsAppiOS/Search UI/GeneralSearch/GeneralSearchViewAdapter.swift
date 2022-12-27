@@ -6,20 +6,21 @@ import Combine
 import LoadResourcePresenter
 import SearchContentModule
 import SearchContentModuleiOS
-import PodcastsModule
-import PodcastsModuleiOS
 
 final class GeneralSearchViewAdapter: ResourceView {
     typealias ResourceViewModel = GeneralSearchContentResultViewModel
     
     weak var controller: ListViewController?
-    private let onEpisodeSelect: (Episode) -> Void
+    private let generalSearchPresenter: GeneralSearchContentPresenter
+    private let onEpisodeSelect: (SearchResultEpisode) -> Void
     private let onPodcastSelect: (SearchResultPodcast) -> Void
     
     init(controller: ListViewController,
-         onEpisodeSelect: @escaping (Episode) -> Void,
+         generalSearchPresenter: GeneralSearchContentPresenter,
+         onEpisodeSelect: @escaping (SearchResultEpisode) -> Void,
          onPodcastSelect: @escaping (SearchResultPodcast) -> Void) {
         self.controller = controller
+        self.generalSearchPresenter = generalSearchPresenter
         self.onEpisodeSelect = onEpisodeSelect
         self.onPodcastSelect = onPodcastSelect
     }
@@ -40,10 +41,10 @@ final class GeneralSearchViewAdapter: ResourceView {
         controller?.display(sections)
     }
     
-    private func makeEpisodesSection(_ episodes: [Episode]) -> SectionController {
+    private func makeEpisodesSection(_ episodes: [SearchResultEpisode]) -> SectionController {
         let episodesCells = episodes.map { episode in
-            let episodeViewModel = GeneralSearchContentPresenter.map(episode)
-            return EpisodeCellController(
+            let episodeViewModel = generalSearchPresenter.map(episode)
+            return SearchEpisodeCellController(
                 viewModel: episodeViewModel,
                 selection: { [weak self] in
                     self?.onEpisodeSelect(episode)
@@ -60,7 +61,7 @@ final class GeneralSearchViewAdapter: ResourceView {
     
     private func makePodcastsSection(_ podcasts: [SearchResultPodcast]) -> SectionController {
         let podcastsCells = podcasts.map { podcast in
-            let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+            let podcastViewModel = generalSearchPresenter.map(podcast)
             return SearchResultPodcastCellController(
                 model: podcastViewModel,
                 thumbnailViewController: ThumbnailUIComposer
@@ -83,7 +84,7 @@ final class GeneralSearchViewAdapter: ResourceView {
     
     private func makeCuratedListSection(_ curatedList: SearchResultCuratedList) -> SectionController {
         let podcastsCells = curatedList.podcasts.map { podcast in
-            let podcastViewModel = GeneralSearchContentPresenter.map(podcast)
+            let podcastViewModel = generalSearchPresenter.map(podcast)
             return SearchResultPodcastCellController(
                 model: podcastViewModel,
                 thumbnailViewController: ThumbnailUIComposer

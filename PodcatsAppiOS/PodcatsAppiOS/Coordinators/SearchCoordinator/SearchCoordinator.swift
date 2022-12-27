@@ -45,7 +45,7 @@ final class SearchCoordinator {
             searchResultController: typeaheadController,
             searchLoader: service.makeRemoteGeneralSearchLoader,
             onEpisodeSelect: { episode in
-                self.startPlayback(episode: episode)
+//                self.startPlayback(episode: episode)
             },
             onPodcastSelect: { podcast in
                 let podcastDetails = self.createPodcastDetails(

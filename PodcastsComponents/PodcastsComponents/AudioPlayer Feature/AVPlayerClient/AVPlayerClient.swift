@@ -2,7 +2,6 @@
 
 import Foundation
 import AVKit
-import PodcastsModule
 import AudioPlayerModule
 
 public final class AVPlayerClient: NSObject, AudioPlayer {

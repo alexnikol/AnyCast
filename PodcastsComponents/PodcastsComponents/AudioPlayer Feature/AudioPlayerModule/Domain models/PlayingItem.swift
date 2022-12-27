@@ -1,7 +1,6 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import Foundation
-import PodcastsModule
 
 public struct PlayingItem: Equatable {
     public let podcast: PlayingPodcast

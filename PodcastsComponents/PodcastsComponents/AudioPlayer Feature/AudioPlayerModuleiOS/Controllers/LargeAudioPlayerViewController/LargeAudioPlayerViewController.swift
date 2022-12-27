@@ -27,6 +27,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var thumbnailIHeightCNST: NSLayoutConstraint!
     @IBOutlet weak var rootStackViewTopCNST: NSLayoutConstraint!
     @IBOutlet weak var controlsStackView: UIStackView!
+    @IBOutlet public private(set) weak var bufferLoader: UIActivityIndicatorView!
     private var delegate: LargeAudioPlayerViewDelegate?
     private var controlsDelegate: AudioPlayerControlsDelegate?
     private var hiddenMPVolumeSliderControl: UISlider?
@@ -127,7 +128,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
         list.forEach { updateViewModel in
             switch updateViewModel {
             case let .playback(state):
-                playButton.setImage(state.image, for: .normal)
+                updatePlayButtonWith(state: state)
                 
             case let .volumeLevel(volumeLevel):
                 volumeView.value = volumeLevel
@@ -144,6 +145,20 @@ public final class LargeAudioPlayerViewController: UIViewController {
                 speedPlaybackButton.titleLabel?.text = selectedSpeedViewModel.displayTitle
                 speedPlaybackButton.setTitle(selectedSpeedViewModel.displayTitle, for: .normal)
             }
+        }
+    }
+    
+    private func updatePlayButtonWith(state: PlaybackStateViewModel) {
+        playButton.setImage(state.image, for: .normal)
+        
+        switch state {
+        case .pause, .playing:
+            bufferLoader.isHidden = true
+            bufferLoader.stopAnimating()
+            
+        case .loading:
+            bufferLoader.isHidden = false
+            bufferLoader.startAnimating()
         }
     }
     
@@ -184,9 +199,6 @@ private extension LargeAudioPlayerViewController {
     }
     
     func configureActionButtons() {
-        playButton.layer.cornerRadius = 4.0
-        playButton.tintColor = UIColor.accentColor
-        playButton.setImage(.init(systemName: "play.fill"), for: .normal)
         forwardButton.setImage(.init(systemName: "goforward.30"), for: .normal)
         forwardButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 34), forImageIn: .normal)
         backwardButton.setImage(.init(systemName: "gobackward.15"), for: .normal)
@@ -194,6 +206,15 @@ private extension LargeAudioPlayerViewController {
         airPlayButton.setImage(.init(systemName: "airplayaudio.circle"), for: .normal)
         airPlayButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(pointSize: 24), forImageIn: .normal)
         speedPlaybackButton.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
+        
+        playButton.layer.cornerRadius = 4.0
+        playButton.tintColor = UIColor.accentColor
+        playButton.addSubview(bufferLoader)
+        
+        NSLayoutConstraint.activate([
+            bufferLoader.centerXAnchor.constraint(equalTo: playButton.centerXAnchor, constant: 0.0),
+            bufferLoader.centerYAnchor.constraint(equalTo: playButton.centerYAnchor, constant: 0.0)
+        ])
     }
     
     func configureMPVolumeView() {

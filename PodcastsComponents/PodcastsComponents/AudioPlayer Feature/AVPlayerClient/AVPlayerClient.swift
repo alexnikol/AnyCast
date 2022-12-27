@@ -287,6 +287,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     }
     
     private func startPlaybackIfNeeded() {
+        guard !self.isSeekingProccess else { return }
         let currentPlayback: PlayingItem.PlaybackState = isPlaying ? .playing : .pause
         if let lastSpeedPlaybackState = lastSpeedPlaybackState, currentPlayback == .playing, player.rate != lastSpeedPlaybackState.rawValue {
             self.player.rate = lastSpeedPlaybackState.rawValue

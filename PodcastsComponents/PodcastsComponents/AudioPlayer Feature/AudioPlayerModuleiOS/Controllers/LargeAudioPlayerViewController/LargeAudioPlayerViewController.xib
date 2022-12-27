@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="airPlayButton" destination="yKh-dU-xGl" id="Xnw-xO-16o"/>
                 <outlet property="backwardButton" destination="xe9-Bu-vLN" id="lOz-lT-X37"/>
+                <outlet property="bufferLoader" destination="X4g-uY-z69" id="4bX-q0-7IQ"/>
                 <outlet property="controlsStackView" destination="mIL-5N-NEz" id="LWU-FR-lHc"/>
                 <outlet property="descriptionLabel" destination="gH1-Fb-Obp" id="r4A-1N-RWb"/>
                 <outlet property="forwardButton" destination="WiT-k4-vtq" id="pUW-qg-ayB"/>
@@ -27,6 +28,7 @@
                 <outlet property="rootStackViewTopCNST" destination="HHh-oM-5sN" id="F5u-rf-dLM"/>
                 <outlet property="speedPlaybackButton" destination="SPu-vL-aHe" id="435-QD-g1r"/>
                 <outlet property="thumbnailIHeightCNST" destination="SqA-q5-zfT" id="sBw-nj-QYv"/>
+                <outlet property="thumbnailIViewSideCNST" destination="d4Y-p9-kBl" id="Irh-rg-Yq5"/>
                 <outlet property="thumbnailIWidthCNST" destination="rB0-25-yls" id="MQv-cj-N20"/>
                 <outlet property="thumbnailView" destination="6Jz-Xy-m4f" id="WbO-Za-10q"/>
                 <outlet property="titleLabel" destination="Puh-PI-ksR" id="VZo-bU-Xff"/>
@@ -57,7 +59,7 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" priority="999" constant="240" id="SqA-q5-zfT"/>
+                                        <constraint firstAttribute="height" priority="999" constant="260" id="SqA-q5-zfT"/>
                                         <constraint firstItem="6Jz-Xy-m4f" firstAttribute="centerY" secondItem="bTd-6o-Mak" secondAttribute="centerY" id="ife-aY-MRo"/>
                                         <constraint firstItem="6Jz-Xy-m4f" firstAttribute="centerX" secondItem="bTd-6o-Mak" secondAttribute="centerX" id="kOz-md-o5e"/>
                                         <constraint firstAttribute="width" priority="999" constant="240" id="rB0-25-yls"/>
@@ -178,19 +180,40 @@
                                                                                                 <action selector="goBackwardTap:" destination="-1" eventType="touchUpInside" id="ch5-vB-FM3"/>
                                                                                             </connections>
                                                                                         </button>
-                                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZJ-TR-Oxu">
+                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2u-RZ-anc">
                                                                                             <rect key="frame" x="90" y="0.0" width="60" height="60"/>
-                                                                                            <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                                                                            <subviews>
+                                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rZJ-TR-Oxu">
+                                                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                                                                    <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                                                                                    <constraints>
+                                                                                                        <constraint firstAttribute="height" constant="60" id="3aS-eG-Adc"/>
+                                                                                                        <constraint firstAttribute="width" constant="60" id="XFi-8n-gLR"/>
+                                                                                                    </constraints>
+                                                                                                    <color key="tintColor" systemColor="labelColor"/>
+                                                                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                                                    <connections>
+                                                                                                        <action selector="playToggleTap:" destination="-1" eventType="touchUpInside" id="gFb-MH-JPO"/>
+                                                                                                    </connections>
+                                                                                                </button>
+                                                                                                <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="X4g-uY-z69">
+                                                                                                    <rect key="frame" x="15" y="15" width="30" height="30"/>
+                                                                                                    <constraints>
+                                                                                                        <constraint firstAttribute="height" constant="30" id="PRI-IR-fzl"/>
+                                                                                                        <constraint firstAttribute="width" constant="30" id="VBt-3p-702"/>
+                                                                                                    </constraints>
+                                                                                                    <color key="color" name="AccentColor"/>
+                                                                                                </activityIndicatorView>
+                                                                                            </subviews>
                                                                                             <constraints>
-                                                                                                <constraint firstAttribute="height" constant="60" id="3aS-eG-Adc"/>
-                                                                                                <constraint firstAttribute="width" constant="60" id="XFi-8n-gLR"/>
+                                                                                                <constraint firstAttribute="trailing" secondItem="rZJ-TR-Oxu" secondAttribute="trailing" id="2Bl-VM-Kfg"/>
+                                                                                                <constraint firstItem="X4g-uY-z69" firstAttribute="centerY" secondItem="I2u-RZ-anc" secondAttribute="centerY" id="7h4-UI-5ev"/>
+                                                                                                <constraint firstItem="X4g-uY-z69" firstAttribute="centerX" secondItem="I2u-RZ-anc" secondAttribute="centerX" id="g2n-0s-YTv"/>
+                                                                                                <constraint firstItem="rZJ-TR-Oxu" firstAttribute="leading" secondItem="I2u-RZ-anc" secondAttribute="leading" id="rHY-8V-g9c"/>
+                                                                                                <constraint firstAttribute="bottom" secondItem="rZJ-TR-Oxu" secondAttribute="bottom" id="v35-9p-O3y"/>
+                                                                                                <constraint firstItem="rZJ-TR-Oxu" firstAttribute="top" secondItem="I2u-RZ-anc" secondAttribute="top" id="wL6-Pw-p7L"/>
                                                                                             </constraints>
-                                                                                            <color key="tintColor" systemColor="labelColor"/>
-                                                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                                            <connections>
-                                                                                                <action selector="playToggleTap:" destination="-1" eventType="touchUpInside" id="gFb-MH-JPO"/>
-                                                                                            </connections>
-                                                                                        </button>
+                                                                                        </view>
                                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WiT-k4-vtq">
                                                                                             <rect key="frame" x="180" y="0.0" width="60" height="60"/>
                                                                                             <constraints>

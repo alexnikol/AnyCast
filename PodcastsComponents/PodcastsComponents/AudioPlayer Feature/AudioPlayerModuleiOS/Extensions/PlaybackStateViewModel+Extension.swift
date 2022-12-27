@@ -5,14 +5,14 @@ import AudioPlayerModule
 
 extension PlaybackStateViewModel {
     
-    var image: UIImage {
+    var image: UIImage? {
         switch self {
         case .playing:
             return UIImage(systemName: "pause.fill")!
         case .pause:
             return UIImage(systemName: "play.fill")!
         case .loading:
-            return UIImage(systemName: "circle.hexagonpath.fill")!
+            return nil
         }
     }
 }

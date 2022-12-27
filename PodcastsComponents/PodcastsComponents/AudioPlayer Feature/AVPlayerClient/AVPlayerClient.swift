@@ -5,7 +5,7 @@ import AVKit
 import AudioPlayerModule
 
 public final class AVPlayerClient: NSObject, AudioPlayer {
-
+    
     private enum Error: Swift.Error {
         case sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
     }
@@ -25,12 +25,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     private var periodicTimer: Any?
     public let progressPeriodicTimer = CMTime(seconds: 0.5, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
     
-    private lazy var player: AVPlayer = {
-        let player = AVPlayer()
-        player.automaticallyWaitsToMinimizeStalling = true
-        return player
-    }()
-    
+    private var player: AVPlayer!
     public var delegate: AudioPlayerOutputDelegate?
     
     public override init() {
@@ -70,58 +65,9 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         
         let asset = AVAsset(url: url)
         let playerItem = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: requiredAssetKeys)
-        player.replaceCurrentItem(with: playerItem)
-        
-        ObservingKeyPaths.allCases.forEach {
-            player.addObserver(self, forKeyPath: $0.rawValue, options: [.new], context: nil)
-        }
-        
-        periodicTimer = player.addPeriodicTimeObserver(
-            forInterval: progressPeriodicTimer,
-            queue: .main,
-            using: { [weak self] _ in
-                guard let self = self,
-                      let item = self.player.currentItem else {
-                    return
-                }
-                
-                switch self.player.status {
-                case .readyToPlay:
-                    guard !self.isSeekingProccess else { return }
-                    let currentTime = Float(CMTimeGetSeconds(self.player.currentTime()))
-                    let totalTime = Float(CMTimeGetSeconds(item.duration))
-                    var progress: PlayingItem.Progress
-                    guard !currentTime.isNaN, currentTime >= 0 else {
-                        progress = PlayingItem.Progress(
-                            currentTimeInSeconds: 0,
-                            totalTime: .notDefined,
-                            progressTimePercentage: 0.0
-                        )
-                        self.updateProgress(progress: progress)
-                        return
-                    }
-                    
-                    let currentTimeInSeconds = Int(currentTime)
-                    if totalTime.isNaN {
-                        progress = PlayingItem.Progress(
-                            currentTimeInSeconds: currentTimeInSeconds,
-                            totalTime: .notDefined,
-                            progressTimePercentage: 0.0
-                        )
-                    } else {
-                        let progressPercentage = currentTime / totalTime
-                        let totalTimeInSeconds = Int(totalTime)
-                        progress = PlayingItem.Progress(
-                            currentTimeInSeconds: currentTimeInSeconds,
-                            totalTime: .valueInSeconds(totalTimeInSeconds),
-                            progressTimePercentage: progressPercentage
-                        )
-                    }
-                    
-                    self.updateProgress(progress: progress)
-                default: ()
-                }
-            })
+        removeObservers()
+        player = makePlayer(currentItem: playerItem)
+        addObservers()
         
         player.playImmediately(atRate: 1.0)
     }
@@ -201,7 +147,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             } else {
                 startPlaybackIfNeeded()
             }
-            print("OKP__reasonForWaitingToPlay: \(player.reasonForWaitingToPlay?.rawValue ?? "NO reason")")
+            Logger.debug(player.reasonForWaitingToPlay?.rawValue ?? "NO reason", prefix: "AVPLAYER_CLIENT")
             
         case .playbackLikelyToKeepUp:
             let newValue = change?[.newKey] as? Bool
@@ -209,7 +155,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             guard newValue != oldValue else {
                 return
             }
-            print("OKP__playbackLikelyToKeepUp")
+            Logger.debug("playbackLikelyToKeepUp", prefix: "AVPLAYER_CLIENT")
             updateDurationIfNeeded()
             startPlaybackIfNeeded()
             
@@ -234,13 +180,68 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
                 return
             }
             
-            print("OKP__STATUS___\(currentItem.status)")
+            Logger.debug("STATUS_\(currentItem.status)", prefix: "AVPLAYER_CLIENT")
             if currentItem.status == .readyToPlay {
                 let assets = currentItem.asset
                 startPlaybackIfNeeded()
-                print("OKP__isREADYTO_plau__ - \(assets)")
+                Logger.debug("STATUS_readyToPlayASSETS\(assets)", prefix: "AVPLAYER_CLIENT")
             }
         }
+    }
+    
+    private func removeObservers() {
+        guard let player = player, let periodicTimer = periodicTimer else { return }
+        
+        player.removeTimeObserver(periodicTimer)
+        
+        ObservingKeyPaths.allCases.forEach {
+            player.removeObserver(self, forKeyPath: $0.rawValue)
+        }
+        self.periodicTimer = nil
+    }
+    
+    private func addObservers() {
+        ObservingKeyPaths.allCases.forEach {
+            player.addObserver(self, forKeyPath: $0.rawValue, options: [.new], context: nil)
+        }
+        
+        periodicTimer = player.addPeriodicTimeObserver(
+            forInterval: progressPeriodicTimer,
+            queue: .main,
+            using: { [weak self] _ in
+                guard let self = self,
+                      let item = self.player.currentItem else {
+                    return
+                }
+                switch self.player.status {
+                case .readyToPlay:
+                    guard !self.isSeekingProccess else { return }
+                    let currentTime = Float(CMTimeGetSeconds(self.player.currentTime()))
+                    let totalTime = Float(CMTimeGetSeconds(item.duration))
+                    var progress: PlayingItem.Progress
+                    guard !currentTime.isNaN, currentTime >= 0 else {
+                        progress = PlayingItem.Progress.justStartedProgress()
+                        self.updateProgress(progress: progress)
+                        return
+                    }
+                    
+                    let currentTimeInSeconds = Int(currentTime)
+                    if totalTime.isNaN {
+                        progress = PlayingItem.Progress.justStartedProgress(currentTimeInSeconds: currentTimeInSeconds)
+                    } else {
+                        let progressPercentage = currentTime / totalTime
+                        let totalTimeInSeconds = Int(totalTime)
+                        progress = PlayingItem.Progress(
+                            currentTimeInSeconds: currentTimeInSeconds,
+                            totalTime: .valueInSeconds(totalTimeInSeconds),
+                            progressTimePercentage: progressPercentage
+                        )
+                    }
+                    
+                    self.updateProgress(progress: progress)
+                default: ()
+                }
+            })
     }
     
     private func sendStartPlayingState() throws {
@@ -276,7 +277,6 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     }
     
     private func updateProgress(progress: PlayingItem.Progress) {
-        print("SEEK__UPDATE__PROGRESS \(progress.progressTimePercentage)")
         lastProgressState = progress
         try? sendUpdatePlayingState(states: currentStatesList())
     }
@@ -407,5 +407,33 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             updates.append(.speed(speedPlaybackState))
         }
         return updates
+    }
+    
+    private func makePlayer(currentItem: AVPlayerItem) -> AVPlayer {
+        let player = AVPlayer(playerItem: currentItem)
+        player.automaticallyWaitsToMinimizeStalling = true
+        return player
+    }
+}
+
+private extension PlayingItem.Progress {
+    static func justStartedProgress(currentTimeInSeconds: Int = 0) -> PlayingItem.Progress {
+        PlayingItem.Progress(
+            currentTimeInSeconds: currentTimeInSeconds,
+            totalTime: .notDefined,
+            progressTimePercentage: 0.0
+        )
+    }
+}
+
+private enum Logger {
+    static func debug(
+        _ message: String,
+        prefix: String? = nil
+    ) {
+#if DEBUG
+        let prefixPart = prefix == nil ? "" : "\(prefix ?? "")"
+        print("🟢🟢🟢 \(prefixPart) " + message)
+#endif
     }
 }

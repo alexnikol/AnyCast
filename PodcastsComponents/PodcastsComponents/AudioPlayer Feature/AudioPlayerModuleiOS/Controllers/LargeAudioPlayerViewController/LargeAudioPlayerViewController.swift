@@ -8,6 +8,13 @@ import AVKit
 import LoadResourcePresenter
 
 public final class LargeAudioPlayerViewController: UIViewController {
+    private enum Defaults {
+        enum ThumbnailSize {
+            static let activeSideSize = CGFloat(200)
+            static let inactiveSideSize = CGFloat(160)
+        }
+    }
+    
     @IBOutlet weak var rootStackView: UIStackView!
     @IBOutlet weak var thumbnailView: ThumbnailView!
     @IBOutlet public private(set) weak var progressView: UISlider!
@@ -25,6 +32,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
     @IBOutlet weak var rightVolumeIconView: UIImageView!
     @IBOutlet weak var thumbnailIWidthCNST: NSLayoutConstraint!
     @IBOutlet weak var thumbnailIHeightCNST: NSLayoutConstraint!
+    @IBOutlet weak var thumbnailIViewSideCNST: NSLayoutConstraint!
     @IBOutlet weak var rootStackViewTopCNST: NSLayoutConstraint!
     @IBOutlet weak var controlsStackView: UIStackView!
     @IBOutlet public private(set) weak var bufferLoader: UIActivityIndicatorView!
@@ -129,6 +137,7 @@ public final class LargeAudioPlayerViewController: UIViewController {
             switch updateViewModel {
             case let .playback(state):
                 updatePlayButtonWith(state: state)
+                updateThumbnail(state: state)
                 
             case let .volumeLevel(volumeLevel):
                 volumeView.value = volumeLevel
@@ -160,6 +169,24 @@ public final class LargeAudioPlayerViewController: UIViewController {
             bufferLoader.isHidden = false
             bufferLoader.startAnimating()
         }
+    }
+    
+    private func updateThumbnail(state: PlaybackStateViewModel) {
+        switch state {
+        case .playing:
+            thumbnailIViewSideCNST.constant = Defaults.ThumbnailSize.activeSideSize
+            
+        case .pause, .loading:
+            thumbnailIViewSideCNST.constant = Defaults.ThumbnailSize.inactiveSideSize
+        }
+        UIView.animate(
+            withDuration: 1.0,
+            delay: 0.0,
+            usingSpringWithDamping: 0.6,
+            initialSpringVelocity: 0.0,
+            animations: {
+                self.thumbnailView?.superview?.layoutIfNeeded()
+        }, completion: nil)
     }
     
     private func updateUIWithProgressEditMode(isEditing: Bool) {

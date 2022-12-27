@@ -28,6 +28,7 @@
                 <outlet property="rootStackViewTopCNST" destination="HHh-oM-5sN" id="F5u-rf-dLM"/>
                 <outlet property="speedPlaybackButton" destination="SPu-vL-aHe" id="435-QD-g1r"/>
                 <outlet property="thumbnailIHeightCNST" destination="SqA-q5-zfT" id="sBw-nj-QYv"/>
+                <outlet property="thumbnailIViewSideCNST" destination="d4Y-p9-kBl" id="Irh-rg-Yq5"/>
                 <outlet property="thumbnailIWidthCNST" destination="rB0-25-yls" id="MQv-cj-N20"/>
                 <outlet property="thumbnailView" destination="6Jz-Xy-m4f" id="WbO-Za-10q"/>
                 <outlet property="titleLabel" destination="Puh-PI-ksR" id="VZo-bU-Xff"/>

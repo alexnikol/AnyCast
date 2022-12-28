@@ -3,4 +3,14 @@
 import PodcastsModule
 import AudioPlayerModule
 
-extension Episode: PlayingEpisode {}
+extension Episode {
+    func toPlayingEpisode() -> PlayingEpisode {
+        PlayingEpisode(
+            id: id,
+            title: title,
+            thumbnail: thumbnail,
+            audio: audio,
+            publishDateInMiliseconds: publishDateInMiliseconds
+        )
+    }
+}

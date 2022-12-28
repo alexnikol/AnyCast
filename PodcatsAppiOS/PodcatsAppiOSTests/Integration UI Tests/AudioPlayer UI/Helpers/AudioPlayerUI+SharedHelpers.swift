@@ -5,30 +5,21 @@ import SharedTestHelpersLibrary
 import PodcastsModule
 import AudioPlayerModule
 
-func makeEpisode() -> Episode {
-    Episode(
+func makePlayingEpisode() -> PlayingEpisode {
+    PlayingEpisode(
         id: UUID().uuidString,
         title: "Any Episode Title",
-        description: "Any Episode Description",
         thumbnail: anyURL(),
         audio: anyURL(),
-        audioLengthInSeconds: Int.random(in: 1...1000),
-        containsExplicitContent: Bool.random(),
         publishDateInMiliseconds: Int.random(in: 1479110301853...1479110401853)
     )
 }
 
-func makePodcast(title: String = "Any Podcast Title", publisher: String = "Any Publisher Title") -> PodcastDetails {
-    PodcastDetails(
+func makePlayingPodcast(title: String = "Any Podcast Title", publisher: String = "Any Publisher Title") -> PlayingPodcast {
+    PlayingPodcast(
         id: UUID().uuidString,
         title: title,
-        publisher: publisher,
-        language: "Any language",
-        type: .episodic,
-        image: anyURL(),
-        episodes: [],
-        description: "Any description",
-        totalEpisodes: 100
+        publisher: publisher
     )
 }
 
@@ -43,8 +34,8 @@ func makePlayingItem(
     speedPlayback: PlaybackSpeed = .x0_75
 ) -> PlayingItem {
     PlayingItem(
-        episode: makeEpisode(),
-        podcast: makePodcast(title: title, publisher: publisher),
+        episode: makePlayingEpisode(),
+        podcast: makePlayingPodcast(title: title, publisher: publisher),
         updates: [
             .playback(playback),
             .progress(

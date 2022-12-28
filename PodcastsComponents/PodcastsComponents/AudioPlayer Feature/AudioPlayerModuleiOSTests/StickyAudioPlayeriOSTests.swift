@@ -61,8 +61,8 @@ class StickyAudioPlayeriOSTests: XCTestCase {
     
     func makeViewModel(playback: PlayingItem.PlaybackState) -> StickyAudioPlayerViewModel {
         let plaingItem = PlayingItem(
-            episode: makeEpisode(),
-            podcast: makePodcast(),
+            episode: makePlayingEpisode(),
+            podcast: makePlayingPodcast(),
             updates: [
                 .playback(playback),
                 .progress(

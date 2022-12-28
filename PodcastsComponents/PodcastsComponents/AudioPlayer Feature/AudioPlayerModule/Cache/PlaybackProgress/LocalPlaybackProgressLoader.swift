@@ -26,7 +26,9 @@ public final class LocalPlaybackProgressLoader {
     }
     
     private func cache(_ playingItem: PlayingItem, completion: @escaping (SaveResult) -> Void) {
-        self.store.insert(playingItem.toLocal(), timestamp: currentDate(), completion: { insertionError in
+        self.store.insert(playingItem.toLocal(), timestamp: currentDate(), completion: { [weak self] insertionError in
+            guard self != nil else { return }
+            
             completion(insertionError)
         })
     }

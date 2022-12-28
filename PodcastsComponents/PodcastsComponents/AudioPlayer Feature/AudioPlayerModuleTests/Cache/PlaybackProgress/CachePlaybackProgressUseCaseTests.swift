@@ -86,6 +86,21 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         XCTAssertTrue(receivedResults.isEmpty)
     }
     
+    func test_save_doesNotDeliverInsertionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = PlaybackProgressStoreSpy()
+        var sut: LocalPlaybackProgressLoader? = LocalPlaybackProgressLoader(store: store, currentDate: Date.init)
+        let insertionError = anyNSError()
+        
+        var receivedResults = [LocalPlaybackProgressLoader.SaveResult]()
+        sut?.save(makePlayingItemModels().model) { receivedResults.append($0) }
+        
+        store.completeDeletionSuccessfully()
+        sut = nil
+        store.completeInsertion(with: insertionError)
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

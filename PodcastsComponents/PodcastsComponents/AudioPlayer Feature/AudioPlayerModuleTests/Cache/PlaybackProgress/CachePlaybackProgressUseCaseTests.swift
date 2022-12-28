@@ -5,28 +5,6 @@ import SharedTestHelpersLibrary
 import AudioPlayerModule
 
 
-final class LocalPlaybackProgressLoader {
-    typealias SaveResult = Error?
-    
-    private let store: PlaybackProgressStore
-    private let currentDate: () -> Date
-    
-    init(store: PlaybackProgressStore, currentDate: @escaping () -> Date) {
-        self.store = store
-        self.currentDate = currentDate
-    }
-    
-    func save(_ playingItem: AudioPlayerModule.PlayingItem, completion: @escaping (SaveResult) -> Void) {
-        store.deleteCachedPlayingItem(completion: { _ in })
-    }
-}
-
-protocol PlaybackProgressStore {
-    typealias DeletionCompletion = (Error?) -> Void
-    
-    func deleteCachedPlayingItem(completion: @escaping DeletionCompletion)
-}
-
 final class CachePlaybackProgressUseCaseTests: XCTestCase {
     
     func test_init_doesNotMessageStoreCreation() {
@@ -53,6 +31,17 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         store.completeDeletion(with: deletionError)
         
         XCTAssertEqual(store.receivedMessages, [.deleteCache])
+    }
+    
+    func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
+        let timestamp = Date()
+        let (sut, store) = makeSUT(currentDate: { timestamp })
+        let playingItem = makePlayingItemModels()
+        
+        sut.save(playingItem.model) { _ in }
+        store.completeDeletionSuccessfully()
+        
+        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(playingItem.localModel, timestamp)])
     }
     
     // MARK: - Helpers
@@ -119,8 +108,9 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
 }
 
 private class PlaybackProgressStoreSpy: PlaybackProgressStore {
-    enum Message {
+    enum Message: Equatable {
         case deleteCache
+        case insert(LocalPlayingItem, Date)
     }
     
     private var deletionCompletions: [DeletionCompletion] = []
@@ -133,5 +123,13 @@ private class PlaybackProgressStoreSpy: PlaybackProgressStore {
     
     func completeDeletion(with error: NSError, at index: Int = 0) {
         deletionCompletions[index](error)
+    }
+    
+    func completeDeletionSuccessfully(at index: Int = 0) {
+        deletionCompletions[index](nil)
+    }
+    
+    func insert(_ playingItem: LocalPlayingItem, timestamp: Date, completion: @escaping InsertionCompletion) {
+        receivedMessages.append(.insert(playingItem, timestamp))
     }
 }

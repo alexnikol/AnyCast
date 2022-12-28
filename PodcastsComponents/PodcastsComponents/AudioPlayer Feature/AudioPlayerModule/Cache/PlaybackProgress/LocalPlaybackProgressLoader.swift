@@ -20,14 +20,14 @@ public final class LocalPlaybackProgressLoader {
             if let deletion = deletion {
                 completion(deletion)
             } else {
-                self.store.insert(playingItem.toLocal(), timestamp: self.currentDate(), completion: { insertionError in
-                    if let insertionError = insertionError {
-                        completion(insertionError)
-                    } else {
-                        
-                    }
-                })
+                self.cache(playingItem, completion: completion)
             }
+        })
+    }
+    
+    private func cache(_ playingItem: PlayingItem, completion: @escaping (SaveResult) -> Void) {
+        self.store.insert(playingItem.toLocal(), timestamp: currentDate(), completion: { insertionError in
+            completion(insertionError)
         })
     }
 }

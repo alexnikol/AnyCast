@@ -63,6 +63,15 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         })
     }
     
+    func test_save_succeedsOnSuccessfulCacheInsertion() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteWithError: nil, when: {
+            store.completeDeletionSuccessfully()
+            store.completeInsertionSuccessfully()
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

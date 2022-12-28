@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsGenresList
 
-class PodcastsGenresListCacheIntegrationTests: XCTestCase {
+final class PodcastsGenresListCacheIntegrationTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

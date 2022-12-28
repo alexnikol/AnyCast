@@ -5,7 +5,7 @@ import SharedTestHelpersLibrary
 import HTTPClient
 import URLSessionHTTPClient
 
-class URLSessionHTTPClientTests: XCTestCase {
+final class URLSessionHTTPClientTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()

@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import MapperLibrary
 
-class GenericAPIMapperTests: XCTestCase {
+final class GenericAPIMapperTests: XCTestCase {
     
     func test_map_throwsErrorOnNon200HTTPURLResponse() throws {
         let validJSON = Data("{ \"string\": \"result\" }".utf8)

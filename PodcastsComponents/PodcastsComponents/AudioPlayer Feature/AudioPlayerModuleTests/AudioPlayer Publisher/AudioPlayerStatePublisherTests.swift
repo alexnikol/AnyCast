@@ -3,7 +3,7 @@
 import XCTest
 import AudioPlayerModule
 
-class AudioPlayerStatePublisherTests: XCTestCase {
+final class AudioPlayerStatePublisherTests: XCTestCase {
     
     func test_init_doesNotDeliversValueOnCreationWithoutSubscription() {
         var receivedPlayerState: PlayerState?

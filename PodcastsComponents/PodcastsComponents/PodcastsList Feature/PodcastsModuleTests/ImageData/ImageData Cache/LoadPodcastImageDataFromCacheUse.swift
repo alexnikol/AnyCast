@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsModule
 
-class LoadPodcastImageDataFromCacheUse: XCTestCase {
+final class LoadPodcastImageDataFromCacheUse: XCTestCase {
     
     func test_init_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()

@@ -7,7 +7,7 @@ import PodcastsGenresListiOS
 import SharedComponentsiOSModule
 import LoadResourcePresenter
 
-class GenresUISnapshotTests: XCTestCase {
+final class GenresUISnapshotTests: XCTestCase {
     
     func test_emptyGenres() {
         let (sut, _) = makeSUT()

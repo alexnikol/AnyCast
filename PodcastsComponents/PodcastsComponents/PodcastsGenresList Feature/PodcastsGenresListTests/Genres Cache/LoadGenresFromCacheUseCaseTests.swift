@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsGenresList
 
-class LoadGenresFromCacheUseCaseTests: XCTestCase {
+final class LoadGenresFromCacheUseCaseTests: XCTestCase {
     
     func test_init() {
         let (_, store) = makeSUT()

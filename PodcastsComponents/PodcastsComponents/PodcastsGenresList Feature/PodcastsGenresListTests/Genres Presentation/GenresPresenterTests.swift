@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresList
 
-class GenresPresenterTests: XCTestCase {
+final class GenresPresenterTests: XCTestCase {
     
     func test_title_isLocalized() {
         XCTAssertEqual(GenresPresenter.title, localized("GENRES_VIEW_TITLE"))

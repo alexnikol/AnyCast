@@ -7,7 +7,7 @@ import AudioPlayerModule
 import AudioPlayerModuleiOS
 import SharedComponentsiOSModule
 
-class StickyAudioPlayeriOSTests: XCTestCase {
+final class StickyAudioPlayeriOSTests: XCTestCase {
     
     func test_player_portrait() {
         let (sut, root) = makeSUT()

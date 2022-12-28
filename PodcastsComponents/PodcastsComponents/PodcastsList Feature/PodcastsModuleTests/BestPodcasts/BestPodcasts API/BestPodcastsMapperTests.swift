@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsModule
 
-class BestPodcastsMapperTests: XCTestCase {
+final class BestPodcastsMapperTests: XCTestCase {
             
     func test_map_deliversPodcastsItemsOn200HTTPResponseWithJSONItems() throws {
         let anyGenreId = 1

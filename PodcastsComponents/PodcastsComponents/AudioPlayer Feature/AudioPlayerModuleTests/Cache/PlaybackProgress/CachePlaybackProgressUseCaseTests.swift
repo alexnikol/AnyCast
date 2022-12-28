@@ -53,6 +53,16 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         })
     }
     
+    func test_save_failsOnInsertionError() {
+        let (sut, store) = makeSUT()
+        let insertionError = anyNSError()
+        
+        expect(sut, toCompleteWithError: insertionError, when: {
+            store.completeDeletionSuccessfully()
+            store.completeInsertion(with: insertionError)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -145,6 +155,7 @@ private class PlaybackProgressStoreSpy: PlaybackProgressStore {
     }
     
     private var deletionCompletions: [DeletionCompletion] = []
+    private var insertionCompletions: [InsertionCompletion] = []
     private(set) var receivedMessages: [Message] = []
     
     func deleteCachedPlayingItem(completion: @escaping DeletionCompletion) {
@@ -162,5 +173,14 @@ private class PlaybackProgressStoreSpy: PlaybackProgressStore {
     
     func insert(_ playingItem: LocalPlayingItem, timestamp: Date, completion: @escaping InsertionCompletion) {
         receivedMessages.append(.insert(playingItem, timestamp))
+        insertionCompletions.append(completion)
+    }
+    
+    func completeInsertion(with error: Error, at index: Int = 0) {
+        insertionCompletions[index](error)
+    }
+    
+    func completeInsertionSuccessfully(at index: Int = 0) {
+        insertionCompletions[index](nil)
     }
 }

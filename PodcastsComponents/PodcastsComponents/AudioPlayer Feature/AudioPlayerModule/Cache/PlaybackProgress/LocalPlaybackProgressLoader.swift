@@ -20,7 +20,13 @@ public final class LocalPlaybackProgressLoader {
             if let deletion = deletion {
                 completion(deletion)
             } else {
-                self.store.insert(playingItem.toLocal(), timestamp: self.currentDate(), completion: { _ in })
+                self.store.insert(playingItem.toLocal(), timestamp: self.currentDate(), completion: { insertionError in
+                    if let insertionError = insertionError {
+                        completion(insertionError)
+                    } else {
+                        
+                    }
+                })
             }
         })
     }

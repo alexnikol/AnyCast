@@ -54,7 +54,7 @@ class PlaybackProgressStoreSpy: PlaybackProgressStore {
         retrievalCompletions[index](.empty)
     }
     
-    func completeRetrieval(with playingItem: PlayingItem, timestamp: Date, at index: Int = 0) {
+    func completeRetrieval(with playingItem: LocalPlayingItem, timestamp: Date, at index: Int = 0) {
         retrievalCompletions[index](.found(playingItem: playingItem, timestamp: timestamp))
     }
 }

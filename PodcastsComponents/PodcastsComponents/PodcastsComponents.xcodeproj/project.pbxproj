@@ -58,6 +58,7 @@
 		8D36249B295C6F8700967634 /* PlaybackProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36249A295C6F8700967634 /* PlaybackProgressStore.swift */; };
 		8D3625CB295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */; };
 		8D3625CE295C90B800967634 /* PlaybackProgressStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625CD295C90B800967634 /* PlaybackProgressStoreSpy.swift */; };
+		8D3625D0295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625CF295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift */; };
 		8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
@@ -654,6 +655,7 @@
 		8D36249A295C6F8700967634 /* PlaybackProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressStore.swift; sourceTree = "<group>"; };
 		8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPlayingItemFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		8D3625CD295C90B800967634 /* PlaybackProgressStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressStoreSpy.swift; sourceTree = "<group>"; };
+		8D3625CF295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaybackProgress+SharedHelpers.swift"; sourceTree = "<group>"; };
 		8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadListViewController.swift; sourceTree = "<group>"; };
 		8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenter.swift; sourceTree = "<group>"; };
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
@@ -1373,6 +1375,7 @@
 			isa = PBXGroup;
 			children = (
 				8D3625CD295C90B800967634 /* PlaybackProgressStoreSpy.swift */,
+				8D3625CF295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4050,6 +4053,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3625D0295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift in Sources */,
 				8D750C6B29472840004500D9 /* StickyAudioPlayerPresentationTests.swift in Sources */,
 				8D9B870B292E2555003B52AB /* SharedHelpers.swift in Sources */,
 				8D3625CB295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift in Sources */,

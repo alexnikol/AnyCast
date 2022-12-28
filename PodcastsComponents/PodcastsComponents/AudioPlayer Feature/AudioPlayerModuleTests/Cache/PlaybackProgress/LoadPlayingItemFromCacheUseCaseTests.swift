@@ -38,6 +38,16 @@ final class LoadPlayingItemFromCacheUseCaseTests: XCTestCase {
         })
     }
     
+    func test_load_deliversCachedPlayingItemOnNonEmptyCache() {
+        let playingItem = makePlayingItemModels()
+        let fixedCurrentDate = Date()
+        let (sut, store) = makeSUT(currentDate: { fixedCurrentDate })
+        
+        expect(sut, toCompleteWith: .success(playingItem.model), when: {
+            store.completeRetrieval(with: playingItem.localModel, timestamp: fixedCurrentDate)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

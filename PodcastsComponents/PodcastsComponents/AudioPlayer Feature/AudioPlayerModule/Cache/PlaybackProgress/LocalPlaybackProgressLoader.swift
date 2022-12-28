@@ -36,10 +36,23 @@ public final class LocalPlaybackProgressLoader {
 
 extension LocalPlaybackProgressLoader {
     
+    private struct EmptyStorageError: Error {}
+    
     public typealias LoadResult = Result<PlayingItem, Error>
     
     public func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve(completion: { _ in })
+        store.retrieve(completion: { loadResult in
+            switch loadResult {
+            case .empty:
+                completion(.failure(EmptyStorageError()))
+                
+            case let .failure(error):
+                completion(.failure(error))
+                
+            case let .found(playingItem, _):
+                completion(.success(playingItem))
+            }
+        })
     }
 }
 

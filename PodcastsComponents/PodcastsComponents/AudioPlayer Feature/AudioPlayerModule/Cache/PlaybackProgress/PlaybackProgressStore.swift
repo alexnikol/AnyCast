@@ -4,7 +4,7 @@ import Foundation
 
 public enum RetrieveCachePlaybackProgressResult {
     case empty
-    case found(playingItem: [PlayingItem], timestamp: Date)
+    case found(playingItem: PlayingItem, timestamp: Date)
     case failure(Error)
 }
 

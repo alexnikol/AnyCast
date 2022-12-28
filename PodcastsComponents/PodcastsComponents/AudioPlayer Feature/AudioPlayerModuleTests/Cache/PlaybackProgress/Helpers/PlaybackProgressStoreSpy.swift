@@ -12,7 +12,7 @@ class PlaybackProgressStoreSpy: PlaybackProgressStore {
     
     private var deletionCompletions: [DeletionCompletion] = []
     private var insertionCompletions: [InsertionCompletion] = []
-    private var retrieveCompletions: [RetrievalCompletion] = []
+    private var retrievalCompletions: [RetrievalCompletion] = []
     private(set) var receivedMessages: [Message] = []
     
     func deleteCachedPlayingItem(completion: @escaping DeletionCompletion) {
@@ -43,6 +43,18 @@ class PlaybackProgressStoreSpy: PlaybackProgressStore {
     
     func retrieve(completion: @escaping RetrievalCompletion) {
         receivedMessages.append(.retrieve)
-        retrieveCompletions.append(completion)
+        retrievalCompletions.append(completion)
+    }
+    
+    func completeRetrieval(with error: Error, at index: Int = 0) {
+        retrievalCompletions[index](.failure(error))
+    }
+    
+    func completeRetrievalWithEmptyCache(at index: Int = 0) {
+        retrievalCompletions[index](.empty)
+    }
+    
+    func completeRetrieval(with playingItem: PlayingItem, timestamp: Date, at index: Int = 0) {
+        retrievalCompletions[index](.found(playingItem: playingItem, timestamp: timestamp))
     }
 }

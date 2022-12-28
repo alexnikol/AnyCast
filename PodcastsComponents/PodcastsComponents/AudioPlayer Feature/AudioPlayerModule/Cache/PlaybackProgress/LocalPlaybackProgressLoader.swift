@@ -34,6 +34,15 @@ public final class LocalPlaybackProgressLoader {
     }
 }
 
+extension LocalPlaybackProgressLoader {
+    
+    public typealias LoadResult = Result<PlayingItem, Error>
+    
+    public func load(completion: @escaping (LoadResult) -> Void) {
+        store.retrieve(completion: { _ in })
+    }
+}
+
 private extension PlayingItem {
     func toLocal() -> LocalPlayingItem {
         LocalPlayingItem(

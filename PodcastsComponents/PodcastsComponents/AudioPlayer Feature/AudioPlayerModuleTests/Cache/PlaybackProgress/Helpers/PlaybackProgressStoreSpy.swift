@@ -7,10 +7,12 @@ class PlaybackProgressStoreSpy: PlaybackProgressStore {
     enum Message: Equatable {
         case deleteCache
         case insert(LocalPlayingItem, Date)
+        case retrieve
     }
     
     private var deletionCompletions: [DeletionCompletion] = []
     private var insertionCompletions: [InsertionCompletion] = []
+    private var retrieveCompletions: [RetrievalCompletion] = []
     private(set) var receivedMessages: [Message] = []
     
     func deleteCachedPlayingItem(completion: @escaping DeletionCompletion) {
@@ -37,5 +39,10 @@ class PlaybackProgressStoreSpy: PlaybackProgressStore {
     
     func completeInsertionSuccessfully(at index: Int = 0) {
         insertionCompletions[index](nil)
+    }
+    
+    func retrieve(completion: @escaping RetrievalCompletion) {
+        receivedMessages.append(.retrieve)
+        retrieveCompletions.append(completion)
     }
 }

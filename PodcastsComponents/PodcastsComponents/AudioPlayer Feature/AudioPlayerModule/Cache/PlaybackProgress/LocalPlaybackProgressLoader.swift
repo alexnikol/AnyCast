@@ -60,6 +60,8 @@ extension LocalPlaybackProgressLoader {
     }
 }
 
+// MARK: - LocalPlayingItem + models mapping
+
 private extension LocalPlayingItem {
     func toModel() -> PlayingItem {
         PlayingItem(
@@ -133,6 +135,8 @@ private extension LocalEpisodeDuration {
         }
     }
 }
+
+// MARK: - PlayingItem + local models mapping
 
 private extension PlayingItem {
     func toLocal() -> LocalPlayingItem {

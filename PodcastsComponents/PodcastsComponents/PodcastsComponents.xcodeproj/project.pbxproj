@@ -59,6 +59,10 @@
 		8D3625CB295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */; };
 		8D3625CE295C90B800967634 /* PlaybackProgressStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625CD295C90B800967634 /* PlaybackProgressStoreSpy.swift */; };
 		8D3625D0295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625CF295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift */; };
+		8D3625DC295C9B3200967634 /* PlayingItem+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625D4295C9AE000967634 /* PlayingItem+Progress.swift */; };
+		8D3625DD295C9B3200967634 /* PlayingItem+PlaybackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625D2295C9AC700967634 /* PlayingItem+PlaybackState.swift */; };
+		8D3625DE295C9B3200967634 /* EpisodeDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625D6295C9AF100967634 /* EpisodeDuration.swift */; };
+		8D3625DF295C9B3200967634 /* PlayingItem+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625D8295C9B0B00967634 /* PlayingItem+State.swift */; };
 		8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
@@ -656,6 +660,10 @@
 		8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPlayingItemFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		8D3625CD295C90B800967634 /* PlaybackProgressStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressStoreSpy.swift; sourceTree = "<group>"; };
 		8D3625CF295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlaybackProgress+SharedHelpers.swift"; sourceTree = "<group>"; };
+		8D3625D2295C9AC700967634 /* PlayingItem+PlaybackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayingItem+PlaybackState.swift"; sourceTree = "<group>"; };
+		8D3625D4295C9AE000967634 /* PlayingItem+Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayingItem+Progress.swift"; sourceTree = "<group>"; };
+		8D3625D6295C9AF100967634 /* EpisodeDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDuration.swift; sourceTree = "<group>"; };
+		8D3625D8295C9B0B00967634 /* PlayingItem+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayingItem+State.swift"; sourceTree = "<group>"; };
 		8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadListViewController.swift; sourceTree = "<group>"; };
 		8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenter.swift; sourceTree = "<group>"; };
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
@@ -1344,11 +1352,11 @@
 		8D36248D295C4A7B00967634 /* PlaybackProgress */ = {
 			isa = PBXGroup;
 			children = (
+				8D362498295C6F6E00967634 /* LocalPlaybackProgressLoader.swift */,
+				8D36249A295C6F8700967634 /* PlaybackProgressStore.swift */,
 				8D362492295C555500967634 /* LocalPlayingItem.swift */,
 				8D362494295C572100967634 /* LocalPlayingPodcast.swift */,
 				8D362496295C580A00967634 /* LocalPlayingEpisode.swift */,
-				8D362498295C6F6E00967634 /* LocalPlaybackProgressLoader.swift */,
-				8D36249A295C6F8700967634 /* PlaybackProgressStore.swift */,
 			);
 			path = PlaybackProgress;
 			sourceTree = "<group>";
@@ -1378,6 +1386,19 @@
 				8D3625CF295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8D3625D1295C9AB100967634 /* PlayingItem */ = {
+			isa = PBXGroup;
+			children = (
+				8D9B86EC292D0EBF003B52AB /* PlayingItem.swift */,
+				8D9B86EA292D0EA5003B52AB /* PlayerState.swift */,
+				8D3625D2295C9AC700967634 /* PlayingItem+PlaybackState.swift */,
+				8D3625D4295C9AE000967634 /* PlayingItem+Progress.swift */,
+				8D3625D6295C9AF100967634 /* EpisodeDuration.swift */,
+				8D3625D8295C9B0B00967634 /* PlayingItem+State.swift */,
+			);
+			path = PlayingItem;
 			sourceTree = "<group>";
 		};
 		8D4298AA292233F30064F3E6 /* SharedHelpersiOSModule */ = {
@@ -2166,13 +2187,12 @@
 		8DCA2285293141DB00DD1EC6 /* Domain models */ = {
 			isa = PBXGroup;
 			children = (
+				8D3625D1295C9AB100967634 /* PlayingItem */,
 				8D9B86F0292D0F80003B52AB /* AudioPlayer.swift */,
 				8D9B86F2292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift */,
 				8DCA22922934CB6700DD1EC6 /* AudioPlayerControlsDelegate.swift */,
 				8D9B86E8292D0E88003B52AB /* AudioPlayerStatePublisher.swift */,
 				8D9B86EE292D0F0A003B52AB /* AudioPlayerObserver.swift */,
-				8D9B86EA292D0EA5003B52AB /* PlayerState.swift */,
-				8D9B86EC292D0EBF003B52AB /* PlayingItem.swift */,
 				8DC218D1293F86DC00A8EA86 /* PlaybackSpeed.swift */,
 				8D36220B295AF63900967634 /* PlayingEpisode.swift */,
 				8D36220D295AF64B00967634 /* PlayingPodcast.swift */,
@@ -4034,16 +4054,20 @@
 				8D362497295C580A00967634 /* LocalPlayingEpisode.swift in Sources */,
 				8DCA22942934CB7C00DD1EC6 /* AudioPlayerControlsDelegate.swift in Sources */,
 				8D249208293A04DC009ACD36 /* ProgressViewModel.swift in Sources */,
+				8D3625DF295C9B3200967634 /* PlayingItem+State.swift in Sources */,
 				8DCA22842931416700DD1EC6 /* PlaybackStateViewModel.swift in Sources */,
 				8D362493295C555500967634 /* LocalPlayingItem.swift in Sources */,
 				8D9B86EF292D0F0A003B52AB /* AudioPlayerObserver.swift in Sources */,
 				8DC218D2293F86DC00A8EA86 /* PlaybackSpeed.swift in Sources */,
 				8DCA22802931413800DD1EC6 /* LargeAudioPlayerPresenter.swift in Sources */,
+				8D3625DC295C9B3200967634 /* PlayingItem+Progress.swift in Sources */,
+				8D3625DD295C9B3200967634 /* PlayingItem+PlaybackState.swift in Sources */,
 				8D9B86F1292D0F80003B52AB /* AudioPlayer.swift in Sources */,
 				8D9B86ED292D0EBF003B52AB /* PlayingItem.swift in Sources */,
 				8D9B86E9292D0E88003B52AB /* AudioPlayerStatePublisher.swift in Sources */,
 				8D249206293A048F009ACD36 /* UpdatesViewModel.swift in Sources */,
 				8D362495295C572100967634 /* LocalPlayingPodcast.swift in Sources */,
+				8D3625DE295C9B3200967634 /* EpisodeDuration.swift in Sources */,
 				8D9B86F3292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift in Sources */,
 				8DC218D4293F888800A8EA86 /* SpeedPlaybackViewModel.swift in Sources */,
 			);

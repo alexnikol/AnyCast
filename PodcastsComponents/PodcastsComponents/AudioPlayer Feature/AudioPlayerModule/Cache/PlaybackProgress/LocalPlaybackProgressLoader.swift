@@ -36,7 +36,9 @@ public final class LocalPlaybackProgressLoader {
 
 extension LocalPlaybackProgressLoader {
     
-    private struct EmptyStorageError: Error {}
+    public enum StorageErrors: Error {
+        case emptyStorage
+    }
     
     public typealias LoadResult = Result<PlayingItem, Error>
     
@@ -44,7 +46,7 @@ extension LocalPlaybackProgressLoader {
         store.retrieve(completion: { loadResult in
             switch loadResult {
             case .empty:
-                completion(.failure(EmptyStorageError()))
+                completion(.failure(StorageErrors.emptyStorage))
                 
             case let .failure(error):
                 completion(.failure(error))

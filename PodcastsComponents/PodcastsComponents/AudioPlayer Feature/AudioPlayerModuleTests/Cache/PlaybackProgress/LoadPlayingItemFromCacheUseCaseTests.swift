@@ -29,6 +29,15 @@ final class LoadPlayingItemFromCacheUseCaseTests: XCTestCase {
         })
     }
     
+    func test_load_deliversEmptyCacheErrorOnEmptyCache() {
+        let (sut, store) = makeSUT()
+        let emptyCacheError = LocalPlaybackProgressLoader.StorageErrors.emptyStorage
+        
+        expect(sut, toCompleteWith: .failure(emptyCacheError), when: {
+            store.completeRetrievalWithEmptyCache()
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

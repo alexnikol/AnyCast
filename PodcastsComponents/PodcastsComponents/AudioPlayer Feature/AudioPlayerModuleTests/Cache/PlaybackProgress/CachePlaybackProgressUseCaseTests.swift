@@ -2,6 +2,11 @@
 
 import XCTest
 import SharedTestHelpersLibrary
+import AudioPlayerModule
+
+class LocalPlayingItem {
+    
+}
 
 final class LocalPlaybackProgressLoader {
     
@@ -13,7 +18,11 @@ protocol PlaybackProgressStore {
 }
 
 class PlaybackProgressStoreSpy: PlaybackProgressStore {
-    private(set) var receivedMessages: [Int] = []
+    enum Message {
+        case deleteCache
+    }
+    
+    private(set) var receivedMessages: [Message] = []
 }
 
 final class CachePlaybackProgressUseCaseTests: XCTestCase {
@@ -23,6 +32,8 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         
         XCTAssertEqual(store.receivedMessages, [])
     }
+    
+    // MARK: - Helpers
     
     private func makeSUT(
         currentDate: @escaping () -> Date = Date.init,
@@ -34,5 +45,23 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, store)
+    }
+    
+    private func makePlayingItem() -> PlayingItem {
+        PlayingItem(
+            episode: makeUniqueEpisode(),
+            podcast: makePodcast(),
+            updates: [
+                .playback(.playing),
+                .progress(
+                    .init(
+                        currentTimeInSeconds: 10,
+                        totalTime: .notDefined,
+                        progressTimePercentage: 0.1
+                    )
+                ),
+                .volumeLevel(0.5)
+            ]
+        )
     }
 }

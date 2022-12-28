@@ -72,6 +72,20 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         })
     }
     
+    func test_save_doesNotDeliverDeletionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = PlaybackProgressStoreSpy()
+        var sut: LocalPlaybackProgressLoader? = LocalPlaybackProgressLoader(store: store, currentDate: Date.init)
+        let deletionError = anyNSError()
+        
+        var receivedResults = [LocalPlaybackProgressLoader.SaveResult]()
+        sut?.save(makePlayingItemModels().model) { receivedResults.append($0) }
+        
+        sut = nil
+        store.completeDeletion(with: deletionError)
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

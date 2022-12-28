@@ -56,6 +56,8 @@
 		8D362497295C580A00967634 /* LocalPlayingEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362496295C580A00967634 /* LocalPlayingEpisode.swift */; };
 		8D362499295C6F6E00967634 /* LocalPlaybackProgressLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362498295C6F6E00967634 /* LocalPlaybackProgressLoader.swift */; };
 		8D36249B295C6F8700967634 /* PlaybackProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36249A295C6F8700967634 /* PlaybackProgressStore.swift */; };
+		8D3625CB295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */; };
+		8D3625CE295C90B800967634 /* PlaybackProgressStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625CD295C90B800967634 /* PlaybackProgressStoreSpy.swift */; };
 		8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
@@ -650,6 +652,8 @@
 		8D362496295C580A00967634 /* LocalPlayingEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlayingEpisode.swift; sourceTree = "<group>"; };
 		8D362498295C6F6E00967634 /* LocalPlaybackProgressLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPlaybackProgressLoader.swift; sourceTree = "<group>"; };
 		8D36249A295C6F8700967634 /* PlaybackProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressStore.swift; sourceTree = "<group>"; };
+		8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPlayingItemFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
+		8D3625CD295C90B800967634 /* PlaybackProgressStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressStoreSpy.swift; sourceTree = "<group>"; };
 		8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadListViewController.swift; sourceTree = "<group>"; };
 		8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenter.swift; sourceTree = "<group>"; };
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
@@ -1358,9 +1362,19 @@
 		8D362491295C513000967634 /* PlaybackProgress */ = {
 			isa = PBXGroup;
 			children = (
+				8D3625CC295C90AB00967634 /* Helpers */,
 				8D36248F295C50AF00967634 /* CachePlaybackProgressUseCaseTests.swift */,
+				8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */,
 			);
 			path = PlaybackProgress;
+			sourceTree = "<group>";
+		};
+		8D3625CC295C90AB00967634 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8D3625CD295C90B800967634 /* PlaybackProgressStoreSpy.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8D4298AA292233F30064F3E6 /* SharedHelpersiOSModule */ = {
@@ -4038,7 +4052,9 @@
 			files = (
 				8D750C6B29472840004500D9 /* StickyAudioPlayerPresentationTests.swift in Sources */,
 				8D9B870B292E2555003B52AB /* SharedHelpers.swift in Sources */,
+				8D3625CB295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift in Sources */,
 				8D9B8707292E2489003B52AB /* LargeAudioPlayerPresenterTests.swift in Sources */,
+				8D3625CE295C90B800967634 /* PlaybackProgressStoreSpy.swift in Sources */,
 				8D9B86E7292C08F0003B52AB /* AudioPlayerStatePublisherTests.swift in Sources */,
 				8D362490295C50AF00967634 /* CachePlaybackProgressUseCaseTests.swift in Sources */,
 			);

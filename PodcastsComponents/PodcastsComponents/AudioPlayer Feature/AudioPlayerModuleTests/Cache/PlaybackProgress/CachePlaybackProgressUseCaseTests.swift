@@ -27,18 +27,6 @@ protocol PlaybackProgressStore {
     func deleteCachedPlayingItem(completion: @escaping DeletionCompletion)
 }
 
-class PlaybackProgressStoreSpy: PlaybackProgressStore {
-    enum Message {
-        case deleteCache
-    }
-    
-    private(set) var receivedMessages: [Message] = []
-    
-    func deleteCachedPlayingItem(completion: @escaping DeletionCompletion) {
-        receivedMessages.append(.deleteCache)
-    }
-}
-
 final class CachePlaybackProgressUseCaseTests: XCTestCase {
     
     func test_init_doesNotMessageStoreCreation() {
@@ -52,6 +40,17 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         let playingItem = makePlayingItemModels()
         
         sut.save(playingItem.model) { _ in }
+        
+        XCTAssertEqual(store.receivedMessages, [.deleteCache])
+    }
+    
+    func test_save_doesNotRequestCacheInsertionOnDeletionError() {
+        let (sut, store) = makeSUT()
+        let playingItem = makePlayingItemModels()
+        let deletionError = anyNSError()
+        
+        sut.save(playingItem.model) { _ in }
+        store.completeDeletion(with: deletionError)
         
         XCTAssertEqual(store.receivedMessages, [.deleteCache])
     }
@@ -116,5 +115,23 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         )
         
         return (model, localModel)
+    }
+}
+
+private class PlaybackProgressStoreSpy: PlaybackProgressStore {
+    enum Message {
+        case deleteCache
+    }
+    
+    private var deletionCompletions: [DeletionCompletion] = []
+    private(set) var receivedMessages: [Message] = []
+    
+    func deleteCachedPlayingItem(completion: @escaping DeletionCompletion) {
+        receivedMessages.append(.deleteCache)
+        deletionCompletions.append(completion)
+    }
+    
+    func completeDeletion(with error: NSError, at index: Int = 0) {
+        deletionCompletions[index](error)
     }
 }

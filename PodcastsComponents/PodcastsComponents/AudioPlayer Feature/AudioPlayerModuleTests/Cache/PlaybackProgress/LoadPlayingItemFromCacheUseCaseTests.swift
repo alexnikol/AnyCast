@@ -67,6 +67,20 @@ final class LoadPlayingItemFromCacheUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.retrieve])
     }
     
+    func test_load_doesnNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
+        let store = PlaybackProgressStoreSpy()
+        var sut: LocalPlaybackProgressLoader? = LocalPlaybackProgressLoader(store: store, currentDate: Date.init)
+        
+        var receivedResults: [LocalPlaybackProgressLoader.LoadResult] = []
+        sut?.load { receivedResults.append($0) }
+        
+        sut = nil
+        
+        store.completeRetrievalWithEmptyCache()
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

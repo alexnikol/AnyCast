@@ -43,7 +43,9 @@ extension LocalPlaybackProgressLoader {
     public typealias LoadResult = Result<PlayingItem, Error>
     
     public func load(completion: @escaping (LoadResult) -> Void) {
-        store.retrieve(completion: { loadResult in
+        store.retrieve(completion: { [weak self] loadResult in
+            guard self != nil else { return }
+            
             switch loadResult {
             case .empty:
                 completion(.failure(StorageErrors.emptyStorage))

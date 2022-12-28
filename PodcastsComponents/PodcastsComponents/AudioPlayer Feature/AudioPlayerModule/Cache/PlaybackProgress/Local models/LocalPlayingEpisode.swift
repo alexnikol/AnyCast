@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct LocalPlayingEpisode: PlayingEpisode {
+public struct LocalPlayingEpisode {
     public var id: String
     public var title: String
     public var thumbnail: URL

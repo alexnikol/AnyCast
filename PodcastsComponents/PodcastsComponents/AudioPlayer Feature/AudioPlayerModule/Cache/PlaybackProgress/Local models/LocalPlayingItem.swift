@@ -23,14 +23,14 @@ public struct LocalPlayingItem: Equatable {
 extension LocalPlayingItem {
     func toModel() -> PlayingItem {
         PlayingItem(
-            episode: TemporaryPlayingEpisode(
+            episode: PlayingEpisode(
                 id: episode.id,
                 title: episode.title,
                 thumbnail: episode.thumbnail,
                 audio: episode.audio,
                 publishDateInMiliseconds: episode.publishDateInMiliseconds
             ),
-            podcast: TemporaryPlayingPodcast(
+            podcast: PlayingPodcast(
                 id: podcast.id,
                 title: podcast.title,
                 publisher: podcast.publisher),

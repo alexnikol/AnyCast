@@ -2,8 +2,14 @@
 
 import Foundation
 
-public protocol PlayingPodcast {
-    var id: String { get }
-    var title: String { get }
-    var publisher: String { get }
+public struct PlayingPodcast {
+    public var id: String
+    public var title: String
+    public var publisher: String
+    
+    public init(id: String, title: String, publisher: String) {
+        self.id = id
+        self.title = title
+        self.publisher = publisher
+    }
 }

@@ -17,7 +17,9 @@ public final class LocalPlaybackProgressLoader {
         store.deleteCachedPlayingItem(completion: { [weak self] deletion in
             guard let self = self else { return }
             
-            if deletion == nil {
+            if let deletion = deletion {
+                completion(deletion)
+            } else {
                 self.store.insert(playingItem.toLocal(), timestamp: self.currentDate(), completion: { _ in })
             }
         })

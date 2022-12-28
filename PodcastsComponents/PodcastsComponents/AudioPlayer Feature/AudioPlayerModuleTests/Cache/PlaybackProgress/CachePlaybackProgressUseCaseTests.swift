@@ -44,6 +44,15 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(playingItem.localModel, timestamp)])
     }
     
+    func test_save_failsOnDeletionError() {
+        let (sut, store) = makeSUT()
+        let deletionError = anyNSError()
+        
+        expect(sut, toCompleteWithError: deletionError, when: {
+            store.completeDeletion(with: deletionError)
+        })
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -56,6 +65,28 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         return (sut, store)
+    }
+    
+    private func expect(
+        _ sut: LocalPlaybackProgressLoader,
+        toCompleteWithError expectedError: NSError?,
+        when action: () -> Void,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        let exp = expectation(description: "Wait for save completion")
+        
+        var receivedError: Error?
+        sut.save(makePlayingItemModels().model) { error in
+            receivedError = error
+            
+            exp.fulfill()
+        }
+        
+        action()
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertEqual(receivedError as? NSError, expectedError, file: file, line: line)
     }
     
     private func makePlayingItemModels() -> (model: PlayingItem, localModel: LocalPlayingItem) {

@@ -4,10 +4,9 @@ import XCTest
 import SharedTestHelpersLibrary
 import AudioPlayerModule
 
-
 final class CachePlaybackProgressUseCaseTests: XCTestCase {
     
-    func test_init_doesNotMessageStoreCreation() {
+    func test_init_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()
         
         XCTAssertEqual(store.receivedMessages, [])

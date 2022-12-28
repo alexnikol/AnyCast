@@ -6,6 +6,12 @@ import AudioPlayerModule
 
 final class LoadPlayingItemFromCacheUseCaseTests: XCTestCase {
     
+    func test_init_doesNotMessageStoreUponCreation() {
+        let (_, store) = makeSUT()
+        
+        XCTAssertEqual(store.receivedMessages, [])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(

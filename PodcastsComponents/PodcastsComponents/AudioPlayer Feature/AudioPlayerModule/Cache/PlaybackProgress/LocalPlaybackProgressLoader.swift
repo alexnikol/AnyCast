@@ -62,79 +62,9 @@ extension LocalPlaybackProgressLoader {
 
 // MARK: - LocalPlayingItem + models mapping
 
-private extension LocalPlayingItem {
-    func toModel() -> PlayingItem {
-        PlayingItem(
-            episode: TemporaryPlayingEpisode(
-                id: episode.id,
-                title: episode.title,
-                thumbnail: episode.thumbnail,
-                audio: episode.audio,
-                publishDateInMiliseconds: episode.publishDateInMiliseconds
-            ),
-            podcast: TemporaryPlayingPodcast(
-                id: podcast.id,
-                title: podcast.title,
-                publisher: podcast.publisher),
-            updates: updates.map( { $0.toModel() })
-        )
-    }
-}
 
-private extension LocalPlayingItem.State {
-    func toModel() -> PlayingItem.State {
-        switch self {
-        case .playback(let playbackState):
-            return .playback(playbackState.toModel())
-            
-        case .volumeLevel(let float):
-            return .volumeLevel(float)
-            
-        case .progress(let progress):
-            return .progress(progress.toModel())
-            
-        case .speed(let playbackSpeed):
-            return .speed(playbackSpeed)
-        }
-    }
-}
 
-private extension LocalPlayingItem.PlaybackState {
-    func toModel() -> PlayingItem.PlaybackState {
-        switch self {
-        case .playing:
-            return .playing
-            
-        case .pause:
-            return .pause
-            
-        case .loading:
-            return .loading
-        }
-    }
-}
 
-private extension LocalPlayingItem.Progress {
-    func toModel() -> PlayingItem.Progress {
-        .init(
-            currentTimeInSeconds: currentTimeInSeconds,
-            totalTime: totalTime.toModel(),
-            progressTimePercentage: progressTimePercentage
-        )
-    }
-}
-
-private extension LocalEpisodeDuration {
-    func toModel() -> EpisodeDuration {
-        switch self {
-        case .notDefined:
-            return .notDefined
-            
-        case .valueInSeconds(let value):
-            return .valueInSeconds(value)
-        }
-    }
-}
 
 // MARK: - PlayingItem + local models mapping
 

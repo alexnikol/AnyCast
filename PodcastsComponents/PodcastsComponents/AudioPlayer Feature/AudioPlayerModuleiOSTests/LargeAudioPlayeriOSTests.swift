@@ -3,7 +3,6 @@
 import XCTest
 import SharedTestHelpersLibrary
 import UIKit
-import PodcastsModule
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 import SharedComponentsiOSModule

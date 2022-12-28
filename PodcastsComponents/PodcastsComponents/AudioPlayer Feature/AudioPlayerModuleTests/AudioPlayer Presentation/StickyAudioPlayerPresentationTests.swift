@@ -3,7 +3,6 @@
 import XCTest
 import SharedTestHelpersLibrary
 import AudioPlayerModule
-import PodcastsModule
 
 class StickyAudioPlayerPresentationTests: XCTestCase {
     

@@ -3,8 +3,6 @@
 import Foundation
 import SharedTestHelpersLibrary
 import AudioPlayerModule
-import PodcastsModule
-
 
 func makePlayingEpisode() -> PlayingEpisode {
     PlayingEpisode(

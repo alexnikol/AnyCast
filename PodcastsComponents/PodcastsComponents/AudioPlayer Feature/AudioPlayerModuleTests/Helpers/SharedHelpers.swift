@@ -2,7 +2,6 @@
 
 import XCTest
 import SharedTestHelpersLibrary
-import PodcastsModule
 import AudioPlayerModule
 
 extension XCTestCase {

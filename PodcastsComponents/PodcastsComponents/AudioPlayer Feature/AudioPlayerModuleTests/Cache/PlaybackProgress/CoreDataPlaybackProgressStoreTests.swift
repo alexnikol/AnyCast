@@ -15,7 +15,7 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
     func test_retrieve_hasNoSideEffectsOnEmptyCache() {
         let sut = makeSUT()
         
-        expect(sut, toRetrieve: .empty)
+        expect(sut, toRetrieveTwice: .empty)
     }
     
     func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
@@ -29,7 +29,7 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         ])
         
         let timestamp1 = Date()
-                
+        
         insert((playingItem1, timestamp1), to: sut1)
         
         expect(sut1, toRetrieve: .found(playingItem: playingItem1, timestamp: timestamp1))
@@ -50,6 +50,22 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         expect(sut2, toRetrieve: .found(playingItem: playingItem2, timestamp: timestamp2))
     }
     
+    func test_retrieve_hasNoSideEffectsOnNonEmptyCache() {
+        let sut = makeSUT()
+        
+        let playingItem = makePlayingItemModel(with: [
+            .volumeLevel(0.9),
+            .progress(.init(currentTimeInSeconds: 200, totalTime: .notDefined, progressTimePercentage: 0.4)),
+            .speed(.x1_25),
+            .playback(.loading)
+        ])
+        let timestamp = Date()
+        
+        insert((playingItem, timestamp), to: sut)
+        
+        expect(sut, toRetrieveTwice: .found(playingItem: playingItem, timestamp: timestamp))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PlaybackProgressStore {
@@ -59,10 +75,10 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         return sut
     }
     
-    func expect(_ sut: PlaybackProgressStore,
-                toRetrieve expectedResult: RetrieveCachePlaybackProgressResult,
-                file: StaticString = #file,
-                line: UInt = #line) {
+    private func expect(_ sut: PlaybackProgressStore,
+                        toRetrieve expectedResult: RetrieveCachePlaybackProgressResult,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
         let exp = expectation(description: "Wait for cache retrieval")
         
         sut.retrieve { retrievedResult in
@@ -83,6 +99,14 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func expect(_ sut: PlaybackProgressStore,
+                        toRetrieveTwice expectedResult: RetrieveCachePlaybackProgressResult,
+                        file: StaticString = #file,
+                        line: UInt = #line) {
+        expect(sut, toRetrieve: expectedResult, file: file, line: line)
+        expect(sut, toRetrieve: expectedResult, file: file, line: line)
     }
     
     @discardableResult

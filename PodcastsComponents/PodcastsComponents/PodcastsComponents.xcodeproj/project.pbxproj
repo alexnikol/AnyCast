@@ -65,6 +65,24 @@
 		8D3625EF295C9BF000967634 /* LocalPlayingItem+PlaybackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625E1295C9B8100967634 /* LocalPlayingItem+PlaybackState.swift */; };
 		8D3625F0295C9BF000967634 /* LocalPlayingItem+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625E5295C9BB200967634 /* LocalPlayingItem+State.swift */; };
 		8D3625F1295C9BF000967634 /* LocalPlayingItem+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625E3295C9BA100967634 /* LocalPlayingItem+Progress.swift */; };
+		8D3625F3295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625F2295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift */; };
+		8D3625F7295D8A3200967634 /* CoreDataPlaybackProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625F5295D8A1E00967634 /* CoreDataPlaybackProgressStore.swift */; };
+		8D3625F8295D8C4600967634 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
+		8D3625FB295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625F9295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld */; };
+		8D3625FD295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625FC295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift */; };
+		8D3625FF295D8EA400967634 /* ManagedPlaybackProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625FE295D8EA400967634 /* ManagedPlaybackProgress.swift */; };
+		8D362602295D8F4900967634 /* ManagedPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362601295D8F4900967634 /* ManagedPodcast.swift */; };
+		8D362604295D8F8600967634 /* ManagedEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362603295D8F8600967634 /* ManagedEpisode.swift */; };
+		8D362608295DA00000967634 /* ManagedStateSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362607295DA00000967634 /* ManagedStateSpeed.swift */; };
+		8D36260A295DA05900967634 /* ManagedStateVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362609295DA05900967634 /* ManagedStateVolume.swift */; };
+		8D36260D295DAC8400967634 /* ManagedUpdateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36260C295DAC8400967634 /* ManagedUpdateState.swift */; };
+		8D36260F295DACDA00967634 /* ManagedPlaybackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36260E295DACDA00967634 /* ManagedPlaybackState.swift */; };
+		8D362611295DAF1100967634 /* ManagedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362610295DAF1100967634 /* ManagedProgress.swift */; };
+		8D362613295DAF7000967634 /* ManagedDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362612295DAF7000967634 /* ManagedDuration.swift */; };
+		8D362635295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362634295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift */; };
+		8D362636295DC6B800967634 /* AudioPlayerModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B86C7292BC0BF003B52AB /* AudioPlayerModule.framework */; };
+		8D36263C295DC87400967634 /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8709292E2517003B52AB /* SharedHelpers.swift */; };
+		8D36263D295DCA9200967634 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
@@ -383,6 +401,13 @@
 			remoteGlobalIDString = 8DFAEAAE28FD41730028B060;
 			remoteInfo = PodcastsModule;
 		};
+		8D362637295DC6B800967634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D9B86C6292BC0BF003B52AB;
+			remoteInfo = AudioPlayerModule;
+		};
 		8D4298B2292234080064F3E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -670,6 +695,21 @@
 		8D3625E3295C9BA100967634 /* LocalPlayingItem+Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlayingItem+Progress.swift"; sourceTree = "<group>"; };
 		8D3625E5295C9BB200967634 /* LocalPlayingItem+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlayingItem+State.swift"; sourceTree = "<group>"; };
 		8D3625E7295C9BC300967634 /* LocalEpisodeDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEpisodeDuration.swift; sourceTree = "<group>"; };
+		8D3625F2295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPlaybackProgressStoreTests.swift; sourceTree = "<group>"; };
+		8D3625F5295D8A1E00967634 /* CoreDataPlaybackProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPlaybackProgressStore.swift; sourceTree = "<group>"; };
+		8D3625FA295D8C7600967634 /* PlaybackProgressStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlaybackProgressStore.xcdatamodel; sourceTree = "<group>"; };
+		8D3625FC295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaybackProgressStoreCache.swift; sourceTree = "<group>"; };
+		8D3625FE295D8EA400967634 /* ManagedPlaybackProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaybackProgress.swift; sourceTree = "<group>"; };
+		8D362601295D8F4900967634 /* ManagedPodcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPodcast.swift; sourceTree = "<group>"; };
+		8D362603295D8F8600967634 /* ManagedEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedEpisode.swift; sourceTree = "<group>"; };
+		8D362607295DA00000967634 /* ManagedStateSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedStateSpeed.swift; sourceTree = "<group>"; };
+		8D362609295DA05900967634 /* ManagedStateVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedStateVolume.swift; sourceTree = "<group>"; };
+		8D36260C295DAC8400967634 /* ManagedUpdateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUpdateState.swift; sourceTree = "<group>"; };
+		8D36260E295DACDA00967634 /* ManagedPlaybackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaybackState.swift; sourceTree = "<group>"; };
+		8D362610295DAF1100967634 /* ManagedProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedProgress.swift; sourceTree = "<group>"; };
+		8D362612295DAF7000967634 /* ManagedDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedDuration.swift; sourceTree = "<group>"; };
+		8D362632295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaybackProgressCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D362634295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadListViewController.swift; sourceTree = "<group>"; };
 		8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenter.swift; sourceTree = "<group>"; };
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
@@ -959,6 +999,15 @@
 			files = (
 				8D750CEF294888D9004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8D2490BA2938DEAE009ACD36 /* AVPlayerClient.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D36262F295DC6B800967634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D36263D295DCA9200967634 /* libSharedTestHelpersLibrary.a in Frameworks */,
+				8D362636295DC6B800967634 /* AudioPlayerModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1356,6 +1405,7 @@
 		8D36248D295C4A7B00967634 /* PlaybackProgress */ = {
 			isa = PBXGroup;
 			children = (
+				8D3625F4295D8A1200967634 /* Infrastructure */,
 				8D3625E0295C9B5E00967634 /* Local models */,
 				8D362498295C6F6E00967634 /* LocalPlaybackProgressLoader.swift */,
 				8D36249A295C6F8700967634 /* PlaybackProgressStore.swift */,
@@ -1377,6 +1427,7 @@
 				8D3625CC295C90AB00967634 /* Helpers */,
 				8D36248F295C50AF00967634 /* CachePlaybackProgressUseCaseTests.swift */,
 				8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */,
+				8D3625F2295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift */,
 			);
 			path = PlaybackProgress;
 			sourceTree = "<group>";
@@ -1415,6 +1466,50 @@
 				8D3625E7295C9BC300967634 /* LocalEpisodeDuration.swift */,
 			);
 			path = "Local models";
+			sourceTree = "<group>";
+		};
+		8D3625F4295D8A1200967634 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				8D362600295D8F2C00967634 /* Models */,
+				8D3625F5295D8A1E00967634 /* CoreDataPlaybackProgressStore.swift */,
+				8D3625F9295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		8D362600295D8F2C00967634 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8D36260B295DAC7D00967634 /* States Models */,
+				8D3625FC295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift */,
+				8D3625FE295D8EA400967634 /* ManagedPlaybackProgress.swift */,
+				8D362601295D8F4900967634 /* ManagedPodcast.swift */,
+				8D362603295D8F8600967634 /* ManagedEpisode.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8D36260B295DAC7D00967634 /* States Models */ = {
+			isa = PBXGroup;
+			children = (
+				8D36260C295DAC8400967634 /* ManagedUpdateState.swift */,
+				8D362607295DA00000967634 /* ManagedStateSpeed.swift */,
+				8D362609295DA05900967634 /* ManagedStateVolume.swift */,
+				8D36260E295DACDA00967634 /* ManagedPlaybackState.swift */,
+				8D362610295DAF1100967634 /* ManagedProgress.swift */,
+				8D362612295DAF7000967634 /* ManagedDuration.swift */,
+			);
+			path = "States Models";
+			sourceTree = "<group>";
+		};
+		8D362633295DC6B800967634 /* PlaybackProgressCacheIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				8D362634295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift */,
+			);
+			name = PlaybackProgressCacheIntegrationTests;
+			path = ../PlaybackProgressCacheIntegrationTests;
 			sourceTree = "<group>";
 		};
 		8D4298AA292233F30064F3E6 /* SharedHelpersiOSModule */ = {
@@ -1881,6 +1976,7 @@
 				8D9B86C1292BA635003B52AB /* README.md */,
 				8D9B86C8292BC0BF003B52AB /* AudioPlayerModule */,
 				8D9B86D3292BC0CF003B52AB /* AudioPlayerModuleTests */,
+				8D362633295DC6B800967634 /* PlaybackProgressCacheIntegrationTests */,
 				8D2490B32938DEAE009ACD36 /* AVPlayerClient */,
 				8D2490BD2938DEAE009ACD36 /* AVPlayerClientTests */,
 				8D9B86FA292D19E3003B52AB /* AudioPlayerModuleiOS */,
@@ -2075,6 +2171,7 @@
 				8DE46B06294B6E1E007B204C /* SearchContentAPIEndToEndTests.xctest */,
 				8DE4712B295093EC007B204C /* SearchContentModuleiOS.framework */,
 				8DE47132295093ED007B204C /* SearchContentModuleiOSTests.xctest */,
+				8D362632295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2926,6 +3023,24 @@
 			productReference = 8D2490B92938DEAE009ACD36 /* AVPlayerClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8D362631295DC6B800967634 /* PlaybackProgressCacheIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D362639295DC6B800967634 /* Build configuration list for PBXNativeTarget "PlaybackProgressCacheIntegrationTests" */;
+			buildPhases = (
+				8D36262E295DC6B800967634 /* Sources */,
+				8D36262F295DC6B800967634 /* Frameworks */,
+				8D362630295DC6B800967634 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D362638295DC6B800967634 /* PBXTargetDependency */,
+			);
+			name = PlaybackProgressCacheIntegrationTests;
+			productName = PlaybackProgressCacheIntegrationTests;
+			productReference = 8D362632295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8D4298A8292233F30064F3E6 /* SharedComponentsiOSModule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D4298AD292233F30064F3E6 /* Build configuration list for PBXNativeTarget "SharedComponentsiOSModule" */;
@@ -3480,6 +3595,9 @@
 					8D2490B82938DEAE009ACD36 = {
 						CreatedOnToolsVersion = 14.1;
 					};
+					8D362631295DC6B800967634 = {
+						CreatedOnToolsVersion = 14.1;
+					};
 					8D4298A8292233F30064F3E6 = {
 						CreatedOnToolsVersion = 13.4.1;
 						LastSwiftMigration = 1340;
@@ -3628,6 +3746,7 @@
 				8DE46B05294B6E1E007B204C /* SearchContentAPIEndToEndTests */,
 				8DE4712A295093EC007B204C /* SearchContentModuleiOS */,
 				8DE47131295093ED007B204C /* SearchContentModuleiOSTests */,
+				8D362631295DC6B800967634 /* PlaybackProgressCacheIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3645,6 +3764,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D2490D42938F1D0009ACD36 /* audio_example.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D362630295DC6B800967634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3906,6 +4032,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8D36262E295DC6B800967634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D36263C295DC87400967634 /* SharedHelpers.swift in Sources */,
+				8D362635295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D4298A5292233F30064F3E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4060,14 +4195,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D36220C295AF63900967634 /* PlayingEpisode.swift in Sources */,
+				8D3625FF295D8EA400967634 /* ManagedPlaybackProgress.swift in Sources */,
+				8D362608295DA00000967634 /* ManagedStateSpeed.swift in Sources */,
 				8DCA22822931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift in Sources */,
+				8D3625FD295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift in Sources */,
+				8D36260A295DA05900967634 /* ManagedStateVolume.swift in Sources */,
 				8D362499295C6F6E00967634 /* LocalPlaybackProgressLoader.swift in Sources */,
+				8D3625F8295D8C4600967634 /* CoreDataHelpers.swift in Sources */,
+				8D36260F295DACDA00967634 /* ManagedPlaybackState.swift in Sources */,
 				8D36249B295C6F8700967634 /* PlaybackProgressStore.swift in Sources */,
 				8D9B86EB292D0EA5003B52AB /* PlayerState.swift in Sources */,
 				8D36220E295AF64B00967634 /* PlayingPodcast.swift in Sources */,
+				8D362611295DAF1100967634 /* ManagedProgress.swift in Sources */,
 				8D750C7029473B28004500D9 /* StickyPlayerPresenter.swift in Sources */,
 				8D750C6E29473B05004500D9 /* StickyAudioPlayerViewModel.swift in Sources */,
 				8D362497295C580A00967634 /* LocalPlayingEpisode.swift in Sources */,
+				8D362602295D8F4900967634 /* ManagedPodcast.swift in Sources */,
 				8DCA22942934CB7C00DD1EC6 /* AudioPlayerControlsDelegate.swift in Sources */,
 				8D249208293A04DC009ACD36 /* ProgressViewModel.swift in Sources */,
 				8D3625DF295C9B3200967634 /* PlayingItem+State.swift in Sources */,
@@ -4076,20 +4219,25 @@
 				8D3625EE295C9BF000967634 /* LocalEpisodeDuration.swift in Sources */,
 				8D362493295C555500967634 /* LocalPlayingItem.swift in Sources */,
 				8D3625EF295C9BF000967634 /* LocalPlayingItem+PlaybackState.swift in Sources */,
+				8D36260D295DAC8400967634 /* ManagedUpdateState.swift in Sources */,
 				8D9B86EF292D0F0A003B52AB /* AudioPlayerObserver.swift in Sources */,
 				8DC218D2293F86DC00A8EA86 /* PlaybackSpeed.swift in Sources */,
 				8DCA22802931413800DD1EC6 /* LargeAudioPlayerPresenter.swift in Sources */,
 				8D3625DC295C9B3200967634 /* PlayingItem+Progress.swift in Sources */,
 				8D3625DD295C9B3200967634 /* PlayingItem+PlaybackState.swift in Sources */,
 				8D9B86F1292D0F80003B52AB /* AudioPlayer.swift in Sources */,
+				8D362604295D8F8600967634 /* ManagedEpisode.swift in Sources */,
 				8D9B86ED292D0EBF003B52AB /* PlayingItem.swift in Sources */,
 				8D9B86E9292D0E88003B52AB /* AudioPlayerStatePublisher.swift in Sources */,
 				8D249206293A048F009ACD36 /* UpdatesViewModel.swift in Sources */,
+				8D3625FB295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld in Sources */,
+				8D3625F7295D8A3200967634 /* CoreDataPlaybackProgressStore.swift in Sources */,
 				8D362495295C572100967634 /* LocalPlayingPodcast.swift in Sources */,
 				8D3625DE295C9B3200967634 /* EpisodeDuration.swift in Sources */,
 				8D3625F0295C9BF000967634 /* LocalPlayingItem+State.swift in Sources */,
 				8D9B86F3292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift in Sources */,
 				8DC218D4293F888800A8EA86 /* SpeedPlaybackViewModel.swift in Sources */,
+				8D362613295DAF7000967634 /* ManagedDuration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4099,6 +4247,7 @@
 			files = (
 				8D3625D0295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift in Sources */,
 				8D750C6B29472840004500D9 /* StickyAudioPlayerPresentationTests.swift in Sources */,
+				8D3625F3295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift in Sources */,
 				8D9B870B292E2555003B52AB /* SharedHelpers.swift in Sources */,
 				8D3625CB295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift in Sources */,
 				8D9B8707292E2489003B52AB /* LargeAudioPlayerPresenterTests.swift in Sources */,
@@ -4365,6 +4514,11 @@
 			isa = PBXTargetDependency;
 			target = 8DFAEAAE28FD41730028B060 /* PodcastsModule */;
 			targetProxy = 8D2490D02938E49C009ACD36 /* PBXContainerItemProxy */;
+		};
+		8D362638295DC6B800967634 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D9B86C6292BC0BF003B52AB /* AudioPlayerModule */;
+			targetProxy = 8D362637295DC6B800967634 /* PBXContainerItemProxy */;
 		};
 		8D4298B3292234080064F3E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4664,6 +4818,54 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.AVPlayerClientTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		8D36263A295DC6B800967634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WUJDW64U79;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PlaybackProgressCacheIntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8D36263B295DC6B800967634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WUJDW64U79;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PlaybackProgressCacheIntegrationTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -6505,6 +6707,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8D362639295DC6B800967634 /* Build configuration list for PBXNativeTarget "PlaybackProgressCacheIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D36263A295DC6B800967634 /* Debug */,
+				8D36263B295DC6B800967634 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8D4298AD292233F30064F3E6 /* Build configuration list for PBXNativeTarget "SharedComponentsiOSModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -6778,6 +6989,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		8D3625F9295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8D3625FA295D8C7600967634 /* PlaybackProgressStore.xcdatamodel */,
+			);
+			currentVersion = 8D3625FA295D8C7600967634 /* PlaybackProgressStore.xcdatamodel */;
+			path = PlaybackProgressStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		8D7F45C4290BD3030093301F /* PodcastsImageDataStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

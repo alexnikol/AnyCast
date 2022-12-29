@@ -81,6 +81,24 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         XCTAssertNil(insertionError, "Expected to insert cache successfully")
     }
     
+    func test_insert_deliversNoErrorOnNonEmptyCache() {
+        let sut = makeSUT()
+        
+        let playingItem = makePlayingItemModel(with: [
+            .playback(.loading)
+        ])
+        
+        insert((playingItem, Date()), to: sut)
+
+        let playingIte2 = makePlayingItemModel(with: [
+            .playback(.loading)
+        ])
+        
+        let insertionError = insert((playingIte2, Date()), to: sut)
+
+        XCTAssertNil(insertionError, "Expected to override cache successfully")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PlaybackProgressStore {

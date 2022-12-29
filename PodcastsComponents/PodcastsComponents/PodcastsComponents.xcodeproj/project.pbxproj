@@ -65,6 +65,7 @@
 		8D3625EF295C9BF000967634 /* LocalPlayingItem+PlaybackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625E1295C9B8100967634 /* LocalPlayingItem+PlaybackState.swift */; };
 		8D3625F0295C9BF000967634 /* LocalPlayingItem+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625E5295C9BB200967634 /* LocalPlayingItem+State.swift */; };
 		8D3625F1295C9BF000967634 /* LocalPlayingItem+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625E3295C9BA100967634 /* LocalPlayingItem+Progress.swift */; };
+		8D3625F3295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625F2295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift */; };
 		8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
@@ -670,6 +671,7 @@
 		8D3625E3295C9BA100967634 /* LocalPlayingItem+Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlayingItem+Progress.swift"; sourceTree = "<group>"; };
 		8D3625E5295C9BB200967634 /* LocalPlayingItem+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlayingItem+State.swift"; sourceTree = "<group>"; };
 		8D3625E7295C9BC300967634 /* LocalEpisodeDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEpisodeDuration.swift; sourceTree = "<group>"; };
+		8D3625F2295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPlaybackProgressStoreTests.swift; sourceTree = "<group>"; };
 		8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadListViewController.swift; sourceTree = "<group>"; };
 		8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenter.swift; sourceTree = "<group>"; };
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
@@ -1377,6 +1379,7 @@
 				8D3625CC295C90AB00967634 /* Helpers */,
 				8D36248F295C50AF00967634 /* CachePlaybackProgressUseCaseTests.swift */,
 				8D3625CA295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift */,
+				8D3625F2295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift */,
 			);
 			path = PlaybackProgress;
 			sourceTree = "<group>";
@@ -4099,6 +4102,7 @@
 			files = (
 				8D3625D0295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift in Sources */,
 				8D750C6B29472840004500D9 /* StickyAudioPlayerPresentationTests.swift in Sources */,
+				8D3625F3295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift in Sources */,
 				8D9B870B292E2555003B52AB /* SharedHelpers.swift in Sources */,
 				8D3625CB295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift in Sources */,
 				8D9B8707292E2489003B52AB /* LargeAudioPlayerPresenterTests.swift in Sources */,

@@ -79,6 +79,10 @@
 		8D36260F295DACDA00967634 /* ManagedPlaybackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36260E295DACDA00967634 /* ManagedPlaybackState.swift */; };
 		8D362611295DAF1100967634 /* ManagedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362610295DAF1100967634 /* ManagedProgress.swift */; };
 		8D362613295DAF7000967634 /* ManagedDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362612295DAF7000967634 /* ManagedDuration.swift */; };
+		8D362635295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362634295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift */; };
+		8D362636295DC6B800967634 /* AudioPlayerModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D9B86C7292BC0BF003B52AB /* AudioPlayerModule.framework */; };
+		8D36263C295DC87400967634 /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9B8709292E2517003B52AB /* SharedHelpers.swift */; };
+		8D36263D295DCA9200967634 /* libSharedTestHelpersLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750CCB294881FB004500D9 /* libSharedTestHelpersLibrary.a */; };
 		8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
@@ -397,6 +401,13 @@
 			remoteGlobalIDString = 8DFAEAAE28FD41730028B060;
 			remoteInfo = PodcastsModule;
 		};
+		8D362637295DC6B800967634 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D9B86C6292BC0BF003B52AB;
+			remoteInfo = AudioPlayerModule;
+		};
 		8D4298B2292234080064F3E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8DA0930328BF59C900C4C68D /* Project object */;
@@ -697,6 +708,8 @@
 		8D36260E295DACDA00967634 /* ManagedPlaybackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaybackState.swift; sourceTree = "<group>"; };
 		8D362610295DAF1100967634 /* ManagedProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedProgress.swift; sourceTree = "<group>"; };
 		8D362612295DAF7000967634 /* ManagedDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedDuration.swift; sourceTree = "<group>"; };
+		8D362632295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlaybackProgressCacheIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D362634295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressCacheIntegrationTests.swift; sourceTree = "<group>"; };
 		8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadListViewController.swift; sourceTree = "<group>"; };
 		8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenter.swift; sourceTree = "<group>"; };
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
@@ -986,6 +999,15 @@
 			files = (
 				8D750CEF294888D9004500D9 /* libSharedTestHelpersLibrary.a in Frameworks */,
 				8D2490BA2938DEAE009ACD36 /* AVPlayerClient.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D36262F295DC6B800967634 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D36263D295DCA9200967634 /* libSharedTestHelpersLibrary.a in Frameworks */,
+				8D362636295DC6B800967634 /* AudioPlayerModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1481,6 +1503,15 @@
 			path = "States Models";
 			sourceTree = "<group>";
 		};
+		8D362633295DC6B800967634 /* PlaybackProgressCacheIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				8D362634295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift */,
+			);
+			name = PlaybackProgressCacheIntegrationTests;
+			path = ../PlaybackProgressCacheIntegrationTests;
+			sourceTree = "<group>";
+		};
 		8D4298AA292233F30064F3E6 /* SharedHelpersiOSModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -1945,6 +1976,7 @@
 				8D9B86C1292BA635003B52AB /* README.md */,
 				8D9B86C8292BC0BF003B52AB /* AudioPlayerModule */,
 				8D9B86D3292BC0CF003B52AB /* AudioPlayerModuleTests */,
+				8D362633295DC6B800967634 /* PlaybackProgressCacheIntegrationTests */,
 				8D2490B32938DEAE009ACD36 /* AVPlayerClient */,
 				8D2490BD2938DEAE009ACD36 /* AVPlayerClientTests */,
 				8D9B86FA292D19E3003B52AB /* AudioPlayerModuleiOS */,
@@ -2139,6 +2171,7 @@
 				8DE46B06294B6E1E007B204C /* SearchContentAPIEndToEndTests.xctest */,
 				8DE4712B295093EC007B204C /* SearchContentModuleiOS.framework */,
 				8DE47132295093ED007B204C /* SearchContentModuleiOSTests.xctest */,
+				8D362632295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2990,6 +3023,24 @@
 			productReference = 8D2490B92938DEAE009ACD36 /* AVPlayerClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8D362631295DC6B800967634 /* PlaybackProgressCacheIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D362639295DC6B800967634 /* Build configuration list for PBXNativeTarget "PlaybackProgressCacheIntegrationTests" */;
+			buildPhases = (
+				8D36262E295DC6B800967634 /* Sources */,
+				8D36262F295DC6B800967634 /* Frameworks */,
+				8D362630295DC6B800967634 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D362638295DC6B800967634 /* PBXTargetDependency */,
+			);
+			name = PlaybackProgressCacheIntegrationTests;
+			productName = PlaybackProgressCacheIntegrationTests;
+			productReference = 8D362632295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8D4298A8292233F30064F3E6 /* SharedComponentsiOSModule */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D4298AD292233F30064F3E6 /* Build configuration list for PBXNativeTarget "SharedComponentsiOSModule" */;
@@ -3544,6 +3595,9 @@
 					8D2490B82938DEAE009ACD36 = {
 						CreatedOnToolsVersion = 14.1;
 					};
+					8D362631295DC6B800967634 = {
+						CreatedOnToolsVersion = 14.1;
+					};
 					8D4298A8292233F30064F3E6 = {
 						CreatedOnToolsVersion = 13.4.1;
 						LastSwiftMigration = 1340;
@@ -3692,6 +3746,7 @@
 				8DE46B05294B6E1E007B204C /* SearchContentAPIEndToEndTests */,
 				8DE4712A295093EC007B204C /* SearchContentModuleiOS */,
 				8DE47131295093ED007B204C /* SearchContentModuleiOSTests */,
+				8D362631295DC6B800967634 /* PlaybackProgressCacheIntegrationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3709,6 +3764,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D2490D42938F1D0009ACD36 /* audio_example.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D362630295DC6B800967634 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3967,6 +4029,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D2490BF2938DEAE009ACD36 /* AVPlayerClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D36262E295DC6B800967634 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D36263C295DC87400967634 /* SharedHelpers.swift in Sources */,
+				8D362635295DC6B800967634 /* PlaybackProgressCacheIntegrationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4444,6 +4515,11 @@
 			target = 8DFAEAAE28FD41730028B060 /* PodcastsModule */;
 			targetProxy = 8D2490D02938E49C009ACD36 /* PBXContainerItemProxy */;
 		};
+		8D362638295DC6B800967634 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D9B86C6292BC0BF003B52AB /* AudioPlayerModule */;
+			targetProxy = 8D362637295DC6B800967634 /* PBXContainerItemProxy */;
+		};
 		8D4298B3292234080064F3E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -4744,6 +4820,48 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.AVPlayerClientTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		8D36263A295DC6B800967634 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PlaybackProgressCacheIntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		8D36263B295DC6B800967634 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WUJDW64U79;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PlaybackProgressCacheIntegrationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -6579,6 +6697,15 @@
 			buildConfigurations = (
 				8D2490C32938DEAE009ACD36 /* Debug */,
 				8D2490C42938DEAE009ACD36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8D362639295DC6B800967634 /* Build configuration list for PBXNativeTarget "PlaybackProgressCacheIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D36263A295DC6B800967634 /* Debug */,
+				8D36263B295DC6B800967634 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

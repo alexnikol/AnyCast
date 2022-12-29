@@ -3,8 +3,6 @@
 import Foundation
 
 public final class LocalPlaybackProgressLoader {
-    public typealias SaveResult = Error?
-    
     private let store: PlaybackProgressStore
     private let currentDate: () -> Date
     
@@ -12,8 +10,13 @@ public final class LocalPlaybackProgressLoader {
         self.store = store
         self.currentDate = currentDate
     }
+}
+
+extension LocalPlaybackProgressLoader: PlaybackProgressCache {
     
-    public func save(_ playingItem: AudioPlayerModule.PlayingItem, completion: @escaping (SaveResult) -> Void) {
+    public typealias SaveResult = PlaybackProgressCache.SaveResult
+    
+    public func save(_ playingItem: PlayingItem, completion: @escaping (SaveResult) -> Void) {
         store.deleteCachedPlayingItem(completion: { [weak self] deletion in
             guard let self = self else { return }
             

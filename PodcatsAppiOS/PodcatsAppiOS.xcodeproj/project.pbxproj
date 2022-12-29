@@ -32,6 +32,7 @@
 		8D36220A295AF58C00967634 /* Podcast+PlayingPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362209295AF58C00967634 /* Podcast+PlayingPodcast.swift */; };
 		8D362211295AF72F00967634 /* SearchResultEpisode+PlayingEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362210295AF72F00967634 /* SearchResultEpisode+PlayingEpisode.swift */; };
 		8D362213295AF73B00967634 /* SearchResultPodcast+PlayingPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362212295AF73B00967634 /* SearchResultPodcast+PlayingPodcast.swift */; };
+		8D36263F295DDB1800967634 /* LocalPlaybackProgressLoader+CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36263E295DDB1800967634 /* LocalPlaybackProgressLoader+CombineHelpers.swift */; };
 		8D3C22312950B82A007D158E /* GeneralSearchSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22302950B82A007D158E /* GeneralSearchSourceDelegate.swift */; };
 		8D3C22332950B882007D158E /* GeneralSearchPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22322950B882007D158E /* GeneralSearchPresentationAdapter.swift */; };
 		8D3C22372950C872007D158E /* ThumbnailSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22362950C872007D158E /* ThumbnailSourceDelegate.swift */; };
@@ -188,6 +189,7 @@
 		8D362209295AF58C00967634 /* Podcast+PlayingPodcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Podcast+PlayingPodcast.swift"; sourceTree = "<group>"; };
 		8D362210295AF72F00967634 /* SearchResultEpisode+PlayingEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultEpisode+PlayingEpisode.swift"; sourceTree = "<group>"; };
 		8D362212295AF73B00967634 /* SearchResultPodcast+PlayingPodcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultPodcast+PlayingPodcast.swift"; sourceTree = "<group>"; };
+		8D36263E295DDB1800967634 /* LocalPlaybackProgressLoader+CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalPlaybackProgressLoader+CombineHelpers.swift"; sourceTree = "<group>"; };
 		8D3C22302950B82A007D158E /* GeneralSearchSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchSourceDelegate.swift; sourceTree = "<group>"; };
 		8D3C22322950B882007D158E /* GeneralSearchPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchPresentationAdapter.swift; sourceTree = "<group>"; };
 		8D3C22362950C872007D158E /* ThumbnailSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailSourceDelegate.swift; sourceTree = "<group>"; };
@@ -770,6 +772,7 @@
 			children = (
 				8D750C922947A381004500D9 /* LargeAudioPlayer */,
 				8D750C932947A577004500D9 /* StickyAudioPlayer */,
+				8D36263E295DDB1800967634 /* LocalPlaybackProgressLoader+CombineHelpers.swift */,
 			);
 			path = "AudioPlayer UI";
 			sourceTree = "<group>";
@@ -941,6 +944,7 @@
 				8DDBB778291BD2FD0024A37A /* GenericLoaderPresentationAdapter.swift in Sources */,
 				8D1A4B322955C96F00825E60 /* GeneralSearchService.swift in Sources */,
 				8D0BE4862950996400B4171A /* TypeaheadSearchUIComposer.swift in Sources */,
+				8D36263F295DDB1800967634 /* LocalPlaybackProgressLoader+CombineHelpers.swift in Sources */,
 				8D750D022949D0FB004500D9 /* ThumbnailDynamicPresentationAdapter.swift in Sources */,
 				8D750C9B2947A8B7004500D9 /* StickyAudioPlayerViewAdapter.swift in Sources */,
 				8D76B87428D4A2540014A211 /* AppDelegate.swift in Sources */,

@@ -15,7 +15,7 @@ import AVPlayerClient
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
-        
+    
     private lazy var baseURL: URL = {
         URL(string: "https://listen-api-test.listennotes.com")!
     }()
@@ -31,9 +31,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 .appendingPathComponent("genres-store.sqlite")
         )
     }()
-        
+    
+    private lazy var playbackProgressStore: PlaybackProgressStore = {
+        try! CoreDataPlaybackProgressStore(
+            storeURL: NSPersistentContainer
+                .defaultDirectoryURL()
+                .appendingPathComponent("playback-progress-store.sqlite")
+        )
+    }()
+    
     private lazy var localGenresLoader: LocalGenresLoader = {
         LocalGenresLoader(store: genresStore, currentDate: Date.init)
+    }()
+    
+    private lazy var localPlaybackProgressLoader: LocalPlaybackProgressLoader = {
+        LocalPlaybackProgressLoader(store: playbackProgressStore, currentDate: Date.init)
     }()
     
     var audioPlayer: AudioPlayer = {
@@ -78,7 +90,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         return root
     }
-        
+    
     private func globalAppearanceSetup() {
         if #available(iOS 15.0, *) {
             UITableView.appearance().isPrefetchingEnabled = false

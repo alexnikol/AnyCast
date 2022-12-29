@@ -66,6 +66,21 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         expect(sut, toRetrieveTwice: .found(playingItem: playingItem, timestamp: timestamp))
     }
     
+    func test_insert_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+        
+        let playingItem = makePlayingItemModel(with: [
+            .volumeLevel(0.9),
+            .progress(.init(currentTimeInSeconds: 200, totalTime: .notDefined, progressTimePercentage: 0.4)),
+            .speed(.x1_25),
+            .playback(.loading)
+        ])
+        
+        let insertionError = insert((playingItem, Date()), to: sut)
+
+        XCTAssertNil(insertionError, "Expected to insert cache successfully")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PlaybackProgressStore {

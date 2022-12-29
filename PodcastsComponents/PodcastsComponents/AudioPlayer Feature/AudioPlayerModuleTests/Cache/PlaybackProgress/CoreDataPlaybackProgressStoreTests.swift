@@ -4,19 +4,6 @@ import XCTest
 import SharedTestHelpersLibrary
 import AudioPlayerModule
 
-final class CoreDataPlaybackProgressStore: PlaybackProgressStore {
-    
-    init(storeURL: URL) throws {}
-    
-    func deleteCachedPlayingItem(completion: @escaping DeletionCompletion) {}
-    
-    func insert(_ playingItem: LocalPlayingItem, timestamp: Date, completion: @escaping InsertionCompletion) {}
-    
-    func retrieve(completion: @escaping RetrievalCompletion) {
-        completion(.empty)
-    }
-}
-
 final class CoreDataPlaybackProgressStoreTests: XCTestCase {
     
     func test_retrieve_deliversEmptyOnEmptyCache() {

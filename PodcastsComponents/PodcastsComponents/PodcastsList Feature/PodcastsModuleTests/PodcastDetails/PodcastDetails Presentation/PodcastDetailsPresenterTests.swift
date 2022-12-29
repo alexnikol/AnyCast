@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsModule
 
-class PodcastDetailsPresenterTests: XCTestCase {
+final class PodcastDetailsPresenterTests: XCTestCase {
     
     func test_map_createsPodcastDetailsViewModel() {
         let episode = makeEpisode()

@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresList
 
-class GenresItemsMapperTests: XCTestCase {
+final class GenresItemsMapperTests: XCTestCase {
         
     func test_map_deliversNoItemsOn200HTTPResponseWithEmptyJSONList() throws {
         let emptyListJSON = makeGenresJSON([])

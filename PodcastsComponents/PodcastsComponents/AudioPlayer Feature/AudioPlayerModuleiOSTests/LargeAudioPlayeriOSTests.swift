@@ -3,12 +3,11 @@
 import XCTest
 import SharedTestHelpersLibrary
 import UIKit
-import PodcastsModule
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 import SharedComponentsiOSModule
 
-class LargeAudioPlayeriOSTests: XCTestCase {
+final class LargeAudioPlayeriOSTests: XCTestCase {
     
     func test_playerPortrait() {
         let sut = makeSUT()
@@ -44,8 +43,8 @@ class LargeAudioPlayeriOSTests: XCTestCase {
     
     func makeViewModel() -> LargeAudioPlayerViewModel {
         let plaingItem = PlayingItem(
-            episode: makeEpisode(),
-            podcast: makePodcast(),
+            episode: makePlayingEpisode(),
+            podcast: makePlayingPodcast(),
             updates: [
                 .playback(.pause),
                 .progress(
@@ -77,7 +76,3 @@ class LargeAudioPlayeriOSTests: XCTestCase {
         func onSelectSpeedPlayback() {}
     }
 }
-
-extension Episode: PlayingEpisode {}
-
-extension PodcastDetails: PlayingPodcast {}

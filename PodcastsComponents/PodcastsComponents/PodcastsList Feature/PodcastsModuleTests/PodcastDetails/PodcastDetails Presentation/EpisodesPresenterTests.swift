@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsModule
 
-class EpisodesPresenterTests: XCTestCase {
+final class EpisodesPresenterTests: XCTestCase {
         
     func test_map_createsEpisodeViewModel() {
         let now = Date()

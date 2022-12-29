@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsModule
 
-class PodcastDetailsMapperTests: XCTestCase {
+final class PodcastDetailsMapperTests: XCTestCase {
         
     func test_map_deliversPodcastsDetailsOn200HTTPResponse() throws {
         let episodes = makeUniqueEpisodes()

@@ -3,7 +3,7 @@
 import XCTest
 import PodcastsGenresList
 
-class BestPodcastsEndpointTests: XCTestCase {
+final class BestPodcastsEndpointTests: XCTestCase {
     
     func test_podcastDetails_endpointURL() {
         let baseURL = URL(string: "https://listen-api-test.listennotes.com")!

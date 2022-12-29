@@ -3,12 +3,11 @@
 import XCTest
 import SharedTestHelpersLibrary
 import UIKit
-import PodcastsModule
 import AudioPlayerModule
 import AudioPlayerModuleiOS
 import SharedComponentsiOSModule
 
-class StickyAudioPlayeriOSTests: XCTestCase {
+final class StickyAudioPlayeriOSTests: XCTestCase {
     
     func test_player_portrait() {
         let (sut, root) = makeSUT()
@@ -61,8 +60,8 @@ class StickyAudioPlayeriOSTests: XCTestCase {
     
     func makeViewModel(playback: PlayingItem.PlaybackState) -> StickyAudioPlayerViewModel {
         let plaingItem = PlayingItem(
-            episode: makeEpisode(),
-            podcast: makePodcast(),
+            episode: makePlayingEpisode(),
+            podcast: makePlayingPodcast(),
             updates: [
                 .playback(playback),
                 .progress(

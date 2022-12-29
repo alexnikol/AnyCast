@@ -7,7 +7,7 @@ import SharedComponentsiOSModule
 import PodcastsModule
 import PodcastsModuleiOS
 
-class PodcastDetailsUISnapshotTests: XCTestCase {
+final class PodcastDetailsUISnapshotTests: XCTestCase {
     
     func test_emptyPodcastDetails() {
         let (sut, _) = makeSUT()

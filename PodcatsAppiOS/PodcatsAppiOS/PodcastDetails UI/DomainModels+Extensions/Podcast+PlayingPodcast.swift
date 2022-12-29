@@ -3,4 +3,8 @@
 import PodcastsModule
 import AudioPlayerModule
 
-extension PodcastDetails: PlayingPodcast {}
+extension PodcastDetails {
+    func toPlayingPodcast() -> PlayingPodcast {
+        PlayingPodcast(id: id, title: title, publisher: publisher)
+    }
+}

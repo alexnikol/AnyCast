@@ -4,12 +4,8 @@ import Foundation
 import SearchContentModule
 import AudioPlayerModule
 
-extension SearchResultPodcast: PlayingPodcast {
-    public var title: String {
-        titleOriginal
-    }
-    
-    public var publisher: String {
-        publisherOriginal
+extension SearchResultPodcast {
+    func toPlayingPodcast() -> PlayingPodcast {
+        PlayingPodcast(id: id, title: titleOriginal, publisher: publisherOriginal)
     }
 }

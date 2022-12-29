@@ -5,7 +5,6 @@ import SharedTestHelpersLibrary
 import AVKit
 import AudioPlayerModule
 import AVPlayerClient
-import PodcastsModule
 
 final class AVPlayerClientTests: XCTestCase {
     

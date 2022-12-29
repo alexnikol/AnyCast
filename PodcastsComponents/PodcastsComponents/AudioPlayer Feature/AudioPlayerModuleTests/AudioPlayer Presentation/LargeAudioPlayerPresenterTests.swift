@@ -3,9 +3,8 @@
 import XCTest
 import SharedTestHelpersLibrary
 import AudioPlayerModule
-import PodcastsModule
 
-class LargeAudioPlayerPresenterTests: XCTestCase {
+final class LargeAudioPlayerPresenterTests: XCTestCase {
     
     func test_init_doesNotSendMessagesToView() {
         let (_, view) = makeSUT()

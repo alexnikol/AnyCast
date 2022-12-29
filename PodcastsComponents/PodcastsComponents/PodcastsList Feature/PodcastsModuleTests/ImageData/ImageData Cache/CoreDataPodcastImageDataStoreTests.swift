@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsModule
 
-class CoreDataPodcastImageDataStoreTests: XCTestCase {
+final class CoreDataPodcastImageDataStoreTests: XCTestCase {
     
     func test_retrieveImageData_deliversNotFoundWhenEmpty() {
         let sut = makeSUT()

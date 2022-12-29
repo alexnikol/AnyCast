@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsModule
 
-class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
+final class LoadImageDataFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotPerformAnyRequestOnCreation() {
         let client = HTTPClientSpy()

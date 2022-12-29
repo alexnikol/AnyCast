@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsModule
 
-class BestPodcastsPresenterTests: XCTestCase {
+final class BestPodcastsPresenterTests: XCTestCase {
     
     func test_map_createsViewModel() {
         let podcast = makePodcast(title: "Podcast name 1", image: anyURL(), type: .episodic)

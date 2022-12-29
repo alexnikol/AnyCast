@@ -1,7 +1,7 @@
 # **Episode Show, Play, Save, Delete, Show Plaing item**
 
 ## **(BDD) Play audio by Spec**
-### Story: Client requests to show, play, save to cache for offline usage, delete from cache for offline usage, shoing current playing episode
+### Story: Client requests to show, play, save to cache for offline usage, delete from cache for offline usage, showing current playing episode
 
 ### Narrative #1
 
@@ -103,6 +103,7 @@ Then the app should display updated items without removed episode in saved episo
 #### Empty cache course (sad path): 
 1. System delivers no Episode Cache Item.
 
+---
 
 ### Save Episode with its audio data for offline usage Use Case
 
@@ -123,6 +124,7 @@ Then the app should display updated items without removed episode in saved episo
 #### Saving error course (sad path):
 1. System delivers error.
 
+---
 
 ### Remove Episode from cache with its audio data Use Case 
  
@@ -132,6 +134,27 @@ Then the app should display updated items without removed episode in saved episo
 3. System delivers success message.
 
 #### Deleting error course (sad path):
+1. System delivers error.
+ 
+---
+
+### Save episode playback progress Use Case 
+ 
+#### Data:
+- PlayingItem Model
+ 
+#### Primary course (happy path):
+1. Execute "Save PlayingItem playback progress" command with above data.
+2. System deletes old data.
+3. System encodes PlayingItem.
+4. System timestamps the new cache.
+5. System saves new cache data.
+6. System delivers success message.
+
+#### Deleting error course (sad path):
+1. System delivers error.
+
+#### Saving error course (sad path):
 1. System delivers error.
  
 ---

@@ -4,4 +4,14 @@ import Foundation
 import SearchContentModule
 import AudioPlayerModule
 
-extension SearchResultEpisode: PlayingEpisode {}
+extension SearchResultEpisode {
+    func toPlayingEpisode() -> PlayingEpisode {
+        PlayingEpisode(
+            id: id,
+            title: title,
+            thumbnail: thumbnail,
+            audio: audio,
+            publishDateInMiliseconds: publishDateInMiliseconds
+        )
+    }
+}

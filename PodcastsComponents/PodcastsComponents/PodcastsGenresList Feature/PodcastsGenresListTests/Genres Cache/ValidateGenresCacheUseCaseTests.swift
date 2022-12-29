@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import PodcastsGenresList
 
-class ValidateGenresCacheUseCaseTests: XCTestCase {
+final class ValidateGenresCacheUseCaseTests: XCTestCase {
     
     func test_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()

@@ -62,7 +62,7 @@ final class ExploreCoordinator {
                     selection: { [weak self] episode, podcast in
                         guard let self = self else { return }
                         self.largePlayerControlDelegate?
-                            .startPlaybackAndOpenPlayer(episode: episode, podcast: podcast)
+                            .startPlaybackAndOpenPlayer(episode: episode.toPlayingEpisode(), podcast: podcast.toPlayingPodcast())
                     }
                 )
                 self.show(screen: podcastDetails)

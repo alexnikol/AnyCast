@@ -45,13 +45,19 @@ final class SearchCoordinator {
             searchResultController: typeaheadController,
             searchLoader: service.makeRemoteGeneralSearchLoader,
             onEpisodeSelect: { episode in
-                self.largePlayerControlDelegate?.startPlaybackAndOpenPlayer(episode: episode, podcast: episode.podcast)
+                self.largePlayerControlDelegate?.startPlaybackAndOpenPlayer(
+                    episode: episode.toPlayingEpisode(),
+                    podcast: episode.podcast.toPlayingPodcast()
+                )
             },
             onPodcastSelect: { podcast in
                 let podcastDetails = self.createPodcastDetails(
                     byPodcast: podcast,
                     selection: { [weak self] episode, podcast in
-                        self?.largePlayerControlDelegate?.startPlaybackAndOpenPlayer(episode: episode, podcast: podcast)
+                        self?.largePlayerControlDelegate?.startPlaybackAndOpenPlayer(
+                            episode: episode.toPlayingEpisode(),
+                            podcast: podcast.toPlayingPodcast()
+                        )
                     })
                 self.show(screen: podcastDetails)
             }

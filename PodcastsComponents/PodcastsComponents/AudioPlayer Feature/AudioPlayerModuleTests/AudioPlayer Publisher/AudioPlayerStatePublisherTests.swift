@@ -1,10 +1,9 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
-import PodcastsModule
 import AudioPlayerModule
 
-class AudioPlayerStatePublisherTests: XCTestCase {
+final class AudioPlayerStatePublisherTests: XCTestCase {
     
     func test_init_doesNotDeliversValueOnCreationWithoutSubscription() {
         var receivedPlayerState: PlayerState?

@@ -99,6 +99,24 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         XCTAssertNil(insertionError, "Expected to override cache successfully")
     }
     
+    func test_insert_overridesPreviouslyInsertedCacheValues() {
+        let sut = makeSUT()
+        
+        let playingItem = makePlayingItemModel(with: [
+            .playback(.loading)
+        ])
+                
+        insert((playingItem, Date()), to: sut)
+        
+        let latestPlayingItem = makePlayingItemModel(with: [
+            .playback(.loading)
+        ])
+        let latestTimestamp = Date()
+        insert((latestPlayingItem, latestTimestamp), to: sut)
+        
+        expect(sut, toRetrieve: .found(playingItem: latestPlayingItem, timestamp: latestTimestamp))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PlaybackProgressStore {

@@ -12,6 +12,12 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         expect(sut, toRetrieve: .empty)
     }
     
+    func test_retrieve_hasNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        
+        expect(sut, toRetrieve: .empty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PlaybackProgressStore {

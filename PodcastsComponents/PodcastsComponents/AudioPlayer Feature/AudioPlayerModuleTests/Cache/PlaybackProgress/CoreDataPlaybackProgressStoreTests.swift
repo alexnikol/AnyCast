@@ -130,7 +130,20 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         
         deleteCache(from: sut)
         
-        expect(sut, toRetrieveTwice: .emptyç)
+        expect(sut, toRetrieveTwice: .empty)
+    }
+    
+    func test_delete_deliversNoErrorOnNonEmptyCache() {
+        let sut = makeSUT()
+        
+        let playingItem = makePlayingItemModel(with: [
+            .playback(.loading)
+        ])
+        
+        insert((playingItem, Date()), to: sut)
+        let deletionError = deleteCache(from: sut)
+        
+        XCTAssertNil(deletionError, "Expected non-empty cache deletion to succeed")
     }
     
     // MARK: - Helpers

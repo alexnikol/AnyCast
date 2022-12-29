@@ -18,6 +18,38 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         expect(sut, toRetrieve: .empty)
     }
     
+    func test_retrieve_deliversFoundValuesOnNonEmptyCache() {
+        let sut1 = makeSUT()
+        
+        let playingItem1 = makePlayingItemModel(with: [
+            .volumeLevel(0.9),
+            .progress(.init(currentTimeInSeconds: 200, totalTime: .notDefined, progressTimePercentage: 0.4)),
+            .speed(.x1_25),
+            .playback(.loading)
+        ])
+        
+        let timestamp1 = Date()
+                
+        insert((playingItem1, timestamp1), to: sut1)
+        
+        expect(sut1, toRetrieve: .found(playingItem: playingItem1, timestamp: timestamp1))
+        
+        let sut2 = makeSUT()
+        
+        let playingItem2 = makePlayingItemModel(with: [
+            .volumeLevel(0.1),
+            .progress(.init(currentTimeInSeconds: 200, totalTime: .valueInSeconds(200), progressTimePercentage: 0.4)),
+            .speed(.x2),
+            .playback(.playing)
+        ])
+        
+        let timestamp2 = Date()
+        
+        insert((playingItem2, timestamp2), to: sut2)
+        
+        expect(sut2, toRetrieve: .found(playingItem: playingItem2, timestamp: timestamp2))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PlaybackProgressStore {
@@ -51,5 +83,37 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         }
         
         wait(for: [exp], timeout: 1.0)
+    }
+    
+    @discardableResult
+    func insert(_ cache: (playingItem: LocalPlayingItem, timestamp: Date),
+                to sut: PlaybackProgressStore) -> Error? {
+        var insertionError: Error?
+        let exp = expectation(description: "Wait for cache insertion")
+        sut.insert(cache.playingItem, timestamp: cache.timestamp) { receivedInsertionError in
+            insertionError = receivedInsertionError
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        return insertionError
+    }
+    
+    private func makePlayingItemModel(with updates: [LocalPlayingItem.State]) -> LocalPlayingItem {
+        let episode = makeUniqueEpisode()
+        let podcast = makePodcast()
+        let localEpisode = LocalPlayingEpisode(
+            id: episode.id,
+            title: episode.title,
+            thumbnail: episode.thumbnail,
+            audio: episode.audio,
+            publishDateInMiliseconds: episode.publishDateInMiliseconds
+        )
+        let localPodcast = LocalPlayingPodcast(id: podcast.id, title: podcast.title, publisher: podcast.publisher)
+        let localModel = LocalPlayingItem(
+            episode: localEpisode,
+            podcast: localPodcast,
+            updates: updates
+        )
+        return localModel
     }
 }

@@ -67,6 +67,18 @@
 		8D3625F1295C9BF000967634 /* LocalPlayingItem+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625E3295C9BA100967634 /* LocalPlayingItem+Progress.swift */; };
 		8D3625F3295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625F2295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift */; };
 		8D3625F7295D8A3200967634 /* CoreDataPlaybackProgressStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625F5295D8A1E00967634 /* CoreDataPlaybackProgressStore.swift */; };
+		8D3625F8295D8C4600967634 /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D75814A28D09E7100751261 /* CoreDataHelpers.swift */; };
+		8D3625FB295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625F9295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld */; };
+		8D3625FD295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625FC295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift */; };
+		8D3625FF295D8EA400967634 /* ManagedPlaybackProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3625FE295D8EA400967634 /* ManagedPlaybackProgress.swift */; };
+		8D362602295D8F4900967634 /* ManagedPodcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362601295D8F4900967634 /* ManagedPodcast.swift */; };
+		8D362604295D8F8600967634 /* ManagedEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362603295D8F8600967634 /* ManagedEpisode.swift */; };
+		8D362608295DA00000967634 /* ManagedStateSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362607295DA00000967634 /* ManagedStateSpeed.swift */; };
+		8D36260A295DA05900967634 /* ManagedStateVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362609295DA05900967634 /* ManagedStateVolume.swift */; };
+		8D36260D295DAC8400967634 /* ManagedUpdateState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36260C295DAC8400967634 /* ManagedUpdateState.swift */; };
+		8D36260F295DACDA00967634 /* ManagedPlaybackState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D36260E295DACDA00967634 /* ManagedPlaybackState.swift */; };
+		8D362611295DAF1100967634 /* ManagedProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362610295DAF1100967634 /* ManagedProgress.swift */; };
+		8D362613295DAF7000967634 /* ManagedDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D362612295DAF7000967634 /* ManagedDuration.swift */; };
 		8D3C22352950BBDA007D158E /* TypeaheadListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */; };
 		8D42975B291D0A5C0064F3E6 /* PodcastDetailsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBB73C291A8EA10024A37A /* PodcastDetailsMapperTests.swift */; };
 		8D429763291D2FB20064F3E6 /* EpisodesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */; };
@@ -674,6 +686,17 @@
 		8D3625E7295C9BC300967634 /* LocalEpisodeDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEpisodeDuration.swift; sourceTree = "<group>"; };
 		8D3625F2295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPlaybackProgressStoreTests.swift; sourceTree = "<group>"; };
 		8D3625F5295D8A1E00967634 /* CoreDataPlaybackProgressStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPlaybackProgressStore.swift; sourceTree = "<group>"; };
+		8D3625FA295D8C7600967634 /* PlaybackProgressStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PlaybackProgressStore.xcdatamodel; sourceTree = "<group>"; };
+		8D3625FC295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaybackProgressStoreCache.swift; sourceTree = "<group>"; };
+		8D3625FE295D8EA400967634 /* ManagedPlaybackProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaybackProgress.swift; sourceTree = "<group>"; };
+		8D362601295D8F4900967634 /* ManagedPodcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPodcast.swift; sourceTree = "<group>"; };
+		8D362603295D8F8600967634 /* ManagedEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedEpisode.swift; sourceTree = "<group>"; };
+		8D362607295DA00000967634 /* ManagedStateSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedStateSpeed.swift; sourceTree = "<group>"; };
+		8D362609295DA05900967634 /* ManagedStateVolume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedStateVolume.swift; sourceTree = "<group>"; };
+		8D36260C295DAC8400967634 /* ManagedUpdateState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedUpdateState.swift; sourceTree = "<group>"; };
+		8D36260E295DACDA00967634 /* ManagedPlaybackState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedPlaybackState.swift; sourceTree = "<group>"; };
+		8D362610295DAF1100967634 /* ManagedProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedProgress.swift; sourceTree = "<group>"; };
+		8D362612295DAF7000967634 /* ManagedDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedDuration.swift; sourceTree = "<group>"; };
 		8D3C22342950BBDA007D158E /* TypeaheadListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadListViewController.swift; sourceTree = "<group>"; };
 		8D429761291D2F820064F3E6 /* EpisodesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenter.swift; sourceTree = "<group>"; };
 		8D429764291D31380064F3E6 /* EpisodesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesPresenterTests.swift; sourceTree = "<group>"; };
@@ -1426,9 +1449,36 @@
 		8D3625F4295D8A1200967634 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				8D362600295D8F2C00967634 /* Models */,
 				8D3625F5295D8A1E00967634 /* CoreDataPlaybackProgressStore.swift */,
+				8D3625F9295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld */,
 			);
 			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		8D362600295D8F2C00967634 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8D36260B295DAC7D00967634 /* States Models */,
+				8D3625FC295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift */,
+				8D3625FE295D8EA400967634 /* ManagedPlaybackProgress.swift */,
+				8D362601295D8F4900967634 /* ManagedPodcast.swift */,
+				8D362603295D8F8600967634 /* ManagedEpisode.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8D36260B295DAC7D00967634 /* States Models */ = {
+			isa = PBXGroup;
+			children = (
+				8D36260C295DAC8400967634 /* ManagedUpdateState.swift */,
+				8D362607295DA00000967634 /* ManagedStateSpeed.swift */,
+				8D362609295DA05900967634 /* ManagedStateVolume.swift */,
+				8D36260E295DACDA00967634 /* ManagedPlaybackState.swift */,
+				8D362610295DAF1100967634 /* ManagedProgress.swift */,
+				8D362612295DAF7000967634 /* ManagedDuration.swift */,
+			);
+			path = "States Models";
 			sourceTree = "<group>";
 		};
 		8D4298AA292233F30064F3E6 /* SharedHelpersiOSModule */ = {
@@ -4074,14 +4124,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D36220C295AF63900967634 /* PlayingEpisode.swift in Sources */,
+				8D3625FF295D8EA400967634 /* ManagedPlaybackProgress.swift in Sources */,
+				8D362608295DA00000967634 /* ManagedStateSpeed.swift in Sources */,
 				8DCA22822931414D00DD1EC6 /* LargeAudioPlayerViewModel.swift in Sources */,
+				8D3625FD295D8E8800967634 /* ManagedPlaybackProgressStoreCache.swift in Sources */,
+				8D36260A295DA05900967634 /* ManagedStateVolume.swift in Sources */,
 				8D362499295C6F6E00967634 /* LocalPlaybackProgressLoader.swift in Sources */,
+				8D3625F8295D8C4600967634 /* CoreDataHelpers.swift in Sources */,
+				8D36260F295DACDA00967634 /* ManagedPlaybackState.swift in Sources */,
 				8D36249B295C6F8700967634 /* PlaybackProgressStore.swift in Sources */,
 				8D9B86EB292D0EA5003B52AB /* PlayerState.swift in Sources */,
 				8D36220E295AF64B00967634 /* PlayingPodcast.swift in Sources */,
+				8D362611295DAF1100967634 /* ManagedProgress.swift in Sources */,
 				8D750C7029473B28004500D9 /* StickyPlayerPresenter.swift in Sources */,
 				8D750C6E29473B05004500D9 /* StickyAudioPlayerViewModel.swift in Sources */,
 				8D362497295C580A00967634 /* LocalPlayingEpisode.swift in Sources */,
+				8D362602295D8F4900967634 /* ManagedPodcast.swift in Sources */,
 				8DCA22942934CB7C00DD1EC6 /* AudioPlayerControlsDelegate.swift in Sources */,
 				8D249208293A04DC009ACD36 /* ProgressViewModel.swift in Sources */,
 				8D3625DF295C9B3200967634 /* PlayingItem+State.swift in Sources */,
@@ -4090,21 +4148,25 @@
 				8D3625EE295C9BF000967634 /* LocalEpisodeDuration.swift in Sources */,
 				8D362493295C555500967634 /* LocalPlayingItem.swift in Sources */,
 				8D3625EF295C9BF000967634 /* LocalPlayingItem+PlaybackState.swift in Sources */,
+				8D36260D295DAC8400967634 /* ManagedUpdateState.swift in Sources */,
 				8D9B86EF292D0F0A003B52AB /* AudioPlayerObserver.swift in Sources */,
 				8DC218D2293F86DC00A8EA86 /* PlaybackSpeed.swift in Sources */,
 				8DCA22802931413800DD1EC6 /* LargeAudioPlayerPresenter.swift in Sources */,
 				8D3625DC295C9B3200967634 /* PlayingItem+Progress.swift in Sources */,
 				8D3625DD295C9B3200967634 /* PlayingItem+PlaybackState.swift in Sources */,
 				8D9B86F1292D0F80003B52AB /* AudioPlayer.swift in Sources */,
+				8D362604295D8F8600967634 /* ManagedEpisode.swift in Sources */,
 				8D9B86ED292D0EBF003B52AB /* PlayingItem.swift in Sources */,
 				8D9B86E9292D0E88003B52AB /* AudioPlayerStatePublisher.swift in Sources */,
 				8D249206293A048F009ACD36 /* UpdatesViewModel.swift in Sources */,
+				8D3625FB295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld in Sources */,
 				8D3625F7295D8A3200967634 /* CoreDataPlaybackProgressStore.swift in Sources */,
 				8D362495295C572100967634 /* LocalPlayingPodcast.swift in Sources */,
 				8D3625DE295C9B3200967634 /* EpisodeDuration.swift in Sources */,
 				8D3625F0295C9BF000967634 /* LocalPlayingItem+State.swift in Sources */,
 				8D9B86F3292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift in Sources */,
 				8DC218D4293F888800A8EA86 /* SpeedPlaybackViewModel.swift in Sources */,
+				8D362613295DAF7000967634 /* ManagedDuration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6794,6 +6856,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		8D3625F9295D8C7600967634 /* PlaybackProgressStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8D3625FA295D8C7600967634 /* PlaybackProgressStore.xcdatamodel */,
+			);
+			currentVersion = 8D3625FA295D8C7600967634 /* PlaybackProgressStore.xcdatamodel */;
+			path = PlaybackProgressStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		8D7F45C4290BD3030093301F /* PodcastsImageDataStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

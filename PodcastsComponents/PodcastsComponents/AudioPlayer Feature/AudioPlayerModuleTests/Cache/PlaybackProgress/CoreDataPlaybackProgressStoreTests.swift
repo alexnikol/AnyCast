@@ -125,6 +125,14 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
     }
     
+    func test_delete_hasNoSideEffectsOnEmptyCache() {
+        let sut = makeSUT()
+        
+        deleteCache(from: sut)
+        
+        expect(sut, toRetrieveTwice: .emptyç)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PlaybackProgressStore {

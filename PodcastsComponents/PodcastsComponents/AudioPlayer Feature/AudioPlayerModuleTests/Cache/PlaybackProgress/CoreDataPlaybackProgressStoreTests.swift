@@ -117,6 +117,14 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
         expect(sut, toRetrieve: .found(playingItem: latestPlayingItem, timestamp: latestTimestamp))
     }
     
+    func test_delete_deliversNoErrorOnEmptyCache() {
+        let sut = makeSUT()
+        
+        let deletionError = deleteCache(from: sut)
+        
+        XCTAssertNil(deletionError, "Expected empty cache deletion to succeed")
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> PlaybackProgressStore {
@@ -190,5 +198,19 @@ final class CoreDataPlaybackProgressStoreTests: XCTestCase {
             updates: updates
         )
         return localModel
+    }
+    
+    @discardableResult
+    func deleteCache(from sut: PlaybackProgressStore) -> Error? {
+        let exp = expectation(description: "Wait on deletion comletion")
+        
+        var deletionError: Error?
+        sut.deleteCachedPlayingItem { error in
+            deletionError = error
+            
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        return deletionError
     }
 }

@@ -14,7 +14,16 @@ public final class CoreDataPlaybackProgressStore: PlaybackProgressStore {
         context = container.newBackgroundContext()
     }
     
-    public func deleteCachedPlayingItem(completion: @escaping DeletionCompletion) {}
+    public func deleteCachedPlayingItem(completion: @escaping DeletionCompletion) {
+        perform { context in
+            do {
+                try ManagedPlaybackProgressStoreCache.find(in: context).map(context.delete).map(context.save)
+                completion(nil)
+            } catch {
+                completion(error)
+            }
+        }
+    }
     
     public func insert(_ playingItem: LocalPlayingItem, timestamp: Date, completion: @escaping InsertionCompletion) {
         perform { context in

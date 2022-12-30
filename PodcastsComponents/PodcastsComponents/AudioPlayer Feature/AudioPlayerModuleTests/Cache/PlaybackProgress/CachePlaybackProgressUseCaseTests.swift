@@ -21,65 +21,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.deleteCache])
     }
     
-    func test_save_doestNotRequestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasEarlierThanMinimumProgressChangeFrequency() {
-        let saveTime = Date()
-        let (sut, store) = makeSUT(currentDate: { saveTime })
-        
-        let local1 = cacheInitialPlayingItem(to: sut, store: store)
-        
-        let playingItem2 = makePlayingItemModel(progress: .init(
-            currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1),
-            totalTime: .notDefined,
-            progressTimePercentage: 0)
-        )
-        sut.save(playingItem2.model) { _ in }
-        
-        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(local1, saveTime)])
-    }
-    
-    func test_save_requestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasEqualThanMinimumProgressChangeFrequency() {
-        let saveTime = Date()
-        let (sut, store) = makeSUT(currentDate: { saveTime })
-        
-        let local1 = cacheInitialPlayingItem(to: sut, store: store)
-        
-        let playingItem2 = makePlayingItemModel(progress: .init(
-            currentTimeInSeconds: minimumPlaybackProgressTimeForCache,
-            totalTime: .notDefined,
-            progressTimePercentage: 0)
-        )
-        sut.save(playingItem2.model) { _ in }
-        store.completeDeletionSuccessfully(at: 1)
-        store.completeInsertionSuccessfully(at: 1)
-        
-        XCTAssertEqual(
-            store.receivedMessages,
-            [.deleteCache, .insert(local1, saveTime), .deleteCache, .insert(playingItem2.local, saveTime)]
-        )
-    }
-    
-    func test_save_requestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasLaterThanMinimumProgressChangeFrequency() {
-        let saveTime = Date()
-        let (sut, store) = makeSUT(currentDate: { saveTime })
-        
-        let local1 = cacheInitialPlayingItem(to: sut, store: store)
-        
-        let playingItem2 = makePlayingItemModel(progress: .init(
-            currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: 1),
-            totalTime: .notDefined,
-            progressTimePercentage: 0)
-        )
-        sut.save(playingItem2.model) { _ in }
-        store.completeDeletionSuccessfully(at: 1)
-        store.completeInsertionSuccessfully(at: 1)
-        
-        XCTAssertEqual(
-            store.receivedMessages,
-            [.deleteCache, .insert(local1, saveTime), .deleteCache, .insert(playingItem2.local, saveTime)]
-        )
-    }
-    
-    func test_save_doesNotRequestCacheInsertionOnDeletionErrorWithoutPreviousCache() {
+    func test_save_doesNotRequestCacheInsertionOnDeletionError() {
         let (sut, store) = makeSUT()
         let playingItem = makePlayingItemModels()
         let deletionError = anyNSError()
@@ -90,7 +32,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.deleteCache])
     }
     
-    func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletionWithoutPreviousCache() {
+    func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
         let timestamp = Date()
         let (sut, store) = makeSUT(currentDate: { timestamp })
         let playingItem = makePlayingItemModels()
@@ -127,6 +69,102 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
             store.completeDeletionSuccessfully()
             store.completeInsertionSuccessfully()
         })
+    }
+    
+    func test_save_doestNotRequestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasEarlierThanMinimumProgressChangeFrequency() {
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
+        
+        let episodeID = UUID()
+        let local1 = cacheInitialPlayingItem(to: sut, store: store, episodeID: episodeID)
+        
+        let playingItem2 = makePlayingItemModel(
+            episodeID: episodeID,
+            progress: .init(
+                currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1),
+                totalTime: .notDefined,
+                progressTimePercentage: 0
+            )
+        )
+        sut.save(playingItem2.model) { _ in }
+        
+        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(local1, saveTime)])
+    }
+    
+    func test_save_requestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasEqualThanMinimumProgressChangeFrequency() {
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
+        
+        let episodeID = UUID()
+        let local1 = cacheInitialPlayingItem(to: sut, store: store, episodeID: episodeID)
+        
+        let playingItem2 = makePlayingItemModel(
+            episodeID: episodeID,
+            progress: .init(
+                currentTimeInSeconds: minimumPlaybackProgressTimeForCache,
+                totalTime: .notDefined,
+                progressTimePercentage: 0
+            )
+        )
+        sut.save(playingItem2.model) { _ in }
+        store.completeDeletionSuccessfully(at: 1)
+        store.completeInsertionSuccessfully(at: 1)
+        
+        XCTAssertEqual(
+            store.receivedMessages,
+            [.deleteCache, .insert(local1, saveTime), .deleteCache, .insert(playingItem2.local, saveTime)]
+        )
+    }
+    
+    func test_save_requestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasLaterThanMinimumProgressChangeFrequency() {
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
+        
+        let episodeID = UUID()
+        let local1 = cacheInitialPlayingItem(to: sut, store: store, episodeID: episodeID)
+        
+        let playingItem2 = makePlayingItemModel(
+            episodeID: episodeID,
+            progress: .init(
+                currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: 1),
+                totalTime: .notDefined,
+                progressTimePercentage: 0
+            )
+        )
+        sut.save(playingItem2.model) { _ in }
+        store.completeDeletionSuccessfully(at: 1)
+        store.completeInsertionSuccessfully(at: 1)
+        
+        XCTAssertEqual(
+            store.receivedMessages,
+            [.deleteCache, .insert(local1, saveTime), .deleteCache, .insert(playingItem2.local, saveTime)]
+        )
+    }
+    
+    func test_save_requestCacheDeletionOfPlaybackProgressForNewEpisodeAndNoDependOnPreviousCache() {
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
+        
+        let previousEpisodeID = UUID()
+        let local1 = cacheInitialPlayingItem(to: sut, store: store, episodeID: previousEpisodeID)
+        
+        let newEpisodeID = UUID()
+        let playingItem2 = makePlayingItemModel(
+            episodeID: newEpisodeID,
+            progress: .init(
+                currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1),
+                totalTime: .notDefined,
+                progressTimePercentage: 0
+            )
+        )
+        sut.save(playingItem2.model) { _ in }
+        store.completeDeletionSuccessfully(at: 1)
+        store.completeInsertionSuccessfully(at: 1)
+        
+        XCTAssertEqual(
+            store.receivedMessages,
+            [.deleteCache, .insert(local1, saveTime), .deleteCache, .insert(playingItem2.local, saveTime)]
+        )
     }
     
     func test_save_doesNotDeliverDeletionErrorAfterSUTInstanceHasBeenDeallocated() {
@@ -194,8 +232,12 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         XCTAssertEqual(receivedError as? NSError, expectedError, file: file, line: line)
     }
     
-    private func cacheInitialPlayingItem(to sut: LocalPlaybackProgressLoader, store: PlaybackProgressStoreSpy) -> LocalPlayingItem {
-        let playingItem1 = makePlayingItemModel(progress: .init(
+    private func cacheInitialPlayingItem(
+        to sut: LocalPlaybackProgressLoader,
+        store: PlaybackProgressStoreSpy,
+        episodeID: UUID
+    ) -> LocalPlayingItem {
+        let playingItem1 = makePlayingItemModel(episodeID: episodeID, progress: .init(
             currentTimeInSeconds: 0,
             totalTime: .notDefined,
             progressTimePercentage: 0)
@@ -212,7 +254,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
     }
     
     private func makePlayingItemModel(
-        episodeID: UUID = UUID(), progress: PlayingItem.Progress
+        episodeID: UUID, progress: PlayingItem.Progress
     ) -> (model: PlayingItem, local: LocalPlayingItem) {
         let episode = makeEpisode(episodeID: episodeID.uuidString)
         let podcast = makePodcast()

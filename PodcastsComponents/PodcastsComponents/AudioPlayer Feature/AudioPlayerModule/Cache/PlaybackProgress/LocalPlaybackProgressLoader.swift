@@ -160,6 +160,10 @@ final class PlaybackProgressCachePolicy {
         guard let cachedPlayingItem = cachedPlayingItem else {
             return true
         }
+        
+        guard cachedPlayingItem.episode.id == playingItem.episode.id else {
+            return true
+        }
                 
         guard let cachedProgress = cachedPlayingItem.progress(), let newProgress = playingItem.progress() else {
             return false

@@ -12,13 +12,36 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [])
     }
     
-    func test_save_requestsCacheDeletion() {
+    func test_save_requestsCacheDeletionWithoutPreviousCache() {
         let (sut, store) = makeSUT()
         let playingItem = makePlayingItemModels()
         
         sut.save(playingItem.model) { _ in }
         
         XCTAssertEqual(store.receivedMessages, [.deleteCache])
+    }
+    
+    func test_save_doestNotRequestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasEarlierThanMinimumProgressChangeFrequency() {
+        let playingItem1Date = Date()
+        let (sut, store) = makeSUT(currentDate: { playingItem1Date })
+        
+        let playingItem1 = makePlayingItemModel(progress: .init(
+            currentTimeInSeconds: 0,
+            totalTime: .notDefined,
+            progressTimePercentage: 0)
+        )
+        sut.save(playingItem1.model) { _ in }
+        store.completeDeletionSuccessfully(at: 0)
+        store.completeInsertionSuccessfully(at: 0)
+        
+        let playingItem2 = makePlayingItemModel(progress: .init(
+            currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1),
+            totalTime: .notDefined,
+            progressTimePercentage: 0)
+        )
+        sut.save(playingItem2.model) { _ in }
+        
+        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(playingItem1.local, playingItem1Date)])
     }
     
     func test_save_doesNotRequestCacheInsertionOnDeletionError() {
@@ -134,5 +157,76 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
         
         XCTAssertEqual(receivedError as? NSError, expectedError, file: file, line: line)
+    }
+    
+    private var minimumPlaybackProgressTimeForCache: Int {
+        let timeInSeconds = 60
+        return timeInSeconds
+    }
+    
+    private func makePlayingItemModel(
+        episodeID: UUID = UUID(), progress: PlayingItem.Progress
+    ) -> (model: PlayingItem, local: LocalPlayingItem) {
+        let episode = makeEpisode(episodeID: episodeID.uuidString)
+        let podcast = makePodcast()
+        let model = PlayingItem(
+            episode: episode,
+            podcast: podcast,
+            updates: [
+                .playback(.playing),
+                .progress(progress),
+                .volumeLevel(0.5)
+            ]
+        )
+        var localProgressTime: LocalEpisodeDuration
+        switch progress.totalTime {
+        case .notDefined:
+            localProgressTime = .notDefined
+            
+        case .valueInSeconds(let seconds):
+            localProgressTime = .valueInSeconds(seconds)
+        }
+        let localModel = LocalPlayingItem(
+            episode: LocalPlayingEpisode(
+                id: episode.id,
+                title: episode.title,
+                thumbnail: episode.thumbnail,
+                audio: episode.audio,
+                publishDateInMiliseconds: episode.publishDateInMiliseconds
+            ),
+            podcast: LocalPlayingPodcast(
+                id: podcast.id,
+                title: podcast.title,
+                publisher: podcast.publisher
+            ),
+            updates: [
+                .playback(.playing),
+                .progress(.init(
+                    currentTimeInSeconds: progress.currentTimeInSeconds,
+                    totalTime: localProgressTime,
+                    progressTimePercentage: progress.progressTimePercentage)
+                ),
+                .volumeLevel(0.5)
+            ]
+        )
+        return (model, localModel)
+    }
+    
+    private func makeEpisode(episodeID: String) -> PlayingEpisode {
+        let publishDateInMiliseconds = Int(1670914583549)
+        let episode = PlayingEpisode(
+            id: episodeID,
+            title: "Any Episode title",
+            thumbnail: anyURL(),
+            audio: anyURL(),
+            publishDateInMiliseconds: publishDateInMiliseconds
+        )
+        return episode
+    }
+}
+
+private extension Int {
+    func adding(seconds: Int) -> Int {
+        return self + seconds
     }
 }

@@ -5,6 +5,7 @@ import Foundation
 public final class LocalPlaybackProgressLoader {
     private let store: PlaybackProgressStore
     private let currentDate: () -> Date
+    private let cachePolicy = PlaybackProgressCachePolicy()
     
     public init(store: PlaybackProgressStore, currentDate: @escaping () -> Date) {
         self.store = store
@@ -17,6 +18,11 @@ extension LocalPlaybackProgressLoader: PlaybackProgressCache {
     public typealias SaveResult = PlaybackProgressCache.SaveResult
     
     public func save(_ playingItem: PlayingItem, completion: @escaping (SaveResult) -> Void) {
+        guard cachePolicy.isCacheAvailable(with: playingItem) else {
+            completion(nil)
+            return
+        }
+        
         store.deleteCachedPlayingItem(completion: { [weak self] deletion in
             guard let self = self else { return }
             
@@ -30,8 +36,11 @@ extension LocalPlaybackProgressLoader: PlaybackProgressCache {
     
     private func cache(_ playingItem: PlayingItem, completion: @escaping (SaveResult) -> Void) {
         self.store.insert(playingItem.toLocal(), timestamp: currentDate(), completion: { [weak self] insertionError in
-            guard self != nil else { return }
+            guard let self = self else { return }
             
+            if insertionError == nil {
+                self.cachePolicy.saveSuccessfullyCachedItem(playingItem)
+            }
             completion(insertionError)
         })
     }
@@ -136,5 +145,46 @@ private extension EpisodeDuration {
         case .valueInSeconds(let value):
             return .valueInSeconds(value)
         }
+    }
+}
+
+final class PlaybackProgressCachePolicy {
+    
+    private var cachedPlayingItem: PlayingItem?
+    
+    private var minimumPlaybackProgressTimeForCacheInSeconds: Int {
+        60
+    }
+    
+    func isCacheAvailable(with playingItem: PlayingItem) -> Bool {
+        guard let cachedPlayingItem = cachedPlayingItem else {
+            return true
+        }
+                
+        guard let cachedProgress = cachedPlayingItem.progress(), let newProgress = playingItem.progress() else {
+            return false
+        }
+        
+        return newProgress.currentTimeInSeconds > cachedProgress.currentTimeInSeconds + 60
+    }
+    
+    func saveSuccessfullyCachedItem(_ playingItem: PlayingItem) {
+        self.cachedPlayingItem = playingItem
+    }
+}
+
+private extension PlayingItem {
+    func progress() -> PlayingItem.Progress? {
+        var foundProgress: PlayingItem.Progress?
+        for update in updates {
+            switch update {
+            case let .progress(progress):
+                foundProgress = progress
+
+            default:
+                continue
+            }
+        }
+        return foundProgress
     }
 }

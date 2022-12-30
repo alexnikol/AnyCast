@@ -21,10 +21,17 @@ final class RootComposer {
         httpClient: HTTPClient,
         localGenresLoader: LocalGenresLoader,
         audioPlayer: AudioPlayer,
-        audioPlayerStatePublisher: AudioPlayerStatePublisher
+        audioPlayerStatePublisher: AudioPlayerStatePublisher,
+        playbackProgressCache: PlaybackProgressCache,
+        localPlaybackProgressLoader: @escaping () -> LocalPlaybackProgressLoader.Publisher
     ) -> UIViewController {
         let tabBarPresenter = RootTabBarPresenter()
-        let tabBarPresentationAdapter = RootTabBarPresentationAdapter(statePublisher: audioPlayerStatePublisher)
+        let tabBarPresentationAdapter = RootTabBarPresentationAdapter(
+            audioPlayer: audioPlayer,
+            statePublisher: audioPlayerStatePublisher,
+            playbackProgressCache: playbackProgressCache,
+            playbackProgressLoader: localPlaybackProgressLoader
+        )
         tabBarPresentationAdapter.presenter = tabBarPresenter
         
         let exploreNavigation = UINavigationController()

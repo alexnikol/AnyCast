@@ -86,7 +86,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             httpClient: httpClient,
             localGenresLoader: localGenresLoader,
             audioPlayer: audioPlayer,
-            audioPlayerStatePublisher: audioPlayerStatePublisher
+            audioPlayerStatePublisher: audioPlayerStatePublisher,
+            playbackProgressCache: localPlaybackProgressLoader,
+            localPlaybackProgressLoader: localPlaybackProgressLoader.loadPublisher
         )
         return root
     }

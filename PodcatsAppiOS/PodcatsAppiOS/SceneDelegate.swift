@@ -56,6 +56,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         AudioPlayerStatePublisher()
     }()
     
+    var audioPlayerStatePublishers: AudioPlayerStatePublishers = {
+        AudioPlayerStatePublishers()
+    }()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         
@@ -87,6 +91,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             localGenresLoader: localGenresLoader,
             audioPlayer: audioPlayer,
             audioPlayerStatePublisher: audioPlayerStatePublisher,
+            audioPlayerStatePublishers: audioPlayerStatePublishers,
             playbackProgressCache: localPlaybackProgressLoader,
             localPlaybackProgressLoader: localPlaybackProgressLoader.loadPublisher
         )
@@ -100,6 +105,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func composeAudioPlayerWithStatePublisher() {
-        audioPlayer.delegate = audioPlayerStatePublisher
+        audioPlayer.delegate = audioPlayerStatePublishers
+    }
+}
+
+final class AudioPlayerStatePublishers: AudioPlayerOutputDelegate {
+    typealias AudioPlayerStatePublisher = AnyPublisher<PlayerState, Never>
+    typealias AudioPlayerPrepareForSeekPublisher = AnyPublisher<PlayingItem.Progress, Never>
+    
+    private let _audioPlayerStatePublisher = CurrentValueSubject<PlayerState, Never>(.noPlayingItem)
+    private let _audioPlayerPrepareForSeekPublisher = PassthroughSubject<PlayingItem.Progress, Never>()
+    
+    var audioPlayerStatePublisher: AudioPlayerStatePublisher {
+        _audioPlayerStatePublisher.eraseToAnyPublisher()
+    }
+    
+    var audioPlayerPrepareForSeekPublisher: AudioPlayerPrepareForSeekPublisher {
+        _audioPlayerPrepareForSeekPublisher.eraseToAnyPublisher()
+    }
+    
+    func didUpdateState(with state: PlayerState) {
+        _audioPlayerStatePublisher.send(state)
+    }
+    
+    func prepareForProgressAfterSeekApply(futureProgress: PlayingItem.Progress) {
+        _audioPlayerPrepareForSeekPublisher.send(futureProgress)
     }
 }

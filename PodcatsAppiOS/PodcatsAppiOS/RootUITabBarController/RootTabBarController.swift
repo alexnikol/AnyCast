@@ -5,7 +5,6 @@ import AudioPlayerModuleiOS
 
 protocol RootTabBarViewDelegate {
     func onOpen()
-    func onClose()
 }
 
 class RootTabBarController: UITabBarController {
@@ -38,10 +37,6 @@ class RootTabBarController: UITabBarController {
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
         extendedLayoutIncludesOpaqueBars = true
-    }
-    
-    deinit {
-        viewDelegate?.onClose()
     }
     
     private func configureAudioPlayer() {

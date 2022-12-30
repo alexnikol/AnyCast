@@ -32,7 +32,7 @@ extension StickyAudioPlayerPresentationAdapter: StickyAudioPlayerViewDelegate {
             .dispatchOnMainQueue()
             .sink(
                 receiveValue: { [weak self] playerState in
-                    self?.updateStickyPlayerState(playerState)
+                    self?.updatePlayerState(playerState)
                 })
             .store(in: &subscriptions)
     }
@@ -40,7 +40,7 @@ extension StickyAudioPlayerPresentationAdapter: StickyAudioPlayerViewDelegate {
 
 private extension StickyAudioPlayerPresentationAdapter {
 
-    func updateStickyPlayerState(_ playerState: PlayerState) {
+    func updatePlayerState(_ playerState: PlayerState) {
         switch playerState {
         case .noPlayingItem:
             break

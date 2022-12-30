@@ -58,7 +58,28 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         )
     }
     
-    func test_save_doesNotRequestCacheInsertionOnDeletionError() {
+    func test_save_requestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasLaterThanMinimumProgressChangeFrequency() {
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
+        
+        let local1 = cacheInitialPlayingItem(to: sut, store: store)
+        
+        let playingItem2 = makePlayingItemModel(progress: .init(
+            currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: 1),
+            totalTime: .notDefined,
+            progressTimePercentage: 0)
+        )
+        sut.save(playingItem2.model) { _ in }
+        store.completeDeletionSuccessfully(at: 1)
+        store.completeInsertionSuccessfully(at: 1)
+        
+        XCTAssertEqual(
+            store.receivedMessages,
+            [.deleteCache, .insert(local1, saveTime), .deleteCache, .insert(playingItem2.local, saveTime)]
+        )
+    }
+    
+    func test_save_doesNotRequestCacheInsertionOnDeletionErrorWithoutPreviousCache() {
         let (sut, store) = makeSUT()
         let playingItem = makePlayingItemModels()
         let deletionError = anyNSError()
@@ -69,7 +90,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         XCTAssertEqual(store.receivedMessages, [.deleteCache])
     }
     
-    func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletion() {
+    func test_save_requestsNewCacheInsertionWithTimestampOnSuccessfulDeletionWithoutPreviousCache() {
         let timestamp = Date()
         let (sut, store) = makeSUT(currentDate: { timestamp })
         let playingItem = makePlayingItemModels()

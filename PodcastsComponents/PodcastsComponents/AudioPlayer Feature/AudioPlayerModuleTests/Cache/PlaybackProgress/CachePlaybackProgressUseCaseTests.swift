@@ -22,17 +22,10 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
     }
     
     func test_save_doestNotRequestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasEarlierThanMinimumProgressChangeFrequency() {
-        let playingItem1Date = Date()
-        let (sut, store) = makeSUT(currentDate: { playingItem1Date })
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
         
-        let playingItem1 = makePlayingItemModel(progress: .init(
-            currentTimeInSeconds: 0,
-            totalTime: .notDefined,
-            progressTimePercentage: 0)
-        )
-        sut.save(playingItem1.model) { _ in }
-        store.completeDeletionSuccessfully(at: 0)
-        store.completeInsertionSuccessfully(at: 0)
+        let local1 = cacheInitialPlayingItem(to: sut, store: store)
         
         let playingItem2 = makePlayingItemModel(progress: .init(
             currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1),
@@ -41,21 +34,14 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         )
         sut.save(playingItem2.model) { _ in }
         
-        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(playingItem1.local, playingItem1Date)])
+        XCTAssertEqual(store.receivedMessages, [.deleteCache, .insert(local1, saveTime)])
     }
     
     func test_save_requestCacheDeletionIfPreviousCacheOfTheSameEpisodeWasEqualThanMinimumProgressChangeFrequency() {
-        let playingItem1Date = Date()
-        let (sut, store) = makeSUT(currentDate: { playingItem1Date })
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
         
-        let playingItem1 = makePlayingItemModel(progress: .init(
-            currentTimeInSeconds: 0,
-            totalTime: .notDefined,
-            progressTimePercentage: 0)
-        )
-        sut.save(playingItem1.model) { _ in }
-        store.completeDeletionSuccessfully(at: 0)
-        store.completeInsertionSuccessfully(at: 0)
+        let local1 = cacheInitialPlayingItem(to: sut, store: store)
         
         let playingItem2 = makePlayingItemModel(progress: .init(
             currentTimeInSeconds: minimumPlaybackProgressTimeForCache,
@@ -68,7 +54,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         
         XCTAssertEqual(
             store.receivedMessages,
-            [.deleteCache, .insert(playingItem1.local, playingItem1Date), .deleteCache, .insert(playingItem2.local, playingItem1Date)]
+            [.deleteCache, .insert(local1, saveTime), .deleteCache, .insert(playingItem2.local, saveTime)]
         )
     }
     
@@ -185,6 +171,18 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
         
         XCTAssertEqual(receivedError as? NSError, expectedError, file: file, line: line)
+    }
+    
+    private func cacheInitialPlayingItem(to sut: LocalPlaybackProgressLoader, store: PlaybackProgressStoreSpy) -> LocalPlayingItem {
+        let playingItem1 = makePlayingItemModel(progress: .init(
+            currentTimeInSeconds: 0,
+            totalTime: .notDefined,
+            progressTimePercentage: 0)
+        )
+        sut.save(playingItem1.model) { _ in }
+        store.completeDeletionSuccessfully(at: 0)
+        store.completeInsertionSuccessfully(at: 0)
+        return playingItem1.local
     }
     
     private var minimumPlaybackProgressTimeForCache: Int {

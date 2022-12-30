@@ -51,9 +51,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var audioPlayer: AudioPlayer = {
         AVPlayerClient()
     }()
-        
-    var audioPlayerStatePublishers: AudioPlayerStatePublishers = {
-        AudioPlayerStatePublishers()
+    
+    private lazy var audioPlayerStatePublishers: AudioPlayerStatePublishers = {
+        AudioPlayerStatePublishers(playbackProgressCache: localPlaybackProgressLoader)
     }()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

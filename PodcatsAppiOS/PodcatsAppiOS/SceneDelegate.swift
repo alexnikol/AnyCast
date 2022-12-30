@@ -109,9 +109,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-final class AudioPlayerStatePublishers: AudioPlayerOutputDelegate {
-    typealias AudioPlayerStatePublisher = AnyPublisher<PlayerState, Never>
-    typealias AudioPlayerPrepareForSeekPublisher = AnyPublisher<PlayingItem.Progress, Never>
+public final class AudioPlayerStatePublishers: AudioPlayerOutputDelegate {
+    public typealias AudioPlayerStatePublisher = AnyPublisher<PlayerState, Never>
+    public typealias AudioPlayerPrepareForSeekPublisher = AnyPublisher<PlayingItem.Progress, Never>
     
     private let _audioPlayerStatePublisher = CurrentValueSubject<PlayerState, Never>(.noPlayingItem)
     private let _audioPlayerPrepareForSeekPublisher = PassthroughSubject<PlayingItem.Progress, Never>()
@@ -124,11 +124,11 @@ final class AudioPlayerStatePublishers: AudioPlayerOutputDelegate {
         _audioPlayerPrepareForSeekPublisher.eraseToAnyPublisher()
     }
     
-    func didUpdateState(with state: PlayerState) {
+    public func didUpdateState(with state: PlayerState) {
         _audioPlayerStatePublisher.send(state)
     }
     
-    func prepareForProgressAfterSeekApply(futureProgress: PlayingItem.Progress) {
+    public func prepareForProgressAfterSeekApply(futureProgress: PlayingItem.Progress) {
         _audioPlayerPrepareForSeekPublisher.send(futureProgress)
     }
 }

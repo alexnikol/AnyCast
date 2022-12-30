@@ -69,7 +69,7 @@ final class RootComposer {
         
         var largePlayerControlDelegate: LargePlayerControlDelegate?
         let stickyPlayer = StickyAudioPlayerUIComposer.playerWith(
-            statePublisher: audioPlayerStatePublisher,
+            audioPlayerStatePublisher: audioPlayerStatePublishers.audioPlayerStatePublisher,
             controlsDelegate: audioPlayer,
             imageLoader: episodeThumbnailLoaderService.makeRemotePodcastImageDataLoader(for:),
             onPlayerOpen: {

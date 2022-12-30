@@ -165,7 +165,7 @@ final class PlaybackProgressCachePolicy {
             return false
         }
         
-        return newProgress.currentTimeInSeconds > cachedProgress.currentTimeInSeconds + 60
+        return newProgress.currentTimeInSeconds >= cachedProgress.currentTimeInSeconds + 60
     }
     
     func saveSuccessfullyCachedItem(_ playingItem: PlayingItem) {

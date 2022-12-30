@@ -11,16 +11,19 @@ final class RootTabBarCoordinator {
     private let tabbarController: RootTabBarController
     private let audioPlayer: AudioPlayer
     private let audioPlayerStatePublisher: AudioPlayerStatePublisher
+    private let audioPlayerStatePublishers: AudioPlayerStatePublishers
     private var largePlayerController: LargeAudioPlayerViewController?
     
     init(httpClient: HTTPClient,
          tabbarController: RootTabBarController,
          audioPlayer: AudioPlayer,
-         audioPlayerStatePublisher: AudioPlayerStatePublisher) {
+         audioPlayerStatePublisher: AudioPlayerStatePublisher,
+         audioPlayerStatePublishers: AudioPlayerStatePublishers) {
         self.httpClient = httpClient
         self.tabbarController = tabbarController
         self.audioPlayer = audioPlayer
         self.audioPlayerStatePublisher = audioPlayerStatePublisher
+        self.audioPlayerStatePublishers = audioPlayerStatePublishers
     }
     
     func start(controllers: [UIViewController]) {
@@ -52,7 +55,7 @@ final class RootTabBarCoordinator {
         )
         
         let largePlayerController = LargeAudioPlayerUIComposer.playerWith(
-            statePublisher: audioPlayerStatePublisher,
+            audioPlayerstatePublishers: audioPlayerStatePublishers,
             controlsDelegate: audioPlayer,
             imageLoader: service.makeRemotePodcastImageDataLoader(for:)
         )

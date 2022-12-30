@@ -87,7 +87,8 @@ final class RootComposer {
             httpClient: httpClient,
             tabbarController: rootTabBarController,
             audioPlayer: audioPlayer,
-            audioPlayerStatePublisher: audioPlayerStatePublisher
+            audioPlayerStatePublisher: audioPlayerStatePublisher,
+            audioPlayerStatePublishers: audioPlayerStatePublishers
         )
         largePlayerControlDelegate = rootCoordinator
         exploreCoordinator.largePlayerControlDelegate = largePlayerControlDelegate

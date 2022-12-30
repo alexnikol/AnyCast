@@ -56,10 +56,6 @@ public final class LargeAudioPlayerViewController: UIViewController {
         self.thumbnailViewController = thumbnailViewController
     }
     
-    deinit {
-        delegate?.onClose()
-    }
-    
     // MARK: - Lifecycle
     
     override public func viewDidLoad() {

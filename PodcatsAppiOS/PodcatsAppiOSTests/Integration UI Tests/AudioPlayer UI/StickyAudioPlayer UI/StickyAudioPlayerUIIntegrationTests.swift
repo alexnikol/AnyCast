@@ -61,7 +61,7 @@ final class StickyAudioPlayerUIIntegrationTests: XCTestCase {
     }
     
     func test_rendersState_receiveCurrentPlayingStateWhenPlayerCreatedWhenCurrentPlayerItemAlreadyPlaying() {
-        let sharedPublisher = AudioPlayerStatePublishers()
+        let sharedPublisher = AudioPlayerStatePublishers(playbackProgressCache: PlaybackProgressCacheDummy())
         var sut1: SUT? = makeSUT(audioPlayerstatePublishers: sharedPublisher)
         sut1?.sut.loadViewIfNeeded()
         
@@ -98,7 +98,7 @@ final class StickyAudioPlayerUIIntegrationTests: XCTestCase {
                              controlsDelegate: AudioPlayerControlsSpy)
     
     private func makeSUT(
-        audioPlayerstatePublishers: AudioPlayerStatePublishers = AudioPlayerStatePublishers(),
+        audioPlayerstatePublishers: AudioPlayerStatePublishers = AudioPlayerStatePublishers(playbackProgressCache: PlaybackProgressCacheDummy()),
         file: StaticString = #file,
         line: UInt = #line
     ) -> SUT {

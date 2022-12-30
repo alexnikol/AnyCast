@@ -32,7 +32,7 @@ extension RootTabBarPresentationAdapter: RootTabBarViewDelegate {
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { [weak self] playerState in
-                    self?.audioPlayer.startPlayback(
+                    self?.audioPlayer.preparePlayback(
                         fromURL: playerState.episode.audio,
                         withMeta: .init(episode: playerState.episode, podcast: playerState.podcast)
                     )

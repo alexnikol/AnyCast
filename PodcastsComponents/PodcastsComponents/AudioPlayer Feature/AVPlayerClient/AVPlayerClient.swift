@@ -5,7 +5,7 @@ import AVKit
 import AudioPlayerModule
 
 public final class AVPlayerClient: NSObject, AudioPlayer {
-    
+
     private enum Error: Swift.Error {
         case sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
     }
@@ -58,18 +58,14 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
 #endif
         return systemVolume
     }
-    
+        
     public func startPlayback(fromURL url: URL, withMeta meta: Meta) {
-        self.currentMeta = meta
-        try? sendStartPlayingState()
-        
-        let asset = AVAsset(url: url)
-        let playerItem = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: requiredAssetKeys)
-        removeObservers()
-        player = makePlayer(currentItem: playerItem)
-        addObservers()
-        
+        prepareForPlayback(meta, url, forcePlaybackState: .playing)
         player.playImmediately(atRate: 1.0)
+    }
+    
+    public func preparePlayback(fromURL url: URL, withMeta meta: AudioPlayerModule.Meta) {
+        prepareForPlayback(meta, url, forcePlaybackState: .pause)
     }
     
     public func play() {
@@ -244,12 +240,11 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
             })
     }
     
-    private func sendStartPlayingState() throws {
+    private func sendPrepareStartState(withPlayback playback: PlayingItem.PlaybackState) throws {
         guard let meta = currentMeta else {
             throw Error.sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
         }
         
-        let playback = PlayingItem.PlaybackState.playing
         let volume = systemVolume
         let progress = PlayingItem.Progress(
             currentTimeInSeconds: 0,
@@ -414,6 +409,17 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         let player = AVPlayer(playerItem: currentItem)
         player.automaticallyWaitsToMinimizeStalling = true
         return player
+    }
+    
+    private func prepareForPlayback(_ meta: Meta, _ url: URL, forcePlaybackState playbackState: PlayingItem.PlaybackState) {
+        self.currentMeta = meta
+        try? sendPrepareStartState(withPlayback: playbackState)
+        
+        let asset = AVAsset(url: url)
+        let playerItem = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: requiredAssetKeys)
+        removeObservers()
+        player = makePlayer(currentItem: playerItem)
+        addObservers()
     }
 }
 

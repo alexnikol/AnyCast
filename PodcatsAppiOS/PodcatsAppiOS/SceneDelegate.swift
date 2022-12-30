@@ -51,11 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var audioPlayer: AudioPlayer = {
         AVPlayerClient()
     }()
-    
-    var audioPlayerStatePublisher: AudioPlayerStatePublisher = {
-        AudioPlayerStatePublisher()
-    }()
-    
+        
     var audioPlayerStatePublishers: AudioPlayerStatePublishers = {
         AudioPlayerStatePublishers()
     }()
@@ -90,7 +86,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             httpClient: httpClient,
             localGenresLoader: localGenresLoader,
             audioPlayer: audioPlayer,
-            audioPlayerStatePublisher: audioPlayerStatePublisher,
             audioPlayerStatePublishers: audioPlayerStatePublishers,
             playbackProgressCache: localPlaybackProgressLoader,
             localPlaybackProgressLoader: localPlaybackProgressLoader.loadPublisher

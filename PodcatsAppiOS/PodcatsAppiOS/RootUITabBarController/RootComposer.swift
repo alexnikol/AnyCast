@@ -21,7 +21,6 @@ final class RootComposer {
         httpClient: HTTPClient,
         localGenresLoader: LocalGenresLoader,
         audioPlayer: AudioPlayer,
-        audioPlayerStatePublisher: AudioPlayerStatePublisher,
         audioPlayerStatePublishers: AudioPlayerStatePublishers,
         playbackProgressCache: PlaybackProgressCache,
         localPlaybackProgressLoader: @escaping () -> LocalPlaybackProgressLoader.Publisher
@@ -29,7 +28,7 @@ final class RootComposer {
         let tabBarPresenter = RootTabBarPresenter()
         let tabBarPresentationAdapter = RootTabBarPresentationAdapter(
             audioPlayer: audioPlayer,
-            statePublisher: audioPlayerStatePublishers,
+            audioPlayerStatePublishers: audioPlayerStatePublishers,
             playbackProgressCache: playbackProgressCache,
             playbackProgressLoader: localPlaybackProgressLoader
         )
@@ -87,7 +86,6 @@ final class RootComposer {
             httpClient: httpClient,
             tabbarController: rootTabBarController,
             audioPlayer: audioPlayer,
-            audioPlayerStatePublisher: audioPlayerStatePublisher,
             audioPlayerStatePublishers: audioPlayerStatePublishers
         )
         largePlayerControlDelegate = rootCoordinator

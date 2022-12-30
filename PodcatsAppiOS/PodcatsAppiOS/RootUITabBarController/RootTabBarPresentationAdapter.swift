@@ -6,7 +6,7 @@ import AudioPlayerModule
 import AudioPlayerModuleiOS
 
 class RootTabBarPresentationAdapter {
-    private let statePublisher: AudioPlayerStatePublishers
+    private let audioPlayerStatePublishers: AudioPlayerStatePublishers
     private let audioPlayer: AudioPlayer
     var presenter: RootTabBarPresenter?
     private var isStickyPlayerVisible = false
@@ -15,10 +15,10 @@ class RootTabBarPresentationAdapter {
     private var subscriptions = Set<AnyCancellable>()
     
     init(audioPlayer: AudioPlayer,
-         statePublisher: AudioPlayerStatePublishers,
+         audioPlayerStatePublishers: AudioPlayerStatePublishers,
          playbackProgressCache: PlaybackProgressCache,
          playbackProgressLoader: @escaping () -> LocalPlaybackProgressLoader.Publisher) {
-        self.statePublisher = statePublisher
+        self.audioPlayerStatePublishers = audioPlayerStatePublishers
         self.audioPlayer = audioPlayer
         self.playbackProgressLoader = playbackProgressLoader
         self.playbackProgressCache = playbackProgressCache
@@ -40,7 +40,7 @@ extension RootTabBarPresentationAdapter: RootTabBarViewDelegate {
             ).store(in: &subscriptions)
         
         
-        statePublisher.audioPlayerStatePublisher
+        audioPlayerStatePublishers.audioPlayerStatePublisher
             .dispatchOnMainQueue()
             .sink(
                 receiveValue: { [weak self] playerState in

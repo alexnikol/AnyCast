@@ -18,6 +18,7 @@ extension LocalPlaybackProgressLoader: PlaybackProgressCache {
     public typealias SaveResult = PlaybackProgressCache.SaveResult
     
     public func save(_ playingItem: PlayingItem, completion: @escaping (SaveResult) -> Void) {
+        print("ISAVA \(cachePolicy.isCacheAvailable(with: playingItem))")
         guard cachePolicy.isCacheAvailable(with: playingItem) else {
             completion(nil)
             return

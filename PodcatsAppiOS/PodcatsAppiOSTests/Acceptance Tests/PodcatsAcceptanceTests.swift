@@ -37,6 +37,19 @@ final class PodcatsAcceptanceTests: XCTestCase {
         XCTAssertEqual(genres.numberOfRenderedGenresViews(), 1)
     }
     
+    func test_onLaunch_doesNotDisplaysProgressPlaybackOnEmptyProgressCache() {
+        let sharedStore = InMemoryGenresStore.withNonExpiredFeedCache
+        let rootTabBar = launch(
+            genresStore: sharedStore,
+            playbackProgressStore: InMemoryPlaybackProgressStore.empty,
+            httpClient: HTTPClientStub.online(response)
+        )
+        
+        let stickyPlayer = stickyPlayer(fromRoot: rootTabBar)
+        
+        XCTAssertNil(stickyPlayer?.episodeTitleText())
+    }
+    
     func test_onLaunch_displaysCachedProgressPlayback() {
         let sharedStore = InMemoryGenresStore.withNonExpiredFeedCache
         let rootTabBar = launch(

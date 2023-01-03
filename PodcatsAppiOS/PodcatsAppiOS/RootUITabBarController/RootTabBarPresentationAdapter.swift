@@ -34,7 +34,7 @@ extension RootTabBarPresentationAdapter: RootTabBarViewDelegate {
                 receiveValue: { [weak self] playerState in
                     self?.audioPlayer.preparePlayback(
                         fromURL: playerState.episode.audio,
-                        withMeta: .init(episode: playerState.episode, podcast: playerState.podcast)
+                        withPlayingItem: playerState
                     )
                 }
             ).store(in: &subscriptions)

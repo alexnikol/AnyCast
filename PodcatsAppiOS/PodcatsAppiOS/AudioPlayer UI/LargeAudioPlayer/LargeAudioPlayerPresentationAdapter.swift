@@ -46,6 +46,7 @@ extension LargeAudioPlayerPresentationAdapter: LargeAudioPlayerViewDelegate {
 private extension LargeAudioPlayerPresentationAdapter {
 
     func updatePlayerState(_ playerState: PlayerState) {
+        print("INITTT__DD \(playerState)")
         switch playerState {
         case .noPlayingItem:
             break

@@ -5,7 +5,7 @@ import AVKit
 import AudioPlayerModule
 
 public final class AVPlayerClient: NSObject, AudioPlayer {
-
+        
     private enum Error: Swift.Error {
         case sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
     }
@@ -18,6 +18,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         case playbackBufferFull = "currentItem.playbackBufferFull"
     }
     private var currentMeta: Meta?
+    private var initialProgress: PlayingItem.Progress?
     private let requiredAssetKeys: [String] = [
         "playable",
         "duration"
@@ -58,17 +59,21 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
 #endif
         return systemVolume
     }
-        
+    
     public func startPlayback(fromURL url: URL, withMeta meta: Meta) {
         prepareForPlayback(meta, url, forcePlaybackState: .playing)
         player.playImmediately(atRate: 1.0)
     }
     
-    public func preparePlayback(fromURL url: URL, withMeta meta: AudioPlayerModule.Meta) {
-        prepareForPlayback(meta, url, forcePlaybackState: .pause)
+    public func preparePlayback(fromURL url: URL, withPlayingItem playingItem: PlayingItem) {
+        let meta = Meta(episode: playingItem.episode, podcast: playingItem.podcast)
+        prepareForPlayback(meta, url, forcePlaybackState: .pause, initialStates: playingItem.updates)
     }
     
     public func play() {
+        if let initialProgress = initialProgress {
+            player.seek(to: CMTime(value: CMTimeValue(initialProgress.currentTimeInSeconds), timescale: 1))
+        }
         player.play()
     }
     
@@ -137,36 +142,30 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         
         switch observingKeyPath {
         case .reasonForWaitingToPlay:
-            let bufferingCases: [AVPlayer.WaitingReason] = [.toMinimizeStalls, .evaluatingBufferingRate, .noItemToPlay]
+            let bufferingCases: [AVPlayer.WaitingReason] = [.toMinimizeStalls, .evaluatingBufferingRate]
             if let reasonForWaitingToPlay = player.reasonForWaitingToPlay, bufferingCases.contains(reasonForWaitingToPlay) {
                 updatePlayback(playback: .loading)
+                Logger.debug(player.reasonForWaitingToPlay?.rawValue ?? "NO reason", prefix: "AVPLAYER_CLIENT__LOADING")
             } else {
                 startPlaybackIfNeeded()
+                Logger.debug(player.reasonForWaitingToPlay?.rawValue ?? "NO reason", prefix: "AVPLAYER_CLIENT__PLAY")
             }
-            Logger.debug(player.reasonForWaitingToPlay?.rawValue ?? "NO reason", prefix: "AVPLAYER_CLIENT")
             
         case .playbackLikelyToKeepUp:
-            let newValue = change?[.newKey] as? Bool
-            let oldValue = change?[.oldKey] as? Bool
-            guard newValue != oldValue else {
-                return
-            }
-            Logger.debug("playbackLikelyToKeepUp", prefix: "AVPLAYER_CLIENT")
+            Logger.debug(player.reasonForWaitingToPlay?.rawValue ?? "NO reason", prefix: "AVPLAYER_CLIENT__PLAYBACK")
             updateDurationIfNeeded()
             startPlaybackIfNeeded()
             
         case .playbackBufferEmpty:
-            let newValue = change?[.newKey] as? Bool
-            let oldValue = change?[.oldKey] as? Bool
-            guard newValue != oldValue else {
+            guard let currentItem = player.currentItem else { return }
+            guard currentItem.isPlaybackBufferEmpty else {
                 return
             }
             updatePlayback(playback: .loading)
             
         case .playbackBufferFull:
-            let newValue = change?[.newKey] as? Bool
-            let oldValue = change?[.oldKey] as? Bool
-            guard newValue != oldValue else {
+            guard let currentItem = player.currentItem else { return }
+            guard currentItem.isPlaybackBufferEmpty else {
                 return
             }
             startPlaybackIfNeeded()
@@ -176,12 +175,10 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
                 return
             }
             
-            Logger.debug("STATUS_\(currentItem.status)", prefix: "AVPLAYER_CLIENT")
-            if currentItem.status == .readyToPlay {
-                let assets = currentItem.asset
-                startPlaybackIfNeeded()
-                Logger.debug("STATUS_readyToPlayASSETS\(assets)", prefix: "AVPLAYER_CLIENT")
+            guard currentItem.status == .readyToPlay else {
+                return
             }
+            startPlaybackIfNeeded()
         }
     }
     
@@ -214,16 +211,21 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
                     guard !self.isSeekingProccess else { return }
                     let currentTime = Float(CMTimeGetSeconds(self.player.currentTime()))
                     let totalTime = Float(CMTimeGetSeconds(item.duration))
+                    print("self.player.status \(currentTime), \(totalTime)")
                     var progress: PlayingItem.Progress
                     guard !currentTime.isNaN, currentTime >= 0 else {
                         progress = PlayingItem.Progress.justStartedProgress()
                         self.updateProgress(progress: progress)
                         return
                     }
-                    
                     let currentTimeInSeconds = Int(currentTime)
                     if totalTime.isNaN {
-                        progress = PlayingItem.Progress.justStartedProgress(currentTimeInSeconds: currentTimeInSeconds)
+                        if let initialProgress = self.initialProgress {
+                            progress = initialProgress
+                        } else {
+                            progress = PlayingItem.Progress.justStartedProgress(currentTimeInSeconds: currentTimeInSeconds)
+                            self.initialProgress = nil
+                        }
                     } else {
                         let progressPercentage = currentTime / totalTime
                         let totalTimeInSeconds = Int(totalTime)
@@ -232,43 +234,58 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
                             totalTime: .valueInSeconds(totalTimeInSeconds),
                             progressTimePercentage: progressPercentage
                         )
+                        self.initialProgress = nil
                     }
-                    
+
                     self.updateProgress(progress: progress)
                 default: ()
                 }
             })
     }
     
-    private func sendPrepareStartState(withPlayback playback: PlayingItem.PlaybackState) throws {
+    private func sendPrepareStartState(withPlayback playback: PlayingItem.PlaybackState, initialStates: [PlayingItem.State]?) throws {
         guard let meta = currentMeta else {
             throw Error.sendPlayerUpdatesWithoutCurrentPlayingAudioMeta
         }
         
+        let states = prepareInitialPlaybackProgeress(playback: playback, withCachedState: initialStates)
+        
+        let playingItem = PlayingItem(
+            episode: meta.episode,
+            podcast: meta.podcast,
+            updates: states
+        )
+        delegate?.didUpdateState(with: .startPlayingNewItem(playingItem))
+    }
+    
+    private func prepareInitialPlaybackProgeress(
+        playback: PlayingItem.PlaybackState,
+        withCachedState cachedState: [PlayingItem.State]? = nil
+    ) -> [PlayingItem.State] {
         let volume = systemVolume
-        let progress = PlayingItem.Progress(
+        var progress = PlayingItem.Progress(
             currentTimeInSeconds: 0,
             totalTime: .notDefined,
             progressTimePercentage: 0
         )
         let speedPlayback = PlaybackSpeed.x1
         
+        for state in (cachedState ?? []) {
+            if case let PlayingItem.State.progress(receivedInitialProgress) = state {
+                initialProgress = receivedInitialProgress
+                progress = receivedInitialProgress
+            }
+        }
         lastPlaybackState = playback
         lastProgressState = progress
         lastVolumeState = volume
         lastSpeedPlaybackState = speedPlayback
-        
-        let playingItem = PlayingItem(
-            episode: meta.episode,
-            podcast: meta.podcast,
-            updates: [
-                .playback(playback),
-                .progress(progress),
-                .volumeLevel(volume),
-                .speed(speedPlayback)
-            ]
-        )
-        delegate?.didUpdateState(with: .startPlayingNewItem(playingItem))
+        return [
+            .playback(playback),
+            .progress(progress),
+            .volumeLevel(volume),
+            .speed(speedPlayback)
+        ]
     }
     
     private func updateProgress(progress: PlayingItem.Progress) {
@@ -279,6 +296,7 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
     private func updatePlayback(playback: PlayingItem.PlaybackState) {
         lastPlaybackState = playback
         try? sendUpdatePlayingState(states: currentStatesList())
+        Logger.debug("DD", prefix: "AVPLAYER_CLIENT__LOADING")
     }
     
     private func startPlaybackIfNeeded() {
@@ -411,16 +429,20 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
         return player
     }
     
-    private func prepareForPlayback(_ meta: Meta, _ url: URL, forcePlaybackState playbackState: PlayingItem.PlaybackState) {
-        self.currentMeta = meta
-        try? sendPrepareStartState(withPlayback: playbackState)
-        
-        let asset = AVAsset(url: url)
-        let playerItem = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: requiredAssetKeys)
-        removeObservers()
-        player = makePlayer(currentItem: playerItem)
-        addObservers()
-    }
+    private func prepareForPlayback(
+        _ meta: Meta,
+        _ url: URL,
+        forcePlaybackState playbackState: PlayingItem.PlaybackState,
+        initialStates: [PlayingItem.State]? = nil) {
+            self.currentMeta = meta
+            try? sendPrepareStartState(withPlayback: playbackState, initialStates: initialStates)
+            
+            let asset = AVAsset(url: url)
+            let playerItem = AVPlayerItem(asset: asset, automaticallyLoadedAssetKeys: requiredAssetKeys)
+            removeObservers()
+            player = makePlayer(currentItem: playerItem)
+            addObservers()
+        }
 }
 
 private extension PlayingItem.Progress {

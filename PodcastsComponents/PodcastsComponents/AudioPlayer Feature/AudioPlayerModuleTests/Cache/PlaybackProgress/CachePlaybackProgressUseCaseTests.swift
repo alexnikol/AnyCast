@@ -80,11 +80,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         
         let playingItem2 = makePlayingItemModel(
             episodeID: episodeID,
-            progress: .init(
-                currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1),
-                totalTime: .notDefined,
-                progressTimePercentage: 0
-            )
+            currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1)
         )
         sut.save(playingItem2.model) { _ in }
         
@@ -100,11 +96,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         
         let playingItem2 = makePlayingItemModel(
             episodeID: episodeID,
-            progress: .init(
-                currentTimeInSeconds: minimumPlaybackProgressTimeForCache,
-                totalTime: .notDefined,
-                progressTimePercentage: 0
-            )
+            currentTimeInSeconds: minimumPlaybackProgressTimeForCache
         )
         sut.save(playingItem2.model) { _ in }
         store.completeDeletionSuccessfully(at: 1)
@@ -125,11 +117,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         
         let playingItem2 = makePlayingItemModel(
             episodeID: episodeID,
-            progress: .init(
-                currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: 1),
-                totalTime: .notDefined,
-                progressTimePercentage: 0
-            )
+            currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: 1)
         )
         sut.save(playingItem2.model) { _ in }
         store.completeDeletionSuccessfully(at: 1)
@@ -155,11 +143,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         
         let playingItem2 = makePlayingItemModel(
             episodeID: episodeID,
-            progress: .init(
-                currentTimeInSeconds: 0,
-                totalTime: .notDefined,
-                progressTimePercentage: 0
-            )
+            currentTimeInSeconds: 0
         )
         sut.save(playingItem2.model) { _ in }
         store.completeDeletionSuccessfully(at: 1)
@@ -181,11 +165,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         let newEpisodeID = UUID()
         let playingItem2 = makePlayingItemModel(
             episodeID: newEpisodeID,
-            progress: .init(
-                currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1),
-                totalTime: .notDefined,
-                progressTimePercentage: 0
-            )
+            currentTimeInSeconds: minimumPlaybackProgressTimeForCache.adding(seconds: -1)
         )
         sut.save(playingItem2.model) { _ in }
         store.completeDeletionSuccessfully(at: 1)
@@ -268,11 +248,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         episodeID: UUID,
         currentTimeInSeconds: Int = 0
     ) -> LocalPlayingItem {
-        let playingItem1 = makePlayingItemModel(episodeID: episodeID, progress: .init(
-            currentTimeInSeconds: currentTimeInSeconds,
-            totalTime: .notDefined,
-            progressTimePercentage: 0)
-        )
+        let playingItem1 = makePlayingItemModel(episodeID: episodeID, currentTimeInSeconds: currentTimeInSeconds)
         sut.save(playingItem1.model) { _ in }
         store.completeDeletionSuccessfully(at: 0)
         store.completeInsertionSuccessfully(at: 0)
@@ -285,7 +261,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
     }
     
     private func makePlayingItemModel(
-        episodeID: UUID, progress: PlayingItem.Progress
+        episodeID: UUID, currentTimeInSeconds: Int = 0
     ) -> (model: PlayingItem, local: LocalPlayingItem) {
         let episode = makeEpisode(episodeID: episodeID.uuidString)
         let podcast = makePodcast()
@@ -294,18 +270,14 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
             podcast: podcast,
             updates: [
                 .playback(.playing),
-                .progress(progress),
+                .progress(.init(
+                    currentTimeInSeconds: currentTimeInSeconds,
+                    totalTime: .notDefined,
+                    progressTimePercentage: 0.5)
+                ),
                 .volumeLevel(0.5)
             ]
         )
-        var localProgressTime: LocalEpisodeDuration
-        switch progress.totalTime {
-        case .notDefined:
-            localProgressTime = .notDefined
-            
-        case .valueInSeconds(let seconds):
-            localProgressTime = .valueInSeconds(seconds)
-        }
         let localModel = LocalPlayingItem(
             episode: LocalPlayingEpisode(
                 id: episode.id,
@@ -322,9 +294,9 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
             updates: [
                 .playback(.playing),
                 .progress(.init(
-                    currentTimeInSeconds: progress.currentTimeInSeconds,
-                    totalTime: localProgressTime,
-                    progressTimePercentage: progress.progressTimePercentage)
+                    currentTimeInSeconds: currentTimeInSeconds,
+                    totalTime: .notDefined,
+                    progressTimePercentage: 0.5)
                 ),
                 .volumeLevel(0.5)
             ]

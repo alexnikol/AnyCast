@@ -23,7 +23,6 @@ final class PlaybackProgressCachePolicy {
             return false
         }
         
-        print("1 - \(newProgress.currentTimeInSeconds), 2 - \(cachedProgress.currentTimeInSeconds) \(abs(newProgress.currentTimeInSeconds - cachedProgress.currentTimeInSeconds))")
         return abs(newProgress.currentTimeInSeconds - cachedProgress.currentTimeInSeconds) >= minimumPlaybackProgressTimeForCacheInSeconds
     }
     

@@ -25,6 +25,7 @@ final class RootTabBarCoordinator {
     
     func start(controllers: [UIViewController]) {
         tabbarController.setViewControllers(controllers, animated: false)
+        tabbarController.setPlayerControllerAsChild()
     }
     
     private func openPlayingPlayer() {

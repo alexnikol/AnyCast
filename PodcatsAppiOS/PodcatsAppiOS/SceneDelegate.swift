@@ -67,10 +67,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         localGenresLoader.validateCache()
     }
     
-    convenience init(httpClient: HTTPClient, genresStore: GenresStore) {
+    convenience init(httpClient: HTTPClient, genresStore: GenresStore, playbackProgressStore: PlaybackProgressStore) {
         self.init()
         self.httpClient = httpClient
         self.genresStore = genresStore
+        self.playbackProgressStore = playbackProgressStore
     }
     
     func configureWindow() {

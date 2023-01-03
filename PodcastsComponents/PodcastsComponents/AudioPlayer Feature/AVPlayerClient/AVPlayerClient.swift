@@ -211,7 +211,6 @@ public final class AVPlayerClient: NSObject, AudioPlayer {
                     guard !self.isSeekingProccess else { return }
                     let currentTime = Float(CMTimeGetSeconds(self.player.currentTime()))
                     let totalTime = Float(CMTimeGetSeconds(item.duration))
-                    print("self.player.status \(currentTime), \(totalTime)")
                     var progress: PlayingItem.Progress
                     guard !currentTime.isNaN, currentTime >= 0 else {
                         progress = PlayingItem.Progress.justStartedProgress()

@@ -172,6 +172,28 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         )
     }
     
+    func test_save_requestCacheIfPreviousCacheOfTheSameEpisodeHasNotDefinedTotalTime() {
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
+        
+        let episodeID = UUID()
+        let local1 = cacheInitialPlayingItem(to: sut, store: store, episodeID: episodeID, currentTimeInSeconds: 0)
+        
+        let playingItem2 = makePlayingItemModel(
+            episodeID: episodeID,
+            currentTimeInSeconds: 1,
+            totalTime: 200
+        )
+        sut.save(playingItem2.model) { _ in }
+        store.completeDeletionSuccessfully(at: 1)
+        store.completeInsertionSuccessfully(at: 1)
+        
+        XCTAssertEqual(
+            store.receivedMessages,
+            [.deleteCache, .insert(local1, saveTime), .deleteCache, .insert(playingItem2.local, saveTime)]
+        )
+    }
+    
     func test_save_doesNotDeliverErrorAfterSUTInstanceHasBeenDeallocated() {
         let store = PlaybackProgressStoreSpy()
         var sut: LocalPlaybackProgressLoader? = LocalPlaybackProgressLoader(store: store, currentDate: Date.init)
@@ -256,7 +278,9 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
     }
     
     private func makePlayingItemModel(
-        episodeID: UUID, currentTimeInSeconds: Int = 0
+        episodeID: UUID,
+        currentTimeInSeconds: Int = 0,
+        totalTime: Int? = nil
     ) -> (model: PlayingItem, local: LocalPlayingItem) {
         let episode = makeEpisode(episodeID: episodeID.uuidString)
         let podcast = makePodcast()
@@ -267,7 +291,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
                 .playback(.playing),
                 .progress(.init(
                     currentTimeInSeconds: currentTimeInSeconds,
-                    totalTime: .notDefined,
+                    totalTime: totalTime == nil ? .notDefined : .valueInSeconds(totalTime ?? 0),
                     progressTimePercentage: 0.5)
                 ),
                 .volumeLevel(0.5)
@@ -290,7 +314,7 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
                 .playback(.playing),
                 .progress(.init(
                     currentTimeInSeconds: currentTimeInSeconds,
-                    totalTime: .notDefined,
+                    totalTime: totalTime == nil ? .notDefined : .valueInSeconds(totalTime ?? 0),
                     progressTimePercentage: 0.5)
                 ),
                 .volumeLevel(0.5)

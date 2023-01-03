@@ -23,6 +23,10 @@ final class PlaybackProgressCachePolicy {
             return false
         }
         
+        if cachedProgress.totalTime == .notDefined && newProgress.totalTime != .notDefined {
+            return true
+        }
+        
         return abs(newProgress.currentTimeInSeconds - cachedProgress.currentTimeInSeconds) >= minimumPlaybackProgressTimeForCacheInSeconds
     }
     

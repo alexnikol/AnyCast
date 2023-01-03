@@ -9,7 +9,7 @@ protocol RootTabBarViewDelegate {
 
 final class RootTabBarController: UITabBarController {
     private let playerHeight = 60.0
-    private var stickyAudioPlayerController: StickyAudioPlayerViewController?
+    private(set) var stickyAudioPlayerController: StickyAudioPlayerViewController?
     var viewDelegate: RootTabBarViewDelegate?
         
     required init?(coder: NSCoder) {
@@ -24,6 +24,7 @@ final class RootTabBarController: UITabBarController {
         self.init(nibName: nil, bundle: nil)
         self.stickyAudioPlayerController = stickyAudioPlayerController
         self.viewDelegate = viewDelegate
+        setPlayerControllerAsChild()
         viewDelegate.onOpen()
     }
     
@@ -38,7 +39,7 @@ final class RootTabBarController: UITabBarController {
         extendedLayoutIncludesOpaqueBars = true
     }
     
-    func setPlayerControllerAsChild() {
+    private func setPlayerControllerAsChild() {
         guard let stickyAudioPlayerController = stickyAudioPlayerController, let playerView = stickyAudioPlayerController.view else { return }
         self.view.addSubview(playerView)
         self.addChild(stickyAudioPlayerController)

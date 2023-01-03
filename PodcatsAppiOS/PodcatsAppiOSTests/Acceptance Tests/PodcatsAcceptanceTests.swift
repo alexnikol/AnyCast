@@ -263,10 +263,7 @@ final class PodcatsAcceptanceTests: XCTestCase {
     }
     
     private func stickyPlayer(fromRoot root: RootTabBarController) -> StickyAudioPlayerViewController? {
-        let player = root.children.first(where: { $0 is StickyAudioPlayerViewController }).map {
-            $0 as! StickyAudioPlayerViewController
-        }
-        return player
+        root.stickyAudioPlayerController
     }
     
     private func search(

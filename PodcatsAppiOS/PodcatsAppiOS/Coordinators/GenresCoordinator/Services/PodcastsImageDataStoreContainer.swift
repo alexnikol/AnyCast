@@ -8,8 +8,8 @@ final class PodcastsImageDataStoreContainer {
     
     lazy var podcastsImageDataStore: PodcastsImageDataStore = {
         try! CoreDataPodcastsImageDataStore(
-            storeURL: NSPersistentContainer
-                .defaultDirectoryURL()
+            storeURL: FileManager.default
+                .containerURL(forSecurityApplicationGroupIdentifier: "group.com.podcats")!
                 .appendingPathComponent("best-podcasts-image-data-store.sqlite")
         )
     }()

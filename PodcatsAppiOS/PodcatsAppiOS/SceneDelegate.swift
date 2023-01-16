@@ -34,8 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private lazy var playbackProgressStore: PlaybackProgressStore = {
         try! CoreDataPlaybackProgressStore(
-            storeURL: NSPersistentContainer
-                .defaultDirectoryURL()
+            storeURL: FileManager.default
+                .containerURL(forSecurityApplicationGroupIdentifier: "group.com.podcats")!
                 .appendingPathComponent("playback-progress-store.sqlite")
         )
     }()

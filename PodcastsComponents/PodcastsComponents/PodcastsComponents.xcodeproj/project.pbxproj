@@ -360,6 +360,9 @@
 		8DE47138295093ED007B204C /* GeneralSearchModuleiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE47137295093ED007B204C /* GeneralSearchModuleiOSTests.swift */; };
 		8DE471462950964E007B204C /* SearchContentModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D750D0E294B19AE004500D9 /* SearchContentModule.framework */; };
 		8DE4714A2950964E007B204C /* SharedComponentsiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298A9292233F30064F3E6 /* SharedComponentsiOSModule.framework */; };
+		8DF4F01829758BAE00634549 /* CurrentEpisodeWidgetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4F01729758BAE00634549 /* CurrentEpisodeWidgetPresenter.swift */; };
+		8DF4F01A29758BBF00634549 /* CurrentEpisodeWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4F01929758BBF00634549 /* CurrentEpisodeWidgetViewModel.swift */; };
+		8DF4F01C29758C4500634549 /* CurrentEpisodeWidgetPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4F01B29758C4400634549 /* CurrentEpisodeWidgetPresenterTests.swift */; };
 		8DF5A46928D0785300E5E2A9 /* GenresStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46728D0785300E5E2A9 /* GenresStore.xcdatamodeld */; };
 		8DF5A46C28D078B400E5E2A9 /* CoreDataGenresStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */; };
 		8DFAEAB728FD41740028B060 /* PodcastsModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */; };
@@ -952,6 +955,9 @@
 		8DE4712B295093EC007B204C /* SearchContentModuleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SearchContentModuleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE47132295093ED007B204C /* SearchContentModuleiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchContentModuleiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE47137295093ED007B204C /* GeneralSearchModuleiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSearchModuleiOSTests.swift; sourceTree = "<group>"; };
+		8DF4F01729758BAE00634549 /* CurrentEpisodeWidgetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEpisodeWidgetPresenter.swift; sourceTree = "<group>"; };
+		8DF4F01929758BBF00634549 /* CurrentEpisodeWidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEpisodeWidgetViewModel.swift; sourceTree = "<group>"; };
+		8DF4F01B29758C4400634549 /* CurrentEpisodeWidgetPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEpisodeWidgetPresenterTests.swift; sourceTree = "<group>"; };
 		8DF5A46828D0785300E5E2A9 /* GenresStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GenresStore.xcdatamodel; sourceTree = "<group>"; };
 		8DF5A46B28D078B400E5E2A9 /* CoreDataGenresStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataGenresStore.swift; sourceTree = "<group>"; };
 		8DFAEAAF28FD41730028B060 /* PodcastsModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PodcastsModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1978,6 +1984,7 @@
 			children = (
 				8D9B8705292E23ED003B52AB /* LargeAudioPlayerPresenterTests.swift */,
 				8D750C6A29472840004500D9 /* StickyAudioPlayerPresentationTests.swift */,
+				8DF4F01B29758C4400634549 /* CurrentEpisodeWidgetPresenterTests.swift */,
 			);
 			path = "AudioPlayer Presentation";
 			sourceTree = "<group>";
@@ -2240,6 +2247,7 @@
 			isa = PBXGroup;
 			children = (
 				8D249204293A046D009ACD36 /* SharedViewModels */,
+				8DF4F01629758B7E00634549 /* CurrentEpisodeWidgetPresenter */,
 				8D750C7229473C0F004500D9 /* StickyPlayerPresenter */,
 				8D750C7129473C04004500D9 /* LargeAudioPlayerPresenter */,
 			);
@@ -2745,6 +2753,15 @@
 				8D5C209D290021DA006CD42F /* HTTPClientSpy.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8DF4F01629758B7E00634549 /* CurrentEpisodeWidgetPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				8DF4F01729758BAE00634549 /* CurrentEpisodeWidgetPresenter.swift */,
+				8DF4F01929758BBF00634549 /* CurrentEpisodeWidgetViewModel.swift */,
+			);
+			path = CurrentEpisodeWidgetPresenter;
 			sourceTree = "<group>";
 		};
 		8DF5A46F28D0835F00E5E2A9 /* Infrastructure */ = {
@@ -4116,6 +4133,7 @@
 				8D36249B295C6F8700967634 /* PlaybackProgressStore.swift in Sources */,
 				8D9B86EB292D0EA5003B52AB /* PlayerState.swift in Sources */,
 				8D36220E295AF64B00967634 /* PlayingPodcast.swift in Sources */,
+				8DF4F01829758BAE00634549 /* CurrentEpisodeWidgetPresenter.swift in Sources */,
 				8D362611295DAF1100967634 /* ManagedProgress.swift in Sources */,
 				8D750C7029473B28004500D9 /* StickyPlayerPresenter.swift in Sources */,
 				8D750C6E29473B05004500D9 /* StickyAudioPlayerViewModel.swift in Sources */,
@@ -4149,6 +4167,7 @@
 				8D9B86F3292D0FF6003B52AB /* AudioPlayerOutputDelegate.swift in Sources */,
 				8DC218D4293F888800A8EA86 /* SpeedPlaybackViewModel.swift in Sources */,
 				8D362613295DAF7000967634 /* ManagedDuration.swift in Sources */,
+				8DF4F01A29758BBF00634549 /* CurrentEpisodeWidgetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4158,6 +4177,7 @@
 			files = (
 				8D3625D0295C95DC00967634 /* PlaybackProgress+SharedHelpers.swift in Sources */,
 				8D750C6B29472840004500D9 /* StickyAudioPlayerPresentationTests.swift in Sources */,
+				8DF4F01C29758C4500634549 /* CurrentEpisodeWidgetPresenterTests.swift in Sources */,
 				8D3625F3295D887500967634 /* CoreDataPlaybackProgressStoreTests.swift in Sources */,
 				8D9B870B292E2555003B52AB /* SharedHelpers.swift in Sources */,
 				8D3625CB295C906700967634 /* LoadPlayingItemFromCacheUseCaseTests.swift in Sources */,

@@ -19,10 +19,10 @@ struct NoPlayingEpisodeView: View {
                 .frame(width: 50.0, height: 50.0)
                 Spacer().frame(height: 20)
                 Text(CurrentEpisodeWidgetPresenter.noPlayingEpisodeTitle)
-                    .fontWeight(.medium)
+                    .fontWeight(.semibold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
-                    .foregroundColor(Color(uiColor: .systemGray))
+                    .foregroundColor(Color(uiColor: .black.withAlphaComponent(0.6)))
             }.padding()
         }
     }

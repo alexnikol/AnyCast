@@ -36,8 +36,8 @@ struct PlayingEpisodeView: View {
                 
                 VStack(alignment: .leading) {
                     Text(model.timeLabel)
-                        .font(Font.system(size: 11, weight: .regular))
-                        .foregroundColor(Color(uiColor: .systemGray))
+                        .font(Font.system(size: 11, weight: .semibold))
+                        .foregroundColor(Color(uiColor: .black.withAlphaComponent(0.6)))
 
                     Text(model.episodeTitle)
                         .font(Font.system(size: 15, weight: .semibold))

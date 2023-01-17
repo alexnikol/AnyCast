@@ -22,7 +22,7 @@ struct NoPlayingEpisodeView: View {
                     .fontWeight(.medium)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
-                    .foregroundColor(Color(UIColor.secondaryLabel))
+                    .foregroundColor(Color(uiColor: .systemGray))
             }.padding()
         }
     }

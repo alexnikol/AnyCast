@@ -27,7 +27,6 @@
 		8D2EFC1C295EF2FB00D96806 /* AudioPlayerStatePublishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2EFC1B295EF2FB00D96806 /* AudioPlayerStatePublishers.swift */; };
 		8D2EFC24295F401400D96806 /* PlaybackProgressCacheDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2EFC23295F401400D96806 /* PlaybackProgressCacheDummy.swift */; };
 		8D2EFC27296440A600D96806 /* InMemoryPlaybackProgressCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2EFC26296440A600D96806 /* InMemoryPlaybackProgressCache.swift */; };
-		8D3621F32959C43200967634 /* LocalizationTestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F22959C43200967634 /* LocalizationTestsHelper.swift */; };
 		8D3621F62959CF7500967634 /* RootTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F42959CF5600967634 /* RootTabBarCoordinator.swift */; };
 		8D3621F82959D1E300967634 /* PodcastsImageDataStoreContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F72959D1E300967634 /* PodcastsImageDataStoreContainer.swift */; };
 		8D3621FA2959D64700967634 /* LargePlayerControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3621F92959D64700967634 /* LargePlayerControlDelegate.swift */; };
@@ -247,7 +246,6 @@
 		8D2EFC1B295EF2FB00D96806 /* AudioPlayerStatePublishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerStatePublishers.swift; sourceTree = "<group>"; };
 		8D2EFC23295F401400D96806 /* PlaybackProgressCacheDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressCacheDummy.swift; sourceTree = "<group>"; };
 		8D2EFC26296440A600D96806 /* InMemoryPlaybackProgressCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryPlaybackProgressCache.swift; sourceTree = "<group>"; };
-		8D3621F22959C43200967634 /* LocalizationTestsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTestsHelper.swift; sourceTree = "<group>"; };
 		8D3621F42959CF5600967634 /* RootTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarCoordinator.swift; sourceTree = "<group>"; };
 		8D3621F72959D1E300967634 /* PodcastsImageDataStoreContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsImageDataStoreContainer.swift; sourceTree = "<group>"; };
 		8D3621F92959D64700967634 /* LargePlayerControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePlayerControlDelegate.swift; sourceTree = "<group>"; };
@@ -478,14 +476,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		8D3621F12959C41C00967634 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				8D3621F22959C43200967634 /* LocalizationTestsHelper.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		8D362206295AF56C00967634 /* DomainModels+Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -545,7 +535,6 @@
 		8D4C3B22291CF2F7002AD459 /* Integration UI Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8D3621F12959C41C00967634 /* Helpers */,
 				8D72D03E28F8121C00C17DDC /* Genres UI */,
 				8D5FA24E2913C4CD002BB874 /* BestPodcasts UI */,
 				8DDBB76C291BC5740024A37A /* PodcastDetails UI */,
@@ -1209,7 +1198,6 @@
 				8D750CA02947B032004500D9 /* StickyAudioPlayerViewController+DSLHelpers.swift in Sources */,
 				8D0BE49D2950A5D000B4171A /* TypeaheadSearchUIIntegrationTests.swift in Sources */,
 				8DB25F132924F44600CA156E /* PodcastHeaderReusableView+DSLHelpers.swift in Sources */,
-				8D3621F32959C43200967634 /* LocalizationTestsHelper.swift in Sources */,
 				8D72D04828F8121C00C17DDC /* GenreCell+DSLHelpers.swift in Sources */,
 				8D5FA25B2913C574002BB874 /* BestPodcastsListUIIngtegrationTests.swift in Sources */,
 				8DDBB783291BDEC70024A37A /* PodcastDetails+ListViewController+DSLHelpers.swift in Sources */,

@@ -9,7 +9,7 @@ import SearchContentModuleiOS
 import PodcastsModule
 @testable import Podcats
 
-final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationUITestCase {
+final class GeneralSearchUIIntegrationTests: XCTestCase, LocalizationTestCase {
     
     func test_loadGeneralSearchResultActions_requestGeneralSearchOnTermChange() {
         let (sut, sourceDelegate, loader) = makeSUT()

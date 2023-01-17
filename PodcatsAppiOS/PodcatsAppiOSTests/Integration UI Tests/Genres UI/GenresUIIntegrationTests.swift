@@ -1,11 +1,12 @@
 // Copyright © 2022 Almost Engineer. All rights reserved.
 
 import XCTest
+import SharedTestHelpersLibrary
 import PodcastsGenresList
 import PodcastsGenresListiOS
 @testable import Podcats
 
-final class GenresUIIntegrationTests: XCTestCase, LocalizationUITestCase {
+final class GenresUIIntegrationTests: XCTestCase, LocalizationTestCase {
 
     func test_genresView_hasTitle() {
         let (sut, _) = makeSUT()

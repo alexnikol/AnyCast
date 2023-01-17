@@ -20,6 +20,24 @@ public final class CurrentEpisodeWidgetPresenter {
         )
     }
     
+    public static var widgetTitle: String {
+        return NSLocalizedString(
+            "WIDGET_TITLE",
+             tableName: "WidgetCurrentPlayback",
+             bundle: .init(for: Self.self),
+             comment: "Title for the widgets store screen"
+        )
+    }
+    
+    public static var widgetDescription: String {
+        return NSLocalizedString(
+            "WIDGET_DESCRIPTION",
+             tableName: "WidgetCurrentPlayback",
+             bundle: .init(for: Self.self),
+             comment: "Description for the widgets store screen"
+        )
+    }
+    
     private lazy var dateFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]

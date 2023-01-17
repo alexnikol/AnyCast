@@ -35,6 +35,11 @@ final class CurrentEpisodeWidgetPresenterTests: XCTestCase, LocalizationTestCase
         checkForMissingLocalizationInAllSupportedLanguages(bundle: bundle, table: tableName)
     }
     
+    func test_localizedStrings_presenterHasLocalizedWidgetsPresentationTitles() {
+        XCTAssertEqual(CurrentEpisodeWidgetPresenter.widgetTitle, localized("WIDGET_TITLE", bundle: bundle, table: tableName))
+        XCTAssertEqual(CurrentEpisodeWidgetPresenter.widgetDescription, localized("WIDGET_DESCRIPTION", bundle: bundle, table: tableName))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> CurrentEpisodeWidgetPresenter {

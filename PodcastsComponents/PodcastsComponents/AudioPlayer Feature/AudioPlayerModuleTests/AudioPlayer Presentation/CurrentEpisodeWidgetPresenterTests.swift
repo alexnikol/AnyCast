@@ -38,6 +38,7 @@ final class CurrentEpisodeWidgetPresenterTests: XCTestCase, LocalizationTestCase
     func test_localizedStrings_presenterHasLocalizedWidgetsPresentationTitles() {
         XCTAssertEqual(CurrentEpisodeWidgetPresenter.widgetTitle, localized("WIDGET_TITLE", bundle: bundle, table: tableName))
         XCTAssertEqual(CurrentEpisodeWidgetPresenter.widgetDescription, localized("WIDGET_DESCRIPTION", bundle: bundle, table: tableName))
+        XCTAssertEqual(CurrentEpisodeWidgetPresenter.noPlayingEpisodeTitle, localized("NO_PLAYING_EPISODE", bundle: bundle, table: tableName))
     }
     
     // MARK: - Helpers

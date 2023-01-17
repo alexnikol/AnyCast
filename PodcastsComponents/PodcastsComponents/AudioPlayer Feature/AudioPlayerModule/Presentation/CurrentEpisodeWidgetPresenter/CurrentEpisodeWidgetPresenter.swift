@@ -38,6 +38,15 @@ public final class CurrentEpisodeWidgetPresenter {
         )
     }
     
+    public static var noPlayingEpisodeTitle: String {
+        return NSLocalizedString(
+            "NO_PLAYING_EPISODE",
+             tableName: "WidgetCurrentPlayback",
+             bundle: .init(for: Self.self),
+             comment: "No playing episode title"
+        )
+    }
+    
     private lazy var dateFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]

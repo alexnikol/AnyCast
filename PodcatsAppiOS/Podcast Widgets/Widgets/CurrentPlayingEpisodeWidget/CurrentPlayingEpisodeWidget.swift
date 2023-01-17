@@ -20,8 +20,8 @@ struct CurrentPlayingEpisodeWidget: Widget {
         ) { entry in
             CurrentPlayingEpisodeView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName(CurrentEpisodeWidgetPresenter.widgetTitle)
+        .description(CurrentEpisodeWidgetPresenter.widgetDescription)
         .supportedFamilies([.systemSmall])
     }
     

@@ -33,7 +33,7 @@ struct CurrentPlayingEpisodeView_Previews: PreviewProvider {
                 )
             )
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-            .previewDisplayName("Dynamic")
+            .previewDisplayName("No playing episode state")
         }
     }
 }

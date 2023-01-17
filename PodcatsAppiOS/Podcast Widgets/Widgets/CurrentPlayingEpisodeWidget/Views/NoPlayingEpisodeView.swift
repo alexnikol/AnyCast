@@ -2,6 +2,7 @@
 
 import WidgetKit
 import SwiftUI
+import AudioPlayerModule
 
 struct NoPlayingEpisodeView: View {
     
@@ -17,7 +18,7 @@ struct NoPlayingEpisodeView: View {
                 }
                 .frame(width: 50.0, height: 50.0)
                 Spacer().frame(height: 20)
-                Text("No playing episode")
+                Text(CurrentEpisodeWidgetPresenter.noPlayingEpisodeTitle)
                     .fontWeight(.medium)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)

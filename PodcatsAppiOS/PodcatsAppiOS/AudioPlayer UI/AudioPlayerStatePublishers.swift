@@ -3,6 +3,7 @@
 import Foundation
 import Combine
 import AudioPlayerModule
+import WidgetKit
 
 public final class AudioPlayerStatePublishers: AudioPlayerOutputDelegate {
     public typealias AudioPlayerStatePublisher = AnyPublisher<PlayerState, Never>
@@ -36,21 +37,48 @@ public final class AudioPlayerStatePublishers: AudioPlayerOutputDelegate {
     
     private func subscribeOnAudioPlayerEvents() {
         audioPlayerStatePublisher
-            .sink(
-                receiveValue: { [weak self] playbackState in
-                    switch playbackState {
-                    case let .updatedPlayingItem(playbackProgress), let .startPlayingNewItem(playbackProgress):
-                        self?.playbackProgressCache.cachingWithoutHandling(playbackProgress)
-                        
-                    default: break
+            .sink(receiveValue: { [weak self] playbackState in
+                guard let self = self else { return }
+                self.savePlaybackProgress(playerState: playbackState)
+                    .flatMap { [weak self] in
+                        return self?.updateCurrentPlaybackProgressWidget() ?? Empty().eraseToAnyPublisher()
                     }
-                }
-            ).store(in: &cancellables)
+                    .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+                    .store(in: &self.cancellables)
+            })
+            .store(in: &cancellables)
+    }
+    
+    private func savePlaybackProgress(playerState: PlayerState) -> AnyPublisher<Void, Error> {
+        switch playerState {
+        case let .updatedPlayingItem(playbackProgress), let .startPlayingNewItem(playbackProgress):
+            return self.playbackProgressCache.cacheplaybackState(playbackProgress)
+            
+        case .noPlayingItem:
+            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+    }
+    
+    private func updateCurrentPlaybackProgressWidget() -> AnyPublisher<Void, Never> {
+        WidgetCenter.shared.reloadTimelines(ofKind: "Podcast_CurrentPlayingEpisodeWidget")
+        return Empty(completeImmediately: true).eraseToAnyPublisher()
     }
 }
 
 private extension PlaybackProgressCache {
-    func cachingWithoutHandling(_ playbackProgress: PlayingItem) {
-        self.save(playbackProgress, completion: { _ in })
+    func cacheplaybackState(_ playbackProgress: PlayingItem) -> AnyPublisher<Void, Error> {
+        Deferred {
+            Future { completion in
+                self.save(playbackProgress, completion: { result in
+                    switch result {
+                    case let .some(cacheError):
+                        completion(.failure(cacheError))
+                        
+                    case .none:
+                        completion(.success(()))
+                    }
+                })
+            }
+        }.eraseToAnyPublisher()
     }
 }

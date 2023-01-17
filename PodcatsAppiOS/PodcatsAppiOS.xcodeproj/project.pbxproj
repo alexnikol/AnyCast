@@ -141,13 +141,11 @@
 		8DF4EFE6297176EA00634549 /* AudioPlayerModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF4EFE2297176D500634549 /* AudioPlayerModule.framework */; };
 		8DF4EFE7297176EA00634549 /* AudioPlayerModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8DF4EFE2297176D500634549 /* AudioPlayerModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8DF4EFF22975535000634549 /* CurrentEpisodeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4EFEC297552B900634549 /* CurrentEpisodeState.swift */; };
-		8DF4EFF32975535000634549 /* PlayingEpisodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4EFEE297552C600634549 /* PlayingEpisodeModel.swift */; };
 		8DF4EFF42975535000634549 /* CurrentEpisodeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4EFF0297552DB00634549 /* CurrentEpisodeEntry.swift */; };
 		8DF4EFF52975535600634549 /* CurrentPlayingEpisodeWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4EFE9297551D600634549 /* CurrentPlayingEpisodeWidgetProvider.swift */; };
 		8DF4EFF9297556AA00634549 /* CurrentPlayingEpisodeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4EFF8297556AA00634549 /* CurrentPlayingEpisodeWidget.swift */; };
 		8DF4EFFC2975578300634549 /* CurrentPlayingEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4EFFB2975578300634549 /* CurrentPlayingEpisodeView.swift */; };
 		8DF4EFFE2975583600634549 /* PlaybackProgressProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4EFFD2975583600634549 /* PlaybackProgressProvider.swift */; };
-		8DF4F001297559FB00634549 /* PlaybackProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4F000297559FB00634549 /* PlaybackProgressPresenter.swift */; };
 		8DF4F003297561A700634549 /* NoPlayingEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4F002297561A700634549 /* NoPlayingEpisodeView.swift */; };
 		8DF4F005297562AD00634549 /* MainThemeBackgoundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4F004297562AD00634549 /* MainThemeBackgoundGradient.swift */; };
 		8DF4F0072975652F00634549 /* PlayingEpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4F0062975652F00634549 /* PlayingEpisodeView.swift */; };
@@ -364,12 +362,10 @@
 		8DF4EFE2297176D500634549 /* AudioPlayerModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioPlayerModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DF4EFE9297551D600634549 /* CurrentPlayingEpisodeWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPlayingEpisodeWidgetProvider.swift; sourceTree = "<group>"; };
 		8DF4EFEC297552B900634549 /* CurrentEpisodeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEpisodeState.swift; sourceTree = "<group>"; };
-		8DF4EFEE297552C600634549 /* PlayingEpisodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingEpisodeModel.swift; sourceTree = "<group>"; };
 		8DF4EFF0297552DB00634549 /* CurrentEpisodeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentEpisodeEntry.swift; sourceTree = "<group>"; };
 		8DF4EFF8297556AA00634549 /* CurrentPlayingEpisodeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPlayingEpisodeWidget.swift; sourceTree = "<group>"; };
 		8DF4EFFB2975578300634549 /* CurrentPlayingEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPlayingEpisodeView.swift; sourceTree = "<group>"; };
 		8DF4EFFD2975583600634549 /* PlaybackProgressProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressProvider.swift; sourceTree = "<group>"; };
-		8DF4F000297559FB00634549 /* PlaybackProgressPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackProgressPresenter.swift; sourceTree = "<group>"; };
 		8DF4F002297561A700634549 /* NoPlayingEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlayingEpisodeView.swift; sourceTree = "<group>"; };
 		8DF4F004297562AD00634549 /* MainThemeBackgoundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainThemeBackgoundGradient.swift; sourceTree = "<group>"; };
 		8DF4F0062975652F00634549 /* PlayingEpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingEpisodeView.swift; sourceTree = "<group>"; };
@@ -951,7 +947,6 @@
 			children = (
 				8DF4EFF0297552DB00634549 /* CurrentEpisodeEntry.swift */,
 				8DF4EFEC297552B900634549 /* CurrentEpisodeState.swift */,
-				8DF4EFEE297552C600634549 /* PlayingEpisodeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -972,7 +967,6 @@
 				8DF4EFF8297556AA00634549 /* CurrentPlayingEpisodeWidget.swift */,
 				8DF4EFE9297551D600634549 /* CurrentPlayingEpisodeWidgetProvider.swift */,
 				8DF4EFFD2975583600634549 /* PlaybackProgressProvider.swift */,
-				8DF4F000297559FB00634549 /* PlaybackProgressPresenter.swift */,
 				8DF4F00B2975852300634549 /* EpisodeThumbnailLoaderService.swift */,
 			);
 			path = CurrentPlayingEpisodeWidget;
@@ -1246,8 +1240,6 @@
 				8DF4EFF52975535600634549 /* CurrentPlayingEpisodeWidgetProvider.swift in Sources */,
 				8DF4F005297562AD00634549 /* MainThemeBackgoundGradient.swift in Sources */,
 				8DF4EFF9297556AA00634549 /* CurrentPlayingEpisodeWidget.swift in Sources */,
-				8DF4F001297559FB00634549 /* PlaybackProgressPresenter.swift in Sources */,
-				8DF4EFF32975535000634549 /* PlayingEpisodeModel.swift in Sources */,
 				8DF4EFF42975535000634549 /* CurrentEpisodeEntry.swift in Sources */,
 				8DF4EFF22975535000634549 /* CurrentEpisodeState.swift in Sources */,
 			);

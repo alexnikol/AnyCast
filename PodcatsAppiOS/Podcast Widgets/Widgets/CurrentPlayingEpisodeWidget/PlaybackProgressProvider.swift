@@ -34,8 +34,9 @@ final class PlaybackProgressProvider {
                         completion(CurrentEpisodeState.noPlayingItem)
                         return
                     }
-                    let state = PlaybackProgressPresenter.map(currentPlayingItem, thumbnailData: thumbnailData)
-                    completion(state)
+                    let presenter = CurrentEpisodeWidgetPresenter()
+                    let viewModel = presenter.map(currentPlayingItem, thumbnailData: thumbnailData)
+                    completion(.playingItem(viewModel))
                 }
             } receiveValue: { imageData in
                 thumbnailData = imageData

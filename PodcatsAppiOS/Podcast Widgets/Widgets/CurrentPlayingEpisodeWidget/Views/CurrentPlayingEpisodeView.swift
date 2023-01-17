@@ -34,6 +34,22 @@ struct CurrentPlayingEpisodeView_Previews: PreviewProvider {
             )
             .previewContext(WidgetPreviewContext(family: .systemSmall))
             .previewDisplayName("No playing episode state")
+            
+            
+            let playingItem = CurrentEpisodeWidgetViewModel(
+                episodeTitle: "Episode title",
+                podcastTitle: "Podcast title",
+                timeLabel: "About 32 min remaining"
+            )
+            CurrentPlayingEpisodeView(
+                entry: CurrentEpisodeEntry(
+                    date: Date(),
+                    configuration: ConfigurationIntent(),
+                    state: CurrentEpisodeState.playingItem(playingItem)
+                )
+            )
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewDisplayName("No playing episode state")
         }
     }
 }

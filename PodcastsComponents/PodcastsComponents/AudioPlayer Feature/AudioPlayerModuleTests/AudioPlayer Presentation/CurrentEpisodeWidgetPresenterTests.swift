@@ -4,7 +4,7 @@ import XCTest
 import SharedTestHelpersLibrary
 import AudioPlayerModule
 
-final class CurrentEpisodeWidgetPresenterTests: XCTestCase {
+final class CurrentEpisodeWidgetPresenterTests: XCTestCase, LocalizationTestCase {
     
     func test_createsViewModel() {
         let playingItem = makePlayingItem(playbackState: .pause, currentTimeInSeconds: 10, totalTime: .valueInSeconds(210), playbackSpeed: .x1)
@@ -28,7 +28,11 @@ final class CurrentEpisodeWidgetPresenterTests: XCTestCase {
         let viewModel2 = sut.map(playingItem2, thumbnailData: imageData)
         
         XCTAssertEqual(viewModel1.timeLabel, "About 3 min remaining")
-        XCTAssertEqual(viewModel2.timeLabel, "Continue listening")
+        XCTAssertEqual(viewModel2.timeLabel, localized("CONTINUE_LISTENING_WIDGET_TITLE", bundle: bundle, table: tableName))
+    }
+    
+    func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {
+        checkForMissingLocalizationInAllSupportedLanguages(bundle: bundle, table: tableName)
     }
     
     // MARK: - Helpers
@@ -39,5 +43,13 @@ final class CurrentEpisodeWidgetPresenterTests: XCTestCase {
         let presenter = CurrentEpisodeWidgetPresenter(calendar: calendar, locale: locale)
         trackForMemoryLeaks(presenter)
         return presenter
+    }
+    
+    private var tableName: String {
+        "WidgetCurrentPlayback"
+    }
+    
+    private var bundle: Bundle {
+        Bundle(for: CurrentEpisodeWidgetPresenter.self)
     }
 }

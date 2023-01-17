@@ -11,6 +11,15 @@ public final class CurrentEpisodeWidgetPresenter {
         self.locale = locale
     }
     
+    public static var continueListeningTitle: String {
+        return NSLocalizedString(
+            "CONTINUE_LISTENING_WIDGET_TITLE",
+             tableName: "WidgetCurrentPlayback",
+             bundle: .init(for: Self.self),
+             comment: "Title for the no total time state"
+        )
+    }
+    
     private lazy var dateFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute, .second]
@@ -25,7 +34,7 @@ public final class CurrentEpisodeWidgetPresenter {
     }()
     
     public func map(_ playingItem: PlayingItem, thumbnailData: Data) -> CurrentEpisodeWidgetViewModel {
-        var timeLabel = "Continue listening"
+        var timeLabel = Self.continueListeningTitle
        
         for update in playingItem.updates {
             switch update {

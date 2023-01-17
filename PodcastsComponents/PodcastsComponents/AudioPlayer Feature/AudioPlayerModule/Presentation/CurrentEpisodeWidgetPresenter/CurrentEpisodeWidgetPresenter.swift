@@ -3,7 +3,6 @@
 import Foundation
 
 public final class CurrentEpisodeWidgetPresenter {
-    
     private let calendar: Calendar
     private let locale: Locale
     

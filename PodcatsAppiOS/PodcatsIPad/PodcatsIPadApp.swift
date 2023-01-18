@@ -6,7 +6,7 @@ import SwiftUI
 struct PodcatsIPadApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Text("Text 1")
         }
     }
 }

@@ -194,6 +194,39 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
         )
     }
     
+    func test_save_doestNotRequestCacheIfPreviousCacheOfTheSameEpisodeNotAllowedByCachePolicy() {
+        let saveTime = Date()
+        let (sut, store) = makeSUT(currentDate: { saveTime })
+        
+        let episodeID = UUID()
+        
+        let playingItem = makePlayingItemModel(
+            episodeID: episodeID,
+            currentTimeInSeconds: 1,
+            totalTime: 180
+        )
+        sut.save(playingItem.model) { _ in }
+        store.completeDeletionSuccessfully(at: 0)
+        store.completeInsertionSuccessfully(at: 0)
+        
+        let playingItem2 = makePlayingItemModel(
+            episodeID: episodeID,
+            currentTimeInSeconds: 1,
+            totalTime: 200
+        )
+        
+        var playingItem2Result: [LocalPlaybackProgressLoader.SaveResult] = []
+        sut.save(playingItem2.model) { playingItem2Result.append($0) }
+        
+        XCTAssertFalse(playingItem2Result.isEmpty)
+        XCTAssertEqual(playingItem2Result[0] as! SaveError, SaveError.cacheNotAvailableByCachePolicy)
+        
+        XCTAssertEqual(
+            store.receivedMessages,
+            [.deleteCache, .insert(playingItem.local, saveTime)]
+        )
+    }
+    
     func test_save_doesNotDeliverErrorAfterSUTInstanceHasBeenDeallocated() {
         let store = PlaybackProgressStoreSpy()
         var sut: LocalPlaybackProgressLoader? = LocalPlaybackProgressLoader(store: store, currentDate: Date.init)
@@ -224,6 +257,8 @@ final class CachePlaybackProgressUseCaseTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private typealias SaveError = LocalPlaybackProgressLoader.SaveError
     
     private func makeSUT(
         currentDate: @escaping () -> Date = Date.init,

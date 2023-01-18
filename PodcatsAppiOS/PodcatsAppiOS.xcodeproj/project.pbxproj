@@ -45,6 +45,10 @@
 		8D4298DA29227A140064F3E6 /* PodcastDetailsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4298D929227A140064F3E6 /* PodcastDetailsService.swift */; };
 		8D4298DD29227CB60064F3E6 /* SharedComponentsiOSModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298DC29227CB60064F3E6 /* SharedComponentsiOSModule.framework */; };
 		8D4298DE29227CB60064F3E6 /* SharedComponentsiOSModule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D4298DC29227CB60064F3E6 /* SharedComponentsiOSModule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8D4E579C2977F6750015A252 /* PodcatsIPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E579B2977F6750015A252 /* PodcatsIPadApp.swift */; };
+		8D4E579E2977F6750015A252 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4E579D2977F6750015A252 /* ContentView.swift */; };
+		8D4E57A02977F6760015A252 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D4E579F2977F6760015A252 /* Assets.xcassets */; };
+		8D4E57A32977F6760015A252 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D4E57A22977F6760015A252 /* Preview Assets.xcassets */; };
 		8D5C206528FE925E006CD42F /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C206428FE925E006CD42F /* URLSessionHTTPClient.framework */; };
 		8D5C206628FE925E006CD42F /* URLSessionHTTPClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C206428FE925E006CD42F /* URLSessionHTTPClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D5FA2492913C4C1002BB874 /* BestPodcastsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2432913C4C1002BB874 /* BestPodcastsViewAdapter.swift */; };
@@ -263,6 +267,11 @@
 		8D4298D7292278470064F3E6 /* BestPodcastsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestPodcastsService.swift; sourceTree = "<group>"; };
 		8D4298D929227A140064F3E6 /* PodcastDetailsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastDetailsService.swift; sourceTree = "<group>"; };
 		8D4298DC29227CB60064F3E6 /* SharedComponentsiOSModule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponentsiOSModule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D4E57992977F6750015A252 /* PodcatsIPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PodcatsIPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D4E579B2977F6750015A252 /* PodcatsIPadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcatsIPadApp.swift; sourceTree = "<group>"; };
+		8D4E579D2977F6750015A252 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8D4E579F2977F6760015A252 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D4E57A22977F6760015A252 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D5C206428FE925E006CD42F /* URLSessionHTTPClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = URLSessionHTTPClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5FA2432913C4C1002BB874 /* BestPodcastsViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestPodcastsViewAdapter.swift; sourceTree = "<group>"; };
 		8D5FA2442913C4C1002BB874 /* BestPodcastsUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestPodcastsUIComposer.swift; sourceTree = "<group>"; };
@@ -374,6 +383,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8D4E57962977F6750015A252 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D76B86D28D4A2540014A211 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -551,6 +567,25 @@
 				8D72D06D28F82FAA00C17DDC /* PodcatsAcceptanceTests.swift */,
 			);
 			path = "Acceptance Tests";
+			sourceTree = "<group>";
+		};
+		8D4E579A2977F6750015A252 /* PodcatsIPad */ = {
+			isa = PBXGroup;
+			children = (
+				8D4E579B2977F6750015A252 /* PodcatsIPadApp.swift */,
+				8D4E579D2977F6750015A252 /* ContentView.swift */,
+				8D4E579F2977F6760015A252 /* Assets.xcassets */,
+				8D4E57A12977F6760015A252 /* Preview Content */,
+			);
+			path = PodcatsIPad;
+			sourceTree = "<group>";
+		};
+		8D4E57A12977F6760015A252 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8D4E57A22977F6760015A252 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		8D5FA23D2913C44A002BB874 /* BestPodcasts UI */ = {
@@ -742,6 +777,7 @@
 				8D76B87228D4A2540014A211 /* PodcatsAppiOS */,
 				8D76B88928D4A2560014A211 /* PodcatsAppiOSTests */,
 				8DF4EFC929686B1800634549 /* Podcast Widgets */,
+				8D4E579A2977F6750015A252 /* PodcatsIPad */,
 				8D76B87128D4A2540014A211 /* Products */,
 				8D76B8A328D4A2B00014A211 /* Frameworks */,
 			);
@@ -753,6 +789,7 @@
 				8D76B87028D4A2540014A211 /* Podcats.app */,
 				8D76B88628D4A2560014A211 /* PodcatsAppiOSTests.xctest */,
 				8DF4EFC429686B1700634549 /* Podcast WidgetsExtension.appex */,
+				8D4E57992977F6750015A252 /* PodcatsIPad.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -975,6 +1012,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8D4E57982977F6750015A252 /* PodcatsIPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8D4E57A42977F6760015A252 /* Build configuration list for PBXNativeTarget "PodcatsIPad" */;
+			buildPhases = (
+				8D4E57952977F6750015A252 /* Sources */,
+				8D4E57962977F6750015A252 /* Frameworks */,
+				8D4E57972977F6750015A252 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PodcatsIPad;
+			productName = PodcatsIPad;
+			productReference = 8D4E57992977F6750015A252 /* PodcatsIPad.app */;
+			productType = "com.apple.product-type.application";
+		};
 		8D76B86F28D4A2540014A211 /* Podcats */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D76B89A28D4A2560014A211 /* Build configuration list for PBXNativeTarget "Podcats" */;
@@ -1042,6 +1096,9 @@
 				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "Almost Engineer";
 				TargetAttributes = {
+					8D4E57982977F6750015A252 = {
+						CreatedOnToolsVersion = 14.1;
+					};
 					8D76B86F28D4A2540014A211 = {
 						CreatedOnToolsVersion = 13.4.1;
 					};
@@ -1061,6 +1118,7 @@
 			knownRegions = (
 				en,
 				uk,
+				Base,
 			);
 			mainGroup = 8D76B86728D4A2540014A211;
 			productRefGroup = 8D76B87128D4A2540014A211 /* Products */;
@@ -1070,11 +1128,21 @@
 				8D76B86F28D4A2540014A211 /* Podcats */,
 				8D76B88528D4A2560014A211 /* PodcatsAppiOSTests */,
 				8DF4EFC329686B1700634549 /* Podcast WidgetsExtension */,
+				8D4E57982977F6750015A252 /* PodcatsIPad */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8D4E57972977F6750015A252 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D4E57A32977F6760015A252 /* Preview Assets.xcassets in Resources */,
+				8D4E57A02977F6760015A252 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D76B86E28D4A2540014A211 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1103,6 +1171,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8D4E57952977F6750015A252 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D4E579E2977F6750015A252 /* ContentView.swift in Sources */,
+				8D4E579C2977F6750015A252 /* PodcatsIPadApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D76B86C28D4A2540014A211 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1270,6 +1347,76 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8D4E57A52977F6760015A252 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PodcatsIPad/Preview Content\"";
+				DEVELOPMENT_TEAM = WUJDW64U79;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Podcats;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcatsIPad";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		8D4E57A62977F6760015A252 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"PodcatsIPad/Preview Content\"";
+				DEVELOPMENT_TEAM = WUJDW64U79;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Podcats;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcatsIPad";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
 		8D76B89828D4A2560014A211 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1321,7 +1468,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1376,7 +1523,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1575,6 +1722,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8D4E57A42977F6760015A252 /* Build configuration list for PBXNativeTarget "PodcatsIPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D4E57A52977F6760015A252 /* Debug */,
+				8D4E57A62977F6760015A252 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8D76B86B28D4A2540014A211 /* Build configuration list for PBXProject "PodcatsAppiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

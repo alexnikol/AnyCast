@@ -15,6 +15,8 @@ struct PlayingEpisodeView: View {
                 HStack(alignment: .top) {
                     if let data = model.thumbnailData, let image = UIImage(data: data) {
                         Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 80, height: 80)
                             .cornerRadius(4)
                     } else {

@@ -15,11 +15,15 @@ public final class LocalPlaybackProgressLoader {
 
 extension LocalPlaybackProgressLoader: PlaybackProgressCache {
     
+    public enum SaveError: Error, Equatable {
+        case cacheNotAvailableByCachePolicy
+    }
+    
     public typealias SaveResult = PlaybackProgressCache.SaveResult
     
     public func save(_ playingItem: PlayingItem, completion: @escaping (SaveResult) -> Void) {
         guard cachePolicy.isCacheAvailable(with: playingItem) else {
-            completion(nil)
+            completion(SaveError.cacheNotAvailableByCachePolicy)
             return
         }
         

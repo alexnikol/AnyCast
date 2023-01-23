@@ -44,7 +44,7 @@ struct GenresListView: View {
                     trailing: Defaults.space
                 )
             )
-        }.onAppear {
+        }.onLoad {
             viewModel.load()
         }
     }

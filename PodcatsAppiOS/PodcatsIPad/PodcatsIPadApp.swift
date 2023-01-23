@@ -12,9 +12,16 @@ struct PodcatsIPadApp: App {
     
     var body: some Scene {
         
-        
         return WindowGroup {
             TabView {
+                NavigationView {
+                    GenresUIComposer.genresComposedWith(loader: makeLocalGenresLoaderWithRemoteFallback, selection: { _ in })
+                }
+                .navigationViewStyle(.stack)
+                .tabItem {
+                    Label("Explore", systemImage: "rectangle.grid.2x2.fill")
+                }
+                
                 NavigationView {
                     let (view, sourceDelegate) = GeneralSearchUIComposer.generalSearchComposedWith(
                         searchLoader: makeRemoteGeneralSearchLoader(term:),
@@ -35,14 +42,6 @@ struct PodcatsIPadApp: App {
                 .navigationViewStyle(.columns)
                 .tabItem {
                     Label("Search", systemImage: "waveform.and.magnifyingglass")
-                }
-                
-                NavigationView {
-                    GenresUIComposer.genresComposedWith(loader: makeLocalGenresLoaderWithRemoteFallback, selection: { _ in })
-                }
-                .navigationViewStyle(.stack)
-                .tabItem {
-                    Label("Explore", systemImage: "rectangle.grid.2x2.fill")
                 }
             }
         }

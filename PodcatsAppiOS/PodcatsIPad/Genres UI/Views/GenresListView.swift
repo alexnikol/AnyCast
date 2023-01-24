@@ -10,6 +10,7 @@ struct GenresListView: View {
     }
     
     @ObservedObject var viewModel: GenresListViewModel
+    @State var pushed = false
     
     private var columns: [GridItem] = [
         .init(.flexible(minimum: 100, maximum: .infinity), spacing: Defaults.space, alignment: .center),
@@ -33,7 +34,9 @@ struct GenresListView: View {
                                 bottom: Defaults.space,
                                 trailing: 0
                             )
-                        )
+                        ).onTapGesture {
+                            genreModel.onSelect()
+                        }
                 }
             }
             .padding(
@@ -44,7 +47,8 @@ struct GenresListView: View {
                     trailing: Defaults.space
                 )
             )
-        }.onLoad {
+        }
+        .onLoad {
             viewModel.load()
         }
     }
@@ -59,12 +63,12 @@ struct GenresListView_Previews: PreviewProvider {
         Group {
             GenresListView(viewModel: GenresListViewModel(loader: {
                 return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
-            }, colorProvider: GenresUIComposer.makeGenresColorProvider()))
+            }, selection: { _ in }, colorProvider: GenresUIComposer.makeGenresColorProvider()))
             .preferredColorScheme(.light)
             
             GenresListView(viewModel: GenresListViewModel(loader: {
                 return Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
-            }, colorProvider: GenresUIComposer.makeGenresColorProvider()))
+            }, selection: { _ in }, colorProvider: GenresUIComposer.makeGenresColorProvider()))
             .preferredColorScheme(.dark)
         }
     }

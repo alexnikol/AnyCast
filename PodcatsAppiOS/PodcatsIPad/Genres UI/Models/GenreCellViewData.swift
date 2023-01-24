@@ -2,8 +2,9 @@
 
 import SwiftUI
 
-struct GenreCellViewData: Identifiable, Hashable {
+struct GenreCellViewData: Identifiable {
     let id: UUID
     let name: String
     let color: Color
+    let onSelect: () -> Void
 }

@@ -4,20 +4,37 @@ import HTTPClient
 import URLSessionHTTPClient
 import PodcastsGenresList
 import SearchContentModule
+import PodcastsModule
 import SwiftUI
 import Combine
 
 @main
 struct PodcatsIPadApp: App {
+    @State private var genresNavPath = NavigationPath()
     
     var body: some Scene {
         
         return WindowGroup {
             TabView {
-                NavigationView {
-                    GenresUIComposer.genresComposedWith(loader: makeLocalGenresLoaderWithRemoteFallback, selection: { _ in })
+                NavigationStack(path: $genresNavPath) {
+                    GenresUIComposer.genresComposedWith(
+                        loader: makeLocalGenresLoaderWithRemoteFallback,
+                        selection: { genre in
+                            print("DATA__TAP \(genre)")
+                            genresNavPath.append(GenresRouteNavigation.podcastsByGenre(genre))
+                        }
+                    )
+                    .navigationViewStyle(.stack)
+                    .navigationDestination(for: GenresRouteNavigation.self, destination: { route in
+                        switch route {
+                        case .podcastDetailsByPodcast(let id):
+                            Text("Dsd")
+                            
+                        case .podcastsByGenre(let genre):
+                            PodcastsListView()
+                        }
+                    })
                 }
-                .navigationViewStyle(.stack)
                 .tabItem {
                     Label("Explore", systemImage: "rectangle.grid.2x2.fill")
                 }
@@ -46,6 +63,11 @@ struct PodcatsIPadApp: App {
             }
         }
     }
+}
+
+enum GenresRouteNavigation: Hashable {
+    case podcastsByGenre(Genre)
+    case podcastDetailsByPodcast(Int)
 }
 
 private var baseURL: URL = {

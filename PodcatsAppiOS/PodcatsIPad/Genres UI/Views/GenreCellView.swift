@@ -21,18 +21,18 @@ struct GenreCellView: View {
     }
 }
 
-struct GenreCellView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        Group {
-            GenreCellView(model: GenreCellViewData(id: .init(), name: "Genre", color: .red))
-                .frame(width: .infinity, height: 100)
-                .previewLayout(.sizeThatFits)
-
-            let longName = String(repeating: "long long", count: 10)
-            GenreCellView(model: GenreCellViewData(id: .init(), name: "Genre 2 " + longName, color: .red))
-                .frame(width: .infinity, height: 100)
-                .previewLayout(.sizeThatFits)
-        }
-    }
-}
+//struct GenreCellView_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        Group {
+//            GenreCellView(model: GenreCellViewData(id: .init(), name: "Genre", color: .red, onSelect: { genre in .podcastsByGenre(genre)}))
+//                .frame(width: .infinity, height: 100)
+//                .previewLayout(.sizeThatFits)
+//
+//            let longName = String(repeating: "long long", count: 10)
+//            GenreCellView(model: GenreCellViewData(id: .init(), name: "Genre 2 " + longName, color: .red, onSelect: { _ in .podcastsByGenre(.init(id: 1, name: "sdsd")) ))
+//                .frame(width: .infinity, height: 100)
+//                .previewLayout(.sizeThatFits)
+//        }
+//    }
+//}

@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct PodcastImageViewModel {
+public struct PodcastImageViewModel: Hashable {
     public let title: String
     public let publisher: String
     public let languageStaticLabel: String

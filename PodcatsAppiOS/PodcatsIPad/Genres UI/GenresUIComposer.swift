@@ -10,7 +10,7 @@ public enum GenresUIComposer {
         loader: @escaping () -> AnyPublisher<[Genre], Error>,
         selection: @escaping (Genre) -> Void
     ) -> some View {
-        let viewModel = GenresListViewModel(loader: loader, colorProvider: makeGenresColorProvider())
+        let viewModel = GenresListViewModel(loader: loader, selection: selection, colorProvider: makeGenresColorProvider())
         return GenresListView(viewModel: viewModel)
             .navigationTitle(GenresPresenter.title)
     }

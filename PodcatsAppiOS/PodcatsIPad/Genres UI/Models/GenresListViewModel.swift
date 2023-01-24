@@ -8,6 +8,7 @@ final class GenresListViewModel: ObservableObject {
     private let loader: () -> AnyPublisher<[Genre], Error>
     private var store = Set<AnyCancellable>()
     private let colorProvider: GenresActiveColorProvider<Color>
+    private let selection: (Genre) -> Void
     @Published private(set) var isRefreshing = false
     @Published private(set) var genres: [GenreCellViewData] = []
     
@@ -23,16 +24,26 @@ final class GenresListViewModel: ObservableObject {
                     guard let self else { return }
                     
                     self.genres = genres.enumerated().map { index, genre in
-                        GenreCellViewData(id: .init(), name: genre.name, color: self.associatedColorByIndex(index))
+                        GenreCellViewData(
+                            id: .init(),
+                            name: genre.name,
+                            color: self.associatedColorByIndex(index),
+                            onSelect: { [weak self] in
+                                self?.selection(genre)
+                            }
+                        )
                     }
                 }
             )
             .store(in: &store)
     }
     
-    init(loader: @escaping () -> AnyPublisher<[Genre], Error>, colorProvider: GenresActiveColorProvider<Color>) {
+    init(loader: @escaping () -> AnyPublisher<[Genre], Error>,
+        selection: @escaping (Genre) -> Void,
+        colorProvider: GenresActiveColorProvider<Color>) {
         self.loader = loader
         self.colorProvider = colorProvider
+        self.selection = selection
     }
     
     private func associatedColorByIndex(_ index: Int) -> Color {

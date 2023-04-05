@@ -2,11 +2,11 @@
 
 ## Genres list loader architecture diagram
 
-![Architecture diagram](Genres%20List%20UI/dependency.drawio.svg)
+![Architecture diagram](Genres%20Resources/dependency.drawio.svg)
 
 ## Flowchart diagram
 
-![Flowchart diagram](Genres%20List%20UI/main.drawio.svg)
+![Flowchart diagram](Genres%20Resources/main.drawio.svg)
 
 ## **(BDD) Show genres list Spec**
 ### Story: Client requests to see Podcasts Genres list
@@ -184,4 +184,4 @@ The list of available colors should(can be) be specific for each application tha
 - If genres count is greater than colors list count, than provider should return color from the start of the list (e.g. Colors list has 3 colors), for 5th genre provider should return 2nd color.
 - If provider is empty and does not have colors, provider should deliver error.
 
-![Podcasts Genres List UI](Genres%20List%20UI/podcasts-genres-ui-iphone-light.png) ![Podcasts Genres List UI](Genres%20List%20UI/podcasts-genres-ui-iphone-dark.png)
+![Podcasts Genres List UI](Genres%20Resources/podcasts-genres-ui-iphone-light.png) ![Podcasts Genres List UI](Genres%20Resources/podcasts-genres-ui-iphone-dark.png)

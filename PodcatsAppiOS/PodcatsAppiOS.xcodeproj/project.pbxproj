@@ -81,6 +81,7 @@
 		8D51D010297E98340061D0F1 /* PodcastCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D00F297E98340061D0F1 /* PodcastCellView.swift */; };
 		8D51D012297EBD4A0061D0F1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D011297EBD4A0061D0F1 /* String+Extensions.swift */; };
 		8D51D014297ECD060061D0F1 /* DetectOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D51D013297ECD060061D0F1 /* DetectOrientation.swift */; };
+		8D51D01529812E950061D0F1 /* Podcast WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8DF4EFC429686B1700634549 /* Podcast WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8D5C206528FE925E006CD42F /* URLSessionHTTPClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C206428FE925E006CD42F /* URLSessionHTTPClient.framework */; };
 		8D5C206628FE925E006CD42F /* URLSessionHTTPClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8D5C206428FE925E006CD42F /* URLSessionHTTPClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8D5FA2492913C4C1002BB874 /* BestPodcastsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5FA2432913C4C1002BB874 /* BestPodcastsViewAdapter.swift */; };
@@ -204,6 +205,13 @@
 			remoteGlobalIDString = 8D4E57982977F6750015A252;
 			remoteInfo = PodcatsIPad;
 		};
+		8D51D01629812E950061D0F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8D76B86828D4A2540014A211 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DF4EFC329686B1700634549;
+			remoteInfo = "Podcast WidgetsExtension";
+		};
 		8D76B88728D4A2560014A211 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8D76B86828D4A2540014A211 /* Project object */;
@@ -234,6 +242,17 @@
 				8D4E57DC297944C90015A252 /* PodcastsModule.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D51D01829812E950061D0F1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8D51D01529812E950061D0F1 /* Podcast WidgetsExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8D76B8AA28D4A2B00014A211 /* Embed Frameworks */ = {
@@ -351,6 +370,7 @@
 		8D51D00F297E98340061D0F1 /* PodcastCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCellView.swift; sourceTree = "<group>"; };
 		8D51D011297EBD4A0061D0F1 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		8D51D013297ECD060061D0F1 /* DetectOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectOrientation.swift; sourceTree = "<group>"; };
+		8D51D01929812EDE0061D0F1 /* PodcatsIPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PodcatsIPad.entitlements; sourceTree = "<group>"; };
 		8D5C206428FE925E006CD42F /* URLSessionHTTPClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = URLSessionHTTPClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5FA2432913C4C1002BB874 /* BestPodcastsViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestPodcastsViewAdapter.swift; sourceTree = "<group>"; };
 		8D5FA2442913C4C1002BB874 /* BestPodcastsUIComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BestPodcastsUIComposer.swift; sourceTree = "<group>"; };
@@ -663,6 +683,7 @@
 		8D4E579A2977F6750015A252 /* PodcatsIPad */ = {
 			isa = PBXGroup;
 			children = (
+				8D51D01929812EDE0061D0F1 /* PodcatsIPad.entitlements */,
 				8D51D003297E95960061D0F1 /* Shared */,
 				8D4E57B42977F9830015A252 /* Genres UI */,
 				8D4E57CE2979312C0015A252 /* Search UI */,
@@ -1256,10 +1277,12 @@
 				8D4E57962977F6750015A252 /* Frameworks */,
 				8D4E57972977F6750015A252 /* Resources */,
 				8D4E57BF297831250015A252 /* Embed Frameworks */,
+				8D51D01829812E950061D0F1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8D51D01729812E950061D0F1 /* PBXTargetDependency */,
 			);
 			name = PodcatsIPad;
 			productName = PodcatsIPad;
@@ -1614,6 +1637,11 @@
 			target = 8D4E57982977F6750015A252 /* PodcatsIPad */;
 			targetProxy = 8D4E57AF2977F8E40015A252 /* PBXContainerItemProxy */;
 		};
+		8D51D01729812E950061D0F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DF4EFC329686B1700634549 /* Podcast WidgetsExtension */;
+			targetProxy = 8D51D01629812E950061D0F1 /* PBXContainerItemProxy */;
+		};
 		8D76B88828D4A2560014A211 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D76B86F28D4A2540014A211 /* Podcats */;
@@ -1654,6 +1682,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = PodcatsIPad/PodcatsIPad.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PodcatsIPad/Preview Content\"";
@@ -1672,7 +1701,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcatsIPad";
+				PRODUCT_BUNDLE_IDENTIFIER = com.podcats.app.product.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1689,6 +1718,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = PodcatsIPad/PodcatsIPad.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PodcatsIPad/Preview Content\"";
@@ -1707,7 +1737,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "AE-team.PodcatsIPad";
+				PRODUCT_BUNDLE_IDENTIFIER = com.podcats.app.product.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

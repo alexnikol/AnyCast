@@ -10,6 +10,7 @@ import Combine
 
 @main
 struct PodcatsIPadApp: App {
+    
     @State private var genresNavPath = NavigationPath()
     
     var body: some Scene {
@@ -20,7 +21,6 @@ struct PodcatsIPadApp: App {
                     GenresUIComposer.genresComposedWith(
                         loader: makeLocalGenresLoaderWithRemoteFallback,
                         selection: { genre in
-                            print("DATA__TAP \(genre)")
                             genresNavPath.append(GenresRouteNavigation.podcastsByGenre(genre))
                         }
                     )
@@ -28,7 +28,7 @@ struct PodcatsIPadApp: App {
                     .navigationDestination(for: GenresRouteNavigation.self, destination: { route in
                         switch route {
                         case .podcastDetailsByPodcast(let id):
-                            Text("Dsd")
+                            Text("Dsd \(id)")
                             
                         case .podcastsByGenre(let genre):
                             PodcastsListView()
